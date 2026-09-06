@@ -1,0 +1,177 @@
+{
+  "baseline_definition": "nominal incumbent inventory configuration",
+  "gamma": 0,
+  "baseline_definition_noncircular": true,
+  "productwise_benders_compatible": true,
+  "lambda_r_calibrated": false,
+  "robust_gamma_positive_experiment_run": false,
+  "step_1_3_parameters_modified": false,
+  "cases": {
+    "210202": {
+      "old_b_ref": 84614.30513135396,
+      "candidate_a": {
+        "objective": 108999.13573275975,
+        "first_stage_spending": 84614.30513135393,
+        "nominal_recourse": 24384.830601405847
+      },
+      "candidate_b": {
+        "objective": 108999.13573275975,
+        "first_stage_spending": 84614.30513135399,
+        "nominal_recourse": 24384.830601405778
+      },
+      "candidate_objective_difference": 0.0,
+      "candidate_maximum_x_difference": 1.645616976020392e-11,
+      "candidate_y_identical": true,
+      "total_inventory": 5776.468951048719,
+      "active_depot_count": 13,
+      "positive_x0_pair_count": 69,
+      "zero_x0_pair_count": 51,
+      "positive_stock_depot_count": 13,
+      "positive_stock_product_count": 8,
+      "per_product_inventory": {
+        "BAC---1041": 402.23571428571427,
+        "BAC-O-4312": 259.7546653344334,
+        "BAC-O-4325": 569.8571428571429,
+        "BAC-O-6423": 886.3714285714284,
+        "BAC-O-6433": 1795.1785714285716,
+        "CON-S-0130": 627.3571428571429,
+        "SLI---0770": 823.9285714285714,
+        "SLI---1200": 411.7857142857143
+      },
+      "per_depot_inventory": {
+        "90015100": 318.19919574610003,
+        "90016100": 541.1385306228132,
+        "90016200": 952.0859114781558,
+        "90016500": 35.25636015478433,
+        "90016700": 688.3788484315183,
+        "90016900": 867.7758355616647,
+        "90017100": 891.9113108982833,
+        "90018300": 28.577126816697596,
+        "90019100": 72.28575407832501,
+        "91017200": 636.5204735470872,
+        "91017300": 0.0,
+        "91017500": 94.283809138616,
+        "91017600": 0.0,
+        "91017700": 639.292789415533,
+        "9624708": 10.763005159140402
+      },
+      "y0": {
+        "90015100": 1,
+        "90016100": 1,
+        "90016200": 1,
+        "90016500": 1,
+        "90016700": 1,
+        "90016900": 1,
+        "90017100": 1,
+        "90018300": 1,
+        "90019100": 1,
+        "91017200": 1,
+        "91017300": 0,
+        "91017500": 1,
+        "91017600": 0,
+        "91017700": 1,
+        "9624708": 1
+      },
+      "feasibility": {
+        "capacity_compatible": true,
+        "capacity_violation_count": 0,
+        "maximum_capacity_excess": 4.3655745685100555e-11,
+        "ub_compatible": true,
+        "ub_violation_count": 0,
+        "maximum_ub_excess": 0.0
+      },
+      "degeneracy": {
+        "objective_face_tolerance": 1e-07,
+        "structural_range_tolerance": 0.001,
+        "minimum_y_flip_objective_gap": 21.8083585351269,
+        "maximum_x_range_width": 0.0007566468393456205,
+        "material_x_range_count": 0,
+        "baseline_structurally_stable": true,
+        "tie_break_required": false
+      }
+    },
+    "210628": {
+      "old_b_ref": 50558.18771213084,
+      "candidate_a": {
+        "objective": 66869.30330181484,
+        "first_stage_spending": 50558.18771213083,
+        "nominal_recourse": 16311.115589684008
+      },
+      "candidate_b": {
+        "objective": 66869.30330181484,
+        "first_stage_spending": 50558.18771213084,
+        "nominal_recourse": 16311.115589684006
+      },
+      "candidate_objective_difference": 0.0,
+      "candidate_maximum_x_difference": 7.176481631177012e-13,
+      "candidate_y_identical": true,
+      "total_inventory": 3547.1923076923076,
+      "active_depot_count": 13,
+      "positive_x0_pair_count": 64,
+      "zero_x0_pair_count": 56,
+      "positive_stock_depot_count": 13,
+      "positive_stock_product_count": 8,
+      "per_product_inventory": {
+        "BAC---1041": 231.09230769230768,
+        "BAC-O-4312": 238.53846153846155,
+        "BAC-O-4325": 383.9999999999999,
+        "BAC-O-6423": 587.6307692307693,
+        "BAC-O-6433": 949.7769230769231,
+        "CON-S-0130": 434.8461538461538,
+        "SLI---0770": 480.99999999999983,
+        "SLI---1200": 240.3076923076923
+      },
+      "per_depot_inventory": {
+        "90015100": 416.8886696917783,
+        "90015700": 7.26218408959425,
+        "90016100": 937.561325894211,
+        "90016200": 68.11525597604376,
+        "90016500": 28.69965202024065,
+        "90016900": 840.9642916068024,
+        "90017100": 363.3369286089874,
+        "90018300": 0.0,
+        "90018400": 15.301265940306905,
+        "90019100": 43.73523677152833,
+        "91017200": 551.0372693991396,
+        "91017300": 0.0,
+        "91017500": 205.8485611862235,
+        "91017600": 54.783965637815484,
+        "9624708": 13.657700869635697
+      },
+      "y0": {
+        "90015100": 1,
+        "90015700": 1,
+        "90016100": 1,
+        "90016200": 1,
+        "90016500": 1,
+        "90016900": 1,
+        "90017100": 1,
+        "90018300": 0,
+        "90018400": 1,
+        "90019100": 1,
+        "91017200": 1,
+        "91017300": 0,
+        "91017500": 1,
+        "91017600": 1,
+        "9624708": 1
+      },
+      "feasibility": {
+        "capacity_compatible": true,
+        "capacity_violation_count": 0,
+        "maximum_capacity_excess": 1.8189894035458565e-12,
+        "ub_compatible": true,
+        "ub_violation_count": 0,
+        "maximum_ub_excess": 0.0
+      },
+      "degeneracy": {
+        "objective_face_tolerance": 1e-07,
+        "structural_range_tolerance": 0.001,
+        "minimum_y_flip_objective_gap": 0.48515245284943376,
+        "maximum_x_range_width": 0.0006651635092680408,
+        "material_x_range_count": 0,
+        "baseline_structurally_stable": true,
+        "tie_break_required": false
+      }
+    }
+  }
+}

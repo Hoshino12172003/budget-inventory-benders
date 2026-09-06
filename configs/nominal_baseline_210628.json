@@ -1,0 +1,8 @@
+{
+  "case": "210628",
+  "gamma": 0,
+  "financial_budget": null,
+  "baseline_rule": "unconstrained-budget nominal optimum",
+  "instance": "data/formal_instances/210628.json",
+  "artifact": "artifacts/nominal_baseline_210628.csv"
+}
