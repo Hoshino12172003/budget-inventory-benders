@@ -17,3 +17,9 @@ artifacts/*
 !artifacts/.gitkeep
 !artifacts/x0_audit/
 !artifacts/x0_audit/**
+!artifacts/renault_x0_210202.csv
+!artifacts/renault_x0_210628.csv
+!artifacts/renault_x0_capacity_audit.csv
+!artifacts/renault_x0_ub_audit.csv
+!artifacts/renault_x0_scale_audit.csv
+!artifacts/renault_x0_compatibility_summary.json
