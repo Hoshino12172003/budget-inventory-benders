@@ -1,0 +1,14 @@
+{
+  "purpose": "development calibration only",
+  "cases": ["210202", "210628"],
+  "gamma_values": [1, 2],
+  "beta_values": [0.9, 1.0, 1.1],
+  "lambda_grid": [0.0, 0.0025, 0.005, 0.01, 0.025, 0.05, 0.1, 0.2, 0.4, 0.8, 1.6],
+  "original_suggested_lambda_grid": [0.0, 0.01, 0.025, 0.05, 0.1, 0.2, 0.4, 0.8, 1.6],
+  "grid_extension_reason": "The first positive value reduced 210202 RI too sharply for a useful low-friction level; 0.0025 and 0.005 were added before the full grid run.",
+  "primary_environment": {"gamma": 2, "beta": 1.0},
+  "selection_targets": {"low": 0.6, "medium": 0.25, "high": 0.1},
+  "selection_metric": "RI(lambda) / RI(0)",
+  "selection_rule": "For each target, among positive grid values for which both cases have normalized RI in [0.02, 0.90], choose the distinct increasing lambda minimizing the maximum absolute target deviation across the two cases.",
+  "formal_configuration": false
+}
