@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from itertools import combinations
+from math import comb
 
 from .instance import InventoryInstance
 
@@ -9,6 +11,31 @@ from .instance import InventoryInstance
 class DemandScenario:
     active_components: frozenset[tuple[str, str]]
     demand: list[list[float]]
+
+
+def scenario_count(instance: InventoryInstance, gamma: int) -> int:
+    if gamma < 0 or gamma > instance.num_regions * instance.num_products:
+        raise ValueError("gamma is outside the uncertainty-set dimension")
+    components = instance.num_regions * instance.num_products
+    return sum(comb(components, k) for k in range(gamma + 1))
+
+
+def enumerate_scenario_components(
+    instance: InventoryInstance, gamma: int
+) -> list[tuple[tuple[int, int], ...]]:
+    """Canonical region-major enumeration of all binary shocks up to gamma."""
+    if gamma < 0 or gamma > instance.num_regions * instance.num_products:
+        raise ValueError("gamma is outside the uncertainty-set dimension")
+    components = [
+        (r, j)
+        for r in range(instance.num_regions)
+        for j in range(instance.num_products)
+    ]
+    return [
+        scenario
+        for active_count in range(gamma + 1)
+        for scenario in combinations(components, active_count)
+    ]
 
 
 def build_budgeted_binary_scenario(
