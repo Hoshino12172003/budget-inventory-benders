@@ -1,0 +1,12 @@
+{
+  "purpose": "model correctness only",
+  "cases": ["210202", "210628"],
+  "gamma_values": [0, 1, 2],
+  "beta_values": [0.9, 1.0, 1.1],
+  "lambda_values": [0.0, 0.0025, 0.05, 0.2],
+  "comparison_tolerance": 1e-6,
+  "recourse_reporting_optimality_tolerance": 1e-7,
+  "service_zero_demand_rule": "fill_rate_is_one",
+  "service_tie_break": "lowest fill rate, then canonical scenario order, then canonical region order",
+  "formal_performance_experiment": false
+}
