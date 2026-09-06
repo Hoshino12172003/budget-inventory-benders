@@ -475,7 +475,8 @@ def main() -> None:
     archive = args.raw_cases_root.parent.parent / "instances.tar.gz"
     summary = {
         "source": {
-            "official_archive": str(archive),
+            "official_archive": archive.name,
+            "official_archive_reference": "external://renault-raw/instances.tar.gz",
             "official_archive_md5": file_hash(archive, "md5"),
             "official_archive_sha256": file_hash(archive),
             "expected_official_archive_md5": "5a557a2edd50bb308bf955f754b22503",
@@ -483,6 +484,9 @@ def main() -> None:
                 file_hash(archive, "md5") == "5a557a2edd50bb308bf955f754b22503"
             ),
             "mapping_method": "exact_identity_match",
+            "formal_case_identity_status": "FORMAL_CASE_IDENTITY_RESOLVED",
+            "formal_case_ids": ["210202", "210628"],
+            "raw_archive_cases_not_in_formal_processing": ["210712"],
         },
         "cases": {str(result["case"]): result["summary"] for result in results},
         "PRODUCTWISE_BENDERS_COMPATIBLE": True,

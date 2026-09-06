@@ -38,6 +38,20 @@ def test_summary_freezes_static_audit_guardrails() -> None:
     assert summary["PRODUCTWISE_BENDERS_COMPATIBLE"] is True
     assert summary["observed_initial_inventory_recommended_directly_as_x0"] is False
     assert summary["safe_to_proceed_to_lambda_R_calibration_and_new_B_ref"] is False
+    assert summary["source"]["official_archive"] == "instances.tar.gz"
+    assert summary["source"]["official_archive_reference"] == (
+        "external://renault-raw/instances.tar.gz"
+    )
+    assert summary["source"]["official_archive_sha256"] == (
+        "c27075450bc8ace8e74087316b64f22d2a9a9909cb4e4746341bc9f3998950ea"
+    )
+    assert summary["source"]["formal_case_identity_status"] == (
+        "FORMAL_CASE_IDENTITY_RESOLVED"
+    )
+    assert summary["source"]["formal_case_ids"] == ["210202", "210628"]
+    assert summary["source"]["raw_archive_cases_not_in_formal_processing"] == [
+        "210712"
+    ]
     for case in ("210202", "210628"):
         assert summary["cases"][case]["mapped_count"] == 120
         assert summary["cases"][case]["classification"] == "DIRECTLY_COMPATIBLE"

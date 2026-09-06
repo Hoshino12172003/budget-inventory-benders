@@ -1,11 +1,20 @@
 {
   "source": {
-    "official_archive": "E:\\\u8bba\u6587\u4ee3\u7801\\\u5de5\u5382\u6570\u636e\\renault_data_pipeline\\data\\renault_raw\\instances.tar.gz",
+    "official_archive": "instances.tar.gz",
+    "official_archive_reference": "external://renault-raw/instances.tar.gz",
     "official_archive_md5": "5a557a2edd50bb308bf955f754b22503",
     "official_archive_sha256": "c27075450bc8ace8e74087316b64f22d2a9a9909cb4e4746341bc9f3998950ea",
     "expected_official_archive_md5": "5a557a2edd50bb308bf955f754b22503",
     "official_archive_md5_match": true,
-    "mapping_method": "exact_identity_match"
+    "mapping_method": "exact_identity_match",
+    "formal_case_identity_status": "FORMAL_CASE_IDENTITY_RESOLVED",
+    "formal_case_ids": [
+      "210202",
+      "210628"
+    ],
+    "raw_archive_cases_not_in_formal_processing": [
+      "210712"
+    ]
   },
   "cases": {
     "210202": {
