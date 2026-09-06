@@ -16,7 +16,11 @@ y_i =
 
 ## Reconfiguration Model V2 draft
 
-Observed initial inventory is (x^0_{ij}). Add nonnegative adjustment variables
+The model baseline (x^0_{ij}) is the **nominal incumbent inventory
+configuration** selected by the independent, budget-unconstrained, (\Gamma=0)
+planning model before reconfiguration costs or robust protection are introduced.
+It is not observed or historical Renault stock. The separately archived observed
+`initial_inventory` audit remains unchanged. Add nonnegative adjustment variables
 
 \[
 a^+_{ij}\ge 0, \qquad a^-_{ij}\ge 0,

@@ -1,0 +1,24 @@
+{
+  "generator": "scripts/generate_nominal_baselines.py",
+  "model": "src/robust_inventory_reconfiguration/nominal_baseline.py",
+  "rule": "Candidate A: unconstrained-budget Gamma=0 nominal optimum",
+  "reconfiguration_variables_present": false,
+  "reconfiguration_cost_present": false,
+  "lambda_r_present": false,
+  "cases": {
+    "210202": {
+      "instance_path": "data/formal_instances/210202.json",
+      "instance_sha256": "d40beacd55c43b045db79140e38ee211e904dd72f7d6ca95dfb34c1f5a2cdb35",
+      "legacy_instance_sha256": "6792234516446485b95f4111f3826eb5d0cc03b440890a98b71207f50eb5524a",
+      "old_b_ref": 84614.30513135396,
+      "old_b_ref_reproduced_first_stage_spending": 84614.30513135393
+    },
+    "210628": {
+      "instance_path": "data/formal_instances/210628.json",
+      "instance_sha256": "32321a9dc18d1b0134a73b45ed4695f44c8425f544ceb498d7c8f7eeda8d6ba9",
+      "legacy_instance_sha256": "8d54c122d38eb2fe6e0a18de26c22de201ce80dd61a01ad47ca03f17f2b6c50c",
+      "old_b_ref": 50558.18771213084,
+      "old_b_ref_reproduced_first_stage_spending": 50558.18771213083
+    }
+  }
+}
