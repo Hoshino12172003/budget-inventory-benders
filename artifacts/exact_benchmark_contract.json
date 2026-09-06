@@ -1,0 +1,23 @@
+{
+  "purpose": "acceptance contract for future Product-wise Risk-Budget Decomposed Benders",
+  "reference_artifacts": {
+    "runs": "artifacts/reconfiguration_correctness_runs.csv",
+    "service": "artifacts/robust_service_evaluation.csv",
+    "summary": "artifacts/reconfiguration_correctness_summary.json"
+  },
+  "required_comparisons": {
+    "solver_status": "OPTIMAL with exact final robust certification",
+    "feasibility_max_violation": 1e-6,
+    "relative_mip_gap": 1e-6,
+    "objective_absolute_tolerance": 0.0001,
+    "objective_relative_tolerance": 1e-6,
+    "first_stage_expenditure_absolute_tolerance": 0.0001,
+    "robust_recourse_absolute_tolerance": 0.0001,
+    "activation_vector": "exact identity",
+    "inventory_max_absolute_tolerance": 1e-5,
+    "robust_minimum_fill_rate_absolute_tolerance": 1e-6
+  },
+  "scenario_semantics": "binary region-product shocks with total active pairs at most Gamma",
+  "gamma_2_scenario_count": 4657,
+  "productwise_benders_implementation_included": false
+}

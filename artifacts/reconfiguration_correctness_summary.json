@@ -1,0 +1,251 @@
+{
+  "exact_mathematical_formulation_freeze": "PASS",
+  "budget_accounting_pass": true,
+  "objective_accounting_pass": true,
+  "reconfiguration_identity_pass": true,
+  "zero_friction_equivalence_full_grid": true,
+  "zero_friction_checks": [
+    {
+      "case": "210202",
+      "gamma": 0,
+      "beta": 0.9,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 5.684341886080802e-14,
+      "y_identical": true
+    },
+    {
+      "case": "210202",
+      "gamma": 0,
+      "beta": 1.0,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 2.842170943040401e-14,
+      "y_identical": true
+    },
+    {
+      "case": "210202",
+      "gamma": 0,
+      "beta": 1.1,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 2.842170943040401e-14,
+      "y_identical": true
+    },
+    {
+      "case": "210202",
+      "gamma": 1,
+      "beta": 0.9,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 2.842170943040401e-14,
+      "y_identical": true
+    },
+    {
+      "case": "210202",
+      "gamma": 1,
+      "beta": 1.0,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 7.105427357601002e-15,
+      "y_identical": true
+    },
+    {
+      "case": "210202",
+      "gamma": 1,
+      "beta": 1.1,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 0.0,
+      "y_identical": true
+    },
+    {
+      "case": "210202",
+      "gamma": 2,
+      "beta": 0.9,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 1.7763568394002505e-15,
+      "y_identical": true
+    },
+    {
+      "case": "210202",
+      "gamma": 2,
+      "beta": 1.0,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 1.7763568394002505e-15,
+      "y_identical": true
+    },
+    {
+      "case": "210202",
+      "gamma": 2,
+      "beta": 1.1,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 0.0,
+      "y_identical": true
+    },
+    {
+      "case": "210628",
+      "gamma": 0,
+      "beta": 0.9,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 2.842170943040401e-14,
+      "y_identical": true
+    },
+    {
+      "case": "210628",
+      "gamma": 0,
+      "beta": 1.0,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 1.4210854715202004e-14,
+      "y_identical": true
+    },
+    {
+      "case": "210628",
+      "gamma": 0,
+      "beta": 1.1,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 1.4210854715202004e-14,
+      "y_identical": true
+    },
+    {
+      "case": "210628",
+      "gamma": 1,
+      "beta": 0.9,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 2.842170943040401e-14,
+      "y_identical": true
+    },
+    {
+      "case": "210628",
+      "gamma": 1,
+      "beta": 1.0,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 7.105427357601002e-15,
+      "y_identical": true
+    },
+    {
+      "case": "210628",
+      "gamma": 1,
+      "beta": 1.1,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 1.4210854715202004e-14,
+      "y_identical": true
+    },
+    {
+      "case": "210628",
+      "gamma": 2,
+      "beta": 0.9,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 2.220446049250313e-16,
+      "y_identical": true
+    },
+    {
+      "case": "210628",
+      "gamma": 2,
+      "beta": 1.0,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 0.0,
+      "y_identical": true
+    },
+    {
+      "case": "210628",
+      "gamma": 2,
+      "beta": 1.1,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 0.0,
+      "y_identical": true
+    }
+  ],
+  "nominal_baseline_recovery_pass": true,
+  "nominal_recovery_checks": [
+    {
+      "case": "210202",
+      "lambda_r": 0.0025,
+      "maximum_x_difference": 1.0949463558063144e-11,
+      "y_identical": true
+    },
+    {
+      "case": "210202",
+      "lambda_r": 0.05,
+      "maximum_x_difference": 1.1070255823142361e-11,
+      "y_identical": true
+    },
+    {
+      "case": "210202",
+      "lambda_r": 0.2,
+      "maximum_x_difference": 1.3159251466277055e-11,
+      "y_identical": true
+    },
+    {
+      "case": "210628",
+      "lambda_r": 0.0025,
+      "maximum_x_difference": 2.1402435379513918e-11,
+      "y_identical": true
+    },
+    {
+      "case": "210628",
+      "lambda_r": 0.05,
+      "maximum_x_difference": 2.7000623958883807e-13,
+      "y_identical": true
+    },
+    {
+      "case": "210628",
+      "lambda_r": 0.2,
+      "maximum_x_difference": 1.865174681370263e-13,
+      "y_identical": true
+    }
+  ],
+  "robust_objective_nesting_pass": true,
+  "robust_objective_nesting_violations": [],
+  "budget_feasibility_nesting_pass": true,
+  "budget_nesting_violations": [],
+  "ri_nonmonotonicity": [
+    {
+      "case": "210202",
+      "gamma": 2,
+      "beta": 0.9,
+      "lambda_from": 0.05,
+      "lambda_to": 0.2,
+      "ri_from": 0.22234793472721856,
+      "ri_to": 0.22752340972340565,
+      "explanation": "budget-driven inventory substitution; activation-change count is unchanged"
+    },
+    {
+      "case": "210628",
+      "gamma": 0,
+      "beta": 0.9,
+      "lambda_from": 0.0025,
+      "lambda_to": 0.05,
+      "ri_from": 0.3248528764311814,
+      "ri_to": 0.3268647536565239,
+      "explanation": "budget-driven inventory substitution; activation-change count is unchanged"
+    }
+  ],
+  "robust_service_metric_well_defined": true,
+  "productwise_reformulation_exact": true,
+  "attempted": 72,
+  "status_counts": {
+    "OPTIMAL": 72,
+    "INFEASIBLE": 0,
+    "TIME_LIMIT": 0,
+    "MEMORY_LIMIT": 0,
+    "ERROR": 0
+  },
+  "peak_memory_note": "not available from the solver API",
+  "lambda_levels_changed": false,
+  "x0_changed": false,
+  "step_1_3_parameters_changed": false,
+  "productwise_benders_implemented": false
+}

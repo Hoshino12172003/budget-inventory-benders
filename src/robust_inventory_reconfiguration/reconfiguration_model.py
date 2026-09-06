@@ -78,6 +78,14 @@ def gamma_allocations(num_products: int, gamma: int) -> list[tuple[int, ...]]:
     ]
 
 
+def product_risk_budget_value(values: list[list[float]], gamma: int) -> float:
+    """Exact max over integer product risk-budget allocations."""
+    return max(
+        sum(values[j][allocation[j]] for j in range(len(values)))
+        for allocation in gamma_allocations(len(values), gamma)
+    )
+
+
 def build_exact_reconfiguration_model(
     instance: InventoryInstance,
     x0: list[list[float]],
