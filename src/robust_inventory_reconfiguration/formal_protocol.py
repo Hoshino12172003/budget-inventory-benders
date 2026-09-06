@@ -6,9 +6,13 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from .solver_profile import FORMAL_SOLVER_PROFILE_ID
+
 
 FORMAL_CONFIG_SCHEMA_VERSION = "1.0"
 EXPERIMENT_IDS = {f"E{number}" for number in range(1, 8)}
+FORMAL_CASE_IDS = ["210202", "210628"]
+FORMAL_PARAMETER_FREEZE = "experiments/configs/formal/formal_parameter_freeze.json"
 RESULT_FIELDS = (
     "experiment_id",
     "case_id",
@@ -91,6 +95,13 @@ def validate_formal_config(config: dict[str, Any]) -> None:
         "case_ids",
         "parameter_grid",
         "outputs",
+        "blockers",
+        "solver_profile_id",
+        "formal_parameter_freeze",
+        "formal_parameter_freeze_sha256",
+        "git_commit_at_execution",
+        "budget_reference_by_case",
+        "budget_rule",
     }
     missing = required - config.keys()
     if missing:
@@ -103,8 +114,27 @@ def validate_formal_config(config: dict[str, Any]) -> None:
         raise ValueError("formal_run_authorized must be boolean")
     if config["formal_run_authorized"]:
         raise ValueError("protocol-freeze configs must remain unauthorized")
-    if config["case_ids"] != ["210202", "210712"]:
+    if config["case_ids"] != FORMAL_CASE_IDS:
         raise ValueError("formal Renault identity must be explicit and ordered")
+    if config["protocol_status"] != "PROTOCOL_READY":
+        raise ValueError("formal protocol must pass before configuration freeze")
+    if config["blockers"]:
+        raise ValueError("protocol-ready config cannot retain blockers")
+    if config["solver_profile_id"] != FORMAL_SOLVER_PROFILE_ID:
+        raise ValueError("formal config must use the shared solver profile")
+    if config["formal_parameter_freeze"] != FORMAL_PARAMETER_FREEZE:
+        raise ValueError("formal config must reference the frozen parameter source")
+    if len(config["formal_parameter_freeze_sha256"]) != 64:
+        raise ValueError("formal parameter freeze SHA-256 must be explicit")
+    if config["git_commit_at_execution"] != "CAPTURE_AT_EXECUTION":
+        raise ValueError("execution commit must be captured at execution time")
+    if config["budget_reference_by_case"] != {
+        "210202": 84614.30513135393,
+        "210628": 50558.18771213083,
+    }:
+        raise ValueError("formal config must use the frozen case budget references")
+    if config["budget_rule"] != "B = beta * B_ref_case":
+        raise ValueError("formal budget must be derived from beta and case B_ref")
 
 
 def require_formal_authorization(config: dict[str, Any]) -> None:

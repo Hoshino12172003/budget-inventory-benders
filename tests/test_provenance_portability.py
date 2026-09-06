@@ -6,8 +6,11 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PROVENANCE_FILES = tuple(sorted((ROOT / "artifacts").rglob("*.json"))) + tuple(
-    sorted((ROOT / "configs").rglob("*.json"))
+PROVENANCE_FILES = (
+    tuple(sorted((ROOT / "artifacts").rglob("*.json")))
+    + tuple(sorted((ROOT / "configs").rglob("*.json")))
+    + tuple(sorted((ROOT / "experiments" / "configs").rglob("*.json")))
+    + tuple(sorted((ROOT / "experiments" / "configs").rglob("*.yaml")))
 )
 NONPORTABLE_PATH = re.compile(
     r"(?i)(?:(?<![a-z0-9+.-])[a-z]:[\\/]|/(?:Users|home)/[^/\s\"']+|/tmp/|"

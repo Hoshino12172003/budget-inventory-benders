@@ -9,6 +9,7 @@ from .reconfiguration_model import (
     build_exact_reconfiguration_model,
 )
 from .scenarios import enumerate_scenario_components, scenario_count
+from .solver_profile import apply_formal_solver_profile
 
 
 @dataclass(frozen=True)
@@ -109,9 +110,7 @@ def solve_global_scenario_benchmark(
     products = range(instance.num_products)
     model = gp.Model(f"global_exact_{instance.name}")
     model.Params.OutputFlag = 0
-    model.Params.MIPGap = 0
-    model.Params.FeasibilityTol = 1e-9
-    model.Params.OptimalityTol = 1e-9
+    apply_formal_solver_profile(model, mixed_integer=True)
     y = model.addVars(depots, vtype=GRB.BINARY, name="y")
     x = model.addVars(depots, products, lb=0, name="x")
     a_plus = model.addVars(depots, products, lb=0, name="a_plus")

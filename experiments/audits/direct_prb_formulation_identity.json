@@ -1,5 +1,5 @@
 {
-  "status": "BLOCKED",
+  "status": "PASS",
   "audit_scope": "static protocol audit; no optimization run",
   "checks": {
     "same_first_stage_feasible_region": {"pass": true, "evidence": "reconfiguration_model.py and product_risk_budget_benders.py use the same y, x, capacity, UB*y, adjustment balance, and financial budget structure"},
@@ -13,12 +13,13 @@
     "same_cost_coefficients": {"pass": true, "evidence": "transport, shortage, service, inventory, and depot fixed costs come from the same instance"},
     "same_integrality_assumptions": {"pass": true, "evidence": "y is binary; x and adjustment/recourse variables are continuous and nonnegative"},
     "same_solver_tolerances": {
-      "pass": false,
+      "pass": true,
+      "profile_id": "gurobi-balanced-1e-8-v1",
       "exact": {"MIPGap": 0, "FeasibilityTol": 1e-8, "OptimalityTol": 1e-8, "IntFeasTol": 1e-8},
-      "prb_master": {"MIPGap": 0, "FeasibilityTol": 1e-9, "OptimalityTol": 1e-9, "IntFeasTol": 1e-9},
-      "product_subproblem": {"FeasibilityTol": 1e-9, "OptimalityTol": 1e-9}
+      "prb_master": {"MIPGap": 0, "FeasibilityTol": 1e-8, "OptimalityTol": 1e-8, "IntFeasTol": 1e-8},
+      "product_subproblem": {"FeasibilityTol": 1e-8, "OptimalityTol": 1e-8}
     }
   },
-  "overall_identity_pass": false,
-  "required_resolution": "Approve one shared solver-tolerance profile in a separate correctness-preserving change before E1 is authorized."
+  "overall_identity_pass": true,
+  "resolution": "Direct, PRB master, and PRB product LPs read one shared solver-native profile. Certification tolerances are unchanged."
 }

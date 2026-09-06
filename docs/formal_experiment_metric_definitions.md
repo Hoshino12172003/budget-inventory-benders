@@ -25,4 +25,4 @@ Only metrics supported by the current model and frozen post-solve evaluator are 
 | Optimality gap | Certified relative gap | fraction | Solver/PRB bound accounting | Certification | A missing certified bound is `null`, not zero |
 | Peak memory | Maximum reliable process memory | GB | External process-level recorder | Diagnostic/performance | `null` until reliable capture is implemented; never estimate it as a measured result |
 
-Product- and depot-level RI breakdowns are optional supplementary columns, not replacements for the system RI. The denominator is positive for the currently available nominal baselines 210202 and 210628; it cannot yet be checked for missing case 210712.
+Product- and depot-level RI breakdowns are optional supplementary columns, not replacements for the system RI. The denominator is positive for both formal nominal baselines, 210202 and 210628.

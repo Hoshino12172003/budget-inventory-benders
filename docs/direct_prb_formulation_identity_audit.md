@@ -1,13 +1,17 @@
-# Direct versus PRB formulation identity audit
+# Direct and PRB formulation identity audit
 
-The static audit passes the first-stage feasible region, `x0`, reconfiguration cost, budget, Gamma semantics, demand uncertainty, recourse variables, service penalty, all cost coefficients, and integrality assumptions. Both methods solve Reconfiguration Model V2; Direct is the factorized exact product-pattern extensive formulation.
+`DIRECT_PRB_FORMULATION_IDENTITY_PASS=true`.
 
-The audit is currently **BLOCKED** because solver tolerances are not identical:
+Direct and PRB receive the same formal instance, nominal-incumbent `x0`, budget,
+`Gamma`, `lambda_R`, first-stage feasible region, recourse equations, uncertainty
+semantics, objective coefficients, and integrality assumptions.
 
-| Component | MIP gap | Feasibility | Optimality | Integrality |
-|---|---:|---:|---:|---:|
-| Direct exact | 0 | `1e-8` | `1e-8` | `1e-8` |
-| PRB master | 0 | `1e-9` | `1e-9` | `1e-9` |
-| Product LP | NA | `1e-9` | `1e-9` | NA |
+The former solver-native tolerance mismatch is resolved by shared profile
+`gurobi-balanced-1e-8-v1`. Direct, PRB master, and PRB product LPs now obtain
+their settings from `solver_profile.py`; they no longer hard-code competing
+profiles. The selection uses the already stable Direct/evaluator `1e-8` setting,
+which is stricter than the `1e-7` cut gate without introducing an untested demand
+for uniformly tighter `1e-9` solves.
 
-No tolerance was changed here because this task prohibits changes to the frozen solver implementation. A later correctness-preserving PR must approve and apply one shared profile before E1 can run.
+PRB-only algorithmic and certification gates are not solver-native tolerances and
+remain unchanged.

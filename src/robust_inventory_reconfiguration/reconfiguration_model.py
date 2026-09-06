@@ -5,6 +5,7 @@ from itertools import combinations, product
 from typing import Any
 
 from .instance import InventoryInstance
+from .solver_profile import apply_formal_solver_profile
 
 
 @dataclass(frozen=True)
@@ -116,10 +117,7 @@ def build_exact_reconfiguration_model(
     products_index = range(instance.num_products)
     model = gp.Model(f"reconfiguration_{instance.name}_g{gamma}_l{lambda_r:g}")
     model.Params.OutputFlag = 0
-    model.Params.MIPGap = 0
-    model.Params.FeasibilityTol = 1e-8
-    model.Params.OptimalityTol = 1e-8
-    model.Params.IntFeasTol = 1e-8
+    apply_formal_solver_profile(model, mixed_integer=True)
 
     y = model.addVars(depots, vtype=GRB.BINARY, name="y")
     x = model.addVars(depots, products_index, lb=0, name="x")

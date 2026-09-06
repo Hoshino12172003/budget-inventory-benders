@@ -3,17 +3,24 @@
   "experiment_id": "E7",
   "title": "Risk by reconfiguration-friction interaction",
   "formal_run_authorized": false,
-  "protocol_status": "BLOCKED",
+  "protocol_status": "PROTOCOL_READY",
   "priority": "primary_interaction",
-  "case_ids": ["210202", "210712"],
+  "case_ids": ["210202", "210628"],
   "parameter_grid": {
     "beta": [1.0],
     "Gamma": [0, 2, 4],
-    "lambda_R": null,
-    "development_candidate_lambda_R": [0.0025, 0.05, 0.2],
+    "lambda_R": [0.0025, 0.05, 0.2],
     "shape": [3, 3]
   },
+  "budget_reference_by_case": {"210202": 84614.30513135393, "210628": 50558.18771213083},
+  "budget_rule": "B = beta * B_ref_case",
+  "solver_profile_id": "gurobi-balanced-1e-8-v1",
+  "formal_parameter_freeze": "experiments/configs/formal/formal_parameter_freeze.json",
+  "formal_parameter_freeze_sha256": "37b5f962c061d29b6b72417007424907b9b1f756a4ad1943a3719048d46b93c0",
+  "git_commit_at_execution": "CAPTURE_AT_EXECUTION",
+  "level_status": "FROZEN",
   "estimated_run_count": 18,
+  "run_count_breakdown": "2 cases * 3 Gamma levels * 3 lambda_R levels = 18",
   "outputs": {"schema": "experiments/schemas/formal_result.schema.json"},
-  "blockers": ["210712_ARTIFACT_MISSING", "FORMAL_B0_AND_LAMBDA_LEVELS_NOT_FROZEN", "PR2_TO_PR7_NOT_IN_MAIN"]
+  "blockers": []
 }
