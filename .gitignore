@@ -23,3 +23,8 @@ artifacts/*
 !artifacts/renault_x0_ub_audit.csv
 !artifacts/renault_x0_scale_audit.csv
 !artifacts/renault_x0_compatibility_summary.json
+!artifacts/nominal_baseline_210202.csv
+!artifacts/nominal_baseline_210628.csv
+!artifacts/nominal_baseline_summary.json
+!artifacts/nominal_baseline_degeneracy_audit.csv
+!artifacts/nominal_baseline_provenance.json
