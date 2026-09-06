@@ -1,0 +1,275 @@
+{
+  "budget_reference_noncircular": true,
+  "zero_friction_equivalence": true,
+  "zero_friction_checks": [
+    {
+      "case": "210202",
+      "gamma": 1,
+      "beta": 0.9,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 2.842170943040401e-14,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210202",
+      "gamma": 1,
+      "beta": 1.0,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 7.105427357601002e-15,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210202",
+      "gamma": 1,
+      "beta": 1.1,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 0.0,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210202",
+      "gamma": 2,
+      "beta": 0.9,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 1.7763568394002505e-15,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210202",
+      "gamma": 2,
+      "beta": 1.0,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 1.7763568394002505e-15,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210202",
+      "gamma": 2,
+      "beta": 1.1,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 0.0,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "gamma": 1,
+      "beta": 0.9,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 2.842170943040401e-14,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "gamma": 1,
+      "beta": 1.0,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 7.105427357601002e-15,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "gamma": 1,
+      "beta": 1.1,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 1.4210854715202004e-14,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "gamma": 2,
+      "beta": 0.9,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 2.220446049250313e-16,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "gamma": 2,
+      "beta": 1.0,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 0.0,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "gamma": 2,
+      "beta": 1.1,
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 0.0,
+      "y_identical": true,
+      "passed": true
+    }
+  ],
+  "incumbent_nominal_recovery": true,
+  "incumbent_checks": [
+    {
+      "case": "210202",
+      "lambda_r": 0.0025,
+      "maximum_x_difference": 1.0949463558063144e-11,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210202",
+      "lambda_r": 0.005,
+      "maximum_x_difference": 1.8454571204529202e-11,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210202",
+      "lambda_r": 0.01,
+      "maximum_x_difference": 6.0538241086760536e-12,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210202",
+      "lambda_r": 0.025,
+      "maximum_x_difference": 9.549694368615746e-12,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210202",
+      "lambda_r": 0.05,
+      "maximum_x_difference": 1.1070255823142361e-11,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210202",
+      "lambda_r": 0.1,
+      "maximum_x_difference": 3.979039320256561e-13,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210202",
+      "lambda_r": 0.2,
+      "maximum_x_difference": 1.3159251466277055e-11,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210202",
+      "lambda_r": 0.4,
+      "maximum_x_difference": 7.37543359718984e-12,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210202",
+      "lambda_r": 0.8,
+      "maximum_x_difference": 3.979039320256561e-13,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210202",
+      "lambda_r": 1.6,
+      "maximum_x_difference": 1.779909553079051e-12,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "lambda_r": 0.0025,
+      "maximum_x_difference": 2.1402435379513918e-11,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "lambda_r": 0.005,
+      "maximum_x_difference": 4.547473508864641e-13,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "lambda_r": 0.01,
+      "maximum_x_difference": 6.821210263296962e-13,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "lambda_r": 0.025,
+      "maximum_x_difference": 5.115907697472721e-13,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "lambda_r": 0.05,
+      "maximum_x_difference": 2.7000623958883807e-13,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "lambda_r": 0.1,
+      "maximum_x_difference": 4.760636329592671e-13,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "lambda_r": 0.2,
+      "maximum_x_difference": 1.865174681370263e-13,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "lambda_r": 0.4,
+      "maximum_x_difference": 3.410605131648481e-13,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "lambda_r": 0.8,
+      "maximum_x_difference": 4.121147867408581e-13,
+      "y_identical": true,
+      "passed": true
+    },
+    {
+      "case": "210628",
+      "lambda_r": 1.6,
+      "maximum_x_difference": 0.0,
+      "y_identical": true,
+      "passed": true
+    }
+  ],
+  "reconfiguration_balance_identity": true,
+  "no_material_simultaneous_adjustments_when_positive_cost": true,
+  "ri_representations_equivalent": true,
+  "objective_accounting_consistent": true,
+  "service_metrics_reported": false,
+  "service_metrics_reason": "The extensive form certifies robust recourse cost but does not select a unique global worst-case regional service realization."
+}

@@ -28,3 +28,7 @@ artifacts/*
 !artifacts/nominal_baseline_summary.json
 !artifacts/nominal_baseline_degeneracy_audit.csv
 !artifacts/nominal_baseline_provenance.json
+!artifacts/lambda_calibration_runs.csv
+!artifacts/lambda_calibration_summary.json
+!artifacts/lambda_response_by_case.csv
+!artifacts/reconfiguration_correctness_audit.json
