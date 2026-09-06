@@ -40,3 +40,6 @@ artifacts/*
 !artifacts/prb_benders_correctness_summary.json
 !artifacts/prb_cut_validity_audit.csv
 !artifacts/prb_gamma_composition_audit.csv
+!artifacts/prb_correctness_reclassification.csv
+!artifacts/prb_optimal_face_audit.csv
+!artifacts/prb_correctness_contract_summary.json
