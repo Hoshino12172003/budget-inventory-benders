@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "E5",
+  "title": "Reconfiguration friction sensitivity",
+  "formal_run_authorized": false,
+  "protocol_status": "BLOCKED",
+  "case_ids": ["210202", "210712"],
+  "parameter_grid": {
+    "beta": [1.0],
+    "Gamma": null,
+    "lambda_R": null,
+    "candidate_lambda_multipliers": [0.0, 0.5, 1.0, 2.0, 4.0],
+    "development_implied_values_if_lambda0_is_0.05": [0.0, 0.025, 0.05, 0.1, 0.2]
+  },
+  "level_status": "NOT_FROZEN; IMPLIED VALUES ARE WITHIN THE DEVELOPMENT GRID",
+  "estimated_run_count": 10,
+  "count_conditional_on_anchor_approval": true,
+  "outputs": {"schema": "experiments/schemas/formal_result.schema.json"},
+  "blockers": ["210712_ARTIFACT_MISSING", "FORMAL_GAMMA0_AND_LAMBDA0_NOT_FROZEN", "PR2_TO_PR7_NOT_IN_MAIN"]
+}

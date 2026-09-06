@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "E2",
+  "title": "Value of robust inventory reconfiguration",
+  "formal_run_authorized": false,
+  "protocol_status": "BLOCKED",
+  "case_ids": ["210202", "210712"],
+  "variants": [
+    {"id": "existing_system", "fix_x_to_x0": true, "Gamma": 0},
+    {"id": "nominal_reconfiguration", "fix_x_to_x0": false, "Gamma": 0},
+    {"id": "robust_reconfiguration", "fix_x_to_x0": false, "Gamma": null}
+  ],
+  "parameter_grid": {"beta": [1.0], "Gamma": [0, null], "lambda_R": null},
+  "estimated_run_count": 6,
+  "outputs": {"schema": "experiments/schemas/formal_result.schema.json"},
+  "blockers": ["210712_ARTIFACT_MISSING", "FORMAL_ANCHORS_NOT_FROZEN", "PR2_TO_PR7_NOT_IN_MAIN"]
+}

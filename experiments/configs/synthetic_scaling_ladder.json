@@ -1,0 +1,23 @@
+{
+  "status": "DESIGN_ONLY",
+  "formal_run_authorized": false,
+  "machine_memory_gb": 32,
+  "preflight_memory_stop_gb": 24,
+  "Gamma": 2,
+  "replicates_per_scale": 1,
+  "seed": 20260906,
+  "scales": [
+    {"id": "small", "I": 5, "R": 4, "J": 3, "uncertainty_terms": 12, "local_patterns_per_product": 11, "global_scenarios": 79, "gamma_allocations": 10, "dp_states": 12, "master_variables_before_cuts": 60, "master_constraints_before_product_cuts": 46, "direct_variables": 885, "direct_constraints": 409, "memory_pressure": "low"},
+    {"id": "medium", "I": 10, "R": 8, "J": 5, "uncertainty_terms": 40, "local_patterns_per_product": 37, "global_scenarios": 821, "gamma_allocations": 21, "dp_states": 18, "master_variables_before_cuts": 176, "master_constraints_before_product_cuts": 132, "direct_variables": 16641, "direct_constraints": 3832, "memory_pressure": "low"},
+    {"id": "renault_like", "I": 15, "R": 12, "J": 8, "uncertainty_terms": 96, "local_patterns_per_product": 79, "global_scenarios": 4657, "gamma_allocations": 45, "dp_states": 27, "master_variables_before_cuts": 400, "master_constraints_before_product_cuts": 301, "direct_variables": 122376, "direct_constraints": 18629, "memory_pressure": "moderate"},
+    {"id": "large", "I": 20, "R": 16, "J": 10, "uncertainty_terms": 160, "local_patterns_per_product": 137, "global_scenarios": 12881, "gamma_allocations": 66, "dp_states": 33, "master_variables_before_cuts": 651, "master_constraints_before_product_cuts": 487, "direct_variables": 462341, "direct_constraints": 52547, "memory_pressure": "high; mandatory preflight"}
+  ],
+  "counting_notes": {
+    "local_patterns_per_product": "sum_{g=0}^Gamma choose(R,g)",
+    "global_scenarios": "sum_{g=0}^Gamma choose(R*J,g); reported for scale context only",
+    "gamma_allocations": "choose(J+Gamma,Gamma)",
+    "dp_states": "(J+1)*(Gamma+1)",
+    "direct_formulation": "factorized exact product-pattern extensive form, not literal global-scenario replication",
+    "memory": "qualitative planning class, not a measured result"
+  }
+}

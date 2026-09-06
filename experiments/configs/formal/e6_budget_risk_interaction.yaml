@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "E6",
+  "title": "Budget by risk interaction",
+  "formal_run_authorized": false,
+  "protocol_status": "BLOCKED",
+  "priority": "supplementary_candidate",
+  "case_ids": ["210202", "210712"],
+  "parameter_grid": {"beta": null, "Gamma": [0, 2, 4], "lambda_R": null, "shape": [3, 3]},
+  "estimated_run_count": 18,
+  "outputs": {"schema": "experiments/schemas/formal_result.schema.json"},
+  "blockers": ["210712_ARTIFACT_MISSING", "FORMAL_LOW_MEDIUM_HIGH_B_NOT_FROZEN", "FORMAL_LAMBDA0_NOT_FROZEN", "PR2_TO_PR7_NOT_IN_MAIN"]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "E7",
+  "title": "Risk by reconfiguration-friction interaction",
+  "formal_run_authorized": false,
+  "protocol_status": "BLOCKED",
+  "priority": "primary_interaction",
+  "case_ids": ["210202", "210712"],
+  "parameter_grid": {
+    "beta": [1.0],
+    "Gamma": [0, 2, 4],
+    "lambda_R": null,
+    "development_candidate_lambda_R": [0.0025, 0.05, 0.2],
+    "shape": [3, 3]
+  },
+  "estimated_run_count": 18,
+  "outputs": {"schema": "experiments/schemas/formal_result.schema.json"},
+  "blockers": ["210712_ARTIFACT_MISSING", "FORMAL_B0_AND_LAMBDA_LEVELS_NOT_FROZEN", "PR2_TO_PR7_NOT_IN_MAIN"]
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "E1",
+  "title": "Algorithm benchmark",
+  "formal_run_authorized": false,
+  "protocol_status": "BLOCKED",
+  "case_ids": ["210202", "210712"],
+  "methods": ["prb_benders", "direct_exact"],
+  "synthetic_scale_ids": ["small", "medium", "renault_like", "large"],
+  "parameter_grid": {"beta": [1.0], "Gamma": null, "lambda_R": null},
+  "replicates": 1,
+  "estimated_run_count": 12,
+  "outputs": {"schema": "experiments/schemas/formal_result.schema.json"},
+  "blockers": ["210712_ARTIFACT_MISSING", "FORMAL_ANCHORS_NOT_FROZEN", "DIRECT_PRB_SOLVER_TOLERANCE_MISMATCH", "PR2_TO_PR7_NOT_IN_MAIN"]
+}

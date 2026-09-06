@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "E4",
+  "title": "Risk sensitivity",
+  "formal_run_authorized": false,
+  "protocol_status": "BLOCKED",
+  "case_ids": ["210202", "210712"],
+  "parameter_grid": {"beta": [1.0], "Gamma": [0, 1, 2, 3, 4], "lambda_R": null},
+  "level_status": "GAMMA_LEVELS_FROZEN_BY_PROTOCOL; BASELINE_ANCHORS_UNRESOLVED",
+  "estimated_run_count": 10,
+  "outputs": {"schema": "experiments/schemas/formal_result.schema.json"},
+  "blockers": ["210712_ARTIFACT_MISSING", "FORMAL_B0_AND_LAMBDA0_NOT_FROZEN", "PR2_TO_PR7_NOT_IN_MAIN"]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "E3",
+  "title": "Budget sensitivity",
+  "formal_run_authorized": false,
+  "protocol_status": "BLOCKED",
+  "case_ids": ["210202", "210712"],
+  "parameter_grid": {
+    "beta": null,
+    "candidate_beta": [0.8, 0.9, 1.0, 1.1, 1.2],
+    "Gamma": null,
+    "lambda_R": null
+  },
+  "level_status": "NOT_FROZEN_PENDING_FEASIBILITY_AND_ECONOMIC_AUDIT",
+  "estimated_run_count": 10,
+  "count_conditional_on_level_approval": true,
+  "outputs": {"schema": "experiments/schemas/formal_result.schema.json"},
+  "blockers": ["210712_ARTIFACT_MISSING", "FORMAL_BETA_LEVELS_NOT_CALIBRATED", "FORMAL_ANCHORS_NOT_FROZEN", "PR2_TO_PR7_NOT_IN_MAIN"]
+}
