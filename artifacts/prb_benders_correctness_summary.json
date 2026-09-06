@@ -1,0 +1,63 @@
+{
+  "mathematical_derivation": "PASS",
+  "product_cut_validity_pass": true,
+  "product_cut_tightness_pass": true,
+  "all_cut_duals_feasible": true,
+  "gamma_composition_exactness_pass": true,
+  "global_risk_budget_coupling_pass": true,
+  "prb_benders_correctness_pass": false,
+  "primary_objective_cost_and_y_matches": 72,
+  "tiny_synthetic_tested": 2,
+  "tiny_synthetic_exact_matches": 2,
+  "tiny_synthetic": [
+    {
+      "gamma": 1,
+      "exact_match": true,
+      "maximum_x_difference": 8.659739592076221e-15
+    },
+    {
+      "gamma": 2,
+      "exact_match": true,
+      "maximum_x_difference": 3.552713678800501e-15
+    }
+  ],
+  "renault_attempted": 72,
+  "renault_certified": 70,
+  "renault_mismatched": 2,
+  "renault_time_limit": 0,
+  "renault_error": 0,
+  "maximum_differences": {
+    "objective": 8.891220204532146e-09,
+    "first_stage_expenditure": 8.89849616214633e-09,
+    "robust_recourse": 5.515175871551037e-09,
+    "x": 203.06688744493735,
+    "fr_min_robust": 3.8449909922633196e-11
+  },
+  "iterations": {
+    "average": 22.77777777777778,
+    "maximum": 57
+  },
+  "product_cuts": {
+    "average": 192.875,
+    "maximum": 644
+  },
+  "product_subproblem_evaluations_total": 26968,
+  "runtime_seconds": {
+    "master_total": 63.23168119927868,
+    "separation_total": 75.39995330292732,
+    "certification_total": 3.1083994996733963,
+    "algorithm_total": 158.43979799957015
+  },
+  "complete_recourse": true,
+  "farkas_cuts_implemented": false,
+  "frozen_model_parameter_changed": false,
+  "old_benders_acceleration_added": false,
+  "ccg_added": false,
+  "formal_experiment_run": false,
+  "issues": [
+    "Strict x-identity fails for 210202 at lambda_R=0, beta=1.10, Gamma=1 and 2 because the two exact formulations select different members of the same optimal face; objectives, cost components, y, and frozen service metrics remain within tolerance.",
+    "Solver-scale negative inventory values in [-1e-7,0) are projected to zero only at the recourse interface; materially negative inventory remains an error."
+  ],
+  "ready_for_separate_performance_validation": false,
+  "purpose": "correctness validation only; runtime is diagnostic"
+}

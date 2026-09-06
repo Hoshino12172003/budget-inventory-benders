@@ -36,3 +36,7 @@ artifacts/*
 !artifacts/reconfiguration_correctness_summary.json
 !artifacts/robust_service_evaluation.csv
 !artifacts/exact_benchmark_contract.json
+!artifacts/prb_benders_correctness_runs.csv
+!artifacts/prb_benders_correctness_summary.json
+!artifacts/prb_cut_validity_audit.csv
+!artifacts/prb_gamma_composition_audit.csv

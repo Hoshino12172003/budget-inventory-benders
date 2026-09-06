@@ -8,7 +8,7 @@ from .reconfiguration_model import (
     ReconfigurationSolution,
     build_exact_reconfiguration_model,
 )
-from .scenarios import scenario_count
+from .scenarios import enumerate_scenario_components, scenario_count
 
 
 @dataclass(frozen=True)
@@ -80,6 +80,117 @@ def solve_exact_benchmark(
         nonzero_count=int(model.NumNZs),
         peak_memory_gb=None,
         method="factorized_exact_extensive_form",
+    )
+
+
+def solve_global_scenario_benchmark(
+    instance: InventoryInstance,
+    x0: list[list[float]],
+    budget: float,
+    gamma: int,
+    lambda_r: float,
+    *,
+    max_recourse_variables: int = 1_000_000,
+) -> ExactBenchmarkResult:
+    """Literal global-scenario extensive form for small validation instances."""
+    import gurobipy as gp
+    from gurobipy import GRB
+
+    scenarios = enumerate_scenario_components(instance, gamma)
+    recourse_per_scenario = (
+        instance.num_depots * instance.num_regions * instance.num_products
+        + instance.num_regions * instance.num_products
+        + instance.num_products
+    )
+    if len(scenarios) * recourse_per_scenario > max_recourse_variables:
+        raise MemoryError("projected literal extensive form exceeds the declared size cap")
+    depots = range(instance.num_depots)
+    regions = range(instance.num_regions)
+    products = range(instance.num_products)
+    model = gp.Model(f"global_exact_{instance.name}")
+    model.Params.OutputFlag = 0
+    model.Params.MIPGap = 0
+    model.Params.FeasibilityTol = 1e-9
+    model.Params.OptimalityTol = 1e-9
+    y = model.addVars(depots, vtype=GRB.BINARY, name="y")
+    x = model.addVars(depots, products, lb=0, name="x")
+    a_plus = model.addVars(depots, products, lb=0, name="a_plus")
+    a_minus = model.addVars(depots, products, lb=0, name="a_minus")
+    for i in depots:
+        model.addConstr(
+            gp.quicksum(instance.product_volume[j] * x[i, j] for j in products)
+            <= instance.capacity[i] * y[i]
+        )
+        for j in products:
+            model.addConstr(x[i, j] <= instance.inventory_upper_bound[i][j] * y[i])
+            model.addConstr(x[i, j] - x0[i][j] == a_plus[i, j] - a_minus[i, j])
+    reconfiguration_cost = lambda_r * gp.quicksum(
+        instance.inventory_cost[i][j] * (a_plus[i, j] + a_minus[i, j])
+        for i in depots for j in products
+    )
+    first_stage = gp.quicksum(instance.fixed_depot_cost[i] * y[i] for i in depots)
+    first_stage += gp.quicksum(
+        instance.inventory_cost[i][j] * x[i, j] for i in depots for j in products
+    )
+    first_stage += reconfiguration_cost
+    model.addConstr(first_stage <= budget)
+    theta = model.addVar(lb=0, name="theta")
+    for scenario_index, scenario in enumerate(scenarios):
+        q = model.addVars(depots, regions, products, lb=0, name=f"q_{scenario_index}")
+        u = model.addVars(regions, products, lb=0, name=f"u_{scenario_index}")
+        e = model.addVars(products, lb=0, name=f"e_{scenario_index}")
+        active = set(scenario)
+        demand = [
+            [
+                instance.base_demand[r][j]
+                + (instance.demand_deviation[r][j] if (r, j) in active else 0.0)
+                for j in products
+            ]
+            for r in regions
+        ]
+        for r in regions:
+            for j in products:
+                model.addConstr(gp.quicksum(q[i, r, j] for i in depots) + u[r, j] >= demand[r][j])
+        for i in depots:
+            for j in products:
+                model.addConstr(gp.quicksum(q[i, r, j] for r in regions) <= x[i, j])
+        for j in products:
+            model.addConstr(
+                gp.quicksum(u[r, j] for r in regions) - e[j]
+                <= (1.0 - instance.service_level[j]) * sum(demand[r][j] for r in regions)
+            )
+        cost = gp.quicksum(
+            instance.transport_cost[i][r][j] * q[i, r, j]
+            for i in depots for r in regions for j in products
+        )
+        cost += gp.quicksum(
+            instance.shortage_penalty[r][j] * u[r, j]
+            for r in regions for j in products
+        )
+        cost += gp.quicksum(instance.service_penalty[j] * e[j] for j in products)
+        model.addConstr(theta >= cost)
+    model.setObjective(first_stage + theta)
+    model.optimize()
+    status = "OPTIMAL" if model.Status == GRB.OPTIMAL else "ERROR"
+    variables = {
+        "y": y, "x": x, "a_plus": a_plus, "a_minus": a_minus,
+        "first_stage": first_stage, "reconfiguration_cost": reconfiguration_cost,
+        "theta": theta,
+    }
+    solution = _extract_solution(instance, x0, lambda_r, True, model, variables) if status == "OPTIMAL" else None
+    return ExactBenchmarkResult(
+        status,
+        solution,
+        float(model.ObjBound) if model.SolCount else None,
+        float(model.MIPGap) if model.SolCount else None,
+        float(model.Runtime),
+        float(model.NodeCount),
+        len(scenarios),
+        int(model.NumVars),
+        int(model.NumConstrs),
+        int(model.NumNZs),
+        None,
+        "literal_global_scenario_extensive_form",
     )
 
 
