@@ -44,7 +44,9 @@ The first specification uses
 g^+_{ij}=g^-_{ij}=\lambda_R h_{ij},
 \]
 
-but this phase deliberately leaves \(\lambda_R\) unset.
+where \(\lambda_R\ge 0\) is a calibrated economic or policy parameter measuring
+reconfiguration friction. It is not an observed Renault parameter, and
+\(\lambda_R=0\) is the frictionless benchmark.
 
 The first-stage cost and budget are
 
@@ -60,3 +62,15 @@ and the objective draft is
 \]
 
 The second-stage variables, constraints, uncertainty semantics, and costs are unchanged.
+
+## Budget reference
+
+The reference budget is frozen from the incumbent state rather than reoptimized:
+
+\[
+B_{ref}=\sum_i f_i y_i^0+\sum_{i,j}h_{ij}x^0_{ij}.
+\]
+
+At that state, both adjustment variables and \(R(x^0;x^0)\) are zero, so this
+definition is independent of \(\lambda_R\). Experiment budgets are represented
+as \(\beta=B/B_{ref}\).
