@@ -6,6 +6,7 @@ from pathlib import Path
 
 from robust_inventory_reconfiguration.formal_protocol import (
     RESULT_FIELDS,
+    committed_file_sha256,
     file_sha256,
     load_formal_config,
     validate_formal_config,
@@ -45,7 +46,9 @@ def audit() -> dict[str, object]:
     freeze = json.loads(
         (CONFIG_DIR / "formal_parameter_freeze.json").read_text(encoding="utf-8")
     )
-    freeze_hash = file_sha256(CONFIG_DIR / "formal_parameter_freeze.json")
+    freeze_hash = committed_file_sha256(
+        CONFIG_DIR / "formal_parameter_freeze.json", ROOT
+    )
     freeze_hash_references_pass = all(
         config["formal_parameter_freeze_sha256"] == freeze_hash for config in configs
     )

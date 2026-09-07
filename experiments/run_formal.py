@@ -8,6 +8,7 @@ from pathlib import Path
 from robust_inventory_reconfiguration.formal_protocol import (
     RunIdentity,
     canonical_hash,
+    committed_file_sha256,
     file_sha256,
     load_formal_config,
     require_formal_authorization,
@@ -37,14 +38,14 @@ def identity_for(config_path: Path, case_id: str) -> RunIdentity:
         )
     )["source"]
     parameter_freeze_path = ROOT / config["formal_parameter_freeze"]
-    if file_sha256(parameter_freeze_path) != config["formal_parameter_freeze_sha256"]:
+    if committed_file_sha256(parameter_freeze_path, ROOT) != config["formal_parameter_freeze_sha256"]:
         raise ValueError("formal parameter freeze hash mismatch")
     instance_hash = file_sha256(data_path)
     return RunIdentity(
         config_hash=canonical_hash(config),
         source_data_hash=source["official_archive_sha256"],
         data_hash=instance_hash,
-        parameter_hash=file_sha256(parameter_freeze_path),
+        parameter_hash=committed_file_sha256(parameter_freeze_path, ROOT),
         x0_hash=file_sha256(x0_path),
         git_commit=git_commit(),
     )
@@ -60,7 +61,7 @@ def main() -> None:
     config = load_formal_config(config_path)
     validate_formal_config(config)
     freeze_path = ROOT / config["formal_parameter_freeze"]
-    if file_sha256(freeze_path) != config["formal_parameter_freeze_sha256"]:
+    if committed_file_sha256(freeze_path, ROOT) != config["formal_parameter_freeze_sha256"]:
         raise ValueError("formal parameter freeze hash mismatch")
     beta_values = config["parameter_grid"]["beta"]
     materialized_budgets = {

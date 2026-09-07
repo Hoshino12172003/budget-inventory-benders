@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -79,6 +80,15 @@ def file_sha256(path: str | Path) -> str:
         for block in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def committed_file_sha256(path: str | Path, repository_root: str | Path) -> str:
+    root = Path(repository_root).resolve()
+    relative = Path(path).resolve().relative_to(root).as_posix()
+    content = subprocess.check_output(
+        ["git", "show", f"HEAD:{relative}"], cwd=root
+    )
+    return hashlib.sha256(content).hexdigest()
 
 
 def load_formal_config(path: str | Path) -> dict[str, Any]:
