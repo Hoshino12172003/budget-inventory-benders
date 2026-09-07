@@ -70,10 +70,12 @@ def protected_hashes() -> dict[str, str]:
     return {relative: tree_hash(ROOT / relative) for relative in PROTECTED_PATHS}
 
 
-def structural_audit(instance, baseline: NominalBaseline) -> tuple[dict[str, Any], int]:
+def structural_audit(
+    instance, baseline: NominalBaseline, primary_objective: float
+) -> tuple[dict[str, Any], int]:
     model, y, x, first_stage, recourse = build_nominal_model(instance)
     model.update()
-    optimum = baseline.objective
+    optimum = primary_objective
     minimum_flip_gap: float | None = None
     y_rows = []
     solve_count = 0
@@ -149,7 +151,7 @@ def build_pass(
             baseline = canonical.baseline
             solve_count += canonical.solve_count
             stability, audit_solves = (
-                structural_audit(raw_instance, baseline)
+                structural_audit(raw_instance, baseline, canonical.primary_objective)
                 if run_structural_audits else ({"status": "REGENERATED_NOT_REAUDITED"}, 0)
             )
             solve_count += audit_solves
