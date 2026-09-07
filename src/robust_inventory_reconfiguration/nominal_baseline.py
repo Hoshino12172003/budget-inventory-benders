@@ -162,7 +162,12 @@ def solve_canonical_nominal_baseline(
         solve_count += 1
         if model.Status != GRB.OPTIMAL:
             raise RuntimeError(f"Canonical nominal stage failed at position {position}")
-        value = int(round(variable.X)) if variable.VType == GRB.BINARY else float(variable.X)
+        if variable.VType == GRB.BINARY:
+            value = int(round(variable.X))
+        else:
+            value = float(variable.X)
+            if abs(value) <= model.Params.FeasibilityTol:
+                value = 0.0
         model.addConstr(variable == value, name=f"canonical_fix[{position}]")
 
     model.setObjective(primary, GRB.MINIMIZE)
