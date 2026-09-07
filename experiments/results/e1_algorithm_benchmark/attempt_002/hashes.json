@@ -1,0 +1,13 @@
+{
+  "audits/reuse_identity_audit.json": "69cfed4e6a7d8634fec451bc25c0008a1106f9a992118fb5cda685c8ca94f42f",
+  "audits/synthetic_reproducibility_gate.json": "e70c6a4dc4b2ec7b8cccc797fffaf281189127b33befcfc1009b1aceb01dcdbc",
+  "authorization_manifest.yaml": "1a62866a07aa9609eb19057f2fae1d0ed9770c58650f078915840168cc3e5f16",
+  "e1_summary.json": "29397450fdc3fc61a46a8a9fd4886ae9d67bd0ea1edc11bb7279b6daffe13212",
+  "provenance.json": "97759f3a47156dbcf2b956d6caabe3e0be158f17c5f5f49f4e6ca36f59cfc22e",
+  "runs/E1-210628-DIRECT/first_stage_solution.json": "0398cc5f631c487f5c4d24778210998e287fcb4ef8b5954c23aab86d46e2131d",
+  "runs/E1-210628-DIRECT/result.json": "de321fc4c5a6d73520ee1805df0936284ae28186864b721c90e72b649c261034",
+  "runs/E1-210628-PRB/first_stage_solution.json": "11d0513a564d98ea44f01d71a1b27b223d61f870d460be1287c37dcf85f9569c",
+  "runs/E1-210628-PRB/result.json": "463d3163d29c26cec17e7aef85184f7fdf27c4aa43a7d6a3c46712e3e2c78a17",
+  "table_e1_algorithm_benchmark.csv": "2a1f610564af1983e548cddcb19a5e87032fe808d2d6df95c7c52ef4c0c9440c",
+  "table_e1_objective_consistency.csv": "0ecd67817b2dfe41f0243c0a34cda86ff4674155549b4948602b54b0689f7b11"
+}

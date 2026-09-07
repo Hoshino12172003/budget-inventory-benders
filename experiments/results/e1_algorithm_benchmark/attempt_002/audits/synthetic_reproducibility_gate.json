@@ -1,0 +1,16 @@
+{
+  "status": "BLOCK_E1_SYNTHETIC_REPRODUCIBILITY",
+  "source_status": "DESIGN_ONLY",
+  "checks": {
+    "dimensions_frozen": true,
+    "seed_frozen": true,
+    "generator_implementation_frozen": false,
+    "generator_version_frozen": false,
+    "x0_construction_frozen": false,
+    "cost_construction_frozen": false,
+    "budget_construction_frozen": false,
+    "uncertainty_construction_and_ranges_frozen": false,
+    "resource_timeout_and_disk_guards_frozen": false
+  },
+  "reason": "The repository freezes scale dimensions and seed only; it has no formal synthetic generator or frozen construction rules."
+}

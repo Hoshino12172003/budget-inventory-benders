@@ -184,7 +184,7 @@ def reused_rows(audit: dict[str, Any]) -> list[dict[str, Any]]:
             benders_iterations=source["iterations"], master_solves=source["iterations"],
             unique_product_cuts=source["cuts"], master_runtime_seconds=source["master_runtime_seconds"],
             subproblem_runtime_seconds=source["subproblem_runtime_seconds"],
-            global_coupling_runtime_seconds=source["certification_runtime_seconds"],
+            global_coupling_runtime_seconds=None,
             final_relative_gap=source["optimality_gap"],
         )
         rows.append(row)
