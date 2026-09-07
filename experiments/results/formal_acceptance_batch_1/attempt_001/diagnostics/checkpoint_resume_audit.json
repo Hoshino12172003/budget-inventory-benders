@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "checkpoint_identity_valid": true,
+  "restart_identity_valid": true,
+  "config_hash_valid": true,
+  "case_hash_valid": true
+}

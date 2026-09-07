@@ -1,0 +1,23 @@
+{
+  "acceptance_run_id": "A5",
+  "experiment_id": "E2",
+  "case_id": "210202",
+  "method": "robust_reconfiguration",
+  "source_data_hash": "c27075450bc8ace8e74087316b64f22d2a9a9909cb4e4746341bc9f3998950ea",
+  "processed_data_hash": "d40beacd55c43b045db79140e38ee211e904dd72f7d6ca95dfb34c1f5a2cdb35",
+  "x0_hash": "188da42a6e1d53ebba6d5c3c5d3af8042da5e9088bacce1a3041252b56cc41d8",
+  "calibration_artifact_hash": "7e727f89379da5fdffc63a7ac9fce711cac9814a948b8f5e1921c91d16920e94",
+  "formal_config_hash": "1dfd422f1dabb099ef389ebabfdbfd51db4571b4366f28664b869d4c85e28b69",
+  "authorization_manifest_hash": "49620930a0cd0f4ca63cb6b166fe6af3ab2400870435dd01fe084db203f7f8eb",
+  "parameter_freeze_hash": "37b5f962c061d29b6b72417007424907b9b1f756a4ad1943a3719048d46b93c0",
+  "git_commit": "1b06be7cc3a6108871d0dc40c6d0da2165b470b7",
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "solver_version": "13.0.1",
+  "python_version": "3.12.7",
+  "timestamp_utc": "2026-09-07T02:14:20.280964+00:00",
+  "hostname": "huxinxin-thinkbook",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "B": 84614.30513135393,
+  "Gamma": 2,
+  "lambda_R": 0.05
+}

@@ -1,0 +1,49 @@
+{
+  "status": "FORMAL_ACCEPTANCE_PASS",
+  "run_count": 5,
+  "authorized_run_ids": [
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5"
+  ],
+  "direct_prb_consistency": {
+    "status": "PASS",
+    "objective_absolute_difference": 4.3655745685100555e-11,
+    "first_stage_absolute_difference": 0.0,
+    "recourse_absolute_difference": 5.820766091346741e-11,
+    "maximum_x_absolute_difference": 9.652012522565201e-11,
+    "tolerance": 0.0001
+  },
+  "e2_semantics": {
+    "status": "PASS",
+    "A3_existing": {
+      "x_equals_x0": true,
+      "maximum_x_difference": 0.0,
+      "RI": 0.0
+    },
+    "A4_nominal": {
+      "reconfiguration_allowed": true,
+      "Gamma": 0,
+      "uncertainty_budget_active": false
+    },
+    "A5_robust": {
+      "reconfiguration_allowed": true,
+      "Gamma": 2,
+      "robust_recourse_active": true,
+      "certified": true
+    }
+  },
+  "checkpoint_resume": {
+    "status": "PASS",
+    "checkpoint_identity_valid": true,
+    "restart_identity_valid": true,
+    "config_hash_valid": true,
+    "case_hash_valid": true
+  },
+  "schema_audit": "PASS",
+  "full_e1_e7_authorization": false,
+  "failures": [],
+  "retries": 0
+}
