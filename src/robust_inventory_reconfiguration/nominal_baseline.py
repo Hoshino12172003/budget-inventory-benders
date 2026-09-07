@@ -139,7 +139,8 @@ def solve_canonical_nominal_baseline(
     from gurobipy import GRB
 
     model, y, x, first_stage, recourse = build_nominal_model(instance)
-    # Sequential equality fixes are evaluated in the instance's original units.
+    # Keep sequential equality fixes in original units with primal simplex.
+    model.Params.Method = 0
     model.Params.ScaleFlag = 0
     primary = first_stage + recourse
     model.optimize()
