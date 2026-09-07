@@ -5,6 +5,7 @@ from itertools import combinations
 
 from .instance import InventoryInstance
 from .scenarios import enumerate_scenario_components
+from .solver_profile import apply_formal_solver_profile
 
 
 @dataclass(frozen=True)
@@ -50,8 +51,7 @@ def evaluate_robust_service(
     regions = range(instance.num_regions)
     model = gp.Model(f"service_evaluation_{instance.name}_g{gamma}")
     model.Params.OutputFlag = 0
-    model.Params.FeasibilityTol = 1e-8
-    model.Params.OptimalityTol = 1e-8
+    apply_formal_solver_profile(model, mixed_integer=False)
     costs = {}
     shortages = {}
 

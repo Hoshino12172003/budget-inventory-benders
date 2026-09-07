@@ -5,6 +5,7 @@ from itertools import combinations
 from time import perf_counter
 
 from .instance import InventoryInstance
+from .solver_profile import apply_formal_solver_profile
 
 
 @dataclass(frozen=True)
@@ -56,8 +57,7 @@ class ProductRiskSubproblem:
         self.gamma = gamma
         self.model = gp.Model(f"product_{product_index}_risk_subproblem")
         self.model.Params.OutputFlag = 0
-        self.model.Params.FeasibilityTol = 1e-9
-        self.model.Params.OptimalityTol = 1e-9
+        apply_formal_solver_profile(self.model, mixed_integer=False)
         self.blocks = {}
         objectives = []
         for local_gamma in range(gamma + 1):

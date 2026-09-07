@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "E1",
+  "title": "Algorithm benchmark",
+  "formal_run_authorized": false,
+  "protocol_status": "PROTOCOL_READY",
+  "case_ids": ["210202", "210628"],
+  "methods": ["prb_benders", "direct_exact"],
+  "synthetic_scale_ids": ["small", "medium", "renault_like", "large"],
+  "parameter_grid": {"beta": [1.0], "Gamma": [2], "lambda_R": [0.05]},
+  "budget_reference_by_case": {"210202": 84614.30513135393, "210628": 50558.18771213083},
+  "budget_rule": "B = beta * B_ref_case",
+  "solver_profile_id": "gurobi-balanced-1e-8-v1",
+  "formal_parameter_freeze": "experiments/configs/formal/formal_parameter_freeze.json",
+  "formal_parameter_freeze_sha256": "37b5f962c061d29b6b72417007424907b9b1f756a4ad1943a3719048d46b93c0",
+  "git_commit_at_execution": "CAPTURE_AT_EXECUTION",
+  "replicates": 1,
+  "estimated_run_count": 12,
+  "run_count_breakdown": {"Renault": "2 cases * 2 methods = 4", "synthetic": "4 scales * 2 methods = 8"},
+  "outputs": {"schema": "experiments/schemas/formal_result.schema.json"},
+  "blockers": []
+}

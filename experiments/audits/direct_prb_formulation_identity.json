@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "audit_scope": "static protocol audit; no optimization run",
+  "checks": {
+    "same_first_stage_feasible_region": {"pass": true, "evidence": "reconfiguration_model.py and product_risk_budget_benders.py use the same y, x, capacity, UB*y, adjustment balance, and financial budget structure"},
+    "same_x0": {"pass": true, "evidence": "both APIs receive the same x0 argument"},
+    "same_reconfiguration_cost": {"pass": true, "evidence": "both use lambda_R*h_ij*(a_plus+a_minus)"},
+    "same_budget": {"pass": true, "evidence": "both receive B and constrain total first-stage expenditure"},
+    "same_Gamma": {"pass": true, "evidence": "both use exact local shock counts and all global allocations with sum gamma_j <= Gamma"},
+    "same_demand_uncertainty": {"pass": true, "evidence": "base_demand plus demand_deviation for active binary region-product shocks"},
+    "same_recourse_variables": {"pass": true, "evidence": "shipment q, shortage u, service violation e"},
+    "same_service_penalty": {"pass": true, "evidence": "both read service_level and service_penalty from the same instance"},
+    "same_cost_coefficients": {"pass": true, "evidence": "transport, shortage, service, inventory, and depot fixed costs come from the same instance"},
+    "same_integrality_assumptions": {"pass": true, "evidence": "y is binary; x and adjustment/recourse variables are continuous and nonnegative"},
+    "same_solver_tolerances": {
+      "pass": true,
+      "profile_id": "gurobi-balanced-1e-8-v1",
+      "exact": {"MIPGap": 0, "FeasibilityTol": 1e-8, "OptimalityTol": 1e-8, "IntFeasTol": 1e-8},
+      "prb_master": {"MIPGap": 0, "FeasibilityTol": 1e-8, "OptimalityTol": 1e-8, "IntFeasTol": 1e-8},
+      "product_subproblem": {"FeasibilityTol": 1e-8, "OptimalityTol": 1e-8}
+    }
+  },
+  "overall_identity_pass": true,
+  "resolution": "Direct, PRB master, and PRB product LPs read one shared solver-native profile. Certification tolerances are unchanged."
+}

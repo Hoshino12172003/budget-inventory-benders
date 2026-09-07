@@ -8,6 +8,7 @@ from .instance import InventoryInstance
 from .product_risk_subproblem import ProductCut, ProductRiskSubproblem
 from .reconfiguration_model import ReconfigurationSolution
 from .risk_budget_composition import compose_risk_budget, enumerate_gamma_allocations
+from .solver_profile import apply_formal_solver_profile
 
 
 PRODUCTWISE_BENDERS_COMPATIBLE = True
@@ -251,10 +252,7 @@ def _build_master(instance, x0, budget, gamma, lambda_r):
     products = range(instance.num_products)
     master = gp.Model(f"prb_master_{instance.name}")
     master.Params.OutputFlag = 0
-    master.Params.MIPGap = 0
-    master.Params.FeasibilityTol = 1e-9
-    master.Params.OptimalityTol = 1e-9
-    master.Params.IntFeasTol = 1e-9
+    apply_formal_solver_profile(master, mixed_integer=True)
     y = master.addVars(depots, vtype=GRB.BINARY, name="y")
     x = master.addVars(depots, products, lb=0, name="x")
     a_plus = master.addVars(depots, products, lb=0, name="a_plus")

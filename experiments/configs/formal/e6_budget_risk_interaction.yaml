@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "E6",
+  "title": "Budget by risk interaction",
+  "formal_run_authorized": false,
+  "protocol_status": "PROTOCOL_READY",
+  "priority": "supplementary_candidate",
+  "case_ids": ["210202", "210628"],
+  "parameter_grid": {"beta": [0.8, 1.0, 1.2], "Gamma": [0, 2, 4], "lambda_R": [0.05], "shape": [3, 3]},
+  "budget_reference_by_case": {"210202": 84614.30513135393, "210628": 50558.18771213083},
+  "budget_rule": "B = beta * B_ref_case",
+  "solver_profile_id": "gurobi-balanced-1e-8-v1",
+  "formal_parameter_freeze": "experiments/configs/formal/formal_parameter_freeze.json",
+  "formal_parameter_freeze_sha256": "37b5f962c061d29b6b72417007424907b9b1f756a4ad1943a3719048d46b93c0",
+  "git_commit_at_execution": "CAPTURE_AT_EXECUTION",
+  "estimated_run_count": 18,
+  "run_count_breakdown": "2 cases * 3 beta levels * 3 Gamma levels = 18",
+  "outputs": {"schema": "experiments/schemas/formal_result.schema.json"},
+  "blockers": []
+}
