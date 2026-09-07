@@ -147,10 +147,29 @@ def main() -> None:
     calibration_path = ROOT / "artifacts" / DATASET_ID.lower() / "calibration" / f"{args.case}.json"
     calibration = json.loads(calibration_path.read_text(encoding="utf-8"))
     budget = float(calibration["B_ref"])
+    target.mkdir(parents=True)
     wall_start = perf_counter()
     if args.method == "direct":
-        solved = solve_exact_benchmark(instance, x0, budget, 2, 0.05)
+        solved = solve_exact_benchmark(
+            instance, x0, budget, 2, 0.05, log_file=target / "solver.log"
+        )
         if solved.status != "OPTIMAL" or solved.solution is None:
+            status = (
+                "RESOURCE_LIMITED"
+                if solved.status in {"MEMORY_LIMIT", "TIME_LIMIT"}
+                else solved.status
+            )
+            _write_json(target / "result.json", {
+                "run_id": run_id, "dataset_id": DATASET_ID, "case": args.case,
+                "method": "direct_exact", "status": status,
+                "solver_status": solved.status, "exact_certification_status": "NOT_CERTIFIED",
+                "runtime_seconds": solved.runtime, "wall_clock_seconds": perf_counter() - wall_start,
+                "instance_hash": identity["instance_hash"], "x0_hash": identity["x0_hash"],
+                "calibration_hash": identity["calibration_hash"], "mapping_hash": MAPPING_SHA256,
+                "git_commit": _git_commit(), "solver_profile": FORMAL_SOLVER_PROFILE_ID,
+                "solver_version": ".".join(map(str, __import__("gurobipy").gurobi.version())),
+                "hardware": _hardware_info(),
+            })
             raise RuntimeError(f"Direct exact certification failed: {solved.status}")
         solution = solved.solution
         diagnostics = {
