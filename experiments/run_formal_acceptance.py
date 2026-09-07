@@ -28,6 +28,10 @@ from robust_inventory_reconfiguration.formal_protocol import (
     load_formal_config,
     validate_resume_identity,
 )
+from robust_inventory_reconfiguration.first_stage_solution import (
+    build_first_stage_solution_artifact,
+    write_first_stage_solution_artifact,
+)
 from robust_inventory_reconfiguration.instance import InventoryInstance, load_instance
 from robust_inventory_reconfiguration.product_risk_budget_benders import solve_prb_benders
 from robust_inventory_reconfiguration.reconfiguration_model import (
@@ -298,6 +302,18 @@ def main() -> None:
             }
             write_json(output / "runs" / run_id / "result.json", row)
             write_json(output / "runs" / run_id / "provenance.json", provenance)
+            write_first_stage_solution_artifact(
+                output / "runs" / run_id / "first_stage_solution.json",
+                build_first_stage_solution_artifact(
+                    instance,
+                    x0,
+                    solution,
+                    case_id=run["case_id"],
+                    mode=run["method"],
+                    identity=identity.__dict__,
+                    solver_profile=FORMAL_SOLVER_PROFILE_ID,
+                ),
+            )
             (output / "logs").mkdir(exist_ok=True)
             (output / "logs" / f"{run_id}.log").write_text(
                 f"{timestamp} {run_id} OPTIMAL CERTIFIED\n", encoding="utf-8"

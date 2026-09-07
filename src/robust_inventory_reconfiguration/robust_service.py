@@ -19,6 +19,29 @@ class RobustServiceResult:
     scenario_count: int
 
 
+@dataclass(frozen=True)
+class ScenarioServiceResult:
+    shock_set: tuple[tuple[str, str], ...]
+    recourse_cost: float
+    transportation_cost: float
+    shortage_cost: float
+    service_penalty_cost: float
+    total_shortage: float
+    minimum_fill_rate: float
+    average_fill_rate: float
+    worst_region_id: str
+
+
+@dataclass(frozen=True)
+class UnifiedServiceResult:
+    robust_recourse_cost: float
+    worst_recourse_scenario: ScenarioServiceResult
+    worst_shortage_scenario: ScenarioServiceResult
+    worst_service_scenario: ScenarioServiceResult
+    scenario_count: int
+    scenarios: tuple[ScenarioServiceResult, ...]
+
+
 def select_worst_reporting_identity(
     fill_rates_by_scenario: list[list[float]],
     tolerance: float = 1e-12,
@@ -43,7 +66,30 @@ def evaluate_robust_service(
     *,
     optimality_tolerance: float = 1e-7,
 ) -> RobustServiceResult:
-    """Evaluate every global scenario using cached exact product recourse blocks."""
+    """Return the frozen service-reporting view of the exact unified evaluation."""
+    result = evaluate_robust_service_detailed(
+        instance, x, gamma, optimality_tolerance=optimality_tolerance
+    )
+    service = result.worst_service_scenario
+    return RobustServiceResult(
+        robust_recourse_cost=result.robust_recourse_cost,
+        minimum_fill_rate=service.minimum_fill_rate,
+        average_fill_rate=service.average_fill_rate,
+        worst_region_id=service.worst_region_id,
+        worst_scenario=service.shock_set,
+        total_shortage=service.total_shortage,
+        scenario_count=result.scenario_count,
+    )
+
+
+def evaluate_robust_service_detailed(
+    instance: InventoryInstance,
+    x: list[list[float]],
+    gamma: int,
+    *,
+    optimality_tolerance: float = 1e-7,
+) -> UnifiedServiceResult:
+    """Evaluate every scenario with the frozen exact recourse and service tie-break."""
     import gurobipy as gp
     from gurobipy import GRB
 
@@ -53,6 +99,9 @@ def evaluate_robust_service(
     model.Params.OutputFlag = 0
     apply_formal_solver_profile(model, mixed_integer=False)
     costs = {}
+    transportation_costs = {}
+    shortage_costs = {}
+    service_penalty_costs = {}
     shortages = {}
 
     for j in range(instance.num_products):
@@ -76,14 +125,20 @@ def evaluate_robust_service(
                     gp.quicksum(u[r] for r in regions) - e
                     <= (1.0 - instance.service_level[j]) * sum(scenario_demand)
                 )
-                cost = gp.quicksum(
+                transportation_cost = gp.quicksum(
                     instance.transport_cost[i][r][j] * q[i, r]
                     for i in depots
                     for r in regions
                 )
-                cost += gp.quicksum(instance.shortage_penalty[r][j] * u[r] for r in regions)
-                cost += instance.service_penalty[j] * e
+                shortage_cost = gp.quicksum(
+                    instance.shortage_penalty[r][j] * u[r] for r in regions
+                )
+                service_penalty_cost = instance.service_penalty[j] * e
+                cost = transportation_cost + shortage_cost + service_penalty_cost
                 costs[key] = cost
+                transportation_costs[key] = transportation_cost
+                shortage_costs[key] = shortage_cost
+                service_penalty_costs[key] = service_penalty_cost
                 shortages[key] = u
 
     model.setObjective(gp.quicksum(costs.values()), GRB.MINIMIZE)
@@ -110,9 +165,8 @@ def evaluate_robust_service(
         for key in shortages
     }
     scenarios = enumerate_scenario_components(instance, gamma)
-    robust_cost = 0.0
+    scenario_results = []
     fill_rates_by_scenario = []
-    total_shortage_by_scenario = []
     for scenario in scenarios:
         by_product = tuple(
             tuple(r for r, product_index in scenario if product_index == j)
@@ -122,7 +176,6 @@ def evaluate_robust_service(
             optimum_by_block[(j, by_product[j])]
             for j in range(instance.num_products)
         )
-        robust_cost = max(robust_cost, scenario_cost)
         region_fill_rates = []
         total_shortage = 0.0
         for r in regions:
@@ -138,23 +191,47 @@ def evaluate_robust_service(
             total_shortage += shortage
             region_fill_rates.append(1.0 if demand == 0 else 1.0 - shortage / demand)
         fill_rates_by_scenario.append(region_fill_rates)
-        total_shortage_by_scenario.append(total_shortage)
+        _, worst_region, scenario_minimum_fill = select_worst_reporting_identity(
+            [region_fill_rates]
+        )
+        scenario_keys = [(j, by_product[j]) for j in range(instance.num_products)]
+        scenario_results.append(
+            ScenarioServiceResult(
+                shock_set=tuple(
+                    (instance.region_ids[r], instance.product_ids[j])
+                    for r, j in scenario
+                ),
+                recourse_cost=scenario_cost,
+                transportation_cost=sum(
+                    transportation_costs[key].getValue() for key in scenario_keys
+                ),
+                shortage_cost=sum(shortage_costs[key].getValue() for key in scenario_keys),
+                service_penalty_cost=sum(
+                    service_penalty_costs[key].getValue() for key in scenario_keys
+                ),
+                total_shortage=total_shortage,
+                minimum_fill_rate=scenario_minimum_fill,
+                average_fill_rate=sum(region_fill_rates) / instance.num_regions,
+                worst_region_id=instance.region_ids[worst_region],
+            )
+        )
 
     worst_scenario_index, worst_region, worst_fill_rate = select_worst_reporting_identity(
         fill_rates_by_scenario
     )
-    worst_scenario = scenarios[worst_scenario_index]
-    worst_average = sum(fill_rates_by_scenario[worst_scenario_index]) / instance.num_regions
-    worst_shortage = total_shortage_by_scenario[worst_scenario_index]
-
-    return RobustServiceResult(
-        robust_recourse_cost=robust_cost,
-        minimum_fill_rate=worst_fill_rate,
-        average_fill_rate=worst_average,
-        worst_region_id=instance.region_ids[worst_region],
-        worst_scenario=tuple(
-            (instance.region_ids[r], instance.product_ids[j]) for r, j in worst_scenario
-        ),
-        total_shortage=worst_shortage,
+    worst_service = scenario_results[worst_scenario_index]
+    if (
+        worst_service.worst_region_id != instance.region_ids[worst_region]
+        or abs(worst_service.minimum_fill_rate - worst_fill_rate) > 1e-12
+    ):
+        raise RuntimeError("service reporting identity is inconsistent")
+    worst_recourse = max(scenario_results, key=lambda value: value.recourse_cost)
+    worst_shortage = max(scenario_results, key=lambda value: value.total_shortage)
+    return UnifiedServiceResult(
+        robust_recourse_cost=worst_recourse.recourse_cost,
+        worst_recourse_scenario=worst_recourse,
+        worst_shortage_scenario=worst_shortage,
+        worst_service_scenario=worst_service,
         scenario_count=len(scenarios),
+        scenarios=tuple(scenario_results),
     )

@@ -1,0 +1,30 @@
+{
+  "status": "RECOVERY_PASS",
+  "classification": "A5_RESULT_VALID_METRIC_TRADEOFF",
+  "recovery_run_count": 3,
+  "completed_run_ids": [
+    "A3",
+    "A4",
+    "A5"
+  ],
+  "objective_identity_pass": true,
+  "evaluation_Gamma": 2,
+  "uncertain_items": 96,
+  "scenario_count": 4657,
+  "original_attempt_tree_hash_before": "00b9671c9549404ec8c288fd533c7e15ad84129f7e9dcee42c7d747f699f26a0",
+  "original_attempt_tree_hash_after": "00b9671c9549404ec8c288fd533c7e15ad84129f7e9dcee42c7d747f699f26a0",
+  "original_attempt_immutable": true,
+  "nominal_reconfiguration_inactive_at_baseline": true,
+  "a5_worst_recourse_not_greater_than_baselines": true,
+  "FR_min_is_optimization_objective": false,
+  "comparison": {
+    "max_abs_x_A3_minus_x0": 0.0,
+    "max_abs_x_A4_minus_x0": 1.1070255823142361e-11,
+    "max_abs_x_A5_minus_x0": 26.202808848136925,
+    "max_abs_x_A4_minus_x_A3": 1.1070255823142361e-11
+  },
+  "e1_authorization": false,
+  "e2_e7_authorization": false,
+  "failures": [],
+  "retries": 0
+}

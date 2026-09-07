@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "recovery_id": "formal_acceptance_batch_1_recovery_attempt_002",
+  "authorization_scope": "a3_a4_a5_persistence_recovery_only",
+  "recovery_run_authorized": true,
+  "authorized_run_ids": ["A3", "A4", "A5"],
+  "case_ids": ["210202"],
+  "output_directory": "experiments/results/formal_acceptance_batch_1/recovery_attempt_002",
+  "objective_absolute_tolerance": 1e-4,
+  "evaluation_Gamma": 2,
+  "e1_authorization": false,
+  "e2_e7_authorization": false,
+  "stop_on_failure": true,
+  "runs": [
+    {"acceptance_run_id": "A3", "case_id": "210202", "mode": "existing_system", "beta": 1.0, "B": 84614.30513135393, "Gamma": 0, "lambda_R": 0.05, "solver_profile_id": "gurobi-balanced-1e-8-v1", "fix_x_to_x0": true, "original_objective": 108999.13573275977},
+    {"acceptance_run_id": "A4", "case_id": "210202", "mode": "nominal_reconfiguration", "beta": 1.0, "B": 84614.30513135393, "Gamma": 0, "lambda_R": 0.05, "solver_profile_id": "gurobi-balanced-1e-8-v1", "fix_x_to_x0": false, "original_objective": 108999.13573275965},
+    {"acceptance_run_id": "A5", "case_id": "210202", "mode": "robust_reconfiguration", "beta": 1.0, "B": 84614.30513135393, "Gamma": 2, "lambda_R": 0.05, "solver_profile_id": "gurobi-balanced-1e-8-v1", "fix_x_to_x0": false, "original_objective": 116875.3457619544}
+  ]
+}

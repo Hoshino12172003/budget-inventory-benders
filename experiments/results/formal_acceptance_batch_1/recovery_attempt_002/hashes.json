@@ -1,0 +1,11 @@
+{
+  "authorization_manifest.yaml": "ef57faeede8bb0b47fe40ed6328f8b548b44ce815013a7e39869fa24569d7d1d",
+  "provenance.json": "09cd47ceda3172bff5d63fb8518ae515d983cd0ec8be9ba6dc3b87c814877ea4",
+  "recovery_identity.csv": "4099b7c124351394dbee1a79d5a287290cc204c1b94380346ec3babee3b2307c",
+  "recovery_summary.json": "3f26e87ad964012703fd6d42ed0ad448e125dfbf79043fdee675ea48c14883d7",
+  "solutions/a3_first_stage_solution.json": "9a302ce88eb1189337158b796e30630302c4c3d87e66ec5458bbd5573d5d63d2",
+  "solutions/a4_first_stage_solution.json": "404d859d14d6a7dbfa8ed6a5ca4622db262958ab37a48151bcb18f143325b31b",
+  "solutions/a5_first_stage_solution.json": "268b7b777f805b352e1084ea170f811ced7728faf40a00d2f1471c4aa161b2c8",
+  "table_a5_common_evaluation.csv": "5470996e5f185eca42d3f2fe7c263150619341457ee11f3368ba76d4298d8205",
+  "table_a5_common_scenario_cross_evaluation.csv": "ae1ff0991fa3a6de33ef9ca4d862fd47247de1158110bba364ec99fea8a551be"
+}
