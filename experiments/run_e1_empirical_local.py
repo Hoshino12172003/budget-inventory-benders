@@ -3,8 +3,11 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 from pathlib import Path
+import platform
 import subprocess
+from time import perf_counter
 from typing import Any
 
 from robust_inventory_reconfiguration.exact_benchmark import solve_exact_benchmark
@@ -21,6 +24,7 @@ from robust_inventory_reconfiguration.solver_profile import FORMAL_SOLVER_PROFIL
 ROOT = Path(__file__).resolve().parents[1]
 AUTHORIZATION = ROOT / "experiments/configs/formal/e1_empirical_8case_authorization.json"
 IDENTITY_TABLE = ROOT / "table_empirical_8case_identity.csv"
+DATASET_SUMMARY = ROOT / "artifacts/renault_empirical_8case_v1/dataset_summary.json"
 METHODS = ("direct", "prb")
 
 
@@ -49,6 +53,17 @@ def validate_execution_gate(
         raise PermissionError(f"run is not authorized: {run_id}")
     if manifest.get("e2_e7_authorization") is not False:
         raise RuntimeError("E2-E7 authorization changed")
+    if manifest.get("synthetic_execution_authorized") is not False:
+        raise RuntimeError("synthetic execution authorization changed")
+    if manifest.get("mapping_sha256") != MAPPING_SHA256:
+        raise RuntimeError("authorization mapping hash mismatch")
+    if sha256_file(IDENTITY_TABLE) != manifest.get("identity_table_sha256"):
+        raise RuntimeError("identity table hash mismatch")
+    summary = json.loads(DATASET_SUMMARY.read_text(encoding="utf-8"))
+    if summary.get("status") != "RENAULT_EMPIRICAL_8CASE_V1_READY":
+        raise RuntimeError("paper-final empirical dataset is not ready")
+    if summary.get("canonical_rule") != manifest.get("canonical_rule"):
+        raise RuntimeError("canonical incumbent rule mismatch")
     if subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT).strip():
         raise RuntimeError("E1 execution requires a clean committed worktree")
     target = output_root / run_id
@@ -69,6 +84,46 @@ def validate_execution_gate(
         if sha256_file(path) != identity[key]:
             raise RuntimeError(f"{key} mismatch")
     return manifest, identity
+
+
+def _hardware_info() -> dict[str, Any]:
+    return {
+        "platform": platform.platform(),
+        "machine": platform.machine(),
+        "processor": platform.processor(),
+        "logical_cpu_count": os.cpu_count(),
+    }
+
+
+def _compare_completed_pair(output_root: Path, case_id: str, tolerance: float) -> None:
+    paths = {
+        method: output_root / f"E1-{case_id}-{method}" / "result.json"
+        for method in ("DIRECT", "PRB")
+    }
+    if not all(path.is_file() for path in paths.values()):
+        return
+    results = {
+        method: json.loads(path.read_text(encoding="utf-8"))
+        for method, path in paths.items()
+    }
+    if any(
+        result.get("status") != "OPTIMAL"
+        or not str(result.get("exact_certification_status", "")).startswith("CERTIFIED")
+        for result in results.values()
+    ):
+        raise RuntimeError(f"E1_BLOCKED_CORRECTNESS_{case_id}")
+    difference = abs(results["DIRECT"]["objective"] - results["PRB"]["objective"])
+    audit = {
+        "case": case_id,
+        "status": "PASS" if difference <= tolerance else f"E1_BLOCKED_CORRECTNESS_{case_id}",
+        "objective_direct": results["DIRECT"]["objective"],
+        "objective_prb": results["PRB"]["objective"],
+        "absolute_objective_difference": difference,
+        "tolerance": tolerance,
+    }
+    _write_json(output_root / f"E1-{case_id}-PAIR-COMPARISON.json", audit)
+    if difference > tolerance:
+        raise RuntimeError(f"E1_BLOCKED_CORRECTNESS_{case_id}")
 
 
 def _write_json(path: Path, value: object) -> None:
@@ -92,6 +147,7 @@ def main() -> None:
     calibration_path = ROOT / "artifacts" / DATASET_ID.lower() / "calibration" / f"{args.case}.json"
     calibration = json.loads(calibration_path.read_text(encoding="utf-8"))
     budget = float(calibration["B_ref"])
+    wall_start = perf_counter()
     if args.method == "direct":
         solved = solve_exact_benchmark(instance, x0, budget, 2, 0.05)
         if solved.status != "OPTIMAL" or solved.solution is None:
@@ -99,9 +155,12 @@ def main() -> None:
         solution = solved.solution
         diagnostics = {
             "method": "direct_exact", "certification": "CERTIFIED_EXACT",
-            "runtime_seconds": solved.runtime, "best_bound": solved.best_bound,
+            "runtime_seconds": solved.runtime, "solver_runtime_seconds": solved.runtime,
+            "final_gap": solved.mip_gap, "best_bound": solved.best_bound,
             "mip_gap": solved.mip_gap, "node_count": solved.node_count,
             "variable_count": solved.variable_count, "constraint_count": solved.constraint_count,
+            "iteration_count": None, "cut_count": None, "master_solve_count": None,
+            "product_subproblem_evaluations": None, "peak_memory_gb": solved.peak_memory_gb,
         }
     else:
         solved = solve_prb_benders(instance, x0, budget, 2, 0.05)
@@ -110,7 +169,15 @@ def main() -> None:
         solution = solved.solution
         diagnostics = {
             "method": "prb_benders", "certification": "CERTIFIED_PRB_EXACT",
-            "runtime_seconds": solved.total_runtime, "iterations": len(solved.iterations),
+            "runtime_seconds": solved.total_runtime, "solver_runtime_seconds": None,
+            "final_gap": solved.final_relative_gap, "iterations": len(solved.iterations),
+            "iteration_count": len(solved.iterations), "cut_count": solved.unique_product_cuts,
+            "master_solve_count": solved.master_solve_count,
+            "product_subproblem_evaluations": solved.product_subproblem_evaluations,
+            "peak_memory_gb": None,
+            "master_runtime_seconds": solved.master_runtime,
+            "subproblem_runtime_seconds": solved.separation_runtime,
+            "certification_runtime_seconds": solved.certification_runtime,
             "lower_bound": solved.final_lower_bound, "upper_bound": solved.final_upper_bound,
             "relative_gap": solved.final_relative_gap, "unique_product_cuts": solved.unique_product_cuts,
             "global_coupling_pass": solved.global_risk_budget_coupling_pass,
@@ -130,14 +197,19 @@ def main() -> None:
     )
     result = {
         "run_id": run_id, "dataset_id": DATASET_ID, "case": args.case,
+        "status": "OPTIMAL", "exact_certification_status": diagnostics["certification"],
         "Gamma": 2, "beta": 1.0, "B": budget, "lambda_R": 0.05,
         "objective": solution.objective, "first_stage_expenditure": solution.first_stage_expenditure,
         "robust_recourse_cost": solution.robust_recourse_cost,
+        "reconfiguration_cost": solution.reconfiguration_cost,
         "FR_min_robust": service.minimum_fill_rate, "average_fill_rate": service.average_fill_rate,
         "worst_region": service.worst_region_id, "instance_hash": identity["instance_hash"],
         "x0_hash": identity["x0_hash"], "calibration_hash": identity["calibration_hash"],
         "mapping_hash": MAPPING_SHA256, "git_commit": _git_commit(),
-        "solver_profile": FORMAL_SOLVER_PROFILE_ID, **diagnostics,
+        "solver_profile": FORMAL_SOLVER_PROFILE_ID,
+        "solver_version": ".".join(map(str, __import__("gurobipy").gurobi.version())),
+        "hardware": _hardware_info(), "wall_clock_seconds": perf_counter() - wall_start,
+        **diagnostics,
     }
     _write_json(target / "result.json", result)
     _write_json(target / "provenance.json", {
@@ -146,6 +218,9 @@ def main() -> None:
         "first_stage_solution_sha256": sha256_file(solution_path),
         "formal_run_authorized": manifest["formal_run_authorized"],
     })
+    _compare_completed_pair(
+        args.output_root, args.case, float(manifest["objective_match_tolerance"])
+    )
 
 
 if __name__ == "__main__":

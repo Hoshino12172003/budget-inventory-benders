@@ -78,6 +78,8 @@ def test_blocked_cases_have_no_fabricated_baseline_or_identity() -> None:
         assert not (ROOT / "artifacts" / f"nominal_baseline_{case}.csv").exists()
 
 
-def test_local_runner_fails_before_execution_while_dataset_is_partial() -> None:
-    with pytest.raises(PermissionError, match="E1_EMPIRICAL_8CASE_FORMAL_RUN_NOT_AUTHORIZED"):
-        validate_execution_gate("210129", "direct", ROOT / "unused-output", False)
+def test_local_runner_rejects_runs_outside_the_frozen_contract() -> None:
+    with pytest.raises(RuntimeError, match="outside the frozen E1 empirical contract"):
+        validate_execution_gate("synthetic", "direct", ROOT / "unused-output", False)
+    with pytest.raises(RuntimeError, match="outside the frozen E1 empirical contract"):
+        validate_execution_gate("210129", "other", ROOT / "unused-output", False)

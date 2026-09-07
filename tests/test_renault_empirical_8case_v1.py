@@ -30,8 +30,11 @@ def test_authorization_is_fail_closed_and_exact() -> None:
     manifest = json.loads(
         (ROOT / "experiments/configs/formal/e1_empirical_8case_authorization.json").read_text(encoding="utf-8")
     )
-    assert manifest["formal_run_authorized"] is False
+    assert manifest["formal_run_authorized"] is True
+    assert manifest["synthetic_execution_authorized"] is False
     assert manifest["e2_e7_authorization"] is False
+    assert manifest["objective_match_tolerance"] == 1e-4
+    assert manifest["mapping_sha256"] == MAPPING_SHA256
     assert len(manifest["authorized_run_ids"]) == 16
     assert manifest["authorized_run_ids"] == [
         f"E1-{case}-{method}" for case in CASES for method in ("DIRECT", "PRB")

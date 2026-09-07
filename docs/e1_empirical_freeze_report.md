@@ -20,8 +20,9 @@ case-specific rule or manual incumbent choice was introduced.
 
 Two independent generations produce identical instance, x0, and calibration
 hashes for all eight cases. Capacity and UB compatibility pass throughout. The
-local runner remains fail-closed because formal authorization is false. The 16
-future one-solve commands are listed in `docs/renault_empirical_8case_v1.md`.
+local runner authorizes only the 16 frozen empirical run IDs and remains
+fail-closed for identity drift, dirty Git state, overwrite attempts, synthetic
+runs, and E2--E7. Commands are listed in `docs/renault_empirical_8case_v1.md`.
 
 Dataset preparation recorded 4,302 Gamma=0 solves. No Gamma=2 E1 benchmark or
 synthetic solve ran. E2--E7 authorization remains false.

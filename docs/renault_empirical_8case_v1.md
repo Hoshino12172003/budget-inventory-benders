@@ -56,12 +56,11 @@ zero.
 
 The intended final design is eight cases by two exact methods, for 16
 observations at `beta=1.0`, `Gamma=2`, and `lambda_R=0.05`. The authorization
-manifest remains fail-closed (`formal_run_authorized=false`). The four earlier
+manifest permits exactly these 16 run IDs and no synthetic or E2--E7 run. The four earlier
 210202/210628 observations are preserved as historical artifacts and are not
 paper-final results under this mapping.
 
-Future commands, after a human explicitly changes the authorization manifest,
-are:
+After checking out the authorization commit with a clean worktree, the commands are:
 
 ```powershell
 $env:PYTHONPATH = "src"
@@ -83,4 +82,4 @@ python experiments/run_e1_empirical_local.py --case 210611 --method direct
 python experiments/run_e1_empirical_local.py --case 210611 --method prb
 ```
 
-These commands are documentation, not authorization.
+Each command still verifies the frozen hashes, clean worktree, and no-overwrite gate.

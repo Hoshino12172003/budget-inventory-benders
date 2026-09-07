@@ -14,6 +14,7 @@ htmlcov/
 .vscode/
 .DS_Store
 Thumbs.db
+experiments/results/e1_empirical_8case_v1/
 artifacts/*
 !artifacts/.gitkeep
 !artifacts/x0_audit/
