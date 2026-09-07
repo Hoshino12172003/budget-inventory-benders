@@ -1,4 +1,7 @@
 {
+  "canonical_objective": 644331.871374235,
+  "canonical_rule": "lexicographic_min_y_then_x_on_primary_optimal_face_v1",
+  "canonical_solve_count": 146,
   "case": "210310",
   "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
   "definition": "Candidate A: unconstrained-budget Gamma=0 nominal optimum",
@@ -20,7 +23,9 @@
     "91017700",
     "9624708"
   ],
-  "instance_sha256": "f98d5156e165e5fe80434509da158b0707900e21b6ceac67f4b6d7cbf5f96b03",
+  "instance_sha256": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+  "objective_delta": -2.2118911147117615e-08,
+  "primary_objective": 644331.8713742571,
   "product_ids": [
     "BAC---1041",
     "BAC-O-4312",
@@ -110,27 +115,27 @@
       0.0,
       0.0,
       0.0,
-      71.425,
+      71.42499996829974,
       0.0,
       0.0
     ],
     [
       0.0,
-      29.48266666666667,
+      29.482666636013796,
       0.0,
       0.0,
       0.0,
-      82.04166666666666,
+      82.04166676245407,
       0.0,
       0.0
     ],
     [
       0.0,
-      82.38399999999999,
+      82.38400003069185,
       0.0,
       0.0,
       0.0,
-      176.0,
+      175.99999990418175,
       0.0,
       0.0
     ],
@@ -160,7 +165,7 @@
       0.0,
       0.0,
       0.0,
-      85.07333333333335,
+      85.0733333645343,
       0.0,
       0.0
     ],

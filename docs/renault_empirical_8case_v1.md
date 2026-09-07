@@ -33,17 +33,24 @@ cost, or lambda_R. `B_ref` is that incumbent's first-stage spending.
 
 Two independent construction passes produced identical instance, x0, and
 calibration hashes for all eight cases. Capacity and UB violations are zero in
-every case. Seven cases pass the frozen structural-stability audit. Case
-`210428` has two coordinates with optimal-face ranges above `1e-3`; its maximum
-range is `0.002110277802614746`. The required status is therefore
-`RENAULT_EMPIRICAL_8CASE_V1_PARTIAL`, with blocker
-`BLOCK_CASE_X0_DEGENERACY_210428`. No incumbent was manually selected, no case
-was replaced, and no frozen tolerance was changed.
+every case. The primary optimal face is diagnosed independently from incumbent
+readiness. Case `210428` retains two coordinate ranges above the frozen `1e-3`
+structural threshold (maximum `0.002110277802614746`), so its primary face is
+reported as nonunique; this diagnostic does not block a reproducible incumbent.
 
-The preparation executed 2,090 Gamma=0 optimization calls: two independent
-nominal solves per case plus the predeclared coordinate and depot-activation
-stability probes in the first pass. Gamma=2 E1 Direct/PRB solves, synthetic
-execution, and E2--E7 execution are all zero.
+Every case uses the same deterministic selector
+`lexicographic_min_y_then_x_on_primary_optimal_face_v1`: solve the unchanged
+Gamma=0 economic objective, constrain it to its optimum plus `1e-7`, minimize
+`y` in depot order and then `x` in depot-product order while fixing each value
+by equality, and finally re-solve the economic objective with all first-stage
+variables fixed. The economic model and frozen tolerances are unchanged. All
+eight canonical incumbents pass the objective-face, capacity, and UB gates, so
+the dataset status is `RENAULT_EMPIRICAL_8CASE_V1_READY`.
+
+The preparation executed 4,302 recorded Gamma=0 optimization calls across the
+two independent construction passes and the first-pass structural audit.
+Gamma=2 E1 Direct/PRB solves, synthetic execution, and E2--E7 execution are all
+zero.
 
 ## Paper-final E1 contract
 
@@ -53,8 +60,8 @@ manifest remains fail-closed (`formal_run_authorized=false`). The four earlier
 210202/210628 observations are preserved as historical artifacts and are not
 paper-final results under this mapping.
 
-Future commands, after the blocker is resolved and a human explicitly changes
-the authorization manifest, are:
+Future commands, after a human explicitly changes the authorization manifest,
+are:
 
 ```powershell
 $env:PYTHONPATH = "src"

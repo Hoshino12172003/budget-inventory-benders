@@ -34,12 +34,19 @@ def test_all_new_instances_and_identity_hashes_match() -> None:
         assert sha256_file(BASE / "calibration" / f"{case}.json") == identity[case]["calibration_hash"]
 
 
-def test_dataset_is_partial_only_for_predeclared_degeneracy_gate() -> None:
+def test_dataset_is_ready_with_canonical_incumbents() -> None:
     summary = json.loads((BASE / "dataset_summary.json").read_text(encoding="utf-8"))
-    assert summary["status"] == "RENAULT_EMPIRICAL_8CASE_V1_PARTIAL"
-    assert summary["blocked_cases"] == ["210428"]
+    assert summary["status"] == "RENAULT_EMPIRICAL_8CASE_V1_READY"
+    assert summary["blocked_cases"] == []
+    assert summary["canonical_rule"] == "lexicographic_min_y_then_x_on_primary_optimal_face_v1"
+    assert all(
+        value["stability"]["canonical_incumbent_status"] == "PASS"
+        for value in summary["cases"].values()
+    )
+    assert all(value["objective_delta"] <= 1e-7 for value in summary["cases"].values())
+    assert summary["cases"]["210428"]["stability"]["primary_optimal_face_nonunique"] is True
     assert summary["deterministic_regeneration"] == "PASS"
-    assert summary["data_preparation_optimization_solve_count"] == 2090
+    assert summary["data_preparation_optimization_solve_count"] == 4302
     assert summary["gamma2_e1_direct_solves"] == 0
     assert summary["gamma2_e1_prb_solves"] == 0
     assert summary["synthetic_execution"] == 0

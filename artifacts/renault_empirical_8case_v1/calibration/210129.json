@@ -1,16 +1,20 @@
 {
-  "B_ref": 90311.112,
+  "B_ref": 90311.11199905835,
   "budget": null,
-  "builder_commit": "ff10dfd1adb3de1ef1001b9c2086ea75ac5e1d29",
+  "builder_commit": "a5642286b7bb63feddb00d93c4b98d846ace6164",
+  "canonical_objective": 826685.3068302087,
+  "canonical_rule": "lexicographic_min_y_then_x_on_primary_optimal_face_v1",
   "case": "210129",
   "contract": "first-stage expenditure of the nominal incumbent",
   "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
-  "first_stage_spending": 90311.112,
+  "first_stage_spending": 90311.11199905835,
   "gamma": 0,
-  "instance_sha256": "1483714b11e4c5c332a51fa3940386d2b90a1595637739999e4bf23ce3f87349",
+  "instance_sha256": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3",
   "lambda_R": null,
-  "nominal_objective": 826685.3068309472,
-  "nominal_recourse": 736374.1948309471,
+  "nominal_objective": 826685.3068302087,
+  "nominal_recourse": 736374.1948311505,
+  "objective_delta": -7.384223863482475e-07,
+  "primary_objective": 826685.3068309472,
   "schema": "renault_empirical_bref_v1",
-  "x0_sha256": "8215b325ec5ea8b617a9f83e2b373a4c3453ebfdebed6ea2bca65d42dec1266d"
+  "x0_sha256": "ebd9b18371804f725a775db4eb4cacad84398b0c4c48e945aa039d425ea71288"
 }

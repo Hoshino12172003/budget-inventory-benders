@@ -1,14 +1,13 @@
 {
-  "blocked_cases": [
-    "210428"
-  ],
+  "blocked_cases": [],
+  "canonical_rule": "lexicographic_min_y_then_x_on_primary_optimal_face_v1",
   "cases": {
     "210129": {
       "active_depots": 2,
       "baseline": {
-        "first_stage_spending": 90311.112,
-        "objective": 826685.3068309472,
-        "recourse_cost": 736374.1948309471,
+        "first_stage_spending": 90311.11199905835,
+        "objective": 826685.3068302087,
+        "recourse_cost": 736374.1948311505,
         "x": [
           [
             0.0,
@@ -22,21 +21,11 @@
           ],
           [
             0.0,
-            190.172,
+            190.17199946403147,
             0.0,
             0.0,
             0.0,
-            474.18125,
-            0.0,
-            0.0
-          ],
-          [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
+            474.18125167490155,
             0.0,
             0.0
           ],
@@ -152,11 +141,21 @@
           ],
           [
             0.0,
-            1.528,
             0.0,
             0.0,
             0.0,
-            13.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.528000517943826,
+            0.0,
+            0.0,
+            0.0,
+            12.999998325972491,
             0.0,
             0.0
           ]
@@ -179,7 +178,10 @@
           1
         ]
       },
-      "calibration_sha256": "4dc9d2aab3b89630ce7eeb446db52071232425a414ed37e189b0de017faddb37",
+      "calibration_sha256": "d8fc1abd48548c153081e3e99696fc041eaf81cc81e06ca06a6f369d5a61d753",
+      "canonical_objective": 826685.3068302087,
+      "canonical_rule": "lexicographic_min_y_then_x_on_primary_optimal_face_v1",
+      "canonical_solve_count": 137,
       "characteristics": {
         "J": 8,
         "R": 12,
@@ -203,23 +205,32 @@
         "ub_compatible": true,
         "ub_violation_count": 0
       },
-      "instance_sha256": "1483714b11e4c5c332a51fa3940386d2b90a1595637739999e4bf23ce3f87349",
+      "instance_sha256": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3",
+      "objective_delta": -7.384223863482475e-07,
       "per_product": {
         "BAC---1041": 0.0,
-        "BAC-O-4312": 191.7,
+        "BAC-O-4312": 191.6999999819753,
         "BAC-O-4325": 0.0,
         "BAC-O-6423": 0.0,
         "BAC-O-6433": 0.0,
-        "CON-S-0130": 487.18125,
+        "CON-S-0130": 487.18125000087406,
         "SLI---0770": 0.0,
         "SLI---1200": 0.0
       },
       "positive_pairs": 4,
+      "previous_arbitrary_incumbent_comparison": {
+        "available": true,
+        "x_changed": true,
+        "y_changed": false
+      },
+      "primary_objective": 826685.3068309472,
       "stability": {
+        "canonical_incumbent_status": "PASS",
         "material_x_range_count": 0,
         "maximum_material_x_range": 2.65115947861716e-06,
         "minimum_y_flip_objective_gap": 3.757961538503878,
         "objective_face_tolerance": 1e-07,
+        "primary_optimal_face_nonunique": false,
         "status": "PASS",
         "structural_range_tolerance": 0.001,
         "x_audit": [
@@ -1144,15 +1155,15 @@
         ],
         "y_stable": true
       },
-      "total_inventory": 678.88125,
-      "x0_sha256": "8215b325ec5ea8b617a9f83e2b373a4c3453ebfdebed6ea2bca65d42dec1266d"
+      "total_inventory": 678.8812499828493,
+      "x0_sha256": "ebd9b18371804f725a775db4eb4cacad84398b0c4c48e945aa039d425ea71288"
     },
     "210202": {
       "active_depots": 2,
       "baseline": {
-        "first_stage_spending": 106510.95599999999,
-        "objective": 1034674.0388237059,
-        "recourse_cost": 928163.0828237057,
+        "first_stage_spending": 106510.9559990062,
+        "objective": 1034674.0388228709,
+        "recourse_cost": 928163.0828238648,
         "x": [
           [
             0.0,
@@ -1166,21 +1177,11 @@
           ],
           [
             0.0,
-            246.64742857142858,
+            246.64742795523236,
             0.0,
             0.0,
             0.0,
-            547.4071428571428,
-            0.0,
-            0.0
-          ],
-          [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
+            547.4071447827562,
             0.0,
             0.0
           ],
@@ -1296,11 +1297,21 @@
           ],
           [
             0.0,
-            4.195428571428571,
             0.0,
             0.0,
             0.0,
-            17.214285714285715,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            4.19542916873446,
+            0.0,
+            0.0,
+            0.0,
+            17.214283789544947,
             0.0,
             0.0
           ]
@@ -1323,7 +1334,10 @@
           1
         ]
       },
-      "calibration_sha256": "946407f6ad723109168fc617454bb77f7fe0b7975ba3174986c881b9982c5307",
+      "calibration_sha256": "7fe326584320b19636d95424cf806f0ab4c89951c3e2a1a84a4a5cc656e40624",
+      "canonical_objective": 1034674.0388228709,
+      "canonical_rule": "lexicographic_min_y_then_x_on_primary_optimal_face_v1",
+      "canonical_solve_count": 137,
       "characteristics": {
         "J": 8,
         "R": 12,
@@ -1347,23 +1361,32 @@
         "ub_compatible": true,
         "ub_violation_count": 0
       },
-      "instance_sha256": "0c14642beebad9586ab4a0a878afdecbeae98b65e0ccee9dde903afc74ad375d",
+      "instance_sha256": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+      "objective_delta": -8.349306881427765e-07,
       "per_product": {
         "BAC---1041": 0.0,
-        "BAC-O-4312": 250.84285714285716,
+        "BAC-O-4312": 250.8428571239668,
         "BAC-O-4325": 0.0,
         "BAC-O-6423": 0.0,
         "BAC-O-6433": 0.0,
-        "CON-S-0130": 564.6214285714285,
+        "CON-S-0130": 564.6214285723012,
         "SLI---0770": 0.0,
         "SLI---1200": 0.0
       },
       "positive_pairs": 4,
+      "previous_arbitrary_incumbent_comparison": {
+        "available": true,
+        "x_changed": true,
+        "y_changed": false
+      },
+      "primary_objective": 1034674.0388237059,
       "stability": {
+        "canonical_incumbent_status": "PASS",
         "material_x_range_count": 0,
         "maximum_material_x_range": 2.8304107146936985e-06,
         "minimum_y_flip_objective_gap": 19.820169330574572,
         "objective_face_tolerance": 1e-07,
+        "primary_optimal_face_nonunique": false,
         "status": "PASS",
         "structural_range_tolerance": 0.001,
         "x_audit": [
@@ -2288,15 +2311,15 @@
         ],
         "y_stable": true
       },
-      "total_inventory": 815.4642857142857,
-      "x0_sha256": "17be27663ac1294fb646c0faaccb33069a7972262eff637ffc80b8b3938e1be1"
+      "total_inventory": 815.464285696268,
+      "x0_sha256": "5fe095e76dd1372735ec7a6cb6fead9d6bc42f044b6006c13ed1aeb16dfbc368"
     },
     "210310": {
       "active_depots": 4,
       "baseline": {
-        "first_stage_spending": 76394.092,
-        "objective": 644331.8713742571,
-        "recourse_cost": 567937.779374257,
+        "first_stage_spending": 76394.09199991751,
+        "objective": 644331.871374235,
+        "recourse_cost": 567937.7793743174,
         "x": [
           [
             0.0,
@@ -2374,27 +2397,27 @@
             0.0,
             0.0,
             0.0,
-            71.425,
+            71.42499996829974,
             0.0,
             0.0
           ],
           [
             0.0,
-            29.48266666666667,
+            29.482666636013796,
             0.0,
             0.0,
             0.0,
-            82.04166666666666,
+            82.04166676245407,
             0.0,
             0.0
           ],
           [
             0.0,
-            82.38399999999999,
+            82.38400003069185,
             0.0,
             0.0,
             0.0,
-            176.0,
+            175.99999990418175,
             0.0,
             0.0
           ],
@@ -2424,7 +2447,7 @@
             0.0,
             0.0,
             0.0,
-            85.07333333333335,
+            85.0733333645343,
             0.0,
             0.0
           ],
@@ -2478,7 +2501,10 @@
           0
         ]
       },
-      "calibration_sha256": "f4d3ab8b84a810fa0c4f7fdafbbc0a15996ef3975d6f7bce046fff1d29761118",
+      "calibration_sha256": "8915940c2bbfee479d054c007033da41d45776504e985c6d07302dea74481ff4",
+      "canonical_objective": 644331.871374235,
+      "canonical_rule": "lexicographic_min_y_then_x_on_primary_optimal_face_v1",
+      "canonical_solve_count": 146,
       "characteristics": {
         "J": 8,
         "R": 12,
@@ -2497,28 +2523,37 @@
       "feasibility": {
         "capacity_compatible": true,
         "capacity_violation_count": 0,
-        "maximum_capacity_excess": 0.0,
+        "maximum_capacity_excess": 3.750756150111556e-09,
         "maximum_ub_excess": 0.0,
         "ub_compatible": true,
         "ub_violation_count": 0
       },
-      "instance_sha256": "f98d5156e165e5fe80434509da158b0707900e21b6ceac67f4b6d7cbf5f96b03",
+      "instance_sha256": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+      "objective_delta": -2.2118911147117615e-08,
       "per_product": {
         "BAC---1041": 0.0,
-        "BAC-O-4312": 142.46666666666667,
+        "BAC-O-4312": 142.46666666670563,
         "BAC-O-4325": 0.0,
         "BAC-O-6423": 0.0,
         "BAC-O-6433": 0.0,
-        "CON-S-0130": 414.54,
+        "CON-S-0130": 414.53999999946984,
         "SLI---0770": 0.0,
         "SLI---1200": 0.0
       },
       "positive_pairs": 7,
+      "previous_arbitrary_incumbent_comparison": {
+        "available": true,
+        "x_changed": true,
+        "y_changed": false
+      },
+      "primary_objective": 644331.8713742571,
       "stability": {
+        "canonical_incumbent_status": "PASS",
         "material_x_range_count": 0,
         "maximum_material_x_range": 1.556310999717425e-05,
         "minimum_y_flip_objective_gap": 3.2884753214893863,
         "objective_face_tolerance": 1e-07,
+        "primary_optimal_face_nonunique": false,
         "status": "PASS",
         "structural_range_tolerance": 0.001,
         "x_audit": [
@@ -3504,33 +3539,23 @@
         ],
         "y_stable": true
       },
-      "total_inventory": 557.0066666666667,
-      "x0_sha256": "0c8feeb106ffe83cc37b65cc43c5052f16b2944dda7bae31a66372c88f8fc872"
+      "total_inventory": 557.0066666661755,
+      "x0_sha256": "66a15c21d4e760c0d31bbe9a15f21216b3fdd37e6b7bf14836025d544b0d117b"
     },
     "210323": {
       "active_depots": 2,
       "baseline": {
-        "first_stage_spending": 68276.20285714285,
-        "objective": 572191.0296514789,
-        "recourse_cost": 503914.826794336,
+        "first_stage_spending": 68276.20285663515,
+        "objective": 572191.0296509459,
+        "recourse_cost": 503914.82679431076,
         "x": [
           [
             0.0,
-            175.25714285714284,
+            175.25714118866227,
             0.0,
             0.0,
             0.0,
-            331.1410714285714,
-            0.0,
-            0.0
-          ],
-          [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
+            331.14107664228413,
             0.0,
             0.0
           ],
@@ -3636,11 +3661,21 @@
           ],
           [
             0.0,
-            5.642857142857143,
             0.0,
             0.0,
             0.0,
-            17.866071428571427,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            5.642858802876049,
+            0.0,
+            0.0,
+            0.0,
+            17.866066214858705,
             0.0,
             0.0
           ]
@@ -3661,7 +3696,10 @@
           1
         ]
       },
-      "calibration_sha256": "93bf57c6ab32d907453d27475915e31b81af8a67596dcf34b547e2bcd31ae7f1",
+      "calibration_sha256": "3fe6ede85f58eac50a9b3c406c39106277b8b8160518bfa0405cd21847fbd576",
+      "canonical_objective": 572191.0296509459,
+      "canonical_rule": "lexicographic_min_y_then_x_on_primary_optimal_face_v1",
+      "canonical_solve_count": 119,
       "characteristics": {
         "J": 8,
         "R": 12,
@@ -3685,10 +3723,11 @@
         "ub_compatible": true,
         "ub_violation_count": 0
       },
-      "instance_sha256": "7ed113b87104f168a56c02ec91d9826d561893754e371abf7d2c6db8779cb2d9",
+      "instance_sha256": "df5fcbaa54a73277948f676fae151d85ad621d9ef417b0906b04066b1ef1109c",
+      "objective_delta": -5.329493433237076e-07,
       "per_product": {
         "BAC---1041": 0.0,
-        "BAC-O-4312": 180.89999999999998,
+        "BAC-O-4312": 180.89999999153832,
         "BAC-O-4325": 0.0,
         "BAC-O-6423": 0.0,
         "BAC-O-6433": 0.0,
@@ -3697,11 +3736,19 @@
         "SLI---1200": 0.0
       },
       "positive_pairs": 4,
+      "previous_arbitrary_incumbent_comparison": {
+        "available": true,
+        "x_changed": true,
+        "y_changed": false
+      },
+      "primary_objective": 572191.0296514789,
       "stability": {
+        "canonical_incumbent_status": "PASS",
         "material_x_range_count": 0,
         "maximum_material_x_range": 7.693698517385883e-06,
         "minimum_y_flip_objective_gap": 21.47015956148971,
         "objective_face_tolerance": 1e-07,
+        "primary_optimal_face_nonunique": false,
         "status": "PASS",
         "structural_range_tolerance": 0.001,
         "x_audit": [
@@ -4504,15 +4551,15 @@
         ],
         "y_stable": true
       },
-      "total_inventory": 529.9071428571428,
-      "x0_sha256": "19480ca57130d9ab3d27188c77ba0851a1457a14ab0a611bf078c37a96113704"
+      "total_inventory": 529.9071428486811,
+      "x0_sha256": "04c9e1219c4e323ab77f8c8fb70854ecf4eb1c710584f21418b5a0005afaeb60"
     },
     "210330": {
       "active_depots": 2,
       "baseline": {
-        "first_stage_spending": 65650.34742857142,
-        "objective": 588352.462470653,
-        "recourse_cost": 522702.11504208157,
+        "first_stage_spending": 65650.34742795816,
+        "objective": 588352.4624700468,
+        "recourse_cost": 522702.1150420888,
         "x": [
           [
             0.0,
@@ -4526,21 +4573,11 @@
           ],
           [
             0.0,
-            153.04999999999998,
+            153.0499985122742,
             0.0,
             0.0,
             0.0,
-            333.4803571428571,
-            0.0,
-            0.0
-          ],
-          [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
+            333.48036179200034,
             0.0,
             0.0
           ],
@@ -4616,11 +4653,21 @@
           ],
           [
             0.0,
-            7.214285714285714,
             0.0,
             0.0,
             0.0,
-            6.655357142857154,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            7.214287195611655,
+            0.0,
+            0.0,
+            0.0,
+            6.655352492280903,
             0.0,
             0.0
           ]
@@ -4639,7 +4686,10 @@
           1
         ]
       },
-      "calibration_sha256": "1b9bc817b5a65b868caf5fa46470ac68e3753e0a2c3dd634d95d44c96a462cbb",
+      "calibration_sha256": "e182dde7a79c1c9e7909fb776df4d1cff0326d39bbee5414c3d7efdb147e071a",
+      "canonical_objective": 588352.4624700468,
+      "canonical_rule": "lexicographic_min_y_then_x_on_primary_optimal_face_v1",
+      "canonical_solve_count": 101,
       "characteristics": {
         "J": 8,
         "R": 12,
@@ -4658,28 +4708,37 @@
       "feasibility": {
         "capacity_compatible": true,
         "capacity_violation_count": 0,
-        "maximum_capacity_excess": 4.547473508864641e-13,
+        "maximum_capacity_excess": 0.0,
         "maximum_ub_excess": 0.0,
         "ub_compatible": true,
         "ub_violation_count": 0
       },
-      "instance_sha256": "2515d75132bd080542e4e307c70caa1cbae5c4d9f9ee46f43ee073230cd25c53",
+      "instance_sha256": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+      "objective_delta": -6.061745807528496e-07,
       "per_product": {
         "BAC---1041": 0.0,
-        "BAC-O-4312": 160.2642857142857,
+        "BAC-O-4312": 160.26428570788585,
         "BAC-O-4325": 0.0,
         "BAC-O-6423": 0.0,
         "BAC-O-6433": 0.0,
-        "CON-S-0130": 340.13571428571424,
+        "CON-S-0130": 340.1357142842812,
         "SLI---0770": 0.0,
         "SLI---1200": 0.0
       },
       "positive_pairs": 4,
+      "previous_arbitrary_incumbent_comparison": {
+        "available": true,
+        "x_changed": true,
+        "y_changed": false
+      },
+      "primary_objective": 588352.462470653,
       "stability": {
+        "canonical_incumbent_status": "PASS",
         "material_x_range_count": 0,
         "maximum_material_x_range": 6.439901997445929e-06,
         "minimum_y_flip_objective_gap": 20.71691983693745,
         "objective_face_tolerance": 1e-07,
+        "primary_optimal_face_nonunique": false,
         "status": "PASS",
         "structural_range_tolerance": 0.001,
         "x_audit": [
@@ -5360,15 +5419,15 @@
         ],
         "y_stable": true
       },
-      "total_inventory": 500.3999999999999,
-      "x0_sha256": "049b58cbaf51c0d7c74516502723cad146c6aba0d891691d1b06640093809c3c"
+      "total_inventory": 500.39999999216707,
+      "x0_sha256": "11cd91349ff218d7f951a38a65123de8c5e304d36a370c97a39a1ce9b3c3961a"
     },
     "210428": {
       "active_depots": 2,
       "baseline": {
-        "first_stage_spending": 75911.97600000001,
-        "objective": 735829.8570815091,
-        "recourse_cost": 659917.881081509,
+        "first_stage_spending": 75911.97599934557,
+        "objective": 735829.8570810186,
+        "recourse_cost": 659917.8810816731,
         "x": [
           [
             0.0,
@@ -5402,21 +5461,11 @@
           ],
           [
             0.0,
-            187.32933333333332,
+            187.32933304349987,
             0.0,
             0.0,
             0.0,
-            385.55333333333334,
-            0.0,
-            0.0
-          ],
-          [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
+            385.5533342390629,
             0.0,
             0.0
           ],
@@ -5542,11 +5591,21 @@
           ],
           [
             0.0,
-            11.570666666666668,
             0.0,
             0.0,
             0.0,
-            6.666666666666667,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            11.570666944163499,
+            0.0,
+            0.0,
+            0.0,
+            6.6666657614730935,
             0.0,
             0.0
           ]
@@ -5572,7 +5631,10 @@
           1
         ]
       },
-      "calibration_sha256": "5e969a1661e7c1338644e365253300368ea92b10c7f0cca30c5793e54b44d355",
+      "calibration_sha256": "29ab4dae7c8cce42cc9a771372d9813fbffac137a978f2b2208a41f61256cc58",
+      "canonical_objective": 735829.8570810186,
+      "canonical_rule": "lexicographic_min_y_then_x_on_primary_optimal_face_v1",
+      "canonical_solve_count": 164,
       "characteristics": {
         "J": 8,
         "R": 12,
@@ -5591,29 +5653,38 @@
       "feasibility": {
         "capacity_compatible": true,
         "capacity_violation_count": 0,
-        "maximum_capacity_excess": 2.2737367544323206e-13,
+        "maximum_capacity_excess": 0.0,
         "maximum_ub_excess": 0.0,
         "ub_compatible": true,
         "ub_violation_count": 0
       },
-      "instance_sha256": "cc25b7286ae172c7077c2c32c1f962a006357f5a06131d1c32e11ecd293b65b4",
+      "instance_sha256": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+      "objective_delta": -4.904577508568764e-07,
       "per_product": {
         "BAC---1041": 0.0,
-        "BAC-O-4312": 198.89999999999998,
+        "BAC-O-4312": 198.89999998766336,
         "BAC-O-4325": 0.0,
         "BAC-O-6423": 0.0,
         "BAC-O-6433": 0.0,
-        "CON-S-0130": 392.22,
+        "CON-S-0130": 392.220000000536,
         "SLI---0770": 0.0,
         "SLI---1200": 0.0
       },
       "positive_pairs": 4,
+      "previous_arbitrary_incumbent_comparison": {
+        "available": true,
+        "x_changed": true,
+        "y_changed": false
+      },
+      "primary_objective": 735829.8570815091,
       "stability": {
+        "canonical_incumbent_status": "PASS",
         "material_x_range_count": 2,
         "maximum_material_x_range": 0.002110277802614746,
         "minimum_y_flip_objective_gap": 16.475774622056633,
         "objective_face_tolerance": 1e-07,
-        "status": "BLOCK_CASE_X0_DEGENERACY_210428",
+        "primary_optimal_face_nonunique": true,
+        "status": "PASS",
         "structural_range_tolerance": 0.001,
         "x_audit": [
           {
@@ -6720,15 +6791,15 @@
         ],
         "y_stable": true
       },
-      "total_inventory": 591.12,
-      "x0_sha256": "97b3a65a675eaaa65c84251bb8e533d258b3878498e62597af7bb7ecb9d108f2"
+      "total_inventory": 591.1199999881994,
+      "x0_sha256": "cc08b6627d2f100652172e56ae78f3e35a97b8c89385b99da534fc20917a8014"
     },
     "210611": {
       "active_depots": 5,
       "baseline": {
-        "first_stage_spending": 64656.25800000001,
-        "objective": 536966.3137670563,
-        "recourse_cost": 472310.0557670563,
+        "first_stage_spending": 64656.257997955974,
+        "objective": 536966.3137658362,
+        "recourse_cost": 472310.05576788017,
         "x": [
           [
             0.0,
@@ -6746,27 +6817,17 @@
             0.0,
             0.0,
             0.0,
-            17.65,
+            17.649999982299022,
             0.0,
             0.0
           ],
           [
             0.0,
-            144.331,
+            144.3310000001287,
             0.0,
             0.0,
             0.0,
-            293.6890625,
-            0.0,
-            0.0
-          ],
-          [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
+            293.68906251753566,
             0.0,
             0.0
           ],
@@ -6842,17 +6903,27 @@
           ],
           [
             0.0,
-            3.508,
             0.0,
             0.0,
             0.0,
-            0.0625,
+            0.0,
+            0.0,
             0.0,
             0.0
           ],
           [
             0.0,
-            0.5360000000000003,
+            3.5079999999241926,
+            0.0,
+            0.0,
+            0.0,
+            0.06249997560011088,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.5359999921920358,
             0.0,
             0.0,
             0.0,
@@ -6912,11 +6983,11 @@
           ],
           [
             0.0,
-            6.3125,
+            6.312499992139139,
             0.0,
             0.0,
             0.0,
-            17.8734375,
+            17.87343751764603,
             0.0,
             0.0
           ]
@@ -6943,7 +7014,10 @@
           1
         ]
       },
-      "calibration_sha256": "59031faab3cd8dc294cf6ed12a53fea339f987995c0dd2f36f5ef4ac0826e383",
+      "calibration_sha256": "9e9dbbbead031ea0ab251686b256ac1e269b7c145ea3549045dee843657fc5bb",
+      "canonical_objective": 536966.3137658362,
+      "canonical_rule": "lexicographic_min_y_then_x_on_primary_optimal_face_v1",
+      "canonical_solve_count": 173,
       "characteristics": {
         "J": 8,
         "R": 12,
@@ -6967,23 +7041,32 @@
         "ub_compatible": true,
         "ub_violation_count": 0
       },
-      "instance_sha256": "e13569338e4a2dde6532dcbb057570695f1e728d7132eb3e13c113bd32fa8882",
+      "instance_sha256": "f244641d602348af8b2ac31a2bb948b4b0ebca8e33ff446dd07298e3e578a9bf",
+      "objective_delta": -1.2201489880681038e-06,
       "per_product": {
         "BAC---1041": 0.0,
-        "BAC-O-4312": 154.6875,
+        "BAC-O-4312": 154.6874999843841,
         "BAC-O-4325": 0.0,
         "BAC-O-6423": 0.0,
         "BAC-O-6433": 0.0,
-        "CON-S-0130": 341.775,
+        "CON-S-0130": 341.7749999930808,
         "SLI---0770": 0.0,
         "SLI---1200": 0.0
       },
       "positive_pairs": 9,
+      "previous_arbitrary_incumbent_comparison": {
+        "available": true,
+        "x_changed": true,
+        "y_changed": false
+      },
+      "primary_objective": 536966.3137670563,
       "stability": {
+        "canonical_incumbent_status": "PASS",
         "material_x_range_count": 0,
         "maximum_material_x_range": 0.0001949455150800361,
         "minimum_y_flip_objective_gap": 3.2110620671883225,
         "objective_face_tolerance": 1e-07,
+        "primary_optimal_face_nonunique": false,
         "status": "PASS",
         "structural_range_tolerance": 0.001,
         "x_audit": [
@@ -8152,15 +8235,15 @@
         ],
         "y_stable": true
       },
-      "total_inventory": 496.4625,
-      "x0_sha256": "0ac24ce9d35d7f3759b7c9be4214ad7a5059dc13ed5c4aa94d85457c91fce2d2"
+      "total_inventory": 496.4624999774649,
+      "x0_sha256": "deca1c7decbb01c5500ede566cd790a44cfa86e99c1b761b9f30cd30eb63ef81"
     },
     "210628": {
       "active_depots": 2,
       "baseline": {
-        "first_stage_spending": 77408.83107692307,
-        "objective": 625401.2683029185,
-        "recourse_cost": 547992.4372259956,
+        "first_stage_spending": 77408.83107532002,
+        "objective": 625401.2683018016,
+        "recourse_cost": 547992.4372264816,
         "x": [
           [
             0.0,
@@ -8184,21 +8267,11 @@
           ],
           [
             0.0,
-            205.37692307692305,
+            205.37692168127384,
             0.0,
             0.0,
             0.0,
-            381.823076923077,
-            0.0,
-            0.0
-          ],
-          [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
+            381.82308123366727,
             0.0,
             0.0
           ],
@@ -8304,11 +8377,21 @@
           ],
           [
             0.0,
-            9.307692307692308,
             0.0,
             0.0,
             0.0,
-            9.538461538461537,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            9.307693681632626,
+            0.0,
+            0.0,
+            0.0,
+            9.538457225992875,
             0.0,
             0.0
           ]
@@ -8331,7 +8414,10 @@
           1
         ]
       },
-      "calibration_sha256": "177a2855f6a372d87c9342fb8c8f6ff56d6a3125a3a6d5877b1e0c1c84f044ee",
+      "calibration_sha256": "eb6b346748dcc77fdd66eecddb01b15dd96960f1f37991d3e761616048d5b584",
+      "canonical_objective": 625401.2683018016,
+      "canonical_rule": "lexicographic_min_y_then_x_on_primary_optimal_face_v1",
+      "canonical_solve_count": 137,
       "characteristics": {
         "J": 8,
         "R": 12,
@@ -8355,23 +8441,32 @@
         "ub_compatible": true,
         "ub_violation_count": 0
       },
-      "instance_sha256": "f42321c4ab91ff125b65f3433023310248b445529e600380ad6561a187b73dc9",
+      "instance_sha256": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677",
+      "objective_delta": -1.1168885976076126e-06,
       "per_product": {
         "BAC---1041": 0.0,
-        "BAC-O-4312": 214.68461538461537,
+        "BAC-O-4312": 214.68461536290647,
         "BAC-O-4325": 0.0,
         "BAC-O-6423": 0.0,
         "BAC-O-6433": 0.0,
-        "CON-S-0130": 391.36153846153854,
+        "CON-S-0130": 391.36153845966015,
         "SLI---0770": 0.0,
         "SLI---1200": 0.0
       },
       "positive_pairs": 4,
+      "previous_arbitrary_incumbent_comparison": {
+        "available": true,
+        "x_changed": true,
+        "y_changed": false
+      },
+      "primary_objective": 625401.2683029185,
       "stability": {
+        "canonical_incumbent_status": "PASS",
         "material_x_range_count": 0,
         "maximum_material_x_range": 6.807611384829215e-06,
         "minimum_y_flip_objective_gap": 14.874149140319787,
         "objective_face_tolerance": 1e-07,
+        "primary_optimal_face_nonunique": false,
         "status": "PASS",
         "structural_range_tolerance": 0.001,
         "x_audit": [
@@ -9296,11 +9391,11 @@
         ],
         "y_stable": true
       },
-      "total_inventory": 606.0461538461539,
-      "x0_sha256": "bfd7e1365b6b1333d3dc653452987817af90a49041a981af2bbea88430a6f135"
+      "total_inventory": 606.0461538225667,
+      "x0_sha256": "7514da694ef80b8a5053329b2a2c9619090e768884c0555d19a67f9e284b589e"
     }
   },
-  "data_preparation_optimization_solve_count": 2090,
+  "data_preparation_optimization_solve_count": 4302,
   "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
   "deterministic_regeneration": "PASS",
   "e2_e7_authorization": false,
@@ -9318,6 +9413,6 @@
   },
   "mapping_sha256": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
   "old_formal_artifacts_overwritten": false,
-  "status": "RENAULT_EMPIRICAL_8CASE_V1_PARTIAL",
+  "status": "RENAULT_EMPIRICAL_8CASE_V1_READY",
   "synthetic_execution": 0
 }

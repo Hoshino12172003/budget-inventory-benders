@@ -1,8 +1,10 @@
 {
+  "canonical_incumbent_status": "PASS",
   "material_x_range_count": 0,
   "maximum_material_x_range": 7.693698517385883e-06,
   "minimum_y_flip_objective_gap": 21.47015956148971,
   "objective_face_tolerance": 1e-07,
+  "primary_optimal_face_nonunique": false,
   "status": "PASS",
   "structural_range_tolerance": 0.001,
   "x_audit": [
