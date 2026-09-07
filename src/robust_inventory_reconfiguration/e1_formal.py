@@ -4,7 +4,10 @@ from pathlib import Path
 from typing import Any
 
 
-E1_ATTEMPT_ID = "e1_formal_algorithm_benchmark_attempt_001"
+E1_ATTEMPT_DIRECTORIES = {
+    "e1_formal_algorithm_benchmark_attempt_001": "attempt_001",
+    "e1_formal_algorithm_benchmark_attempt_002": "attempt_002",
+}
 E1_NEW_RUN_IDS = (
     "E1-210628-DIRECT",
     "E1-210628-PRB",
@@ -36,7 +39,7 @@ E1_RESULT_FIELDS = (
 
 
 def validate_e1_authorization(manifest: dict[str, Any]) -> None:
-    if manifest.get("attempt_id") != E1_ATTEMPT_ID:
+    if manifest.get("attempt_id") not in E1_ATTEMPT_DIRECTORIES:
         raise ValueError("unexpected E1 attempt id")
     if manifest.get("authorization_scope") != "e1_new_runs_only":
         raise ValueError("E1 authorization scope is invalid")
@@ -69,7 +72,11 @@ def validate_e1_authorization(manifest: dict[str, Any]) -> None:
 
 def e1_output_path(repository_root: Path, manifest: dict[str, Any]) -> Path:
     expected = (
-        repository_root / "experiments" / "results" / "e1_algorithm_benchmark" / "attempt_001"
+        repository_root
+        / "experiments"
+        / "results"
+        / "e1_algorithm_benchmark"
+        / E1_ATTEMPT_DIRECTORIES[manifest["attempt_id"]]
     ).resolve()
     configured = (repository_root / manifest["output_directory"]).resolve()
     if configured != expected:

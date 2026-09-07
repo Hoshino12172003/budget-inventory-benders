@@ -10,6 +10,7 @@ from robust_inventory_reconfiguration.e1_formal import (
     validate_e1_authorization,
 )
 from robust_inventory_reconfiguration.formal_protocol import load_formal_config
+from experiments.run_e1_formal import E1_CONFIG, FREEZE, reuse_identity_audit, reused_rows
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,6 +24,11 @@ def test_e1_authorization_is_exactly_ten_new_runs() -> None:
     assert tuple(manifest["authorized_run_ids"]) == E1_NEW_RUN_IDS
     assert manifest["e2_e7_authorization"] is False
     assert e1_output_path(ROOT, manifest).name == "attempt_001"
+    retry = load_formal_config(
+        ROOT / "experiments" / "configs" / "e1_formal_authorization_attempt_002.yaml"
+    )
+    validate_e1_authorization(retry)
+    assert e1_output_path(ROOT, retry).name == "attempt_002"
 
 
 def test_synthetic_reproducibility_gate_blocks_design_only_config() -> None:
@@ -46,3 +52,11 @@ def test_e1_result_schema_contains_common_and_method_fields() -> None:
         "uncertainty_representation_size",
     ):
         assert field in E1_RESULT_FIELDS
+
+
+def test_reuse_rows_load_historical_snake_case_fields() -> None:
+    audit = reuse_identity_audit(load_formal_config(E1_CONFIG), load_formal_config(FREEZE))
+    assert audit["status"] == "E1_REUSE_ACCEPTED"
+    rows = reused_rows(audit)
+    assert len(rows) == 2
+    assert rows[0]["variable_count"] == 122376

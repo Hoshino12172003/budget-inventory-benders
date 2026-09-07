@@ -41,7 +41,7 @@ from robust_inventory_reconfiguration.solver_profile import FORMAL_SOLVER_PROFIL
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "experiments" / "configs" / "e1_formal_authorization_attempt_001.yaml"
+MANIFEST = ROOT / "experiments" / "configs" / "e1_formal_authorization_attempt_002.yaml"
 ACCEPTANCE = ROOT / "experiments" / "results" / "formal_acceptance_batch_1" / "attempt_001"
 FREEZE = ROOT / "experiments" / "configs" / "formal" / "formal_parameter_freeze.json"
 E1_CONFIG = ROOT / "experiments" / "configs" / "formal" / "e1_algorithm_benchmark.yaml"
@@ -194,7 +194,7 @@ def reused_rows(audit: dict[str, Any]) -> list[dict[str, Any]]:
         exact = next(
             row for row in csv.DictReader(stream)
             if row["case"] == "210202" and row["gamma"] == "2"
-            and row["beta"] == "1.0" and row["lambda_R"] == "0.05"
+            and row["beta"] == "1.0" and row["lambda_r"] == "0.05"
         )
     rows[0].update(
         variable_count=int(exact["variable_count"]),
@@ -265,7 +265,7 @@ def main() -> None:
     validate_e1_authorization(manifest)
     output = e1_output_path(ROOT, manifest)
     if output.exists():
-        raise FileExistsError("E1 attempt_001 already exists and cannot be overwritten")
+        raise FileExistsError("configured E1 attempt already exists and cannot be overwritten")
     if subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT, text=True).strip():
         raise RuntimeError("E1 execution requires a clean committed worktree")
     for path in sorted((ROOT / "experiments" / "configs" / "formal").glob("e[2-7]*.yaml")):
