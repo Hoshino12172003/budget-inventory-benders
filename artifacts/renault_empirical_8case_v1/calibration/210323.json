@@ -1,0 +1,16 @@
+{
+  "B_ref": 68276.20285714285,
+  "budget": null,
+  "builder_commit": "ff10dfd1adb3de1ef1001b9c2086ea75ac5e1d29",
+  "case": "210323",
+  "contract": "first-stage expenditure of the nominal incumbent",
+  "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
+  "first_stage_spending": 68276.20285714285,
+  "gamma": 0,
+  "instance_sha256": "7ed113b87104f168a56c02ec91d9826d561893754e371abf7d2c6db8779cb2d9",
+  "lambda_R": null,
+  "nominal_objective": 572191.0296514789,
+  "nominal_recourse": 503914.826794336,
+  "schema": "renault_empirical_bref_v1",
+  "x0_sha256": "19480ca57130d9ab3d27188c77ba0851a1457a14ab0a611bf078c37a96113704"
+}

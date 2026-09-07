@@ -44,3 +44,5 @@ artifacts/*
 !artifacts/prb_correctness_reclassification.csv
 !artifacts/prb_optimal_face_audit.csv
 !artifacts/prb_correctness_contract_summary.json
+!artifacts/renault_empirical_8case_v1/
+!artifacts/renault_empirical_8case_v1/**
