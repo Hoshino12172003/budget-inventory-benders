@@ -139,6 +139,8 @@ def solve_canonical_nominal_baseline(
     from gurobipy import GRB
 
     model, y, x, first_stage, recourse = build_nominal_model(instance)
+    # Sequential equality fixes are evaluated in the instance's original units.
+    model.Params.ScaleFlag = 0
     primary = first_stage + recourse
     model.optimize()
     solve_count = 1
@@ -161,7 +163,10 @@ def solve_canonical_nominal_baseline(
         model.optimize()
         solve_count += 1
         if model.Status != GRB.OPTIMAL:
-            raise RuntimeError(f"Canonical nominal stage failed at position {position}")
+            raise RuntimeError(
+                f"Canonical nominal stage failed for {instance.name} at position "
+                f"{position} ({variable.VarName}): status {model.Status}"
+            )
         if variable.VType == GRB.BINARY:
             value = int(round(variable.X))
         else:
