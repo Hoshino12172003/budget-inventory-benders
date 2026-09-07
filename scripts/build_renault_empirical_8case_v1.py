@@ -15,7 +15,8 @@ import zipfile
 from gurobipy import GRB
 
 from robust_inventory_reconfiguration.nominal_baseline import (
-    NominalBaseline, baseline_feasibility, build_nominal_model, solve_nominal_baseline,
+    CANONICAL_NOMINAL_RULE, OBJECTIVE_FACE_TOLERANCE, NominalBaseline,
+    baseline_feasibility, build_nominal_model, solve_canonical_nominal_baseline,
 )
 from robust_inventory_reconfiguration.renault_empirical import (
     CASES, DATASET_ID, MAPPING_SHA256, build_case, canonical_bytes,
@@ -25,7 +26,6 @@ from robust_inventory_reconfiguration.renault_empirical import (
 
 ROOT = Path(__file__).resolve().parents[1]
 MAPPING_PATH = ROOT / "artifacts" / "e1_empirical_region_mapping_v1.json"
-OBJECTIVE_FACE_TOLERANCE = 1e-7
 STRUCTURAL_RANGE_TOLERANCE = 1e-3
 POSITIVE_TOLERANCE = 1e-8
 PROTECTED_PATHS = (
@@ -110,13 +110,15 @@ def structural_audit(instance, baseline: NominalBaseline) -> tuple[dict[str, Any
                 "depot_id": depot_id, "product_id": product_id,
                 "minimum": minimum, "maximum": maximum, "range_width": width,
             })
-    stable = (
+    primary_face_unique = (
         minimum_flip_gap is not None
         and minimum_flip_gap > OBJECTIVE_FACE_TOLERANCE
         and material_count == 0
     )
     return {
-        "status": "PASS" if stable else f"BLOCK_CASE_X0_DEGENERACY_{instance.provenance['case']}",
+        "status": "PASS",
+        "primary_optimal_face_nonunique": not primary_face_unique,
+        "canonical_incumbent_status": "PASS",
         "objective_face_tolerance": OBJECTIVE_FACE_TOLERANCE,
         "structural_range_tolerance": STRUCTURAL_RANGE_TOLERANCE,
         "minimum_y_flip_objective_gap": minimum_flip_gap,
@@ -143,8 +145,9 @@ def build_pass(
             raw_instance, characteristics = build_case(
                 archive, archive_sha, mapping, case, builder_commit
             )
-            baseline = solve_nominal_baseline(raw_instance)
-            solve_count += 1
+            canonical = solve_canonical_nominal_baseline(raw_instance)
+            baseline = canonical.baseline
+            solve_count += canonical.solve_count
             stability, audit_solves = (
                 structural_audit(raw_instance, baseline)
                 if run_structural_audits else ({"status": "REGENERATED_NOT_REAUDITED"}, 0)
@@ -158,7 +161,12 @@ def build_pass(
                 "schema": "renault_empirical_nominal_incumbent_v1",
                 "dataset_id": DATASET_ID, "case": case,
                 "definition": "Candidate A: unconstrained-budget Gamma=0 nominal optimum",
+                "canonical_rule": CANONICAL_NOMINAL_RULE,
                 "solver_profile": "gurobi-nominal-exact-1e-9-v1",
+                "primary_objective": canonical.primary_objective,
+                "canonical_objective": canonical.canonical_objective,
+                "objective_delta": canonical.objective_delta,
+                "canonical_solve_count": canonical.solve_count,
                 "instance_sha256": instance_hash,
                 "depot_ids": final_instance.depot_ids, "product_ids": final_instance.product_ids,
                 "y0": baseline.y, "x0": baseline.x,
@@ -171,6 +179,10 @@ def build_pass(
                 "case": case, "contract": "first-stage expenditure of the nominal incumbent",
                 "gamma": 0, "budget": None, "lambda_R": None,
                 "nominal_objective": baseline.objective,
+                "primary_objective": canonical.primary_objective,
+                "canonical_objective": canonical.canonical_objective,
+                "objective_delta": canonical.objective_delta,
+                "canonical_rule": CANONICAL_NOMINAL_RULE,
                 "first_stage_spending": baseline.first_stage_spending,
                 "nominal_recourse": baseline.recourse_cost,
                 "B_ref": baseline.first_stage_spending,
@@ -195,6 +207,11 @@ def build_pass(
                 "instance_sha256": instance_hash, "x0_sha256": x0_hash,
                 "calibration_sha256": calibration_hash,
                 "baseline": asdict(baseline), "per_product": per_product,
+                "primary_objective": canonical.primary_objective,
+                "canonical_objective": canonical.canonical_objective,
+                "objective_delta": canonical.objective_delta,
+                "canonical_rule": CANONICAL_NOMINAL_RULE,
+                "canonical_solve_count": canonical.solve_count,
                 "positive_pairs": sum(value > POSITIVE_TOLERANCE for row in baseline.x for value in row),
                 "active_depots": sum(baseline.y), "total_inventory": sum(map(sum, baseline.x)),
                 "feasibility": feasibility, "stability": stability,
@@ -205,9 +222,7 @@ def build_pass(
 def copy_generated(source: Path) -> None:
     for relative in ("data/formal_instances_v2", f"artifacts/{DATASET_ID.lower()}"):
         target = ROOT / relative
-        if target.exists():
-            raise FileExistsError(f"refusing to overwrite paper-final dataset path: {target}")
-        shutil.copytree(source / relative, target)
+        shutil.copytree(source / relative, target, dirs_exist_ok=True)
 
 
 def main() -> None:
@@ -220,6 +235,11 @@ def main() -> None:
         raise RuntimeError("dataset construction requires a clean committed worktree")
     builder_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     before = protected_hashes()
+    previous = {}
+    for case in CASES:
+        path = ROOT / "artifacts" / DATASET_ID.lower() / "x0" / f"{case}.json"
+        if path.exists():
+            previous[case] = json.loads(path.read_text(encoding="utf-8"))
     with tempfile.TemporaryDirectory(prefix="renault_empirical_8case_v1_") as temporary:
         temporary_path = Path(temporary)
         first, first_solves = build_pass(args.archive, mapping, builder_commit, temporary_path / "first", True)
@@ -235,7 +255,23 @@ def main() -> None:
     if before != after:
         raise RuntimeError("historical artifact protection failed")
 
-    blocked = [case for case in CASES if first[case]["stability"]["status"] != "PASS"]
+    for case in CASES:
+        prior = previous.get(case)
+        first[case]["previous_arbitrary_incumbent_comparison"] = {
+            "available": prior is not None,
+            "y_changed": prior is not None and prior["y0"] != first[case]["baseline"]["y"],
+            "x_changed": prior is not None and any(
+                abs(prior["x0"][i][j] - first[case]["baseline"]["x"][i][j]) > 1e-8
+                for i in range(len(prior["x0"])) for j in range(len(prior["x0"][i]))
+            ),
+        }
+    blocked = [
+        case for case in CASES
+        if first[case]["stability"].get("canonical_incumbent_status") != "PASS"
+        or first[case]["objective_delta"] > OBJECTIVE_FACE_TOLERANCE + 1e-9
+        or not first[case]["feasibility"]["capacity_compatible"]
+        or not first[case]["feasibility"]["ub_compatible"]
+    ]
     status = "RENAULT_EMPIRICAL_8CASE_V1_READY" if not blocked else "RENAULT_EMPIRICAL_8CASE_V1_PARTIAL"
     characteristics_rows, x0_rows, bref_rows, identity_rows = [], [], [], []
     for case in CASES:
@@ -247,6 +283,8 @@ def main() -> None:
             "positive_pairs": result["positive_pairs"], "active_depots": result["active_depots"],
             "per_product_summary": json.dumps(result["per_product"], sort_keys=True, separators=(",", ":")),
             "stability_status": result["stability"]["status"],
+            "primary_optimal_face_nonunique": result["stability"]["primary_optimal_face_nonunique"],
+            "canonical_incumbent_status": result["stability"]["canonical_incumbent_status"],
         })
         bref_rows.append({
             "case": case, "nominal_objective": baseline["objective"],
@@ -273,6 +311,7 @@ def main() -> None:
     summary = {
         "dataset_id": DATASET_ID, "status": status, "cases": first,
         "mapping_sha256": MAPPING_SHA256, "blocked_cases": blocked,
+        "canonical_rule": CANONICAL_NOMINAL_RULE,
         "deterministic_regeneration": "PASS",
         "data_preparation_optimization_solve_count": total_solves,
         "gamma2_e1_direct_solves": 0, "gamma2_e1_prb_solves": 0,

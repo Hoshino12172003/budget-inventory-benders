@@ -15,6 +15,20 @@ class NominalBaseline:
     objective: float
 
 
+CANONICAL_NOMINAL_RULE = "lexicographic_min_y_then_x_on_primary_optimal_face_v1"
+OBJECTIVE_FACE_TOLERANCE = 1e-7
+
+
+@dataclass(frozen=True)
+class CanonicalNominalBaseline:
+    baseline: NominalBaseline
+    primary_objective: float
+    canonical_objective: float
+    objective_delta: float
+    solve_count: int
+    rule: str = CANONICAL_NOMINAL_RULE
+
+
 def build_nominal_model(
     instance: InventoryInstance,
     budget: float | None = None,
@@ -113,6 +127,69 @@ def solve_nominal_baseline(
         first_stage_spending=first_stage.getValue(),
         recourse_cost=recourse.getValue(),
         objective=model.ObjVal,
+    )
+
+
+def solve_canonical_nominal_baseline(
+    instance: InventoryInstance,
+    *,
+    objective_face_tolerance: float = OBJECTIVE_FACE_TOLERANCE,
+) -> CanonicalNominalBaseline:
+    """Select one deterministic incumbent without changing the primary objective."""
+    from gurobipy import GRB
+
+    model, y, x, first_stage, recourse = build_nominal_model(instance)
+    primary = first_stage + recourse
+    model.optimize()
+    solve_count = 1
+    if model.Status != GRB.OPTIMAL:
+        raise RuntimeError(f"Primary nominal model did not solve to optimality: {model.Status}")
+    primary_objective = float(model.ObjVal)
+    model.addConstr(
+        primary <= primary_objective + objective_face_tolerance,
+        name="primary_optimal_face",
+    )
+
+    ordered_variables = [y[i] for i in range(instance.num_depots)]
+    ordered_variables.extend(
+        x[i, j]
+        for i in range(instance.num_depots)
+        for j in range(instance.num_products)
+    )
+    for position, variable in enumerate(ordered_variables):
+        model.setObjective(variable, GRB.MINIMIZE)
+        model.optimize()
+        solve_count += 1
+        if model.Status != GRB.OPTIMAL:
+            raise RuntimeError(f"Canonical nominal stage failed at position {position}")
+        value = int(round(variable.X)) if variable.VType == GRB.BINARY else float(variable.X)
+        model.addConstr(variable == value, name=f"canonical_fix[{position}]")
+
+    model.setObjective(primary, GRB.MINIMIZE)
+    model.optimize()
+    solve_count += 1
+    if model.Status != GRB.OPTIMAL:
+        raise RuntimeError("Final canonical economic re-solve failed")
+    canonical_objective = float(model.ObjVal)
+    objective_delta = canonical_objective - primary_objective
+    if objective_delta > objective_face_tolerance + 1e-9:
+        raise RuntimeError("BLOCK_CANONICAL_INCUMBENT_LEFT_PRIMARY_FACE")
+    baseline = NominalBaseline(
+        y=[int(round(y[i].X)) for i in range(instance.num_depots)],
+        x=[
+            [float(x[i, j].X) for j in range(instance.num_products)]
+            for i in range(instance.num_depots)
+        ],
+        first_stage_spending=float(first_stage.getValue()),
+        recourse_cost=float(recourse.getValue()),
+        objective=canonical_objective,
+    )
+    return CanonicalNominalBaseline(
+        baseline=baseline,
+        primary_objective=primary_objective,
+        canonical_objective=canonical_objective,
+        objective_delta=objective_delta,
+        solve_count=solve_count,
     )
 
 
