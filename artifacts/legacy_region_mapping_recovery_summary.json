@@ -1,0 +1,161 @@
+{
+  "schema": "LEGACY_REGION_MAPPING_FORENSIC_AUDIT_V1",
+  "status": "LEGACY_REGION_MAPPING_NOT_RECOVERABLE",
+  "recovery_level": "D",
+  "decision_reason": "No complete customer-to-region artifact, exact center set, executable clustering rule, seed, tie rule, or uniquely identifying intermediate aggregate was found. Reconstructing a mapping would require a new clustering choice or inverse inference from frozen demand, neither of which is provenance recovery.",
+  "provenance_supported_partial_description": {
+    "reference_cases_stated_by_workbook": [
+      "210202",
+      "210712"
+    ],
+    "common_customer_count": 411,
+    "common_customer_count_independently_verified_from_raw_archive": true,
+    "common_customer_location_conflicts": 0,
+    "known_rule": "Cluster the 411 common customer latitude/longitude records into 12 geographic regions without demand weights; assign additional customers to the nearest common region center.",
+    "unknown_required_details": [
+      "clustering algorithm and implementation",
+      "initialization and random seed",
+      "exact 12 center coordinates",
+      "distance metric",
+      "nearest-center tie rule",
+      "region identity and ordering rule",
+      "complete customer-to-region mapping"
+    ],
+    "formal_case_identity_conflict": "The descriptive workbook names 210712, while the frozen formal package and verified raw provenance identify 210628 as the second formal case."
+  },
+  "formal_base_demand_validation": {
+    "210202": {
+      "raw_to_formal_reproduction_status": "NOT_RUN_NO_RECOVERED_MAPPING",
+      "l1_error": null,
+      "max_absolute_error": null,
+      "shape": [12, 8]
+    },
+    "210628": {
+      "raw_to_formal_reproduction_status": "NOT_RUN_NO_RECOVERED_MAPPING",
+      "l1_error": null,
+      "max_absolute_error": null,
+      "shape": [12, 8]
+    },
+    "v6_package_to_current_formal_copy_check": {
+      "210202_l1_error": 0.0,
+      "210202_max_absolute_error": 0.0,
+      "210628_l1_error": 0.0,
+      "210628_max_absolute_error": 0.0,
+      "interpretation": "This proves the current formal arrays were copied faithfully from v6; it does not reproduce them from raw customer demand."
+    },
+    "rejected_new_mapping_diagnostic": {
+      "mapping": "E1 eight-case deterministic location-only mapping",
+      "210202_minimum_l1_allowing_label_permutation": 1969.2857142857144,
+      "210202_max_cell_error_under_best_permutation": 187.28571428571422,
+      "210628_minimum_l1_allowing_label_permutation": 1309.692307692308,
+      "210628_max_cell_error_under_best_permutation": 120.46153846153854,
+      "interpretation": "A rejection diagnostic only; label permutation is not accepted as recovery."
+    }
+  },
+  "extension_audit": {
+    "status": "NOT_ASSESSED_NO_RECOVERED_MAPPING",
+    "cases": [
+      "210129",
+      "210310",
+      "210330",
+      "210323",
+      "210428",
+      "210611"
+    ],
+    "customer_coverage": null,
+    "directly_mapped": null,
+    "nearest_center_assigned": null,
+    "unmappable": null,
+    "empty_regions": null
+  },
+  "sources_examined": [
+    {
+      "source_id": "current_repository_all_refs",
+      "repository": "Hoshino12172003/budget-inventory-benders",
+      "audit_start_commit": "ce021004b760a84227e48001a22e59079743e287",
+      "scope": "main, PR #1-#11 heads, local historical branches, Git object names, reflogs, unreachable objects",
+      "mapping_evidence_found": false
+    },
+    {
+      "source_id": "legacy_repository_all_refs",
+      "repository": "Hoshino12172003/robust-inventory-benders",
+      "scope": "main, PR #1-#86 heads, tags, Git object names, full history and unreachable-object audit",
+      "mapping_evidence_found": false
+    },
+    {
+      "source_id": "legacy_pr_81_import_commit",
+      "repository_relative_path": "real_data_studies/renault_formal_instances_v6/",
+      "source_commit": "e4b2606ca332902f9f9cd0d69b228bb19ee0ca73",
+      "merged_commit": "10fe8aa4f3b93dc17314a8561198c885e0c6bd2e",
+      "finding": "The commit adds finalized v6 instances, index metadata, eligibility, hashes, and validation code. Its parent contains no Renault builder, mapping, centers, or preparation workbook."
+    },
+    {
+      "source_id": "renault_formal_instances_v6_zip",
+      "logical_path": "external://renault-formal/renault_formal_instances_v6.zip",
+      "filename": "renault_formal_instances_v6.zip",
+      "sha256": "4e30fe65536c96f9c487a121f554748e7fc799925d620d4599b83010f87a8ae0",
+      "file_count": 16,
+      "finding": "Contains finalized instances, index orders, eligibility, manifest, hashes, and audits only; no customer identities, mapping, centers, rule, seed, source path, or preparation file."
+    },
+    {
+      "source_id": "official_raw_pipeline_archive",
+      "logical_path": "external://renault-raw/renault_data_pipeline.zip",
+      "filename": "renault_data_pipeline.zip",
+      "sha256": "38fa3aa486d1974e3d037d9e1cfc2af3340b0d8d132a96cc4e409ce575c1ea33",
+      "embedded_source_archive_sha256": "c27075450bc8ace8e74087316b64f22d2a9a9909cb4e4746341bc9f3998950ea",
+      "finding": "Provides official raw and normalized customer coordinates and demand, but no legacy formal customer-region mapping."
+    },
+    {
+      "source_id": "pipeline_script_package",
+      "logical_path": "external://renault-pipeline/renault_data_pipeline.zip",
+      "filename": "renault_data_pipeline.zip",
+      "sha256": "b172ca70993e586ba9ba5de9f904488481622bc6c1596aa3615dfbf9ec0e5d0c",
+      "finding": "The normalization script preserves raw tables and explicitly leaves region clustering as a later modeling step."
+    },
+    {
+      "source_id": "descriptive_mapping_workbook",
+      "logical_path": "external://paper-workbook/Renault真实数据处理与参数映射.xlsx",
+      "filename": "Renault真实数据处理与参数映射.xlsx",
+      "sha256": "65564b4074324dd9fee072b0c540724893e46de60ad388018245b81d899c39c6",
+      "filesystem_created_and_modified": "2026-09-06T21:27:14+08:00",
+      "sheets": [
+        "说明",
+        "参数映射",
+        "案例摘要",
+        "处理流程",
+        "正式实验前检查"
+      ],
+      "finding": "Describes the 411-common-customer design but contains no mapping rows, centers, algorithm, seed, ordering rule, formulas, external links, or immutable hash link to v6."
+    },
+    {
+      "source_id": "current_formal_instance_210202",
+      "repository_relative_path": "data/formal_instances/210202.json",
+      "sha256": "d40beacd55c43b045db79140e38ee211e904dd72f7d6ca95dfb34c1f5a2cdb35"
+    },
+    {
+      "source_id": "current_formal_instance_210628",
+      "repository_relative_path": "data/formal_instances/210628.json",
+      "sha256": "32321a9dc18d1b0134a73b45ed4695f44c8425f544ceb498d7c8f7eeda8d6ba9"
+    }
+  ],
+  "referenced_but_missing_sources": [
+    {
+      "filename": "Renault模型参数对标与处理结果_v3.xlsx",
+      "required_content": "customer-region mapping, region centers, or exact executable clustering metadata"
+    },
+    {
+      "filename": "renault_model_preparation_v3_geo.zip",
+      "required_content": "preparation code and/or geographic mapping intermediates"
+    }
+  ],
+  "outputs_intentionally_not_created": [
+    "artifacts/legacy_region_mapping_v1.json",
+    "table_legacy_region_mapping_validation.csv",
+    "table_legacy_region_extension_audit.csv"
+  ],
+  "recommended_next_action": "Use Decision C: adopt one common eight-case mapping, rebuild all eight formal cases, regenerate the 210202 and 210628 x0 and B_ref, and rerun the final empirical experiments under one geographic contract. Do not perform those actions until separately authorized.",
+  "optimization_solves_executed": 0,
+  "existing_formal_results_modified": false,
+  "existing_formal_artifacts_modified": false,
+  "e2_e7_authorization": false
+}
