@@ -9,6 +9,7 @@ build/
 dist/
 .coverage
 htmlcov/
+.pytest-tmp-*/
 .idea/
 .vscode/
 .DS_Store

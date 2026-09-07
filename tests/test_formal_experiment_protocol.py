@@ -9,6 +9,7 @@ from robust_inventory_reconfiguration.formal_protocol import (
     RESULT_FIELDS,
     RunIdentity,
     canonical_hash,
+    committed_file_sha256,
     load_formal_config,
     materialize_parameters,
     reconfiguration_budget_share,
@@ -136,6 +137,9 @@ def test_each_config_uses_beta_budget_provenance_and_shared_profile() -> None:
         assert config["solver_profile_id"] == FORMAL_SOLVER_PROFILE_ID
         assert config["git_commit_at_execution"] == "CAPTURE_AT_EXECUTION"
         assert config["blockers"] == []
+        assert config["formal_parameter_freeze_sha256"] == committed_file_sha256(
+            "experiments/configs/formal/formal_parameter_freeze.json", Path.cwd()
+        )
 
 
 def test_formal_run_count_is_84_with_explicit_e1_breakdown() -> None:

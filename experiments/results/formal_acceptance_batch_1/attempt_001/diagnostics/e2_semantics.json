@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "A3_existing": {
+    "x_equals_x0": true,
+    "maximum_x_difference": 0.0,
+    "RI": 0.0
+  },
+  "A4_nominal": {
+    "reconfiguration_allowed": true,
+    "Gamma": 0,
+    "uncertainty_budget_active": false
+  },
+  "A5_robust": {
+    "reconfiguration_allowed": true,
+    "Gamma": 2,
+    "robust_recourse_active": true,
+    "certified": true
+  }
+}
