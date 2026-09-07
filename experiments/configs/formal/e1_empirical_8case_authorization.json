@@ -1,0 +1,29 @@
+{
+  "schema": "e1_empirical_8case_authorization_v1",
+  "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
+  "formal_run_authorized": false,
+  "authorized_run_ids": [
+    "E1-210202-DIRECT",
+    "E1-210202-PRB",
+    "E1-210628-DIRECT",
+    "E1-210628-PRB",
+    "E1-210129-DIRECT",
+    "E1-210129-PRB",
+    "E1-210310-DIRECT",
+    "E1-210310-PRB",
+    "E1-210330-DIRECT",
+    "E1-210330-PRB",
+    "E1-210323-DIRECT",
+    "E1-210323-PRB",
+    "E1-210428-DIRECT",
+    "E1-210428-PRB",
+    "E1-210611-DIRECT",
+    "E1-210611-PRB"
+  ],
+  "gamma": 2,
+  "beta": 1.0,
+  "lambda_R": 0.05,
+  "instance_namespace": "data/formal_instances_v2",
+  "identity_table": "table_empirical_8case_identity.csv",
+  "e2_e7_authorization": false
+}

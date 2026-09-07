@@ -79,5 +79,5 @@ def test_blocked_cases_have_no_fabricated_baseline_or_identity() -> None:
 
 
 def test_local_runner_fails_before_execution_while_dataset_is_partial() -> None:
-    with pytest.raises(RuntimeError, match="BLOCK_E1_EMPIRICAL_REGION_MAPPING"):
+    with pytest.raises(PermissionError, match="E1_EMPIRICAL_8CASE_FORMAL_RUN_NOT_AUTHORIZED"):
         validate_execution_gate("210129", "direct", ROOT / "unused-output", False)
