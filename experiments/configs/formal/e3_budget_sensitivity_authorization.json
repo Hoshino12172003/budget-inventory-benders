@@ -2,8 +2,8 @@
   "schema": "e3_budget_sensitivity_authorization_v1",
   "experiment_id": "E3_FINANCIAL_BUDGET_SENSITIVITY_V1",
   "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
-  "formal_run_authorized": false,
-  "authorization_transition": [false],
+  "formal_run_authorized": true,
+  "authorization_transition": [false, true],
   "cases": ["210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611"],
   "beta_grid": ["0.80", "0.90", "1.00", "1.10", "1.20"],
   "authorized_run_ids": [
