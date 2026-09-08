@@ -50,5 +50,7 @@ artifacts/*
 !artifacts/e1_210330_global_coupling_audit.json
 !artifacts/e1_empirical_performance_summary.json
 !artifacts/e2_protocol_static_audit.json
+!artifacts/e2_policy_contrast_summary.csv
+!artifacts/e2_case_classification_summary.csv
 !artifacts/renault_empirical_8case_v1/
 !artifacts/renault_empirical_8case_v1/**
