@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 from itertools import combinations
 from typing import Any
 
@@ -10,6 +11,7 @@ from .robust_service import (
     evaluate_robust_service_detailed,
     select_worst_reporting_identity,
 )
+from .risk_budget_composition import enumerate_gamma_allocations
 from .scenarios import enumerate_scenario_components
 from .solver_profile import apply_formal_solver_profile
 
@@ -91,7 +93,8 @@ def _diagnose_and_recover(
     x: list[list[float]],
     gamma: int,
     optimality_tolerance: float,
-) -> tuple[UnifiedServiceResult, dict[str, Any]]:
+    diagnostics_only: bool = False,
+) -> tuple[UnifiedServiceResult | None, dict[str, Any]]:
     import gurobipy as gp
     from gurobipy import GRB
 
@@ -150,6 +153,31 @@ def _diagnose_and_recover(
     maximum_cost_deviation = max(
         abs(cost.getValue() - optimum_by_block[key]) for key, cost in costs.items()
     )
+    product_values = []
+    product_tie_counts = []
+    for j in range(instance.num_products):
+        values = []
+        tie_counts = []
+        for product_gamma in range(gamma + 1):
+            candidates = [
+                value for (product, shocked_regions), value in optimum_by_block.items()
+                if product == j and len(shocked_regions) == product_gamma
+            ]
+            best = max(candidates)
+            values.append(best)
+            tie_counts.append(sum(abs(value - best) <= optimality_tolerance for value in candidates))
+        product_values.append(values)
+        product_tie_counts.append(tie_counts)
+    allocations = enumerate_gamma_allocations(instance.num_products, gamma)
+    allocation_values = [
+        sum(product_values[j][allocation[j]] for j in range(instance.num_products))
+        for allocation in allocations
+    ]
+    robust_target = max(allocation_values)
+    tied_allocations = [
+        allocation for allocation, value in zip(allocations, allocation_values)
+        if abs(value - robust_target) <= optimality_tolerance
+    ]
     diagnostic = {
         "original_status": status,
         "original_status_name": "SUBOPTIMAL" if status == GRB.SUBOPTIMAL else "OPTIMAL" if status == GRB.OPTIMAL else "OTHER",
@@ -178,6 +206,12 @@ def _diagnose_and_recover(
         "minimum_block_recourse_target": min(optimum_by_block.values()),
         "maximum_block_recourse_target": max(optimum_by_block.values()),
         "maximum_absolute_block_recourse_deviation": maximum_cost_deviation,
+        "certified_robust_recourse_target": robust_target,
+        "tied_Gamma_allocation_count": len(tied_allocations),
+        "tied_worst_scenario_count": sum(
+            math.prod(product_tie_counts[j][allocation[j]] for j in range(instance.num_products))
+            for allocation in tied_allocations
+        ),
         "economic_band_tolerance": optimality_tolerance,
         "parameters": {
             "FeasibilityTol": model.Params.FeasibilityTol,
@@ -187,6 +221,8 @@ def _diagnose_and_recover(
         },
         "secondary_objective": "minimize sum of squared shortage quantities across all product-risk blocks",
     }
+    if diagnostics_only:
+        return None, diagnostic
     if status == GRB.OPTIMAL:
         result = _scenario_results(
             instance, gamma, optimum_by_block, transportation_costs,
@@ -259,3 +295,16 @@ def evaluate_e4_service(
         if str(error) != SUBOPTIMAL_TIEBREAK_ERROR:
             raise
         return _diagnose_and_recover(instance, x, gamma, optimality_tolerance)
+
+
+def diagnose_reporting_tiebreak(
+    instance: InventoryInstance,
+    x: list[list[float]],
+    gamma: int,
+    *,
+    optimality_tolerance: float = 1e-7,
+) -> dict[str, Any]:
+    _, diagnostic = _diagnose_and_recover(
+        instance, x, gamma, optimality_tolerance, diagnostics_only=True
+    )
+    return diagnostic
