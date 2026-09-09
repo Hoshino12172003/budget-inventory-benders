@@ -21,10 +21,10 @@ from robust_inventory_reconfiguration.first_stage_solution import (
     build_first_stage_solution_artifact,
     write_first_stage_solution_artifact,
 )
+from robust_inventory_reconfiguration.e4_reporting import evaluate_e4_service
 from robust_inventory_reconfiguration.instance import load_instance
 from robust_inventory_reconfiguration.product_risk_budget_benders import solve_prb_benders
 from robust_inventory_reconfiguration.reconfiguration_model import reconfiguration_index
-from robust_inventory_reconfiguration.robust_service import evaluate_robust_service_detailed
 from robust_inventory_reconfiguration.solver_profile import FORMAL_SOLVER_PROFILE_ID
 
 
@@ -259,7 +259,7 @@ def solved_result(case: str, gamma: int, manifest: dict, identity: dict[str, str
     solved = solve_prb_benders(instance, x0, budget, gamma, LAMBDA_R)
     if solved.status != "OPTIMAL" or not solved.exact_certification_pass:
         raise RuntimeError("E4 PRB solve is not exactly certified")
-    service = evaluate_robust_service_detailed(instance, solved.solution.x, gamma)
+    service, reporting_diagnostic = evaluate_e4_service(instance, solved.solution.x, gamma)
     fixed, inventory, reconfiguration = cost_components(instance, solved.solution)
     budget_used = fixed + inventory + reconfiguration
     if budget_used - budget > manifest["budget_feasibility_tolerance"]:
@@ -304,6 +304,7 @@ def solved_result(case: str, gamma: int, manifest: dict, identity: dict[str, str
         "upper_bound": solved.final_upper_bound, "relative_gap": solved.final_relative_gap,
         "certification_status": "CERTIFIED_PRB_EXACT", "exact_certification_pass": True,
         "global_coupling_pass": solved.global_risk_budget_coupling_pass, "status": "OPTIMAL",
+        "reporting_tiebreak_diagnostic": reporting_diagnostic,
     }
     artifact = build_first_stage_solution_artifact(
         instance, x0, solved.solution, case_id=case, mode="E4_PRB",

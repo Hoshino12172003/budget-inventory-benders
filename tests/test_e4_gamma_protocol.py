@@ -149,7 +149,10 @@ def test_Gamma0_reporting_uses_canonical_transportation_cost(monkeypatch) -> Non
         scenario_count=1, scenarios=(scenario,),
     )
     monkeypatch.setattr(runner, "solve_prb_benders", lambda *args: solved)
-    monkeypatch.setattr(runner, "evaluate_robust_service_detailed", lambda *args: service)
+    monkeypatch.setattr(
+        runner, "evaluate_e4_service",
+        lambda *args: (service, {"original_status": 2, "fallback_used": False}),
+    )
     monkeypatch.setattr(runner.subprocess, "check_output", lambda *args, **kwargs: "test-commit\n")
 
     result, _ = runner.solved_result(case, 0, value, identity)

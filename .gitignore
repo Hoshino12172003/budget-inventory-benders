@@ -58,6 +58,7 @@ artifacts/*
 !artifacts/e2_case_classification_summary.csv
 !artifacts/e3_budget_sensitivity_static_audit.json
 !artifacts/e4_gamma_protocol_static_audit.json
+!artifacts/e4_210628_g4_reporting_tiebreak_audit.json
 !artifacts/e3_budget_sensitivity_summary.csv
 !artifacts/e3_final_result_audit.json
 !artifacts/e3_primary_result_hashes.csv
