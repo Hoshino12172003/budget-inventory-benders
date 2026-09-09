@@ -3,10 +3,12 @@ from __future__ import annotations
 import copy
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
 import experiments.run_e4_gamma_local as runner
+from robust_inventory_reconfiguration.robust_service import ScenarioServiceResult, UnifiedServiceResult
 from scripts.audit_e4_gamma_protocol import build_audit
 
 
@@ -113,3 +115,57 @@ def test_static_audit_passes_without_outputs_or_solves() -> None:
     assert audit["existing_E4_outputs"] == []
     assert audit["optimization_solves_executed_during_preparation"] == 0
     assert audit["fixed_first_stage_evaluations_executed_during_preparation"] == 0
+
+
+def test_Gamma0_reporting_uses_canonical_transportation_cost(monkeypatch) -> None:
+    case = "210202"
+    value = manifest()
+    identity = runner.load_identities()[case]
+    x0_artifact = json.loads(
+        (ROOT / f"artifacts/renault_empirical_8case_v1/x0/{case}.json").read_text(encoding="utf-8")
+    )
+    x0, y0 = x0_artifact["x0"], x0_artifact["y0"]
+    zeros = [[0.0 for _ in x0[0]] for _ in x0]
+    solution = SimpleNamespace(
+        x=x0, y=y0, a_plus=zeros, a_minus=zeros,
+        objective=0.0, first_stage_expenditure=0.0,
+        robust_recourse_cost=7.0, reconfiguration_cost=0.0,
+    )
+    solved = SimpleNamespace(
+        status="OPTIMAL", exact_certification_pass=True, solution=solution,
+        total_runtime=0.0, iterations=[], master_solve_count=1,
+        product_subproblem_evaluations=0, unique_product_cuts=0,
+        final_lower_bound=0.0, final_upper_bound=0.0, final_relative_gap=0.0,
+        global_risk_budget_coupling_pass=True,
+    )
+    scenario = ScenarioServiceResult(
+        shock_set=(), recourse_cost=7.0, transportation_cost=1.25,
+        shortage_cost=2.0, service_penalty_cost=3.75, total_shortage=4.0,
+        minimum_fill_rate=0.8, average_fill_rate=0.9, worst_region_id="1",
+    )
+    service = UnifiedServiceResult(
+        robust_recourse_cost=7.0, worst_recourse_scenario=scenario,
+        worst_shortage_scenario=scenario, worst_service_scenario=scenario,
+        scenario_count=1, scenarios=(scenario,),
+    )
+    monkeypatch.setattr(runner, "solve_prb_benders", lambda *args: solved)
+    monkeypatch.setattr(runner, "evaluate_robust_service_detailed", lambda *args: service)
+    monkeypatch.setattr(runner.subprocess, "check_output", lambda *args, **kwargs: "test-commit\n")
+
+    result, _ = runner.solved_result(case, 0, value, identity)
+
+    assert scenario.transportation_cost == 1.25
+    assert result["Gamma"] == 0
+    assert result["transport_cost"] == 1.25
+    assert "transportation_cost" not in result
+    assert result["certification_status"] == "CERTIFIED_PRB_EXACT"
+
+
+def test_Gamma2_reuse_reporting_schema_is_unchanged() -> None:
+    case = "210202"
+    value = manifest()
+    result, solution_path = runner.reused_g2_result(case, value, runner.load_identities()[case])
+    assert result["Gamma"] == 2
+    assert "transport_cost" in result
+    assert result["exact_certification_pass"] is True
+    assert solution_path.name == "first_stage_solution.json"

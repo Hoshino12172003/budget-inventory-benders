@@ -291,7 +291,7 @@ def solved_result(case: str, gamma: int, manifest: dict, identity: dict[str, str
         "RI": direct_ri, "RS": reconfiguration / budget, "active_depots": sum(solved.solution.y),
         "opened_depots": opened, "closed_depots": closed,
         "worst_recourse_shortage_cost": service.worst_recourse_scenario.shortage_cost,
-        "transport_cost": service.worst_recourse_scenario.transport_cost,
+        "transport_cost": service.worst_recourse_scenario.transportation_cost,
         "worst_recourse_service_penalty_cost": service.worst_recourse_scenario.service_penalty_cost,
         "worst_recourse_total_shortage": service.worst_recourse_scenario.total_shortage,
         "minimum_fill_rate": service.worst_service_scenario.minimum_fill_rate,

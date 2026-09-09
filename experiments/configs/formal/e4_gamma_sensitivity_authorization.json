@@ -78,7 +78,7 @@
   ],
   "model_identity_sha256": "c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173",
   "prb_identity_sha256": "eab5ea31c6dbbc6446799f28bb6b54673eb7b57690cd4540f8a49b4a53757b6f",
-  "runner_sha256": "14dbc3ad7b551a77a9cb7da2931f1af3ac66932f197ed4bceb5408d888250de8",
+  "runner_sha256": "bbb071fd82244e04d77a244d7e1ab6a5f14924d3ecc6b1f0a70790e60deeffed",
   "result_root": "experiments/results/e4_gamma_sensitivity_v1",
   "objective_definition": "first-stage economic expenditure plus exact robust recourse at the selected Gamma",
   "uncertainty_item_definition": "one adverse region-product demand component",
