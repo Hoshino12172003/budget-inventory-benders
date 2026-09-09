@@ -19,6 +19,7 @@ experiments/results/e1_empirical_8case_v1/
 experiments/results/e2_existing_nominal_robust_v1/
 experiments/results/e3_budget_sensitivity_v1/
 experiments/results/e3_budget_sensitivity_v1.zip
+experiments/results/e4_gamma_sensitivity_v1/
 artifacts/*
 !artifacts/.gitkeep
 !artifacts/x0_audit/
@@ -56,6 +57,7 @@ artifacts/*
 !artifacts/e2_policy_contrast_summary.csv
 !artifacts/e2_case_classification_summary.csv
 !artifacts/e3_budget_sensitivity_static_audit.json
+!artifacts/e4_gamma_protocol_static_audit.json
 !artifacts/e3_budget_sensitivity_summary.csv
 !artifacts/e3_final_result_audit.json
 !artifacts/e3_primary_result_hashes.csv

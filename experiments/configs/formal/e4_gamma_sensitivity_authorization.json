@@ -1,0 +1,93 @@
+{
+  "schema": "e4_gamma_sensitivity_authorization_v1",
+  "experiment_id": "E4_GAMMA_SENSITIVITY_V1",
+  "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
+  "formal_run_authorized": false,
+  "authorization_transition": [false],
+  "cases": ["210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611"],
+  "Gamma_grid": [0, 1, 2, 3, 4],
+  "authorized_run_ids": [
+    "E4-210202-G0", "E4-210202-G1", "E4-210202-G2", "E4-210202-G3", "E4-210202-G4",
+    "E4-210628-G0", "E4-210628-G1", "E4-210628-G2", "E4-210628-G3", "E4-210628-G4",
+    "E4-210129-G0", "E4-210129-G1", "E4-210129-G2", "E4-210129-G3", "E4-210129-G4",
+    "E4-210310-G0", "E4-210310-G1", "E4-210310-G2", "E4-210310-G3", "E4-210310-G4",
+    "E4-210330-G0", "E4-210330-G1", "E4-210330-G2", "E4-210330-G3", "E4-210330-G4",
+    "E4-210323-G0", "E4-210323-G1", "E4-210323-G2", "E4-210323-G3", "E4-210323-G4",
+    "E4-210428-G0", "E4-210428-G1", "E4-210428-G2", "E4-210428-G3", "E4-210428-G4",
+    "E4-210611-G0", "E4-210611-G1", "E4-210611-G2", "E4-210611-G3", "E4-210611-G4"
+  ],
+  "beta": 1.0,
+  "lambda_R": 0.05,
+  "B_ref_by_case": {
+    "210202": 106510.9559990062,
+    "210628": 77408.83107532002,
+    "210129": 90311.11199905835,
+    "210310": 76394.09199991751,
+    "210330": 65650.34742795816,
+    "210323": 68276.20285663515,
+    "210428": 75911.97599934557,
+    "210611": 64656.257997955974
+  },
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "budget_feasibility_tolerance": 1e-6,
+  "objective_certification_tolerance": 1e-4,
+  "reporting_tolerance": 1e-6,
+  "mapping_sha256": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+  "identity_table": "table_empirical_8case_identity.csv",
+  "identity_table_sha256": "f3a24b3dba51abde335fd0f2be5efdd1b76384cb9595101f599adbbb4fc27170",
+  "instance_hashes": {
+    "210202": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+    "210628": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677",
+    "210129": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3",
+    "210310": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+    "210330": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+    "210323": "df5fcbaa54a73277948f676fae151d85ad621d9ef417b0906b04066b1ef1109c",
+    "210428": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+    "210611": "f244641d602348af8b2ac31a2bb948b4b0ebca8e33ff446dd07298e3e578a9bf"
+  },
+  "x0_hashes": {
+    "210202": "5fe095e76dd1372735ec7a6cb6fead9d6bc42f044b6006c13ed1aeb16dfbc368",
+    "210628": "7514da694ef80b8a5053329b2a2c9619090e768884c0555d19a67f9e284b589e",
+    "210129": "ebd9b18371804f725a775db4eb4cacad84398b0c4c48e945aa039d425ea71288",
+    "210310": "66a15c21d4e760c0d31bbe9a15f21216b3fdd37e6b7bf14836025d544b0d117b",
+    "210330": "11cd91349ff218d7f951a38a65123de8c5e304d36a370c97a39a1ce9b3c3961a",
+    "210323": "04c9e1219c4e323ab77f8c8fb70854ecf4eb1c710584f21418b5a0005afaeb60",
+    "210428": "cc08b6627d2f100652172e56ae78f3e35a97b8c89385b99da534fc20917a8014",
+    "210611": "deca1c7decbb01c5500ede566cd790a44cfa86e99c1b761b9f30cd30eb63ef81"
+  },
+  "calibration_hashes": {
+    "210202": "7fe326584320b19636d95424cf806f0ab4c89951c3e2a1a84a4a5cc656e40624",
+    "210628": "eb6b346748dcc77fdd66eecddb01b15dd96960f1f37991d3e761616048d5b584",
+    "210129": "d8fc1abd48548c153081e3e99696fc041eaf81cc81e06ca06a6f369d5a61d753",
+    "210310": "8915940c2bbfee479d054c007033da41d45776504e985c6d07302dea74481ff4",
+    "210330": "e182dde7a79c1c9e7909fb776df4d1cff0326d39bbee5414c3d7efdb147e071a",
+    "210323": "3fe6ede85f58eac50a9b3c406c39106277b8b8160518bfa0405cd21847fbd576",
+    "210428": "29ab4dae7c8cce42cc9a771372d9813fbffac137a978f2b2208a41f61256cc58",
+    "210611": "9e9dbbbead031ea0ab251686b256ac1e269b7c145ea3549045dee843657fc5bb"
+  },
+  "model_files": [
+    "src/robust_inventory_reconfiguration/instance.py",
+    "src/robust_inventory_reconfiguration/reconfiguration_model.py",
+    "src/robust_inventory_reconfiguration/recourse.py",
+    "src/robust_inventory_reconfiguration/scenarios.py",
+    "src/robust_inventory_reconfiguration/product_risk_subproblem.py",
+    "src/robust_inventory_reconfiguration/risk_budget_composition.py",
+    "src/robust_inventory_reconfiguration/product_risk_budget_benders.py",
+    "src/robust_inventory_reconfiguration/robust_service.py",
+    "src/robust_inventory_reconfiguration/solver_profile.py"
+  ],
+  "model_identity_sha256": "c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173",
+  "prb_identity_sha256": "eab5ea31c6dbbc6446799f28bb6b54673eb7b57690cd4540f8a49b4a53757b6f",
+  "runner_sha256": "de60323c663cbeae25dbcb8877c1a5185fd60966c34133d4a87e49f1e6664ba7",
+  "result_root": "experiments/results/e4_gamma_sensitivity_v1",
+  "objective_definition": "first-stage economic expenditure plus exact robust recourse at the selected Gamma",
+  "uncertainty_item_definition": "one adverse region-product demand component",
+  "uncertainty_item_count": 96,
+  "reuse_policy": {
+    "Gamma2_source": "E3-<case>-B100",
+    "Gamma2_expected_identity_safe_count": 8,
+    "Gamma0_source_reviewed": "E2-<case>-NOMINAL",
+    "Gamma0_classification": "E4_G0_REUSE_NOT_IDENTITY_SAFE",
+    "Gamma0_expected_identity_safe_count": 0
+  }
+}
