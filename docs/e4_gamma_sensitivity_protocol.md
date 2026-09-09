@@ -48,3 +48,5 @@ E4 may report how objective, robust recourse, RI, RS, activation, shortage alloc
 ## Preparation status
 
 The protocol static audit performs identity reads, hashes, reuse eligibility checks, Git-ignore isolation checks, and tests only. It performs zero optimization solves and zero fixed-first-stage evaluations. The result root is `experiments/results/e4_gamma_sensitivity_v1/` and is narrowly ignored without affecting other experiment roots.
+
+After the fail-closed protocol passed its static audit and targeted tests, the authorization manifest recorded the explicit transition `[false, true]`. This authorizes only the 40 enumerated E4 run IDs; it does not execute them.

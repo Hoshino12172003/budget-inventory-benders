@@ -243,6 +243,7 @@ def reused_g2_result(case: str, manifest: dict, identity: dict[str, str]) -> tup
     result.update({
         "run_id": make_run_id(case, 2), "experiment_id": manifest["experiment_id"],
         "Gamma": 2, "beta": BETA, "reused": True, "reuse_source_run": source["run_id"],
+        "prb_identity_sha256": manifest["prb_identity_sha256"],
         "transport_cost": source["robust_recourse_cost"] - source["worst_recourse_shortage_cost"] - source["worst_recourse_service_penalty_cost"],
         "exact_certification_pass": True, "lower_bound": e1["lower_bound"],
         "upper_bound": e1["upper_bound"], "relative_gap": e1["relative_gap"],
