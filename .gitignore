@@ -62,6 +62,7 @@ artifacts/*
 !artifacts/e4_gamma_protocol_static_audit.json
 !artifacts/e4_210628_g4_reporting_tiebreak_audit.json
 !artifacts/e5_reconfiguration_friction_protocol_static_audit.json
+!artifacts/e5_210310_l2000_accounting_audit.json
 !artifacts/e4_final_result_audit.json
 !artifacts/e4_210330_g3_global_coupling_audit.json
 !artifacts/e4_table_gamma_sensitivity_case_level.csv
