@@ -22,6 +22,7 @@ experiments/results/e3_budget_sensitivity_v1.zip
 experiments/results/e4_gamma_sensitivity_v1/
 experiments/results/e5_reconfiguration_friction_v1/
 e4_gamma_sensitivity_v1.zip
+e5_reconfiguration_friction_v1.zip
 artifacts/*
 !artifacts/.gitkeep
 !artifacts/x0_audit/
@@ -63,6 +64,19 @@ artifacts/*
 !artifacts/e4_210628_g4_reporting_tiebreak_audit.json
 !artifacts/e5_reconfiguration_friction_protocol_static_audit.json
 !artifacts/e5_210310_l2000_accounting_audit.json
+!artifacts/e5_210330_l0100_global_coupling_audit.json
+!artifacts/e5_final_result_audit.json
+!artifacts/e5_table_friction_sensitivity_case_level.csv
+!artifacts/e5_table_friction_sensitivity_aggregate.csv
+!artifacts/e5_table_friction_response_by_case.csv
+!artifacts/fig_e5_normalized_objective_vs_lambda.png
+!artifacts/fig_e5_normalized_objective_vs_lambda.pdf
+!artifacts/fig_e5_ri_vs_lambda.png
+!artifacts/fig_e5_ri_vs_lambda.pdf
+!artifacts/fig_e5_rs_vs_lambda.png
+!artifacts/fig_e5_rs_vs_lambda.pdf
+!artifacts/fig_e5_recourse_vs_lambda.png
+!artifacts/fig_e5_recourse_vs_lambda.pdf
 !artifacts/e4_final_result_audit.json
 !artifacts/e4_210330_g3_global_coupling_audit.json
 !artifacts/e4_table_gamma_sensitivity_case_level.csv
