@@ -87,7 +87,7 @@
   "model_identity_sha256": "c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173",
   "prb_identity_sha256": "eab5ea31c6dbbc6446799f28bb6b54673eb7b57690cd4540f8a49b4a53757b6f",
   "reporting_contract_sha256": "e97e67ee58e31eeea296eaad2a31df69da5d18563966729fdcc447ac3c6884ec",
-  "runner_sha256": "72dc482c9d1c5ae7db5d97ae60bdde4118209107ec9a97ea2a51932e48d0fdf3",
+  "runner_sha256": "ec0939ba4e0894a424a532865e20c840fad49521b5a0244c0af6bead99f22428",
   "result_root": "experiments/results/e5_reconfiguration_friction_v1",
   "objective_definition": "first-stage economic expenditure plus exact robust recourse",
   "reconfiguration_cost_definition": "lambda_R * sum(h_ij * (a_plus_ij + a_minus_ij))",

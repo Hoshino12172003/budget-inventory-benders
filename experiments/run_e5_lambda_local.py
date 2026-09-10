@@ -240,11 +240,11 @@ def validate_gate(case: str, token: str, output_root: Path = RESULT_ROOT) -> tup
     return manifest, identity
 
 
-def cost_components(instance, y, x, adjustment, lambda_r: float) -> tuple[float, float, float]:
+def cost_components(instance, y, x, a_plus, a_minus, lambda_r: float) -> tuple[float, float, float]:
     fixed = sum(instance.fixed_depot_cost[i] * y[i] for i in range(instance.num_depots))
     inventory = sum(instance.inventory_cost[i][j] * x[i][j] for i in range(instance.num_depots) for j in range(instance.num_products))
     reconfiguration = lambda_r * sum(
-        instance.inventory_cost[i][j] * (adjustment.a_plus[i][j] + adjustment.a_minus[i][j])
+        instance.inventory_cost[i][j] * (a_plus[i][j] + a_minus[i][j])
         for i in range(instance.num_depots) for j in range(instance.num_products)
     )
     return fixed, inventory, reconfiguration
@@ -259,17 +259,19 @@ def canonical_solution(instance, x0, solution, lambda_r: float) -> tuple[Reconfi
         status = "CANONICAL_X_BASED_MATCHES_POSITIVE_FRICTION_SOLUTION"
     else:
         status = "CANONICAL_X_BASED_ZERO_FRICTION_RECOVERY"
-    canonical = ReconfigurationSolution(
+    reporting_a_plus = adjustment.a_plus if lambda_r == 0 else solution.a_plus
+    reporting_a_minus = adjustment.a_minus if lambda_r == 0 else solution.a_minus
+    reporting_solution = ReconfigurationSolution(
         objective=solution.objective,
         first_stage_expenditure=solution.first_stage_expenditure,
         robust_recourse_cost=solution.robust_recourse_cost,
         y=solution.y,
         x=solution.x,
-        a_plus=adjustment.a_plus,
-        a_minus=adjustment.a_minus,
+        a_plus=reporting_a_plus,
+        a_minus=reporting_a_minus,
         reconfiguration_cost=solution.reconfiguration_cost,
     )
-    return canonical, adjustment, status
+    return reporting_solution, adjustment, status
 
 
 def reuse_result(case: str, manifest: dict, identity: dict[str, str]) -> tuple[dict, Path]:
@@ -315,9 +317,22 @@ def solved_result(case: str, token: str, lambda_r: float, manifest: dict, identi
     service, reporting_diagnostic = evaluate_e4_service(instance, solution.x, GAMMA)
     if abs(service.robust_recourse_cost - solved.solution.robust_recourse_cost) > manifest["tolerance_contract"]["objective_certification"]:
         raise RuntimeError("E5 reporting recourse differs from exact certification")
-    fixed, inventory, reconfiguration = cost_components(instance, solution.y, solution.x, adjustment, lambda_r)
-    budget_used = fixed + inventory + reconfiguration
-    if abs(budget_used - solution.first_stage_expenditure) > REPORTING_TOLERANCE or budget_used - budget > manifest["tolerance_contract"]["budget_feasibility"]:
+    fixed, inventory, solver_reconfiguration = cost_components(
+        instance, solution.y, solution.x, solution.a_plus, solution.a_minus, lambda_r
+    )
+    _, _, canonical_reconfiguration = cost_components(
+        instance, solution.y, solution.x, adjustment.a_plus, adjustment.a_minus, lambda_r
+    )
+    budget_used = fixed + inventory + solver_reconfiguration
+    solver_adjustment_total = sum(map(sum, solution.a_plus)) + sum(map(sum, solution.a_minus))
+    solver_reconfiguration_residual = solver_reconfiguration - solution.reconfiguration_cost
+    solver_based_accounting_error = budget_used - solution.first_stage_expenditure
+    canonical_based_accounting_error = (
+        fixed + inventory + canonical_reconfiguration - solution.first_stage_expenditure
+    )
+    if abs(solver_reconfiguration_residual) > REPORTING_TOLERANCE:
+        raise RuntimeError("E5 solver reconfiguration accounting failed")
+    if abs(solver_based_accounting_error) > REPORTING_TOLERANCE or budget_used - budget > manifest["tolerance_contract"]["budget_feasibility"]:
         raise RuntimeError("E5 first-stage accounting failed")
     baseline_objective = validate_l0500_reuse(case, manifest, identity)["result"]["objective"]
     opened = [instance.depot_ids[i] for i in range(instance.num_depots) if solution.y[i] and not y0[i]]
@@ -333,15 +348,27 @@ def solved_result(case: str, token: str, lambda_r: float, manifest: dict, identi
         "solver_profile": manifest["solver_profile"], "reused": False,
         "objective": budget_used + service.robust_recourse_cost,
         "normalized_objective_vs_L0500": (budget_used + service.robust_recourse_cost) / baseline_objective,
-        "fixed_cost": fixed, "inventory_cost": inventory, "reconfiguration_cost": reconfiguration,
+        "fixed_cost": fixed, "inventory_cost": inventory, "reconfiguration_cost": solver_reconfiguration,
+        "solver_reconfiguration_cost_reported": solution.reconfiguration_cost,
+        "solver_reconfiguration_cost_reconstructed": solver_reconfiguration,
+        "canonical_reconfiguration_cost": canonical_reconfiguration,
+        "solver_reconfiguration_cost_residual": solver_reconfiguration_residual,
+        "solver_based_accounting_error": solver_based_accounting_error,
+        "canonical_based_accounting_error": canonical_based_accounting_error,
+        "max_solver_canonical_adjustment_difference": maximum_adjustment_difference(
+            adjustment, solution.a_plus, solution.a_minus
+        ),
         "robust_recourse_cost": service.robust_recourse_cost,
         "budget_used": budget_used, "budget_utilization": budget_used / budget,
         "budget_slack": budget - budget_used,
         "total_a_plus": adjustment.total_a_plus, "total_a_minus": adjustment.total_a_minus,
+        "solver_total_a_plus": sum(map(sum, solution.a_plus)),
+        "solver_total_a_minus": sum(map(sum, solution.a_minus)),
+        "solver_total_adjustment": solver_adjustment_total,
         "total_adjustment": adjustment.total_adjustment,
         "canonical_total_adjustment": adjustment.total_adjustment,
         "RI": adjustment.reconfiguration_index, "canonical_RI": adjustment.reconfiguration_index,
-        "RS": 0.0 if lambda_r == 0 else reconfiguration / budget,
+        "RS": 0.0 if lambda_r == 0 else solver_reconfiguration / budget,
         "active_depots": sum(solution.y), "opened_depots": opened, "closed_depots": closed,
         "changed_pair_count": adjustment.changed_pair_count,
         "shortage_cost": service.worst_recourse_scenario.shortage_cost,

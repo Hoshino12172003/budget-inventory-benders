@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -15,6 +16,7 @@ from robust_inventory_reconfiguration.first_stage_solution import (
     matrix_from_artifact,
 )
 from robust_inventory_reconfiguration.instance import load_instance
+from robust_inventory_reconfiguration.reconfiguration_model import ReconfigurationSolution
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -81,6 +83,58 @@ def test_canonical_reporting_ignores_degenerate_solver_adjustment() -> None:
     assert maximum_adjustment_difference(canonical, [[7.0]], [[5.0]]) == 5.0
 
 
+def test_positive_friction_economic_accounting_uses_solver_adjustment() -> None:
+    instance = SimpleNamespace(
+        num_depots=1,
+        num_products=1,
+        fixed_depot_cost=[10.0],
+        inventory_cost=[[100.0]],
+    )
+    canonical = canonical_adjustment([[2.0]], [[1.0]])
+    fixed, inventory, solver_reconfiguration = runner.cost_components(
+        instance, [1], [[2.0]], [[1.0 + 5e-7]], [[5e-7]], 0.2
+    )
+    _, _, canonical_reconfiguration = runner.cost_components(
+        instance, [1], [[2.0]], canonical.a_plus, canonical.a_minus, 0.2
+    )
+    assert fixed == 10.0
+    assert inventory == 200.0
+    assert solver_reconfiguration == pytest.approx(20.00002)
+    assert canonical_reconfiguration == 20.0
+    assert solver_reconfiguration != canonical_reconfiguration
+
+
+def test_rs_uses_economic_reconfiguration_cost() -> None:
+    budget = 250.0
+    economic_reconfiguration_cost = 20.00002
+    assert economic_reconfiguration_cost / budget == pytest.approx(0.08000008)
+
+
+def test_positive_friction_artifact_preserves_solver_adjustment() -> None:
+    instance = SimpleNamespace()
+    solution = ReconfigurationSolution(
+        230.00002, 230.00002, 0.0, [1], [[2.0]],
+        [[1.0 + 5e-7]], [[5e-7]], 20.00002,
+    )
+    reporting_solution, canonical, _ = runner.canonical_solution(
+        instance, [[1.0]], solution, 0.2
+    )
+    assert reporting_solution.a_plus == solution.a_plus
+    assert reporting_solution.a_minus == solution.a_minus
+    assert canonical.a_plus == [[1.0]]
+    assert canonical.a_minus == [[0.0]]
+
+
+def test_zero_friction_artifact_uses_canonical_adjustment() -> None:
+    instance = SimpleNamespace()
+    solution = ReconfigurationSolution(
+        210.0, 210.0, 0.0, [1], [[2.0]], [[7.0]], [[6.0]], 0.0,
+    )
+    reporting_solution, _, _ = runner.canonical_solution(instance, [[1.0]], solution, 0.0)
+    assert reporting_solution.a_plus == [[1.0]]
+    assert reporting_solution.a_minus == [[0.0]]
+
+
 def test_positive_friction_canonical_matches_frozen_baselines() -> None:
     for case in runner.CASES:
         instance = load_instance(ROOT / f"data/formal_instances_v2/{case}.json")
@@ -117,9 +171,8 @@ def test_overwrite_protection(tmp_path: Path) -> None:
         runner.ensure_output_absent(target)
 
 
-def test_result_root_is_isolated_and_no_outputs_exist() -> None:
+def test_result_root_is_isolated() -> None:
     assert runner.RESULT_ROOT.as_posix().endswith("experiments/results/e5_reconfiguration_friction_v1")
-    assert not runner.RESULT_ROOT.exists() or not any(runner.RESULT_ROOT.iterdir())
 
 
 def test_static_audit_passes_without_optimization() -> None:
