@@ -1,0 +1,508 @@
+{
+  "B_ref_changed": false,
+  "E1_overwritten": false,
+  "E2_overwritten": false,
+  "E3_overwritten": false,
+  "E4_overwritten": false,
+  "Gamma_changed": false,
+  "L0500_reuse": {
+    "identity_safe_count": 8,
+    "rows": [
+      {
+        "case": "210202",
+        "identity_safe": true,
+        "source_diagnostic_status": "PASS",
+        "source_run": "E4-210202-G2"
+      },
+      {
+        "case": "210628",
+        "identity_safe": true,
+        "source_diagnostic_status": "PASS",
+        "source_run": "E4-210628-G2"
+      },
+      {
+        "case": "210129",
+        "identity_safe": true,
+        "source_diagnostic_status": "PASS",
+        "source_run": "E4-210129-G2"
+      },
+      {
+        "case": "210310",
+        "identity_safe": true,
+        "source_diagnostic_status": "PASS",
+        "source_run": "E4-210310-G2"
+      },
+      {
+        "case": "210330",
+        "identity_safe": true,
+        "source_diagnostic_status": "DIAGNOSTIC_TOLERANCE_CONTRACT_MISMATCH",
+        "source_run": "E4-210330-G2"
+      },
+      {
+        "case": "210323",
+        "identity_safe": true,
+        "source_diagnostic_status": "PASS",
+        "source_run": "E4-210323-G2"
+      },
+      {
+        "case": "210428",
+        "identity_safe": true,
+        "source_diagnostic_status": "PASS",
+        "source_run": "E4-210428-G2"
+      },
+      {
+        "case": "210611",
+        "identity_safe": true,
+        "source_diagnostic_status": "PASS",
+        "source_run": "E4-210611-G2"
+      }
+    ]
+  },
+  "active_depot_set_change_conditions": 0,
+  "archive_comparison": {
+    "all_match": true,
+    "available": true,
+    "file_count": 120
+  },
+  "beta_changed": false,
+  "checks": {
+    "L0500_reuse_identity_8_of_8": true,
+    "all_OPTIMAL": true,
+    "all_exact_certification_PASS": true,
+    "canonical_metrics_PASS": true,
+    "complete_40_of_40": true,
+    "component_accounting_PASS": true,
+    "false_global_coupling_diagnostics_resolved": true,
+    "frozen_identity_PASS": true,
+    "historical_code_provenance_PASS": true,
+    "no_missing_or_duplicate_runs": true,
+    "primary_hashes_preserved": true,
+    "provenance_hashes_PASS": true,
+    "solution_schema_PASS": true
+  },
+  "dataset_changed": false,
+  "economic_magnitude_L0000_to_L2000_pct": {
+    "objective_max": 0.24644148370129848,
+    "objective_mean": 0.07471795842834417,
+    "objective_median": 0.03857390742809663,
+    "objective_min": -1.4663825709249068e-10,
+    "recourse_max": 0.2740224726563101,
+    "recourse_mean": 0.083300433807168,
+    "recourse_median": 0.043287269212211044,
+    "recourse_min": 7.527312106958561e-12
+  },
+  "expected_run_count": 40,
+  "fixed_first_stage_product_lp_solves_executed_in_task": 72,
+  "fixed_first_stage_product_lp_solves_per_successful_audit": 24,
+  "global_coupling_fixed_state_audits": [
+    {
+      "Gamma": 2,
+      "Gamma_feasible": true,
+      "all_product_duals_feasible": true,
+      "allocation_sum": 2,
+      "classification": "DIAGNOSTIC_TOLERANCE_CONTRACT_MISMATCH",
+      "first_stage_reoptimized": false,
+      "first_stage_solution_sha256": "22df9934e03e979a36ac6cefa32c1e9641be9e7c73b118942209381d4924a96c",
+      "fixed_first_stage_product_lp_solves": 24,
+      "fresh_exact_recourse": 591881.645312855,
+      "fresh_vs_stored_recourse_difference": 0.0,
+      "maximum_product_strong_duality_error": 5.820766091346741e-11,
+      "objective_reconstruction_difference": 0.0,
+      "result_sha256": "e06977c3cefa39b1ba99c4b9e1b9747c4f35453e76ea21a3cb377a2f7e58be19",
+      "risk_budget_allocation": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "run_id": "E5-210330-L0100",
+      "stored_exact_recourse": 591881.645312855
+    }
+  ],
+  "known_optimal_face_reverse_pair_count": 0,
+  "lambda_grid_changed": false,
+  "lambda_zero_audit": {
+    "RS_zero_all_cases": true,
+    "canonical_RI_from_x_minus_x0": true,
+    "cases": [
+      {
+        "case": "210202",
+        "known_solution_count_on_L0000_face": 1,
+        "known_solution_max_RI": 0.1278337634879958,
+        "known_solution_min_RI": 0.1278337634879958,
+        "known_solutions": [
+          {
+            "RI": 0.1278337634879958,
+            "lambda_token": "L0000",
+            "objective_difference": 0.0
+          }
+        ],
+        "material_known_face_RI_range": false
+      },
+      {
+        "case": "210628",
+        "known_solution_count_on_L0000_face": 5,
+        "known_solution_max_RI": 1.875432493322039e-08,
+        "known_solution_min_RI": 2.9344880182558256e-11,
+        "known_solutions": [
+          {
+            "RI": 1.875432493322039e-08,
+            "lambda_token": "L0000",
+            "objective_difference": 0.0
+          },
+          {
+            "RI": 2.9344880182558256e-11,
+            "lambda_token": "L0025",
+            "objective_difference": 9.895302355289459e-08
+          },
+          {
+            "RI": 3.132768275813453e-11,
+            "lambda_token": "L0100",
+            "objective_difference": 9.895302355289459e-08
+          },
+          {
+            "RI": 3.02145370170305e-11,
+            "lambda_token": "L0500",
+            "objective_difference": 1.0011717677116394e-07
+          },
+          {
+            "RI": 3.1328151727523265e-11,
+            "lambda_token": "L2000",
+            "objective_difference": 9.895302355289459e-08
+          }
+        ],
+        "material_known_face_RI_range": false
+      },
+      {
+        "case": "210129",
+        "known_solution_count_on_L0000_face": 1,
+        "known_solution_max_RI": 0.07956393030963232,
+        "known_solution_min_RI": 0.07956393030963232,
+        "known_solutions": [
+          {
+            "RI": 0.07956393030963232,
+            "lambda_token": "L0000",
+            "objective_difference": 0.0
+          }
+        ],
+        "material_known_face_RI_range": false
+      },
+      {
+        "case": "210310",
+        "known_solution_count_on_L0000_face": 5,
+        "known_solution_max_RI": 5.669376551170962e-10,
+        "known_solution_min_RI": 3.4895458674603015e-12,
+        "known_solutions": [
+          {
+            "RI": 5.669376551170962e-10,
+            "lambda_token": "L0000",
+            "objective_difference": 0.0
+          },
+          {
+            "RI": 1.3748864167316565e-10,
+            "lambda_token": "L0025",
+            "objective_difference": -1.1641532182693481e-10
+          },
+          {
+            "RI": 3.991212374705473e-12,
+            "lambda_token": "L0100",
+            "objective_difference": 1.1315569281578064e-07
+          },
+          {
+            "RI": 3.4895458674603015e-12,
+            "lambda_token": "L0500",
+            "objective_difference": 1.1071097105741501e-07
+          },
+          {
+            "RI": 1.1386607008790608e-10,
+            "lambda_token": "L2000",
+            "objective_difference": -3.504101186990738e-08
+          }
+        ],
+        "material_known_face_RI_range": false
+      },
+      {
+        "case": "210330",
+        "known_solution_count_on_L0000_face": 1,
+        "known_solution_max_RI": 0.06057390805946176,
+        "known_solution_min_RI": 0.06057390805946176,
+        "known_solutions": [
+          {
+            "RI": 0.06057390805946176,
+            "lambda_token": "L0000",
+            "objective_difference": 0.0
+          }
+        ],
+        "material_known_face_RI_range": false
+      },
+      {
+        "case": "210323",
+        "known_solution_count_on_L0000_face": 1,
+        "known_solution_max_RI": 0.0782002089763651,
+        "known_solution_min_RI": 0.0782002089763651,
+        "known_solutions": [
+          {
+            "RI": 0.0782002089763651,
+            "lambda_token": "L0000",
+            "objective_difference": 0.0
+          }
+        ],
+        "material_known_face_RI_range": false
+      },
+      {
+        "case": "210428",
+        "known_solution_count_on_L0000_face": 5,
+        "known_solution_max_RI": 4.005002670841849e-09,
+        "known_solution_min_RI": 0.0,
+        "known_solutions": [
+          {
+            "RI": 4.005002670841849e-09,
+            "lambda_token": "L0000",
+            "objective_difference": 0.0
+          },
+          {
+            "RI": 3.974518793888635e-11,
+            "lambda_token": "L0025",
+            "objective_difference": 1.0035000741481781e-07
+          },
+          {
+            "RI": 4.003978093808036e-11,
+            "lambda_token": "L0100",
+            "objective_difference": 1.0069925338029861e-07
+          },
+          {
+            "RI": 3.0942602355362093e-12,
+            "lambda_token": "L0500",
+            "objective_difference": 1.314328983426094e-07
+          },
+          {
+            "RI": 0.0,
+            "lambda_token": "L2000",
+            "objective_difference": 1.7345882952213287e-07
+          }
+        ],
+        "material_known_face_RI_range": false
+      },
+      {
+        "case": "210611",
+        "known_solution_count_on_L0000_face": 5,
+        "known_solution_max_RI": 3.5457404105490013e-10,
+        "known_solution_min_RI": 7.382533478938789e-11,
+        "known_solutions": [
+          {
+            "RI": 2.5625555576661776e-10,
+            "lambda_token": "L0000",
+            "objective_difference": 0.0
+          },
+          {
+            "RI": 3.5457404105490013e-10,
+            "lambda_token": "L0025",
+            "objective_difference": 8.440110832452774e-08
+          },
+          {
+            "RI": 1.3666626918842403e-10,
+            "lambda_token": "L0100",
+            "objective_difference": 4.0745362639427185e-08
+          },
+          {
+            "RI": 1.0912611454632943e-10,
+            "lambda_token": "L0500",
+            "objective_difference": 7.497146725654602e-08
+          },
+          {
+            "RI": 7.382533478938789e-11,
+            "lambda_token": "L2000",
+            "objective_difference": 1.4086253941059113e-07
+          }
+        ],
+        "material_known_face_RI_range": false
+      }
+    ],
+    "face_extrema_optimization_performed": false,
+    "observed_material_optimal_face_RI_variation": false,
+    "scope_note": "Ranges use only already-saved solutions that cross-evaluate onto the L0000 objective face; they are not exhaustive face extrema.",
+    "solver_adjustment_degeneracy_excluded": true
+  },
+  "main_mechanism_classification": "FRICTION_INTENSITY_COMPOSITION_EFFECT",
+  "material_reconfiguration_counts": {
+    "L0000": 4,
+    "L0025": 4,
+    "L0100": 4,
+    "L0500": 4,
+    "L2000": 4
+  },
+  "materiality_tolerance": 1e-06,
+  "model_changed": false,
+  "new_first_stage_optimization_solves": 0,
+  "observed_run_count": 40,
+  "primary_results_overwritten": false,
+  "reverse_RI_adjacent_pair_count": 13,
+  "reverse_RI_pair_audit": [
+    {
+      "RI_increase": 0.00046601508676410996,
+      "case": "210202",
+      "classification": "STRUCTURAL_BUDGET_REALLOCATION",
+      "higher_lambda": 0.0025,
+      "higher_solution_at_lower_budget_excess": -22.801119591094903,
+      "higher_solution_at_lower_objective_gap": 4.5225046596024185,
+      "known_optimal_face_equivalence": false,
+      "lower_lambda": 0.0,
+      "lower_solution_at_higher_budget_excess": 22.744116792149725,
+      "lower_solution_at_higher_objective_gap": -4.579507458722219
+    },
+    {
+      "RI_increase": 0.0014121669295887596,
+      "case": "210202",
+      "classification": "STRUCTURAL_BUDGET_REALLOCATION",
+      "higher_lambda": 0.01,
+      "higher_solution_at_lower_budget_excess": -68.92156603676267,
+      "higher_solution_at_lower_objective_gap": 13.877295329235494,
+      "known_optimal_face_equivalence": false,
+      "lower_lambda": 0.0025,
+      "lower_solution_at_higher_budget_excess": 68.40335877334292,
+      "lower_solution_at_higher_objective_gap": -14.3955025926698
+    },
+    {
+      "RI_increase": 0.007908134805694855,
+      "case": "210202",
+      "classification": "STRUCTURAL_BUDGET_REALLOCATION",
+      "higher_lambda": 0.05,
+      "higher_solution_at_lower_budget_excess": -383.05880913064175,
+      "higher_solution_at_lower_objective_gap": 80.61481451848522,
+      "known_optimal_face_equivalence": false,
+      "lower_lambda": 0.01,
+      "lower_solution_at_higher_budget_excess": 367.5816855294106,
+      "lower_solution_at_higher_objective_gap": -96.09193811984733
+    },
+    {
+      "RI_increase": 0.0002900485042046097,
+      "case": "210129",
+      "classification": "STRUCTURAL_BUDGET_REALLOCATION",
+      "higher_lambda": 0.0025,
+      "higher_solution_at_lower_budget_excess": -11.814509465431911,
+      "higher_solution_at_lower_objective_gap": 2.1694242297671735,
+      "known_optimal_face_equivalence": false,
+      "lower_lambda": 0.0,
+      "lower_solution_at_higher_budget_excess": 11.78497319170856,
+      "lower_solution_at_higher_objective_gap": -2.1989605033304542
+    },
+    {
+      "RI_increase": 0.0008789348612260883,
+      "case": "210129",
+      "classification": "STRUCTURAL_BUDGET_REALLOCATION",
+      "higher_lambda": 0.01,
+      "higher_solution_at_lower_budget_excess": -35.71203997499833,
+      "higher_solution_at_lower_objective_gap": 6.663516677101143,
+      "known_optimal_face_equivalence": false,
+      "lower_lambda": 0.0025,
+      "lower_solution_at_higher_budget_excess": 35.44352839619387,
+      "lower_solution_at_higher_objective_gap": -6.9320282557746395
+    },
+    {
+      "RI_increase": 0.004922035222866633,
+      "case": "210129",
+      "classification": "STRUCTURAL_BUDGET_REALLOCATION",
+      "higher_lambda": 0.05,
+      "higher_solution_at_lower_budget_excess": -198.48375901883992,
+      "higher_solution_at_lower_objective_gap": 38.819358232663944,
+      "known_optimal_face_equivalence": false,
+      "lower_lambda": 0.01,
+      "lower_solution_at_higher_budget_excess": 190.46421319984074,
+      "lower_solution_at_higher_objective_gap": -46.838904051459394
+    },
+    {
+      "RI_increase": 0.00022082080860085646,
+      "case": "210330",
+      "classification": "STRUCTURAL_BUDGET_REALLOCATION",
+      "higher_lambda": 0.0025,
+      "higher_solution_at_lower_budget_excess": -6.629923957341816,
+      "higher_solution_at_lower_objective_gap": 0.8571857658680528,
+      "known_optimal_face_equivalence": false,
+      "lower_lambda": 0.0,
+      "lower_solution_at_higher_budget_excess": 6.613349147432018,
+      "lower_solution_at_higher_objective_gap": -0.8737605758942664
+    },
+    {
+      "RI_increase": 0.0006691539654596138,
+      "case": "210330",
+      "classification": "STRUCTURAL_BUDGET_REALLOCATION",
+      "higher_lambda": 0.01,
+      "higher_solution_at_lower_budget_excess": -20.04045196197694,
+      "higher_solution_at_lower_objective_gap": 2.647759837564081,
+      "known_optimal_face_equivalence": false,
+      "lower_lambda": 0.0025,
+      "lower_solution_at_higher_budget_excess": 19.88977187202545,
+      "lower_solution_at_higher_objective_gap": -2.798439927631989
+    },
+    {
+      "RI_increase": 0.003747262206569048,
+      "case": "210330",
+      "classification": "STRUCTURAL_BUDGET_REALLOCATION",
+      "higher_lambda": 0.05,
+      "higher_solution_at_lower_budget_excess": -111.3827224833949,
+      "higher_solution_at_lower_objective_gap": 16.173791317618452,
+      "known_optimal_face_equivalence": false,
+      "lower_lambda": 0.01,
+      "lower_solution_at_higher_budget_excess": 106.88241046383337,
+      "lower_solution_at_higher_objective_gap": -20.674103337107226
+    },
+    {
+      "RI_increase": 0.01306551932792667,
+      "case": "210330",
+      "classification": "STRUCTURAL_BUDGET_REALLOCATION",
+      "higher_lambda": 0.2,
+      "higher_solution_at_lower_budget_excess": -470.0357141897257,
+      "higher_solution_at_lower_objective_gap": 128.54105596151203,
+      "known_optimal_face_equivalence": false,
+      "lower_lambda": 0.05,
+      "lower_solution_at_higher_budget_excess": 417.6852093126363,
+      "lower_solution_at_higher_objective_gap": -180.8915608386742
+    },
+    {
+      "RI_increase": 0.00040456970445234414,
+      "case": "210323",
+      "classification": "STRUCTURAL_BUDGET_REALLOCATION",
+      "higher_lambda": 0.01,
+      "higher_solution_at_lower_budget_excess": -12.830904911243124,
+      "higher_solution_at_lower_objective_gap": 1.8536425847560167,
+      "known_optimal_face_equivalence": false,
+      "lower_lambda": 0.0025,
+      "lower_solution_at_higher_budget_excess": 12.73443195449363,
+      "lower_solution_at_higher_objective_gap": -1.9501155477482826
+    },
+    {
+      "RI_increase": 0.0022655903449336906,
+      "case": "210323",
+      "classification": "STRUCTURAL_BUDGET_REALLOCATION",
+      "higher_lambda": 0.05,
+      "higher_solution_at_lower_budget_excess": -71.31281887899968,
+      "higher_solution_at_lower_objective_gap": 10.92064710042905,
+      "known_optimal_face_equivalence": false,
+      "lower_lambda": 0.01,
+      "lower_solution_at_higher_budget_excess": 68.43149292354065,
+      "lower_solution_at_higher_objective_gap": -13.801973060937598
+    },
+    {
+      "RI_increase": 0.010513755163362136,
+      "case": "210323",
+      "classification": "STRUCTURAL_BUDGET_REALLOCATION",
+      "higher_lambda": 0.2,
+      "higher_solution_at_lower_budget_excess": -317.56489661840897,
+      "higher_solution_at_lower_objective_gap": 64.04978147114161,
+      "known_optimal_face_equivalence": false,
+      "lower_lambda": 0.05,
+      "lower_solution_at_higher_budget_excess": 267.4230710348056,
+      "lower_solution_at_higher_objective_gap": -114.19160705490503
+    }
+  ],
+  "schema": "e5_final_result_audit_v1",
+  "secondary_classifications": [
+    "NONMONOTONE_STRUCTURAL_REALLOCATION",
+    "MIXED_CASE_SPECIFIC_RESPONSE"
+  ],
+  "status": "E5_FINAL_AUDIT_PASS"
+}

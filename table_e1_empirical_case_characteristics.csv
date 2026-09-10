@@ -1,0 +1,9 @@
+case_id,raw_source_identity,raw_audit_crc32,customer_count,depot_count,product_count,planning_days,demand_record_count,demand_pair_density,selection_rationale,final_I,target_R,target_J,construction_status
+210202,renault_data_pipeline/data/renault_raw/instances/instances/210202/,7ecd7bd4,551,15,29,20,319580,0.12353714249953063,existing formal anchor; high demand density,15,12,8,EXISTING_FORMAL_RESULT_PRESERVED
+210628,renault_data_pipeline/data/renault_raw/instances/instances/210628/,ac702b55,634,15,30,19,361380,0.10841219768664563,existing formal anchor; later date and lower demand density,15,12,8,EXISTING_FORMAL_RESULT_PRESERVED
+210129,renault_data_pipeline/data/renault_raw/instances/instances/210129/,61990c1b,499,15,29,22,318362,0.12908575772234124,highest audited demand density among all raw cases,15,12,8,BLOCKED_BEFORE_FORMAL_CONSTRUCTION
+210310,renault_data_pipeline/data/renault_raw/instances/instances/210310/,909dd21f,485,16,29,21,295365,0.12634198364735158,minimum audited customer count,16,12,8,BLOCKED_BEFORE_FORMAL_CONSTRUCTION
+210330,renault_data_pipeline/data/renault_raw/instances/instances/210330/,8f7c2d00,760,11,29,20,440800,0.10226860254083485,"maximum customer count, minimum demand density, and minimum depot count",11,12,8,BLOCKED_BEFORE_FORMAL_CONSTRUCTION
+210323,renault_data_pipeline/data/renault_raw/instances/instances/210323/,4e8b112d,690,13,29,20,400200,0.1071464267866067,high-customer intermediate case with 13 depots,13,12,8,BLOCKED_BEFORE_FORMAL_CONSTRUCTION
+210428,renault_data_pipeline/data/renault_raw/instances/instances/210428/,4b238eff,631,18,30,21,397530,0.11251980982567353,18-depot high-dimensional case,18,12,8,BLOCKED_BEFORE_FORMAL_CONSTRUCTION
+210611,renault_data_pipeline/data/renault_raw/instances/instances/210611/,4ae6e7f9,673,19,30,22,444180,0.10411094601287767,maximum demand-record count and 19 depots,19,12,8,BLOCKED_BEFORE_FORMAL_CONSTRUCTION

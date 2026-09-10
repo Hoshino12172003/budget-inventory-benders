@@ -1,0 +1,9 @@
+case,classification,material_reconfiguration,main_reason,objective_improved,service_improved,shortage_improved
+210202,MATERIAL_ROBUST_RECONFIGURATION,true,"RI=0.13762008031, changed_pair_count=3",true,false,false
+210628,NO_MATERIAL_RECONFIGURATION,false,RI<=1e-6 and changed_pair_count=0,false,false,false
+210129,MATERIAL_ROBUST_RECONFIGURATION,true,"RI=0.0856549488979, changed_pair_count=3",true,false,true
+210310,NO_MATERIAL_RECONFIGURATION,false,RI<=1e-6 and changed_pair_count=0,false,false,false
+210330,MATERIAL_ROBUST_RECONFIGURATION,true,"RI=0.0652111450401, changed_pair_count=2",true,false,true
+210323,MATERIAL_ROBUST_RECONFIGURATION,true,"RI=0.0394265819792, changed_pair_count=2",true,false,true
+210428,NO_MATERIAL_RECONFIGURATION,false,RI<=1e-6 and changed_pair_count=0,false,false,false
+210611,NO_MATERIAL_RECONFIGURATION,false,RI<=1e-6 and changed_pair_count=0,false,false,false

@@ -1,0 +1,18 @@
+{
+  "Gamma": 2,
+  "Gamma_feasible": true,
+  "all_product_duals_feasible": true,
+  "allocation_sum": 2,
+  "classification": "DIAGNOSTIC_TOLERANCE_CONTRACT_MISMATCH",
+  "first_stage_reoptimized": false,
+  "first_stage_solution_sha256": "22df9934e03e979a36ac6cefa32c1e9641be9e7c73b118942209381d4924a96c",
+  "fixed_first_stage_product_lp_solves": 24,
+  "fresh_exact_recourse": 591881.645312855,
+  "fresh_vs_stored_recourse_difference": 0.0,
+  "maximum_product_strong_duality_error": 5.820766091346741e-11,
+  "objective_reconstruction_difference": 0.0,
+  "result_sha256": "e06977c3cefa39b1ba99c4b9e1b9747c4f35453e76ea21a3cb377a2f7e58be19",
+  "risk_budget_allocation": [0, 0, 0, 0, 0, 0, 1, 1],
+  "run_id": "E5-210330-L0100",
+  "stored_exact_recourse": 591881.645312855
+}

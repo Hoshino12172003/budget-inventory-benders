@@ -1,0 +1,250 @@
+{
+  "budget_conclusion_affected": false,
+  "classification": "REPORTING_SCENARIO_SELECTION_TIE",
+  "component_differences_B120_minus_B110": {
+    "budget_used": 2.9103830456733704e-11,
+    "fixed_cost": 0.0,
+    "inventory_cost": 1.4551915228366852e-11,
+    "objective": 0.0,
+    "reconfiguration_cost": 9.094947017729282e-13,
+    "robust_recourse_cost": 0.0
+  },
+  "feasibility_affected": false,
+  "first_stage": {
+    "a_minus": {
+      "coordinates_differing_above_1e-6": 0,
+      "l1_difference": 0.0,
+      "largest_difference_coordinate": {
+        "B110": 0.0,
+        "B120": 0.0,
+        "depot": "9624708",
+        "product": "SLI---1200"
+      },
+      "max_absolute_difference": 0.0
+    },
+    "a_plus": {
+      "coordinates_differing_above_1e-6": 0,
+      "l1_difference": 1.1368683772161603e-13,
+      "largest_difference_coordinate": {
+        "B110": 8.266686412880063,
+        "B120": 8.266686412880176,
+        "depot": "90016100",
+        "product": "CON-S-0130"
+      },
+      "max_absolute_difference": 1.1368683772161603e-13
+    },
+    "artifact_byte_identical": false,
+    "x": {
+      "coordinates_differing_above_1e-6": 0,
+      "l1_difference": 1.1368683772161603e-13,
+      "largest_difference_coordinate": {
+        "B110": 341.7470482048804,
+        "B120": 341.7470482048805,
+        "depot": "90016100",
+        "product": "CON-S-0130"
+      },
+      "max_absolute_difference": 1.1368683772161603e-13
+    },
+    "y_identical": true
+  },
+  "fixed_first_stage_recomputation": {
+    "B110": {
+      "exact_robust_recourse": 590417.1700726735,
+      "stored_reporting_scenario": {
+        "average_fill_rate": 0.13361081813329675,
+        "minimum_fill_rate": 0.0,
+        "product_gamma_allocation": {
+          "BAC---1041": 0,
+          "BAC-O-4312": 0,
+          "BAC-O-4325": 0,
+          "BAC-O-6423": 0,
+          "BAC-O-6433": 0,
+          "CON-S-0130": 0,
+          "SLI---0770": 1,
+          "SLI---1200": 1
+        },
+        "recourse_cost": 590417.1700726735,
+        "service_penalty_cost": 365509.7672142858,
+        "shock_set": [
+          [
+            "2",
+            "SLI---0770"
+          ],
+          [
+            "2",
+            "SLI---1200"
+          ]
+        ],
+        "shortage_cost": 222976.60278539074,
+        "total_shortage": 3104.4190278539054,
+        "transport_cost": 1930.8000731759437,
+        "worst_region": "12"
+      },
+      "tied_worst_recourse_scenario_count": 2,
+      "tied_worst_recourse_scenarios": [
+        {
+          "average_fill_rate": 0.13361081813329675,
+          "minimum_fill_rate": 0.0,
+          "product_gamma_allocation": {
+            "BAC---1041": 0,
+            "BAC-O-4312": 0,
+            "BAC-O-4325": 0,
+            "BAC-O-6423": 0,
+            "BAC-O-6433": 0,
+            "CON-S-0130": 0,
+            "SLI---0770": 1,
+            "SLI---1200": 1
+          },
+          "recourse_cost": 590417.1700726735,
+          "service_penalty_cost": 365509.7672142858,
+          "shock_set": [
+            [
+              "2",
+              "SLI---0770"
+            ],
+            [
+              "2",
+              "SLI---1200"
+            ]
+          ],
+          "shortage_cost": 222976.60278539074,
+          "total_shortage": 3104.4190278539054,
+          "transport_cost": 1930.8000731759437,
+          "worst_region": "12"
+        },
+        {
+          "average_fill_rate": 0.13397746545697467,
+          "minimum_fill_rate": 0.0,
+          "product_gamma_allocation": {
+            "BAC---1041": 0,
+            "BAC-O-4312": 0,
+            "BAC-O-4325": 0,
+            "BAC-O-6423": 0,
+            "BAC-O-6433": 0,
+            "CON-S-0130": 1,
+            "SLI---0770": 0,
+            "SLI---1200": 1
+          },
+          "recourse_cost": 590417.1700726735,
+          "service_penalty_cost": 365179.2302242676,
+          "shock_set": [
+            [
+              "2",
+              "SLI---1200"
+            ],
+            [
+              "5",
+              "CON-S-0130"
+            ]
+          ],
+          "shortage_cost": 223696.60278532412,
+          "total_shortage": 3144.804742138953,
+          "transport_cost": 1541.3370632647598,
+          "worst_region": "12"
+        }
+      ]
+    },
+    "B120": {
+      "exact_robust_recourse": 590417.1700726735,
+      "stored_reporting_scenario": {
+        "average_fill_rate": 0.13397746545702077,
+        "minimum_fill_rate": 0.0,
+        "product_gamma_allocation": {
+          "BAC---1041": 0,
+          "BAC-O-4312": 0,
+          "BAC-O-4325": 0,
+          "BAC-O-6423": 0,
+          "BAC-O-6433": 0,
+          "CON-S-0130": 1,
+          "SLI---0770": 0,
+          "SLI---1200": 1
+        },
+        "recourse_cost": 590417.1700726735,
+        "service_penalty_cost": 365179.23022426834,
+        "shock_set": [
+          [
+            "2",
+            "SLI---1200"
+          ],
+          [
+            "5",
+            "CON-S-0130"
+          ]
+        ],
+        "shortage_cost": 223696.6027853175,
+        "total_shortage": 3144.8047421388874,
+        "transport_cost": 1541.337063177251,
+        "worst_region": "12"
+      },
+      "tied_worst_recourse_scenario_count": 2,
+      "tied_worst_recourse_scenarios": [
+        {
+          "average_fill_rate": 0.13361081813331774,
+          "minimum_fill_rate": 0.0,
+          "product_gamma_allocation": {
+            "BAC---1041": 0,
+            "BAC-O-4312": 0,
+            "BAC-O-4325": 0,
+            "BAC-O-6423": 0,
+            "BAC-O-6433": 0,
+            "CON-S-0130": 0,
+            "SLI---0770": 1,
+            "SLI---1200": 1
+          },
+          "recourse_cost": 590417.1700726734,
+          "service_penalty_cost": 365509.7672142858,
+          "shock_set": [
+            [
+              "2",
+              "SLI---0770"
+            ],
+            [
+              "2",
+              "SLI---1200"
+            ]
+          ],
+          "shortage_cost": 222976.60278538446,
+          "total_shortage": 3104.419027853843,
+          "transport_cost": 1930.800073090411,
+          "worst_region": "12"
+        },
+        {
+          "average_fill_rate": 0.13397746545702077,
+          "minimum_fill_rate": 0.0,
+          "product_gamma_allocation": {
+            "BAC---1041": 0,
+            "BAC-O-4312": 0,
+            "BAC-O-4325": 0,
+            "BAC-O-6423": 0,
+            "BAC-O-6433": 0,
+            "CON-S-0130": 1,
+            "SLI---0770": 0,
+            "SLI---1200": 1
+          },
+          "recourse_cost": 590417.1700726735,
+          "service_penalty_cost": 365179.23022426834,
+          "shock_set": [
+            [
+              "2",
+              "SLI---1200"
+            ],
+            [
+              "5",
+              "CON-S-0130"
+            ]
+          ],
+          "shortage_cost": 223696.6027853175,
+          "total_shortage": 3144.8047421388874,
+          "transport_cost": 1541.337063177251,
+          "worst_region": "12"
+        }
+      ]
+    }
+  },
+  "fixed_first_stage_reporting_recomputations": 2,
+  "new_first_stage_optimization_solves": 0,
+  "objective_validity_affected": false,
+  "paper_interpretation_constraint": "Do not interpret the stored total-shortage difference between B110 and B120 as service deterioration; it is a reporting choice between economically tied worst-recourse scenarios.",
+  "status": "PASS",
+  "tolerance": 1e-06
+}

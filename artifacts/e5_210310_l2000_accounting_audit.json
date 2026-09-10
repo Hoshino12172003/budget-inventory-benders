@@ -1,0 +1,96 @@
+{
+  "schema": "e5_first_stage_accounting_audit_v1",
+  "run_id": "E5-210310-L2000",
+  "status": "E5_ACCOUNTING_AUDIT_PASS",
+  "classification": "CANONICAL_REPORTING_VS_SOLVER_ACCOUNTING_MISMATCH",
+  "failure_boundary": {
+    "primary_optimization_valid": true,
+    "primary_status": "OPTIMAL",
+    "exact_certification_pass": true,
+    "first_stage_solution_available_in_memory_before_failure": true,
+    "robust_recourse_certified_before_failure": true,
+    "accounting_only_failure": true,
+    "write_run_reached_before_failure": false,
+    "complete_formal_artifact_written_before_failure": false,
+    "partial_artifact_found": false
+  },
+  "original_gate": {
+    "left_hand_side": "fixed_cost + inventory_cost + canonical_reconfiguration_cost",
+    "right_hand_side": "primary solver first_stage_expenditure",
+    "absolute_tolerance": 1e-06,
+    "relative_tolerance": null,
+    "budget_feasibility_tolerance": 1e-06,
+    "precision_source": "in-memory full-precision floating-point values"
+  },
+  "verification_run": {
+    "performed": true,
+    "count": 1,
+    "model_or_parameter_change": false,
+    "primary_objective": 714814.5477065423,
+    "fixed_cost": 1519.692,
+    "inventory_cost": 74874.39999991693,
+    "solver_reconfiguration_cost": -1.013109511038273e-06,
+    "canonical_reconfiguration_cost": 2.02895509460177e-06,
+    "solver_first_stage_cost": 76394.09199890382,
+    "primary_first_stage_expenditure": 76394.09199890384,
+    "exact_robust_recourse": 638420.4557076385,
+    "reconstructed_total_objective": 714814.5477065423,
+    "solver_based_accounting_error": -1.4551915228366852e-11,
+    "canonical_based_accounting_error": 3.0420487746596336e-06,
+    "solver_reconfiguration_cost_residual": 0.0,
+    "objective_vs_final_upper_bound": -9.685754776000977e-08,
+    "max_solver_canonical_adjustment_difference": 3.1700253089184116e-08,
+    "solver_total_a_plus": -3.165967221994603e-08,
+    "solver_total_a_minus": 0.0,
+    "solver_total_adjustment": -3.165967221994603e-08,
+    "canonical_total_a_plus": 3.170115547845853e-08,
+    "canonical_total_a_minus": 3.1723004667583155e-08,
+    "canonical_total_adjustment": 6.342416014604169e-08,
+    "RI": 1.1386607008790608e-10,
+    "RS": -1.3261621213318e-11
+  },
+  "numerical_source": {
+    "description": "Near-zero solver adjustment residuals are weighted by lambda_R times inventory cost. Canonicalizing those residuals before economic accounting changes their sign and magnitude.",
+    "lambda_R": 0.2,
+    "largest_coordinate": {
+      "depot": "90018300",
+      "product": "CON-S-0130",
+      "canonical_a_plus": 3.1700253089184116e-08,
+      "solver_a_plus": 0.0
+    },
+    "solver_negative_coordinate": {
+      "depot": "91017500",
+      "product": "CON-S-0130",
+      "solver_a_plus": -3.165967221994603e-08,
+      "canonical_a_minus": 3.169300555327936e-08
+    }
+  },
+  "comparators": {
+    "same_case_L0500": {
+      "reconfiguration_cost": 0.0,
+      "canonical_total_adjustment": 1.9437003118127905e-09,
+      "RI": 3.4895458674603015e-12
+    },
+    "completed_L2000_original_gate_residuals": {
+      "210129": 0.0,
+      "210202": 1.4551915228366852e-11,
+      "210628": 2.653832780197263e-07
+    }
+  },
+  "fix": {
+    "economic_accounting_basis": "primary solver a_plus/a_minus and certified economic expressions",
+    "canonical_adjustment_usage": "RI, total adjustment, changed-pair reporting, and diagnostics only",
+    "positive_friction_solution_artifact_preserves_solver_adjustments": true,
+    "RS_basis": "reconfiguration cost included in primary solver objective and budget",
+    "accounting_tolerance_changed": false,
+    "model_changed": false
+  },
+  "preservation": {
+    "completed_E5_files_changed": 0,
+    "failed_run_artifact_recovered_manually": false,
+    "E1_overwritten": false,
+    "E2_overwritten": false,
+    "E3_overwritten": false,
+    "E4_overwritten": false
+  }
+}

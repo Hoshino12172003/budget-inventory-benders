@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
 from .instance import InventoryInstance
@@ -37,6 +38,7 @@ def solve_exact_benchmark(
     *,
     include_reconfiguration: bool = True,
     time_limit: float | None = None,
+    log_file: Path | None = None,
 ) -> ExactBenchmarkResult:
     """Solve the exact finite robust counterpart used only as ground truth."""
     from gurobipy import GRB
@@ -51,6 +53,8 @@ def solve_exact_benchmark(
     )
     if time_limit is not None:
         model.Params.TimeLimit = time_limit
+    if log_file is not None:
+        model.Params.LogFile = str(log_file)
     model.optimize()
     status = {
         GRB.OPTIMAL: "OPTIMAL",

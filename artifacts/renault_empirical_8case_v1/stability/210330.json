@@ -1,0 +1,687 @@
+{
+  "canonical_incumbent_status": "PASS",
+  "material_x_range_count": 0,
+  "maximum_material_x_range": 6.439901997445929e-06,
+  "minimum_y_flip_objective_gap": 20.71691983693745,
+  "objective_face_tolerance": 1e-07,
+  "primary_optimal_face_nonunique": false,
+  "status": "PASS",
+  "structural_range_tolerance": 0.001,
+  "x_audit": [
+    {
+      "depot_id": "90015100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC---1041",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90015100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4312",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90015100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4325",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90015100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6423",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90015100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6433",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90015100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "CON-S-0130",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90015100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---0770",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90015100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---1200",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016100",
+      "maximum": 5.46438244420569e-10,
+      "minimum": 0.0,
+      "product_id": "BAC---1041",
+      "range_width": 5.46438244420569e-10
+    },
+    {
+      "depot_id": "90016100",
+      "maximum": 153.05000056901417,
+      "minimum": 153.04999850967346,
+      "product_id": "BAC-O-4312",
+      "range_width": 2.0593407157321053e-06
+    },
+    {
+      "depot_id": "90016100",
+      "maximum": 7.490034422100473e-09,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4325",
+      "range_width": 7.490034422100473e-09
+    },
+    {
+      "depot_id": "90016100",
+      "maximum": 2.470278791052853e-09,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6423",
+      "range_width": 2.470278791052853e-09
+    },
+    {
+      "depot_id": "90016100",
+      "maximum": 3.654082335260427e-09,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6433",
+      "range_width": 3.654082335260427e-09
+    },
+    {
+      "depot_id": "90016100",
+      "maximum": 333.4803617953662,
+      "minimum": 333.4803553610079,
+      "product_id": "CON-S-0130",
+      "range_width": 6.434358283513575e-06
+    },
+    {
+      "depot_id": "90016100",
+      "maximum": 1.9497716181371224e-10,
+      "minimum": 0.0,
+      "product_id": "SLI---0770",
+      "range_width": 1.9497716181371224e-10
+    },
+    {
+      "depot_id": "90016100",
+      "maximum": 7.212836865984981e-10,
+      "minimum": 0.0,
+      "product_id": "SLI---1200",
+      "range_width": 7.212836865984981e-10
+    },
+    {
+      "depot_id": "90016200",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC---1041",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016200",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4312",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016200",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4325",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016200",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6423",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016200",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6433",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016200",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "CON-S-0130",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016200",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---0770",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016200",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---1200",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016500",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC---1041",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016500",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4312",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016500",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4325",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016500",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6423",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016500",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6433",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016500",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "CON-S-0130",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016500",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---0770",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016500",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---1200",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016700",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC---1041",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016700",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4312",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016700",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4325",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016700",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6423",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016700",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6433",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016700",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "CON-S-0130",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016700",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---0770",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016700",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---1200",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016900",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC---1041",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016900",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4312",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016900",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4325",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016900",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6423",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016900",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6433",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016900",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "CON-S-0130",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016900",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---0770",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90016900",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---1200",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90017100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC---1041",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90017100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4312",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90017100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4325",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90017100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6423",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90017100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6433",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90017100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "CON-S-0130",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90017100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---0770",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90017100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---1200",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90018300",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC---1041",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90018300",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4312",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90018300",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4325",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90018300",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6423",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90018300",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6433",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90018300",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "CON-S-0130",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90018300",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---0770",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90018300",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---1200",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90018400",
+      "maximum": 5.420145071698482e-10,
+      "minimum": 0.0,
+      "product_id": "BAC---1041",
+      "range_width": 5.420145071698482e-10
+    },
+    {
+      "depot_id": "90018400",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4312",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90018400",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4325",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90018400",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6423",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90018400",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6433",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90018400",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "CON-S-0130",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90018400",
+      "maximum": 1.9493781120024332e-10,
+      "minimum": 0.0,
+      "product_id": "SLI---0770",
+      "range_width": 1.9493781120024332e-10
+    },
+    {
+      "depot_id": "90018400",
+      "maximum": 7.156835962350474e-10,
+      "minimum": 0.0,
+      "product_id": "SLI---1200",
+      "range_width": 7.156835962350474e-10
+    },
+    {
+      "depot_id": "90019100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC---1041",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90019100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4312",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90019100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4325",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90019100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6423",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90019100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6433",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90019100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "CON-S-0130",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90019100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---0770",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "90019100",
+      "maximum": 0.0,
+      "minimum": 0.0,
+      "product_id": "SLI---1200",
+      "range_width": 0.0
+    },
+    {
+      "depot_id": "9624708",
+      "maximum": 5.38836388841446e-10,
+      "minimum": 0.0,
+      "product_id": "BAC---1041",
+      "range_width": 5.38836388841446e-10
+    },
+    {
+      "depot_id": "9624708",
+      "maximum": 7.2142872037303665,
+      "minimum": 7.2142851447650695,
+      "product_id": "BAC-O-4312",
+      "range_width": 2.0589652969249528e-06
+    },
+    {
+      "depot_id": "9624708",
+      "maximum": 6.436455432127072e-09,
+      "minimum": 0.0,
+      "product_id": "BAC-O-4325",
+      "range_width": 6.436455432127072e-09
+    },
+    {
+      "depot_id": "9624708",
+      "maximum": 2.313839109731253e-09,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6423",
+      "range_width": 2.313839109731253e-09
+    },
+    {
+      "depot_id": "9624708",
+      "maximum": 3.4307989817679056e-09,
+      "minimum": 0.0,
+      "product_id": "BAC-O-6433",
+      "range_width": 3.4307989817679056e-09
+    },
+    {
+      "depot_id": "9624708",
+      "maximum": 6.655358925488732,
+      "minimum": 6.655352485586735,
+      "product_id": "CON-S-0130",
+      "range_width": 6.439901997445929e-06
+    },
+    {
+      "depot_id": "9624708",
+      "maximum": 1.9412141227803659e-10,
+      "minimum": 0.0,
+      "product_id": "SLI---0770",
+      "range_width": 1.9412141227803659e-10
+    },
+    {
+      "depot_id": "9624708",
+      "maximum": 7.023489804728496e-10,
+      "minimum": 0.0,
+      "product_id": "SLI---1200",
+      "range_width": 7.023489804728496e-10
+    }
+  ],
+  "x_stable": true,
+  "y_audit": [
+    {
+      "baseline": 0,
+      "depot_id": "90015100",
+      "forced_flip_objective_gap": 342.74750115838833
+    },
+    {
+      "baseline": 1,
+      "depot_id": "90016100",
+      "forced_flip_objective_gap": 119.65206762275193
+    },
+    {
+      "baseline": 0,
+      "depot_id": "90016200",
+      "forced_flip_objective_gap": 1232.109643971664
+    },
+    {
+      "baseline": 0,
+      "depot_id": "90016500",
+      "forced_flip_objective_gap": 119.65206762275193
+    },
+    {
+      "baseline": 0,
+      "depot_id": "90016700",
+      "forced_flip_objective_gap": 5907.065657563624
+    },
+    {
+      "baseline": 0,
+      "depot_id": "90016900",
+      "forced_flip_objective_gap": 4260.971170347999
+    },
+    {
+      "baseline": 0,
+      "depot_id": "90017100",
+      "forced_flip_objective_gap": 1806.6128198086517
+    },
+    {
+      "baseline": 0,
+      "depot_id": "90018300",
+      "forced_flip_objective_gap": 119.65206762275193
+    },
+    {
+      "baseline": 0,
+      "depot_id": "90018400",
+      "forced_flip_objective_gap": 33.96235814562533
+    },
+    {
+      "baseline": 0,
+      "depot_id": "90019100",
+      "forced_flip_objective_gap": 119.65206762275193
+    },
+    {
+      "baseline": 1,
+      "depot_id": "9624708",
+      "forced_flip_objective_gap": 20.71691983693745
+    }
+  ],
+  "y_stable": true
+}
