@@ -170,8 +170,22 @@ def validate_manifest(manifest: dict) -> None:
         "reporter": sha256(ROOT / manifest["reporting_script"]) == manifest["reporting_script_sha256"],
         "plotter": sha256(ROOT / manifest["plotting_script"]) == manifest["plotting_script_sha256"],
         "schema": sha256(ROOT / manifest["result_schema"]) == manifest["result_schema_sha256"],
+        "protocol_document": sha256(ROOT / manifest["protocol_document"])
+        == manifest["protocol_document_sha256"],
+        "static_audit_script": sha256(ROOT / manifest["static_audit_script"])
+        == manifest["static_audit_script_sha256"],
+        "reuse_plan": sha256(ROOT / manifest["reuse_plan"]) == manifest["reuse_plan_sha256"],
+        "preauthorization_static_audit": git_file_sha256(
+            manifest["authorization_basis_commit"], manifest["preauthorization_static_audit"]
+        )
+        == manifest["preauthorization_static_audit_sha256"],
         "authorization": manifest["authorization_transition"] in ([False], [False, True])
         and manifest["authorization_transition"][-1] is manifest["formal_run_authorized"],
+        "authorization_scope": manifest["formal_run_authorized"] is True
+        and manifest["authorization_scope"] == [manifest["experiment_id"]]
+        and manifest["authorization_exclusions"]
+        == ["E7", "SCALING", "STANDARD_BENDERS", "FUTURE_EXPERIMENTS"],
+        "authorization_status": manifest["protocol_status"] == "E6_FORMAL_RUN_AUTHORIZED",
     }
     failed = [name for name, passed in checks.items() if not passed]
     if failed:

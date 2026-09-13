@@ -113,6 +113,7 @@
       "x0_finite_nonnegative": true
     }
   ],
+  "authorization_basis_commit": "bfdf93a8c6def1f16b0f0844840c532ae5a287f2",
   "case_identity_checks": {
     "210129": true,
     "210202": true,
@@ -127,20 +128,25 @@
     "B080_G4_corner_static_feasible_8_of_8": true,
     "all_case_identities": true,
     "all_new_cells_static_feasible": true,
-    "formal_authorization_false": true,
+    "authorization_scope_E6_only": true,
+    "formal_authorization_true": true,
     "grid_72_of_72": true,
     "new_solve_set_deterministic": true,
     "no_E6_primary_outputs": true,
     "overlap_B100_G2_once_per_case": true,
     "overwrite_protection": true,
     "plotting_pipeline_frozen": true,
+    "preauthorization_audit_frozen": true,
     "protected_E1_E5_hashes_preserved": true,
+    "protocol_document_frozen": true,
     "reporting_pipeline_frozen": true,
     "reporting_schema_frozen": true,
     "result_root_isolated": true,
     "reuse_cells_derived": true,
     "reuse_identity_verified": true,
-    "reuse_map_deterministic": true
+    "reuse_map_deterministic": true,
+    "reuse_plan_frozen": true,
+    "static_audit_script_frozen": true
   },
   "existing_E6_outputs": [],
   "expected_reuse_parameter_cells_from_source_design": [
@@ -152,11 +158,12 @@
   ],
   "fixed_first_stage_evaluations_executed": 0,
   "formal_first_stage_optimization_solves_executed": 0,
-  "formal_run_authorized": false,
-  "manifest_sha256": "dffbfec206bdf47b009be5c740598205c3ff4f7ad8b9b7ef6a78882ab8fc9dcf",
+  "formal_run_authorized": true,
+  "manifest_sha256": "a8f1e2cb1fc6a49994ddb6cb5d385f0be617d7830dc89eeac4b28656c0e7dd32",
   "new_solve_conditions": 32,
   "overlap_condition_count": 8,
   "plotting_script_sha256": "13b299062d2490947e4fc5a393d27bf482a09141a18b6b55861f414153659e45",
+  "preauthorization_static_audit_sha256": "30d924825bd4fcb3fe3dd083669d1e18c283030f0f774d5a53b56bdf0becc491",
   "protected_result_root_identities": {
     "E1": "93f4f38a936ec14ceaa2d7e8e3c1b23fd494ccbce4910336bbfa10141c29521e",
     "E2": "946075a907a6a15569aa761ff6e95d54e429f65fa4d1192b8d2aad566099b7b0",
@@ -164,6 +171,7 @@
     "E4": "a39d3ec61f4729bf2e60fa12a191983dc8f60a9f7def75707713ae3c1b96f54a",
     "E5": "624efb2a649524fe88de78b105dfa312b9b4be8b59aefeab6ce712869051c30f"
   },
+  "protocol_document_sha256": "d2765ba7036d28542f7df27da8ca31ef9dbab522064e435ebb0f26d4ce17f769",
   "reporting_script_sha256": "2b3737fee480fdb106294f88005f4afcc7fc93b7d4492587dc73ce063ee962c6",
   "result_schema_sha256": "be4233b65135eadf959c39badb62bba0365a9701bef4a1119f3da258a543ca6d",
   "reusable_conditions": 40,
@@ -174,12 +182,14 @@
     "B100-G4",
     "B120-G2"
   ],
-  "runner_sha256": "805e89534f4c456afdbaf659b29b5208853efdaa91f2f171a03895eb85e7f4bd",
+  "reuse_plan_sha256": "e91807603237e4c1c0ad0dfff76ebfaf8cd4d3f8e242ca6e794fad4642526361",
+  "runner_sha256": "0ef5ab4e4163104abada5ca22048dfb7197406329e8fb7b6b7ca7c1ec317edc3",
   "schema": "e6_protocol_static_audit_v1",
   "selected_source_counts": {
     "E3": 24,
     "E4": 16
   },
+  "static_audit_script_sha256": "cdf02af7ed3a47c6ae0d50733e17b48916a5ca5baecce873464956d6d5a82cc2",
   "status": "E6_PROTOCOL_STATIC_AUDIT_PASS",
   "total_conditions": 72
 }

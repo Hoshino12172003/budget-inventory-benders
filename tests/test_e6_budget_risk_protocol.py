@@ -37,10 +37,15 @@ def test_exact_72_condition_grid_has_no_duplicates() -> None:
     assert conditions[-1].run_id == "E6-210611-B120-G4"
 
 
-def test_manifest_freezes_identity_and_starts_fail_closed() -> None:
+def test_manifest_freezes_identity_and_authorizes_only_e6() -> None:
     value = manifest()
     runner.validate_manifest(value)
-    assert value["formal_run_authorized"] is False
+    assert value["formal_run_authorized"] is True
+    assert value["authorization_transition"] == [False, True]
+    assert value["authorization_scope"] == ["E6_BUDGET_RISK_INTERACTION_V1"]
+    assert value["authorization_exclusions"] == [
+        "E7", "SCALING", "STANDARD_BENDERS", "FUTURE_EXPERIMENTS"
+    ]
     assert value["lambda_R"] == runner.LAMBDA_R == 0.05
     assert value["materiality_tolerance"] == 1e-6
     assert value["solver_profile"] == "gurobi-balanced-1e-8-v1"
@@ -113,10 +118,13 @@ def test_dry_run_never_invokes_optimizer(monkeypatch) -> None:
     assert (audit["total_conditions"], audit["reusable_conditions"], audit["new_solve_conditions"]) == (72, 40, 32)
 
 
-def test_formal_execution_is_not_authorized() -> None:
-    condition = runner.enumerate_conditions()[0]
-    with pytest.raises(PermissionError, match="E6_FORMAL_RUN_NOT_AUTHORIZED"):
-        runner.validate_execution_gate(condition, runner.RESULT_ROOT)
+def test_other_experiments_remain_unauthorized() -> None:
+    e7 = json.loads(
+        (ROOT / "experiments/configs/formal/e7_risk_friction_interaction.yaml").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert e7["formal_run_authorized"] is False
 
 
 def test_overwrite_prevention(tmp_path: Path) -> None:
@@ -201,6 +209,8 @@ def test_static_audit_passes_and_reports_zero_solves() -> None:
     assert reuse["reuse_parameter_cells"] == ["B080-G2", "B100-G0", "B100-G2", "B100-G4", "B120-G2"]
     assert audit["formal_first_stage_optimization_solves_executed"] == 0
     assert audit["fixed_first_stage_evaluations_executed"] == 0
+    assert audit["formal_run_authorized"] is True
+    assert audit["checks"]["authorization_scope_E6_only"] is True
 
 
 def test_future_reporting_outputs_are_not_fabricated() -> None:

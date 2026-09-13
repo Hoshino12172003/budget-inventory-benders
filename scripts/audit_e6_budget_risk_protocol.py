@@ -117,7 +117,18 @@ def build_audit() -> tuple[dict, dict]:
         == manifest["reporting_script_sha256"],
         "plotting_pipeline_frozen": runner.sha256(ROOT / manifest["plotting_script"])
         == manifest["plotting_script_sha256"],
-        "formal_authorization_false": manifest["formal_run_authorized"] is False,
+        "protocol_document_frozen": runner.sha256(ROOT / manifest["protocol_document"])
+        == manifest["protocol_document_sha256"],
+        "static_audit_script_frozen": runner.sha256(ROOT / manifest["static_audit_script"])
+        == manifest["static_audit_script_sha256"],
+        "reuse_plan_frozen": runner.sha256(ROOT / manifest["reuse_plan"])
+        == manifest["reuse_plan_sha256"],
+        "preauthorization_audit_frozen": runner.git_file_sha256(
+            manifest["authorization_basis_commit"], manifest["preauthorization_static_audit"]
+        )
+        == manifest["preauthorization_static_audit_sha256"],
+        "formal_authorization_true": manifest["formal_run_authorized"] is True,
+        "authorization_scope_E6_only": manifest["authorization_scope"] == [manifest["experiment_id"]],
         "protected_E1_E5_hashes_preserved": before == after,
     }
     status = "E6_PROTOCOL_STATIC_AUDIT_PASS" if all(checks.values()) else "E6_PROTOCOL_STATIC_AUDIT_BLOCKED"
@@ -142,6 +153,13 @@ def build_audit() -> tuple[dict, dict]:
         "result_schema_sha256": runner.sha256(ROOT / manifest["result_schema"]),
         "reporting_script_sha256": runner.sha256(ROOT / manifest["reporting_script"]),
         "plotting_script_sha256": runner.sha256(ROOT / manifest["plotting_script"]),
+        "protocol_document_sha256": runner.sha256(ROOT / manifest["protocol_document"]),
+        "static_audit_script_sha256": runner.sha256(ROOT / manifest["static_audit_script"]),
+        "reuse_plan_sha256": runner.sha256(ROOT / manifest["reuse_plan"]),
+        "authorization_basis_commit": manifest["authorization_basis_commit"],
+        "preauthorization_static_audit_sha256": runner.git_file_sha256(
+            manifest["authorization_basis_commit"], manifest["preauthorization_static_audit"]
+        ),
         "total_conditions": len(plan),
         "reusable_conditions": len(reuse_cells),
         "new_solve_conditions": len(new_cells),

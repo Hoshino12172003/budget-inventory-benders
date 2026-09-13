@@ -63,6 +63,6 @@ The result namespace is `experiments/results/e6_budget_risk_interaction_v1/`. It
 
 The authoritative paper-final manifest is `experiments/configs/formal/e6_budget_risk_interaction_authorization.json`. The earlier two-case `e6_budget_risk_interaction.yaml` remains an untouched historical protocol artifact and is not an E6 execution authority.
 
-`--dry-run` enumerates and validates all conditions, sources, hashes, configuration, and static feasibility. It cannot invoke the optimizer. Formal execution fails closed while `formal_run_authorized=false` and requires a clean committed worktree and a matching passed static-audit/config hash.
+`--dry-run` enumerates and validates all conditions, sources, hashes, configuration, and static feasibility. It cannot invoke the optimizer. Formal execution is authorized only for `E6_BUDGET_RISK_INTERACTION_V1` and still requires a clean committed worktree and a matching passed static-audit/config hash. E7, scaling, Standard Benders, and future experiments remain unauthorized.
 
 No E6 formal optimization is authorized or executed during protocol preparation.
