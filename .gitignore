@@ -21,6 +21,7 @@ experiments/results/e3_budget_sensitivity_v1/
 experiments/results/e3_budget_sensitivity_v1.zip
 experiments/results/e4_gamma_sensitivity_v1/
 experiments/results/e5_reconfiguration_friction_v1/
+experiments/results/e6_budget_risk_interaction_v1/
 e4_gamma_sensitivity_v1.zip
 e5_reconfiguration_friction_v1.zip
 artifacts/*
@@ -77,6 +78,19 @@ artifacts/*
 !artifacts/fig_e5_rs_vs_lambda.pdf
 !artifacts/fig_e5_recourse_vs_lambda.png
 !artifacts/fig_e5_recourse_vs_lambda.pdf
+!artifacts/e6_reuse_plan.json
+!artifacts/e6_static_audit.json
+!artifacts/e6_table_budget_risk_interaction_case_level.csv
+!artifacts/e6_table_budget_risk_interaction_aggregate.csv
+!artifacts/e6_table_interaction_contrasts.csv
+!artifacts/fig_e6_ri_interaction.png
+!artifacts/fig_e6_ri_interaction.pdf
+!artifacts/fig_e6_normalized_objective_interaction.png
+!artifacts/fig_e6_normalized_objective_interaction.pdf
+!artifacts/fig_e6_budget_utilization_heatmap.png
+!artifacts/fig_e6_budget_utilization_heatmap.pdf
+!artifacts/fig_e6_material_reconfiguration_heatmap.png
+!artifacts/fig_e6_material_reconfiguration_heatmap.pdf
 !artifacts/e4_final_result_audit.json
 !artifacts/e4_210330_g3_global_coupling_audit.json
 !artifacts/e4_table_gamma_sensitivity_case_level.csv
