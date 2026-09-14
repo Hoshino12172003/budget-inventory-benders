@@ -76,7 +76,13 @@ Every planned new cell is checked without optimization using the constructive po
 
 The result namespace is `experiments/results/e7_risk_friction_interaction_v1/`. Writes are atomic, refuse overwrite, preserve full first-stage solutions and provenance, and cannot touch E1-E6. The runner accepts only the frozen Gamma/lambda tokens, enforces beta 1.0, and supports a solver-free `--dry-run`.
 
-The current authorization is deliberately false. This protocol may become ready for authorization after its static audit, but no formal E7 solve is allowed in this task.
+Formal execution was authorized only after `E7_PROTOCOL_STATIC_AUDIT_PASS`. The authorization record freezes the manifest, protocol, runner, reuse plan, dataset/x0/B_ref identities, result schema, reporting evaluator, solver, and certification contract. Authorization does not itself start an optimization.
+
+## Resume and progress contract
+
+A condition is `COMPLETED` only when `result.json`, `first_stage_solution.json`, and `provenance.json` all exist; provenance contains `completion_status=COMPLETED`; stored hashes match; exact certification passes; the condition and authorization identities match; and all timing fields are nonnegative and satisfy timing containment. A missing target with no matching temporary directory is `ABSENT`. Any incomplete target or matching atomic-write temporary directory is `PARTIAL` and blocks execution without deletion or overwrite.
+
+The restart-safe PowerShell launcher skips validated completed conditions, executes absent conditions, and stops on the exact run ID of any partial condition. Runtime output is stage-level only: condition/reuse classification, core PRB completion, exact certification completion, post-evaluation start/finish, artifact completion, and total wall-clock. It never logs individual scenarios.
 
 Future completed-result reporting paths are:
 

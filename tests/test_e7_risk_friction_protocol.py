@@ -48,11 +48,19 @@ def test_grid_has_72_unique_conditions() -> None:
     assert conditions[-1].run_id == "E7-210611-G4-L2000"
 
 
-def test_manifest_freezes_beta_and_keeps_authorization_false(manifest: dict) -> None:
+def test_manifest_freezes_beta_and_authorizes_only_e7(manifest: dict) -> None:
     assert manifest["beta"] == runner.BETA == 1.0
-    assert manifest["formal_run_authorized"] is False
-    assert manifest["authorization_transition"] == [False]
+    assert manifest["formal_run_authorized"] is True
+    assert manifest["authorization_transition"] == [False, True]
     assert manifest["authorization_scope"] == ["E7_RISK_FRICTION_INTERACTION_V1"]
+
+
+def test_authorization_record_matches_all_frozen_identities(manifest: dict) -> None:
+    record = runner.validate_authorization_record(manifest)
+    assert record["authorization_state"] == "AUTHORIZED"
+    assert record["formal_results_in_record"] is False
+    assert record["runner_sha256"] == runner.sha256(Path(runner.__file__))
+    assert record["manifest_sha256"] == runner.sha256(runner.MANIFEST)
 
 
 def test_reuse_is_derived_as_40_and_new_as_32(plan: list[dict]) -> None:
@@ -82,15 +90,20 @@ def test_reuse_identity_mismatch_fails_closed(manifest: dict) -> None:
 def test_dry_run_has_zero_optimizer_calls(monkeypatch) -> None:
     monkeypatch.setattr(runner, "solve_prb_benders", lambda *args, **kwargs: (_ for _ in ()).throw(AssertionError("optimizer invoked")))
     result = runner.dry_run()
-    assert result["status"] == "E7_DRY_RUN_PASS"
+    assert result["status"] == "E7_AUTHORIZED_DRY_RUN_PASS"
     assert result["optimization_solver_invocations"] == 0
     assert (result["total_conditions"], result["reusable_conditions"], result["new_solve_conditions"]) == (72, 40, 32)
     assert result["G4_L2000_feasible_cases"] == 8
 
 
-def test_execution_is_fail_closed_while_unauthorized() -> None:
-    with pytest.raises(PermissionError, match="E7_FORMAL_RUN_NOT_AUTHORIZED"):
-        runner.validate_execution_gate(runner.enumerate_conditions()[0])
+def test_authorization_identity_mismatch_fails_closed(manifest: dict, tmp_path: Path, monkeypatch) -> None:
+    changed = json.loads(runner.AUTHORIZATION_RECORD.read_text(encoding="utf-8"))
+    changed["runner_sha256"] = "0" * 64
+    record = tmp_path / "authorization.json"
+    record.write_text(json.dumps(changed), encoding="utf-8")
+    monkeypatch.setattr(runner, "AUTHORIZATION_RECORD", record)
+    with pytest.raises(RuntimeError, match="BLOCK_E7_AUTHORIZATION_IDENTITY"):
+        runner.validate_authorization_record(manifest)
 
 
 def test_overwrite_prevention(tmp_path: Path) -> None:
@@ -98,6 +111,42 @@ def test_overwrite_prevention(tmp_path: Path) -> None:
     (tmp_path / run_id).mkdir()
     with pytest.raises(FileExistsError, match="refusing to overwrite"):
         runner.check_output_target(run_id, tmp_path)
+
+
+def _write_completed_condition(root: Path, condition, manifest: dict) -> None:
+    target = root / condition.run_id
+    target.mkdir()
+    timing = {field: 0.0 for field in manifest["timing_fields"]}
+    result = {
+        "run_id": condition.run_id, "case": condition.case, "Gamma": condition.gamma,
+        "lambda_R": condition.lambda_r, "beta": 1.0, "status": "OPTIMAL",
+        "certification_status": "CERTIFIED_PRB_EXACT", "exact_certification_pass": True,
+        "timing": timing,
+    }
+    result_path = target / "result.json"
+    solution_path = target / "first_stage_solution.json"
+    result_path.write_text(json.dumps(result), encoding="utf-8")
+    solution_path.write_text("{}", encoding="utf-8")
+    provenance = {
+        "run_id": condition.run_id, "completion_status": "COMPLETED",
+        "result_sha256": runner.sha256(result_path),
+        "first_stage_solution_sha256": runner.sha256(solution_path),
+        "authorization_record_sha256": runner.sha256(runner.AUTHORIZATION_RECORD),
+    }
+    (target / "provenance.json").write_text(json.dumps(provenance), encoding="utf-8")
+
+
+def test_resume_states_distinguish_absent_completed_and_partial(tmp_path: Path, manifest: dict) -> None:
+    absent = runner.Condition("210202", "G0", "L0025")
+    complete = runner.Condition("210202", "G0", "L0500")
+    partial = runner.Condition("210202", "G0", "L2000")
+    _write_completed_condition(tmp_path, complete, manifest)
+    (tmp_path / f".{partial.run_id}.interrupted.tmp").mkdir()
+    assert runner.classify_output_state(absent, manifest, tmp_path)["state"] == "ABSENT"
+    assert runner.classify_output_state(complete, manifest, tmp_path)["state"] == "COMPLETED"
+    status = runner.classify_output_state(partial, manifest, tmp_path)
+    assert status["state"] == "PARTIAL"
+    assert partial.run_id == status["run_id"]
 
 
 def test_result_namespace_is_narrowly_ignored() -> None:
@@ -113,6 +162,21 @@ def test_timing_schema_and_containment(manifest: dict) -> None:
     assert runner.timing_containment_passes(timing)
     timing["t_total_runner_wallclock_seconds"] = 6.0
     assert not runner.timing_containment_passes(timing)
+
+
+def test_launcher_is_restart_safe_and_never_deletes_results() -> None:
+    text = (ROOT / "scripts/run_e7_formal.ps1").read_text(encoding="utf-8")
+    assert "--status-only" in text
+    assert 'state -eq "COMPLETED"' in text
+    assert 'state -eq "ABSENT"' in text
+    assert "partial/interrupted condition detected" in text
+    assert "Remove-Item" not in text
+
+
+def test_stage_level_progress_logging_is_present() -> None:
+    text = Path(runner.__file__).read_text(encoding="utf-8")
+    for stage in ("core_prb", "exact_certification", "post_evaluation", "artifact_write"):
+        assert f"stage={stage}" in text
 
 
 def synthetic_rows() -> list[dict]:
@@ -167,6 +231,7 @@ def test_static_audit_passes_without_results_or_solves() -> None:
     assert audit["formal_first_stage_optimization_solves_executed"] == 0
     assert audit["checks"]["protected_E1_E6_hashes_preserved"] is True
     assert audit["existing_E7_outputs"] == []
+    assert audit["formal_run_authorized"] is False
 
 
 def test_future_reporting_outputs_do_not_exist(manifest: dict) -> None:

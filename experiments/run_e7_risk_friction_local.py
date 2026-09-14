@@ -32,6 +32,7 @@ from robust_inventory_reconfiguration.solver_profile import FORMAL_SOLVER_PROFIL
 
 
 MANIFEST = ROOT / "experiments/configs/e7_risk_friction_interaction_v1.json"
+AUTHORIZATION_RECORD = ROOT / "experiments/configs/formal/e7_risk_friction_interaction_authorization.json"
 STATIC_AUDIT = ROOT / "artifacts/e7_static_audit.json"
 IDENTITY_TABLE = ROOT / "table_empirical_8case_identity.csv"
 RESULT_ROOT = ROOT / "experiments/results/e7_risk_friction_interaction_v1"
@@ -113,11 +114,20 @@ def reporting_evaluator_identity() -> str:
     return canonical_hash({str(path.relative_to(ROOT)).replace("\\", "/"): sha256(path) for path in paths})
 
 
+def certification_identity(manifest: dict) -> str:
+    return canonical_hash({
+        "solver_profile": manifest["solver_profile"],
+        "tolerance_contract": manifest["tolerance_contract"],
+        "prb_identity_sha256": manifest["prb_identity_sha256"],
+        "contract": "status OPTIMAL and CERTIFIED_PRB_EXACT with final exact product-wise robust-recourse certification",
+    })
+
+
 def validate_manifest(manifest: dict) -> None:
     checks = {
-        "status": manifest["protocol_status"] == "E7_PROTOCOL_READY_FOR_AUTHORIZATION",
-        "unauthorized": manifest["formal_run_authorized"] is False
-        and manifest["authorization_transition"] == [False],
+        "status": manifest["protocol_status"] == "E7_FORMAL_RUN_AUTHORIZED",
+        "authorized": manifest["formal_run_authorized"] is True
+        and manifest["authorization_transition"] == [False, True],
         "dataset": manifest["dataset_id"] == "RENAULT_EMPIRICAL_8CASE_V1",
         "cases": manifest["cases"] == list(CASES),
         "beta": manifest["beta"] == BETA,
@@ -129,6 +139,8 @@ def validate_manifest(manifest: dict) -> None:
         ],
         "run_ids": manifest["planned_run_ids"] == [condition.run_id for condition in enumerate_conditions()],
         "result_root": manifest["result_root"] == "experiments/results/e7_risk_friction_interaction_v1",
+        "authorization_record": manifest["authorization_record"]
+        == "experiments/configs/formal/e7_risk_friction_interaction_authorization.json",
         "identity_table": sha256(IDENTITY_TABLE) == manifest["identity_table_sha256"],
         "solver": manifest["solver_profile"] == FORMAL_SOLVER_PROFILE_ID,
         "model": source_model_identity() == manifest["model_identity_sha256"],
@@ -159,6 +171,39 @@ def validate_manifest(manifest: dict) -> None:
     failed = [name for name, passed in checks.items() if not passed]
     if failed:
         raise RuntimeError(f"BLOCK_E7_MANIFEST_IDENTITY: {','.join(failed)}")
+
+
+def validate_authorization_record(manifest: dict) -> dict:
+    if not AUTHORIZATION_RECORD.is_file():
+        raise RuntimeError("BLOCK_E7_AUTHORIZATION_RECORD_MISSING")
+    record = json.loads(AUTHORIZATION_RECORD.read_text(encoding="utf-8"))
+    checks = {
+        "state": record["authorization_state"] == "AUTHORIZED" and record["formal_run_authorized"] is True,
+        "scope": record["experiment_id"] == manifest["experiment_id"],
+        "timestamp": isinstance(record["authorized_at"], str) and bool(record["authorized_at"]),
+        "manifest": record["manifest_sha256"] == sha256(MANIFEST),
+        "protocol": record["protocol_sha256"] == sha256(ROOT / manifest["protocol_document"]),
+        "runner": record["runner_sha256"] == sha256(Path(__file__)),
+        "dataset": record["dataset_id"] == manifest["dataset_id"],
+        "cases": record["cases"] == manifest["cases"],
+        "x0": record["x0_identity_sha256"] == canonical_hash(manifest["x0_hashes"]),
+        "B_ref": record["B_ref_identity_sha256"] == canonical_hash(manifest["B_ref_by_case"]),
+        "design": record["beta"] == BETA
+        and record["Gamma_levels"] == manifest["Gamma_levels"]
+        and record["lambda_levels"] == manifest["lambda_levels"],
+        "reuse": record["reuse_plan_sha256"] == sha256(ROOT / manifest["reuse_plan"]),
+        "static_audit": record["preauthorization_static_audit_sha256"] == sha256(STATIC_AUDIT),
+        "namespace": record["result_namespace"] == manifest["result_root"],
+        "solver": record["solver_profile"] == manifest["solver_profile"],
+        "certification": record["certification_identity_sha256"] == certification_identity(manifest),
+        "timing": record["timing_schema_sha256"] == sha256(ROOT / manifest["result_schema"]),
+        "reporting": record["reporting_evaluator_sha256"] == reporting_evaluator_identity(),
+        "launcher": record["launcher_sha256"] == sha256(ROOT / "scripts/run_e7_formal.ps1"),
+    }
+    failed = [name for name, passed in checks.items() if not passed]
+    if failed:
+        raise RuntimeError(f"BLOCK_E7_AUTHORIZATION_IDENTITY: {','.join(failed)}")
+    return record
 
 
 def validate_case_identity(case: str, manifest: dict, identity: dict[str, str]) -> None:
@@ -335,20 +380,29 @@ def static_feasibility(condition: Condition, manifest: dict) -> dict:
 def dry_run() -> dict:
     manifest = load_manifest()
     validate_manifest(manifest)
+    validate_authorization_record(manifest)
     plan = build_reuse_plan(manifest)
     new_rows = [row for row in plan if row["classification"] == "NEW_SOLVE"]
     preflight = [
         static_feasibility(Condition(row["case"], row["Gamma_token"], row["lambda_token"]), manifest)
         for row in new_rows
     ]
+    output_states = [classify_output_state(
+        Condition(row["case"], row["Gamma_token"], row["lambda_token"]), manifest
+    ) for row in plan]
     return {
-        "status": "E7_DRY_RUN_PASS" if all(row["feasible"] for row in preflight) else "E7_DRY_RUN_BLOCKED",
+        "status": "E7_AUTHORIZED_DRY_RUN_PASS" if all(row["feasible"] for row in preflight)
+        and not any(state["state"] == "PARTIAL" for state in output_states)
+        else "E7_FORMAL_RUN_AUTHORIZATION_BLOCKED",
         "total_conditions": len(plan),
         "reusable_conditions": len(plan) - len(new_rows),
         "new_solve_conditions": len(new_rows),
         "reuse_parameter_cells": sorted({f"{row['Gamma_token']}-{row['lambda_token']}" for row in plan if row["classification"] == "REUSE"}),
         "new_parameter_cells": sorted({f"{row['Gamma_token']}-{row['lambda_token']}" for row in new_rows}),
         "G4_L2000_feasible_cases": sum(row["feasible"] for row in preflight if row["Gamma"] == 4 and row["lambda_R"] == 0.2),
+        "completed_conditions": sum(state["state"] == "COMPLETED" for state in output_states),
+        "absent_conditions": sum(state["state"] == "ABSENT" for state in output_states),
+        "partial_conditions": [state["run_id"] for state in output_states if state["state"] == "PARTIAL"],
         "formal_run_authorized": manifest["formal_run_authorized"],
         "optimization_solver_invocations": 0,
         "conditions": plan,
@@ -368,14 +422,52 @@ def timing_containment_passes(timing: dict[str, float], tolerance: float = 1e-6)
     return timing["t_total_runner_wallclock_seconds"] + tolerance >= contained
 
 
+def classify_output_state(
+    condition: Condition, manifest: dict, output_root: Path = RESULT_ROOT
+) -> dict:
+    target = output_root / condition.run_id
+    temporary = sorted(output_root.glob(f".{condition.run_id}.*.tmp")) if output_root.exists() else []
+    if temporary:
+        return {"run_id": condition.run_id, "state": "PARTIAL", "reason": "temporary artifact directory exists"}
+    if not target.exists():
+        return {"run_id": condition.run_id, "state": "ABSENT", "reason": None}
+    required = [target / name for name in ("result.json", "first_stage_solution.json", "provenance.json")]
+    if not all(path.is_file() for path in required):
+        return {"run_id": condition.run_id, "state": "PARTIAL", "reason": "required completion artifacts missing"}
+    try:
+        result = json.loads(required[0].read_text(encoding="utf-8"))
+        provenance = json.loads(required[2].read_text(encoding="utf-8"))
+        timing = result["timing"]
+        valid = {
+            "completion_marker": provenance["completion_status"] == "COMPLETED",
+            "run_id": result["run_id"] == provenance["run_id"] == condition.run_id,
+            "condition": result["case"] == condition.case and result["Gamma"] == condition.gamma
+            and result["lambda_R"] == condition.lambda_r and result["beta"] == BETA,
+            "certification": result["status"] == "OPTIMAL"
+            and result["certification_status"] == "CERTIFIED_PRB_EXACT"
+            and result["exact_certification_pass"] is True,
+            "hashes": provenance["result_sha256"] == sha256(required[0])
+            and provenance["first_stage_solution_sha256"] == sha256(required[1]),
+            "authorization": provenance["authorization_record_sha256"] == sha256(AUTHORIZATION_RECORD),
+            "timing_fields": set(timing) == set(manifest["timing_fields"])
+            and all(isinstance(value, (int, float)) and value >= 0 for value in timing.values()),
+            "timing_containment": timing_containment_passes(timing, manifest["tolerance_contract"]["reporting"]),
+        }
+    except (KeyError, TypeError, ValueError, json.JSONDecodeError) as error:
+        return {"run_id": condition.run_id, "state": "PARTIAL", "reason": f"invalid completion artifact: {error}"}
+    failed = [name for name, passed in valid.items() if not passed]
+    if failed:
+        return {"run_id": condition.run_id, "state": "PARTIAL", "reason": f"completion validation failed: {','.join(failed)}"}
+    return {"run_id": condition.run_id, "state": "COMPLETED", "reason": None}
+
+
 def validate_execution_gate(condition: Condition, output_root: Path = RESULT_ROOT) -> tuple[dict, dict[str, str]]:
     manifest = load_manifest()
     validate_manifest(manifest)
-    if manifest["formal_run_authorized"] is not True:
-        raise PermissionError("E7_FORMAL_RUN_NOT_AUTHORIZED")
+    validate_authorization_record(manifest)
     audit = json.loads(STATIC_AUDIT.read_text(encoding="utf-8"))
-    if audit["status"] != "E7_PROTOCOL_STATIC_AUDIT_PASS" or audit["manifest_sha256"] != sha256(MANIFEST):
-        raise RuntimeError("E7 static audit/config identity mismatch")
+    if audit["status"] != "E7_PROTOCOL_STATIC_AUDIT_PASS":
+        raise RuntimeError("E7 preauthorization static audit failed")
     if condition.run_id not in manifest["planned_run_ids"] or output_root.resolve() != RESULT_ROOT.resolve():
         raise PermissionError("E7 condition or result namespace is outside the frozen protocol")
     if subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT).strip():
@@ -445,14 +537,19 @@ def build_reused_result(condition: Condition, manifest: dict, identity: dict, so
 
 
 def build_new_result(condition: Condition, manifest: dict, identity: dict, instance, x0, x0_artifact, timing: dict) -> tuple[dict, dict]:
+    print(f"[{condition.run_id}] stage=core_prb started", flush=True)
     solved = solve_prb_benders(instance, x0, manifest["B_ref_by_case"][condition.case], condition.gamma, condition.lambda_r)
     timing["t_core_prb_seconds"] = max(0.0, solved.total_runtime - solved.certification_runtime)
     timing["t_exact_certification_seconds"] = solved.certification_runtime
+    print(f"[{condition.run_id}] stage=core_prb finished seconds={timing['t_core_prb_seconds']:.6f}", flush=True)
+    print(f"[{condition.run_id}] stage=exact_certification finished seconds={timing['t_exact_certification_seconds']:.6f}", flush=True)
     if solved.status != "OPTIMAL" or not solved.exact_certification_pass:
         raise RuntimeError("E7 PRB solve is not exactly certified")
     started = perf_counter()
+    print(f"[{condition.run_id}] stage=post_evaluation started", flush=True)
     service, reporting_diagnostic = evaluate_e4_service(instance, solved.solution.x, condition.gamma)
     timing["t_post_evaluation_seconds"] = perf_counter() - started
+    print(f"[{condition.run_id}] stage=post_evaluation finished seconds={timing['t_post_evaluation_seconds']:.6f}", flush=True)
     started = perf_counter()
     fixed = sum(instance.fixed_depot_cost[i] * solved.solution.y[i] for i in range(instance.num_depots))
     inventory = sum(instance.inventory_cost[i][j] * solved.solution.x[i][j] for i in range(instance.num_depots) for j in range(instance.num_products))
@@ -526,14 +623,18 @@ def write_run(result: dict, first_stage, timing: dict, total_started: float, out
         provenance = {
             "run_id": result["run_id"], "git_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
             "runner_sha256": sha256(Path(__file__)), "manifest_sha256": sha256(MANIFEST),
+            "authorization_record_sha256": sha256(AUTHORIZATION_RECORD),
             "result_sha256": sha256(result_path), "first_stage_solution_sha256": sha256(solution_path),
             "reused": result["reused"], "reuse_source_run": result["reuse_source_run"],
             "timing_semantics": "monotonic stage timers; final provenance serialization and atomic rename excluded",
+            "completion_status": "COMPLETED",
         }
         (temporary / "provenance.json").write_text(json.dumps(provenance, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         if target.exists():
             raise FileExistsError(f"refusing to overwrite {result['run_id']}")
         os.replace(temporary, target)
+        print(f"[{result['run_id']}] stage=artifact_write finished", flush=True)
+        print(f"[{result['run_id']}] total_runner_wallclock={timing['t_total_runner_wallclock_seconds']:.6f}", flush=True)
     except Exception:
         shutil.rmtree(temporary, ignore_errors=True)
         raise
@@ -541,6 +642,7 @@ def write_run(result: dict, first_stage, timing: dict, total_started: float, out
 
 def execute(condition: Condition) -> None:
     total_started = perf_counter()
+    print(f"[{condition.run_id}] execution started", flush=True)
     manifest, identity = validate_execution_gate(condition)
     timing = {field: 0.0 for field in manifest["timing_fields"]}
     started = perf_counter()
@@ -550,11 +652,13 @@ def execute(condition: Condition) -> None:
     timing["t_instance_load_seconds"] = perf_counter() - started
     started = perf_counter()
     row = next(item for item in build_reuse_plan(manifest) if item["run_id"] == condition.run_id)
+    print(f"[{condition.run_id}] classification={row['classification']}", flush=True)
     source = None
     if row["classification"] == "REUSE":
         source = next(item for item in discover_source_candidates()[(condition.case, condition.gamma_token, condition.lambda_token)] if item["run_id"] == row["selected_source_run"])
     timing["t_reuse_validation_seconds"] = perf_counter() - started
     if source:
+        print(f"[{condition.run_id}] timing_provenance=reused_historical; unavailable stages recorded as zero", flush=True)
         started = perf_counter()
         result, artifact = build_reused_result(condition, manifest, identity, source, instance, x0)
         timing["t_reporting_seconds"] = perf_counter() - started
@@ -566,6 +670,7 @@ def execute(condition: Condition) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run or audit the frozen E7 risk-friction interaction")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--status-only", action="store_true")
     parser.add_argument("--case", choices=CASES)
     parser.add_argument("--gamma-token")
     parser.add_argument("--lambda-token")
@@ -577,7 +682,17 @@ def main() -> None:
         return
     if not all((args.case, args.gamma_token, args.lambda_token)):
         parser.error("formal execution requires case, Gamma token, and lambda token")
-    execute(Condition(args.case, parse_gamma_token(args.gamma_token), parse_lambda_token(args.lambda_token)))
+    condition = Condition(args.case, parse_gamma_token(args.gamma_token), parse_lambda_token(args.lambda_token))
+    if args.status_only:
+        manifest = load_manifest()
+        validate_manifest(manifest)
+        validate_authorization_record(manifest)
+        status = classify_output_state(condition, manifest)
+        print(json.dumps(status))
+        if status["state"] == "PARTIAL":
+            raise SystemExit(2)
+        return
+    execute(condition)
 
 
 if __name__ == "__main__":
