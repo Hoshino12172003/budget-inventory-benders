@@ -83,6 +83,9 @@ artifacts/*
 !artifacts/e6_table_budget_risk_interaction_case_level.csv
 !artifacts/e6_table_budget_risk_interaction_aggregate.csv
 !artifacts/e6_table_interaction_contrasts.csv
+!artifacts/e6_table_depot_response.csv
+!artifacts/e6_runtime_accounting_audit.csv
+!artifacts/e6_final_result_audit.json
 !artifacts/fig_e6_ri_interaction.png
 !artifacts/fig_e6_ri_interaction.pdf
 !artifacts/fig_e6_normalized_objective_interaction.png
@@ -91,6 +94,12 @@ artifacts/*
 !artifacts/fig_e6_budget_utilization_heatmap.pdf
 !artifacts/fig_e6_material_reconfiguration_heatmap.png
 !artifacts/fig_e6_material_reconfiguration_heatmap.pdf
+!artifacts/fig_e6_material_cases_heatmap.png
+!artifacts/fig_e6_material_cases_heatmap.pdf
+!artifacts/fig_e6_active_depot_change_heatmap.png
+!artifacts/fig_e6_active_depot_change_heatmap.pdf
+!artifacts/fig_e6_case_level_ri_trajectories.png
+!artifacts/fig_e6_case_level_ri_trajectories.pdf
 !artifacts/e4_final_result_audit.json
 !artifacts/e4_210330_g3_global_coupling_audit.json
 !artifacts/e4_table_gamma_sensitivity_case_level.csv

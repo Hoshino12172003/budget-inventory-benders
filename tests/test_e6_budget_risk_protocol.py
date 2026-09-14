@@ -8,7 +8,6 @@ from pathlib import Path
 import pytest
 
 import experiments.run_e6_budget_risk_local as runner
-from scripts.audit_e6_budget_risk_protocol import build_audit
 from scripts.summarize_e6_budget_risk_results import interaction_contrast_for_case
 
 
@@ -202,8 +201,9 @@ def test_static_preflight_passes_without_optimization() -> None:
     assert all(row["optimization_executed"] is False for row in checks)
 
 
-def test_static_audit_passes_and_reports_zero_solves() -> None:
-    reuse, audit = build_audit()
+def test_frozen_preexecution_static_audit_reports_zero_solves() -> None:
+    reuse = json.loads((ROOT / "artifacts/e6_reuse_plan.json").read_text(encoding="utf-8"))
+    audit = json.loads((ROOT / "artifacts/e6_static_audit.json").read_text(encoding="utf-8"))
     assert audit["status"] == "E6_PROTOCOL_STATIC_AUDIT_PASS"
     assert (audit["total_conditions"], audit["reusable_conditions"], audit["new_solve_conditions"]) == (72, 40, 32)
     assert reuse["reuse_parameter_cells"] == ["B080-G2", "B100-G0", "B100-G2", "B100-G4", "B120-G2"]
@@ -213,14 +213,15 @@ def test_static_audit_passes_and_reports_zero_solves() -> None:
     assert audit["checks"]["authorization_scope_E6_only"] is True
 
 
-def test_future_reporting_outputs_are_not_fabricated() -> None:
+def test_completed_reporting_outputs_exist() -> None:
     for name in (
         "e6_table_budget_risk_interaction_case_level.csv",
         "e6_table_budget_risk_interaction_aggregate.csv",
         "e6_table_interaction_contrasts.csv",
         "fig_e6_ri_interaction.png",
+        "fig_e6_material_cases_heatmap.png",
     ):
-        assert not (ROOT / "artifacts" / name).exists()
+        assert (ROOT / "artifacts" / name).is_file()
 
 
 @pytest.mark.parametrize(
