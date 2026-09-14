@@ -25,6 +25,7 @@ experiments/results/e6_budget_risk_interaction_v1/
 experiments/results/e7_risk_friction_interaction_v1/
 e4_gamma_sensitivity_v1.zip
 e5_reconfiguration_friction_v1.zip
+e6_full_review_package.zip
 artifacts/*
 !artifacts/.gitkeep
 !artifacts/x0_audit/
