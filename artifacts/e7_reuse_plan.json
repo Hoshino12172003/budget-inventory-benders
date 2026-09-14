@@ -1,0 +1,1088 @@
+{
+  "conditions": [
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210202",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210202-G0-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210202",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210202-G0-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210202-G0",
+      "source_candidates": [
+        "E4-210202-G0"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210202",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210202-G0-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210202",
+      "classification": "REUSE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210202-G2-L0025",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210202-L0025",
+      "source_candidates": [
+        "E5-210202-L0025"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210202",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": {
+        "condition": true,
+        "economic_identity": true,
+        "solution_identity": true,
+        "source_set": true
+      },
+      "run_id": "E7-210202-G2-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210202-G2",
+      "source_candidates": [
+        "E4-210202-G2",
+        "E5-210202-L0500"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210202",
+      "classification": "REUSE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210202-G2-L2000",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210202-L2000",
+      "source_candidates": [
+        "E5-210202-L2000"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210202",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210202-G4-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210202",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210202-G4-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210202-G4",
+      "source_candidates": [
+        "E4-210202-G4"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210202",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210202-G4-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210628",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210628-G0-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210628",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210628-G0-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210628-G0",
+      "source_candidates": [
+        "E4-210628-G0"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210628",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210628-G0-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210628",
+      "classification": "REUSE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210628-G2-L0025",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210628-L0025",
+      "source_candidates": [
+        "E5-210628-L0025"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210628",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": {
+        "condition": true,
+        "economic_identity": true,
+        "solution_identity": true,
+        "source_set": true
+      },
+      "run_id": "E7-210628-G2-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210628-G2",
+      "source_candidates": [
+        "E4-210628-G2",
+        "E5-210628-L0500"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210628",
+      "classification": "REUSE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210628-G2-L2000",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210628-L2000",
+      "source_candidates": [
+        "E5-210628-L2000"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210628",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210628-G4-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210628",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210628-G4-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210628-G4",
+      "source_candidates": [
+        "E4-210628-G4"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210628",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210628-G4-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210129",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210129-G0-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210129",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210129-G0-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210129-G0",
+      "source_candidates": [
+        "E4-210129-G0"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210129",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210129-G0-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210129",
+      "classification": "REUSE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210129-G2-L0025",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210129-L0025",
+      "source_candidates": [
+        "E5-210129-L0025"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210129",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": {
+        "condition": true,
+        "economic_identity": true,
+        "solution_identity": true,
+        "source_set": true
+      },
+      "run_id": "E7-210129-G2-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210129-G2",
+      "source_candidates": [
+        "E4-210129-G2",
+        "E5-210129-L0500"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210129",
+      "classification": "REUSE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210129-G2-L2000",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210129-L2000",
+      "source_candidates": [
+        "E5-210129-L2000"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210129",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210129-G4-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210129",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210129-G4-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210129-G4",
+      "source_candidates": [
+        "E4-210129-G4"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210129",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210129-G4-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210310",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210310-G0-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210310",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210310-G0-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210310-G0",
+      "source_candidates": [
+        "E4-210310-G0"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210310",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210310-G0-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210310",
+      "classification": "REUSE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210310-G2-L0025",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210310-L0025",
+      "source_candidates": [
+        "E5-210310-L0025"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210310",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": {
+        "condition": true,
+        "economic_identity": true,
+        "solution_identity": true,
+        "source_set": true
+      },
+      "run_id": "E7-210310-G2-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210310-G2",
+      "source_candidates": [
+        "E4-210310-G2",
+        "E5-210310-L0500"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210310",
+      "classification": "REUSE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210310-G2-L2000",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210310-L2000",
+      "source_candidates": [
+        "E5-210310-L2000"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210310",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210310-G4-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210310",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210310-G4-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210310-G4",
+      "source_candidates": [
+        "E4-210310-G4"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210310",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210310-G4-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210330",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210330-G0-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210330",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210330-G0-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210330-G0",
+      "source_candidates": [
+        "E4-210330-G0"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210330",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210330-G0-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210330",
+      "classification": "REUSE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210330-G2-L0025",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210330-L0025",
+      "source_candidates": [
+        "E5-210330-L0025"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210330",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": {
+        "condition": true,
+        "economic_identity": true,
+        "solution_identity": true,
+        "source_set": true
+      },
+      "run_id": "E7-210330-G2-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210330-G2",
+      "source_candidates": [
+        "E4-210330-G2",
+        "E5-210330-L0500"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210330",
+      "classification": "REUSE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210330-G2-L2000",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210330-L2000",
+      "source_candidates": [
+        "E5-210330-L2000"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210330",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210330-G4-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210330",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210330-G4-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210330-G4",
+      "source_candidates": [
+        "E4-210330-G4"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210330",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210330-G4-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210323",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210323-G0-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210323",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210323-G0-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210323-G0",
+      "source_candidates": [
+        "E4-210323-G0"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210323",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210323-G0-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210323",
+      "classification": "REUSE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210323-G2-L0025",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210323-L0025",
+      "source_candidates": [
+        "E5-210323-L0025"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210323",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": {
+        "condition": true,
+        "economic_identity": true,
+        "solution_identity": true,
+        "source_set": true
+      },
+      "run_id": "E7-210323-G2-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210323-G2",
+      "source_candidates": [
+        "E4-210323-G2",
+        "E5-210323-L0500"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210323",
+      "classification": "REUSE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210323-G2-L2000",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210323-L2000",
+      "source_candidates": [
+        "E5-210323-L2000"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210323",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210323-G4-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210323",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210323-G4-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210323-G4",
+      "source_candidates": [
+        "E4-210323-G4"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210323",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210323-G4-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210428",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210428-G0-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210428",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210428-G0-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210428-G0",
+      "source_candidates": [
+        "E4-210428-G0"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210428",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210428-G0-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210428",
+      "classification": "REUSE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210428-G2-L0025",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210428-L0025",
+      "source_candidates": [
+        "E5-210428-L0025"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210428",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": {
+        "condition": true,
+        "economic_identity": true,
+        "solution_identity": true,
+        "source_set": true
+      },
+      "run_id": "E7-210428-G2-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210428-G2",
+      "source_candidates": [
+        "E4-210428-G2",
+        "E5-210428-L0500"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210428",
+      "classification": "REUSE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210428-G2-L2000",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210428-L2000",
+      "source_candidates": [
+        "E5-210428-L2000"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210428",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210428-G4-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210428",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210428-G4-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210428-G4",
+      "source_candidates": [
+        "E4-210428-G4"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210428",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210428-G4-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210611",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210611-G0-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210611",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210611-G0-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210611-G0",
+      "source_candidates": [
+        "E4-210611-G0"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "case": "210611",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210611-G0-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210611",
+      "classification": "REUSE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210611-G2-L0025",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210611-L0025",
+      "source_candidates": [
+        "E5-210611-L0025"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210611",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": {
+        "condition": true,
+        "economic_identity": true,
+        "solution_identity": true,
+        "source_set": true
+      },
+      "run_id": "E7-210611-G2-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210611-G2",
+      "source_candidates": [
+        "E4-210611-G2",
+        "E5-210611-L0500"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "case": "210611",
+      "classification": "REUSE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210611-G2-L2000",
+      "selected_source_experiment": "E5",
+      "selected_source_run": "E5-210611-L2000",
+      "source_candidates": [
+        "E5-210611-L2000"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210611",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.0025,
+      "lambda_token": "L0025",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210611-G4-L0025",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210611",
+      "classification": "REUSE",
+      "lambda_R": 0.05,
+      "lambda_token": "L0500",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210611-G4-L0500",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210611-G4",
+      "source_candidates": [
+        "E4-210611-G4"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "case": "210611",
+      "classification": "NEW_SOLVE",
+      "lambda_R": 0.2,
+      "lambda_token": "L2000",
+      "overlap_identity_checks": null,
+      "run_id": "E7-210611-G4-L2000",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    }
+  ],
+  "expected_reuse_parameter_cells_from_source_design": [
+    "G0-L0500",
+    "G2-L0025",
+    "G2-L0500",
+    "G2-L2000",
+    "G4-L0500"
+  ],
+  "new_solve_conditions": 32,
+  "overlap_policy": "validate E4/E5 G2-L0500 identity, select E4 once, retain E5 corroboration",
+  "reusable_conditions": 40,
+  "reuse_parameter_cells": [
+    "G0-L0500",
+    "G2-L0025",
+    "G2-L0500",
+    "G2-L2000",
+    "G4-L0500"
+  ],
+  "schema": "e7_reuse_plan_v1",
+  "status": "PASS",
+  "total_conditions": 72
+}

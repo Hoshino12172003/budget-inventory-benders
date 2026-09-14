@@ -22,6 +22,7 @@ experiments/results/e3_budget_sensitivity_v1.zip
 experiments/results/e4_gamma_sensitivity_v1/
 experiments/results/e5_reconfiguration_friction_v1/
 experiments/results/e6_budget_risk_interaction_v1/
+experiments/results/e7_risk_friction_interaction_v1/
 e4_gamma_sensitivity_v1.zip
 e5_reconfiguration_friction_v1.zip
 artifacts/*
@@ -80,6 +81,8 @@ artifacts/*
 !artifacts/fig_e5_recourse_vs_lambda.pdf
 !artifacts/e6_reuse_plan.json
 !artifacts/e6_static_audit.json
+!artifacts/e7_reuse_plan.json
+!artifacts/e7_static_audit.json
 !artifacts/e6_table_budget_risk_interaction_case_level.csv
 !artifacts/e6_table_budget_risk_interaction_aggregate.csv
 !artifacts/e6_table_interaction_contrasts.csv
