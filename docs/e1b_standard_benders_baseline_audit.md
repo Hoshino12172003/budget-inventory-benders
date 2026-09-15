@@ -26,10 +26,19 @@ names and public solver signature in addition to numerical validity checks.
 
 The eight frozen E1a PRB results contain adequate comparable core timings and
 component timings, so a timing-only PRB rerun is not required. All eight record
-Gurobi `13.0.2` on the same hardware identity. The currently attached Python
-environment reports Gurobi `13.0.1`; therefore formal authorization remains
-false and the runner enforces `13.0.2` before any Standard solve. This is an
-environment readiness condition, not a mathematical or implementation defect.
+Gurobi `13.0.2` on the same hardware identity. Execution-readiness was
+revalidated with
+`C:\Users\Hu Jiaxin\Documents\Codex\2026-07-07\z\work\paper-code\.venv\Scripts\python.exe`.
+That runner context imports `gurobipy 13.0.2`, native Gurobi `(13, 0, 2)`, from
+the environment's `Lib\site-packages\gurobipy\__init__.py`. The earlier
+`13.0.1` observation came from the unrelated system-Python executable and is
+not an E1b execution blocker.
+
+Audit-only revalidation also reconfirmed all eight immutable E1a PRB result
+hashes, objectives, core-runtime fields, and exact-certification statuses. The
+dataset identity, mapping hash, instance hash, x0 hash, calibration/B_ref hash,
+Gamma, beta, lambda_R, tolerance, thread/seed convention, and solver profile
+pass for 8/8 cases. No formal optimization was invoked.
 
 ## Verification scope
 
@@ -42,10 +51,8 @@ identity. No Renault E1b optimization was executed.
 
 ## Execution decision
 
-The mathematical baseline and implementation are ready. Formal execution is
-not yet authorized and must use the frozen `13.0.2` solver environment. After an
-explicit authorization patch in that environment, the eight Standard runs may
-proceed. Until then the operational classification is
-`E1B_STANDARD_BENDERS_BLOCKED` with blockers `FORMAL_AUTHORIZATION_FALSE` and
-`SOLVER_VERSION_13.0.2_REQUIRED`.
-
+The mathematical baseline, implementation, identities, environment, and timing
+contract are ready for authorization. Formal execution remains disabled by
+`formal_run_authorized = false`; this is the intended authorization boundary,
+not an execution-readiness defect. The readiness classification is
+`E1B_READY_FOR_AUTHORIZATION`.
