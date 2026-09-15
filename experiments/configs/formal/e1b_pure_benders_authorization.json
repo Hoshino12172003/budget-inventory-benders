@@ -2,7 +2,7 @@
   "schema": "e1b_pure_benders_authorization_v1",
   "experiment_id": "E1b-Pure",
   "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
-  "formal_run_authorized": false,
+  "formal_run_authorized": true,
   "authorized_pure_run_ids": [
     "E1B-210129-PURE",
     "E1B-210202-PURE",

@@ -19,10 +19,10 @@ def manifest() -> dict:
     return json.loads(runner.AUTHORIZATION.read_text(encoding="utf-8"))
 
 
-def test_pure_grid_is_frozen_but_not_authorized(manifest) -> None:
+def test_pure_grid_is_frozen_and_authorized(manifest) -> None:
     assert set(manifest["authorized_pure_run_ids"]) == {f"E1B-{case}-PURE" for case in CASES}
     assert manifest["case_ids"] == list(CASES)
-    assert manifest["formal_run_authorized"] is False
+    assert manifest["formal_run_authorized"] is True
     assert manifest["parameters"] == {"Gamma": 2, "beta": 1.0, "lambda_R": 0.05}
     assert manifest["controlled_scaling_authorized"] is False
     assert manifest["e1a_rerun_authorized"] is False
@@ -30,7 +30,11 @@ def test_pure_grid_is_frozen_but_not_authorized(manifest) -> None:
     assert manifest["e2_e7_modification_authorized"] is False
 
 
-def test_runner_fails_closed_before_solver_call(monkeypatch, tmp_path) -> None:
+def test_runner_fails_closed_before_solver_call(manifest, monkeypatch, tmp_path) -> None:
+    unauthorized = {**manifest, "formal_run_authorized": False}
+    authorization = tmp_path / "authorization.json"
+    authorization.write_text(json.dumps(unauthorized), encoding="utf-8")
+    monkeypatch.setattr(runner, "AUTHORIZATION", authorization)
     monkeypatch.setattr(
         runner,
         "solve_pure_benders",
