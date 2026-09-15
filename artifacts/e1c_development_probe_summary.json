@@ -1,0 +1,61 @@
+{
+  "schema": "e1c_development_probe_summary_v1",
+  "status": "E1C_DEVELOPMENT_RESOURCE_BLOCKED",
+  "development_only": true,
+  "paper_final_observation": false,
+  "formal_run_authorized": false,
+  "development_probe_authorized": true,
+  "probe_execution_started": false,
+  "preflight": {
+    "machine_total_memory_gib": 31.49742889404297,
+    "available_memory_gib_samples": [
+      15.330291748046875,
+      15.325942993164062,
+      15.327316284179688
+    ],
+    "minimum_available_memory_gib": 24,
+    "process_memory_hard_stop_gib": 22,
+    "pass": false,
+    "blocker": "AVAILABLE_MEMORY_BELOW_FROZEN_24_GIB_PREFLIGHT_GATE"
+  },
+  "authorized_scope_requested": {
+    "seed": 20260911,
+    "Gamma": 2,
+    "timeout_seconds": 900,
+    "method_order": [
+      "pure_benders",
+      "prb_benders",
+      "aggregate_benders_structured_oracle",
+      "direct_exact"
+    ],
+    "instances": [
+      {"scale": "L", "I": 25, "R": 24, "J": 12},
+      {"scale": "XL_low", "I": 30, "R": 30, "J": 14}
+    ]
+  },
+  "probe_results": [
+    {"scale": "L", "method": "pure_benders", "status": "NOT_RUN_RESOURCE_PREFLIGHT_BLOCK"},
+    {"scale": "L", "method": "prb_benders", "status": "NOT_RUN_RESOURCE_PREFLIGHT_BLOCK"},
+    {"scale": "L", "method": "aggregate_benders_structured_oracle", "status": "NOT_RUN_RESOURCE_PREFLIGHT_BLOCK"},
+    {"scale": "L", "method": "direct_exact", "status": "NOT_RUN_RESOURCE_PREFLIGHT_BLOCK"},
+    {"scale": "XL_low", "method": "pure_benders", "status": "NOT_RUN_RESOURCE_PREFLIGHT_BLOCK"},
+    {"scale": "XL_low", "method": "prb_benders", "status": "NOT_RUN_RESOURCE_PREFLIGHT_BLOCK"},
+    {"scale": "XL_low", "method": "aggregate_benders_structured_oracle", "status": "NOT_RUN_RESOURCE_PREFLIGHT_BLOCK"},
+    {"scale": "XL_low", "method": "direct_exact", "status": "NOT_RUN_RESOURCE_PREFLIGHT_BLOCK"}
+  ],
+  "questions_resolved": {
+    "L_trivially_easy": null,
+    "XL_low_safe_under_cap": null,
+    "Pure_and_PRB_invocable_at_both_scales": null,
+    "scale_separation_sufficient": null
+  },
+  "recommendation_pending_probe": {
+    "scale_grid": ["S", "M", "L"],
+    "include_XL": false,
+    "replicates": 5,
+    "estimated_formal_run_count": 60,
+    "freeze_status": "NOT_FROZEN_RESOURCE_EVIDENCE_MISSING"
+  },
+  "formal_optimization_runs": 0,
+  "development_optimization_runs": 0
+}

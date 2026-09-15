@@ -1,0 +1,28 @@
+{
+  "schema": "e1c_development_probe_authorization_v1",
+  "development_probe_authorized": true,
+  "formal_run_authorized": false,
+  "development_only": true,
+  "paper_final_observation": false,
+  "seed": 20260911,
+  "Gamma": 2,
+  "timeout_seconds_per_method": 900,
+  "process_memory_hard_stop_gib": 22,
+  "minimum_available_memory_gib_before_launch": 24,
+  "method_order": [
+    "pure_benders",
+    "prb_benders",
+    "aggregate_benders_structured_oracle",
+    "direct_exact"
+  ],
+  "authorized_instances": [
+    {"scale": "L", "I": 25, "R": 24, "J": 12},
+    {"scale": "XL_low", "I": 30, "R": 30, "J": 14}
+  ],
+  "result_root": "experiments/results/e1c_development_probe_v1",
+  "overwrite_allowed": false,
+  "other_seeds_authorized": false,
+  "other_scales_authorized": false,
+  "formal_reporting_ingestion": false,
+  "execution_status": "RESOURCE_PREFLIGHT_BLOCKED"
+}

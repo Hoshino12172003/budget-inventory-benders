@@ -104,8 +104,8 @@
     "status": "PROPOSAL_ONLY_NOT_AUTHORIZED",
     "seed": 20260911,
     "scale_replicates": [
-      {"scale": "L", "I": 25, "R": 24, "J": 12, "method_order": ["direct_exact", "aggregate_benders_structured_oracle", "prb_benders", "pure_benders"]},
-      {"scale": "XL_low", "I": 30, "R": 30, "J": 14, "method_order": ["direct_exact", "aggregate_benders_structured_oracle", "prb_benders", "pure_benders"], "requires_explicit_gate_exception_authorization": true}
+      {"scale": "L", "I": 25, "R": 24, "J": 12, "method_order": ["pure_benders", "prb_benders", "aggregate_benders_structured_oracle", "direct_exact"]},
+      {"scale": "XL_low", "I": 30, "R": 30, "J": 14, "method_order": ["pure_benders", "prb_benders", "aggregate_benders_structured_oracle", "direct_exact"], "requires_explicit_gate_exception_authorization": true}
     ],
     "timeout_seconds": 900,
     "process_memory_stop_gib": 22,

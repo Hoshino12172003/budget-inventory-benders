@@ -18,6 +18,7 @@ Thumbs.db
 experiments/results/e1_empirical_8case_v1/
 experiments/results/e1b_standard_vs_prb_v1/
 experiments/results/e1b_pure_benders_v1/
+experiments/results/e1c_development_probe_v1/
 /E1b_standard_vs_prb_v1.zip
 experiments/results/e2_existing_nominal_robust_v1/
 experiments/results/e3_budget_sensitivity_v1/
@@ -62,6 +63,7 @@ artifacts/*
 !artifacts/prb_correctness_contract_summary.json
 !artifacts/e1_objective_mismatch_audit_210310_210330.json
 !artifacts/e1_210330_global_coupling_audit.json
+!artifacts/e1c_development_probe_summary.json
 !artifacts/e1_empirical_performance_summary.json
 !artifacts/e2_protocol_static_audit.json
 !artifacts/e2_policy_contrast_summary.csv
