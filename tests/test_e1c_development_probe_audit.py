@@ -47,7 +47,14 @@ def test_authorization_is_narrow_and_development_only() -> None:
         {"scale": "L", "I": 25, "R": 24, "J": 12},
         {"scale": "XL_low", "I": 30, "R": 30, "J": 14},
     ]
-    assert authorization["execution_status"] == "RESOURCE_PREFLIGHT_BLOCKED"
+    assert authorization["minimum_available_memory_gib_before_launch"] == 18
+    assert authorization["process_memory_hard_stop_gib"] == 14
+    assert authorization["system_available_memory_emergency_stop_gib"] == 3
+    assert authorization["memory_poll_interval_seconds_max"] <= 0.5
+    assert authorization["preflight_consecutive_samples"] == 3
+    assert authorization["execution_status"] == (
+        "AUTHORIZED_PENDING_REVISED_MEMORY_PREFLIGHT"
+    )
 
 
 def test_pending_recommendation_does_not_freeze_xl_or_ten_replicates() -> None:

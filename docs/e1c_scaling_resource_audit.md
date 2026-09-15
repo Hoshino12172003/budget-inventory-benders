@@ -68,8 +68,14 @@ an out-of-memory regime.
 
 Before any future run, all conditions must hold:
 
-- at least 24 GiB system memory is available;
+- at least 18 GiB system memory is available in three consecutive preflight
+  samples and immediately before each method launch;
 - only one E1c process runs at a time;
+- the complete solver process tree has a 14-GiB hard stop;
+- the monitor also stops the process tree if system available memory reaches
+  3 GiB, whichever condition occurs first;
+- process-tree resident memory and Windows private committed memory are sampled
+  at intervals no longer than 0.5 seconds;
 - projected Direct variables do not exceed 3,000,000;
 - product-risk blocks do not exceed 4,000;
 - Pure adversarial variables/constraints do not exceed 10,000/100,000;
@@ -80,6 +86,46 @@ Before any future run, all conditions must hold:
 Failure excludes the complete scale-method block before execution; it never
 grants one algorithm a different timeout or machine. An OS memory failure is
 recorded, not retried with a scientifically different configuration.
+
+### Memory-gate revision for the 31.5-GiB host
+
+The former 24-GiB preflight threshold was not operationally attainable: the
+user observed about 19.15 GiB free after reboot and cleanup. It was therefore
+overly conservative for this host rather than evidence that the two model
+sizes were unsafe.
+
+Two replacement candidates were audited without constructing or solving a
+model:
+
+| Candidate | Start available | Process stop | Minimum nominal reserve | Decision |
+|---|---:|---:|---:|---|
+| A | 18 GiB | 14 GiB | 4 GiB | RECOMMENDED |
+| B | 18 GiB | 16 GiB | 2 GiB | REJECTED |
+
+The reserve is `start available - process stop`; it is a conservative lower
+bound, not a prediction of peak usage. Candidate B leaves too little room for
+Windows services, filesystem cache, security software, unrelated foreground
+activity, short-lived native allocations, and monitor latency. Candidate A
+retains approximately 4 GiB at the process cap and adds a 3-GiB system
+available-memory stop, leaving about 1 GiB between the nominal reserve and the
+emergency floor. The monitor must account for the entire process tree and use
+the larger of resident and private committed measurements where supported;
+monitoring only Python heap allocations is insufficient because Gurobi uses
+native memory.
+
+This gate permits L and XL-low to be attempted as isolated development probes
+when the actual launch preflight passes. It does not declare either instance
+safe in advance. L remains within the static construction caps. XL-low remains
+above the Direct/product-block caps, so Pure, PRB, and Aggregate Structured may
+be attempted sequentially; Direct must either pass an independently reviewed
+memory estimate or return `SAFE_CONSTRUCTION_BLOCKED` before allocation. A
+`RESOURCE_STOP` is a valid probe outcome and must not be retried with a looser
+cap.
+
+The static variable/block caps continue to govern formal common-scale
+eligibility. The revised memory gate only permits isolated development
+measurement below the hard stop; it does not waive those caps or admit XL-low
+to the formal grid.
 
 ## Timeout
 
@@ -126,7 +172,7 @@ All counts below use fixed Gamma 2:
 The Pure global MILP remains modest across this box; the risk comes from the
 explicit Direct and structured product-risk constructions. No XL anchor is
 currently formal-grid eligible. XL-low is the only proposed development probe,
-and only with explicit authorization, process isolation, a 22-GiB memory stop,
+and only with explicit authorization, process isolation, a 14-GiB memory stop,
 and the unchanged 900-second wall guard.
 
 ## Probe and freeze policy

@@ -7,8 +7,15 @@
   "seed": 20260911,
   "Gamma": 2,
   "timeout_seconds_per_method": 900,
-  "process_memory_hard_stop_gib": 22,
-  "minimum_available_memory_gib_before_launch": 24,
+  "process_memory_hard_stop_gib": 14,
+  "minimum_available_memory_gib_before_launch": 18,
+  "preflight_consecutive_samples": 3,
+  "preflight_recheck_immediately_before_each_method": true,
+  "system_available_memory_emergency_stop_gib": 3,
+  "memory_poll_interval_seconds_max": 0.5,
+  "memory_measurement": "process_tree_max_of_resident_and_private_committed_memory_where_supported",
+  "memory_gate_candidate": "A_18_GIB_PREFLIGHT_14_GIB_PROCESS_STOP",
+  "rejected_memory_gate_candidate": "B_18_GIB_PREFLIGHT_16_GIB_PROCESS_STOP_INSUFFICIENT_SYSTEM_RESERVE",
   "method_order": [
     "pure_benders",
     "prb_benders",
@@ -24,5 +31,5 @@
   "other_seeds_authorized": false,
   "other_scales_authorized": false,
   "formal_reporting_ingestion": false,
-  "execution_status": "RESOURCE_PREFLIGHT_BLOCKED"
+  "execution_status": "AUTHORIZED_PENDING_REVISED_MEMORY_PREFLIGHT"
 }
