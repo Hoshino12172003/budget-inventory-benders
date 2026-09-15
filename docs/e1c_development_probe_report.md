@@ -2,7 +2,14 @@
 
 ## Status
 
-`E1C_MEMORY_GATE_REVISED`
+`E1C_DEVELOPMENT_RESOURCE_BLOCKED`
+
+The subsequently authorized execution attempt on runner commit `c7af506` was
+blocked by that revised gate before the first L preparation: the runner
+measured 17.726021 GiB available against the unchanged 18-GiB threshold. The
+isolated result root contains only a machine-readable `BLOCKED` summary with
+zero completed top-level runs. No development instance, nominal baseline, or
+solver model was created.
 
 The two requested probes did not start. Before instance preparation or any
 solver call, the frozen resource gate required at least 24 GiB available system
@@ -85,3 +92,4 @@ estimate. These are pending recommendations, not a formal freeze.
 - nominal-baseline preparation runs: 0
 - primary paper-final artifacts overwritten: false
 - memory-gate audit optimization runs: 0
+- latest authorized probe optimization runs: 0

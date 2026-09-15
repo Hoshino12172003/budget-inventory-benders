@@ -52,9 +52,7 @@ def test_authorization_is_narrow_and_development_only() -> None:
     assert authorization["system_available_memory_emergency_stop_gib"] == 3
     assert authorization["memory_poll_interval_seconds_max"] <= 0.5
     assert authorization["preflight_consecutive_samples"] == 3
-    assert authorization["execution_status"] == (
-        "AUTHORIZED_PENDING_REVISED_MEMORY_PREFLIGHT"
-    )
+    assert authorization["execution_status"] == "AUTHORIZED_RESOURCE_PREFLIGHT_BLOCKED"
 
 
 def test_pending_recommendation_does_not_freeze_xl_or_ten_replicates() -> None:

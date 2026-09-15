@@ -6,6 +6,16 @@
   "formal_run_authorized": false,
   "development_probe_authorized": true,
   "probe_execution_started": false,
+  "latest_authorized_attempt": {
+    "runner_commit": "c7af506f644aa95f4e31fc4807aff177c5074f6b",
+    "status": "RESOURCE_PREFLIGHT_BLOCKED",
+    "measured_available_memory_gib": 17.72602081298828,
+    "required_available_memory_gib": 18,
+    "instance_generation_started": false,
+    "nominal_baseline_started": false,
+    "solver_called": false,
+    "development_top_level_runs": 0
+  },
   "preflight": {
     "machine_total_memory_gib": 31.49742889404297,
     "available_memory_gib_samples": [

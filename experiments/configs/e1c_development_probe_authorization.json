@@ -31,5 +31,5 @@
   "other_seeds_authorized": false,
   "other_scales_authorized": false,
   "formal_reporting_ingestion": false,
-  "execution_status": "AUTHORIZED_PENDING_REVISED_MEMORY_PREFLIGHT"
+  "execution_status": "AUTHORIZED_RESOURCE_PREFLIGHT_BLOCKED"
 }
