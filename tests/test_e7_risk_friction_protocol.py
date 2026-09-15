@@ -234,6 +234,6 @@ def test_static_audit_passes_without_results_or_solves() -> None:
     assert audit["formal_run_authorized"] is False
 
 
-def test_future_reporting_outputs_do_not_exist(manifest: dict) -> None:
-    assert not any((ROOT / path).exists() for path in manifest["future_tables"])
-    assert not any((ROOT / f"{stem}.{suffix}").exists() for stem in manifest["future_figures"] for suffix in ("png", "pdf"))
+def test_authorized_reporting_paths_now_contain_final_outputs(manifest: dict) -> None:
+    assert all((ROOT / path).is_file() for path in manifest["future_tables"])
+    assert all((ROOT / f"{stem}.{suffix}").is_file() for stem in manifest["future_figures"] for suffix in ("png", "pdf"))
