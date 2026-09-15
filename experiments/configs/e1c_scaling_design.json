@@ -1,0 +1,99 @@
+{
+  "schema": "e1c_renault_calibrated_controlled_scaling_design_v1",
+  "status": "STATIC_PROTOCOL_READY",
+  "scientific_question": "Does exploiting product separability and the global risk-budget structure improve computational scalability as network size increases?",
+  "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
+  "formal_run_authorized": false,
+  "development_solve_authorized": false,
+  "resource_probe_authorized": false,
+  "instance_generation_authorized": false,
+  "baseline_preparation_authorized": false,
+  "generator": {
+    "version": "deterministic_empirical_bootstrap_v1",
+    "path": "src/robust_inventory_reconfiguration/e1c_scaling.py",
+    "sha256": "8c82c3eaefb8a50064d17ab08b03bbc04909cc84f07530cea85d675d88283181",
+    "construction": "seeded balanced empirical resampling from the frozen eight-case pool; no arbitrary economic parameter distribution"
+  },
+  "source_case_ids": ["210129", "210202", "210310", "210323", "210330", "210428", "210611", "210628"],
+  "source_instance_hashes": {
+    "210129": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3",
+    "210202": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+    "210310": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+    "210323": "df5fcbaa54a73277948f676fae151d85ad621d9ef417b0906b04066b1ef1109c",
+    "210330": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+    "210428": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+    "210611": "f244641d602348af8b2ac31a2bb948b4b0ebca8e33ff446dd07298e3e578a9bf",
+    "210628": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677"
+  },
+  "calibration_statistics": {
+    "nominal_demand": {"count": 768, "min": 0.0, "p10": 1.3953846153846152, "p25": 6.561904761904762, "median": 23.53125, "mean": 42.37484659979777, "p75": 61.69419642857143, "p90": 106.59833333333334, "max": 518.1428571428571},
+    "deviation_to_nominal_ratio_positive_demand": {"count": 714, "min": 0.0, "p10": 0.259502588132123, "p25": 0.37074956361290107, "median": 0.5789126281049157, "mean": 0.7367292802865509, "p75": 0.9031609195402303, "p90": 1.394610407876231, "max": 3.761904761904762},
+    "depot_capacity_to_system_volume_demand": {"count": 122, "min": 0.0011185079402346054, "p10": 0.005420921900411962, "p25": 0.013724770274802749, "median": 0.1251643382982671, "mean": 0.1412272075994424, "p75": 0.2370181002083841, "p90": 0.3241295194413229, "max": 0.4776744519044134},
+    "inventory_ub_to_product_nominal_demand": {"count": 976, "min": 0.004078569564082485, "p10": 0.043667521744031094, "p25": 0.13018370250041222, "median": 0.8222746334670171, "mean": 0.754458355860308, "p75": 1.35, "p90": 1.35, "max": 1.3500000000000003},
+    "transport_cost_per_product_volume": {"count": 11712, "min": 0.0003846153846153846, "p10": 0.02398710793005814, "p25": 0.04914648040638606, "median": 0.08352162693536495, "mean": 0.09040785278720011, "p75": 0.1302668295645521, "p90": 0.16046153846153846, "max": 0.23484615384615384},
+    "fixed_cost_per_system_nominal_demand": {"count": 122, "min": 0.001529689365127835, "p10": 0.023128478985696296, "p25": 0.061490949707941875, "median": 0.27609155253240186, "mean": 0.48723422263924326, "p75": 0.8461465560378434, "p90": 1.1747275269368092, "max": 2.177879165140974},
+    "holding_cost": {"count": 976, "min": 58.0, "p10": 58.0, "p25": 78.75, "median": 136.0, "mean": 339.25, "p75": 402.0, "p90": 1085.0, "max": 1085.0},
+    "shortage_penalty": {"count": 768, "min": 11.0, "p10": 11.0, "p25": 16.0, "median": 31.5, "mean": 85.5, "p75": 125.25, "p90": 277.0, "max": 277.0},
+    "service_penalty": {"count": 64, "min": 20.35, "p10": 20.35, "p25": 29.6, "median": 58.275000000000006, "mean": 158.175, "p75": 231.7125, "p90": 512.45, "max": 512.45},
+    "product_volume": {"count": 64, "min": 40.0, "p10": 40.0, "p25": 59.75, "median": 84.0, "mean": 79.375, "p75": 91.75, "p90": 125.0, "max": 125.0},
+    "lambda_R": 0.05,
+    "B_ref_rule": "first_stage_expenditure_of_Gamma0_unconstrained_budget_nominal_incumbent",
+    "Gamma_rule": "fixed_2"
+  },
+  "candidate_scale_grid": [
+    {"scale": "S", "I": 15, "R": 12, "J": 8},
+    {"scale": "M", "I": 25, "R": 24, "J": 12},
+    {"scale": "L", "I": 40, "R": 36, "J": 16},
+    {"scale": "XL", "I": 60, "R": 48, "J": 24}
+  ],
+  "recommended_scale_grid": [
+    {"scale": "S", "I": 15, "R": 12, "J": 8},
+    {"scale": "M", "I": 20, "R": 16, "J": 10},
+    {"scale": "L", "I": 25, "R": 24, "J": 12}
+  ],
+  "excluded_resource_risk_scales": ["candidate_L", "candidate_XL"],
+  "Gamma": 2,
+  "Gamma_rule": "fixed absolute simultaneous shocks; controls uncertainty-budget scale while R, J, and I vary",
+  "replicate_seeds": [20260911, 20260912, 20260913, 20260914, 20260915],
+  "replicates_per_scale": 5,
+  "methods": ["direct_exact", "pure_benders", "aggregate_benders_structured_oracle", "prb_benders"],
+  "expected_formal_runs": 60,
+  "parameters": {"beta": 1.0, "lambda_R": 0.05, "service_target": 0.90},
+  "solver": {
+    "name": "Gurobi",
+    "version": "13.0.2",
+    "profile": "gurobi-balanced-1e-8-v1",
+    "threads": "gurobi_default_auto_0",
+    "random_seed_policy": "same frozen replicate seed for data; solver default seed 0 for every method"
+  },
+  "timeout_seconds_per_run": 900,
+  "timing_contract": "T_core includes all algorithm-required construction, optimize calls, oracle work, cuts, convergence checks, and exact certification; excludes tables, plots, and nonessential service reporting",
+  "resource_gate": {
+    "machine_ram_gib": 31.5,
+    "minimum_available_ram_gib_before_run": 24,
+    "single_run_only": true,
+    "max_direct_variables": 3000000,
+    "max_product_risk_blocks": 4000,
+    "max_pure_variables": 10000,
+    "max_pure_constraints": 100000,
+    "fail_closed_on_limit": true
+  },
+  "x0_construction": {
+    "definition": "Gamma0 unconstrained-budget nominal optimum under the frozen nominal-incumbent contract",
+    "required_before_formal_authorization": true,
+    "authorized_now": false
+  },
+  "B_ref_construction": {
+    "definition": "first-stage expenditure of the frozen generated nominal incumbent",
+    "required_before_formal_authorization": true,
+    "authorized_now": false
+  },
+  "one_factor_diagnostics": {
+    "status": "DESIGN_ONLY_NOT_AUTHORIZED",
+    "base": {"I": 15, "R": 12, "J": 8},
+    "I_only": [15, 20, 25],
+    "R_only": [12, 16, 24],
+    "J_only": [8, 10, 12],
+    "Gamma": 2
+  }
+}
