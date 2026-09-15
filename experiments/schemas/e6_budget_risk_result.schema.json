@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "E6 budget-risk interaction result",
+  "type": "object",
+  "required": [
+    "run_id", "experiment_id", "case", "beta_token", "beta", "Gamma_token", "Gamma",
+    "lambda_R", "B", "B_ref", "dataset_id", "instance_hash", "x0_hash",
+    "calibration_hash", "mapping_hash", "model_identity_sha256", "prb_identity_sha256",
+    "solver_profile", "reused", "reuse_source_run", "objective", "fixed_cost",
+    "inventory_cost", "reconfiguration_cost", "robust_recourse_cost", "budget_used",
+    "budget_utilization", "budget_slack", "budget_binding", "inventory_spending_share",
+    "reconfiguration_spending_share", "canonical_total_adjustment", "RI", "RS",
+    "changed_pair_count", "material_reconfiguration", "active_depots", "active_depot_ids",
+    "opened_depots", "closed_depots", "shortage_cost", "transportation_cost",
+    "service_penalty", "total_shortage", "minimum_fill_rate", "average_fill_rate",
+    "runtime_seconds", "iterations", "master_solves", "subproblem_evaluations", "cuts",
+    "lower_bound", "upper_bound", "relative_gap", "status", "certification_status",
+    "exact_certification_pass", "global_coupling_pass", "reporting_tiebreak_diagnostic"
+  ],
+  "properties": {
+    "run_id": {"type": "string", "pattern": "^E6-[0-9]{6}-B(080|100|120)-G(0|2|4)$"},
+    "experiment_id": {"const": "E6_BUDGET_RISK_INTERACTION_V1"},
+    "case": {"type": "string"},
+    "beta_token": {"enum": ["B080", "B100", "B120"]},
+    "beta": {"enum": [0.8, 1.0, 1.2]},
+    "Gamma_token": {"enum": ["G0", "G2", "G4"]},
+    "Gamma": {"enum": [0, 2, 4]},
+    "lambda_R": {"const": 0.05},
+    "reused": {"type": "boolean"},
+    "reuse_source_run": {"type": ["string", "null"]},
+    "status": {"const": "OPTIMAL"},
+    "certification_status": {"const": "CERTIFIED_PRB_EXACT"},
+    "exact_certification_pass": {"const": true}
+  },
+  "additionalProperties": true
+}

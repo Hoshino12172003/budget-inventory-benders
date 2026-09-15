@@ -1,0 +1,422 @@
+{
+  "B_ref_changed": false,
+  "E1_overwritten": false,
+  "E2_overwritten": false,
+  "E3_overwritten": false,
+  "E4_overwritten": false,
+  "Gamma_changed": false,
+  "L0500_reuse_audit": [
+    {
+      "case": "210202",
+      "checks": {
+        "budget": true,
+        "calibration": true,
+        "case": true,
+        "certification": true,
+        "condition": true,
+        "dataset": true,
+        "instance": true,
+        "mapping": true,
+        "model": true,
+        "objective": true,
+        "objective_definition": true,
+        "prb": true,
+        "solver_profile": true,
+        "source_files": true,
+        "source_hashes": true,
+        "tolerance": true,
+        "x0": true
+      },
+      "identity_complete": true,
+      "source_run": "E4-210202-G2"
+    },
+    {
+      "case": "210628",
+      "checks": {
+        "budget": true,
+        "calibration": true,
+        "case": true,
+        "certification": true,
+        "condition": true,
+        "dataset": true,
+        "instance": true,
+        "mapping": true,
+        "model": true,
+        "objective": true,
+        "objective_definition": true,
+        "prb": true,
+        "solver_profile": true,
+        "source_files": true,
+        "source_hashes": true,
+        "tolerance": true,
+        "x0": true
+      },
+      "identity_complete": true,
+      "source_run": "E4-210628-G2"
+    },
+    {
+      "case": "210129",
+      "checks": {
+        "budget": true,
+        "calibration": true,
+        "case": true,
+        "certification": true,
+        "condition": true,
+        "dataset": true,
+        "instance": true,
+        "mapping": true,
+        "model": true,
+        "objective": true,
+        "objective_definition": true,
+        "prb": true,
+        "solver_profile": true,
+        "source_files": true,
+        "source_hashes": true,
+        "tolerance": true,
+        "x0": true
+      },
+      "identity_complete": true,
+      "source_run": "E4-210129-G2"
+    },
+    {
+      "case": "210310",
+      "checks": {
+        "budget": true,
+        "calibration": true,
+        "case": true,
+        "certification": true,
+        "condition": true,
+        "dataset": true,
+        "instance": true,
+        "mapping": true,
+        "model": true,
+        "objective": true,
+        "objective_definition": true,
+        "prb": true,
+        "solver_profile": true,
+        "source_files": true,
+        "source_hashes": true,
+        "tolerance": true,
+        "x0": true
+      },
+      "identity_complete": true,
+      "source_run": "E4-210310-G2"
+    },
+    {
+      "case": "210330",
+      "checks": {
+        "budget": true,
+        "calibration": true,
+        "case": true,
+        "certification": true,
+        "condition": true,
+        "dataset": true,
+        "instance": true,
+        "mapping": true,
+        "model": true,
+        "objective": true,
+        "objective_definition": true,
+        "prb": true,
+        "solver_profile": true,
+        "source_files": true,
+        "source_hashes": true,
+        "tolerance": true,
+        "x0": true
+      },
+      "identity_complete": true,
+      "source_run": "E4-210330-G2"
+    },
+    {
+      "case": "210323",
+      "checks": {
+        "budget": true,
+        "calibration": true,
+        "case": true,
+        "certification": true,
+        "condition": true,
+        "dataset": true,
+        "instance": true,
+        "mapping": true,
+        "model": true,
+        "objective": true,
+        "objective_definition": true,
+        "prb": true,
+        "solver_profile": true,
+        "source_files": true,
+        "source_hashes": true,
+        "tolerance": true,
+        "x0": true
+      },
+      "identity_complete": true,
+      "source_run": "E4-210323-G2"
+    },
+    {
+      "case": "210428",
+      "checks": {
+        "budget": true,
+        "calibration": true,
+        "case": true,
+        "certification": true,
+        "condition": true,
+        "dataset": true,
+        "instance": true,
+        "mapping": true,
+        "model": true,
+        "objective": true,
+        "objective_definition": true,
+        "prb": true,
+        "solver_profile": true,
+        "source_files": true,
+        "source_hashes": true,
+        "tolerance": true,
+        "x0": true
+      },
+      "identity_complete": true,
+      "source_run": "E4-210428-G2"
+    },
+    {
+      "case": "210611",
+      "checks": {
+        "budget": true,
+        "calibration": true,
+        "case": true,
+        "certification": true,
+        "condition": true,
+        "dataset": true,
+        "instance": true,
+        "mapping": true,
+        "model": true,
+        "objective": true,
+        "objective_definition": true,
+        "prb": true,
+        "solver_profile": true,
+        "source_files": true,
+        "source_hashes": true,
+        "tolerance": true,
+        "x0": true
+      },
+      "identity_complete": true,
+      "source_run": "E4-210611-G2"
+    }
+  ],
+  "L0500_reuse_count": 8,
+  "L0500_reuse_source": "E4-<case>-G2",
+  "beta_changed": false,
+  "blocked_items": [],
+  "cases": [
+    "210202",
+    "210628",
+    "210129",
+    "210310",
+    "210330",
+    "210323",
+    "210428",
+    "210611"
+  ],
+  "checks": {
+    "B_ref_unchanged": true,
+    "Gamma_fixed": true,
+    "L0500_reuse_identity_8_of_8": true,
+    "authorization_state_valid": true,
+    "beta_fixed": true,
+    "dataset_unchanged": true,
+    "exact_40_run_ids": true,
+    "exact_5_lambda_levels": true,
+    "exact_8_cases": true,
+    "incumbent_feasibility_backstop_8_of_8": true,
+    "lambda_zero_RS_zero": true,
+    "lambda_zero_canonical_RI": true,
+    "lambda_zero_canonical_adjustment": true,
+    "mapping_unchanged": true,
+    "model_unchanged": true,
+    "no_new_formal_outputs": true,
+    "other_formal_reuse_zero": true,
+    "positive_friction_canonical_consistency": true,
+    "prior_formal_results_preserved": true,
+    "reporting_hash": true,
+    "result_root_isolated": true,
+    "runner_hash": true,
+    "solver_profile_unchanged": true
+  },
+  "dataset_changed": false,
+  "formal_output_count": 0,
+  "formal_roots_scanned_for_other_reuse": [
+    "experiments/results/e1_empirical_8case_v1",
+    "experiments/results/e2_existing_nominal_robust_v1",
+    "experiments/results/e3_budget_sensitivity_v1",
+    "experiments/results/e4_gamma_sensitivity_v1"
+  ],
+  "formal_run_authorized": true,
+  "incumbent_feasibility": [
+    {
+      "B_ref": 106510.9559990062,
+      "UB_excess": 0.0,
+      "backstop": "incumbent stay-put solution",
+      "base_spending": 106510.9559990062,
+      "budget_excess": 0.0,
+      "capacity_excess": 0.0,
+      "case": "210202",
+      "feasible": true
+    },
+    {
+      "B_ref": 77408.83107532002,
+      "UB_excess": 0.0,
+      "backstop": "incumbent stay-put solution",
+      "base_spending": 77408.83107532,
+      "budget_excess": -1.4551915228366852e-11,
+      "capacity_excess": 0.0,
+      "case": "210628",
+      "feasible": true
+    },
+    {
+      "B_ref": 90311.11199905835,
+      "UB_excess": 0.0,
+      "backstop": "incumbent stay-put solution",
+      "base_spending": 90311.11199905835,
+      "budget_excess": 0.0,
+      "capacity_excess": 0.0,
+      "case": "210129",
+      "feasible": true
+    },
+    {
+      "B_ref": 76394.09199991751,
+      "UB_excess": 0.0,
+      "backstop": "incumbent stay-put solution",
+      "base_spending": 76394.09199991751,
+      "budget_excess": 0.0,
+      "capacity_excess": 3.750756150111556e-09,
+      "case": "210310",
+      "feasible": true
+    },
+    {
+      "B_ref": 65650.34742795816,
+      "UB_excess": 0.0,
+      "backstop": "incumbent stay-put solution",
+      "base_spending": 65650.34742795816,
+      "budget_excess": 0.0,
+      "capacity_excess": 0.0,
+      "case": "210330",
+      "feasible": true
+    },
+    {
+      "B_ref": 68276.20285663515,
+      "UB_excess": 0.0,
+      "backstop": "incumbent stay-put solution",
+      "base_spending": 68276.20285663515,
+      "budget_excess": 0.0,
+      "capacity_excess": 0.0,
+      "case": "210323",
+      "feasible": true
+    },
+    {
+      "B_ref": 75911.97599934557,
+      "UB_excess": 0.0,
+      "backstop": "incumbent stay-put solution",
+      "base_spending": 75911.97599934557,
+      "budget_excess": 0.0,
+      "capacity_excess": 0.0,
+      "case": "210428",
+      "feasible": true
+    },
+    {
+      "B_ref": 64656.257997955974,
+      "UB_excess": 0.0,
+      "backstop": "incumbent stay-put solution",
+      "base_spending": 64656.257997955974,
+      "budget_excess": 0.0,
+      "capacity_excess": 0.0,
+      "case": "210611",
+      "feasible": true
+    }
+  ],
+  "lambda_levels": [
+    {
+      "token": "L0000",
+      "value": 0.0
+    },
+    {
+      "token": "L0025",
+      "value": 0.0025
+    },
+    {
+      "token": "L0100",
+      "value": 0.01
+    },
+    {
+      "token": "L0500",
+      "value": 0.05
+    },
+    {
+      "token": "L2000",
+      "value": 0.2
+    }
+  ],
+  "lambda_zero_degeneracy": {
+    "RS": 0.0,
+    "canonical_RI": 0.4117647058823529,
+    "canonical_total_adjustment": 7.0,
+    "effect": "a_plus and a_minus can increase together without cost at lambda_R=0",
+    "present_in_economic_model": true,
+    "reporting_resolution": "canonical adjustment derived deterministically from x-x0",
+    "resolved_in_primary_model": false
+  },
+  "model_changed": false,
+  "optimization_solves_executed_during_preparation": 0,
+  "other_reuse_candidates": [],
+  "other_reuse_count": 0,
+  "positive_friction_adjustment_audit": [
+    {
+      "canonical_RI": 0.13762008031004352,
+      "case": "210202",
+      "maximum_coordinate_difference": 0.0,
+      "stored_RI": 0.13762008031004352
+    },
+    {
+      "canonical_RI": 3.02145370170305e-11,
+      "case": "210628",
+      "maximum_coordinate_difference": 5.448573148214564e-09,
+      "stored_RI": 3.02145370170305e-11
+    },
+    {
+      "canonical_RI": 0.08565494889792966,
+      "case": "210129",
+      "maximum_coordinate_difference": 0.0,
+      "stored_RI": 0.08565494889792966
+    },
+    {
+      "canonical_RI": 3.4895458674603015e-12,
+      "case": "210310",
+      "maximum_coordinate_difference": 1.4136247727947193e-09,
+      "stored_RI": 3.4895458674603015e-12
+    },
+    {
+      "canonical_RI": 0.06521114504009128,
+      "case": "210330",
+      "maximum_coordinate_difference": 0.0,
+      "stored_RI": 0.06521114504009128
+    },
+    {
+      "canonical_RI": 0.039426582010814094,
+      "case": "210323",
+      "maximum_coordinate_difference": 8.369165804822387e-09,
+      "stored_RI": 0.039426582010814094
+    },
+    {
+      "canonical_RI": 3.0942602355362093e-12,
+      "case": "210428",
+      "maximum_coordinate_difference": 0.0,
+      "stored_RI": 3.0942602355362093e-12
+    },
+    {
+      "canonical_RI": 1.0912611454632943e-10,
+      "case": "210611",
+      "maximum_coordinate_difference": 7.807918200875008e-09,
+      "stored_RI": 1.0912611454632943e-10
+    }
+  ],
+  "ready_for_authorization": true,
+  "required_new_solves": 32,
+  "schema": "e5_reconfiguration_friction_protocol_static_audit_v1",
+  "status": "E5_PROTOCOL_STATIC_AUDIT_PASS",
+  "total_formal_conditions": 40
+}

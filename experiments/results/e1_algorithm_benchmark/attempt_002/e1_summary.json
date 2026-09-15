@@ -1,0 +1,52 @@
+{
+  "status": "BLOCK_E1_SYNTHETIC_REPRODUCIBILITY",
+  "reuse_status": "E1_REUSE_ACCEPTED",
+  "planned_observations": 12,
+  "completed_observations": 4,
+  "reused_observations": 2,
+  "new_optimization_solves": 2,
+  "completed_new_run_ids": [
+    "E1-210628-DIRECT",
+    "E1-210628-PRB"
+  ],
+  "not_executed_authorized_run_ids": [
+    "E1-SMALL-DIRECT",
+    "E1-SMALL-PRB",
+    "E1-MEDIUM-DIRECT",
+    "E1-MEDIUM-PRB",
+    "E1-RENAULTLIKE-DIRECT",
+    "E1-RENAULTLIKE-PRB",
+    "E1-LARGE-DIRECT",
+    "E1-LARGE-PRB"
+  ],
+  "unauthorized_runs_executed": 0,
+  "runtime_ratios": {
+    "210202": 3.8161519429368513,
+    "210628": 3.342877755625762
+  },
+  "objective_consistency": {
+    "210202": {
+      "Instance": "210202",
+      "Direct Obj": 116875.3457619544,
+      "PRB Obj": 116875.34576195436,
+      "Abs Diff": 4.3655745685100555e-11,
+      "Tolerance": 0.0001,
+      "Direct Status": "CERTIFIED_EXACT",
+      "PRB Status": "CERTIFIED_PRB_EXACT",
+      "PASS": "PASS"
+    },
+    "210628": {
+      "Instance": "210628",
+      "Direct Obj": 81468.15564321939,
+      "PRB Obj": 81468.15564321943,
+      "Abs Diff": 4.3655745685100555e-11,
+      "Tolerance": 0.0001,
+      "Direct Status": "CERTIFIED_EXACT",
+      "PRB Status": "CERTIFIED_PRB_EXACT",
+      "PASS": "PASS"
+    }
+  },
+  "e2_e7_authorization": false,
+  "failures": [],
+  "retries": 0
+}

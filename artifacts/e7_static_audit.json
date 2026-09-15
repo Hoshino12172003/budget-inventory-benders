@@ -1,0 +1,150 @@
+{
+  "G4_L2000_preflight": [
+    {
+      "B": 106510.9559990062,
+      "Gamma": 4,
+      "budget_slack": 85432.95599920496,
+      "case": "210202",
+      "construction": "y=0,x=0,a_plus=0,a_minus=x0; shortage/service-violation recourse",
+      "feasible": true,
+      "lambda_R": 0.2,
+      "optimization_executed": false,
+      "removal_reconfiguration_cost": 21077.99999980124,
+      "run_id": "E7-210202-G4-L2000"
+    },
+    {
+      "B": 77408.83107532002,
+      "Gamma": 4,
+      "budget_slack": 62309.04646025602,
+      "case": "210628",
+      "construction": "y=0,x=0,a_plus=0,a_minus=x0; shortage/service-violation recourse",
+      "feasible": true,
+      "lambda_R": 0.2,
+      "optimization_executed": false,
+      "removal_reconfiguration_cost": 15099.784615064003,
+      "run_id": "E7-210628-G4-L2000"
+    },
+    {
+      "B": 90311.11199905835,
+      "Gamma": 4,
+      "budget_slack": 72420.91199924669,
+      "case": "210129",
+      "construction": "y=0,x=0,a_plus=0,a_minus=x0; shortage/service-violation recourse",
+      "feasible": true,
+      "lambda_R": 0.2,
+      "optimization_executed": false,
+      "removal_reconfiguration_cost": 17890.199999811673,
+      "run_id": "E7-210129-G4-L2000"
+    },
+    {
+      "B": 76394.09199991751,
+      "Gamma": 4,
+      "budget_slack": 61419.21199993401,
+      "case": "210310",
+      "construction": "y=0,x=0,a_plus=0,a_minus=x0; shortage/service-violation recourse",
+      "feasible": true,
+      "lambda_R": 0.2,
+      "optimization_executed": false,
+      "removal_reconfiguration_cost": 14974.879999983503,
+      "run_id": "E7-210310-G4-L2000"
+    },
+    {
+      "B": 65650.34742795816,
+      "Gamma": 4,
+      "budget_slack": 52842.83314236652,
+      "case": "210330",
+      "construction": "y=0,x=0,a_plus=0,a_minus=x0; shortage/service-violation recourse",
+      "feasible": true,
+      "lambda_R": 0.2,
+      "optimization_executed": false,
+      "removal_reconfiguration_cost": 12807.514285591631,
+      "run_id": "E7-210330-G4-L2000"
+    },
+    {
+      "B": 68276.20285663515,
+      "Gamma": 4,
+      "budget_slack": 54937.17428530812,
+      "case": "210323",
+      "construction": "y=0,x=0,a_plus=0,a_minus=x0; shortage/service-violation recourse",
+      "feasible": true,
+      "lambda_R": 0.2,
+      "optimization_executed": false,
+      "removal_reconfiguration_cost": 13339.028571327031,
+      "run_id": "E7-210323-G4-L2000"
+    },
+    {
+      "B": 75911.97599934557,
+      "Gamma": 4,
+      "budget_slack": 60974.13599947645,
+      "case": "210428",
+      "construction": "y=0,x=0,a_plus=0,a_minus=x0; shortage/service-violation recourse",
+      "feasible": true,
+      "lambda_R": 0.2,
+      "optimization_executed": false,
+      "removal_reconfiguration_cost": 14937.839999869115,
+      "run_id": "E7-210428-G4-L2000"
+    },
+    {
+      "B": 64656.257997955974,
+      "Gamma": 4,
+      "budget_slack": 51863.20799836478,
+      "case": "210611",
+      "construction": "y=0,x=0,a_plus=0,a_minus=x0; shortage/service-violation recourse",
+      "feasible": true,
+      "lambda_R": 0.2,
+      "optimization_executed": false,
+      "removal_reconfiguration_cost": 12793.049999591196,
+      "run_id": "E7-210611-G4-L2000"
+    }
+  ],
+  "checks": {
+    "G4_L2000_static_feasible_8_of_8": true,
+    "all_new_cells_static_feasible": true,
+    "authorization_false": true,
+    "authorization_scope_E7_only": true,
+    "exhaustive_reporting_retained": true,
+    "grid_72_of_72": true,
+    "no_E7_primary_outputs": true,
+    "no_future_tables_or_figures": true,
+    "overlap_G2_L0500_once_per_case": true,
+    "overwrite_protection": true,
+    "protected_E1_E6_hashes_preserved": true,
+    "result_root_isolated": true,
+    "reuse_40_new_32": true,
+    "reuse_cells_derived": true,
+    "reuse_map_deterministic": true,
+    "timing_contract_frozen": true
+  },
+  "existing_E7_outputs": [],
+  "fixed_first_stage_evaluations_executed": 0,
+  "formal_first_stage_optimization_solves_executed": 0,
+  "formal_run_authorized": false,
+  "manifest_sha256": "ff026553c247410da922e2346c101f4371965284d6909e11b2bb218e81daf64c",
+  "new_parameter_cells": [
+    "G0-L0025",
+    "G0-L2000",
+    "G4-L0025",
+    "G4-L2000"
+  ],
+  "new_solve_conditions": 32,
+  "overlap_condition_count": 8,
+  "protected_result_root_identities": {
+    "E1": "93f4f38a936ec14ceaa2d7e8e3c1b23fd494ccbce4910336bbfa10141c29521e",
+    "E2": "946075a907a6a15569aa761ff6e95d54e429f65fa4d1192b8d2aad566099b7b0",
+    "E3": "ba83924d9c42ccc1e404e8069f398f890a6e65a70b5b4a2f4d7a3149b7c4b867",
+    "E4": "a39d3ec61f4729bf2e60fa12a191983dc8f60a9f7def75707713ae3c1b96f54a",
+    "E5": "624efb2a649524fe88de78b105dfa312b9b4be8b59aefeab6ce712869051c30f",
+    "E6": "f978be1f69a5411cce0145c0cd567256fc454c02d32d2d4c07af2074441b768d"
+  },
+  "reporting_acceleration": "NOT_IMPLEMENTED_WITHOUT_FULL_EQUIVALENCE_PROOF",
+  "reporting_complexity_G4": {
+    "global_scenarios": 3469497,
+    "product_risk_blocks": 6352
+  },
+  "reusable_conditions": 40,
+  "reuse_plan_canonical_sha256": "481891cd5fefe23c6a05186b8881538212d3fd1688c718b1d46bf4e78911aa6a",
+  "runner_sha256": "5e0b2286c99677045798806ee71a2373f32ae9407e5b9630f5bd6acb2fe226dd",
+  "schema": "e7_protocol_static_audit_v1",
+  "status": "E7_PROTOCOL_STATIC_AUDIT_PASS",
+  "total_conditions": 72
+}

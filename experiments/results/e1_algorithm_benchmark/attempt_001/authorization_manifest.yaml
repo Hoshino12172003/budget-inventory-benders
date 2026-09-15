@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "attempt_id": "e1_formal_algorithm_benchmark_attempt_001",
+  "authorization_scope": "e1_new_runs_only",
+  "e1_run_authorized": true,
+  "e2_e7_authorization": false,
+  "authorized_run_ids": [
+    "E1-210628-DIRECT", "E1-210628-PRB",
+    "E1-SMALL-DIRECT", "E1-SMALL-PRB",
+    "E1-MEDIUM-DIRECT", "E1-MEDIUM-PRB",
+    "E1-RENAULTLIKE-DIRECT", "E1-RENAULTLIKE-PRB",
+    "E1-LARGE-DIRECT", "E1-LARGE-PRB"
+  ],
+  "output_directory": "experiments/results/e1_algorithm_benchmark/attempt_001",
+  "objective_absolute_tolerance": 0.0001,
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "runs": [
+    {"run_id":"E1-210628-DIRECT","instance_id":"210628","instance_type":"Renault","method":"direct_exact","beta":1.0,"B":50558.18771213083,"Gamma":2,"lambda_R":0.05,"solver_profile":"gurobi-balanced-1e-8-v1"},
+    {"run_id":"E1-210628-PRB","instance_id":"210628","instance_type":"Renault","method":"prb_benders","beta":1.0,"B":50558.18771213083,"Gamma":2,"lambda_R":0.05,"solver_profile":"gurobi-balanced-1e-8-v1"},
+    {"run_id":"E1-SMALL-DIRECT","instance_id":"synthetic_small","instance_type":"synthetic","scale":"small","method":"direct_exact"},
+    {"run_id":"E1-SMALL-PRB","instance_id":"synthetic_small","instance_type":"synthetic","scale":"small","method":"prb_benders"},
+    {"run_id":"E1-MEDIUM-DIRECT","instance_id":"synthetic_medium","instance_type":"synthetic","scale":"medium","method":"direct_exact"},
+    {"run_id":"E1-MEDIUM-PRB","instance_id":"synthetic_medium","instance_type":"synthetic","scale":"medium","method":"prb_benders"},
+    {"run_id":"E1-RENAULTLIKE-DIRECT","instance_id":"synthetic_renault_like","instance_type":"synthetic","scale":"renault_like","method":"direct_exact"},
+    {"run_id":"E1-RENAULTLIKE-PRB","instance_id":"synthetic_renault_like","instance_type":"synthetic","scale":"renault_like","method":"prb_benders"},
+    {"run_id":"E1-LARGE-DIRECT","instance_id":"synthetic_large","instance_type":"synthetic","scale":"large","method":"direct_exact"},
+    {"run_id":"E1-LARGE-PRB","instance_id":"synthetic_large","instance_type":"synthetic","scale":"large","method":"prb_benders"}
+  ]
+}

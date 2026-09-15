@@ -1,0 +1,559 @@
+{
+  "audit_only_fixed_first_stage_evaluations": 8,
+  "cases": [
+    {
+      "blocker": "",
+      "case": "210310",
+      "classification": "NUMERICAL_REPORTING_ONLY",
+      "component_differences": {
+        "absolute_difference_reconfiguration_cost": 5.679928740676132e-07,
+        "final_inventory_cost": 2.9103830456733704e-11,
+        "first_stage_expenditure": 1.4551915228366852e-11,
+        "fixed_depot_cost": 0.0,
+        "maximum_reconfiguration_balance_residual": 1.4117745333911726e-09,
+        "reconfiguration_cost": 1.947155222515652e-11,
+        "robust_recourse": 1.1082738637924194e-07,
+        "total_objective": 1.1082738637924194e-07
+      },
+      "differing_x_coordinate_count": 2,
+      "direct_active_depots": [
+        "90018300",
+        "90018400",
+        "90019100",
+        "91017500"
+      ],
+      "direct_components": {
+        "absolute_difference_reconfiguration_cost": 5.764740151903425e-07,
+        "final_inventory_cost": 74874.39999991747,
+        "first_stage_expenditure": 76394.09199991748,
+        "fixed_depot_cost": 1519.692,
+        "maximum_reconfiguration_balance_residual": 1.850239403546719e-12,
+        "reconfiguration_cost": 1.947155222515652e-11
+      },
+      "direct_result": {
+        "B": 76394.09199991751,
+        "FR_min_robust": 0.0,
+        "Gamma": 2,
+        "average_fill_rate": 0.14478398181073418,
+        "best_bound": 714814.5477075904,
+        "beta": 1.0,
+        "calibration_hash": "8915940c2bbfee479d054c007033da41d45776504e985c6d07302dea74481ff4",
+        "case": "210310",
+        "certification": "CERTIFIED_EXACT",
+        "constraint_count": 19278,
+        "cut_count": null,
+        "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
+        "exact_certification_status": "CERTIFIED_EXACT",
+        "final_gap": 0.0,
+        "first_stage_expenditure": 76394.09199991751,
+        "git_commit": "4245c64be1ef53254d01c5087ecc2ad0b2fc54e9",
+        "hardware": {
+          "logical_cpu_count": 14,
+          "machine": "AMD64",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "processor": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel"
+        },
+        "instance_hash": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+        "iteration_count": null,
+        "lambda_R": 0.05,
+        "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+        "master_solve_count": null,
+        "method": "direct_exact",
+        "mip_gap": 0.0,
+        "node_count": 1.0,
+        "objective": 714814.5477075904,
+        "peak_memory_gb": null,
+        "product_subproblem_evaluations": null,
+        "reconfiguration_cost": 1.9471552225151224e-11,
+        "robust_recourse_cost": 638420.4557076729,
+        "run_id": "E1-210310-DIRECT",
+        "runtime_seconds": 3.0299999713897705,
+        "solver_profile": "gurobi-balanced-1e-8-v1",
+        "solver_runtime_seconds": 3.0299999713897705,
+        "solver_version": "13.0.2",
+        "status": "OPTIMAL",
+        "variable_count": 129985,
+        "wall_clock_seconds": 9.47102570021525,
+        "worst_region": "12",
+        "x0_hash": "66a15c21d4e760c0d31bbe9a15f21216b3fdd37e6b7bf14836025d544b0d117b"
+      },
+      "fixed_first_stage_evaluations": {
+        "direct_x": {
+          "direct": {
+            "absolute_gap": 0.0,
+            "best_bound": 638420.4557076722,
+            "relative_gap": 0.0,
+            "robust_recourse": 638420.4557076722,
+            "runtime_seconds": 0.18400001525878906,
+            "status": "OPTIMAL"
+          },
+          "prb": {
+            "all_duals_feasible": true,
+            "maximum_strong_duality_error": 5.820766091346741e-11,
+            "risk_budget_allocation": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            "robust_recourse": 638420.4557076731,
+            "status": "OPTIMAL"
+          }
+        },
+        "prb_x": {
+          "direct": {
+            "absolute_gap": 0.0,
+            "best_bound": 638420.4557077825,
+            "relative_gap": 0.0,
+            "robust_recourse": 638420.4557077825,
+            "runtime_seconds": 0.16700005531311035,
+            "status": "OPTIMAL"
+          },
+          "prb": {
+            "all_duals_feasible": true,
+            "maximum_strong_duality_error": 5.820766091346741e-11,
+            "risk_budget_allocation": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            "robust_recourse": 638420.4557077837,
+            "status": "OPTIMAL"
+          }
+        }
+      },
+      "input_evidence": {
+        "direct_file_hashes": {
+          "first_stage_solution.json": "d356aca527038b6e2b8e0219fe6e672283ded33808a50482d9d34e54bca470b9",
+          "provenance.json": "dd275cbf44d6a5d87055e709364b62cfdd657aa816e8a32edfc0799228273310",
+          "result.json": "b8b2c47fd4d23709095faabb19fde428fea9068b7656fa50b2c06bc141c54e1a",
+          "solver.log": "be88ba396114758c2b482a28783a91b8a4b51d82e2262c096f557663f3213ef2"
+        },
+        "direct_solver_log_present": true,
+        "prb_file_hashes": {
+          "first_stage_solution.json": "d8e74ecff0d5407a01e778aa90fed58acb1e64d7273696e39b246d211f27e8a1",
+          "provenance.json": "f6e25b786706edd90b1c35f6cdbe25f31806eddb2bf86c981ab4534b7a504127",
+          "result.json": "94c02c30c52b26a3ba0e748170fb5f9e7ac8631f1c2d1515082334f7d81c177a"
+        },
+        "prb_solver_log_present": false
+      },
+      "l1_x_difference": 7.100078747157568e-08,
+      "largest_x_differences": [
+        {
+          "absolute_difference": 3.549902771737834e-08,
+          "depot": "91017500",
+          "direct_x": 85.07333332903528,
+          "prb_x": 85.0733333645343,
+          "product": "CON-S-0130"
+        },
+        {
+          "absolute_difference": 3.1700253089184116e-08,
+          "depot": "90018300",
+          "direct_x": 71.425,
+          "prb_x": 71.42499996829974,
+          "product": "CON-S-0130"
+        },
+        {
+          "absolute_difference": 3.7989025258866604e-09,
+          "depot": "90019100",
+          "direct_x": 175.99999990851066,
+          "prb_x": 175.99999990471176,
+          "product": "CON-S-0130"
+        },
+        {
+          "absolute_difference": 1.6342482922482304e-12,
+          "depot": "90019100",
+          "direct_x": 82.38400002927659,
+          "prb_x": 82.38400002927823,
+          "product": "BAC-O-4312"
+        },
+        {
+          "absolute_difference": 9.023892744153272e-13,
+          "depot": "90018400",
+          "direct_x": 29.4826666360147,
+          "prb_x": 29.482666636013796,
+          "product": "BAC-O-4312"
+        },
+        {
+          "absolute_difference": 6.750155989720952e-14,
+          "depot": "91017500",
+          "direct_x": 30.6,
+          "prb_x": 30.60000000000007,
+          "product": "BAC-O-4312"
+        }
+      ],
+      "max_x_difference": 3.549902771737834e-08,
+      "prb_active_depots": [
+        "90018300",
+        "90018400",
+        "90019100",
+        "91017500"
+      ],
+      "prb_components": {
+        "absolute_difference_reconfiguration_cost": 8.481141122729241e-09,
+        "final_inventory_cost": 74874.3999999175,
+        "first_stage_expenditure": 76394.0919999175,
+        "fixed_depot_cost": 1519.692,
+        "maximum_reconfiguration_balance_residual": 1.4136247727947193e-09,
+        "reconfiguration_cost": 0.0
+      },
+      "prb_result": {
+        "B": 76394.09199991751,
+        "FR_min_robust": 0.0,
+        "Gamma": 2,
+        "average_fill_rate": 0.14478398181076774,
+        "beta": 1.0,
+        "calibration_hash": "8915940c2bbfee479d054c007033da41d45776504e985c6d07302dea74481ff4",
+        "case": "210310",
+        "certification": "CERTIFIED_PRB_EXACT",
+        "certification_runtime_seconds": 0.10273579997010529,
+        "cut_count": 33,
+        "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
+        "exact_certification_status": "CERTIFIED_PRB_EXACT",
+        "final_gap": 3.257217475504957e-16,
+        "first_stage_expenditure": 76394.0919999175,
+        "git_commit": "4245c64be1ef53254d01c5087ecc2ad0b2fc54e9",
+        "global_coupling_pass": true,
+        "hardware": {
+          "logical_cpu_count": 14,
+          "machine": "AMD64",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "processor": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel"
+        },
+        "instance_hash": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+        "iteration_count": 5,
+        "iterations": 5,
+        "lambda_R": 0.05,
+        "lower_bound": 714814.547707701,
+        "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+        "master_runtime_seconds": 0.04762550047598779,
+        "master_solve_count": 5,
+        "method": "prb_benders",
+        "objective": 714814.5477077012,
+        "peak_memory_gb": null,
+        "product_subproblem_evaluations": 144,
+        "reconfiguration_cost": 0.0,
+        "relative_gap": 3.257217475504957e-16,
+        "robust_recourse_cost": 638420.4557077837,
+        "run_id": "E1-210310-PRB",
+        "runtime_seconds": 1.3473797999322414,
+        "solver_profile": "gurobi-balanced-1e-8-v1",
+        "solver_runtime_seconds": null,
+        "solver_version": "13.0.2",
+        "status": "OPTIMAL",
+        "subproblem_runtime_seconds": 0.5907666001003236,
+        "unique_product_cuts": 33,
+        "upper_bound": 714814.5477077012,
+        "wall_clock_seconds": 6.7365641999058425,
+        "worst_region": "12",
+        "x0_hash": "66a15c21d4e760c0d31bbe9a15f21216b3fdd37e6b7bf14836025d544b0d117b"
+      },
+      "reconstructed_objectives": {
+        "direct": 714814.5477075897,
+        "prb": 714814.5477077
+      },
+      "reported_objectives": {
+        "direct": 714814.5477075904,
+        "prb": 714814.5477077012
+      },
+      "reported_reconstruction_errors": {
+        "direct": 6.984919309616089e-10,
+        "prb": 1.1641532182693481e-09
+      },
+      "same_x_recourse_errors": {
+        "direct_x": 9.313225746154785e-10,
+        "prb_x": 1.1641532182693481e-09
+      },
+      "same_y": true,
+      "termination_contract": {
+        "cross_method_absolute_tolerance": 0.0001,
+        "guarantees_cross_method_1e_4": false,
+        "observed_cross_method_gate_pass": true,
+        "prb_exact_certification_checks_incumbent_against_upper_bound_only": true,
+        "prb_relative_gap_tolerance": 1e-06,
+        "relative_tolerance_absolute_scale": 0.7148145477077011
+      }
+    },
+    {
+      "blocker": "",
+      "case": "210330",
+      "classification": "NUMERICAL_REPORTING_ONLY",
+      "component_differences": {
+        "absolute_difference_reconfiguration_cost": 4.121147867408581e-12,
+        "final_inventory_cost": 7.275957614183426e-12,
+        "first_stage_expenditure": 0.0,
+        "fixed_depot_cost": 0.0,
+        "maximum_reconfiguration_balance_residual": 0.0,
+        "reconfiguration_cost": 4.121147867408581e-12,
+        "robust_recourse": 5.596084520220757e-07,
+        "total_objective": 5.596084520220757e-07
+      },
+      "differing_x_coordinate_count": 4,
+      "direct_active_depots": [
+        "90016100",
+        "9624708"
+      ],
+      "direct_components": {
+        "absolute_difference_reconfiguration_cost": 139.2284031042128,
+        "final_inventory_cost": 63898.34302485393,
+        "first_stage_expenditure": 65650.34742795814,
+        "fixed_depot_cost": 1612.776,
+        "maximum_reconfiguration_balance_residual": 0.0,
+        "reconfiguration_cost": 139.2284031042128
+      },
+      "direct_result": {
+        "B": 65650.34742795816,
+        "FR_min_robust": 9.325873406851315e-15,
+        "Gamma": 2,
+        "average_fill_rate": 0.12751158682137603,
+        "best_bound": 657659.5492540546,
+        "beta": 1.0,
+        "calibration_hash": "e182dde7a79c1c9e7909fb776df4d1cff0326d39bbee5414c3d7efdb147e071a",
+        "case": "210330",
+        "certification": "CERTIFIED_EXACT",
+        "constraint_count": 16033,
+        "cut_count": null,
+        "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
+        "exact_certification_status": "CERTIFIED_EXACT",
+        "final_gap": 0.0,
+        "first_stage_expenditure": 65650.34742795814,
+        "git_commit": "4245c64be1ef53254d01c5087ecc2ad0b2fc54e9",
+        "hardware": {
+          "logical_cpu_count": 14,
+          "machine": "AMD64",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "processor": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel"
+        },
+        "instance_hash": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+        "iteration_count": null,
+        "lambda_R": 0.05,
+        "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+        "master_solve_count": null,
+        "method": "direct_exact",
+        "mip_gap": 0.0,
+        "node_count": 1.0,
+        "objective": 657659.5492540546,
+        "peak_memory_gb": null,
+        "product_subproblem_evaluations": null,
+        "reconfiguration_cost": 139.22840310421276,
+        "robust_recourse_cost": 592009.2018260964,
+        "run_id": "E1-210330-DIRECT",
+        "runtime_seconds": 1.6699998378753662,
+        "solver_profile": "gurobi-balanced-1e-8-v1",
+        "solver_runtime_seconds": 1.6699998378753662,
+        "solver_version": "13.0.2",
+        "status": "OPTIMAL",
+        "variable_count": 91940,
+        "wall_clock_seconds": 6.111725900089368,
+        "worst_region": "1",
+        "x0_hash": "11cd91349ff218d7f951a38a65123de8c5e304d36a370c97a39a1ce9b3c3961a"
+      },
+      "fixed_first_stage_evaluations": {
+        "direct_x": {
+          "direct": {
+            "absolute_gap": 0.0,
+            "best_bound": 592009.2018260957,
+            "relative_gap": 0.0,
+            "robust_recourse": 592009.2018260957,
+            "runtime_seconds": 0.10500001907348633,
+            "status": "OPTIMAL"
+          },
+          "prb": {
+            "all_duals_feasible": true,
+            "maximum_strong_duality_error": 5.820766091346741e-11,
+            "risk_budget_allocation": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              1
+            ],
+            "robust_recourse": 592009.2018260964,
+            "status": "OPTIMAL"
+          }
+        },
+        "prb_x": {
+          "direct": {
+            "absolute_gap": 0.0,
+            "best_bound": 592009.2018266553,
+            "relative_gap": 0.0,
+            "robust_recourse": 592009.2018266553,
+            "runtime_seconds": 0.10800004005432129,
+            "status": "OPTIMAL"
+          },
+          "prb": {
+            "all_duals_feasible": true,
+            "maximum_strong_duality_error": 5.820766091346741e-11,
+            "risk_budget_allocation": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            "robust_recourse": 592009.201826656,
+            "status": "OPTIMAL"
+          }
+        }
+      },
+      "input_evidence": {
+        "direct_file_hashes": {
+          "first_stage_solution.json": "749ac05d24f48a2d75d7a16b0e49af4baacd403ce702ef78c0ea43245c701421",
+          "provenance.json": "824688702a36ac33159658f2bef1ca49c62bb5a45f9ba85e0d4444d39c6469d6",
+          "result.json": "cf2368dc811d5b02a07605bcee68bd7bead2be0d1a46b35f183c629a50a8af20",
+          "solver.log": "d0a4d6115e5a1fe1a76313e431004cf80a6b7291113d506b02877da8c82d465a"
+        },
+        "direct_solver_log_present": true,
+        "prb_file_hashes": {
+          "first_stage_solution.json": "b7982ff566500d2214d3e629033e223f81f430b4864a115deebbd7e2f7ffc46b",
+          "provenance.json": "745a53c133e1fcc763a5cb061794091b1f38e59da608c1bdd6155750544fcd95",
+          "result.json": "276557a1f3118ef7786e68fd9bdcd38ed5782fc8425d90a7ff64f09137fcffbb"
+        },
+        "prb_solver_log_present": false
+      },
+      "l1_x_difference": 1.2220939984430856e-05,
+      "largest_x_differences": [
+        {
+          "absolute_difference": 4.629143802503677e-06,
+          "depot": "90016100",
+          "direct_x": 341.7470435757367,
+          "prb_x": 341.7470482048805,
+          "product": "CON-S-0130"
+        },
+        {
+          "absolute_difference": 4.629143563583682e-06,
+          "depot": "9624708",
+          "direct_x": 6.655357142857142,
+          "prb_x": 6.655352513713578,
+          "product": "CON-S-0130"
+        },
+        {
+          "absolute_difference": 1.4813266773217038e-06,
+          "depot": "90016100",
+          "direct_x": 128.68502945036283,
+          "prb_x": 128.68502796903616,
+          "product": "BAC-O-4312"
+        },
+        {
+          "absolute_difference": 1.4813259410217938e-06,
+          "depot": "9624708",
+          "direct_x": 7.214285714285714,
+          "prb_x": 7.214287195611655,
+          "product": "BAC-O-4312"
+        }
+      ],
+      "max_x_difference": 4.629143802503677e-06,
+      "prb_active_depots": [
+        "90016100",
+        "9624708"
+      ],
+      "prb_components": {
+        "absolute_difference_reconfiguration_cost": 139.2284031042169,
+        "final_inventory_cost": 63898.34302485392,
+        "first_stage_expenditure": 65650.34742795814,
+        "fixed_depot_cost": 1612.776,
+        "maximum_reconfiguration_balance_residual": 0.0,
+        "reconfiguration_cost": 139.2284031042169
+      },
+      "prb_result": {
+        "B": 65650.34742795816,
+        "FR_min_robust": 4.440892098500626e-15,
+        "Gamma": 2,
+        "average_fill_rate": 0.12751158681648178,
+        "beta": 1.0,
+        "calibration_hash": "e182dde7a79c1c9e7909fb776df4d1cff0326d39bbee5414c3d7efdb147e071a",
+        "case": "210330",
+        "certification": "CERTIFIED_PRB_EXACT",
+        "certification_runtime_seconds": 0.06942319986410439,
+        "cut_count": 33,
+        "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
+        "exact_certification_status": "CERTIFIED_PRB_EXACT",
+        "final_gap": 0.0,
+        "first_stage_expenditure": 65650.34742795814,
+        "git_commit": "4245c64be1ef53254d01c5087ecc2ad0b2fc54e9",
+        "global_coupling_pass": false,
+        "hardware": {
+          "logical_cpu_count": 14,
+          "machine": "AMD64",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "processor": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel"
+        },
+        "instance_hash": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+        "iteration_count": 5,
+        "iterations": 5,
+        "lambda_R": 0.05,
+        "lower_bound": 657659.549256254,
+        "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+        "master_runtime_seconds": 0.04034210043027997,
+        "master_solve_count": 5,
+        "method": "prb_benders",
+        "objective": 657659.5492546142,
+        "peak_memory_gb": null,
+        "product_subproblem_evaluations": 144,
+        "reconfiguration_cost": 139.2284031042169,
+        "relative_gap": 0.0,
+        "robust_recourse_cost": 592009.201826656,
+        "run_id": "E1-210330-PRB",
+        "runtime_seconds": 0.9831330000888556,
+        "solver_profile": "gurobi-balanced-1e-8-v1",
+        "solver_runtime_seconds": null,
+        "solver_version": "13.0.2",
+        "status": "OPTIMAL",
+        "subproblem_runtime_seconds": 0.44138980004936457,
+        "unique_product_cuts": 33,
+        "upper_bound": 657659.5492546142,
+        "wall_clock_seconds": 4.980748200090602,
+        "worst_region": "1",
+        "x0_hash": "11cd91349ff218d7f951a38a65123de8c5e304d36a370c97a39a1ce9b3c3961a"
+      },
+      "reconstructed_objectives": {
+        "direct": 657659.5492540539,
+        "prb": 657659.5492546135
+      },
+      "reported_objectives": {
+        "direct": 657659.5492540546,
+        "prb": 657659.5492546142
+      },
+      "reported_reconstruction_errors": {
+        "direct": 6.984919309616089e-10,
+        "prb": 6.984919309616089e-10
+      },
+      "same_x_recourse_errors": {
+        "direct_x": 6.984919309616089e-10,
+        "prb_x": 6.984919309616089e-10
+      },
+      "same_y": true,
+      "termination_contract": {
+        "cross_method_absolute_tolerance": 0.0001,
+        "guarantees_cross_method_1e_4": false,
+        "observed_cross_method_gate_pass": true,
+        "prb_exact_certification_checks_incumbent_against_upper_bound_only": true,
+        "prb_relative_gap_tolerance": 1e-06,
+        "relative_tolerance_absolute_scale": 0.6576595492546141
+      }
+    }
+  ],
+  "correctness_threshold": 0.0001,
+  "correctness_threshold_changed": false,
+  "dataset_changed": false,
+  "e2_e7_authorization": false,
+  "model_changed": false,
+  "other_six_cases_rerun": false,
+  "primary_result_hashes_preserved": true,
+  "schema": "e1_objective_mismatch_audit_v1"
+}

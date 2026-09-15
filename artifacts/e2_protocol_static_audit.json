@@ -1,0 +1,67 @@
+{
+  "authorized_run_count": 24,
+  "common_evaluation_gamma": 2,
+  "dataset_changed": false,
+  "direct_reruns": 0,
+  "e1_overwritten": false,
+  "e1_robust_reuse_count": 8,
+  "e2_executed": false,
+  "e3_e7_authorization": false,
+  "existing_is_fixed_x0": true,
+  "fixed_first_stage_evaluation_count": 24,
+  "identity_checks": {
+    "210129": {
+      "calibration_hash": true,
+      "instance_hash": true,
+      "mapping_hash": true,
+      "x0_hash": true
+    },
+    "210202": {
+      "calibration_hash": true,
+      "instance_hash": true,
+      "mapping_hash": true,
+      "x0_hash": true
+    },
+    "210310": {
+      "calibration_hash": true,
+      "instance_hash": true,
+      "mapping_hash": true,
+      "x0_hash": true
+    },
+    "210323": {
+      "calibration_hash": true,
+      "instance_hash": true,
+      "mapping_hash": true,
+      "x0_hash": true
+    },
+    "210330": {
+      "calibration_hash": true,
+      "instance_hash": true,
+      "mapping_hash": true,
+      "x0_hash": true
+    },
+    "210428": {
+      "calibration_hash": true,
+      "instance_hash": true,
+      "mapping_hash": true,
+      "x0_hash": true
+    },
+    "210611": {
+      "calibration_hash": true,
+      "instance_hash": true,
+      "mapping_hash": true,
+      "x0_hash": true
+    },
+    "210628": {
+      "calibration_hash": true,
+      "instance_hash": true,
+      "mapping_hash": true,
+      "x0_hash": true
+    }
+  },
+  "model_changed": false,
+  "nominal_plan_gamma": 0,
+  "optimization_run_count": 8,
+  "robust_plan_gamma": 2,
+  "status": "E2_PROTOCOL_AUTHORIZED_NOT_RUN"
+}

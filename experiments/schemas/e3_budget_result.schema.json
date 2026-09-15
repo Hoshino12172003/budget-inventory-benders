@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "E3 financial budget sensitivity result",
+  "type": "object",
+  "required": [
+    "run_id", "case", "beta", "B", "B_decimal", "B_ref", "Gamma", "lambda_R",
+    "dataset_id", "instance_hash", "x0_hash", "calibration_hash", "mapping_hash",
+    "model_identity_sha256", "solver_profile", "reused_from_E1_or_E2", "objective",
+    "fixed_cost", "inventory_cost", "reconfiguration_cost", "robust_recourse_cost",
+    "budget_used", "budget_utilization", "budget_slack", "budget_absolute_residual",
+    "budget_feasibility_pass", "total_a_plus", "total_a_minus", "total_adjustment",
+    "changed_pair_count", "RI", "RS", "active_depots", "opened_depots", "closed_depots",
+    "worst_recourse_shortage_cost", "worst_recourse_service_penalty_cost",
+    "worst_recourse_total_shortage", "minimum_fill_rate", "average_fill_rate",
+    "worst_region", "runtime_seconds", "iterations", "master_solves",
+    "product_subproblem_evaluations", "cuts_added", "certification_status", "status"
+  ],
+  "properties": {
+    "run_id": {"type": "string", "pattern": "^E3-[0-9]{6}-B(080|090|100|110|120)$"},
+    "case": {"type": "string"},
+    "beta": {"type": "number", "enum": [0.8, 0.9, 1.0, 1.1, 1.2]},
+    "Gamma": {"const": 2},
+    "lambda_R": {"const": 0.05},
+    "dataset_id": {"const": "RENAULT_EMPIRICAL_8CASE_V1"},
+    "reused_from_E1_or_E2": {"type": "boolean"},
+    "budget_feasibility_pass": {"type": "boolean"},
+    "status": {"const": "OPTIMAL"}
+  },
+  "additionalProperties": true
+}
