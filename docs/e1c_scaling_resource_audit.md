@@ -3,7 +3,9 @@
 ## Decision
 
 The recommended S/M/L grid passes static resource design review on the
-31.5-GiB machine. The original candidate L and XL do not.
+31.5-GiB machine. The original candidate L and XL do not. The recommended L
+still requires a development-only resource probe before the grid is frozen,
+because Pure Benders is very fast at the empirical S scale.
 
 ## Counting formulas
 
@@ -95,6 +97,52 @@ Even the fixed sequence Gamma 2/4/8 reaches 11,164,198,440 XL blocks. These
 rules fail the resource and fairness screen for the current exact
 implementations. Fixed Gamma 2 is therefore the only audited rule that isolates
 dimension scaling and permits all four methods.
+
+For the recommended S/M/L grid, the proportional-exposure rule gives Gamma
+2/4/6. Its exact static consequences are:
+
+| Scale | Gamma | Gamma/RJ | Product-risk blocks | Direct vars / constraints |
+|---|---:|---:|---:|---:|
+| S | 2 | 0.020833 | 632 | 122,376 / 18,629 |
+| M | 4 | 0.025000 | 25,170 | 8,482,961 / 957,882 |
+| L | 6 | 0.020833 | 2,280,612 | 1,425,383,510 / 116,330,402 |
+
+The ceiling makes M slightly more intense than S/L. More importantly, the
+rule preserves exposure share by increasing scenario depth, so it conflates
+dimension scaling with a sharp combinatorial change. `FIXED_GAMMA_2` is the
+pre-result recommendation. This is a design/fairness decision, not a claim
+that proportional Gamma is mathematically invalid.
+
+## XL search-box audit
+
+All counts below use fixed Gamma 2:
+
+| Anchor | I/R/J | Pure vars / constraints | Product-risk blocks | Direct vars / constraints | Static status |
+|---|---|---:|---:|---:|---|
+| XL-low | 30/30/14 | 2,114 / 15,541 | 6,524 | 6,075,177 / 405,479 | ABOVE_CURRENT_GATE |
+| XL-mid | 32/33/15 | 2,475 / 19,306 | 8,430 | 9,190,218 / 565,939 | RESOURCE_RISK |
+| XL-high | 35/36/16 | 2,880 / 24,193 | 10,672 | 13,843,348 / 780,365 | RESOURCE_RISK |
+
+The Pure global MILP remains modest across this box; the risk comes from the
+explicit Direct and structured product-risk constructions. No XL anchor is
+currently formal-grid eligible. XL-low is the only proposed development probe,
+and only with explicit authorization, process isolation, a 22-GiB memory stop,
+and the unchanged 900-second wall guard.
+
+## Probe and freeze policy
+
+The proposed probes are one seed at current L and one seed at XL-low. Direct is
+tested first because it is the construction bottleneck. They are development
+resource observations only and cannot enter paper statistics or determine the
+grid based on algorithm ranking.
+
+The largest scale is frozen only if deterministic generation succeeds, memory
+remains controlled, and Pure and PRB are invocable under the common timeout.
+Direct timeout is admissible and recorded, but unsafe Direct construction
+excludes the entire scale. The default remains three scales, five replicates,
+and 60 formal runs. Adding a safe XL would yield 80; increasing to ten
+replicates is permitted only under the preregistered sub-60-second/sub-12-GiB
+probe rule and before formal execution.
 
 ## Remaining authorization prerequisites
 

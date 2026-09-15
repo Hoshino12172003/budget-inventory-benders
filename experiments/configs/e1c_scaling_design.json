@@ -1,6 +1,6 @@
 {
   "schema": "e1c_renault_calibrated_controlled_scaling_design_v1",
-  "status": "STATIC_PROTOCOL_READY",
+  "status": "PRE_FREEZE_PROTOCOL_READY",
   "scientific_question": "Does exploiting product separability and the global risk-budget structure improve computational scalability as network size increases?",
   "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
   "formal_run_authorized": false,
@@ -38,7 +38,7 @@
     "product_volume": {"count": 64, "min": 40.0, "p10": 40.0, "p25": 59.75, "median": 84.0, "mean": 79.375, "p75": 91.75, "p90": 125.0, "max": 125.0},
     "lambda_R": 0.05,
     "B_ref_rule": "first_stage_expenditure_of_Gamma0_unconstrained_budget_nominal_incumbent",
-    "Gamma_rule": "fixed_2"
+    "Gamma_rule": "fixed_2_after_pre_result_proportional_exposure_audit"
   },
   "candidate_scale_grid": [
     {"scale": "S", "I": 15, "R": 12, "J": 8},
@@ -53,11 +53,24 @@
   ],
   "excluded_resource_risk_scales": ["candidate_L", "candidate_XL"],
   "Gamma": 2,
-  "Gamma_rule": "fixed absolute simultaneous shocks; controls uncertainty-budget scale while R, J, and I vary",
+  "Gamma_rule": "FIXED_GAMMA_2; fixed absolute simultaneous shocks isolate dimension scaling; proportional exposure was audited and rejected pre-result because it confounds dimension and combinatorial-depth growth",
+  "gamma_rule_audit": {
+    "rho_Gamma": 0.020833333333333332,
+    "proportional_formula": "max(2, ceil((2/96) * R * J))",
+    "proportional_candidate_values": {"S": 2, "M": 4, "L": 6},
+    "recommended": "FIXED_GAMMA_2",
+    "decision_basis": "static mathematical, economic, fairness, and construction-size audit only; no optimization result"
+  },
   "replicate_seeds": [20260911, 20260912, 20260913, 20260914, 20260915],
   "replicates_per_scale": 5,
   "methods": ["direct_exact", "pure_benders", "aggregate_benders_structured_oracle", "prb_benders"],
   "expected_formal_runs": 60,
+  "conditional_run_counts": {
+    "default_three_scales_five_replicates": 60,
+    "if_XL_passes_predeclared_resource_gate": 80,
+    "if_ten_replicates_are_pre_frozen_for_three_scales": 120,
+    "if_both_XL_and_ten_replicates_are_pre_frozen": 160
+  },
   "parameters": {"beta": 1.0, "lambda_R": 0.05, "service_target": 0.90},
   "solver": {
     "name": "Gurobi",
@@ -77,6 +90,34 @@
     "max_pure_variables": 10000,
     "max_pure_constraints": 100000,
     "fail_closed_on_limit": true
+  },
+  "candidate_XL_search_box": {
+    "status": "SEARCH_ONLY_RESOURCE_RISK_NOT_AUTHORIZED",
+    "range": {"I": [30, 35], "R": [30, 36], "J": [14, 16]},
+    "anchors": [
+      {"name": "XL_low", "I": 30, "R": 30, "J": 14, "Gamma": 2, "pure_total_variables": 2114, "pure_constraints": 15541, "product_risk_blocks": 6524, "direct_variables": 6075177, "direct_constraints": 405479},
+      {"name": "XL_mid", "I": 32, "R": 33, "J": 15, "Gamma": 2, "pure_total_variables": 2475, "pure_constraints": 19306, "product_risk_blocks": 8430, "direct_variables": 9190218, "direct_constraints": 565939},
+      {"name": "XL_high", "I": 35, "R": 36, "J": 16, "Gamma": 2, "pure_total_variables": 2880, "pure_constraints": 24193, "product_risk_blocks": 10672, "direct_variables": 13843348, "direct_constraints": 780365}
+    ]
+  },
+  "development_resource_probe_proposal": {
+    "status": "PROPOSAL_ONLY_NOT_AUTHORIZED",
+    "seed": 20260911,
+    "scale_replicates": [
+      {"scale": "L", "I": 25, "R": 24, "J": 12, "method_order": ["direct_exact", "aggregate_benders_structured_oracle", "prb_benders", "pure_benders"]},
+      {"scale": "XL_low", "I": 30, "R": 30, "J": 14, "method_order": ["direct_exact", "aggregate_benders_structured_oracle", "prb_benders", "pure_benders"], "requires_explicit_gate_exception_authorization": true}
+    ],
+    "timeout_seconds": 900,
+    "process_memory_stop_gib": 22,
+    "permitted_uses": ["wall_clock_feasibility", "RAM_feasibility", "model_size_feasibility", "timeout_calibration"],
+    "excluded_uses": ["paper_statistics", "algorithm_winner_selection", "scale_cherry_picking"]
+  },
+  "scale_freeze_rule": "Choose the largest common scale with deterministic generation, controlled memory risk, and Pure/PRB invocability under 900 seconds; Direct timeout is retained but unsafe construction excludes the entire scale; never use algorithm ranking.",
+  "replicate_freeze_rule": {
+    "default": 5,
+    "conditional_candidate": 10,
+    "allow_ten_only_if": "both preregistered probes exactly finish below 60 seconds and 12 GiB peak process memory, with the decision frozen before any formal result",
+    "never_use": ["observed_variance", "algorithm_ranking", "favorable_results"]
   },
   "x0_construction": {
     "definition": "Gamma0 unconstrained-budget nominal optimum under the frozen nominal-incumbent contract",

@@ -74,29 +74,60 @@ The original candidate M becomes the proposed L. Original candidate L and XL
 remain recorded as excluded `RESOURCE_RISK` levels; they are not silently
 deleted and cannot be introduced after results are observed.
 
+This grid is not yet paper-final. It provides a fivefold increase in `IRJ`
+from S to L, but the empirical S-scale Pure runtime indicates that L could
+still be computationally easy. A pre-authorized development probe, defined
+below, must decide whether to retain this three-level grid or add one XL level.
+The XL search box is `I=30--35`, `R=30--36`, and `J=14--16`. Its lower,
+midpoint, and upper audit anchors are
+30/30/14, 32/33/15, and 35/36/16. These are search bounds, not authorized
+instances and not eligible for cherry-picking.
+
 ## Gamma rule
 
-The paper-final recommendation is **fixed Gamma = 2** for all scales. This
-retains the Renault baseline interpretation of two simultaneous adverse
-region-product cells and holds uncertainty-budget intensity fixed while
-network dimensions change. Although Gamma/RJ falls with scale, the number of
-competing pairs still grows from 4,657 global scenarios at S to 12,881 at M
-and 41,617 at L.
+The pre-result recommendation remains **`FIXED_GAMMA_2`**. This retains the
+Renault baseline interpretation of two simultaneous adverse region-product
+cells and isolates network-size scaling from uncertainty-budget scaling. It
+does not preserve a constant affected-cell share: Gamma/RJ decreases from
+2/96 at S to 2/160 at M and 2/288 at L. E1c must therefore be described as
+scaling under a fixed absolute risk budget, not constant uncertainty intensity.
+The global coupling remains nontrivial because two cells are selected jointly
+from 96, 160, and 288 candidates.
 
-Alternatives were rejected before execution:
+The audited proportional-exposure alternative uses
 
-- proportional to \(RJ\) gives Gamma 2/6/12/24 on the original candidates and
-  expands current product-risk construction to as many as
-  3,764,670,964,725,072 blocks;
+\[
+\rho_\Gamma=2/96,\qquad
+\Gamma_s=\max\{2,\lceil\rho_\Gamma R_sJ_s\rceil\},
+\]
+
+and gives Gamma 2/4/6 on S/M/L. It is mathematically valid and has the clear
+economic interpretation of preserving approximately the same adverse-cell
+share. It is not selected because it changes two factors at once: network
+dimensions and cardinality-budget depth. With the current exact
+implementations, product-risk blocks rise from 632 at S to 25,170 at M and
+2,280,612 at L; Direct variables rise to about 8.48 million and 1.43 billion.
+That expansion is intrinsic to the current structured enumeration and would
+burden Direct and both structured-oracle algorithms very differently from the
+global Pure MILP. It would therefore confound, rather than cleanly test, the
+claimed structural scalability advantage. This decision uses construction
+counts only and no algorithm runtime result. The proportional rule does not
+guarantee a one-way advantage for PRB: it can favor PRB relative to Direct
+while simultaneously penalizing both structured methods relative to Pure.
+That representation-dependent asymmetry is precisely why it is not the main
+E1c rule.
+
+Other alternatives were rejected before execution:
+
+- proportional to \(RJ\) on the original candidate grid gives Gamma
+  2/6/12/24 and reaches 3,764,670,964,725,072 product-risk blocks;
 - proportional to \(J\) gives Gamma 2/3/4/6 and reaches 340,724,856 blocks;
 - running Gamma 2/4/8 confounds dimension scaling with uncertainty scaling and
   reaches 11,164,198,440 blocks at candidate XL.
 
-These rules would primarily test combinatorial scenario enumeration and would
-asymmetrically endanger Direct and both structured-oracle methods. Fixed Gamma
-does not remove global coupling: Pure still selects two shocks jointly from
-all \(RJ\) cells, while PRB must allocate the same total budget across a growing
-number of products.
+These rules would primarily test simultaneous growth in scenario depth and
+network size. A future, separately preregistered uncertainty-intensity study
+could use proportional Gamma, but it is outside E1c.
 
 ## Methods and fairness
 
@@ -123,8 +154,47 @@ Five deterministic seeds are frozen:
 Every seed is used at every scale and with every method. Failed, slow, or
 unfavorable replicates remain in the analysis. The proposed experiment is
 therefore \(3\times5\times4=60\) formal runs. Ten replicates are not justified
-before any resource evidence exists; increasing the count after seeing results
-is prohibited.
+before any resource evidence exists. Five remains the default. It may be
+raised to ten only before formal execution if both preregistered resource
+probes finish exactly within 60 seconds and below 12 GiB peak process memory;
+the decision must be recorded before any formal objective or comparative
+runtime is observed. Otherwise it stays at five. It may never be changed in
+response to variance or algorithm ordering.
+
+## Development-only resource-probe proposal
+
+No probe is authorized now. After separate authorization, use seed 20260911
+for exactly two scale-replicate cells:
+
+1. current L (25/24/12), testing Direct first because its explicit
+   construction is the resource bottleneck;
+2. XL-low (30/30/14), again testing Direct first in an isolated single process
+   with the same 900-second wall guard and a 22-GiB process-memory stop.
+
+Within each scale-replicate cell, the method order is Direct, Aggregate
+Structured, PRB, and Pure. Later methods are invoked only if the preceding
+resource checks show that continuing is safe; all retain the same timeout and
+hardware. A safety stop is not treated as comparative performance evidence.
+
+Each probe is `DEVELOPMENT_ONLY_NOT_FOR_PAPER_STATISTICS`. It may report only
+construction success, peak memory, wall-clock feasibility, solve/certification
+status, and timeout calibration. It may not be used to compare which algorithm
+wins. The XL Direct probe is attempted only after a separate human
+authorization acknowledges that its static estimate exceeds the current
+formal gate; otherwise XL is rejected without execution. Pure and PRB receive
+small-instance invocation checks only after the scale passes the resource
+gate, under the same 900-second timeout. No probe output enters E1c estimates.
+
+## Result-independent scale freeze rule
+
+Freeze the largest common scale for which instance generation is deterministic,
+the isolated resource probe avoids uncontrolled OOM risk on the 31.5-GiB
+machine, and both Pure and PRB can be invoked under the common 900-second
+contract. Direct may legitimately time out, but its predicted construction or
+observed probe memory must remain below the safety stop. If any method is unsafe
+to construct, exclude the entire scale for all four methods. A safe timeout is
+retained as `TIMEOUT`; it is never deleted. The decision uses resource safety
+and invocability only, never relative performance or whether PRB wins.
 
 ## Runtime and outcome contract
 
@@ -190,6 +260,8 @@ required for the primary conclusion.
 `instance_generation_authorized = false`
 
 `baseline_preparation_authorized = false`
+
+`pre_freeze_resource_probe_status = PROPOSAL_ONLY_NOT_AUTHORIZED`
 
 No instance file, nominal incumbent, budget anchor, development result, or
 formal result was generated in this task.

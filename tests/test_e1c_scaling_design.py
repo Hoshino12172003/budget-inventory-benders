@@ -40,6 +40,16 @@ def test_design_is_fail_closed_and_balanced() -> None:
     assert design["replicate_seeds"] == [20260911, 20260912, 20260913, 20260914, 20260915]
     assert design["expected_formal_runs"] == 3 * 5 * 4 == 60
     assert design["timeout_seconds_per_run"] == 900
+    assert design["gamma_rule_audit"]["recommended"] == "FIXED_GAMMA_2"
+    assert design["gamma_rule_audit"]["proportional_candidate_values"] == {
+        "S": 2,
+        "M": 4,
+        "L": 6,
+    }
+    assert design["development_resource_probe_proposal"]["status"] == (
+        "PROPOSAL_ONLY_NOT_AUTHORIZED"
+    )
+    assert design["replicate_freeze_rule"]["default"] == 5
     assert sha256_file(ROOT / design["generator"]["path"]) == design["generator"]["sha256"]
     assert design["source_instance_hashes"] == {
         case: sha256_file(ROOT / f"data/formal_instances_v2/{case}.json") for case in CASES
@@ -75,6 +85,35 @@ def test_static_size_counts_match_known_renault_scale() -> None:
     assert size["prb_master_surrogates"] == 25
     assert size["direct_variables"] == 122376
     assert size["direct_constraints"] == 18629
+
+
+def test_pre_freeze_gamma_and_xl_size_audit_is_reproducible() -> None:
+    design = json.loads(CONFIG.read_text(encoding="utf-8"))
+    proportional = {"S": 2, "M": 4, "L": 6}
+    for dimensions in design["recommended_scale_grid"]:
+        scale = dimensions["scale"]
+        size = scaling_size(
+            ScalingDimensions(scale, dimensions["I"], dimensions["R"], dimensions["J"]),
+            gamma=proportional[scale],
+        )
+        if scale == "M":
+            assert size["prb_product_risk_blocks"] == 25170
+            assert size["direct_variables"] == 8482961
+        if scale == "L":
+            assert size["prb_product_risk_blocks"] == 2280612
+            assert size["direct_variables"] == 1425383510
+    for anchor in design["candidate_XL_search_box"]["anchors"]:
+        size = scaling_size(
+            ScalingDimensions(
+                anchor["name"], anchor["I"], anchor["R"], anchor["J"]
+            ),
+            gamma=anchor["Gamma"],
+        )
+        assert size["pure_total_variables"] == anchor["pure_total_variables"]
+        assert size["pure_constraints"] == anchor["pure_constraints"]
+        assert size["prb_product_risk_blocks"] == anchor["product_risk_blocks"]
+        assert size["direct_variables"] == anchor["direct_variables"]
+        assert size["direct_constraints"] == anchor["direct_constraints"]
 
 
 def test_generator_is_deterministic_valid_and_seed_sensitive() -> None:
