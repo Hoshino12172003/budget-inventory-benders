@@ -19,17 +19,21 @@ def manifest() -> dict:
     return json.loads(runner.AUTHORIZATION.read_text(encoding="utf-8"))
 
 
-def test_e1b_grid_is_exactly_eight_standard_runs_and_not_authorized(manifest) -> None:
+def test_e1b_grid_is_exactly_eight_authorized_standard_runs(manifest) -> None:
     expected = {f"E1B-{case}-STANDARD" for case in CASES}
     assert set(manifest["authorized_standard_run_ids"]) == expected
     assert manifest["case_ids"] == list(CASES)
-    assert manifest["formal_run_authorized"] is False
+    assert manifest["formal_run_authorized"] is True
     assert manifest["controlled_scaling_authorized"] is False
     assert manifest["e2_e7_modification_authorized"] is False
     assert manifest["parameters"] == {"Gamma": 2, "beta": 1.0, "lambda_R": 0.05}
 
 
-def test_runner_fails_closed_before_any_solver_call(monkeypatch, tmp_path) -> None:
+def test_runner_fails_closed_before_any_solver_call(manifest, monkeypatch, tmp_path) -> None:
+    unauthorized = {**manifest, "formal_run_authorized": False}
+    authorization = tmp_path / "authorization.json"
+    authorization.write_text(json.dumps(unauthorized), encoding="utf-8")
+    monkeypatch.setattr(runner, "AUTHORIZATION", authorization)
     monkeypatch.setattr(
         runner,
         "solve_standard_benders",

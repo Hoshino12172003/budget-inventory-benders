@@ -3,7 +3,7 @@
   "experiment_id": "E1b",
   "scientific_question": "Does exploiting product-wise recourse separability and the global risk-budget structure provide computational gains beyond standard Benders decomposition itself?",
   "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
-  "formal_run_authorized": false,
+  "formal_run_authorized": true,
   "authorized_standard_run_ids": [
     "E1B-210129-STANDARD",
     "E1B-210202-STANDARD",
