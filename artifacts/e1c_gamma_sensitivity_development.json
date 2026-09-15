@@ -1,0 +1,72 @@
+{
+  "status": "EVIDENCE_INSUFFICIENT",
+  "development_only": true,
+  "paper_final_observation": false,
+  "static_audit": "PASS",
+  "dry_run": {
+    "status": "PASS",
+    "condition_count": 12,
+    "optimization_calls": 0
+  },
+  "execution": {
+    "status": "E1C_GAMMA_RESOURCE_PREFLIGHT_BLOCKED",
+    "available_memory_gib": 15.911839,
+    "required_available_memory_gib": 18.0,
+    "worker_started": false,
+    "model_construction_started": false,
+    "solver_called": false
+  },
+  "instance": {
+    "source": "experiments/results/e1c_development_probe_v1/L/PREPARE",
+    "seed": 20260911,
+    "I": 25,
+    "R": 24,
+    "J": 12,
+    "RJ": 288,
+    "instance_hash": "f78bc7a03d913ffde4d2593b1fb61b3456e15cf7918c0ed5d0df6028bac1aa23",
+    "x0_hash": "39d3a0f6612fbbbbaf265e22813c26f72c3b975d8dfc55b7b134c3bc256ea444",
+    "B_ref": 139324.8800849306
+  },
+  "frozen_protocol": {
+    "gamma_grid": [2, 4, 6, 8],
+    "methods": [
+      "pure_benders",
+      "aggregate_benders_structured_oracle",
+      "prb_benders"
+    ],
+    "beta": 1.0,
+    "lambda_R": 0.05,
+    "timeout_seconds_per_method": 900,
+    "relative_gap_tolerance": 1e-6,
+    "cut_tolerance": 1e-7,
+    "objective_certification_tolerance": 1e-4,
+    "preflight_available_memory_gib": 18,
+    "process_tree_memory_stop_gib": 14,
+    "system_available_memory_emergency_stop_gib": 3,
+    "monitor_interval_seconds": 0.25
+  },
+  "static_sizes": {
+    "pure_global_adversarial_milp": {
+      "binary_variables": 288,
+      "continuous_variables": 1176,
+      "total_variables": 1464,
+      "constraints": 9217
+    },
+    "product_risk_blocks": {
+      "2": 3612,
+      "4": 155412,
+      "6": 2280612,
+      "8": 15259512
+    }
+  },
+  "gamma2_sanity": "NOT_RUN_RESOURCE_PREFLIGHT_BLOCK",
+  "objective_consistency": "NOT_AVAILABLE",
+  "pure_oracle_growth": "NOT_AVAILABLE",
+  "prb_over_pure_runtime_ratio_trend": "NOT_AVAILABLE",
+  "crossover_observed": null,
+  "timeout_events": 0,
+  "resource_stop_events": 0,
+  "preflight_block_events": 1,
+  "formal_optimization_runs": 0,
+  "development_optimization_runs": 0
+}

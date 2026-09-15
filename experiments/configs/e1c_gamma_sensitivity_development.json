@@ -1,0 +1,40 @@
+{
+  "schema": "e1c_gamma_sensitivity_development_v1",
+  "development_only": true,
+  "paper_final_observation": false,
+  "development_run_authorized": true,
+  "formal_run_authorized": false,
+  "prepared_instance": "experiments/results/e1c_development_probe_v1/L/PREPARE/instance.json",
+  "prepared_baseline": "experiments/results/e1c_development_probe_v1/L/PREPARE/baseline.json",
+  "expected_instance_hash": "f78bc7a03d913ffde4d2593b1fb61b3456e15cf7918c0ed5d0df6028bac1aa23",
+  "expected_x0_hash": "39d3a0f6612fbbbbaf265e22813c26f72c3b975d8dfc55b7b134c3bc256ea444",
+  "dimensions": {"I": 25, "R": 24, "J": 12},
+  "seed": 20260911,
+  "gamma_grid": [2, 4, 6, 8],
+  "methods": [
+    "pure_benders",
+    "aggregate_benders_structured_oracle",
+    "prb_benders"
+  ],
+  "beta": 1.0,
+  "lambda_R": 0.05,
+  "relative_gap_tolerance": 1e-6,
+  "cut_tolerance": 1e-7,
+  "objective_certification_tolerance": 1e-4,
+  "max_iterations": 500,
+  "timeout_seconds_per_method": 900,
+  "minimum_available_memory_gib_before_launch": 18,
+  "preflight_consecutive_samples": 3,
+  "process_memory_hard_stop_gib": 14,
+  "system_available_memory_emergency_stop_gib": 3,
+  "memory_poll_interval_seconds": 0.25,
+  "result_root": "experiments/results/e1c_gamma_sensitivity_development_v1",
+  "overwrite_allowed": false,
+  "gamma2_sanity_objective_tolerance": 1e-4,
+  "interpretation_rules": [
+    "PURE_DOMINATES_OVER_TESTED_GAMMA_RANGE",
+    "PRB_CROSSOVER_OBSERVED",
+    "PRB_RELATIVE_SCALING_IMPROVEMENT_ONLY",
+    "EVIDENCE_INSUFFICIENT"
+  ]
+}
