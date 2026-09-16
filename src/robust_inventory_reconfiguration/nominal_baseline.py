@@ -134,6 +134,9 @@ def solve_canonical_nominal_baseline(
     instance: InventoryInstance,
     *,
     objective_face_tolerance: float = OBJECTIVE_FACE_TOLERANCE,
+    fix_with_bounds: bool = False,
+    continuous_fix_tolerance: float = 0.0,
+    objective_face_validation_slack: float = 1e-9,
 ) -> CanonicalNominalBaseline:
     """Select one deterministic incumbent without changing the primary objective."""
     from gurobipy import GRB
@@ -174,7 +177,17 @@ def solve_canonical_nominal_baseline(
             value = float(variable.X)
             if abs(value) <= model.Params.FeasibilityTol:
                 value = 0.0
-        model.addConstr(variable == value, name=f"canonical_fix[{position}]")
+        if fix_with_bounds:
+            if variable.VType == GRB.BINARY:
+                variable.LB = value
+                variable.UB = value
+            else:
+                # The minimization just proved that no smaller value is feasible on
+                # the retained face.  An upper bound is sufficient and avoids
+                # accumulating rounded equality right-hand sides in large models.
+                variable.UB = value + continuous_fix_tolerance
+        else:
+            model.addConstr(variable == value, name=f"canonical_fix[{position}]")
 
     model.setObjective(primary, GRB.MINIMIZE)
     model.optimize()
@@ -183,8 +196,11 @@ def solve_canonical_nominal_baseline(
         raise RuntimeError("Final canonical economic re-solve failed")
     canonical_objective = float(model.ObjVal)
     objective_delta = canonical_objective - primary_objective
-    if objective_delta > objective_face_tolerance + 1e-9:
-        raise RuntimeError("BLOCK_CANONICAL_INCUMBENT_LEFT_PRIMARY_FACE")
+    if objective_delta > objective_face_tolerance + objective_face_validation_slack:
+        raise RuntimeError(
+            "BLOCK_CANONICAL_INCUMBENT_LEFT_PRIMARY_FACE: "
+            f"delta={objective_delta:.17g}, tolerance={objective_face_tolerance:.17g}"
+        )
     baseline = NominalBaseline(
         y=[int(round(y[i].X)) for i in range(instance.num_depots)],
         x=[
