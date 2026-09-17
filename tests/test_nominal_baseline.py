@@ -4,6 +4,7 @@ import pytest
 
 from robust_inventory_reconfiguration.instance import InventoryInstance
 from robust_inventory_reconfiguration.nominal_baseline import (
+    CANONICAL_NUMERICAL_REPAIR_PROFILE,
     CANONICAL_NOMINAL_RULE,
     OBJECTIVE_FACE_TOLERANCE,
     NominalBaseline,
@@ -58,3 +59,56 @@ def test_canonical_selector_is_deterministic_on_nonunique_primary_face() -> None
     assert first.baseline.x[1][0] == pytest.approx(1.0, abs=1e-8)
     assert abs(first.objective_delta) <= OBJECTIVE_FACE_TOLERANCE
     assert first.primary_objective == second.primary_objective
+    assert first.numerical_repair_used is False
+    assert first.repair_profile is None
+
+
+def test_canonical_numerical_retry_is_explicit(monkeypatch, tiny_instance) -> None:
+    import robust_inventory_reconfiguration.nominal_baseline as nominal
+
+    calls = []
+    repaired = nominal.CanonicalNominalBaseline(
+        baseline=nominal.NominalBaseline([1], [[0.0, 0.0]], 0.0, 0.0, 0.0),
+        primary_objective=0.0,
+        canonical_objective=0.0,
+        objective_delta=0.0,
+        solve_count=1,
+        objective_face_tolerance=OBJECTIVE_FACE_TOLERANCE,
+        numerical_repair_used=True,
+        repair_profile=CANONICAL_NUMERICAL_REPAIR_PROFILE,
+        continuous_fix_tolerance=nominal.CONTINUOUS_FIX_TOLERANCE,
+    )
+
+    def fake_once(_instance, **kwargs):
+        calls.append(kwargs)
+        if len(calls) == 1:
+            raise RuntimeError("Canonical nominal stage failed at position 1")
+        return repaired
+
+    monkeypatch.setattr(nominal, "_solve_canonical_nominal_baseline_once", fake_once)
+    result = nominal.solve_canonical_nominal_baseline(tiny_instance)
+
+    assert result is repaired
+    assert calls[0]["fix_with_bounds"] is False
+    assert calls[1]["fix_with_bounds"] is True
+    assert calls[1]["objective_face_relative_tolerance"] == nominal.OBJECTIVE_FACE_RELATIVE_TOLERANCE
+    assert calls[1]["continuous_fix_tolerance"] == nominal.CONTINUOUS_FIX_TOLERANCE
+    assert calls[1]["repair_profile"] == CANONICAL_NUMERICAL_REPAIR_PROFILE
+
+
+def test_canonical_numerical_retry_does_not_mask_structural_failure(
+    monkeypatch, tiny_instance
+) -> None:
+    import robust_inventory_reconfiguration.nominal_baseline as nominal
+
+    calls = 0
+
+    def fake_once(_instance, **_kwargs):
+        nonlocal calls
+        calls += 1
+        raise RuntimeError("Primary nominal model did not solve to optimality: 3")
+
+    monkeypatch.setattr(nominal, "_solve_canonical_nominal_baseline_once", fake_once)
+    with pytest.raises(RuntimeError, match="Primary nominal model"):
+        nominal.solve_canonical_nominal_baseline(tiny_instance)
+    assert calls == 1

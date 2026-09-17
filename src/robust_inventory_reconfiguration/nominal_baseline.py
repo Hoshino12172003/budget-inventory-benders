@@ -17,6 +17,10 @@ class NominalBaseline:
 
 CANONICAL_NOMINAL_RULE = "lexicographic_min_y_then_x_on_primary_optimal_face_v1"
 OBJECTIVE_FACE_TOLERANCE = 1e-7
+OBJECTIVE_FACE_RELATIVE_TOLERANCE = 1e-12
+CONTINUOUS_FIX_TOLERANCE = 1e-7
+OBJECTIVE_FACE_VALIDATION_SLACK = 5e-9
+CANONICAL_NUMERICAL_REPAIR_PROFILE = "bounded_continuous_fix_abs1e-7_rel1e-12_v1"
 
 
 @dataclass(frozen=True)
@@ -27,6 +31,15 @@ class CanonicalNominalBaseline:
     objective_delta: float
     solve_count: int
     rule: str = CANONICAL_NOMINAL_RULE
+    objective_face_tolerance: float = OBJECTIVE_FACE_TOLERANCE
+    objective_face_validation_slack: float = 0.0
+    numerical_repair_used: bool = False
+    repair_profile: str | None = None
+    continuous_fix_tolerance: float = 0.0
+    maximum_constraint_violation: float = 0.0
+    maximum_bound_violation: float = 0.0
+    maximum_integrality_violation: float = 0.0
+    numerical_attempt_count: int = 1
 
 
 def build_nominal_model(
@@ -137,8 +150,49 @@ def solve_canonical_nominal_baseline(
     fix_with_bounds: bool = False,
     continuous_fix_tolerance: float = 0.0,
     objective_face_validation_slack: float = 1e-9,
+    numerical_retry: bool = True,
 ) -> CanonicalNominalBaseline:
     """Select one deterministic incumbent without changing the primary objective."""
+    try:
+        return _solve_canonical_nominal_baseline_once(
+            instance,
+            objective_face_tolerance=objective_face_tolerance,
+            objective_face_relative_tolerance=0.0,
+            fix_with_bounds=fix_with_bounds,
+            continuous_fix_tolerance=continuous_fix_tolerance,
+            objective_face_validation_slack=objective_face_validation_slack,
+            numerical_repair_used=False,
+            repair_profile=None,
+        )
+    except RuntimeError as exc:
+        numerical_failure = str(exc).startswith(
+            ("Canonical nominal stage failed", "BLOCK_CANONICAL_INCUMBENT_LEFT_PRIMARY_FACE")
+        )
+        if not numerical_retry or fix_with_bounds or not numerical_failure:
+            raise
+    return _solve_canonical_nominal_baseline_once(
+        instance,
+        objective_face_tolerance=objective_face_tolerance,
+        objective_face_relative_tolerance=OBJECTIVE_FACE_RELATIVE_TOLERANCE,
+        fix_with_bounds=True,
+        continuous_fix_tolerance=CONTINUOUS_FIX_TOLERANCE,
+        objective_face_validation_slack=OBJECTIVE_FACE_VALIDATION_SLACK,
+        numerical_repair_used=True,
+        repair_profile=CANONICAL_NUMERICAL_REPAIR_PROFILE,
+    )
+
+
+def _solve_canonical_nominal_baseline_once(
+    instance: InventoryInstance,
+    *,
+    objective_face_tolerance: float,
+    objective_face_relative_tolerance: float,
+    fix_with_bounds: bool,
+    continuous_fix_tolerance: float,
+    objective_face_validation_slack: float,
+    numerical_repair_used: bool,
+    repair_profile: str | None,
+) -> CanonicalNominalBaseline:
     from gurobipy import GRB
 
     model, y, x, first_stage, recourse = build_nominal_model(instance)
@@ -151,8 +205,12 @@ def solve_canonical_nominal_baseline(
     if model.Status != GRB.OPTIMAL:
         raise RuntimeError(f"Primary nominal model did not solve to optimality: {model.Status}")
     primary_objective = float(model.ObjVal)
+    effective_face_tolerance = max(
+        objective_face_tolerance,
+        objective_face_relative_tolerance * max(1.0, abs(primary_objective)),
+    )
     model.addConstr(
-        primary <= primary_objective + objective_face_tolerance,
+        primary <= primary_objective + effective_face_tolerance,
         name="primary_optimal_face",
     )
 
@@ -196,10 +254,10 @@ def solve_canonical_nominal_baseline(
         raise RuntimeError("Final canonical economic re-solve failed")
     canonical_objective = float(model.ObjVal)
     objective_delta = canonical_objective - primary_objective
-    if objective_delta > objective_face_tolerance + objective_face_validation_slack:
+    if objective_delta > effective_face_tolerance + objective_face_validation_slack:
         raise RuntimeError(
             "BLOCK_CANONICAL_INCUMBENT_LEFT_PRIMARY_FACE: "
-            f"delta={objective_delta:.17g}, tolerance={objective_face_tolerance:.17g}"
+            f"delta={objective_delta:.17g}, tolerance={effective_face_tolerance:.17g}"
         )
     baseline = NominalBaseline(
         y=[int(round(y[i].X)) for i in range(instance.num_depots)],
@@ -217,6 +275,15 @@ def solve_canonical_nominal_baseline(
         canonical_objective=canonical_objective,
         objective_delta=objective_delta,
         solve_count=solve_count,
+        objective_face_tolerance=effective_face_tolerance,
+        objective_face_validation_slack=objective_face_validation_slack,
+        numerical_repair_used=numerical_repair_used,
+        repair_profile=repair_profile,
+        continuous_fix_tolerance=continuous_fix_tolerance,
+        maximum_constraint_violation=float(model.ConstrVio),
+        maximum_bound_violation=float(model.BoundVio),
+        maximum_integrality_violation=float(model.IntVio),
+        numerical_attempt_count=2 if numerical_repair_used else 1,
     )
 
 
