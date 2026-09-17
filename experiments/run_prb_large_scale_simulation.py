@@ -17,6 +17,8 @@ from robust_inventory_reconfiguration.pure_benders import solve_pure_benders
 from robust_inventory_reconfiguration.standard_benders import solve_standard_benders
 
 OUT = ROOT / "experiments/results/prb_large_scale_simulation_v1"
+REPAIR_SUMMARY = OUT / "canonical_prepare_repair_summary.json"
+COMPLETENESS_SUMMARY = OUT / "large_scale_simulation_completeness_after_repair.json"
 SOURCE_CASES=("210129","210202","210310","210323","210330","210428","210611","210628")
 MAIN_SEEDS=tuple(range(20260921,20260931))
 STRESS_SEEDS=tuple(range(20261001,20261006))
@@ -48,6 +50,17 @@ def tdir(scale,seed,task): return OUT/scale/str(seed)/task
 def terminal(path):
     p=Path(path)/"result.json"
     return p.exists() and rj(p).get("terminal_record") is True
+
+def result_at(scale,seed,task):
+    p=tdir(scale,seed,task)/"result.json"
+    return rj(p) if p.exists() else None
+
+def valid_prepare(scale,seed):
+    result=result_at(scale,seed,"PREPARE")
+    if not result or result.get("status")!="OPTIMAL" or result.get("terminal_record") is not True:
+        return False
+    prep=tdir(scale,seed,"PREPARE")
+    return (prep/"instance.json").exists() and (prep/"baseline.json").exists()
 
 def ptreemem(pid):
     try:
@@ -203,6 +216,178 @@ def run_grid(stress=False):
                 r=run_monitored(scale,seed,m)
                 print(f"[DONE] {r.get('status')} peak={r.get('peak_process_tree_memory_gib')}",flush=True)
 
+def repair_failed_prepares():
+    OUT.mkdir(parents=True,exist_ok=True)
+    rows=[]
+    for scale in MAIN_SCALES:
+        for seed in MAIN_SEEDS:
+            current=tdir(scale,seed,"PREPARE")
+            archive=tdir(scale,seed,"PREPARE_PRE_REPAIR")
+            old_path=(archive if archive.exists() else current)/"result.json"
+            old=rj(old_path) if old_path.exists() else None
+            attempted=False
+            if (
+                not archive.exists()
+                and old is not None
+                and old.get("task")=="PREPARE"
+                and old.get("status")=="ERROR"
+                and old.get("terminal_record") is True
+            ):
+                preflight()
+                shutil.move(str(current),str(archive))
+                attempted=True
+                print(f"[REPAIR PREPARE] {scale} seed={seed}",flush=True)
+                run_monitored(scale,seed,"PREPARE")
+            new=result_at(scale,seed,"PREPARE")
+            baseline_path=tdir(scale,seed,"PREPARE")/"baseline.json"
+            baseline=rj(baseline_path) if baseline_path.exists() else {}
+            rows.append({
+                "scale":scale,"seed":seed,"old_status":old.get("status") if old else "MISSING",
+                "new_status":new.get("status") if new else "MISSING","attempted":attempted,
+                "x0_hash":baseline.get("x0_hash"),"B_ref":baseline.get("B_ref"),
+                "repair_profile":baseline.get("repair_profile"),
+                "objective_delta":baseline.get("primary_objective_delta"),
+                "effective_tolerance":baseline.get("primary_face_gate_tolerance"),
+                "maximum_constraint_violation":baseline.get("maximum_constraint_violation"),
+                "maximum_bound_violation":baseline.get("maximum_bound_violation"),
+                "maximum_integrality_violation":baseline.get("maximum_integrality_violation"),
+            })
+    summary={
+        "total_main_instances":len(rows),
+        "originally_successful":sum(x["old_status"]=="OPTIMAL" for x in rows),
+        "originally_failed":sum(x["old_status"]=="ERROR" for x in rows),
+        "attempted":sum(x["attempted"] for x in rows),
+        "repaired_successfully":sum(x["old_status"]=="ERROR" and x["new_status"]=="OPTIMAL" for x in rows),
+        "still_failed":sum(x["new_status"]!="OPTIMAL" for x in rows),
+        "instances":rows,"git_commit":gitsha(),
+    }
+    wj(REPAIR_SUMMARY,summary)
+    lines=["# Large-scale canonical PREPARE repair completion","",
+           f"- Main instances: {summary['total_main_instances']}",
+           f"- Originally successful: {summary['originally_successful']}",
+           f"- Originally failed: {summary['originally_failed']}",
+           f"- Attempted in this invocation: {summary['attempted']}",
+           f"- Repaired successfully: {summary['repaired_successfully']}",
+           f"- Still failed: {summary['still_failed']}","",
+           "Old ERROR artifacts are preserved in each `PREPARE_PRE_REPAIR` directory.",""]
+    (ROOT/"docs/large_scale_canonical_prepare_repair_completion.md").write_text("\n".join(lines),encoding="utf-8")
+    print(json.dumps(summary,indent=2))
+    return summary
+
+def validate_prepared_identity(scale,seed):
+    if not valid_prepare(scale,seed):
+        raise RuntimeError(f"PREPARE_NOT_COMPLETE {scale} {seed}")
+    prep=tdir(scale,seed,"PREPARE"); result=rj(prep/"result.json"); baseline=rj(prep/"baseline.json")
+    instance=load_instance(prep/"instance.json")
+    checks={
+        "scale":result.get("scale")==baseline.get("scale")==scale,
+        "seed":int(result.get("seed"))==int(baseline.get("seed"))==seed,
+        "instance_hash":result.get("instance_hash")==baseline.get("instance_hash")==ch(instance.to_dict()),
+        "x0_hash":instance.initial_inventory is not None and result.get("x0_hash")==baseline.get("x0_hash")==ch(instance.initial_inventory),
+        "B_ref":float(result.get("B_ref"))==float(baseline.get("B_ref")),
+        "Gamma":baseline.get("Gamma")==GAMMA,
+        "lambda_R":baseline.get("lambda_R")==LAMBDA_R,
+    }
+    if not all(checks.values()):
+        raise RuntimeError(f"PREPARE_IDENTITY_MISMATCH {scale} {seed}: {checks}")
+    return baseline
+
+def validate_algorithm_identity(record,scale,seed,baseline):
+    expected={"scale":scale,"seed":seed,"instance_hash":baseline["instance_hash"],
+              "x0_hash":baseline["x0_hash"],"B_ref":baseline["B_ref"],
+              "Gamma":GAMMA,"lambda_R":LAMBDA_R}
+    mismatches={k:(record.get(k),v) for k,v in expected.items() if record.get(k)!=v}
+    if mismatches:
+        raise RuntimeError(f"ALGORITHM_IDENTITY_MISMATCH {scale} {seed}: {mismatches}")
+
+def missing_prepare_only_error(scale,seed,method):
+    result=result_at(scale,seed,method)
+    stderr=tdir(scale,seed,method)/"stderr.log"
+    return bool(
+        result and result.get("status")=="ERROR" and stderr.exists()
+        and "PREPARE_NOT_COMPLETE" in stderr.read_text(encoding="utf-8",errors="replace")
+    )
+
+def build_completeness():
+    rows=[]
+    for scale in MAIN_SCALES:
+        for seed in MAIN_SEEDS:
+            prep=result_at(scale,seed,"PREPARE") or {}
+            methods={m:(result_at(scale,seed,m) or {}) for m in METHODS}
+            certified=all(
+                methods[m].get("status")=="OPTIMAL" and methods[m].get("exact_certification") is True
+                for m in METHODS
+            )
+            if certified:
+                objectives=[float(methods[m]["objective"]) for m in METHODS]
+                certified=max(objectives)-min(objectives)<=OBJ_TOL
+            rows.append({"scale":scale,"seed":seed,"prepare_status":prep.get("status","MISSING"),
+                         "pure_status":methods["pure_benders"].get("status","MISSING"),
+                         "aggregate_status":methods["aggregate_benders_structured_oracle"].get("status","MISSING"),
+                         "prb_status":methods["prb_benders"].get("status","MISSING"),
+                         "triple_certified":certified})
+    by_scale={}
+    for scale in MAIN_SCALES:
+        group=[x for x in rows if x["scale"]==scale]
+        statuses=[x[f"{name}_status"] for x in group for name in ("pure","aggregate","prb")]
+        by_scale[scale]={"prepare_success":sum(x["prepare_status"]=="OPTIMAL" for x in group),
+                         "pure_success":sum(x["pure_status"]=="OPTIMAL" for x in group),
+                         "aggregate_success":sum(x["aggregate_status"]=="OPTIMAL" for x in group),
+                         "prb_success":sum(x["prb_status"]=="OPTIMAL" for x in group),
+                         "certified_triples":sum(x["triple_certified"] for x in group),
+                         "timeout":statuses.count("TIME_LIMIT"),"resource_stop":statuses.count("RESOURCE_STOP"),
+                         "error":statuses.count("ERROR")}
+    statuses=[x[f"{name}_status"] for x in rows for name in ("pure","aggregate","prb")]
+    summary={"total_main_instances":len(rows),"prepare_success":sum(x["prepare_status"]=="OPTIMAL" for x in rows),
+             "algorithm_observations":sum(s!="MISSING" for s in statuses),
+             "certified_runs":0,"complete_certified_triples":sum(x["triple_certified"] for x in rows),
+             "timeout":statuses.count("TIME_LIMIT"),"resource_stop":statuses.count("RESOURCE_STOP"),
+             "error":statuses.count("ERROR"),"by_scale":by_scale,"instances":rows,
+             "known_issue":{"scale":"XL10","seed":20260924,"method":"pure_benders",
+                            "classification":"PRESERVED_CUT_VALIDITY_ERROR"},"git_commit":gitsha()}
+    for scale in MAIN_SCALES:
+        for seed in MAIN_SEEDS:
+            for method in METHODS:
+                record=result_at(scale,seed,method) or {}
+                summary["certified_runs"]+=record.get("status")=="OPTIMAL" and record.get("exact_certification") is True
+    wj(COMPLETENESS_SUMMARY,summary)
+    lines=["# Large-scale simulation completeness after repair",""]
+    for scale in MAIN_SCALES:
+        value=by_scale[scale]
+        lines.extend([f"## {scale}","",*(f"- {k}: {v}" for k,v in value.items()),""])
+    lines.extend(["## Total","",f"- PREPARE: {summary['prepare_success']} / 30",
+                  f"- Algorithm observations: {summary['algorithm_observations']} / 90",
+                  f"- Certified runs: {summary['certified_runs']}",
+                  f"- Complete certified triples: {summary['complete_certified_triples']} / 30",
+                  f"- TIME_LIMIT: {summary['timeout']}",f"- RESOURCE_STOP: {summary['resource_stop']}",
+                  f"- ERROR: {summary['error']}","",
+                  "XL10 seed 20260924 Pure Benders remains a preserved cut-validity ERROR.",""])
+    (ROOT/"docs/large_scale_simulation_completeness_after_repair.md").write_text("\n".join(lines),encoding="utf-8")
+    return summary
+
+def supplement_missing_main():
+    for scale in MAIN_SCALES:
+        for seed in MAIN_SEEDS:
+            baseline=validate_prepared_identity(scale,seed)
+            for method in METHODS:
+                record=result_at(scale,seed,method)
+                if record is not None:
+                    if record.get("status")=="OPTIMAL":
+                        validate_algorithm_identity(record,scale,seed,baseline)
+                        continue
+                    if record.get("status") in ("TIME_LIMIT","RESOURCE_STOP","ERROR"):
+                        if not missing_prepare_only_error(scale,seed,method):
+                            continue
+                        archive=tdir(scale,seed,method+"_PRE_SUPPLEMENT")
+                        if archive.exists(): raise RuntimeError(f"SUPPLEMENT_ARCHIVE_EXISTS {archive}")
+                        shutil.move(str(tdir(scale,seed,method)),str(archive))
+                    else:
+                        raise RuntimeError(f"UNRECOGNIZED_EXISTING_RESULT {scale} {seed} {method}")
+                print(f"[SUPPLEMENT] {scale} seed={seed} method={method}",flush=True)
+                new=run_monitored(scale,seed,method)
+                if new.get("status")=="OPTIMAL": validate_algorithm_identity(new,scale,seed,baseline)
+    summary=build_completeness(); print(json.dumps(summary,indent=2)); return summary
+
 def dry():
     donor_regions=sum(load_instance(ROOT/f"data/formal_instances_v2/{c}.json").num_regions for c in SOURCE_CASES)
     donor_depots=sum(load_instance(ROOT/f"data/formal_instances_v2/{c}.json").num_depots for c in SOURCE_CASES)
@@ -217,13 +402,17 @@ def dry():
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--dry-run",action="store_true"); ap.add_argument("--run-main",action="store_true"); ap.add_argument("--run-stress",action="store_true")
+    ap.add_argument("--repair-failed-prepare",action="store_true")
+    ap.add_argument("--supplement-missing-main",action="store_true")
     ap.add_argument("--worker",choices=("PREPARE",*METHODS)); ap.add_argument("--scale",choices=tuple(SCALES)); ap.add_argument("--seed",type=int)
     a=ap.parse_args()
     if a.worker:
         if a.scale is None or a.seed is None: ap.error("--worker requires --scale and --seed")
         worker(a.scale,a.seed,a.worker); return
-    if sum(map(bool,(a.dry_run,a.run_main,a.run_stress)))!=1: ap.error("choose exactly one mode")
+    if sum(map(bool,(a.dry_run,a.run_main,a.run_stress,a.repair_failed_prepare,a.supplement_missing_main)))!=1: ap.error("choose exactly one mode")
     if a.dry_run: dry()
     elif a.run_main: run_grid(False)
-    else: run_grid(True)
+    elif a.run_stress: run_grid(True)
+    elif a.repair_failed_prepare: repair_failed_prepares()
+    else: supplement_missing_main()
 if __name__=="__main__": main()
