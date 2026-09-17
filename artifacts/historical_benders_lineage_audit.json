@@ -1,0 +1,102 @@
+{
+  "status": "HISTORICAL_BENDERS_NOT_COMPARABLE",
+  "four_thousand_cut_artifact_found": true,
+  "two_thousand_one_hundred_fifty_four_cut_artifact_found": true,
+  "static_comparability_gate_pass": false,
+  "reproduction": {
+    "case": "210202",
+    "Gamma": 2,
+    "status": "NOT_RUN_STATIC_COMPARABILITY_BLOCK",
+    "optimization_runs": 0,
+    "objective_consistency": "NOT_AVAILABLE",
+    "reproduced_T_core_seconds": null,
+    "wall_clock_total_seconds": null,
+    "speed_ratio": null
+  },
+  "historical_families": [
+    {
+      "name": "Renault 2154-cut adaptive strengthened Benders",
+      "classification": "LEGACY_STRENGTHENED_BENDERS",
+      "result_source_commit": "b78f6c976984ba22602902ed325eb1442d572ba4",
+      "analysis_commit": "0dd11cc5ffe6230eb865d48a31bd68982062ecec",
+      "iteration_log_commit": "f8d1012",
+      "runner": "src/benders_ccg_tail_handoff_runner.py",
+      "sources": ["src/benders.py", "src/robust_dual_subproblem.py"],
+      "config": "experiments/configs/benders_ccg_tail_handoff_210202.yaml",
+      "dataset": "renault_formal_instances_v6",
+      "case": "210202",
+      "I": 15,
+      "R": 12,
+      "J": 8,
+      "Gamma": 2,
+      "iterations": 2154,
+      "cuts": 2154,
+      "historical_reported_time_seconds": 1800.1848966998514,
+      "master_time_seconds": 1521.661534596933,
+      "master_time_share": 0.8452806916592206,
+      "subproblem_time_seconds": 254.81346760271106,
+      "subproblem_time_share": 0.14154849764034913,
+      "core_point_time_seconds": 16.529342701425698,
+      "termination": "TIME_LIMIT",
+      "certification": "UNCERTIFIED",
+      "lower_bound": 116802.42332725937,
+      "upper_bound": 116840.66551645267,
+      "relative_gap": 0.00032730204868543407,
+      "last_upper_bound_change_iteration": 1222,
+      "features": [
+        "single selected cut per iteration",
+        "global robust-dual MILP",
+        "joint_v1_core_point_strengthened",
+        "adaptive master precision",
+        "adaptive subproblem precision",
+        "historical final-certification machinery"
+      ],
+      "product_risk_decomposition": false,
+      "comparable_to_current_model": false
+    },
+    {
+      "name": "Synthetic fairness persistent-cache Benders",
+      "classification": "LEGACY_STRENGTHENED_BENDERS",
+      "artifact_commits": ["0639558", "d6ae40c", "10fe8aa"],
+      "run_code_commits": [
+        "29ae09e968a206b1987714317ff7528165372a46",
+        "ec33a047ecd60f4cb473260f1b3c4078726db776"
+      ],
+      "runner": "src/fairness_scalability_runner.py",
+      "source": "src/fairness_benders.py",
+      "artifact": "analysis/fairness_scalability_s1_attempt2_cross_scale_freeze/frozen_run_matrix.csv",
+      "dataset": "generated synthetic regional-fairness instances",
+      "Gamma": 2,
+      "features": [
+        "regional-fairness frontier objective",
+        "Farkas feasibility cuts in y,x,T",
+        "persistent separation",
+        "certified scenario cache",
+        "optional solution pool",
+        "one or up to five cuts per iteration"
+      ],
+      "product_risk_decomposition": false,
+      "comparable_to_current_model": false,
+      "representative_runs": [
+        {"scale":"medium_large","seed":161,"variant":"persistent_certified_cache_batch5","I":6,"R":10,"J":6,"runtime_seconds":362.2756171000656,"master_time_seconds":277.3528558027465,"subproblem_time_seconds":83.45786609849893,"iterations":1202,"cuts":5778,"termination":"OPTIMAL","certification":"CERTIFIED"},
+        {"scale":"medium_large","seed":161,"rho":0.01,"variant":"persistent_certified_cache_batch5","I":6,"R":10,"J":6,"runtime_seconds":456.08220580010675,"master_time_seconds":358.2285256006289,"subproblem_time_seconds":96.24081600876525,"iterations":1559,"cuts":7721,"termination":"OPTIMAL","certification":"CERTIFIED"},
+        {"scale":"large","seed":160,"variant":"persistent_certified_cache","I":8,"R":12,"J":8,"runtime_seconds":1800.0161325000226,"master_time_seconds":1610.4610788000282,"subproblem_time_seconds":185.37589349457994,"iterations":6581,"cuts":6581,"termination":"TIME_LIMIT","certification":"UNCERTIFIED"},
+        {"scale":"large","seed":160,"variant":"persistent_certified_cache_batch5","I":8,"R":12,"J":8,"runtime_seconds":1800.019336400088,"master_time_seconds":1460.2346805040725,"subproblem_time_seconds":336.5510796995368,"iterations":2602,"cuts":13010,"termination":"TIME_LIMIT","certification":"UNCERTIFIED"},
+        {"scale":"large","seed":161,"variant":"persistent_certified_cache","I":8,"R":12,"J":8,"runtime_seconds":1800.0161,"master_time_seconds":1699.2761,"subproblem_time_seconds":98.2955,"iterations":4950,"cuts":4950,"termination":"TIME_LIMIT","certification":"UNCERTIFIED"},
+        {"scale":"large","seed":161,"variant":"persistent_certified_cache_batch5","I":8,"R":12,"J":8,"runtime_seconds":1800.0232582,"master_time_seconds":1632.3951,"subproblem_time_seconds":165.9251,"iterations":1800,"cuts":9000,"termination":"TIME_LIMIT","certification":"UNCERTIFIED"}
+      ]
+    }
+  ],
+  "current_210202_context": {
+    "dataset": "RENAULT_EMPIRICAL_8CASE_V1",
+    "Gamma": 2,
+    "pure": {"objective":1058780.7942496866,"certified":true,"iterations":9,"cuts":8,"T_core_seconds":0.41859719999774825},
+    "prb": {"objective":1058780.7942496866,"certified":true,"iterations":4,"cuts":31,"T_core_seconds":1.2333677001297474},
+    "direct": {"objective":1058780.7942496864,"certified":true,"T_core_seconds":3.3410000801086426}
+  },
+  "compatibility_repairs": [],
+  "restored_source_files": [],
+  "reason_not_restored": "Porting either historical family to the current reconfiguration model requires mathematical master, subproblem, and cut changes rather than import/API compatibility repair.",
+  "paper_baseline_recommendation": "Use the current independent Pure Benders as the vanilla baseline. Refer to recovered old methods only as Historical Benders or Legacy strengthened Benders.",
+  "optimization_runs_executed": 0
+}

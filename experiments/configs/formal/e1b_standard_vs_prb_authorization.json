@@ -1,0 +1,65 @@
+{
+  "schema": "e1b_standard_vs_prb_authorization_v1",
+  "experiment_id": "E1b",
+  "scientific_question": "Does exploiting product-wise recourse separability and the global risk-budget structure provide computational gains beyond standard Benders decomposition itself?",
+  "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
+  "formal_run_authorized": true,
+  "authorized_standard_run_ids": [
+    "E1B-210129-STANDARD",
+    "E1B-210202-STANDARD",
+    "E1B-210310-STANDARD",
+    "E1B-210323-STANDARD",
+    "E1B-210330-STANDARD",
+    "E1B-210428-STANDARD",
+    "E1B-210611-STANDARD",
+    "E1B-210628-STANDARD"
+  ],
+  "case_ids": ["210129", "210202", "210310", "210323", "210330", "210428", "210611", "210628"],
+  "parameters": {"Gamma": 2, "beta": 1.0, "lambda_R": 0.05},
+  "dimensions": {"regions": 12, "products": 8, "depots": "case_specific"},
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "solver_version": "13.0.2",
+  "threads": "gurobi_default_auto_0",
+  "random_seed": "gurobi_default_0",
+  "time_limit_seconds": null,
+  "max_iterations": 500,
+  "tolerances": {
+    "relative_gap": 0.000001,
+    "cut_violation": 0.0000001,
+    "objective_absolute_certification": 0.0001
+  },
+  "termination_contract": "relative_gap_and_no_violated_aggregate_cut_then_fixed_first_stage_exact_recertification_v1",
+  "timing_contract": "core_excludes_post_evaluation_and_reporting_v1",
+  "mapping_sha256": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+  "identity_table_sha256": "f3a24b3dba51abde335fd0f2be5efdd1b76384cb9595101f599adbbb4fc27170",
+  "case_identities": {
+    "210129": {"instance_hash": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3", "x0_hash": "ebd9b18371804f725a775db4eb4cacad84398b0c4c48e945aa039d425ea71288", "calibration_hash": "d8fc1abd48548c153081e3e99696fc041eaf81cc81e06ca06a6f369d5a61d753"},
+    "210202": {"instance_hash": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee", "x0_hash": "5fe095e76dd1372735ec7a6cb6fead9d6bc42f044b6006c13ed1aeb16dfbc368", "calibration_hash": "7fe326584320b19636d95424cf806f0ab4c89951c3e2a1a84a4a5cc656e40624"},
+    "210310": {"instance_hash": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8", "x0_hash": "66a15c21d4e760c0d31bbe9a15f21216b3fdd37e6b7bf14836025d544b0d117b", "calibration_hash": "8915940c2bbfee479d054c007033da41d45776504e985c6d07302dea74481ff4"},
+    "210323": {"instance_hash": "df5fcbaa54a73277948f676fae151d85ad621d9ef417b0906b04066b1ef1109c", "x0_hash": "04c9e1219c4e323ab77f8c8fb70854ecf4eb1c710584f21418b5a0005afaeb60", "calibration_hash": "3fe6ede85f58eac50a9b3c406c39106277b8b8160518bfa0405cd21847fbd576"},
+    "210330": {"instance_hash": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1", "x0_hash": "11cd91349ff218d7f951a38a65123de8c5e304d36a370c97a39a1ce9b3c3961a", "calibration_hash": "e182dde7a79c1c9e7909fb776df4d1cff0326d39bbee5414c3d7efdb147e071a"},
+    "210428": {"instance_hash": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7", "x0_hash": "cc08b6627d2f100652172e56ae78f3e35a97b8c89385b99da534fc20917a8014", "calibration_hash": "29ab4dae7c8cce42cc9a771372d9813fbffac137a978f2b2208a41f61256cc58"},
+    "210611": {"instance_hash": "f244641d602348af8b2ac31a2bb948b4b0ebca8e33ff446dd07298e3e578a9bf", "x0_hash": "deca1c7decbb01c5500ede566cd790a44cfa86e99c1b761b9f30cd30eb63ef81", "calibration_hash": "9e9dbbbead031ea0ab251686b256ac1e269b7c145ea3549045dee843657fc5bb"},
+    "210628": {"instance_hash": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677", "x0_hash": "7514da694ef80b8a5053329b2a2c9619090e768884c0555d19a67f9e284b589e", "calibration_hash": "eb6b346748dcc77fdd66eecddb01b15dd96960f1f37991d3e761616048d5b584"}
+  },
+  "prb_e1a_references": {
+    "210129": {"result_path": "experiments/results/e1_empirical_8case_v1/E1-210129-PRB/result.json", "result_sha256": "4845e97bdc6486832b95519dd4b1d66fe5ad75b5e87ad74167e9df68f9bf7c91"},
+    "210202": {"result_path": "experiments/results/e1_empirical_8case_v1/E1-210202-PRB/result.json", "result_sha256": "dfa3cf6ac0de0cf65c7938f1a898343299e586f20b72e23f1800c0ac57c3ba85"},
+    "210310": {"result_path": "experiments/results/e1_empirical_8case_v1/E1-210310-PRB/result.json", "result_sha256": "94c02c30c52b26a3ba0e748170fb5f9e7ac8631f1c2d1515082334f7d81c177a"},
+    "210323": {"result_path": "experiments/results/e1_empirical_8case_v1/E1-210323-PRB/result.json", "result_sha256": "89acb6621531563c16850b48c26647507ce51b52112784e1042c27955cb4f655"},
+    "210330": {"result_path": "experiments/results/e1_empirical_8case_v1/E1-210330-PRB/result.json", "result_sha256": "276557a1f3118ef7786e68fd9bdcd38ed5782fc8425d90a7ff64f09137fcffbb"},
+    "210428": {"result_path": "experiments/results/e1_empirical_8case_v1/E1-210428-PRB/result.json", "result_sha256": "c359e1d428a69738107c22a66a56b4dc1c5a76f933d79e986d11cfa77e94e14c"},
+    "210611": {"result_path": "experiments/results/e1_empirical_8case_v1/E1-210611-PRB/result.json", "result_sha256": "a8860c506e13dbde0fd01c5f30d38575065dca2f7e0d882f138f176383f3a4bb"},
+    "210628": {"result_path": "experiments/results/e1_empirical_8case_v1/E1-210628-PRB/result.json", "result_sha256": "bcf37227fc9c461658077ae0e68f51d2905da190d1efc5dae392c81e595c69b4"}
+  },
+  "protected_identity": {
+    "standard_implementation_sha256": "e99b3e1edb1820120aead5fecf0611c2f82eb14775177ccd3099e5a47e992eac",
+    "runner_sha256": "c28e8cf95cef0838fe28b216caf15e4b7d6174cae3b8683ed6f20575f04defeb",
+    "result_schema_sha256": "a82136e4625ea738bb39435d5c5c2774f54fa5aa9a32c27b782d3fcd991b120d",
+    "protocol_sha256": "c62342e0e9c4d36bdf831dbe614ff4253c607eaf3c6c8e9c52917a85d4ed8ccd",
+    "baseline_audit_sha256": "d521aa8c71e1ee520d3f04bacb5d320dbc70b10572f1f96d21cc610d07174207"
+  },
+  "prb_timing_rerun_required": false,
+  "controlled_scaling_authorized": false,
+  "e2_e7_modification_authorized": false
+}

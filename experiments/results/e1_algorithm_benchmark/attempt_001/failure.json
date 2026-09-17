@@ -1,0 +1,7 @@
+{
+  "status": "E1_ATTEMPT_FAILED_PRE_SOLVE",
+  "reason": "Historical reporting CSV uses lambda_r; attempt_001 reader requested lambda_R.",
+  "completed_new_run_ids": [],
+  "new_optimization_solves": 0,
+  "artifacts_overwritten": false
+}

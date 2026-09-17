@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "status": "PURE_BENDERS_MECHANISM_AUDIT_PASS",
+  "verdict": "PRB_SCALABILITY_ADVANTAGE_NOT_SUPPORTED",
+  "objective_tolerance": 0.0001,
+  "source": {
+    "development_zip": "E1c_development_probe_v1.zip",
+    "development_zip_sha256": "55e225f26df4ce0020f42b167380cbf12bacc6437f74bee02c66c755a683493d",
+    "development_only": true,
+    "paper_final_observation": false
+  },
+  "empirical_objective_consistency": {
+    "status": "EMPIRICAL_OBJECTIVE_CONSISTENCY_PASS",
+    "passed": 8,
+    "total": 8,
+    "cases": [
+      {"case":"210129","pure":851260.2478325499,"prb":851260.24783255,"direct":851260.24783255,"max_abs_difference":1.1641532182693481e-10,"decision_classification":"EXACT_DECISION_IDENTITY"},
+      {"case":"210202","pure":1058780.7942496866,"prb":1058780.7942496866,"direct":1058780.7942496864,"max_abs_difference":2.3283064365386963e-10,"decision_classification":"EXACT_DECISION_IDENTITY"},
+      {"case":"210310","pure":714814.5477077,"prb":714814.5477077012,"direct":714814.5477075904,"max_abs_difference":1.096632331609726e-7,"decision_classification":"EXACT_DECISION_IDENTITY"},
+      {"case":"210323","pure":627147.2289325034,"prb":627147.2289325014,"direct":627147.2289325034,"max_abs_difference":1.979060471057892e-9,"decision_classification":"NUMERICAL_EQUIVALENCE"},
+      {"case":"210330","pure":657659.5492540544,"prb":657659.5492546142,"direct":657659.5492540546,"max_abs_difference":5.597248673439026e-7,"decision_classification":"NUMERICAL_EQUIVALENCE"},
+      {"case":"210428","pure":793717.388081671,"prb":793717.3880816748,"direct":793717.3880816699,"max_abs_difference":3.841705620288849e-9,"decision_classification":"EXACT_DECISION_IDENTITY"},
+      {"case":"210611","pure":617415.668142327,"prb":617415.6681421611,"direct":617415.6681422364,"max_abs_difference":1.658918336033821e-7,"decision_classification":"EXACT_DECISION_IDENTITY"},
+      {"case":"210628","pure":676700.8373030793,"prb":676700.8373031134,"direct":676700.8373030961,"max_abs_difference":3.41096892952919e-8,"decision_classification":"EXACT_DECISION_IDENTITY"}
+    ],
+    "decision_counts": {"EXACT_DECISION_IDENTITY":6,"NUMERICAL_EQUIVALENCE":2,"DIFFERENT_BUT_OBJECTIVE_EQUIVALENT":0,"MISMATCH":0}
+  },
+  "development_objective_consistency": {
+    "status": "E1C_OBJECTIVE_CONSISTENCY_PASS",
+    "bounds_note": "LB, UB, and gap were not persisted in the development schema.",
+    "scales": [
+      {"scale":"L","I":25,"R":24,"J":12,"Gamma":2,"objectives":{"pure":2537677.659296398,"prb":2537677.6592963985,"aggregate":2537677.6592963985,"direct":2537677.659295714},"max_abs_difference":6.84056431055069e-7,"certified_available_methods":4,"decision_classification":"EXACT_DECISION_IDENTITY"},
+      {"scale":"XL_low","I":30,"R":30,"J":14,"Gamma":2,"objectives":{"pure":3410117.8260541093,"prb":3410117.8260549353,"aggregate":3410117.826054868,"direct":null},"direct_status":"RESOURCE_STOP","max_abs_difference":8.260831236839294e-7,"certified_available_methods":3,"decision_classification":"NUMERICAL_EQUIVALENCE"}
+    ]
+  },
+  "structure_audit": {
+    "same_e1b_e1c_implementation": true,
+    "single_theta_master": true,
+    "global_adversarial_milp": true,
+    "all_region_product_binaries_present": true,
+    "global_gamma_row_present": true,
+    "aggregate_supporting_cut": true,
+    "independent_global_primal_certification": true,
+    "product_risk_decomposition_used": false,
+    "gamma_allocation_dp_used": false,
+    "prb_utility_used": false,
+    "PURE_BENDERS_STRUCTURE_LEAKAGE": false
+  },
+  "timing": {
+    "contract": "T_core includes construction through exact certification and excludes reporting",
+    "representative": [
+      {"scale":"210202","method":"pure","T_core":0.41859719999774825,"master":0.06973239999206271,"oracle":0.21662959997775033,"certification":0.06623270000272896,"unallocated":0.06600250002520625,"iterations":9,"cuts":8,"global_milp_calls":10},
+      {"scale":"210202","method":"prb","T_core":1.2333677001297474,"master":0.04085769993253052,"oracle":0.5004560998640954,"certification":0.09904590016230941,"unallocated":0.593008000170812,"iterations":4,"cuts":31,"product_subproblem_evaluations":120},
+      {"scale":"L","method":"pure","T_core":0.7585354000002553,"master":0.09865020000052027,"oracle":0.22390919999998005,"certification":0.26540520000025936,"unallocated":0.17057079999949565,"iterations":7,"cuts":6,"global_milp_calls":8},
+      {"scale":"L","method":"prb","T_core":22.586865600000237,"master":0.09128010000040376,"oracle":11.59702709999965,"certification":1.7172842999998466,"unallocated":9.181274100000337,"iterations":6,"cuts":48},
+      {"scale":"XL_low","method":"pure","T_core":1.7527012000000468,"master":0.2634137000004557,"oracle":0.4592088999997941,"certification":0.6934126000001015,"unallocated":0.3366659999996955,"iterations":12,"cuts":11,"global_milp_calls":13},
+      {"scale":"XL_low","method":"prb","T_core":65.09377610000001,"master":0.124758799999654,"oracle":33.3956075000001,"certification":5.035496899999998,"unallocated":26.537912900000265,"iterations":6,"cuts":60}
+    ],
+    "empirical_geometric_mean_seconds":{"pure":0.3826595545701664,"prb":1.2577438185765506,"aggregate":1.559766664352662,"direct":2.798850902810941},
+    "growth":{"empirical_to_L":{"pure":1.9822722076084118,"prb":17.958240196769868,"aggregate":17.3795953071292,"direct":38.19378977731157},"L_to_XL_low":{"pure":2.310638633344544,"prb":2.881930465819008,"aggregate":3.268173605176064},"prb_over_pure":{"empirical":3.286848070445669,"L":29.776943304152496,"XL_low":37.139117665919485}}
+  },
+  "mechanism_ratings": {
+    "pure_master_smaller":"SUPPORTED",
+    "pure_cut_count_smaller":"SUPPORTED",
+    "global_adversarial_milp_easier_than_expected":"PARTIALLY_SUPPORTED",
+    "prb_product_enumeration_overhead":"SUPPORTED",
+    "gamma_allocation_dp_overhead":"UNKNOWN",
+    "python_orchestration_overhead":"PARTIALLY_SUPPORTED",
+    "presolve_fixes_most_z":"UNKNOWN",
+    "small_gamma_relative_to_RJ":"PARTIALLY_SUPPORTED"
+  },
+  "historical_comparison": {
+    "status":"NOT_DIRECTLY_COMPARABLE",
+    "historical_runtime_seconds":1800.1849,
+    "historical_cuts":2154,
+    "historical_master_share":0.8453,
+    "differences":["old dataset and model","adaptive precision","core-point strengthening","old convergence machinery","uncertified time-limit termination","different cut count"]
+  },
+  "optimization_runs_during_audit": {"formal":0,"development":0}
+}

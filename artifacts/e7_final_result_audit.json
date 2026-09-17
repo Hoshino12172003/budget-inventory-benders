@@ -1,0 +1,145 @@
+{
+  "E1_E6_overwritten": false,
+  "checks": {
+    "all_OPTIMAL": true,
+    "all_artifact_and_accounting_checks_PASS": true,
+    "all_completion_states_valid": true,
+    "all_exact_certification_PASS": true,
+    "complete_72_of_72": true,
+    "coupling_false_Gamma_feasible": true,
+    "coupling_false_fixed_state_recourse_PASS": true,
+    "coupling_false_objective_reconstruction_PASS": true,
+    "no_duplicate_parameter_cells": true,
+    "no_extra_or_partial_directories": true,
+    "primary_hashes_preserved": true,
+    "protected_E1_E6_hashes_preserved": true,
+    "reuse_40_new_32": true,
+    "reuse_plan_matches": true,
+    "timing_integrity_PASS": true
+  },
+  "coupling_audit": {
+    "Gamma": 4,
+    "Gamma_feasibility_affected": false,
+    "Gamma_feasible": true,
+    "all_product_duals_feasible": true,
+    "classification": "DIAGNOSTIC_TOLERANCE_CONTRACT_MISMATCH",
+    "diagnostic_absolute_threshold": 1e-06,
+    "diagnostic_formula": "abs(final_master_theta - final_iteration_exact_composition)",
+    "exact_recourse_affected": false,
+    "first_stage_reoptimized": false,
+    "first_stage_solution_sha256": "397d8e4b58e45081f68d372e72f5c346e2d62d7ea2e4f41eeb215aa78cca7ce4",
+    "fixed_first_stage_product_lp_solves": 40,
+    "fresh_exact_recourse": 625127.644766705,
+    "fresh_vs_stored_recourse_difference": 0.0,
+    "maximum_product_strong_duality_error": 5.820766091346741e-11,
+    "objective_affected": false,
+    "objective_reconstruction_difference": 0.0,
+    "persisted_master_closure_residual": 1.6399426385760307e-06,
+    "primary_artifact_modified": false,
+    "reported_global_coupling_pass": false,
+    "result_sha256": "263916848220115cd4105866db31b186c21304513332b0fd96a093f202386b46",
+    "risk_budget_allocation": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3,
+      1
+    ],
+    "risk_budget_allocation_sum": 4,
+    "run_id": "E7-210330-G4-L0025",
+    "schema": "e7_210330_g4_l0025_global_coupling_audit_v1",
+    "stored_exact_recourse": 625127.644766705
+  },
+  "expected_runs": 72,
+  "extensive_trigger_invariant_case_count": 8,
+  "fixed_first_stage_product_lp_solves_executed_in_task": 80,
+  "frozen_scientific_settings_changed": false,
+  "global_coupling_diagnostics": {
+    "diagnostic_tolerance_contract_mismatch": 1,
+    "pass": 63,
+    "reuse_schema_missing_source_referenced": 8
+  },
+  "margin_summary": {
+    "material_count": 27,
+    "material_share": 0.375,
+    "mean_RI_conditional_on_material": 0.19263335963439535,
+    "mean_adjustment_conditional_on_material": 113.24867966183365,
+    "mean_changed_pairs_conditional_on_material": 3.3333333333333335,
+    "mean_top_adjustment_share_conditional_on_material": 0.7096227890357278,
+    "median_RI_conditional_on_material": 0.07985397881383693,
+    "observation_count": 72
+  },
+  "network_change_observations": [
+    "E7-210310-G4-L0025",
+    "E7-210323-G4-L0025"
+  ],
+  "new_first_stage_optimization_solves": 0,
+  "new_formal_results": 32,
+  "observed_runs": 72,
+  "per_case_first_material_Gamma": {
+    "210129": {
+      "L0025": "2",
+      "L0500": "2",
+      "L2000": "2"
+    },
+    "210202": {
+      "L0025": "2",
+      "L0500": "2",
+      "L2000": "2"
+    },
+    "210310": {
+      "L0025": "4",
+      "L0500": "4",
+      "L2000": "4"
+    },
+    "210323": {
+      "L0025": "2",
+      "L0500": "2",
+      "L2000": "2"
+    },
+    "210330": {
+      "L0025": "2",
+      "L0500": "2",
+      "L2000": "2"
+    },
+    "210428": {
+      "L0025": "none_through_4",
+      "L0500": "none_through_4",
+      "L2000": "none_through_4"
+    },
+    "210611": {
+      "L0025": "none_through_4",
+      "L0500": "none_through_4",
+      "L2000": "none_through_4"
+    },
+    "210628": {
+      "L0025": "none_through_4",
+      "L0500": "none_through_4",
+      "L2000": "none_through_4"
+    }
+  },
+  "primary_results_overwritten": false,
+  "protected_E1_E6_result_root_identities": {
+    "E1": "93f4f38a936ec14ceaa2d7e8e3c1b23fd494ccbce4910336bbfa10141c29521e",
+    "E2": "946075a907a6a15569aa761ff6e95d54e429f65fa4d1192b8d2aad566099b7b0",
+    "E3": "ba83924d9c42ccc1e404e8069f398f890a6e65a70b5b4a2f4d7a3149b7c4b867",
+    "E4": "a39d3ec61f4729bf2e60fa12a191983dc8f60a9f7def75707713ae3c1b96f54a",
+    "E5": "624efb2a649524fe88de78b105dfa312b9b4be8b59aefeab6ce712869051c30f",
+    "E6": "f978be1f69a5411cce0145c0cd567256fc454c02d32d2d4c07af2074441b768d"
+  },
+  "reused": 40,
+  "schema": "e7_final_result_audit_v1",
+  "status": "E7_FINAL_AUDIT_PASS",
+  "timing": {
+    "G4_new_mean_core_prb_seconds": 14.431471212503084,
+    "G4_new_mean_post_evaluation_seconds": 3017.3926992874985,
+    "G4_new_mean_total_wallclock_seconds": 3040.0364181125005,
+    "full_instrumentation_new_count": 32,
+    "post_evaluation_dominates_G4_new": true,
+    "reuse_materialization_timing_count": 40
+  },
+  "validation_errors": {}
+}
