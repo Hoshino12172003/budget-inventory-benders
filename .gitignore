@@ -21,6 +21,7 @@ experiments/results/e1b_pure_benders_v1/
 experiments/results/e1c_development_probe_v1/
 experiments/results/e1c_gamma_sensitivity_development_v1/
 experiments/results/prb_j_scaling_development_v1/
+experiments/results/prb_acceleration_development_v*/
 /E1b_standard_vs_prb_v1.zip
 experiments/results/e2_existing_nominal_robust_v1/
 experiments/results/e3_budget_sensitivity_v1/
@@ -60,6 +61,8 @@ artifacts/*
 !artifacts/prb_benders_correctness_summary.json
 !artifacts/prb_cut_validity_audit.csv
 !artifacts/prb_gamma_composition_audit.csv
+!artifacts/prb_acceleration_development_summary.json
+!artifacts/prb_acceleration_development_comparison.csv
 !artifacts/prb_correctness_reclassification.csv
 !artifacts/prb_optimal_face_audit.csv
 !artifacts/prb_correctness_contract_summary.json
