@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "seed": 20260921,
+  "product_inventory_vectors": 136,
+  "product_risk_states": 408,
+  "maximum_value_difference": 1.1641532182693481e-10,
+  "maximum_cut_tightness_error": 1.1641532182693481e-10,
+  "maximum_strong_duality_error": 1.1641532182693481e-10,
+  "maximum_demand_dual_difference": 4.440892098500626e-16,
+  "maximum_supply_dual_difference": 1.7763568394002505e-15,
+  "maximum_service_dual_difference": 0.0,
+  "maximum_cut_alpha_difference": 0.0,
+  "maximum_cut_beta_difference": 1.7763568394002505e-15,
+  "all_duals_feasible": true,
+  "same_worst_pattern_count": 408
+}

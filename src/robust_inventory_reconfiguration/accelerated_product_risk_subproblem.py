@@ -37,7 +37,15 @@ class AcceleratedProductSeparationResult:
 class AcceleratedProductRiskSubproblem:
     """Original exact product oracle in an independent single-thread environment."""
 
-    def __init__(self, instance: InventoryInstance, product_index: int, gamma: int):
+    def __init__(
+        self,
+        instance: InventoryInstance,
+        product_index: int,
+        gamma: int,
+        *,
+        method: int | None = None,
+        presolve: int | None = None,
+    ):
         import gurobipy as gp
 
         self.instance = instance
@@ -54,6 +62,10 @@ class AcceleratedProductRiskSubproblem:
         self.model.Params.Threads = 1
         self.model.Params.LPWarmStart = 2
         apply_formal_solver_profile(self.model, mixed_integer=False)
+        if method is not None:
+            self.model.Params.Method = method
+        if presolve is not None:
+            self.model.Params.Presolve = presolve
         self.blocks = {}
         objectives = []
         for local_gamma in range(gamma + 1):

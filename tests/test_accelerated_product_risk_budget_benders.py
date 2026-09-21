@@ -11,11 +11,17 @@ from robust_inventory_reconfiguration.accelerated_product_risk_budget_benders im
 from robust_inventory_reconfiguration.accelerated_product_risk_subproblem import (
     AcceleratedProductRiskSubproblem,
 )
+from robust_inventory_reconfiguration.accelerated_product_risk_budget_benders_v3 import (
+    solve_accelerated_prb_benders_v3,
+)
 from robust_inventory_reconfiguration.product_risk_budget_benders import solve_prb_benders
 from robust_inventory_reconfiguration.product_risk_subproblem import ProductRiskSubproblem
 from robust_inventory_reconfiguration.risk_budget_composition import compose_risk_budget
 from robust_inventory_reconfiguration.risk_budget_composition import (
     enumerate_gamma_allocations,
+)
+from robust_inventory_reconfiguration.structured_product_risk_subproblem import (
+    StructuredProductRiskSubproblem,
 )
 from itertools import product
 from types import SimpleNamespace
@@ -88,6 +94,52 @@ def test_compact_product_oracle_matches_original_values_and_valid_cuts(
         )
     assert all(case.cut.dual_feasible for case in accelerated.worst_cases)
     assert all(case.cut.strong_duality_error <= 1e-6 for case in accelerated.worst_cases)
+
+
+@pytest.mark.parametrize("inventory", [[0.0], [2.5], [8.0]])
+def test_structured_product_oracle_matches_v2_exact_state(
+    tiny_instance, inventory
+) -> None:
+    v2 = AcceleratedProductRiskSubproblem(tiny_instance, 0, 2)
+    v3 = StructuredProductRiskSubproblem(tiny_instance, 0, 2)
+    try:
+        expected = v2.solve(inventory)
+        actual = v3.solve(inventory)
+    finally:
+        v2.close()
+        v3.close()
+    assert [row.pattern for row in actual.worst_cases] == [
+        row.pattern for row in expected.worst_cases
+    ]
+    for left, right in zip(expected.worst_cases, actual.worst_cases):
+        assert right.value == pytest.approx(left.value, abs=1e-7)
+        assert right.cut.value_at(inventory) == pytest.approx(
+            right.value, abs=1e-7
+        )
+        assert right.cut.dual_feasible
+        assert right.cut.strong_duality_error <= 1e-7
+
+
+def test_v3_prb_matches_v2_on_tiny(tiny_instance) -> None:
+    arguments = dict(
+        instance=tiny_instance,
+        x0=[[2.0, 1.0]],
+        budget=20.0,
+        gamma=2,
+        lambda_r=0.05,
+        parallel_workers=2,
+    )
+    v2 = solve_accelerated_prb_benders(**arguments)
+    v3 = solve_accelerated_prb_benders_v3(**arguments)
+    assert v3.solution.objective == pytest.approx(v2.solution.objective, abs=1e-7)
+    assert v3.solution.robust_recourse_cost == pytest.approx(
+        v2.solution.robust_recourse_cost, abs=1e-7
+    )
+    assert v3.solution.y == v2.solution.y
+    for v3_row, v2_row in zip(v3.solution.x, v2.solution.x):
+        assert v3_row == pytest.approx(v2_row)
+    assert v3.exact_certification_pass
+    assert v3.global_risk_budget_coupling_pass
 
 
 def test_exact_cache_reuses_only_identical_product_inventory(tiny_instance) -> None:

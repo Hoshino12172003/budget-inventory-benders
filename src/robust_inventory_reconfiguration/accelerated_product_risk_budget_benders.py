@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import multiprocessing
 from math import comb
 import os
@@ -64,14 +65,18 @@ class AcceleratedPRBBendersResult:
     runtime_profile: dict[str, dict[str, float | int]]
 
 
-def _product_worker(connection, instance, gamma, product_indices):
+def _product_worker(
+    connection, instance, gamma, product_indices, subproblem_class, subproblem_options
+):
     try:
         started = perf_counter()
         subproblems = {}
         individual_build_times = []
         for j in product_indices:
             product_started = perf_counter()
-            subproblems[j] = AcceleratedProductRiskSubproblem(instance, j, gamma)
+            subproblems[j] = subproblem_class(
+                instance, j, gamma, **subproblem_options
+            )
             individual_build_times.append(perf_counter() - product_started)
         connection.send(
             (
@@ -125,10 +130,47 @@ def _select_parallel_workers(instance: InventoryInstance, gamma: int) -> int:
 
 
 class _ExactParallelProductOracle:
-    def __init__(self, instance: InventoryInstance, gamma: int, workers: int):
+    def __init__(
+        self,
+        instance: InventoryInstance,
+        gamma: int,
+        workers: int,
+        *,
+        subproblem_class=AcceleratedProductRiskSubproblem,
+        subproblem_options: dict | None = None,
+        backend: str = "process",
+    ):
         self.instance = instance
         self.gamma = gamma
         self.workers = max(1, min(workers, instance.num_products))
+        self.backend = backend
+        if backend not in {"process", "thread"}:
+            raise ValueError("oracle backend must be 'process' or 'thread'")
+        subproblem_options = subproblem_options or {}
+        if backend == "thread":
+            self.connections = []
+            self.processes = []
+            self._executor = ThreadPoolExecutor(max_workers=self.workers)
+            started = perf_counter()
+
+            def build(j):
+                product_started = perf_counter()
+                subproblem = subproblem_class(
+                    instance, j, gamma, **subproblem_options
+                )
+                return j, subproblem, perf_counter() - product_started
+
+            built = list(self._executor.map(build, range(instance.num_products)))
+            self.subproblems = {j: subproblem for j, subproblem, _ in built}
+            self.build_runtime = perf_counter() - started
+            self._worker_build_profiles = [
+                {
+                    "worker_build_runtime": self.build_runtime,
+                    "individual_build_times": [elapsed for _, _, elapsed in built],
+                }
+            ]
+            self._initialize_statistics()
+            return
         context = multiprocessing.get_context("spawn")
         groups = [list(range(worker, instance.num_products, self.workers)) for worker in range(self.workers)]
         self.connections = []
@@ -139,7 +181,14 @@ class _ExactParallelProductOracle:
             parent, child = context.Pipe()
             process = context.Process(
                 target=_product_worker,
-                args=(child, instance, gamma, group),
+                args=(
+                    child,
+                    instance,
+                    gamma,
+                    group,
+                    subproblem_class,
+                    subproblem_options,
+                ),
                 daemon=True,
             )
             process.start()
@@ -152,6 +201,9 @@ class _ExactParallelProductOracle:
                 raise RuntimeError(f"Product worker failed during construction:\n{payload}")
             self._worker_build_profiles.append(payload)
         self.build_runtime = perf_counter() - started
+        self._initialize_statistics()
+
+    def _initialize_statistics(self) -> None:
         self.cache: dict[
             tuple[int, tuple[float, ...]], AcceleratedProductSeparationResult
         ] = {}
@@ -195,6 +247,7 @@ class _ExactParallelProductOracle:
             None
         ] * self.instance.num_products
         pending_by_worker = [[] for _ in self.connections]
+        thread_pending = []
         started = perf_counter()
         cache_started = perf_counter()
         for j, vector in enumerate(vectors):
@@ -205,13 +258,36 @@ class _ExactParallelProductOracle:
                 self.product_solves_avoided += self.gamma + 1
             else:
                 self.cache_misses += 1
-                pending_by_worker[j % self.workers].append((j, key, vector))
+                if self.backend == "thread":
+                    thread_pending.append((j, key, vector))
+                else:
+                    pending_by_worker[j % self.workers].append((j, key, vector))
         cache_elapsed = perf_counter() - cache_started
         self.cache_lookup_runtime += cache_elapsed
         worker_critical_times = []
         call_dispatch_runtime = 0.0
         call_serialization_runtime = 0.0
         call_result_processing_runtime = 0.0
+        if self.backend == "thread":
+            futures = {
+                self._executor.submit(self.subproblems[j].solve, vector): (j, key)
+                for j, key, vector in thread_pending
+            }
+            for future in as_completed(futures):
+                j, key = futures[future]
+                result = future.result()
+                processing_started = perf_counter()
+                results[j] = result
+                self.cache[key] = result
+                self._record_result(result)
+                processed_in = perf_counter() - processing_started
+                self.result_processing_runtime += processed_in
+                call_result_processing_runtime += processed_in
+                worker_critical_times.append(
+                    result.model_update_runtime
+                    + result.runtime
+                    + result.result_extraction_runtime
+                )
         for (connection, _), pending in zip(self.connections, pending_by_worker):
             if pending:
                 message = ("solve", [(j, vector) for j, _, vector in pending])
@@ -252,24 +328,7 @@ class _ExactParallelProductOracle:
             for j, result in payload:
                 results[j] = result
                 self.cache[keys[j]] = result
-                self.product_state_solves += self.gamma + 1
-                self.pattern_evaluations += result.pattern_evaluations
-                self.warm_starts += result.warm_starts
-                self.simplex_iterations += result.simplex_iterations
-                self.cold_solve_runtime += result.cold_solve_runtime
-                self.warm_solve_runtime += result.warm_solve_runtime
-                self.model_update_runtime += result.model_update_runtime
-                self.result_extraction_runtime += result.result_extraction_runtime
-                self.maximum_product_optimization_runtime = max(
-                    self.maximum_product_optimization_runtime, result.runtime
-                )
-                self.maximum_product_update_runtime = max(
-                    self.maximum_product_update_runtime, result.model_update_runtime
-                )
-                self.maximum_product_extraction_runtime = max(
-                    self.maximum_product_extraction_runtime,
-                    result.result_extraction_runtime,
-                )
+                self._record_result(result)
             processed_in = perf_counter() - processing_started
             self.result_processing_runtime += processed_in
             call_result_processing_runtime += processed_in
@@ -290,7 +349,32 @@ class _ExactParallelProductOracle:
         self.evaluate_calls += 1
         return [result for result in results if result is not None], elapsed
 
+    def _record_result(self, result: AcceleratedProductSeparationResult) -> None:
+        self.product_state_solves += self.gamma + 1
+        self.pattern_evaluations += result.pattern_evaluations
+        self.warm_starts += result.warm_starts
+        self.simplex_iterations += result.simplex_iterations
+        self.cold_solve_runtime += result.cold_solve_runtime
+        self.warm_solve_runtime += result.warm_solve_runtime
+        self.model_update_runtime += result.model_update_runtime
+        self.result_extraction_runtime += result.result_extraction_runtime
+        self.maximum_product_optimization_runtime = max(
+            self.maximum_product_optimization_runtime, result.runtime
+        )
+        self.maximum_product_update_runtime = max(
+            self.maximum_product_update_runtime, result.model_update_runtime
+        )
+        self.maximum_product_extraction_runtime = max(
+            self.maximum_product_extraction_runtime,
+            result.result_extraction_runtime,
+        )
+
     def close(self) -> None:
+        if self.backend == "thread":
+            self._executor.shutdown(wait=True)
+            for subproblem in self.subproblems.values():
+                subproblem.close()
+            return
         for connection, _ in self.connections:
             try:
                 connection.send(("close", None))
@@ -316,6 +400,9 @@ def solve_accelerated_prb_benders(
     cut_tolerance: float = 1e-7,
     max_iterations: int = 500,
     parallel_workers: int | None = None,
+    _subproblem_class=AcceleratedProductRiskSubproblem,
+    _subproblem_options: dict | None = None,
+    _oracle_backend: str = "process",
 ) -> AcceleratedPRBBendersResult:
     """Exact PRB with compact parallel product oracles and exact-state caching."""
     from gurobipy import GRB
@@ -333,7 +420,14 @@ def solve_accelerated_prb_benders(
     master_build_started = perf_counter()
     master, variables = _build_master(instance, x0, budget, gamma, lambda_r)
     master_build_runtime = perf_counter() - master_build_started
-    oracle = _ExactParallelProductOracle(instance, gamma, workers)
+    oracle = _ExactParallelProductOracle(
+        instance,
+        gamma,
+        workers,
+        subproblem_class=_subproblem_class,
+        subproblem_options=_subproblem_options,
+        backend=_oracle_backend,
+    )
     cuts: list[ProductCut] = []
     cut_additions: list[ProductCutAddition] = []
     cut_signatures = set()

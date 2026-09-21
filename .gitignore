@@ -67,6 +67,11 @@ artifacts/*
 !artifacts/prb_acceleration_v2_worker_curve.csv
 !artifacts/prb_acceleration_v2_fair_benchmark.csv
 !artifacts/prb_acceleration_v2_summary.json
+!artifacts/prb_acceleration_v3_benchmark.csv
+!artifacts/prb_acceleration_v3_summary.json
+!artifacts/prb_v3_product_state_audit.json
+!artifacts/prb_v3_product_state_audit.csv
+!artifacts/prb_v3_solver_profile_audit.json
 !artifacts/prb_correctness_reclassification.csv
 !artifacts/prb_optimal_face_audit.csv
 !artifacts/prb_correctness_contract_summary.json
