@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict
+import argparse
 import json
 from pathlib import Path
 import sys
@@ -17,9 +18,8 @@ from robust_inventory_reconfiguration.accelerated_product_risk_budget_benders im
 from robust_inventory_reconfiguration.instance import load_instance
 
 
-OUTPUT = ROOT / "experiments/results/prb_acceleration_development_v4"
-CASES = ("210202", "L", "XL_low")
-WORKERS = 8
+DEFAULT_OUTPUT = ROOT / "experiments/results/prb_acceleration_v2_final_development"
+ALL_CASES = ("210202", "L", "XL_low")
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -172,7 +172,7 @@ def max_x_difference(left: dict[str, Any], right: dict[str, Any]) -> float:
     )
 
 
-def solve_case(case: str) -> dict[str, Any]:
+def solve_case(case: str, workers: int) -> dict[str, Any]:
     instance, x0, budget = load_problem(case)
     if x0 is None:
         raise RuntimeError(f"{case} has no x0")
@@ -187,7 +187,7 @@ def solve_case(case: str) -> dict[str, Any]:
             relative_gap_tolerance=1e-6,
             cut_tolerance=1e-7,
             max_iterations=500,
-            parallel_workers=WORKERS,
+            parallel_workers=workers,
         )
     accelerated_solution = asdict(solved.solution)
     objective_difference = abs(solved.solution.objective - original["objective"])
@@ -211,7 +211,7 @@ def solve_case(case: str) -> dict[str, Any]:
         "Gamma": 2,
         "lambda_R": 0.05,
         "beta": 1.0,
-        "parallel_worker_count": WORKERS,
+        "parallel_worker_count": solved.parallel_worker_count,
         "product_subproblem_threads": 1,
         "result": asdict(solved),
         "peak_process_tree_memory_gib": (
@@ -254,15 +254,21 @@ def solve_case(case: str) -> dict[str, Any]:
 
 
 def main() -> None:
-    if OUTPUT.exists():
-        raise FileExistsError(f"Refusing to overwrite {OUTPUT}")
-    OUTPUT.mkdir(parents=True)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--workers", type=int, default=0)
+    parser.add_argument("--cases", nargs="+", choices=ALL_CASES, default=ALL_CASES)
+    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    args = parser.parse_args()
+    output = args.output if args.output.is_absolute() else ROOT / args.output
+    if output.exists():
+        raise FileExistsError(f"Refusing to overwrite {output}")
+    output.mkdir(parents=True)
     rows = []
-    for case in CASES:
+    for case in args.cases:
         print(f"[ACCELERATED PRB] {case}", flush=True)
-        row = solve_case(case)
+        row = solve_case(case, args.workers)
         rows.append(row)
-        write_json(OUTPUT / case / "result.json", row)
+        write_json(output / case / "result.json", row)
         print(
             f"[DONE] {case}: objective={row['result']['solution']['objective']:.9f} "
             f"runtime={row['result']['total_runtime']:.6f}s "
@@ -275,7 +281,7 @@ def main() -> None:
         else "ACCELERATION_CORRECTNESS_NOT_ESTABLISHED"
     )
     write_json(
-        OUTPUT / "summary.json",
+        output / "summary.json",
         {
             "status": status,
             "development_only": True,

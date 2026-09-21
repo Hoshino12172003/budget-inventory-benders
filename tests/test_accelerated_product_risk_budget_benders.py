@@ -5,6 +5,7 @@ import pytest
 from robust_inventory_reconfiguration.accelerated_product_risk_budget_benders import (
     _ExactParallelProductOracle,
     _compose_risk_budget_exact_dp,
+    _select_parallel_workers,
     solve_accelerated_prb_benders,
 )
 from robust_inventory_reconfiguration.accelerated_product_risk_subproblem import (
@@ -13,6 +14,11 @@ from robust_inventory_reconfiguration.accelerated_product_risk_subproblem import
 from robust_inventory_reconfiguration.product_risk_budget_benders import solve_prb_benders
 from robust_inventory_reconfiguration.product_risk_subproblem import ProductRiskSubproblem
 from robust_inventory_reconfiguration.risk_budget_composition import compose_risk_budget
+from robust_inventory_reconfiguration.risk_budget_composition import (
+    enumerate_gamma_allocations,
+)
+from itertools import product
+from types import SimpleNamespace
 
 
 pytest.importorskip("gurobipy")
@@ -28,6 +34,26 @@ def test_exact_dp_composition_matches_frozen_enumeration() -> None:
     assert _compose_risk_budget_exact_dp(values, 2).value == pytest.approx(
         compose_risk_budget(values, 2).value
     )
+
+
+def test_worker_selection_depends_on_workload_not_case_identity(tiny_instance) -> None:
+    assert _select_parallel_workers(tiny_instance, 2) == 2
+    larger_shape = SimpleNamespace(num_regions=24, num_products=12)
+    assert _select_parallel_workers(larger_shape, 2) == min(
+        8, __import__("os").cpu_count() or 1
+    )
+
+
+@pytest.mark.parametrize("num_products,gamma", [(2, 2), (4, 2), (3, 3)])
+def test_allocation_generator_matches_cartesian_definition(
+    num_products, gamma
+) -> None:
+    legacy = [
+        allocation
+        for allocation in product(range(gamma + 1), repeat=num_products)
+        if sum(allocation) <= gamma
+    ]
+    assert enumerate_gamma_allocations(num_products, gamma) == legacy
 
 
 def test_compact_product_oracle_matches_original_values_and_valid_cuts(
@@ -104,7 +130,7 @@ def test_accelerated_prb_matches_original_prb_on_tiny(tiny_instance, gamma) -> N
     assert accelerated.parallel_worker_count == 2
 
 
-def test_final_certification_bypasses_exact_cache(tiny_instance) -> None:
+def test_final_certification_reuses_only_exact_cached_state(tiny_instance) -> None:
     result = solve_accelerated_prb_benders(
         tiny_instance,
         [[2.0, 1.0]],
@@ -116,3 +142,5 @@ def test_final_certification_bypasses_exact_cache(tiny_instance) -> None:
     minimum_exact_states = tiny_instance.num_products * 2
     assert result.product_subproblem_evaluations >= minimum_exact_states
     assert result.full_final_verification
+    assert result.certification_cache_hits == tiny_instance.num_products
+    assert result.certification_product_state_solves == 0

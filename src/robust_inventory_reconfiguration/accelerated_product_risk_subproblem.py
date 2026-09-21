@@ -5,19 +5,33 @@ from itertools import combinations
 from time import perf_counter
 
 from .instance import InventoryInstance
-from .product_risk_subproblem import ProductCut, ProductWorstCase
+from .product_risk_subproblem import ProductCut
 from .solver_profile import apply_formal_solver_profile
 
 
 @dataclass(frozen=True)
+class AcceleratedProductWorstCase:
+    product_index: int
+    local_gamma: int
+    value: float
+    pattern: tuple[int, ...]
+    demand_dual: tuple[float, ...]
+    supply_dual: tuple[float, ...]
+    service_dual: float
+    cut: ProductCut
+
+
+@dataclass(frozen=True)
 class AcceleratedProductSeparationResult:
-    worst_cases: tuple[ProductWorstCase, ...]
+    worst_cases: tuple[AcceleratedProductWorstCase, ...]
     runtime: float
     pattern_evaluations: int
     simplex_iterations: float
     warm_starts: int
     cold_solve_runtime: float
     warm_solve_runtime: float
+    model_update_runtime: float
+    result_extraction_runtime: float
 
 
 class AcceleratedProductRiskSubproblem:
@@ -87,6 +101,8 @@ class AcceleratedProductRiskSubproblem:
             self.instance.shortage_penalty[r][j] * u[r] for r in regions
         )
         cost += self.instance.service_penalty[j] * e
+        cost_value = self.model.addVar(lb=0, name=f"cost_{suffix}")
+        self.model.addConstr(cost_value == cost, name=f"cost_identity_{suffix}")
         return {
             "q": q,
             "u": u,
@@ -96,7 +112,7 @@ class AcceleratedProductRiskSubproblem:
             "demand_constraints": demand_constraints,
             "supply_constraints": supply_constraints,
             "service_constraint": service_constraint,
-            "cost": cost,
+            "cost": cost_value,
         }
 
     def solve(self, x: list[float]) -> AcceleratedProductSeparationResult:
@@ -107,9 +123,11 @@ class AcceleratedProductRiskSubproblem:
         if min(x) < -1e-7:
             raise ValueError("product inventory contains a materially negative value")
         x = [max(value, 0.0) for value in x]
+        update_started = perf_counter()
         for block in self.blocks.values():
             for i, constraint in enumerate(block["supply_constraints"]):
                 constraint.RHS = x[i]
+        update_runtime = perf_counter() - update_started
         started = perf_counter()
         warm_start_used = self._has_basis
         self.model.optimize()
@@ -119,6 +137,12 @@ class AcceleratedProductRiskSubproblem:
                 f"Product recourse is unexpectedly infeasible: {self.model.Status}"
             )
         self._has_basis = True
+        block_keys = list(self.blocks)
+        block_values = self.model.getAttr(
+            "X", [self.blocks[key]["cost"] for key in block_keys]
+        )
+        values_by_key = dict(zip(block_keys, block_values))
+        extraction_started = perf_counter()
         worst_cases = []
         for local_gamma in range(self.gamma + 1):
             patterns = [
@@ -128,9 +152,17 @@ class AcceleratedProductRiskSubproblem:
             ]
             pattern = max(
                 patterns,
-                key=lambda candidate: self.blocks[(local_gamma, candidate)]["cost"].getValue(),
+                key=lambda candidate: values_by_key[(local_gamma, candidate)],
             )
-            worst_cases.append(self._extract(local_gamma, pattern, x))
+            worst_cases.append(
+                self._extract(
+                    local_gamma,
+                    pattern,
+                    x,
+                    values_by_key[(local_gamma, pattern)],
+                )
+            )
+        extraction_runtime = perf_counter() - extraction_started
         return AcceleratedProductSeparationResult(
             tuple(worst_cases),
             elapsed,
@@ -139,18 +171,27 @@ class AcceleratedProductRiskSubproblem:
             int(warm_start_used),
             0.0 if warm_start_used else elapsed,
             elapsed if warm_start_used else 0.0,
+            update_runtime,
+            extraction_runtime,
         )
 
     def _extract(
-        self, local_gamma: int, pattern: tuple[int, ...], x: list[float]
-    ) -> ProductWorstCase:
+        self,
+        local_gamma: int,
+        pattern: tuple[int, ...],
+        x: list[float],
+        value: float,
+    ) -> AcceleratedProductWorstCase:
         block = self.blocks[(local_gamma, pattern)]
-        demand_dual = tuple(constraint.Pi for constraint in block["demand_constraints"])
-        supply_dual = tuple(constraint.Pi for constraint in block["supply_constraints"])
+        demand_dual = tuple(
+            self.model.getAttr("Pi", block["demand_constraints"])
+        )
+        supply_dual = tuple(
+            self.model.getAttr("Pi", block["supply_constraints"])
+        )
         service_dual = block["service_constraint"].Pi
         alpha = sum(value * dual for value, dual in zip(block["demand"], demand_dual))
         alpha += block["allowance"] * service_dual
-        value = block["cost"].getValue()
         dual_value = alpha + sum(
             coefficient * amount for coefficient, amount in zip(supply_dual, x)
         )
@@ -183,17 +224,11 @@ class AcceleratedProductRiskSubproblem:
             dual_feasible,
             abs(value - dual_value),
         )
-        return ProductWorstCase(
+        return AcceleratedProductWorstCase(
             j,
             local_gamma,
             value,
             pattern,
-            tuple(
-                tuple(block["q"][i, r].X for r in range(self.instance.num_regions))
-                for i in range(self.instance.num_depots)
-            ),
-            tuple(block["u"][r].X for r in range(self.instance.num_regions)),
-            block["e"].X,
             demand_dual,
             supply_dual,
             service_dual,
