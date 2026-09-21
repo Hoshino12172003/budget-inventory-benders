@@ -72,6 +72,9 @@ artifacts/*
 !artifacts/prb_v3_product_state_audit.json
 !artifacts/prb_v3_product_state_audit.csv
 !artifacts/prb_v3_solver_profile_audit.json
+!artifacts/prb_v2_state_solve_audit.csv
+!artifacts/prb_v4_selective_benchmark.csv
+!artifacts/prb_v4_selective_summary.json
 !artifacts/prb_correctness_reclassification.csv
 !artifacts/prb_optimal_face_audit.csv
 !artifacts/prb_correctness_contract_summary.json

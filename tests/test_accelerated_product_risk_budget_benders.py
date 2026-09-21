@@ -5,6 +5,7 @@ import pytest
 from robust_inventory_reconfiguration.accelerated_product_risk_budget_benders import (
     _ExactParallelProductOracle,
     _compose_risk_budget_exact_dp,
+    _select_products_for_exact_separation,
     _select_parallel_workers,
     solve_accelerated_prb_benders,
 )
@@ -13,6 +14,9 @@ from robust_inventory_reconfiguration.accelerated_product_risk_subproblem import
 )
 from robust_inventory_reconfiguration.accelerated_product_risk_budget_benders_v3 import (
     solve_accelerated_prb_benders_v3,
+)
+from robust_inventory_reconfiguration.accelerated_product_risk_budget_benders_v4 import (
+    solve_accelerated_prb_benders_v4,
 )
 from robust_inventory_reconfiguration.product_risk_budget_benders import solve_prb_benders
 from robust_inventory_reconfiguration.product_risk_subproblem import ProductRiskSubproblem
@@ -48,6 +52,31 @@ def test_worker_selection_depends_on_workload_not_case_identity(tiny_instance) -
     assert _select_parallel_workers(larger_shape, 2) == min(
         8, __import__("os").cpu_count() or 1
     )
+
+
+def test_selective_screening_is_fail_closed() -> None:
+    selected, screened, reasons = _select_products_for_exact_separation(
+        [[10.0, 11.0, 12.0], [20.0, 21.0, 22.0]],
+        [[10.0, 11.0, 12.0], [20.0, 21.0, 22.0]],
+        theta_value=33.0,
+        gamma=2,
+        exact_cached_products=set(),
+        tolerance=1e-7,
+    )
+    assert selected == set()
+    assert screened == {0, 1}
+    assert reasons["individual"] == 6
+
+    selected, screened, _ = _select_products_for_exact_separation(
+        [[float("inf")] * 3, [20.0, 21.0, 22.0]],
+        [[0.0] * 3, [20.0, 21.0, 22.0]],
+        theta_value=33.0,
+        gamma=2,
+        exact_cached_products=set(),
+        tolerance=1e-7,
+    )
+    assert 0 in selected
+    assert 0 not in screened
 
 
 @pytest.mark.parametrize("num_products,gamma", [(2, 2), (4, 2), (3, 3)])
@@ -158,6 +187,20 @@ def test_exact_cache_reuses_only_identical_product_inventory(tiny_instance) -> N
     assert oracle.product_solves_avoided == (tiny_instance.num_products + 1) * 2
 
 
+def test_inventory_loss_upper_bound_is_valid(tiny_instance) -> None:
+    oracle = _ExactParallelProductOracle(tiny_instance, 1, workers=2)
+    try:
+        oracle.evaluate([[5.0, 4.0]], allow_cache=True)
+        bounds = oracle.state_upper_bounds([[2.0, 1.0]])
+        exact, _ = oracle.evaluate([[2.0, 1.0]], allow_cache=False)
+    finally:
+        oracle.close()
+    for j, result in enumerate(exact):
+        assert result is not None
+        for worst in result.worst_cases:
+            assert worst.value <= bounds[j][worst.local_gamma] + 1e-7
+
+
 @pytest.mark.parametrize("gamma", [1, 2])
 def test_accelerated_prb_matches_original_prb_on_tiny(tiny_instance, gamma) -> None:
     x0 = [[2.0, 1.0]]
@@ -196,3 +239,29 @@ def test_final_certification_reuses_only_exact_cached_state(tiny_instance) -> No
     assert result.full_final_verification
     assert result.certification_cache_hits == tiny_instance.num_products
     assert result.certification_product_state_solves == 0
+
+
+def test_v4_selective_separation_matches_v2_and_fully_verifies(tiny_instance) -> None:
+    arguments = dict(
+        instance=tiny_instance,
+        x0=[[2.0, 1.0]],
+        budget=18.0,
+        gamma=1,
+        lambda_r=0.05,
+        parallel_workers=2,
+    )
+    v2 = solve_accelerated_prb_benders(**arguments)
+    v4 = solve_accelerated_prb_benders_v4(**arguments)
+    assert v4.solution.objective == pytest.approx(v2.solution.objective, abs=1e-7)
+    assert v4.solution.robust_recourse_cost == pytest.approx(
+        v2.solution.robust_recourse_cost, abs=1e-7
+    )
+    assert v4.solution.y == v2.solution.y
+    assert v4.exact_certification_pass
+    assert v4.global_risk_budget_coupling_pass
+    assert v4.selective_separation_enabled
+    assert v4.full_final_verification
+    assert sum(
+        row["missed_violations_at_final_verification"]
+        for row in v4.separation_audit
+    ) >= 0

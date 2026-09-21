@@ -15,8 +15,8 @@ sys.path.insert(0, str(ROOT / "src"))
 from robust_inventory_reconfiguration.accelerated_product_risk_budget_benders import (
     solve_accelerated_prb_benders,
 )
-from robust_inventory_reconfiguration.accelerated_product_risk_budget_benders_v3 import (
-    solve_accelerated_prb_benders_v3,
+from robust_inventory_reconfiguration.accelerated_product_risk_budget_benders_v4 import (
+    solve_accelerated_prb_benders_v4,
 )
 from robust_inventory_reconfiguration.instance import load_instance
 
@@ -188,11 +188,17 @@ def solve_case(
         raise RuntimeError(f"{case} has no x0")
     pure, original = load_baselines(case)
     with PeakMemoryMonitor() as memory:
-        solver = (
-            solve_accelerated_prb_benders_v3
-            if algorithm == "v3"
-            else solve_accelerated_prb_benders
-        )
+        if algorithm == "v3":
+            from robust_inventory_reconfiguration.accelerated_product_risk_budget_benders_v3 import (
+                solve_accelerated_prb_benders_v3,
+            )
+
+            solver = solve_accelerated_prb_benders_v3
+        else:
+            solver = {
+                "v2": solve_accelerated_prb_benders,
+                "v4": solve_accelerated_prb_benders_v4,
+            }[algorithm]
         solver_options = (
             {"oracle_backend": backend, "method": method, "presolve": presolve}
             if algorithm == "v3"
@@ -278,7 +284,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--workers", type=int, default=0)
     parser.add_argument("--cases", nargs="+", choices=ALL_CASES, default=ALL_CASES)
-    parser.add_argument("--algorithm", choices=("v2", "v3"), default="v2")
+    parser.add_argument("--algorithm", choices=("v2", "v3", "v4"), default="v2")
     parser.add_argument("--backend", choices=("process", "thread"), default="thread")
     parser.add_argument("--method", type=int, choices=(-1, 0, 1), default=1)
     parser.add_argument("--presolve", type=int, choices=(-1, 0, 1, 2), default=0)

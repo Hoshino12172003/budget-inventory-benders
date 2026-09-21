@@ -63,6 +63,7 @@ class AcceleratedPRBBendersResult:
     certification_cache_hits: int
     certification_product_state_solves: int
     runtime_profile: dict[str, dict[str, float | int]]
+    separation_audit: tuple[dict[str, object], ...]
 
 
 def _product_worker(
@@ -127,6 +128,52 @@ def _select_parallel_workers(instance: InventoryInstance, gamma: int) -> int:
     total_blocks = instance.num_products * patterns_per_product
     worker_cap = 2 if total_blocks <= 1_000 else 8
     return max(1, min(worker_cap, instance.num_products, os.cpu_count() or 1))
+
+
+def _forced_allocation_upper_bound(
+    upper_values: list[list[float]], gamma: int, product: int, local_gamma: int
+) -> float:
+    if local_gamma > gamma:
+        return float("-inf")
+    other_values = [
+        values for j, values in enumerate(upper_values) if j != product
+    ]
+    remainder = _compose_risk_budget_exact_dp(other_values, gamma - local_gamma)
+    return upper_values[product][local_gamma] + remainder.value
+
+
+def _select_products_for_exact_separation(
+    upper_values: list[list[float]],
+    eta_values: list[list[float]],
+    theta_value: float,
+    gamma: int,
+    exact_cached_products: set[int],
+    tolerance: float,
+) -> tuple[set[int], set[int], dict[str, int]]:
+    selected: set[int] = set()
+    screened: set[int] = set()
+    reasons = {"individual": 0, "gamma": 0}
+    for j in range(len(upper_values)):
+        if j in exact_cached_products:
+            selected.add(j)
+            continue
+        state_safe = []
+        for g in range(gamma + 1):
+            individual_safe = upper_values[j][g] <= eta_values[j][g] + tolerance
+            gamma_safe = (
+                _forced_allocation_upper_bound(upper_values, gamma, j, g)
+                <= theta_value + tolerance
+            )
+            state_safe.append(individual_safe or gamma_safe)
+            if individual_safe:
+                reasons["individual"] += 1
+            elif gamma_safe:
+                reasons["gamma"] += 1
+        if all(state_safe):
+            screened.add(j)
+        else:
+            selected.add(j)
+    return selected, screened, reasons
 
 
 class _ExactParallelProductOracle:
@@ -230,6 +277,21 @@ class _ExactParallelProductOracle:
         self.maximum_product_optimization_runtime = 0.0
         self.maximum_product_update_runtime = 0.0
         self.maximum_product_extraction_runtime = 0.0
+        self.inventory_loss_cost = tuple(
+            tuple(
+                max(
+                    0.0,
+                    max(
+                        self.instance.shortage_penalty[r][j]
+                        + self.instance.service_penalty[j]
+                        - self.instance.transport_cost[i][r][j]
+                        for r in range(self.instance.num_regions)
+                    ),
+                )
+                for i in range(self.instance.num_depots)
+            )
+            for j in range(self.instance.num_products)
+        )
 
     @staticmethod
     def _signature(values: list[float]) -> tuple[float, ...]:
@@ -237,8 +299,14 @@ class _ExactParallelProductOracle:
         return tuple(0.0 if value == 0.0 else value for value in values)
 
     def evaluate(
-        self, x: list[list[float]], *, allow_cache: bool
-    ) -> tuple[list[AcceleratedProductSeparationResult], float]:
+        self,
+        x: list[list[float]],
+        *,
+        allow_cache: bool,
+        selected_products: set[int] | None = None,
+    ) -> tuple[list[AcceleratedProductSeparationResult | None], float]:
+        if selected_products is None:
+            selected_products = set(range(self.instance.num_products))
         vectors = [
             [x[i][j] for i in range(self.instance.num_depots)]
             for j in range(self.instance.num_products)
@@ -251,6 +319,8 @@ class _ExactParallelProductOracle:
         started = perf_counter()
         cache_started = perf_counter()
         for j, vector in enumerate(vectors):
+            if j not in selected_products:
+                continue
             key = (j, self._signature(vector))
             if allow_cache and key in self.cache:
                 results[j] = self.cache[key]
@@ -332,7 +402,7 @@ class _ExactParallelProductOracle:
             processed_in = perf_counter() - processing_started
             self.result_processing_runtime += processed_in
             call_result_processing_runtime += processed_in
-        if any(result is None for result in results):
+        if any(results[j] is None for j in selected_products):
             raise RuntimeError("Parallel product oracle returned an incomplete result set")
         elapsed = perf_counter() - started
         critical = max(worker_critical_times, default=0.0)
@@ -347,7 +417,29 @@ class _ExactParallelProductOracle:
             - call_result_processing_runtime,
         )
         self.evaluate_calls += 1
-        return [result for result in results if result is not None], elapsed
+        return results, elapsed
+
+    def state_upper_bounds(self, x: list[list[float]]) -> list[list[float]]:
+        """Valid upper bounds from all previously solved exact inventory states."""
+        vectors = [
+            tuple(x[i][j] for i in range(self.instance.num_depots))
+            for j in range(self.instance.num_products)
+        ]
+        bounds = [
+            [float("inf")] * (self.gamma + 1)
+            for _ in range(self.instance.num_products)
+        ]
+        for (j, prior_x), result in self.cache.items():
+            inventory_loss_bound = sum(
+                self.inventory_loss_cost[j][i] * max(prior_x[i] - vectors[j][i], 0.0)
+                for i in range(self.instance.num_depots)
+            )
+            for worst in result.worst_cases:
+                bounds[j][worst.local_gamma] = min(
+                    bounds[j][worst.local_gamma],
+                    worst.value + inventory_loss_bound,
+                )
+        return bounds
 
     def _record_result(self, result: AcceleratedProductSeparationResult) -> None:
         self.product_state_solves += self.gamma + 1
@@ -403,6 +495,7 @@ def solve_accelerated_prb_benders(
     _subproblem_class=AcceleratedProductRiskSubproblem,
     _subproblem_options: dict | None = None,
     _oracle_backend: str = "process",
+    _selective_separation: bool = False,
 ) -> AcceleratedPRBBendersResult:
     """Exact PRB with compact parallel product oracles and exact-state caching."""
     from gurobipy import GRB
@@ -450,6 +543,69 @@ def solve_accelerated_prb_benders(
     maximum_lb_ub_runtime = 0.0
     maximum_cut_construction_runtime = 0.0
     maximum_cut_insertion_runtime = 0.0
+    separation_audit: list[dict[str, object]] = []
+
+    def add_violated_cuts(
+        product_results: list[AcceleratedProductSeparationResult | None],
+        iteration: int,
+    ) -> tuple[int, int]:
+        nonlocal cut_construction_runtime
+        nonlocal cut_insertion_runtime
+        nonlocal maximum_cut_construction_runtime
+        nonlocal maximum_cut_insertion_runtime
+        violated = 0
+        added = 0
+        for j, result in enumerate(product_results):
+            if result is None:
+                continue
+            for worst in result.worst_cases:
+                cut_started = perf_counter()
+                g = worst.local_gamma
+                violation = worst.value - variables["eta"][j, g].X
+                if violation <= cut_tolerance:
+                    cut_elapsed = perf_counter() - cut_started
+                    cut_construction_runtime += cut_elapsed
+                    maximum_cut_construction_runtime = max(
+                        maximum_cut_construction_runtime, cut_elapsed
+                    )
+                    continue
+                violated += 1
+                cut = worst.cut
+                signature = (
+                    j,
+                    g,
+                    round(cut.alpha, 10),
+                    tuple(round(value, 10) for value in cut.beta),
+                )
+                if signature in cut_signatures:
+                    raise RuntimeError("A previously added product cut remains violated")
+                cut_elapsed = perf_counter() - cut_started
+                cut_construction_runtime += cut_elapsed
+                maximum_cut_construction_runtime = max(
+                    maximum_cut_construction_runtime, cut_elapsed
+                )
+                insertion_started = perf_counter()
+                master.addConstr(
+                    variables["eta"][j, g]
+                    >= cut.alpha
+                    + sum(
+                        cut.beta[i] * variables["x"][i, j]
+                        for i in range(instance.num_depots)
+                    ),
+                    name=f"product_cut[{j},{g},{cuts_by_product[j]}]",
+                )
+                insertion_elapsed = perf_counter() - insertion_started
+                cut_insertion_runtime += insertion_elapsed
+                maximum_cut_insertion_runtime = max(
+                    maximum_cut_insertion_runtime, insertion_elapsed
+                )
+                cut_signatures.add(signature)
+                cuts.append(cut)
+                cut_additions.append(ProductCutAddition(iteration, violation, cut))
+                cuts_by_product[j] += 1
+                cuts_by_gamma[g] += 1
+                added += 1
+        return violated, added
 
     try:
         for iteration in range(1, max_iterations + 1):
@@ -468,18 +624,66 @@ def solve_accelerated_prb_benders(
                 for i in range(instance.num_depots)
             ]
 
-            product_results, elapsed = oracle.evaluate(xbar, allow_cache=True)
+            eta_values = [
+                [variables["eta"][j, g].X for g in range(gamma + 1)]
+                for j in range(instance.num_products)
+            ]
+            theta_value = float(variables["theta"].X)
+            potential_states = instance.num_products * (gamma + 1)
+            upper_values = (
+                oracle.state_upper_bounds(xbar)
+                if _selective_separation
+                else [
+                    [0.0] * (gamma + 1)
+                    for _ in range(instance.num_products)
+                ]
+            )
+            selected_products = set(range(instance.num_products))
+            screened_products: set[int] = set()
+            state_screen_reasons = {"individual": 0, "gamma": 0}
+            if _selective_separation:
+                exact_cached_products = {
+                    j
+                    for j in range(instance.num_products)
+                    if (
+                        j,
+                        oracle._signature(
+                            [xbar[i][j] for i in range(instance.num_depots)]
+                        ),
+                    )
+                    in oracle.cache
+                }
+                (
+                    selected_products,
+                    screened_products,
+                    state_screen_reasons,
+                ) = _select_products_for_exact_separation(
+                    upper_values,
+                    eta_values,
+                    theta_value,
+                    gamma,
+                    exact_cached_products,
+                    cut_tolerance,
+                )
+
+            cache_hits_before = oracle.cache_hits
+            cache_misses_before = oracle.cache_misses
+            exact_states_before = oracle.product_state_solves
+            product_results, elapsed = oracle.evaluate(
+                xbar,
+                allow_cache=True,
+                selected_products=selected_products,
+            )
             separation_runtime += elapsed
             lb_ub_started = perf_counter()
-            product_values = [
-                [worst.value for worst in result.worst_cases]
-                for result in product_results
-            ]
+            for j, result in enumerate(product_results):
+                if result is not None:
+                    upper_values[j] = [worst.value for worst in result.worst_cases]
             lb_ub_elapsed = perf_counter() - lb_ub_started
             lb_ub_runtime += lb_ub_elapsed
             maximum_lb_ub_runtime = max(maximum_lb_ub_runtime, lb_ub_elapsed)
             gamma_started = perf_counter()
-            composition = _compose_risk_budget_exact_dp(product_values, gamma)
+            composition = _compose_risk_budget_exact_dp(upper_values, gamma)
             gamma_elapsed = perf_counter() - gamma_started
             gamma_runtime += gamma_elapsed
             main_gamma_runtime += gamma_elapsed
@@ -496,57 +700,76 @@ def solve_accelerated_prb_benders(
             lb_ub_runtime += lb_ub_elapsed
             maximum_lb_ub_runtime = max(maximum_lb_ub_runtime, lb_ub_elapsed)
 
-            checked = instance.num_products * (gamma + 1)
-            violated = 0
-            added = 0
-            for j, result in enumerate(product_results):
-                for worst in result.worst_cases:
-                    cut_started = perf_counter()
-                    g = worst.local_gamma
-                    violation = worst.value - variables["eta"][j, g].X
-                    if violation <= cut_tolerance:
-                        cut_elapsed = perf_counter() - cut_started
-                        cut_construction_runtime += cut_elapsed
-                        maximum_cut_construction_runtime = max(
-                            maximum_cut_construction_runtime, cut_elapsed
-                        )
-                        continue
-                    violated += 1
-                    cut = worst.cut
-                    signature = (
-                        j,
-                        g,
-                        round(cut.alpha, 10),
-                        tuple(round(value, 10) for value in cut.beta),
+            checked = potential_states
+            violated, added = add_violated_cuts(product_results, iteration)
+            exact_states = oracle.product_state_solves - exact_states_before
+            cache_hits = oracle.cache_hits - cache_hits_before
+            cache_misses = oracle.cache_misses - cache_misses_before
+            screening_skipped = len(screened_products) * (gamma + 1)
+            final_verification_states = 0
+            missed_violations = 0
+
+            should_verify = (
+                _selective_separation
+                and added == 0
+                and composition.value <= theta_value + cut_tolerance
+            )
+            if should_verify:
+                verification_states_before = oracle.product_state_solves
+                verification_results, verification_elapsed = oracle.evaluate(
+                    xbar, allow_cache=True
+                )
+                separation_runtime += verification_elapsed
+                final_verification_states = (
+                    oracle.product_state_solves - verification_states_before
+                )
+                exact_values = [
+                    [worst.value for worst in result.worst_cases]
+                    for result in verification_results
+                    if result is not None
+                ]
+                exact_composition = _compose_risk_budget_exact_dp(
+                    exact_values, gamma
+                )
+                missed_violations, missed_added = add_violated_cuts(
+                    verification_results, iteration
+                )
+                violated += missed_violations
+                added += missed_added
+                if missed_added == 0:
+                    composition = exact_composition
+                    candidate_upper_bound = first_stage + composition.value
+                    upper_bound = candidate_upper_bound
+                    best_solution = _solution_from_master(
+                        instance,
+                        x0,
+                        lambda_r,
+                        master,
+                        variables,
+                        composition.value,
                     )
-                    if signature in cut_signatures:
-                        raise RuntimeError("A previously added product cut remains violated")
-                    cut_elapsed = perf_counter() - cut_started
-                    cut_construction_runtime += cut_elapsed
-                    maximum_cut_construction_runtime = max(
-                        maximum_cut_construction_runtime, cut_elapsed
-                    )
-                    insertion_started = perf_counter()
-                    master.addConstr(
-                        variables["eta"][j, g]
-                        >= cut.alpha
-                        + sum(
-                            cut.beta[i] * variables["x"][i, j]
-                            for i in range(instance.num_depots)
-                        ),
-                        name=f"product_cut[{j},{g},{cuts_by_product[j]}]",
-                    )
-                    insertion_elapsed = perf_counter() - insertion_started
-                    cut_insertion_runtime += insertion_elapsed
-                    maximum_cut_insertion_runtime = max(
-                        maximum_cut_insertion_runtime, insertion_elapsed
-                    )
-                    cut_signatures.add(signature)
-                    cuts.append(cut)
-                    cut_additions.append(ProductCutAddition(iteration, violation, cut))
-                    cuts_by_product[j] += 1
-                    cuts_by_gamma[g] += 1
-                    added += 1
+
+            separation_audit.append(
+                {
+                    "iteration": iteration,
+                    "potential_product_risk_states": potential_states,
+                    "exact_state_solves": exact_states,
+                    "cache_hits": cache_hits,
+                    "cache_misses": cache_misses,
+                    "cache_avoided_state_solves": cache_hits * (gamma + 1),
+                    "screening_avoided_state_solves": screening_skipped,
+                    "screened_products": len(screened_products),
+                    "individual_bound_safe_states": state_screen_reasons["individual"],
+                    "gamma_bound_safe_states": state_screen_reasons["gamma"],
+                    "newly_violated_states": violated,
+                    "states_generating_new_cut": added,
+                    "exact_states_without_new_cut": max(0, exact_states - added),
+                    "allocation": list(composition.allocation),
+                    "states_in_gamma_allocation": instance.num_products,
+                    "final_verification_state_solves": final_verification_states,
+                    "missed_violations_at_final_verification": missed_violations,
+                }
+            )
 
             gap = max(0.0, upper_bound - lower_bound) / max(1.0, abs(upper_bound))
             iterations.append(
@@ -563,7 +786,9 @@ def solve_accelerated_prb_benders(
                     added,
                 )
             )
-            if gap <= relative_gap_tolerance and violated == 0:
+            if _selective_separation and should_verify and added == 0:
+                break
+            if not _selective_separation and gap <= relative_gap_tolerance and violated == 0:
                 break
         else:
             raise RuntimeError("Accelerated PRB-Benders reached the iteration limit")
@@ -745,11 +970,12 @@ def solve_accelerated_prb_benders(
             oracle.cold_solve_runtime,
             oracle.warm_solve_runtime,
             oracle.workers,
-            False,
+            _selective_separation,
             True,
             certification_cache_hits,
             certification_product_state_solves,
             runtime_profile,
+            tuple(separation_audit),
         )
     finally:
         oracle.close()
