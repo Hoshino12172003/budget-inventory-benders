@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "E2 policy evaluation result",
+  "type": "object",
+  "required": ["run_id", "case", "policy", "Gamma_plan", "Gamma_eval", "objective_eval", "fixed_cost", "inventory_cost", "reconfiguration_cost", "robust_recourse_cost", "budget_used", "budget_utilization", "RI", "RS", "total_a_plus", "total_a_minus", "total_adjustment", "changed_pair_count", "active_depots", "opened_depots", "closed_depots", "worst_recourse_shortage_cost", "worst_recourse_total_shortage", "worst_recourse_service_penalty_cost", "minimum_fill_rate", "average_fill_rate", "worst_region", "reused_from_E1", "instance_hash", "x0_hash", "mapping_hash", "solver_profile", "status"],
+  "additionalProperties": true
+}

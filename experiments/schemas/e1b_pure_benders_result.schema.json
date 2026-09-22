@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "E1b Pure Benders result",
+  "type": "object",
+  "required": [
+    "run_id", "dataset_id", "case", "method", "status",
+    "exact_certification_status", "Gamma", "beta", "B", "lambda_R",
+    "objective", "first_stage_expenditure", "robust_recourse_cost",
+    "core_runtime_seconds", "post_evaluation_runtime_seconds",
+    "iteration_count", "aggregate_cut_count", "lower_bound", "upper_bound",
+    "absolute_gap", "relative_gap", "cut_validity_pass", "instance_hash",
+    "x0_hash", "calibration_hash", "mapping_hash", "git_commit",
+    "solver_profile", "solver_version", "hardware"
+  ],
+  "properties": {
+    "method": {"const": "classical_pure_robust_benders"},
+    "status": {"const": "OPTIMAL"},
+    "exact_certification_status": {"const": "CERTIFIED_PURE_BENDERS_EXACT"},
+    "Gamma": {"const": 2},
+    "beta": {"const": 1.0},
+    "lambda_R": {"const": 0.05}
+  }
+}

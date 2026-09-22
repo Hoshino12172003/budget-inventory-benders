@@ -24,4 +24,8 @@ E2 fixes `x=x0` for the existing-system row, uses `Gamma=0` for the nominal
 rows, and uses `Gamma=2` for robust reconfiguration. All variants use
 `beta=1.0` and `lambda_R=0.05`.
 
+E2 follow-up requirement: compare Existing, Nominal, and Robust decisions with
+one unified Gamma-based post-evaluation. Do not directly compare a Gamma=0
+evaluation with a Gamma=2 evaluation.
+
 Across E1-E7, case budgets are computed as `B=beta*B_ref_case`.

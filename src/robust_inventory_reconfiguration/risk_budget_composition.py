@@ -1,18 +1,23 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from itertools import product
 
 
 def enumerate_gamma_allocations(num_products: int, gamma: int) -> list[tuple[int, ...]]:
     """Canonical allocations including every vector whose sum is at most Gamma."""
     if num_products <= 0 or gamma < 0:
         raise ValueError("num_products must be positive and gamma nonnegative")
-    return [
-        allocation
-        for allocation in product(range(gamma + 1), repeat=num_products)
-        if sum(allocation) <= gamma
-    ]
+    allocations = []
+
+    def extend(prefix: tuple[int, ...], remaining: int) -> None:
+        if len(prefix) == num_products:
+            allocations.append(prefix)
+            return
+        for local_gamma in range(remaining + 1):
+            extend(prefix + (local_gamma,), remaining - local_gamma)
+
+    extend((), gamma)
+    return allocations
 
 
 @dataclass(frozen=True)
