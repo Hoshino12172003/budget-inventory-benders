@@ -33,6 +33,16 @@ class ServiceCalibrationCondition:
     requires_solve: bool
 
 
+@dataclass(frozen=True)
+class ServiceCalibrationAnalysisCondition:
+    case_id: str
+    condition_id: str
+    physical_result_id: str
+    run_type: str
+    service_level: float
+    phi_multiplier: float
+
+
 def canonical_hash(value: object) -> str:
     payload = json.dumps(value, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(payload).hexdigest()
@@ -61,7 +71,14 @@ def validate_config(config: dict) -> None:
         "no_interaction": config["full_SL_x_phi_interaction_authorized"] is False,
         "authorization_history": config["authorization_transition"] in ([False], [False, True]),
         "authorization_state": config["authorization_transition"][-1] is config["formal_run_authorized"],
-        "solve_count": config["expected_new_optimization_solves"] == 32,
+        "baseline_policy": config["baseline_policy"] == {
+            "legacy_E4_reuse": False,
+            "current_version_regeneration_required": True,
+        },
+        "physical_solve_count": config["expected_physical_solves"] == 40,
+        "baseline_solve_count": config["expected_baseline_solves"] == 8,
+        "sl_solve_count": config["expected_sl_sensitivity_solves"] == 16,
+        "phi_solve_count": config["expected_phi_sensitivity_solves"] == 16,
     }
     failed = [name for name, passed in checks.items() if not passed]
     if failed:
@@ -101,7 +118,7 @@ def calibrated_instance(
 
 
 def _sl_token(value: float) -> str:
-    return f"SL{round(value * 100):02d}"
+    return f"SL{round(value * 100):03d}"
 
 
 def _phi_token(value: float) -> str:
@@ -111,61 +128,82 @@ def _phi_token(value: float) -> str:
 def enumerate_conditions() -> list[ServiceCalibrationCondition]:
     conditions: list[ServiceCalibrationCondition] = []
     for case_id in FORMAL_CASES:
-        for sl in SL_GRID:
-            baseline = sl == BASELINE_SL
+        conditions.append(ServiceCalibrationCondition(
+            case_id=case_id,
+            condition_id=f"SCAL_BASE_{case_id}",
+            physical_result_id=f"SCAL_BASE_{case_id}",
+            run_type="baseline",
+            service_level=BASELINE_SL,
+            phi_multiplier=BASELINE_PHI_MULTIPLIER,
+            baseline=True,
+            requires_solve=True,
+        ))
+        for sl in (0.85, 0.95):
             conditions.append(ServiceCalibrationCondition(
                 case_id=case_id,
-                condition_id=f"SC-{case_id}-{_sl_token(sl)}",
-                physical_result_id=f"SC-{case_id}-BASELINE" if baseline else f"SC-{case_id}-{_sl_token(sl)}",
+                condition_id=f"SCAL_{_sl_token(sl)}_{case_id}",
+                physical_result_id=f"SCAL_{_sl_token(sl)}_{case_id}",
                 run_type="sl_sensitivity",
                 service_level=sl,
                 phi_multiplier=BASELINE_PHI_MULTIPLIER,
-                baseline=baseline,
-                requires_solve=not baseline,
+                baseline=False,
+                requires_solve=True,
             ))
-        for multiplier in PHI_GRID:
-            baseline = multiplier == BASELINE_PHI_MULTIPLIER
+        for multiplier in (1.50, 2.50):
             conditions.append(ServiceCalibrationCondition(
                 case_id=case_id,
-                condition_id=f"SC-{case_id}-{_phi_token(multiplier)}",
-                physical_result_id=f"SC-{case_id}-BASELINE" if baseline else f"SC-{case_id}-{_phi_token(multiplier)}",
+                condition_id=f"SCAL_{_phi_token(multiplier)}_{case_id}",
+                physical_result_id=f"SCAL_{_phi_token(multiplier)}_{case_id}",
                 run_type="phi_sensitivity",
                 service_level=BASELINE_SL,
                 phi_multiplier=multiplier,
-                baseline=baseline,
-                requires_solve=not baseline,
+                baseline=False,
+                requires_solve=True,
             ))
     return conditions
 
 
-def new_solve_conditions() -> list[ServiceCalibrationCondition]:
-    return [condition for condition in enumerate_conditions() if condition.requires_solve]
+def enumerate_analysis_conditions() -> list[ServiceCalibrationAnalysisCondition]:
+    conditions: list[ServiceCalibrationAnalysisCondition] = []
+    for case_id in FORMAL_CASES:
+        for sl in SL_GRID:
+            physical_id = f"SCAL_BASE_{case_id}" if sl == BASELINE_SL else f"SCAL_{_sl_token(sl)}_{case_id}"
+            conditions.append(ServiceCalibrationAnalysisCondition(
+                case_id, f"SCAL_{_sl_token(sl)}_{case_id}", physical_id,
+                "sl_sensitivity", sl, BASELINE_PHI_MULTIPLIER,
+            ))
+        for multiplier in PHI_GRID:
+            physical_id = f"SCAL_BASE_{case_id}" if multiplier == BASELINE_PHI_MULTIPLIER else f"SCAL_{_phi_token(multiplier)}_{case_id}"
+            conditions.append(ServiceCalibrationAnalysisCondition(
+                case_id, f"SCAL_{_phi_token(multiplier)}_{case_id}", physical_id,
+                "phi_sensitivity", BASELINE_SL, multiplier,
+            ))
+    return conditions
 
 
 def dry_run_plan(config: dict) -> dict:
     validate_config(config)
-    conditions = enumerate_conditions()
-    new_solves = new_solve_conditions()
+    physical = enumerate_conditions()
+    analysis = enumerate_analysis_conditions()
     return {
         "experiment_id": config["experiment_id"],
         "formal_run_authorized": config["formal_run_authorized"],
         "design": "OFAT",
         "full_SL_x_phi_interaction_authorized": False,
-        "sl_sensitivity": {
-            "table_conditions": sum(c.run_type == "sl_sensitivity" for c in conditions),
-            "potentially_reusable_baseline_conditions": sum(c.run_type == "sl_sensitivity" and c.baseline for c in conditions),
-            "new_solves": sum(c.run_type == "sl_sensitivity" for c in new_solves),
-        },
-        "phi_sensitivity": {
-            "table_conditions": sum(c.run_type == "phi_sensitivity" for c in conditions),
-            "potentially_reusable_baseline_conditions": sum(c.run_type == "phi_sensitivity" and c.baseline for c in conditions),
-            "new_solves": sum(c.run_type == "phi_sensitivity" for c in new_solves),
-        },
-        "reported_OFAT_conditions": len(conditions),
-        "unique_physical_results": len({c.physical_result_id for c in conditions}),
-        "unique_physical_baseline_results": len({c.physical_result_id for c in conditions if c.baseline}),
-        "new_formal_optimization_solves_if_baseline_reuse_authorized": len(new_solves),
-        "conditions": [condition.__dict__ for condition in conditions],
+        "legacy_baseline_reuse": "disabled",
+        "current_version_baseline_regeneration": "required",
+        "physical_solves": len(physical),
+        "baseline_solves": sum(c.run_type == "baseline" for c in physical),
+        "sl_sensitivity_solves": sum(c.run_type == "sl_sensitivity" for c in physical),
+        "phi_sensitivity_solves": sum(c.run_type == "phi_sensitivity" for c in physical),
+        "logical_analysis_conditions": len(analysis),
+        "sl_analysis_conditions": sum(c.run_type == "sl_sensitivity" for c in analysis),
+        "phi_analysis_conditions": sum(c.run_type == "phi_sensitivity" for c in analysis),
+        "SL_x_phi_interaction_solves": 0,
+        "f_multiplier_sensitivity_solves": 0,
+        "other_Gamma_beta_lambda_grid_solves": 0,
+        "physical_conditions": [condition.__dict__ for condition in physical],
+        "analysis_conditions": [condition.__dict__ for condition in analysis],
     }
 
 

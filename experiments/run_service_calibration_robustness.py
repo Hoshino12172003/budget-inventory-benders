@@ -33,15 +33,10 @@ from robust_inventory_reconfiguration.service_calibration import (
     enumerate_conditions,
     file_sha256,
     load_config,
-    new_solve_conditions,
     require_formal_authorization,
     validate_config,
 )
-from robust_inventory_reconfiguration.service_calibration_audit import (
-    baseline_reuse_audit,
-    load_identity_table,
-    source_model_identity,
-)
+from robust_inventory_reconfiguration.service_calibration_audit import load_identity_table, source_model_identity
 from robust_inventory_reconfiguration.service_calibration_reporting import RESULT_FIELDS
 
 
@@ -66,17 +61,13 @@ def _condition_map():
     return {condition.condition_id: condition for condition in enumerate_conditions()}
 
 
-def validate_execution_gate(config: dict) -> list[dict[str, object]]:
+def validate_execution_gate(config: dict) -> None:
     validate_config(config)
     require_formal_authorization(config)
     if source_model_identity(ROOT, config["code_identity"]["model_files"]) != config["code_identity"]["current_model_identity_sha256"]:
         raise RuntimeError("SERVICE_CALIBRATION_MODEL_IDENTITY_MISMATCH")
-    audit_rows = baseline_reuse_audit(ROOT, config)
-    if not all(row["reuse_authorized"] for row in audit_rows):
-        raise PermissionError("BASELINE_REUSE_NOT_AUTHORIZED")
     if subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT).strip():
         raise RuntimeError("formal service-calibration execution requires a clean committed worktree")
-    return audit_rows
 
 
 def solve_condition(condition, config: dict) -> tuple[dict, dict, list[dict]]:
@@ -254,11 +245,11 @@ def main() -> None:
         return
     validate_execution_gate(config)
     output_root = args.output_root or ROOT / config["output_directory"]
-    conditions = new_solve_conditions()
+    conditions = enumerate_conditions()
     if args.execute:
         condition = _condition_map().get(args.execute)
-        if condition is None or not condition.requires_solve:
-            raise ValueError("--execute requires one of the 32 non-baseline condition IDs")
+        if condition is None:
+            raise ValueError("--execute requires one of the 40 physical condition IDs")
         conditions = [condition]
     for condition in conditions:
         result, artifact, scenarios = solve_condition(condition, config)

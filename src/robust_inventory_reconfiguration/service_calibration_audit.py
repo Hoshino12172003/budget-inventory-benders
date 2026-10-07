@@ -39,7 +39,8 @@ def load_identity_table(root: Path, relative_path: str) -> dict[str, dict[str, s
 
 def baseline_reuse_audit(root: Path, config: dict) -> list[dict[str, object]]:
     identities = load_identity_table(root, config["identity_table"])
-    source_manifest_path = root / config["baseline_source"]["manifest"]
+    historical = config["historical_baseline_diagnostic"]
+    source_manifest_path = root / historical["manifest"]
     source_manifest = json.loads(source_manifest_path.read_text(encoding="utf-8"))
     model_files = config["code_identity"]["model_files"]
     current_model_identity = source_model_identity(root, model_files)
@@ -48,8 +49,8 @@ def baseline_reuse_audit(root: Path, config: dict) -> list[dict[str, object]]:
         instance_path = root / f"data/formal_instances_v2/{case}.json"
         x0_path = root / f"artifacts/renault_empirical_8case_v1/x0/{case}.json"
         calibration_path = root / f"artifacts/renault_empirical_8case_v1/calibration/{case}.json"
-        run_id = config["baseline_source"]["run_pattern"].replace("<case>", case)
-        source_dir = root / config["baseline_source"]["result_root"] / run_id
+        run_id = historical["run_pattern"].replace("<case>", case)
+        source_dir = root / historical["result_root"] / run_id
         result_path = source_dir / "result.json"
         solution_path = source_dir / "first_stage_solution.json"
         provenance_path = source_dir / "provenance.json"
@@ -89,6 +90,7 @@ def baseline_reuse_audit(root: Path, config: dict) -> list[dict[str, object]]:
             "source_run_id": run_id,
             "reuse_authorized": not failed,
             "classification": "IDENTITY_SAFE_BASELINE_REUSE" if not failed else "BASELINE_REUSE_NOT_AUTHORIZED",
+            "legacy_baseline_reuse": "not used",
             "failed_checks": ";".join(failed),
             "current_model_identity_sha256": current_model_identity,
             "baseline_source_model_identity_sha256": source_manifest["model_identity_sha256"],

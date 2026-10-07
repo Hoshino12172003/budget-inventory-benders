@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from statistics import mean, median
 
-from .service_calibration import enumerate_conditions
+from .service_calibration import enumerate_analysis_conditions
 
 
 RESULT_FIELDS = (
@@ -59,7 +59,10 @@ def _summary_rows(case_rows: list[dict], run_type: str, parameter: str) -> list[
             "mean_fill_rate": mean(float(row["aggregate_fill_rate"]) for row in rows),
             "mean_service_penalty": mean(float(row["service_penalty_cost"]) for row in rows),
             "mean_budget_utilization": mean(float(row["budget_utilization"]) for row in rows),
-            "cases_with_active_depot_changes": sum(bool(row["activated_depots_vs_baseline"] or row["deactivated_depots_vs_baseline"]) for row in rows),
+            "cases_with_active_depot_changes": sum(
+                bool(json.loads(row["activated_depots_vs_baseline"]) or json.loads(row["deactivated_depots_vs_baseline"]))
+                for row in rows
+            ),
         })
     return output
 
@@ -69,12 +72,12 @@ def build_case_rows(physical_results: list[dict]) -> list[dict]:
     if len(by_id) != len(physical_results):
         raise ValueError("duplicate physical result condition_id")
     rows = []
-    conditions = enumerate_conditions()
+    conditions = enumerate_analysis_conditions()
     for condition in conditions:
         source = by_id.get(condition.physical_result_id)
         if source is None:
             raise ValueError(f"missing physical result {condition.physical_result_id}")
-        baseline = by_id[f"SC-{condition.case_id}-BASELINE"]
+        baseline = by_id[f"SCAL_BASE_{condition.case_id}"]
         row = dict(source)
         row.update({
             "condition_id": condition.condition_id,
@@ -92,11 +95,25 @@ def build_case_rows(physical_results: list[dict]) -> list[dict]:
     return rows
 
 
-def write_reports(physical_results: list[dict], baseline_audit: list[dict], output_dir: Path) -> None:
+def write_reports(
+    physical_results: list[dict],
+    execution_manifest: list[dict],
+    output_dir: Path,
+    *,
+    historical_diagnostic: dict | None = None,
+) -> None:
     for result in physical_results:
         validate_result_schema(result)
     if len(physical_results) != 40 or len({row["condition_id"] for row in physical_results}) != 40:
         raise ValueError("reporting requires exactly 40 unique physical results")
+    run_type_counts = {
+        run_type: sum(row["run_type"] == run_type for row in physical_results)
+        for run_type in ("baseline", "sl_sensitivity", "phi_sensitivity")
+    }
+    if run_type_counts != {"baseline": 8, "sl_sensitivity": 16, "phi_sensitivity": 16}:
+        raise ValueError("physical result run types must be 8 baseline, 16 SL, and 16 phi")
+    if len(execution_manifest) != 40 or len({row["condition_id"] for row in execution_manifest}) != 40:
+        raise ValueError("execution manifest requires exactly 40 unique physical identities")
     output_dir.mkdir(parents=True, exist_ok=True)
     case_rows = build_case_rows(physical_results)
     if len(case_rows) != 48:
@@ -109,12 +126,14 @@ def write_reports(physical_results: list[dict], baseline_audit: list[dict], outp
     phi_rows = _summary_rows(case_rows, "phi_sensitivity", "phi_multiplier")
     _write_csv(output_dir / "service_calibration_sl_summary.csv", sl_rows, list(sl_rows[0]))
     _write_csv(output_dir / "service_calibration_phi_summary.csv", phi_rows, list(phi_rows[0]))
-    _write_csv(output_dir / "service_calibration_baseline_reuse_audit.csv", baseline_audit, list(baseline_audit[0]))
+    _write_csv(output_dir / "service_calibration_execution_manifest.csv", execution_manifest, list(execution_manifest[0]))
+    historical = historical_diagnostic or {"status": "UNAVAILABLE", "blocking": False}
     lines = [
         "# Service calibration robustness summary", "",
         "- Design: OFAT; full SL x phi interaction was not run.",
-        "- Physical results: 40 (8 reused baselines and 32 new solves).",
+        "- Physical results: 40 new solves (8 current-version baselines, 16 SL, 16 phi).",
         "- Analysis rows: 48 (24 SL and 24 phi conditions).", "",
+        f"- Legacy E4 sanity comparison: {historical['status']} (non-blocking; not used for formal identity).", "",
         "## SL sensitivity", "",
     ]
     lines.extend(f"- SL={row['SL']:.2f}: mean normalized objective={row['mean_normalized_objective']:.6f}, material cases={row['material_cases']}/8" for row in sl_rows)

@@ -8,13 +8,14 @@ Renault design. It does not authorize a full `SL x phi_multiplier` interaction.
 `experiments/configs/formal/service_calibration_robustness_formal.yaml` is the
 single formal configuration. Its `formal_run_authorized` value is `false` and
 its authorization history is `[false]`. The runner refuses every optimization
-request in that state. It also refuses execution unless all eight reused
-baseline results pass the complete identity audit and the worktree is clean.
+request in that state. It also requires the frozen current model identity and a
+clean committed worktree.
 
-The current checkout does not contain the per-run E4 Gamma=2 baseline result,
-solution, and provenance files. In addition, the current aggregate model-source
-identity differs from the one frozen by the E4 manifest. Baseline reuse is
-therefore not authorized in this checkout.
+Legacy E4 baseline reuse is disabled. The experiment regenerates one baseline
+for each of the eight cases with the same current code, runner, solver profile,
+evaluation, result schema, and provenance schema as the 32 sensitivity solves.
+Any comparison with old E4 results is non-blocking and is never a formal result
+source.
 
 ## Non-optimizing checks
 
@@ -27,21 +28,22 @@ python scripts/report_service_calibration_robustness.py --validate-only
 python -m pytest tests/test_service_calibration_robustness.py -q --basetemp .pytest_service_calibration
 ```
 
-The dry run must report 24 SL analysis rows, 24 phi analysis rows, eight shared
-physical baselines, and 32 prospective new optimization solves.
+The dry run must report eight baseline solves, 16 SL solves, 16 phi solves, 40
+unique physical solves, and 48 logical analysis rows.
 
 ## Formal commands after separate authorization
 
 Formal execution requires a reviewed configuration change that appends `true`
-to `authorization_transition`, sets `formal_run_authorized` to `true`, and
-resolves the eight baseline identity failures. After that separate change:
+to `authorization_transition` and sets `formal_run_authorized` to `true`. After
+that separate change:
 
 ```powershell
 python experiments/run_service_calibration_robustness.py --execute-all
 python scripts/report_service_calibration_robustness.py
 ```
 
-The runner writes one immutable directory per non-baseline condition and refuses
-to overwrite it. Reporting reads the eight identity-safe E4 baselines, emits 40
-unique physical rows, and expands those to 48 labeled OFAT analysis rows so the
-shared baseline is not ambiguously double-counted.
+The runner writes one immutable directory for each of the 40 current-version
+physical conditions and refuses to overwrite it. Reporting uses only the eight
+new `baseline` results, emits a 40-row execution manifest, and expands the
+physical results to 48 labeled OFAT analysis rows so the common baseline is not
+ambiguously double-counted.
