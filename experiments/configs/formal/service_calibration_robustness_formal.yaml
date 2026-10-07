@@ -27,12 +27,12 @@
   "identity_table_sha256": "f3a24b3dba51abde335fd0f2be5efdd1b76384cb9595101f599adbbb4fc27170",
   "baseline_policy": {"legacy_E4_reuse": false, "current_version_regeneration_required": true},
   "historical_baseline_diagnostic": {"blocking": false, "used_for_formal_identity": false, "used_as_result_source": false, "experiment": "E4_GAMMA_SENSITIVITY_V1", "run_pattern": "E4-<case>-G2", "result_root": "experiments/results/e4_gamma_sensitivity_v1", "manifest": "experiments/configs/formal/e4_gamma_sensitivity_authorization.json"},
-  "code_identity": {"base_commit": "cf8d3e480e46bfc1c2860e974ff4f59807d15a46", "git_commit_at_execution": "CAPTURE_AT_EXECUTION", "model_files": ["src/robust_inventory_reconfiguration/instance.py", "src/robust_inventory_reconfiguration/reconfiguration_model.py", "src/robust_inventory_reconfiguration/recourse.py", "src/robust_inventory_reconfiguration/scenarios.py", "src/robust_inventory_reconfiguration/product_risk_subproblem.py", "src/robust_inventory_reconfiguration/risk_budget_composition.py", "src/robust_inventory_reconfiguration/product_risk_budget_benders.py", "src/robust_inventory_reconfiguration/robust_service.py", "src/robust_inventory_reconfiguration/solver_profile.py"], "current_model_identity_sha256": "39be3398f88ce7fcf941b1b9eab8b18a7c538fb49674ffbadd649c72827d521a", "prb_identity_sha256": "eab5ea31c6dbbc6446799f28bb6b54673eb7b57690cd4540f8a49b4a53757b6f"},
+  "code_identity": {"base_commit": "cf8d3e480e46bfc1c2860e974ff4f59807d15a46", "git_commit_at_execution": "CAPTURE_AT_EXECUTION", "model_files": ["src/robust_inventory_reconfiguration/instance.py", "src/robust_inventory_reconfiguration/reconfiguration_model.py", "src/robust_inventory_reconfiguration/recourse.py", "src/robust_inventory_reconfiguration/scenarios.py", "src/robust_inventory_reconfiguration/product_risk_subproblem.py", "src/robust_inventory_reconfiguration/risk_budget_composition.py", "src/robust_inventory_reconfiguration/product_risk_budget_benders.py", "src/robust_inventory_reconfiguration/robust_service.py", "src/robust_inventory_reconfiguration/solver_profile.py"], "current_model_identity_sha256": "c644c44f44a6017ef5230ad3b7dbb9ece832d4587fc2c0ae565eda96bf40c1dc", "prb_identity_sha256": "eab5ea31c6dbbc6446799f28bb6b54673eb7b57690cd4540f8a49b4a53757b6f"},
   "expected_reported_OFAT_conditions": 48,
   "expected_physical_solves": 40,
   "expected_baseline_solves": 8,
   "expected_sl_sensitivity_solves": 16,
   "expected_phi_sensitivity_solves": 16,
-  "output_directory": "experiments/results/service_calibration_robustness_v2",
+  "output_directory": "experiments/results/service_calibration_robustness_v2_fixed_recourse",
   "required_outputs": ["service_calibration_all_results.csv", "service_calibration_sl_summary.csv", "service_calibration_phi_summary.csv", "service_calibration_case_level.csv", "service_calibration_execution_manifest.csv", "service_calibration_robustness_summary.md"]
 }

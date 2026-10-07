@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from itertools import combinations
+import json
+from pathlib import Path
 
 from .instance import InventoryInstance
 from .scenarios import enumerate_scenario_components
@@ -59,6 +61,19 @@ def select_worst_reporting_identity(
     return best_scenario, best_region, best_fill_rate
 
 
+def canonical_fixed_inventory(
+    instance: InventoryInstance,
+    x: list[list[float]],
+) -> list[list[float]]:
+    if len(x) != instance.num_depots or any(
+        len(row) != instance.num_products for row in x
+    ):
+        raise ValueError("fixed inventory matrix has incompatible dimensions")
+    if min(map(min, x)) < -1e-7:
+        raise ValueError("fixed inventory contains a materially negative value")
+    return [[max(value, 0.0) for value in row] for row in x]
+
+
 def evaluate_robust_service(
     instance: InventoryInstance,
     x: list[list[float]],
@@ -88,6 +103,8 @@ def evaluate_robust_service_detailed(
     gamma: int,
     *,
     optimality_tolerance: float = 1e-7,
+    infeasibility_iis_path: str | Path | None = None,
+    preserve_solver_noise_for_diagnostic: bool = False,
 ) -> UnifiedServiceResult:
     """Evaluate every scenario with the frozen exact recourse and service tie-break."""
     import gurobipy as gp
@@ -95,6 +112,8 @@ def evaluate_robust_service_detailed(
 
     depots = range(instance.num_depots)
     regions = range(instance.num_regions)
+    canonical_x = canonical_fixed_inventory(instance, x)
+    fixed_x = x if preserve_solver_noise_for_diagnostic else canonical_x
     model = gp.Model(f"service_evaluation_{instance.name}_g{gamma}")
     model.Params.OutputFlag = 0
     apply_formal_solver_profile(model, mixed_integer=False)
@@ -103,14 +122,16 @@ def evaluate_robust_service_detailed(
     shortage_costs = {}
     service_penalty_costs = {}
     shortages = {}
+    constraint_context = {}
 
     for j in range(instance.num_products):
         for product_gamma in range(gamma + 1):
             for shocked_regions in combinations(regions, product_gamma):
                 key = (j, shocked_regions)
-                q = model.addVars(depots, regions, lb=0, name=f"q_{j}_{'_'.join(map(str, shocked_regions))}")
-                u = model.addVars(regions, lb=0, name=f"u_{j}_{'_'.join(map(str, shocked_regions))}")
-                e = model.addVar(lb=0, name=f"e_{j}_{'_'.join(map(str, shocked_regions))}")
+                scenario_id = "none" if not shocked_regions else "-".join(map(str, shocked_regions))
+                q = model.addVars(depots, regions, lb=0, name=f"q_p{j}_s{scenario_id}")
+                u = model.addVars(regions, lb=0, name=f"u_p{j}_s{scenario_id}")
+                e = model.addVar(lb=0, name=f"e_p{j}_s{scenario_id}")
                 shocked = set(shocked_regions)
                 scenario_demand = []
                 for r in regions:
@@ -118,13 +139,49 @@ def evaluate_robust_service_detailed(
                     if r in shocked:
                         demand += instance.demand_deviation[r][j]
                     scenario_demand.append(demand)
-                    model.addConstr(gp.quicksum(q[i, r] for i in depots) + u[r] >= demand)
+                    constraint_name = f"demand_p{j}_s{scenario_id}_r{r}"
+                    model.addConstr(
+                        gp.quicksum(q[i, r] for i in depots) + u[r] >= demand,
+                        name=constraint_name,
+                    )
+                    constraint_context[constraint_name] = {
+                        "kind": "demand",
+                        "product_index": j,
+                        "product_id": instance.product_ids[j],
+                        "scenario_regions": list(shocked_regions),
+                        "region_index": r,
+                        "region_id": instance.region_ids[r],
+                        "demand": demand,
+                    }
                 for i in depots:
-                    model.addConstr(gp.quicksum(q[i, r] for r in regions) <= x[i][j])
+                    constraint_name = f"supply_p{j}_s{scenario_id}_d{i}"
+                    model.addConstr(
+                        gp.quicksum(q[i, r] for r in regions) <= fixed_x[i][j],
+                        name=constraint_name,
+                    )
+                    constraint_context[constraint_name] = {
+                        "kind": "supply",
+                        "product_index": j,
+                        "product_id": instance.product_ids[j],
+                        "scenario_regions": list(shocked_regions),
+                        "depot_index": i,
+                        "depot_id": instance.depot_ids[i],
+                        "fixed_inventory": fixed_x[i][j],
+                    }
+                constraint_name = f"soft_service_p{j}_s{scenario_id}"
                 model.addConstr(
                     gp.quicksum(u[r] for r in regions) - e
-                    <= (1.0 - instance.service_level[j]) * sum(scenario_demand)
+                    <= (1.0 - instance.service_level[j]) * sum(scenario_demand),
+                    name=constraint_name,
                 )
+                constraint_context[constraint_name] = {
+                    "kind": "soft_service",
+                    "product_index": j,
+                    "product_id": instance.product_ids[j],
+                    "scenario_regions": list(shocked_regions),
+                    "SL": instance.service_level[j],
+                    "phi": instance.service_penalty[j],
+                }
                 transportation_cost = gp.quicksum(
                     instance.transport_cost[i][r][j] * q[i, r]
                     for i in depots
@@ -144,6 +201,58 @@ def evaluate_robust_service_detailed(
     model.setObjective(gp.quicksum(costs.values()), GRB.MINIMIZE)
     model.optimize()
     if model.Status != GRB.OPTIMAL:
+        if model.Status == GRB.INFEASIBLE and infeasibility_iis_path is not None:
+            iis_path = Path(infeasibility_iis_path)
+            iis_path.parent.mkdir(parents=True, exist_ok=True)
+            model.computeIIS()
+            model.write(str(iis_path))
+            iis_constraints = []
+            involved_names = set()
+            for constraint in model.getConstrs():
+                if not constraint.IISConstr:
+                    continue
+                row = model.getRow(constraint)
+                variable_names = [row.getVar(k).VarName for k in range(row.size())]
+                involved_names.update(variable_names)
+                iis_constraints.append({
+                    "name": constraint.ConstrName,
+                    "sense": constraint.Sense,
+                    "rhs": constraint.RHS,
+                    "context": constraint_context.get(constraint.ConstrName),
+                    "involved_variables": variable_names,
+                })
+            iis_bounds = []
+            for variable in model.getVars():
+                if variable.IISLB or variable.IISUB:
+                    involved_names.add(variable.VarName)
+                    iis_bounds.append({
+                        "variable": variable.VarName,
+                        "lower_bound": variable.LB,
+                        "upper_bound": variable.UB,
+                        "lower_bound_in_iis": bool(variable.IISLB),
+                        "upper_bound_in_iis": bool(variable.IISUB),
+                    })
+            iis_variables = [
+                {
+                    "name": variable.VarName,
+                    "lower_bound": variable.LB,
+                    "upper_bound": variable.UB,
+                }
+                for variable in model.getVars()
+                if variable.VarName in involved_names
+            ]
+            iis_path.with_suffix(".json").write_text(
+                json.dumps(
+                    {
+                        "model_status": model.Status,
+                        "constraints": iis_constraints,
+                        "bounds": iis_bounds,
+                        "involved_variables": iis_variables,
+                    },
+                    indent=2,
+                ) + "\n",
+                encoding="utf-8",
+            )
         raise RuntimeError(f"Fixed-inventory recourse evaluation failed: {model.Status}")
     optimum_by_block = {key: cost.getValue() for key, cost in costs.items()}
     for key, cost in costs.items():
