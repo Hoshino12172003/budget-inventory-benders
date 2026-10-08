@@ -80,6 +80,13 @@ def test_formal_execution_is_closed_and_future_transition_is_valid() -> None:
     require_formal_authorization(authorized)
 
 
+def test_post_run_audit_entrypoint_is_present_without_running_results() -> None:
+    source = (ROOT / "scripts/audit_algorithm_scaling_convergence_cost.py").read_text(encoding="utf-8")
+    assert 'parser.add_argument("--post-run"' in source
+    assert "validate_pairwise_fairness" in source
+    assert "POST_RUN_AUDIT_PASS" in source
+
+
 def test_generated_instance_propagates_frozen_service_parameters_without_solving() -> None:
     sources = [load_instance(ROOT / f"data/formal_instances_v2/{case}.json") for case in config()["instance_family"]["source_case_ids"]]
     instance = build_renault_calibrated_instance(sources, SIZES[0], SEEDS[0])

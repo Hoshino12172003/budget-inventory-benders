@@ -57,6 +57,9 @@ The only permitted final classifications are:
 - `SIZE_DEPENDENT_TRADEOFF`
 
 Reporting never writes a universal “PRB is faster” conclusion without supporting paired data.
+After reporting, `audit_algorithm_scaling_convergence_cost.py --post-run` independently requires
+all 90 exactly certified conditions, all 30 instance records, complete trajectories/timings,
+pairwise objective equivalence, no reused results, and all six required tables.
 
 ## Resource and authorization gates
 

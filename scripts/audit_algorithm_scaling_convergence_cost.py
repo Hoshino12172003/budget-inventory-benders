@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 from pathlib import Path
@@ -24,6 +25,7 @@ from robust_inventory_reconfiguration.algorithm_scaling import (
 from robust_inventory_reconfiguration.algorithm_scaling_reporting import (
     RESULT_FIELDS,
     TRAJECTORY_FIELDS,
+    validate_pairwise_fairness,
 )
 from robust_inventory_reconfiguration.e1c_scaling import build_renault_calibrated_instance
 from robust_inventory_reconfiguration.instance import load_instance
@@ -53,7 +55,58 @@ def _existing_evidence_audit() -> dict:
     }
 
 
+def _post_run_audit(config: dict) -> dict:
+    from scripts.report_algorithm_scaling_convergence_cost import load_complete_results
+
+    results, trajectories, characteristics = load_complete_results(config)
+    objective_equivalent = True
+    objective_error = None
+    try:
+        validate_pairwise_fairness(
+            results, config["algorithm"]["objective_equivalence_tolerance"]
+        )
+    except ValueError as error:
+        objective_equivalent = False
+        objective_error = str(error)
+    output_root = ROOT / config["output_directory"]
+    checks = {
+        "exact_90_results": len(results) == 90,
+        "exact_30_instances": len(characteristics) == 30,
+        "all_exactly_certified": all(
+            row["solver_status"] == "OPTIMAL" and row["exact_certification"] is True
+            for row in results
+        ),
+        "all_trajectories_present": len({row["condition_id"] for row in trajectories}) == 90,
+        "trajectory_timing_complete": all(
+            row[field] is not None
+            for row in trajectories
+            for field in (
+                "LB", "UB", "gap", "normalized_LB", "master_time_seconds",
+                "oracle_time_seconds", "cumulative_time_seconds", "cuts_added",
+            )
+        ),
+        "aggregate_timing_complete": all(
+            row[field] is not None
+            for row in results
+            for field in ("total_core_solve_time", "master_time", "oracle_time", "certification_time")
+        ),
+        "pairwise_objectives_equivalent": objective_equivalent,
+        "no_result_reuse": all(row["result_reused"] is False for row in results),
+        "required_tables_present": all(
+            (output_root / name).is_file() for name in config["required_outputs"]
+        ),
+    }
+    return {
+        "status": "POST_RUN_AUDIT_PASS" if all(checks.values()) else "POST_RUN_AUDIT_FAIL",
+        "checks": checks,
+        "objective_equivalence_error": objective_error,
+    }
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Algorithm scaling static/post-run audit")
+    parser.add_argument("--post-run", action="store_true")
+    args = parser.parse_args()
     config = load_config(CONFIG)
     validate_config(config)
     plan = dry_run_plan(config)
@@ -105,7 +158,8 @@ def main() -> None:
         "22_reporting_schema_complete": all(field in RESULT_FIELDS for field in ("iterations", "cuts", "master_time", "oracle_time", "certification_time", "master_share", "oracle_share")),
         "23_no_formal_optimization_in_audit": True,
     }
-    passed = all(checks.values())
+    post_run = _post_run_audit(config) if args.post_run else {"status": "NOT_REQUESTED"}
+    passed = all(checks.values()) and post_run["status"] in {"NOT_REQUESTED", "POST_RUN_AUDIT_PASS"}
     payload = {
         "schema": "algorithm_scaling_static_audit_v1",
         "status": "STATIC_AUDIT_PASS" if passed else "STATIC_AUDIT_FAIL",
@@ -115,6 +169,7 @@ def main() -> None:
         "dry_run": {key: value for key, value in plan.items() if key != "conditions"},
         "controlled_instance_family": generated,
         "existing_evidence": _existing_evidence_audit(),
+        "post_run_audit": post_run,
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")

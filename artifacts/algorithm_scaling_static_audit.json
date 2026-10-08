@@ -533,6 +533,9 @@
   },
   "formal_optimization_runs_executed_by_audit": 0,
   "formal_run_authorized": false,
+  "post_run_audit": {
+    "status": "NOT_REQUESTED"
+  },
   "schema": "algorithm_scaling_static_audit_v1",
   "status": "STATIC_AUDIT_PASS"
 }
