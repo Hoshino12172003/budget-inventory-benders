@@ -1,0 +1,141 @@
+{
+  "schema": "service_metric_semantics_audit_v1",
+  "status": "PASS_WITH_SEMANTIC_QUALIFICATIONS",
+  "source": {
+    "experiment_id": "SERVICE_CALIBRATION_ROBUSTNESS_V2",
+    "result_directory": "experiments/results/service_calibration_robustness_v2_fixed_recourse",
+    "code_commit": "a42093a16a82283ce15d3e9984a15418db04b066",
+    "post_run_audit_status": "POST_RUN_AUDIT_PASS",
+    "physical_results": 40,
+    "scenarios_per_condition": 4657,
+    "scenario_rows_checked": 186280,
+    "new_optimization_runs": 0,
+    "new_recourse_evaluations": 0
+  },
+  "definitions": {
+    "region_fill_rate": "FR_r(omega) = 1 if D_r(omega)=0, otherwise 1-U_r(omega)/D_r(omega), where D_r=sum_j d_rj and U_r=sum_j u_rj",
+    "aggregate_fill_rate": "equal-region mean (1/|R|) sum_r FR_r inside omega_service",
+    "minimum_fill_rate": "min over full scenarios and regions of FR_r(omega)",
+    "omega_service": "canonical first argmin over scenario-region fill rate with tolerance 1e-12",
+    "total_shortage": "sum_(r,j) u_rj evaluated at omega_recourse",
+    "service_penalty_cost": "sum_j phi_j e_j evaluated at omega_recourse",
+    "omega_recourse": "canonical first argmax over scenario recourse cost",
+    "soft_sla": "sum_r u_rj - e_j <= (1-SL_j) sum_r d_rj, with e_j >= 0"
+  },
+  "aggregation_audit": {
+    "sla_level": "product, aggregated across regions",
+    "fill_rate_level": "region, aggregated across products",
+    "same_aggregation_level": false,
+    "direct_SL_comparison_valid": false,
+    "aggregate_is_demand_weighted": false,
+    "aggregate_is_scenario_average": false
+  },
+  "scenario_selection": {
+    "worst_service_nominal_count": 40,
+    "worst_service_non_nominal_count": 0,
+    "worst_service_scenario_index": 0,
+    "worst_service_scenario_identity": [],
+    "worst_recourse_equals_worst_service_count": 0,
+    "worst_shortage_equals_worst_recourse_count": 0,
+    "worst_recourse_changes_SL090_to_SL095_cases": 1,
+    "aggregate_cross_parameter_comparability_for_this_run": true,
+    "comparability_reason": "all conditions use the same nominal scenario",
+    "general_cross_parameter_comparability_without_identity_audit": false
+  },
+  "validation": {
+    "exact_40_results": true,
+    "exact_4657_scenarios_each": true,
+    "scenario_budget_and_identities_valid": true,
+    "reported_fill_matches_worst_service_scenario": true,
+    "reported_shortage_and_penalty_match_worst_recourse_scenario": true,
+    "all_fill_rates_finite_and_in_unit_interval_with_tolerance": true,
+    "maximum_nominal_served_minus_inventory_absolute_residual": 3.5929247133026365e-08,
+    "nominal_shortage_ratio_range": [0.8381153940987918, 0.8864488668516247],
+    "macro_vs_network_fill_absolute_difference_mean": 0.010086257450195793,
+    "macro_vs_network_fill_absolute_difference_max": 0.024507492083194388,
+    "excluded_failures": [
+      "reversed numerator or denominator",
+      "shipment-shortage definition error",
+      "demand aggregation axis mismatch",
+      "scenario indexing error",
+      "invalid product or region identity",
+      "reporting bug"
+    ]
+  },
+  "sl_summary": {
+    "0.85": {
+      "mean_reported_aggregate_fill_rate": 0.13651258157133223,
+      "mean_reported_minimum_fill_rate": 2.6229018956769323e-15,
+      "mean_worst_recourse_total_shortage": 3585.831824661229,
+      "mean_service_penalty_cost": 391120.7427918307,
+      "mean_derived_nominal_network_fill_rate": 0.14177210539902418,
+      "mean_derived_minimum_scenario_average_fill_rate": 0.11967234915662055
+    },
+    "0.90": {
+      "mean_reported_aggregate_fill_rate": 0.13568251076015536,
+      "mean_reported_minimum_fill_rate": 2.2315482794965646e-14,
+      "mean_worst_recourse_total_shortage": 3565.939574511979,
+      "mean_service_penalty_cost": 415638.8152516632,
+      "mean_derived_nominal_network_fill_rate": 0.14530855574202467,
+      "mean_derived_minimum_scenario_average_fill_rate": 0.12237144409604955
+    },
+    "0.95": {
+      "mean_reported_aggregate_fill_rate": 0.11970577858049194,
+      "mean_reported_minimum_fill_rate": 2.275957200481571e-15,
+      "mean_worst_recourse_total_shortage": 3614.846025429854,
+      "mean_service_penalty_cost": 442618.2395093516,
+      "mean_derived_nominal_network_fill_rate": 0.13420903901361175,
+      "mean_derived_minimum_scenario_average_fill_rate": 0.11012521874773795
+    }
+  },
+  "SL095_decline": {
+    "classification": "C_TRUE_SERVICE_DETERIORATION_UNDER_MULTIPLE_SAVED_DATA_METRICS",
+    "scenario_selection_effect_A": false,
+    "aggregation_definition_effect_B": "changes magnitude but not direction",
+    "true_service_deterioration_C": true,
+    "reporting_bug_D": false,
+    "cases_with_lower_reported_aggregate_vs_SL090": 8,
+    "cases_with_lower_nominal_network_fill_vs_SL090": 8,
+    "cases_with_lower_minimum_scenario_average_fill_vs_SL090": 8,
+    "cases_with_higher_worst_recourse_shortage_vs_SL090": 8,
+    "mean_reconfiguration_spending_SL090": 119.41220463189723,
+    "mean_reconfiguration_spending_SL095": 507.49231144844106,
+    "mean_total_inventory_units_SL090": 583.1039637112949,
+    "mean_total_inventory_units_SL095": 538.2522003035292,
+    "monotonicity_required_by_soft_SLA": false
+  },
+  "service_violation_amount": {
+    "status": "UNAVAILABLE_IN_FROZEN_EVALUATION_CONTRACT",
+    "reason": "product-level e_j is not serialized; aggregate sum_j phi_j e_j cannot identify sum_j e_j when phi_j differs",
+    "hard_SLA_inference": false,
+    "reporting_bug": false,
+    "recoverable_from_saved_scenario_rows": false
+  },
+  "metric_classification": {
+    "derived_nominal_demand_weighted_network_fill_rate": "PRIMARY_INTERPRETATION_METRIC",
+    "total_shortage": "PRIMARY_INTERPRETATION_METRIC_WITH_WORST_RECOURSE_SCENARIO_DISCLOSURE",
+    "service_penalty_cost": "PRIMARY_INTERPRETATION_METRIC_FOR_OBJECTIVE_DECOMPOSITION; SECONDARY_DIAGNOSTIC_ONLY_AS_PHYSICAL_SERVICE",
+    "aggregate_fill_rate": "SECONDARY_DIAGNOSTIC_ONLY",
+    "minimum_fill_rate": "SECONDARY_DIAGNOSTIC_ONLY",
+    "service_violation_amount": "SECONDARY_DIAGNOSTIC_ONLY_UNAVAILABLE",
+    "reporting_bug_metrics": []
+  },
+  "direct_answers": {
+    "A_aggregate_fill_rate_cross_SL": "YES for these audited results because all SL conditions select the nominal scenario; secondary only and not an SLA-attainment measure",
+    "B_minimum_fill_rate_cross_SL": "TECHNICALLY YES as the same worst-case functional, but numerically zero and not useful for discrimination",
+    "C_main_text_metrics": [
+      "objective",
+      "worst-recourse total_shortage with scenario identity",
+      "service_penalty_cost labelled as an objective component",
+      "derived fixed-nominal demand-weighted network fill rate"
+    ],
+    "D_appendix_diagnostic_metrics": [
+      "existing aggregate_fill_rate",
+      "minimum_fill_rate",
+      "uniform-scenario average fill",
+      "minimum scenario-average fill",
+      "service_violation_amount unavailable status"
+    ],
+    "E_formal_optimization_rerun_required": false
+  }
+}
