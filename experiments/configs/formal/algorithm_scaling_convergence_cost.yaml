@@ -96,13 +96,27 @@
                             "execution":  "sequential",
                             "parallel_workers":  1,
                             "machine_ram_gib":  32,
-                            "minimum_available_memory_gib":  18,
-                            "maximum_process_tree_memory_gib":  14,
+                            "minimum_available_memory_gib_by_size":  {
+                                                                          "L10":  7,
+                                                                          "XL10":  10,
+                                                                          "XXL10":  16
+                                                                      },
+                            "maximum_process_tree_memory_gib_by_size":  {
+                                                                           "L10":  4,
+                                                                           "XL10":  7,
+                                                                           "XXL10":  13
+                                                                       },
                             "minimum_system_available_memory_gib":  3,
                             "condition_time_limit_seconds":  900,
                             "poll_seconds":  0.25,
                             "fail_closed":  true,
-                            "resume_policy":  "skip only identity-verified complete conditions; never overwrite"
+                            "resume_policy":  "skip only identity-verified complete conditions; never overwrite",
+                            "threshold_basis":  "size-specific development peak plus approximately 2 GiB process margin and 3 GiB system reserve",
+                            "staged_execution_order":  [
+                                                           "L10",
+                                                           "XL10",
+                                                           "XXL10"
+                                                       ]
                         },
     "dimension_caps":  {
                            "max_I":  36,

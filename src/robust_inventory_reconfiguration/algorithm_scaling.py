@@ -91,7 +91,14 @@ def validate_config(config: dict) -> None:
         "sequential": resource["execution"] == "sequential"
         and resource["parallel_workers"] == 1,
         "memory": resource["machine_ram_gib"] == 32
-        and resource["fail_closed"] is True,
+        and resource["fail_closed"] is True
+        and resource["minimum_available_memory_gib_by_size"] == {
+            "L10": 7, "XL10": 10, "XXL10": 16,
+        }
+        and resource["maximum_process_tree_memory_gib_by_size"] == {
+            "L10": 4, "XL10": 7, "XXL10": 13,
+        }
+        and resource["minimum_system_available_memory_gib"] == 3,
     }
     failed = [name for name, passed in checks.items() if not passed]
     if failed:
@@ -179,6 +186,29 @@ def resource_dimension_check(config: dict, dimensions: ScalingDimensions) -> dic
     return {**checks, "pass": all(checks.values())}
 
 
+def resource_thresholds(config: dict, size: str) -> dict[str, float]:
+    size_by_label(size)
+    policy = config["resource_policy"]
+    return {
+        "minimum_available_memory_gib": float(
+            policy["minimum_available_memory_gib_by_size"][size]
+        ),
+        "maximum_process_tree_memory_gib": float(
+            policy["maximum_process_tree_memory_gib_by_size"][size]
+        ),
+        "minimum_system_available_memory_gib": float(
+            policy["minimum_system_available_memory_gib"]
+        ),
+    }
+
+
+def resource_preflight_passes(config: dict, size: str, samples_gib: Iterable[float]) -> bool:
+    samples = tuple(float(value) for value in samples_gib)
+    if not samples:
+        raise ValueError("resource preflight requires at least one memory sample")
+    return min(samples) >= resource_thresholds(config, size)["minimum_available_memory_gib"]
+
+
 def normalized_trajectory(rows: list[dict], final_lower_bound: float) -> list[dict]:
     if final_lower_bound == 0:
         raise ValueError("cannot normalize a zero final lower bound")
@@ -221,6 +251,9 @@ def dry_run_plan(config: dict) -> dict:
         "management_sensitivity_dimensions": [],
         "scientific_parameters": config["fixed_scientific_parameters"],
         "sequential_execution": True,
+        "resource_thresholds_by_size": {
+            size.scale: resource_thresholds(config, size.scale) for size in SIZES
+        },
         "conditions": [condition.__dict__ for condition in conditions],
     }
 

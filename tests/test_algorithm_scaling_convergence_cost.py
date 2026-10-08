@@ -16,6 +16,8 @@ from robust_inventory_reconfiguration.algorithm_scaling import (
     normalized_trajectory,
     require_formal_authorization,
     resource_dimension_check,
+    resource_preflight_passes,
+    resource_thresholds,
     validate_config,
     validate_scientific_parameters,
 )
@@ -70,14 +72,32 @@ def test_dry_run_has_no_management_dimensions_or_direct_runs() -> None:
     assert plan["scientific_parameters"]["phi_multiplier"] == 1.85
 
 
-def test_formal_execution_is_closed_and_future_transition_is_valid() -> None:
+def test_formal_execution_authorization_is_explicit_and_revocable() -> None:
+    value = config()
+    assert value["formal_run_authorized"] is True
+    assert value["authorization_transition"] == [False, True]
+    require_formal_authorization(value)
+    unauthorized = config()
+    unauthorized["formal_run_authorized"] = False
+    unauthorized["authorization_transition"] = [False]
     with pytest.raises(PermissionError, match="ALGORITHM_SCALING_FORMAL_RUN_NOT_AUTHORIZED"):
-        require_formal_authorization(config())
-    authorized = config()
-    authorized["formal_run_authorized"] = True
-    authorized["authorization_transition"] = [False, True]
-    validate_config(authorized)
-    require_formal_authorization(authorized)
+        require_formal_authorization(unauthorized)
+
+
+def test_size_dependent_resource_thresholds_and_12_gib_decision() -> None:
+    value = config()
+    assert resource_thresholds(value, "L10") == {
+        "minimum_available_memory_gib": 7.0,
+        "maximum_process_tree_memory_gib": 4.0,
+        "minimum_system_available_memory_gib": 3.0,
+    }
+    assert resource_thresholds(value, "XL10")["minimum_available_memory_gib"] == 10.0
+    assert resource_thresholds(value, "XXL10")["minimum_available_memory_gib"] == 16.0
+    assert resource_preflight_passes(value, "L10", [12.0, 12.0, 12.0])
+    assert resource_preflight_passes(value, "XL10", [12.0, 12.0, 12.0])
+    assert not resource_preflight_passes(value, "XXL10", [12.0, 12.0, 12.0])
+    assert "minimum_available_memory_gib" not in value["resource_policy"]
+    assert "maximum_process_tree_memory_gib" not in value["resource_policy"]
 
 
 def test_post_run_audit_entrypoint_is_present_without_running_results() -> None:

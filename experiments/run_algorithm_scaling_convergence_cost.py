@@ -21,6 +21,7 @@ from robust_inventory_reconfiguration.algorithm_scaling import (
     GAMMA,
     LAMBDA_R,
     METHODS,
+    SIZES,
     SOURCE_CASES,
     canonical_hash,
     dry_run_plan,
@@ -31,6 +32,8 @@ from robust_inventory_reconfiguration.algorithm_scaling import (
     normalized_trajectory,
     require_formal_authorization,
     resource_dimension_check,
+    resource_preflight_passes,
+    resource_thresholds,
     size_by_label,
     source_identity,
     validate_config,
@@ -329,10 +332,14 @@ def _preflight(config: dict, condition) -> list[float]:
     dimension_check = resource_dimension_check(config, size_by_label(condition.size))
     if not dimension_check["pass"]:
         raise RuntimeError(f"RESOURCE_DIMENSION_GATE_BLOCKED: {dimension_check}")
-    minimum = config["resource_policy"]["minimum_available_memory_gib"]
     samples = [psutil.virtual_memory().available / 2**30 for _ in range(3)]
-    if min(samples) < minimum:
-        raise RuntimeError(f"RESOURCE_PREFLIGHT_BLOCKED: {min(samples):.3f} GiB < {minimum}")
+    thresholds = resource_thresholds(config, condition.size)
+    minimum = thresholds["minimum_available_memory_gib"]
+    if not resource_preflight_passes(config, condition.size, samples):
+        raise RuntimeError(
+            f"RESOURCE_PREFLIGHT_BLOCKED {condition.size}: "
+            f"{min(samples):.3f} GiB < {minimum:.3f} GiB"
+        )
     return samples
 
 
@@ -373,6 +380,7 @@ def _terminate_tree(pid: int) -> None:
 
 def _run_monitored(condition, config_path: Path, output_root: Path, config: dict) -> None:
     samples = _preflight(config, condition)
+    thresholds = resource_thresholds(config, condition.size)
     log_parent = output_root / "worker_logs" / condition.condition_id
     attempt = 1
     while (log_parent / f"attempt-{attempt:03d}").exists():
@@ -394,7 +402,7 @@ def _run_monitored(condition, config_path: Path, output_root: Path, config: dict
             peak = max(peak, _process_tree_memory_gib(process.pid))
             available = psutil.virtual_memory().available / 2**30
             elapsed = perf_counter() - started
-            if peak >= config["resource_policy"]["maximum_process_tree_memory_gib"]:
+            if peak >= thresholds["maximum_process_tree_memory_gib"]:
                 stop_reason = "RESOURCE_PROCESS_CAP"
             elif available <= config["resource_policy"]["minimum_system_available_memory_gib"]:
                 stop_reason = "RESOURCE_SYSTEM_CAP"
@@ -430,6 +438,7 @@ def main() -> None:
     mode.add_argument("--dry-run", action="store_true")
     mode.add_argument("--execute", metavar="CONDITION_ID")
     mode.add_argument("--execute-all", action="store_true")
+    mode.add_argument("--execute-size", choices=tuple(size.scale for size in SIZES))
     mode.add_argument("--worker-condition", metavar="CONDITION_ID")
     parser.add_argument("--config", type=Path, default=CONFIG)
     parser.add_argument("--output-root", type=Path)
@@ -448,7 +457,12 @@ def main() -> None:
     if args.worker_condition:
         _worker(conditions[args.worker_condition], output_root, config)
         return
-    selected = [conditions[args.execute]] if args.execute else list(conditions.values())
+    if args.execute:
+        selected = [conditions[args.execute]]
+    elif args.execute_size:
+        selected = [condition for condition in conditions.values() if condition.size == args.execute_size]
+    else:
+        selected = list(conditions.values())
     for condition in selected:
         if _verified_complete_result(output_root, condition, config):
             print(f"[RESUME VERIFIED] {condition.condition_id}", flush=True)

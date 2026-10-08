@@ -176,3 +176,4 @@ artifacts/*
 !artifacts/renault_empirical_8case_v1/**
 !artifacts/algorithm_scaling_static_audit.json
 !artifacts/algorithm_scaling_dry_run.json
+!artifacts/algorithm_scaling_resource_threshold_audit.json

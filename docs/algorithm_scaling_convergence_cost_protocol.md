@@ -63,8 +63,9 @@ pairwise objective equivalence, no reused results, and all six required tables.
 
 ## Resource and authorization gates
 
-The formal config remains unauthorized in this implementation phase. Before execution, the user
-must explicitly change `formal_run_authorized` to true, append true to the authorization
-transition, commit the change, and use a clean worktree. The runner checks static dimension caps,
-samples available RAM, allows only one worker, monitors process-tree memory, and terminates a
-condition at the declared memory or time cap.
+Formal authorization is explicit in the config and execution still requires a clean committed
+worktree. The runner checks static dimension caps, samples available RAM three times, allows only
+one worker, monitors process-tree memory, and terminates a condition at the declared memory or
+time cap. Resource thresholds are size-specific: L10 requires 7 GiB free with a 4-GiB process cap,
+XL10 requires 10/7 GiB, and XXL10 requires 16/13 GiB. Every cap retains the common 3-GiB system
+emergency floor. `--execute-size` supports the audited L10, XL10, XXL10 staged order.

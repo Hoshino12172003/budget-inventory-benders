@@ -633,7 +633,7 @@
   ],
   "direct_runs": 0,
   "experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V1",
-  "formal_run_authorized": false,
+  "formal_run_authorized": true,
   "instances": 30,
   "management_sensitivity_dimensions": [],
   "methods": [
@@ -643,6 +643,23 @@
   ],
   "optimization_calls": 0,
   "physical_runs": 90,
+  "resource_thresholds_by_size": {
+    "L10": {
+      "maximum_process_tree_memory_gib": 4.0,
+      "minimum_available_memory_gib": 7.0,
+      "minimum_system_available_memory_gib": 3.0
+    },
+    "XL10": {
+      "maximum_process_tree_memory_gib": 7.0,
+      "minimum_available_memory_gib": 10.0,
+      "minimum_system_available_memory_gib": 3.0
+    },
+    "XXL10": {
+      "maximum_process_tree_memory_gib": 13.0,
+      "minimum_available_memory_gib": 16.0,
+      "minimum_system_available_memory_gib": 3.0
+    }
+  },
   "runs_by_method": {
     "aggregate_benders_structured_oracle": 30,
     "prb_benders": 30,

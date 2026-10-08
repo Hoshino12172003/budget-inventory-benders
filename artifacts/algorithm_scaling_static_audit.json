@@ -14,7 +14,7 @@
     "12_total_core_time_present": true,
     "13_objective_equivalence_audited": true,
     "14_result_reuse_identity_exact": true,
-    "15_formal_execution_gate_closed": true,
+    "15_formal_execution_gate_explicit": true,
     "16_exact_30_instances": true,
     "17_exact_90_method_runs": true,
     "18_direct_safely_excluded": true,
@@ -22,7 +22,9 @@
     "20_sequential_execution": true,
     "21_resume_never_overwrites": true,
     "22_reporting_schema_complete": true,
-    "23_no_formal_optimization_in_audit": true
+    "23_no_formal_optimization_in_audit": true,
+    "24_size_dependent_resource_gate": true,
+    "25_staged_size_execution_supported": true
   },
   "controlled_instance_family": [
     {
@@ -389,7 +391,7 @@
   "dry_run": {
     "direct_runs": 0,
     "experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V1",
-    "formal_run_authorized": false,
+    "formal_run_authorized": true,
     "instances": 30,
     "management_sensitivity_dimensions": [],
     "methods": [
@@ -399,6 +401,23 @@
     ],
     "optimization_calls": 0,
     "physical_runs": 90,
+    "resource_thresholds_by_size": {
+      "L10": {
+        "maximum_process_tree_memory_gib": 4.0,
+        "minimum_available_memory_gib": 7.0,
+        "minimum_system_available_memory_gib": 3.0
+      },
+      "XL10": {
+        "maximum_process_tree_memory_gib": 7.0,
+        "minimum_available_memory_gib": 10.0,
+        "minimum_system_available_memory_gib": 3.0
+      },
+      "XXL10": {
+        "maximum_process_tree_memory_gib": 13.0,
+        "minimum_available_memory_gib": 16.0,
+        "minimum_system_available_memory_gib": 3.0
+      }
+    },
     "runs_by_method": {
       "aggregate_benders_structured_oracle": 30,
       "prb_benders": 30,
@@ -532,7 +551,7 @@
     "status": "DESIGN_EVIDENCE_ONLY"
   },
   "formal_optimization_runs_executed_by_audit": 0,
-  "formal_run_authorized": false,
+  "formal_run_authorized": true,
   "post_run_audit": {
     "status": "NOT_REQUESTED"
   },

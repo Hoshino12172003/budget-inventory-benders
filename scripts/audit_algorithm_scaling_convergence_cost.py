@@ -148,7 +148,7 @@ def main() -> None:
         "12_total_core_time_present": "total_core_solve_time" in RESULT_FIELDS,
         "13_objective_equivalence_audited": "validate_pairwise_fairness" in reporting and "objective_tolerance" in reporting,
         "14_result_reuse_identity_exact": "_verified_complete_result" in runner and "existing result identity failure" in runner,
-        "15_formal_execution_gate_closed": config["formal_run_authorized"] is False and config["authorization_transition"] == [False] and "require_formal_authorization(config)" in runner,
+        "15_formal_execution_gate_explicit": config["formal_run_authorized"] is True and config["authorization_transition"] == [False, True] and "require_formal_authorization(config)" in runner,
         "16_exact_30_instances": len(generated) == len({row["instance_id"] for row in generated}) == 30,
         "17_exact_90_method_runs": plan["physical_runs"] == 90 and plan["runs_by_method"] == {method: 30 for method in METHODS},
         "18_direct_safely_excluded": config["direct_reference"]["enabled"] is False and plan["direct_runs"] == 0,
@@ -157,6 +157,8 @@ def main() -> None:
         "21_resume_never_overwrites": "refusing to overwrite result" in runner and "[RESUME VERIFIED]" in runner,
         "22_reporting_schema_complete": all(field in RESULT_FIELDS for field in ("iterations", "cuts", "master_time", "oracle_time", "certification_time", "master_share", "oracle_share")),
         "23_no_formal_optimization_in_audit": True,
+        "24_size_dependent_resource_gate": config["resource_policy"]["minimum_available_memory_gib_by_size"] == {"L10": 7, "XL10": 10, "XXL10": 16} and "resource_thresholds(config, condition.size)" in runner,
+        "25_staged_size_execution_supported": 'mode.add_argument("--execute-size"' in runner,
     }
     post_run = _post_run_audit(config) if args.post_run else {"status": "NOT_REQUESTED"}
     passed = all(checks.values()) and post_run["status"] in {"NOT_REQUESTED", "POST_RUN_AUDIT_PASS"}
