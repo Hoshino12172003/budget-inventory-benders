@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V1",
+  "experiment_name": "algorithm scaling and convergence-cost trade-off",
+  "formal_run_authorized": false,
+  "authorization_transition": [false],
+  "design": "controlled instance scaling with paired methods",
+  "scientific_question": "Does a finer product-risk representation improve master/lower-bound convergence enough to justify the additional oracle cost?",
+  "instance_family": {
+    "dataset_id": "RENAULT_CALIBRATED_CONTROLLED_SCALING_V1",
+    "generator": "deterministic_empirical_bootstrap_v1",
+    "source_case_ids": ["210129", "210202", "210310", "210323", "210330", "210428", "210611", "210628"],
+    "sizes": [
+      {"label": "L10", "I": 25, "R": 24, "J": 12},
+      {"label": "XL10", "I": 30, "R": 30, "J": 14},
+      {"label": "XXL10", "I": 36, "R": 36, "J": 16}
+    ],
+    "seeds": [20260921, 20260922, 20260923, 20260924, 20260925, 20260926, 20260927, 20260928, 20260929, 20260930],
+    "existing_result_policy": "no reuse unless the complete config, instance, model, solver, algorithm, and evaluation identity chain matches"
+  },
+  "methods": ["pure_benders", "aggregate_benders_structured_oracle", "prb_benders"],
+  "direct_reference": {
+    "enabled": false,
+    "sizes": [],
+    "expected_runs": 0,
+    "reason": "No frozen L/XL/XXL deterministic-equivalent point is proven safe under the 32 GiB protocol cap."
+  },
+  "fixed_scientific_parameters": {
+    "Gamma": 2,
+    "beta": 1.0,
+    "lambda_R": 0.05,
+    "SL": 0.90,
+    "phi_multiplier": 1.85,
+    "phi_definition": "phi_j = phi_multiplier * max_r p_rj",
+    "service_constraint": "soft SLA"
+  },
+  "management_sensitivity_dimensions": [],
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "solver_tolerances": {
+    "relative_gap": 1e-6,
+    "cut_violation": 1e-7,
+    "objective_certification": 1e-4
+  },
+  "algorithm": {
+    "max_iterations": 500,
+    "exact_certification_required": true,
+    "objective_equivalence_tolerance": 1e-4
+  },
+  "resource_policy": {
+    "execution": "sequential",
+    "parallel_workers": 1,
+    "machine_ram_gib": 32,
+    "minimum_available_memory_gib": 18,
+    "maximum_process_tree_memory_gib": 14,
+    "minimum_system_available_memory_gib": 3,
+    "condition_time_limit_seconds": 900,
+    "poll_seconds": 0.25,
+    "fail_closed": true,
+    "resume_policy": "skip only identity-verified complete conditions; never overwrite"
+  },
+  "dimension_caps": {
+    "max_I": 36,
+    "max_R": 36,
+    "max_J": 16,
+    "max_product_risk_blocks": 10672,
+    "max_pure_total_variables": 4384,
+    "max_pure_constraints": 103681
+  },
+  "expected_instance_count": 30,
+  "expected_physical_runs": 90,
+  "expected_direct_runs": 0,
+  "code_identity": {
+    "git_commit_at_execution": "CAPTURE_AT_EXECUTION",
+    "model_files": [
+      "src/robust_inventory_reconfiguration/e1c_scaling.py",
+      "src/robust_inventory_reconfiguration/pure_benders.py",
+      "src/robust_inventory_reconfiguration/standard_benders.py",
+      "src/robust_inventory_reconfiguration/product_risk_budget_benders.py",
+      "src/robust_inventory_reconfiguration/product_risk_subproblem.py",
+      "src/robust_inventory_reconfiguration/risk_budget_composition.py",
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py",
+      "src/robust_inventory_reconfiguration/solver_profile.py"
+    ],
+    "model_identity": "CAPTURE_AND_VERIFY_AT_EXECUTION"
+  },
+  "output_directory": "experiments/results/algorithm_scaling_convergence_cost_v1",
+  "required_outputs": [
+    "algorithm_scaling_all_results.csv",
+    "algorithm_scaling_summary_by_size.csv",
+    "algorithm_scaling_summary_by_method.csv",
+    "algorithm_scaling_pairwise.csv",
+    "algorithm_scaling_iteration_trajectory.csv",
+    "algorithm_scaling_instance_characteristics.csv"
+  ],
+  "allowed_scientific_classifications": [
+    "PRB_FEWER_ITERATIONS_AND_FASTER_TOTAL_TIME",
+    "PRB_FEWER_ITERATIONS_BUT_HIGHER_ORACLE_COST",
+    "PRB_NO_CLEAR_CONVERGENCE_ADVANTAGE",
+    "SIZE_DEPENDENT_TRADEOFF"
+  ]
+}

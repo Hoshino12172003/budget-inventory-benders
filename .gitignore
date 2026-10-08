@@ -21,6 +21,7 @@ experiments/results/e1b_pure_benders_v1/
 experiments/results/e1c_development_probe_v1/
 experiments/results/e1c_gamma_sensitivity_development_v1/
 experiments/results/prb_j_scaling_development_v1/
+experiments/results/algorithm_scaling_convergence_cost_v1/
 experiments/results/prb_acceleration_*/
 /E1b_standard_vs_prb_v1.zip
 experiments/results/e2_existing_nominal_robust_v1/
@@ -173,3 +174,5 @@ artifacts/*
 !artifacts/fig_e3_recourse_vs_budget.pdf
 !artifacts/renault_empirical_8case_v1/
 !artifacts/renault_empirical_8case_v1/**
+!artifacts/algorithm_scaling_static_audit.json
+!artifacts/algorithm_scaling_dry_run.json

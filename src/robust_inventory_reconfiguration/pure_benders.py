@@ -56,6 +56,10 @@ class PureBendersIteration:
     relative_gap: float
     cut_violation: float
     cut_added: bool
+    master_time_seconds: float = 0.0
+    oracle_time_seconds: float = 0.0
+    certification_time_seconds: float = 0.0
+    cumulative_time_seconds: float = 0.0
 
 
 @dataclass(frozen=True)
@@ -325,7 +329,8 @@ def solve_pure_benders(
             master.Params.TimeLimit = current_limit
         master_started = perf_counter()
         master.optimize()
-        master_runtime += perf_counter() - master_started
+        iteration_master_runtime = perf_counter() - master_started
+        master_runtime += iteration_master_runtime
         if master.Status == GRB.TIME_LIMIT:
             raise PureBendersTimeout("Pure Benders master reached the wall-clock limit")
         if master.Status != GRB.OPTIMAL:
@@ -361,7 +366,17 @@ def solve_pure_benders(
         absolute_gap = max(0.0, upper_bound - lower_bound)
         relative_gap = absolute_gap / max(1.0, abs(upper_bound))
         iterations.append(PureBendersIteration(
-            iteration, lower_bound, upper_bound, absolute_gap, relative_gap, violation, cut_added
+            iteration=iteration,
+            lower_bound=lower_bound,
+            upper_bound=upper_bound,
+            absolute_gap=absolute_gap,
+            relative_gap=relative_gap,
+            cut_violation=violation,
+            cut_added=cut_added,
+            master_time_seconds=iteration_master_runtime,
+            oracle_time_seconds=evaluated.mip_runtime,
+            certification_time_seconds=evaluated.certification_runtime,
+            cumulative_time_seconds=perf_counter() - started,
         ))
         if relative_gap <= relative_gap_tolerance and not cut_added:
             break

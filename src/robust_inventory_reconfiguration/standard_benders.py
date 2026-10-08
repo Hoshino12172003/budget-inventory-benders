@@ -56,6 +56,10 @@ class StandardBendersIteration:
     master_gap: float
     cut_violation: float
     cut_added: bool
+    master_time_seconds: float = 0.0
+    oracle_time_seconds: float = 0.0
+    certification_time_seconds: float = 0.0
+    cumulative_time_seconds: float = 0.0
 
 
 @dataclass(frozen=True)
@@ -199,7 +203,8 @@ def solve_standard_benders(
     for iteration in range(1, max_iterations + 1):
         master_started = perf_counter()
         master.optimize()
-        master_runtime += perf_counter() - master_started
+        iteration_master_runtime = perf_counter() - master_started
+        master_runtime += iteration_master_runtime
         if master.Status == GRB.TIME_LIMIT:
             raise RuntimeError("Standard Benders reached the time limit")
         if master.Status != GRB.OPTIMAL:
@@ -267,6 +272,10 @@ def solve_standard_benders(
                 master_gap=float(master.MIPGap),
                 cut_violation=violation,
                 cut_added=cut_added,
+                master_time_seconds=iteration_master_runtime,
+                oracle_time_seconds=oracle_elapsed - oracle.cut_construction_runtime,
+                certification_time_seconds=0.0,
+                cumulative_time_seconds=perf_counter() - started,
             )
         )
         if relative_gap <= relative_gap_tolerance and not cut_added:

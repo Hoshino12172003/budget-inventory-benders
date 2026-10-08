@@ -1,0 +1,538 @@
+{
+  "checks": {
+    "01_frozen_method_set": true,
+    "02_frozen_size_set": true,
+    "03_frozen_seeds": true,
+    "04_scientific_parameters_identical": true,
+    "05_solver_tolerances_identical": true,
+    "06_exact_certification_identical": true,
+    "07_no_management_sensitivity_dimensions": true,
+    "08_deterministic_condition_ids": true,
+    "09_no_duplicate_physical_runs": true,
+    "10_per_iteration_trajectory_present": true,
+    "11_master_oracle_timing_present": true,
+    "12_total_core_time_present": true,
+    "13_objective_equivalence_audited": true,
+    "14_result_reuse_identity_exact": true,
+    "15_formal_execution_gate_closed": true,
+    "16_exact_30_instances": true,
+    "17_exact_90_method_runs": true,
+    "18_direct_safely_excluded": true,
+    "19_resource_gates_pass": true,
+    "20_sequential_execution": true,
+    "21_resume_never_overwrites": true,
+    "22_reporting_schema_complete": true,
+    "23_no_formal_optimization_in_audit": true
+  },
+  "controlled_instance_family": [
+    {
+      "instance_id": "ASC_INSTANCE_L10_S20260921",
+      "primitive_instance_hash": "7af05f07227b71c8c1c1c67824a88cffba06672e608dd765adac264832dfb8f4",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260921,
+      "size": "L10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_L10_S20260922",
+      "primitive_instance_hash": "6851318036799d63c8241239bcfa16959fd77dbb3f65a1a441b69f6ba52e3117",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260922,
+      "size": "L10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_L10_S20260923",
+      "primitive_instance_hash": "e7d771154e94d76dc48558bae29ccdc6039bde1220777dd6e9b9ab8732edfee6",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260923,
+      "size": "L10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_L10_S20260924",
+      "primitive_instance_hash": "8c4929996b34fbcf066cffc2c570f94d6fd749e2d919a9d966b7510873b583fb",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260924,
+      "size": "L10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_L10_S20260925",
+      "primitive_instance_hash": "4c902d146756a3eea519ba679b70f7eddaee3805d1cea9f49b16c2155e80131c",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260925,
+      "size": "L10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_L10_S20260926",
+      "primitive_instance_hash": "9b36132b2add13b6bfa6cad6d5fa30c9226b69ce81c47e715be856f1d795dc50",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260926,
+      "size": "L10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_L10_S20260927",
+      "primitive_instance_hash": "be50a262cbf85db0e462fd7f72cdf7efb4cbf9850acb39d6c90d462e012aadf1",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260927,
+      "size": "L10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_L10_S20260928",
+      "primitive_instance_hash": "75e37910d831edc67d715260e9ad68f082915e4bddb490fcfa80b1f6c0c1bfd0",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260928,
+      "size": "L10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_L10_S20260929",
+      "primitive_instance_hash": "fcb8039cfd02b11aeff5c68bd86d754df8a04f62768e2a1d836117166e434a07",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260929,
+      "size": "L10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_L10_S20260930",
+      "primitive_instance_hash": "a68afd45bfc147b44282210613d6ff50fb7a19a7cb57858a18107d893ce5be33",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260930,
+      "size": "L10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XL10_S20260921",
+      "primitive_instance_hash": "0f1b270d3e113adc521a9b1b3f135ad41540172771f7110a1a2ec70bb47985cb",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260921,
+      "size": "XL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XL10_S20260922",
+      "primitive_instance_hash": "0b42c55f04aeebead72e6c08dd4b661d480402586420cd7fd4079cd678e58f76",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260922,
+      "size": "XL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XL10_S20260923",
+      "primitive_instance_hash": "26fefcb4476aa25923e832010351ef13049555fb494e29f44a49162c462998fb",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260923,
+      "size": "XL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XL10_S20260924",
+      "primitive_instance_hash": "4e1cde617be8905ea0ee4299dd6b4b0af159fd9d7a727e1bd7bf0424c9021fc2",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260924,
+      "size": "XL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XL10_S20260925",
+      "primitive_instance_hash": "f9eadd462ada81950907fdd14e6471742e68fdb19620a0e98b9d9c24cfd41db4",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260925,
+      "size": "XL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XL10_S20260926",
+      "primitive_instance_hash": "a46336a69b636d40f1daa89ee140b7db17be43391649ae810a2ff52556f19705",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260926,
+      "size": "XL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XL10_S20260927",
+      "primitive_instance_hash": "618d479e16f6136bb5d62e9ef9e83bb7de8a71d41bde63d0f963f707e0543305",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260927,
+      "size": "XL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XL10_S20260928",
+      "primitive_instance_hash": "503b65db4f27f76e9567df324e37adf4932cff995e5444be3e75b563de8c2c06",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260928,
+      "size": "XL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XL10_S20260929",
+      "primitive_instance_hash": "5d0986134f90aca30e345138470468f37efff96367b25420386bfdaab283cde9",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260929,
+      "size": "XL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XL10_S20260930",
+      "primitive_instance_hash": "b2efb8e398b88be71fd37754edd4e7b525e475a89e8e336067f284da4952f055",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260930,
+      "size": "XL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XXL10_S20260921",
+      "primitive_instance_hash": "46661bc24d76b60f479adcab7c27b9af3bf3976b7417d9c35dc8f5d0d4f4f225",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260921,
+      "size": "XXL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XXL10_S20260922",
+      "primitive_instance_hash": "18d08aca85544375574b7e7915dbb43b4e0e95217e18a9fa91678f36f3da872f",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260922,
+      "size": "XXL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XXL10_S20260923",
+      "primitive_instance_hash": "189184dad7b51c17590e4f2c8fb0aed4bef1968da0e567f4d53c94ce6ec37d78",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260923,
+      "size": "XXL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XXL10_S20260924",
+      "primitive_instance_hash": "edba0450227c581b8fbaa64eff46c3e803514129c39dda58d16c5ae52ebcc1c0",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260924,
+      "size": "XXL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XXL10_S20260925",
+      "primitive_instance_hash": "6958cffe50992e04b0a288528e2a3591d7fc1c9092078a6c085a43c486c09cfa",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260925,
+      "size": "XXL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XXL10_S20260926",
+      "primitive_instance_hash": "67584fd229df8d36bbe0f17393490c2aa17562399682f9ccb27b4af18ab1beeb",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260926,
+      "size": "XXL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XXL10_S20260927",
+      "primitive_instance_hash": "5e5ec7d4c5a32ce08ad2df84c8f96af53262cfefbc1e2b5e6ca1567103a6cd23",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260927,
+      "size": "XXL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XXL10_S20260928",
+      "primitive_instance_hash": "3c6a89f9acc3847ea6e33f552bc46c5203eb4123aea6c95587131a19a99e9a13",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260928,
+      "size": "XXL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XXL10_S20260929",
+      "primitive_instance_hash": "df7c59aae7208740a624b0010d8efbf47e334c2f576ecc5286616f3ef1d3d67c",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260929,
+      "size": "XXL10"
+    },
+    {
+      "instance_id": "ASC_INSTANCE_XXL10_S20260930",
+      "primitive_instance_hash": "1e390e408fd42cdf2abac72a51a1db270bc3d4a805b335cea397497dc6ec580e",
+      "scientific_parameter_checks": {
+        "SL": true,
+        "pass": true,
+        "phi": true,
+        "soft_service_data": true
+      },
+      "seed": 20260930,
+      "size": "XXL10"
+    }
+  ],
+  "dry_run": {
+    "direct_runs": 0,
+    "experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V1",
+    "formal_run_authorized": false,
+    "instances": 30,
+    "management_sensitivity_dimensions": [],
+    "methods": [
+      "pure_benders",
+      "aggregate_benders_structured_oracle",
+      "prb_benders"
+    ],
+    "optimization_calls": 0,
+    "physical_runs": 90,
+    "runs_by_method": {
+      "aggregate_benders_structured_oracle": 30,
+      "prb_benders": 30,
+      "pure_benders": 30
+    },
+    "runs_by_size": {
+      "L10": 30,
+      "XL10": 30,
+      "XXL10": 30
+    },
+    "scientific_parameters": {
+      "Gamma": 2,
+      "SL": 0.9,
+      "beta": 1.0,
+      "lambda_R": 0.05,
+      "phi_definition": "phi_j = phi_multiplier * max_r p_rj",
+      "phi_multiplier": 1.85,
+      "service_constraint": "soft SLA"
+    },
+    "seeds": [
+      20260921,
+      20260922,
+      20260923,
+      20260924,
+      20260925,
+      20260926,
+      20260927,
+      20260928,
+      20260929,
+      20260930
+    ],
+    "sequential_execution": true,
+    "shared_instance_preparations": 30,
+    "sizes": [
+      {
+        "I": 25,
+        "J": 12,
+        "R": 24,
+        "actual_master_variables_prb_formula": 962,
+        "actual_master_variables_pure_formula": 926,
+        "actual_master_variables_structured_aggregate_formula": 926,
+        "actual_oracle_variables_pure_formula": 1464,
+        "actual_oracle_variables_structured_total_formula": 2257500,
+        "aggregate_cut_dimension": 300,
+        "direct_constraints": 184929,
+        "direct_variables": 2258462,
+        "estimated_master_variables_prb": 962,
+        "estimated_master_variables_pure": 926,
+        "estimated_master_variables_structured_aggregate": 926,
+        "estimated_oracle_product_risk_blocks": 3612,
+        "estimated_oracle_variables_pure": 1464,
+        "first_stage_variables": 925,
+        "prb_master_surrogates": 37,
+        "prb_product_cut_dimension": 25,
+        "prb_product_risk_blocks": 3612,
+        "pure_binary_variables": 288,
+        "pure_constraints": 9217,
+        "pure_continuous_variables": 1176,
+        "pure_total_variables": 1464,
+        "scenario_related_dimensions": 301,
+        "size": "L10",
+        "uncertainty_components": 288
+      },
+      {
+        "I": 30,
+        "J": 14,
+        "R": 30,
+        "actual_master_variables_prb_formula": 1333,
+        "actual_master_variables_pure_formula": 1291,
+        "actual_master_variables_structured_aggregate_formula": 1291,
+        "actual_oracle_variables_pure_formula": 2114,
+        "actual_oracle_variables_structured_total_formula": 6073844,
+        "aggregate_cut_dimension": 420,
+        "direct_constraints": 405479,
+        "direct_variables": 6075177,
+        "estimated_master_variables_prb": 1333,
+        "estimated_master_variables_pure": 1291,
+        "estimated_master_variables_structured_aggregate": 1291,
+        "estimated_oracle_product_risk_blocks": 6524,
+        "estimated_oracle_variables_pure": 2114,
+        "first_stage_variables": 1290,
+        "prb_master_surrogates": 43,
+        "prb_product_cut_dimension": 30,
+        "prb_product_risk_blocks": 6524,
+        "pure_binary_variables": 420,
+        "pure_constraints": 15541,
+        "pure_continuous_variables": 1694,
+        "pure_total_variables": 2114,
+        "scenario_related_dimensions": 466,
+        "size": "XL10",
+        "uncertainty_components": 420
+      },
+      {
+        "I": 36,
+        "J": 16,
+        "R": 36,
+        "actual_master_variables_prb_formula": 1813,
+        "actual_master_variables_pure_formula": 1765,
+        "actual_master_variables_structured_aggregate_formula": 1765,
+        "actual_oracle_variables_pure_formula": 2896,
+        "actual_oracle_variables_structured_total_formula": 14225776,
+        "aggregate_cut_dimension": 576,
+        "direct_constraints": 791070,
+        "direct_variables": 14227589,
+        "estimated_master_variables_prb": 1813,
+        "estimated_master_variables_pure": 1765,
+        "estimated_master_variables_structured_aggregate": 1765,
+        "estimated_oracle_product_risk_blocks": 10672,
+        "estimated_oracle_variables_pure": 2896,
+        "first_stage_variables": 1764,
+        "prb_master_surrogates": 49,
+        "prb_product_cut_dimension": 36,
+        "prb_product_risk_blocks": 10672,
+        "pure_binary_variables": 576,
+        "pure_constraints": 24769,
+        "pure_continuous_variables": 2320,
+        "pure_total_variables": 2896,
+        "scenario_related_dimensions": 667,
+        "size": "XXL10",
+        "uncertainty_components": 576
+      }
+    ]
+  },
+  "existing_evidence": {
+    "eligible_for_reuse": false,
+    "expected_condition_count": 90,
+    "expected_condition_identities_present": 90,
+    "reason": "Tracked summaries are marked development-only and do not carry the complete formal config/instance/model identity chain or raw prepared instances.",
+    "row_count": 90,
+    "source": "experiments/results/prb_large_scale_simulation_v1/simulation_run_table.csv",
+    "status": "DESIGN_EVIDENCE_ONLY"
+  },
+  "formal_optimization_runs_executed_by_audit": 0,
+  "formal_run_authorized": false,
+  "schema": "algorithm_scaling_static_audit_v1",
+  "status": "STATIC_AUDIT_PASS"
+}

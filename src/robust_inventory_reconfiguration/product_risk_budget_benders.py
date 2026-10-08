@@ -26,6 +26,10 @@ class PRBIteration:
     cuts_checked: int
     cuts_violated: int
     cuts_added: int
+    master_time_seconds: float = 0.0
+    oracle_time_seconds: float = 0.0
+    certification_time_seconds: float = 0.0
+    cumulative_time_seconds: float = 0.0
 
 
 @dataclass(frozen=True)
@@ -103,7 +107,8 @@ def solve_prb_benders(
     for iteration in range(1, max_iterations + 1):
         master_started = perf_counter()
         master.optimize()
-        master_runtime += perf_counter() - master_started
+        iteration_master_runtime = perf_counter() - master_started
+        master_runtime += iteration_master_runtime
         if master.Status != GRB.OPTIMAL:
             raise RuntimeError(f"Exact master failed with status {master.Status}")
         lower_bound = float(master.ObjVal)
@@ -118,7 +123,8 @@ def solve_prb_benders(
             subproblems[j].solve([xbar[i][j] for i in range(instance.num_depots)])
             for j in range(instance.num_products)
         ]
-        separation_runtime += perf_counter() - separation_started
+        iteration_separation_runtime = perf_counter() - separation_started
+        separation_runtime += iteration_separation_runtime
         subproblem_evaluations += instance.num_products * (gamma + 1)
         pattern_evaluations += sum(result.pattern_evaluations for result in product_results)
         product_values = [
@@ -171,16 +177,20 @@ def solve_prb_benders(
         gap = max(0.0, upper_bound - lower_bound) / max(1.0, abs(upper_bound))
         iterations.append(
             PRBIteration(
-                iteration,
-                lower_bound,
-                upper_bound,
-                gap,
-                float(master.ObjVal),
-                float(master.ObjBound),
-                float(master.MIPGap),
-                checked,
-                violated,
-                added,
+                iteration=iteration,
+                lower_bound=lower_bound,
+                upper_bound=upper_bound,
+                relative_gap=gap,
+                master_objective=float(master.ObjVal),
+                master_best_bound=float(master.ObjBound),
+                master_gap=float(master.MIPGap),
+                cuts_checked=checked,
+                cuts_violated=violated,
+                cuts_added=added,
+                master_time_seconds=iteration_master_runtime,
+                oracle_time_seconds=iteration_separation_runtime,
+                certification_time_seconds=0.0,
+                cumulative_time_seconds=perf_counter() - started,
             )
         )
         if gap <= relative_gap_tolerance and violated == 0:
