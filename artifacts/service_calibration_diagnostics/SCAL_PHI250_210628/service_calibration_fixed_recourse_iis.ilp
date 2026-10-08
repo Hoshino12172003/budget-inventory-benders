@@ -1,0 +1,12 @@
+\ Model service_evaluation_RENAULT_EMPIRICAL_8CASE_V1_210628_g2_copy
+\ LP format - for model browsing. Use MPS format to capture full model detail.
+\ Signature: 0x8b19bccf77f1a6de
+Minimize
+
+Subject To
+ supply_p2_snone_d2: q_p2_snone[2,0] + q_p2_snone[2,1] + q_p2_snone[2,2]
+   + q_p2_snone[2,3] + q_p2_snone[2,4] + q_p2_snone[2,5] + q_p2_snone[2,6]
+   + q_p2_snone[2,7] + q_p2_snone[2,8] + q_p2_snone[2,9] + q_p2_snone[2,10]
+   + q_p2_snone[2,11] <= -1.42795e-08
+Bounds
+End
