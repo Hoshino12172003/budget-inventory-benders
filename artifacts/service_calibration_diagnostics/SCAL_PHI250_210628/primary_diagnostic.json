@@ -1,0 +1,77 @@
+{
+  "condition_id": "SCAL_PHI250_210628",
+  "case_id": "210628",
+  "run_type": "phi_sensitivity",
+  "Gamma": 2,
+  "beta": 1.0,
+  "lambda_R": 0.05,
+  "SL_runner": 0.9,
+  "SL_optimizer": [
+    0.9,
+    0.9,
+    0.9,
+    0.9,
+    0.9,
+    0.9,
+    0.9,
+    0.9
+  ],
+  "SL_evaluator": [
+    0.9,
+    0.9,
+    0.9,
+    0.9,
+    0.9,
+    0.9,
+    0.9,
+    0.9
+  ],
+  "phi_multiplier_runner": 2.5,
+  "phi_vector_optimizer": [
+    40.0,
+    70.0,
+    87.5,
+    40.0,
+    27.5,
+    250.0,
+    502.5,
+    692.5
+  ],
+  "phi_vector_evaluator": [
+    40.0,
+    70.0,
+    87.5,
+    40.0,
+    27.5,
+    250.0,
+    502.5,
+    692.5
+  ],
+  "phi_vector_hash_optimizer": "ff0b1517dec75853349b26aaf38582c3d339ae9b446049f67e2cb7e3451b6c6c",
+  "phi_vector_hash_evaluator": "ff0b1517dec75853349b26aaf38582c3d339ae9b446049f67e2cb7e3451b6c6c",
+  "primary_status": "OPTIMAL",
+  "exact_certification_pass": true,
+  "objective": 806628.7883013386,
+  "lower_bound": 806628.7883030769,
+  "upper_bound": 806628.7883013386,
+  "relative_gap": 0.0,
+  "iterations": 5,
+  "cuts": 33,
+  "first_stage_solution_generated": true,
+  "minimum_x": -1.4279483781087839e-08,
+  "negative_inventory_entries": [
+    {
+      "depot_index": 2,
+      "depot_id": "90016100",
+      "product_index": 2,
+      "product_id": "BAC-O-4325",
+      "value": -1.4279483781087839e-08
+    }
+  ],
+  "maximum_capacity_residual": 0.0,
+  "maximum_upper_bound_residual": 0.0,
+  "budget": 77408.83107532002,
+  "budget_used": 77408.831075244,
+  "budget_residual": -7.601920515298843e-08,
+  "classification_marker": "PRIMARY_OPTIMIZATION_SUCCESS_POST_EVALUATION_FAILURE"
+}

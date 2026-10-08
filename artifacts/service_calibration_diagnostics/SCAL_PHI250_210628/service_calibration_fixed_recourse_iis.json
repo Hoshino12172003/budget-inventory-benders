@@ -1,0 +1,181 @@
+{
+  "model_status": 3,
+  "constraints": [
+    {
+      "name": "supply_p2_snone_d2",
+      "sense": "<",
+      "rhs": -1.4279483781087839e-08,
+      "context": {
+        "kind": "supply",
+        "product_index": 2,
+        "product_id": "BAC-O-4325",
+        "scenario_regions": [],
+        "depot_index": 2,
+        "depot_id": "90016100",
+        "fixed_inventory": -1.4279483781087839e-08
+      },
+      "involved_variables": [
+        "q_p2_snone[2,0]",
+        "q_p2_snone[2,1]",
+        "q_p2_snone[2,2]",
+        "q_p2_snone[2,3]",
+        "q_p2_snone[2,4]",
+        "q_p2_snone[2,5]",
+        "q_p2_snone[2,6]",
+        "q_p2_snone[2,7]",
+        "q_p2_snone[2,8]",
+        "q_p2_snone[2,9]",
+        "q_p2_snone[2,10]",
+        "q_p2_snone[2,11]"
+      ]
+    }
+  ],
+  "bounds": [
+    {
+      "variable": "q_p2_snone[2,0]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity,
+      "lower_bound_in_iis": true,
+      "upper_bound_in_iis": false
+    },
+    {
+      "variable": "q_p2_snone[2,1]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity,
+      "lower_bound_in_iis": true,
+      "upper_bound_in_iis": false
+    },
+    {
+      "variable": "q_p2_snone[2,2]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity,
+      "lower_bound_in_iis": true,
+      "upper_bound_in_iis": false
+    },
+    {
+      "variable": "q_p2_snone[2,3]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity,
+      "lower_bound_in_iis": true,
+      "upper_bound_in_iis": false
+    },
+    {
+      "variable": "q_p2_snone[2,4]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity,
+      "lower_bound_in_iis": true,
+      "upper_bound_in_iis": false
+    },
+    {
+      "variable": "q_p2_snone[2,5]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity,
+      "lower_bound_in_iis": true,
+      "upper_bound_in_iis": false
+    },
+    {
+      "variable": "q_p2_snone[2,6]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity,
+      "lower_bound_in_iis": true,
+      "upper_bound_in_iis": false
+    },
+    {
+      "variable": "q_p2_snone[2,7]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity,
+      "lower_bound_in_iis": true,
+      "upper_bound_in_iis": false
+    },
+    {
+      "variable": "q_p2_snone[2,8]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity,
+      "lower_bound_in_iis": true,
+      "upper_bound_in_iis": false
+    },
+    {
+      "variable": "q_p2_snone[2,9]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity,
+      "lower_bound_in_iis": true,
+      "upper_bound_in_iis": false
+    },
+    {
+      "variable": "q_p2_snone[2,10]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity,
+      "lower_bound_in_iis": true,
+      "upper_bound_in_iis": false
+    },
+    {
+      "variable": "q_p2_snone[2,11]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity,
+      "lower_bound_in_iis": true,
+      "upper_bound_in_iis": false
+    }
+  ],
+  "involved_variables": [
+    {
+      "name": "q_p2_snone[2,0]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity
+    },
+    {
+      "name": "q_p2_snone[2,1]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity
+    },
+    {
+      "name": "q_p2_snone[2,2]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity
+    },
+    {
+      "name": "q_p2_snone[2,3]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity
+    },
+    {
+      "name": "q_p2_snone[2,4]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity
+    },
+    {
+      "name": "q_p2_snone[2,5]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity
+    },
+    {
+      "name": "q_p2_snone[2,6]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity
+    },
+    {
+      "name": "q_p2_snone[2,7]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity
+    },
+    {
+      "name": "q_p2_snone[2,8]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity
+    },
+    {
+      "name": "q_p2_snone[2,9]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity
+    },
+    {
+      "name": "q_p2_snone[2,10]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity
+    },
+    {
+      "name": "q_p2_snone[2,11]",
+      "lower_bound": 0.0,
+      "upper_bound": Infinity
+    }
+  ]
+}

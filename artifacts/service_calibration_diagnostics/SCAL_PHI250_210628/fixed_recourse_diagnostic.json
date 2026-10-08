@@ -1,0 +1,13 @@
+{
+  "raw_fixed_inventory_status": "Fixed-inventory recourse evaluation failed: 3",
+  "iis_path": "E:\\paper-code\\paper-code2\\budget-inventory-benders-frozen-51aebd0\\artifacts\\service_calibration_diagnostics\\SCAL_PHI250_210628\\service_calibration_fixed_recourse_iis.ilp",
+  "canonicalized_fixed_inventory_status": "OPTIMAL",
+  "scenario_count": 4657,
+  "robust_recourse_cost": 729219.9572260946,
+  "worst_service_scenario": {
+    "shock_set": [],
+    "minimum_fill_rate": 0.0,
+    "average_fill_rate": 0.14358015430157173,
+    "worst_region_id": "12"
+  }
+}
