@@ -74,6 +74,20 @@ def main() -> None:
         "formal_result_written": False,
         "other_conditions_executed": 0,
     }
+    payload["diagnostic_conclusion"] = {
+        "classification": "CUT_RECONSTRUCTION_MISMATCH",
+        "root_cause": (
+            "The duplicate-cut guard validates certified fixed-scenario primal value minus theta, "
+            "not the algebraic cut RHS minus theta. The stored and candidate cuts are identical "
+            "and the master satisfies the offending cut exactly."
+        ),
+        "trigger_violation": payload["trigger"]["certified_value_minus_theta"],
+        "actual_previous_cut_violation": payload["offending_cut_signed_violation"],
+        "minimal_fix_proposed_not_applied": (
+            "At pure_benders.py line 353, compute the cut-validity residual from "
+            "evaluated.cut.value_at(xbar) - theta; retain evaluated.value for the certified upper bound."
+        ),
+    }
     OUTPUT.write_text(
         json.dumps(payload, indent=2, sort_keys=True, allow_nan=False) + "\n",
         encoding="utf-8",
