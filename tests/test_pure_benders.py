@@ -10,7 +10,9 @@ pytest.importorskip("gurobipy")
 from robust_inventory_reconfiguration.exact_benchmark import solve_exact_benchmark
 from robust_inventory_reconfiguration.pure_benders import (
     GlobalRobustAdversarialSubproblem,
+    PureAggregateCut,
     _build_pure_master,
+    _cut_validation_record,
     estimate_global_adversarial_size,
     solve_pure_benders,
 )
@@ -36,6 +38,44 @@ def test_pure_master_has_only_one_aggregate_surrogate(tiny_instance) -> None:
     assert "theta" in names
     assert not any(name.startswith("eta[") for name in names)
     assert "eta" not in variables
+
+
+def test_cut_validation_uses_exact_master_expression(tiny_instance) -> None:
+    model, variables = _build_pure_master(tiny_instance, [[2.0, 1.0]], 18.0, 0.05)
+    cut = PureAggregateCut(
+        alpha=4.0,
+        beta=((-0.5, -0.25),),
+        generation_value=2.75,
+        generation_x=((2.0, 1.0),),
+        shock_pattern=(),
+        dual_feasible=True,
+        strong_duality_error=0.0,
+    )
+    constraint = model.addConstr(
+        variables["theta"] >= cut.alpha + sum(
+            cut.beta[i][j] * variables["x"][i, j]
+            for i in range(tiny_instance.num_depots)
+            for j in range(tiny_instance.num_products)
+        ),
+        name="diagnostic_cut",
+    )
+    model.optimize()
+    record = _cut_validation_record(
+        model,
+        variables,
+        cut,
+        constraint,
+        cut_id=0,
+        iteration_added=1,
+        current_iteration=2,
+        feasibility_tolerance=model.Params.FeasibilityTol,
+    )
+    assert record["master_expression_audit"]["identical_to_stored_cut"]
+    assert record["master_expression_audit"]["maximum_coefficient_difference"] == 0.0
+    assert record["master_expression_audit"]["rhs_intercept_difference"] == 0.0
+    assert record["signed_violation"] == pytest.approx(
+        record["master_expression_audit"]["actual_solver_signed_violation"]
+    )
 
 
 @pytest.mark.parametrize("gamma", [1, 2])

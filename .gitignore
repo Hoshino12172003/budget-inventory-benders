@@ -177,3 +177,4 @@ artifacts/*
 !artifacts/algorithm_scaling_static_audit.json
 !artifacts/algorithm_scaling_dry_run.json
 !artifacts/algorithm_scaling_resource_threshold_audit.json
+!artifacts/algorithm_scaling_pure_cut_diagnostic_L10_S20260929.json

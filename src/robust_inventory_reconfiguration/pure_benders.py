@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import hashlib
+import json
 from pathlib import Path
 from time import perf_counter
 from typing import Any
@@ -295,6 +297,7 @@ def solve_pure_benders(
     max_iterations: int = 500,
     time_limit: float | None = None,
     log_file: Path | None = None,
+    cut_diagnostic_file: Path | None = None,
 ) -> PureBendersResult:
     from gurobipy import GRB
 
@@ -308,6 +311,7 @@ def solve_pure_benders(
     oracle = GlobalRobustAdversarialSubproblem(instance, gamma)
     cuts: list[PureAggregateCut] = []
     signatures: set[tuple[object, ...]] = set()
+    cut_constraints: list[tuple[Any, int]] = []
     iterations: list[PureBendersIteration] = []
     upper_bound = float("inf")
     best_solution: ReconfigurationSolution | None = None
@@ -350,10 +354,22 @@ def solve_pure_benders(
         cut_added = False
         if violation > cut_tolerance:
             cut = evaluated.cut
-            signature = (round(cut.alpha, 10), tuple(round(v, 10) for row in cut.beta for v in row))
+            signature = _cut_signature(cut)
             if signature in signatures:
+                if cut_diagnostic_file is not None:
+                    _write_duplicate_cut_diagnostic(
+                        cut_diagnostic_file,
+                        master=master,
+                        variables=variables,
+                        cuts=cuts,
+                        cut_constraints=cut_constraints,
+                        candidate=cut,
+                        certified_oracle_value=evaluated.value,
+                        current_iteration=iteration,
+                        cut_tolerance=cut_tolerance,
+                    )
                 raise RuntimeError("a previously added Pure Benders cut remains violated")
-            master.addConstr(
+            constraint = master.addConstr(
                 variables["theta"] >= cut.alpha + sum(
                     cut.beta[i][j] * variables["x"][i, j]
                     for i in range(instance.num_depots) for j in range(instance.num_products)
@@ -362,6 +378,7 @@ def solve_pure_benders(
             )
             signatures.add(signature)
             cuts.append(cut)
+            cut_constraints.append((constraint, iteration))
             cut_added = True
         absolute_gap = max(0.0, upper_bound - lower_bound)
         relative_gap = absolute_gap / max(1.0, abs(upper_bound))
@@ -420,6 +437,202 @@ def solve_pure_benders(
     )
 
 
+def _cut_signature(cut: PureAggregateCut) -> tuple[object, ...]:
+    return (
+        round(cut.alpha, 10),
+        tuple(round(value, 10) for row in cut.beta for value in row),
+    )
+
+
+def _write_duplicate_cut_diagnostic(
+    path: Path,
+    *,
+    master: Any,
+    variables: dict[str, Any],
+    cuts: list[PureAggregateCut],
+    cut_constraints: list[tuple[Any, int]],
+    candidate: PureAggregateCut,
+    certified_oracle_value: float,
+    current_iteration: int,
+    cut_tolerance: float,
+) -> None:
+    master.update()
+    theta = float(variables["theta"].X)
+    x = [
+        [float(variables["x"][i, j].X) for j in range(len(candidate.beta[i]))]
+        for i in range(len(candidate.beta))
+    ]
+    feasibility_tolerance = float(master.Params.FeasibilityTol)
+    records = [
+        _cut_validation_record(
+            master,
+            variables,
+            cut,
+            constraint,
+            cut_id=cut_id,
+            iteration_added=iteration_added,
+            current_iteration=current_iteration,
+            feasibility_tolerance=feasibility_tolerance,
+        )
+        for cut_id, (cut, (constraint, iteration_added)) in enumerate(
+            zip(cuts, cut_constraints, strict=True)
+        )
+    ]
+    matching_ids = [
+        cut_id for cut_id, cut in enumerate(cuts)
+        if _cut_signature(cut) == _cut_signature(candidate)
+    ]
+    matching_records = [record for record in records if record["cut_id"] in matching_ids]
+    offender = max(matching_records, key=lambda record: record["signed_violation"])
+    previous = cuts[offender["cut_id"]]
+    coefficient_deltas = [
+        abs(candidate.beta[i][j] - previous.beta[i][j])
+        for i in range(len(candidate.beta))
+        for j in range(len(candidate.beta[i]))
+    ]
+    candidate_rhs = candidate.value_at(x)
+    payload = {
+        "schema": "pure_benders_duplicate_cut_diagnostic_v1",
+        "current_master_iteration": current_iteration,
+        "cut_check_tolerance": cut_tolerance,
+        "solver": {
+            "master_status": int(master.Status),
+            "master_status_name": "OPTIMAL" if int(master.Status) == 2 else str(master.Status),
+            "MIPGap": float(master.MIPGap),
+            "FeasibilityTol": feasibility_tolerance,
+            "IntFeasTol": float(master.Params.IntFeasTol),
+            "OptimalityTol": float(master.Params.OptimalityTol),
+        },
+        "theta_value": theta,
+        "trigger": {
+            "certified_oracle_value": certified_oracle_value,
+            "candidate_cut_generation_value": candidate.generation_value,
+            "candidate_cut_rhs_at_current_x": candidate_rhs,
+            "certified_value_minus_theta": certified_oracle_value - theta,
+            "candidate_cut_rhs_minus_theta": candidate_rhs - theta,
+            "candidate_strong_duality_error": candidate.strong_duality_error,
+            "matching_previous_cut_ids": matching_ids,
+            "signature_round_decimal_places": 10,
+            "candidate_vs_matching_cut": {
+                "alpha_absolute_difference": abs(candidate.alpha - previous.alpha),
+                "maximum_beta_absolute_difference": max(coefficient_deltas, default=0.0),
+                "exact_alpha_equal": candidate.alpha == previous.alpha,
+                "exact_beta_equal": candidate.beta == previous.beta,
+            },
+        },
+        "max_previous_cut_violation": max(
+            record["signed_violation"] for record in records
+        ),
+        "offending_cut_id": offender["cut_id"],
+        "iteration_added": offender["iteration_added"],
+        "iteration_detected": current_iteration,
+        "offending_cut_signed_violation": offender["signed_violation"],
+        "offending_cut_absolute_violation": offender["absolute_violation"],
+        "previous_cuts": records,
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(payload, indent=2, sort_keys=True, allow_nan=False) + "\n",
+        encoding="utf-8",
+    )
+
+
+def _cut_validation_record(
+    master: Any,
+    variables: dict[str, Any],
+    cut: PureAggregateCut,
+    constraint: Any,
+    *,
+    cut_id: int,
+    iteration_added: int,
+    current_iteration: int,
+    feasibility_tolerance: float,
+) -> dict[str, Any]:
+    theta = float(variables["theta"].X)
+    x = [
+        [float(variables["x"][i, j].X) for j in range(len(cut.beta[i]))]
+        for i in range(len(cut.beta))
+    ]
+    evaluated_rhs = cut.value_at(x)
+    signed_violation = evaluated_rhs - theta
+    absolute_violation = abs(signed_violation)
+    scale = max(1.0, abs(theta), abs(evaluated_rhs))
+    row = master.getRow(constraint)
+    solver_lhs = sum(
+        float(row.getCoeff(index)) * float(row.getVar(index).X)
+        for index in range(row.size())
+    )
+    solver_rhs = float(constraint.RHS)
+    expected = {variables["theta"].VarName: 1.0}
+    relevant_x = []
+    flat_beta = []
+    for i, beta_row in enumerate(cut.beta):
+        for j, beta in enumerate(beta_row):
+            beta = float(beta)
+            flat_beta.append(beta)
+            expected[variables["x"][i, j].VarName] = -beta
+            if beta != 0.0:
+                relevant_x.append({
+                    "i": i,
+                    "j": j,
+                    "x": x[i][j],
+                    "beta": beta,
+                    "beta_times_x": beta * x[i][j],
+                })
+    actual = {
+        row.getVar(index).VarName: float(row.getCoeff(index))
+        for index in range(row.size())
+    }
+    names = set(expected) | set(actual)
+    coefficient_difference = max(
+        (abs(actual.get(name, 0.0) - expected.get(name, 0.0)) for name in names),
+        default=0.0,
+    )
+    if signed_violation > feasibility_tolerance:
+        activity = "violated"
+    elif abs(signed_violation) <= feasibility_tolerance:
+        activity = "binding"
+    else:
+        activity = "slack"
+    beta_bytes = json.dumps(flat_beta, separators=(",", ":")).encode("utf-8")
+    return {
+        "cut_id": cut_id,
+        "constraint_name": constraint.ConstrName,
+        "iteration_added": iteration_added,
+        "current_master_iteration": current_iteration,
+        "stored_rhs_intercept": cut.alpha,
+        "evaluated_lhs": theta,
+        "evaluated_rhs": evaluated_rhs,
+        "signed_violation": signed_violation,
+        "absolute_violation": absolute_violation,
+        "relative_violation": absolute_violation / scale,
+        "theta_value": theta,
+        "solver_constraint_slack": float(constraint.Slack),
+        "solver_activity": activity,
+        "cut_coefficients_summary": {
+            "count": len(flat_beta),
+            "nonzero_count": sum(value != 0.0 for value in flat_beta),
+            "minimum": min(flat_beta),
+            "maximum": max(flat_beta),
+            "l1_norm": sum(abs(value) for value in flat_beta),
+            "sha256": hashlib.sha256(beta_bytes).hexdigest(),
+        },
+        "relevant_first_stage_variable_values": relevant_x,
+        "master_expression_audit": {
+            "sense": constraint.Sense,
+            "actual_solver_lhs": solver_lhs,
+            "actual_solver_rhs": solver_rhs,
+            "actual_solver_signed_violation": solver_rhs - solver_lhs,
+            "expected_form": "theta - sum(beta[i,j] * x[i,j]) >= alpha",
+            "maximum_coefficient_difference": coefficient_difference,
+            "rhs_intercept_difference": solver_rhs - cut.alpha,
+            "identical_to_stored_cut": (
+                coefficient_difference == 0.0
+                and solver_rhs == cut.alpha
+                and constraint.Sense == ">"
+            ),
+        },
+    }
 def _build_pure_master(instance, x0, budget, lambda_r):
     import gurobipy as gp
     from gurobipy import GRB
