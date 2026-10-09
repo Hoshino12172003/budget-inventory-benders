@@ -8,11 +8,16 @@ import pytest
 pytest.importorskip("gurobipy")
 
 from robust_inventory_reconfiguration.exact_benchmark import solve_exact_benchmark
+import robust_inventory_reconfiguration.pure_benders as pure_benders_module
 from robust_inventory_reconfiguration.pure_benders import (
+    GlobalAdversarialResult,
     GlobalRobustAdversarialSubproblem,
     PureAggregateCut,
     _build_pure_master,
+    _cut_signature,
+    _cut_violation,
     _cut_validation_record,
+    _enforce_duplicate_cut_guard,
     estimate_global_adversarial_size,
     solve_pure_benders,
 )
@@ -76,6 +81,74 @@ def test_cut_validation_uses_exact_master_expression(tiny_instance) -> None:
     assert record["signed_violation"] == pytest.approx(
         record["master_expression_audit"]["actual_solver_signed_violation"]
     )
+
+
+def test_zero_cut_violation_is_not_primal_dual_certification_residual(
+    tiny_instance, monkeypatch
+) -> None:
+    certified_value = 4.0000002
+
+    class FixedResidualOracle:
+        def __init__(self, instance, gamma) -> None:
+            self.instance = instance
+
+        def solve(self, x, *, time_limit=None, certify=True) -> GlobalAdversarialResult:
+            cut = PureAggregateCut(
+                alpha=4.0,
+                beta=tuple(
+                    tuple(0.0 for _ in range(self.instance.num_products))
+                    for _ in range(self.instance.num_depots)
+                ),
+                generation_value=4.0,
+                generation_x=tuple(tuple(row) for row in x),
+                shock_pattern=(),
+                dual_feasible=True,
+                strong_duality_error=certified_value - 4.0,
+            )
+            return GlobalAdversarialResult(
+                value=certified_value,
+                cut=cut,
+                fixed_scenario_value=certified_value,
+                mip_runtime=0.0,
+                certification_runtime=0.0,
+                binary_variables=0,
+                continuous_variables=0,
+                constraints=0,
+            )
+
+    monkeypatch.setattr(
+        pure_benders_module, "GlobalRobustAdversarialSubproblem", FixedResidualOracle
+    )
+    result = solve_pure_benders(
+        tiny_instance, [[2.0, 1.0]], 18.0, 2, 0.05
+    )
+    assert result.status == "OPTIMAL"
+    assert result.aggregate_cut_count == 1
+    assert result.iterations[-1].cut_violation == 0.0
+    assert result.solution.robust_recourse_cost == pytest.approx(certified_value)
+    assert result.final_upper_bound == pytest.approx(
+        result.solution.first_stage_expenditure + certified_value
+    )
+
+
+def test_genuinely_violated_duplicate_cut_is_still_rejected() -> None:
+    cut = PureAggregateCut(
+        alpha=4.0,
+        beta=((0.0, 0.0),),
+        generation_value=4.0,
+        generation_x=((0.0, 0.0),),
+        shock_pattern=(),
+        dual_feasible=True,
+        strong_duality_error=0.0,
+    )
+    signatures = {_cut_signature(cut)}
+    violation = _cut_violation(cut, [[0.0, 0.0]], theta=3.0)
+    assert violation == 1.0
+    assert _cut_signature(cut) in signatures
+    with pytest.raises(RuntimeError, match="previously added Pure Benders cut"):
+        _enforce_duplicate_cut_guard(
+            cut, [[0.0, 0.0]], 3.0, 1e-7, signatures
+        )
 
 
 @pytest.mark.parametrize("gamma", [1, 2])

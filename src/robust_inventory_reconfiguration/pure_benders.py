@@ -350,7 +350,7 @@ def solve_pure_benders(
         if candidate_upper <= upper_bound + 1e-8:
             upper_bound = min(upper_bound, candidate_upper)
             best_solution = _solution_from_master(instance, x0, variables, evaluated.value)
-        violation = evaluated.value - float(variables["theta"].X)
+        violation = _cut_violation(evaluated.cut, xbar, float(variables["theta"].X))
         cut_added = False
         if violation > cut_tolerance:
             cut = evaluated.cut
@@ -368,7 +368,9 @@ def solve_pure_benders(
                         current_iteration=iteration,
                         cut_tolerance=cut_tolerance,
                     )
-                raise RuntimeError("a previously added Pure Benders cut remains violated")
+                _enforce_duplicate_cut_guard(
+                    cut, xbar, float(variables["theta"].X), cut_tolerance, signatures
+                )
             constraint = master.addConstr(
                 variables["theta"] >= cut.alpha + sum(
                     cut.beta[i][j] * variables["x"][i, j]
@@ -442,6 +444,28 @@ def _cut_signature(cut: PureAggregateCut) -> tuple[object, ...]:
         round(cut.alpha, 10),
         tuple(round(value, 10) for row in cut.beta for value in row),
     )
+
+
+def _cut_violation(
+    cut: PureAggregateCut,
+    x: list[list[float]],
+    theta: float,
+) -> float:
+    return cut.value_at(x) - theta
+
+
+def _enforce_duplicate_cut_guard(
+    cut: PureAggregateCut,
+    x: list[list[float]],
+    theta: float,
+    cut_tolerance: float,
+    signatures: set[tuple[object, ...]],
+) -> None:
+    if (
+        _cut_violation(cut, x, theta) > cut_tolerance
+        and _cut_signature(cut) in signatures
+    ):
+        raise RuntimeError("a previously added Pure Benders cut remains violated")
 
 
 def _write_duplicate_cut_diagnostic(
