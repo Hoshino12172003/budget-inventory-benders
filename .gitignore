@@ -179,3 +179,4 @@ artifacts/*
 !artifacts/algorithm_scaling_resource_threshold_audit.json
 !artifacts/algorithm_scaling_pure_cut_diagnostic_L10_S20260929.json
 !artifacts/algorithm_scaling_pure_cut_fix_validation_L10_S20260929.json
+experiments/results/algorithm_scaling_convergence_cost_v2_repaired_guard/
