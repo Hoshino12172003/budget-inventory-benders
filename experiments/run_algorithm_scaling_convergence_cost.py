@@ -93,6 +93,10 @@ def _run_root(output_root: Path, condition_id: str) -> Path:
     return output_root / "runs" / condition_id
 
 
+def _result_temporary_root(target: Path) -> Path:
+    return target.parent / f".tmp-{uuid4().hex}"
+
+
 def _load_verified_preparation(output_root: Path, condition, config: dict):
     target = _prepare_root(output_root, condition.size, condition.seed)
     instance_path = target / "instance.json"
@@ -280,7 +284,7 @@ def _write_result(output_root: Path, condition, result: dict, trajectory: list[d
     target = _run_root(output_root, condition.condition_id)
     if target.exists():
         raise FileExistsError(f"refusing to overwrite result: {condition.condition_id}")
-    temporary = target.parent / f".{target.name}.{uuid4().hex}.tmp"
+    temporary = _result_temporary_root(target)
     temporary.mkdir(parents=True)
     try:
         result_path = temporary / "result.json"

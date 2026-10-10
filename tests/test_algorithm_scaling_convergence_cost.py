@@ -36,6 +36,7 @@ from robust_inventory_reconfiguration.standard_benders import StandardBendersIte
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "experiments/configs/formal/algorithm_scaling_convergence_cost.yaml"
+V2_CONFIG = ROOT / "experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml"
 
 
 def config() -> dict:
@@ -105,6 +106,29 @@ def test_post_run_audit_entrypoint_is_present_without_running_results() -> None:
     assert 'parser.add_argument("--post-run"' in source
     assert "validate_pairwise_fairness" in source
     assert "POST_RUN_AUDIT_PASS" in source
+
+
+def test_longest_formal_condition_result_path_is_windows_safe() -> None:
+    from experiments.run_algorithm_scaling_convergence_cost import (
+        _result_temporary_root,
+        _run_root,
+    )
+
+    value = load_config(V2_CONFIG)
+    condition_id = "ASC_L10_S20260921_AGGREGATE_BENDERS_STRUCTURED_ORACLE"
+    output_root = (ROOT / value["output_directory"]).resolve()
+    target = _run_root(output_root, condition_id)
+    old_temporary = target.parent / f".{condition_id}.{'f' * 32}.tmp"
+    new_temporary = _result_temporary_root(target)
+    old_longest_path = old_temporary / "iteration_trajectory.json"
+    new_longest_path = new_temporary / "iteration_trajectory.json"
+
+    assert target.name == condition_id
+    assert new_temporary.name.startswith(".tmp-")
+    assert len(new_temporary.name) == len(".tmp-") + 32
+    assert condition_id not in new_temporary.name
+    assert len(str(old_longest_path)) - len(str(new_longest_path)) == 54
+    assert len(str(new_longest_path)) < 240
 
 
 def test_generated_instance_propagates_frozen_service_parameters_without_solving() -> None:
