@@ -4,6 +4,7 @@ import argparse
 import csv
 import json
 from pathlib import Path
+import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,6 +37,37 @@ OUTPUT = ROOT / "artifacts/algorithm_scaling_static_audit.json"
 DRY_RUN_OUTPUT = ROOT / "artifacts/algorithm_scaling_dry_run.json"
 
 
+def _resolve_repository_path(path: Path) -> Path:
+    return (path if path.is_absolute() else ROOT / path).resolve()
+
+
+def resolve_audit_routes(
+    config_path: Path = CONFIG,
+    output_root: Path | None = None,
+) -> tuple[Path, Path, dict]:
+    resolved_config = _resolve_repository_path(config_path)
+    config = load_config(resolved_config)
+    configured_output_root = _resolve_repository_path(Path(config["output_directory"]))
+    resolved_output_root = (
+        configured_output_root
+        if output_root is None
+        else _resolve_repository_path(output_root)
+    )
+    if resolved_output_root != configured_output_root:
+        raise RuntimeError(
+            "CONFIG_OUTPUT_ROOT_IDENTITY_MISMATCH: "
+            f"config={resolved_config} configured_output_root={configured_output_root} "
+            f"requested_output_root={resolved_output_root}"
+        )
+    return resolved_config, resolved_output_root, config
+
+
+def _git_commit() -> str:
+    return subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
+    ).strip()
+
+
 def _existing_evidence_audit() -> dict:
     table = ROOT / "experiments/results/prb_large_scale_simulation_v1/simulation_run_table.csv"
     if not table.is_file():
@@ -55,10 +87,10 @@ def _existing_evidence_audit() -> dict:
     }
 
 
-def _post_run_audit(config: dict) -> dict:
+def _post_run_audit(config: dict, output_root: Path) -> dict:
     from scripts.report_algorithm_scaling_convergence_cost import load_complete_results
 
-    results, trajectories, characteristics = load_complete_results(config)
+    results, trajectories, characteristics = load_complete_results(config, output_root)
     objective_equivalent = True
     objective_error = None
     try:
@@ -68,8 +100,13 @@ def _post_run_audit(config: dict) -> dict:
     except ValueError as error:
         objective_equivalent = False
         objective_error = str(error)
-    output_root = ROOT / config["output_directory"]
     checks = {
+        "result_experiment_identity": all(
+            row["experiment_id"] == config["experiment_id"] for row in results
+        ),
+        "result_config_identity": all(
+            row["config_hash"] == canonical_hash(config) for row in results
+        ),
         "exact_90_results": len(results) == 90,
         "exact_30_instances": len(characteristics) == 30,
         "all_exactly_certified": all(
@@ -106,8 +143,12 @@ def _post_run_audit(config: dict) -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Algorithm scaling static/post-run audit")
     parser.add_argument("--post-run", action="store_true")
+    parser.add_argument("--config", type=Path, default=CONFIG)
+    parser.add_argument("--output-root", type=Path)
     args = parser.parse_args()
-    config = load_config(CONFIG)
+    config_path, output_root, config = resolve_audit_routes(
+        args.config, args.output_root
+    )
     validate_config(config)
     plan = dry_run_plan(config)
     conditions = enumerate_conditions()
@@ -160,11 +201,22 @@ def main() -> None:
         "24_size_dependent_resource_gate": config["resource_policy"]["minimum_available_memory_gib_by_size"] == {"L10": 7, "XL10": 10, "XXL10": 16} and "resource_thresholds(config, condition.size)" in runner,
         "25_staged_size_execution_supported": 'mode.add_argument("--execute-size"' in runner,
     }
-    post_run = _post_run_audit(config) if args.post_run else {"status": "NOT_REQUESTED"}
+    post_run = (
+        _post_run_audit(config, output_root)
+        if args.post_run
+        else {"status": "NOT_REQUESTED"}
+    )
     passed = all(checks.values()) and post_run["status"] in {"NOT_REQUESTED", "POST_RUN_AUDIT_PASS"}
     payload = {
         "schema": "algorithm_scaling_static_audit_v1",
         "status": "STATIC_AUDIT_PASS" if passed else "STATIC_AUDIT_FAIL",
+        "routing_identity": {
+            "config_path": str(config_path),
+            "output_root": str(output_root),
+            "experiment_id": config["experiment_id"],
+            "config_identity": canonical_hash(config),
+            "code_commit": _git_commit(),
+        },
         "checks": checks,
         "formal_run_authorized": config["formal_run_authorized"],
         "formal_optimization_runs_executed_by_audit": 0,

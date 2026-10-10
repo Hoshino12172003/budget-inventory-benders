@@ -24,8 +24,8 @@ from robust_inventory_reconfiguration.algorithm_scaling_reporting import (
 CONFIG = ROOT / "experiments/configs/formal/algorithm_scaling_convergence_cost.yaml"
 
 
-def load_complete_results(config: dict):
-    output_root = ROOT / config["output_directory"]
+def load_complete_results(config: dict, output_root: Path | None = None):
+    output_root = output_root or ROOT / config["output_directory"]
     results = []
     trajectories = []
     characteristics = []
