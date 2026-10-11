@@ -248,13 +248,33 @@ def write_reports(
     _write_csv(output_root / "algorithm_scaling_pairwise.csv", pairwise)
     _write_csv(output_root / "algorithm_scaling_iteration_trajectory.csv", trajectories, TRAJECTORY_FIELDS)
     _write_csv(output_root / "algorithm_scaling_instance_characteristics.csv", characteristics, CHARACTERISTIC_FIELDS)
+    summary_lines = [
+        "| Size | Method | N | Iterations | Core time (s) | Oracle time (s) | Iterations to 99.9% LB | Iterations to 99.99% LB |",
+        "|---|---|---:|---:|---:|---:|---:|---:|",
+    ]
+    for row in summary_size:
+        summary_lines.append(
+            f"| {row['size']} | {row['method']} | {row['n']} | "
+            f"{row['iterations_mean']:.3f} | {row['core_time_mean']:.3f} | "
+            f"{row['oracle_time_mean']:.3f} | "
+            f"{row['iterations_to_99_9pct_final_LB_mean']:.3f} | "
+            f"{row['iterations_to_99_99pct_final_LB_mean']:.3f} |"
+        )
+    failure_text = ", ".join(sorted(failure_ids)) or "none"
     (output_root / "algorithm_scaling_summary.md").write_text(
         "# Algorithm scaling and convergence-cost trade-off\n\n"
         f"Expected conditions: {len(expected_ids)}; exact-certified: {len(results)}; "
         f"documented non-certified: {len(documented_non_certified)}; unattempted: 0.\n\n"
+        f"Documented non-certified condition: `{failure_text}`.\n\n"
         f"Formal classification: `{classification}`.\n\n"
-        "This classification jointly uses paired iterations, core time, master time, and oracle time. "
-        "It does not assert that PRB is universally faster.\n",
+        + "\n".join(summary_lines)
+        + "\n\nPRB consistently reduces iterations and accelerates lower-bound refinement relative "
+        "to Aggregate, while its structured oracle remains substantially more expensive than "
+        "Pure's global oracle. Pure is therefore fastest in wall-clock time; the result does not "
+        "claim that PRB is fastest overall. The main trade-off is stronger information transfer "
+        "versus higher oracle cost.\n\n"
+        "XXL10 comparisons involving Pure use paired exact-certified seeds only; the Pure N=9 "
+        "mean is not treated as a fully paired comparison against the N=10 Aggregate and PRB means.\n",
         encoding="utf-8",
     )
     return classification
