@@ -1,0 +1,82 @@
+{
+  "B_ref": 396986.54982425197,
+  "baseline_feasibility": {
+    "capacity_compatible": true,
+    "capacity_violation_count": 0,
+    "maximum_capacity_excess": 0.0,
+    "maximum_ub_excess": 0.0,
+    "ub_compatible": true,
+    "ub_violation_count": 0
+  },
+  "budget": 396986.54982425197,
+  "canonical_baseline_rule": "lexicographic_min_y_then_x_on_primary_optimal_face_v1",
+  "characteristics": {
+    "I": 30,
+    "J": 14,
+    "R": 30,
+    "actual_master_variables_prb_formula": 1333,
+    "actual_master_variables_pure_formula": 1291,
+    "actual_master_variables_structured_aggregate_formula": 1291,
+    "actual_oracle_variables_pure_formula": 2114,
+    "actual_oracle_variables_structured_total_formula": 6073844,
+    "aggregate_cut_dimension": 420,
+    "direct_constraints": 405479,
+    "direct_variables": 6075177,
+    "estimated_master_variables_prb": 1333,
+    "estimated_master_variables_pure": 1291,
+    "estimated_master_variables_structured_aggregate": 1291,
+    "estimated_oracle_product_risk_blocks": 6524,
+    "estimated_oracle_variables_pure": 2114,
+    "first_stage_variables": 1290,
+    "prb_master_surrogates": 43,
+    "prb_product_cut_dimension": 30,
+    "prb_product_risk_blocks": 6524,
+    "pure_binary_variables": 420,
+    "pure_constraints": 15541,
+    "pure_continuous_variables": 1694,
+    "pure_total_variables": 2114,
+    "scenario_related_dimensions": 466,
+    "size": "XL10",
+    "uncertainty_components": 420
+  },
+  "code_commit": "c46d09c306deb80086a7ceab12812847c117df87",
+  "config_hash": "38f7d73d468091bfbc1f3b5e0c03711b0ea0c2eee3cd2a876ebd9a11369b7c0f",
+  "dimensions": {
+    "depots": 30,
+    "products": 14,
+    "regions": 30,
+    "scale": "XL10"
+  },
+  "instance_hash": "73732c6523ff154f1e5e7891641c25102345bc40c65bfb72630c817c78349695",
+  "instance_id": "ASC_INSTANCE_XL10_S20260921",
+  "model_identity": "52ac9c5ac6057287181e33ecc66075119dd65936cbf83d9d5c4e770778db77a6",
+  "primitive_instance_hash": "0f1b270d3e113adc521a9b1b3f135ad41540172771f7110a1a2ec70bb47985cb",
+  "scientific_parameter_checks": {
+    "SL": true,
+    "pass": true,
+    "phi": true,
+    "soft_service_data": true
+  },
+  "scientific_parameters": {
+    "Gamma": 2,
+    "SL": 0.9,
+    "beta": 1.0,
+    "lambda_R": 0.05,
+    "phi_definition": "phi_j = phi_multiplier * max_r p_rj",
+    "phi_multiplier": 1.85,
+    "service_constraint": "soft SLA"
+  },
+  "seed": 20260921,
+  "size": "XL10",
+  "source_data_hashes": {
+    "210129": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3",
+    "210202": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+    "210310": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+    "210323": "df5fcbaa54a73277948f676fae151d85ad621d9ef417b0906b04066b1ef1109c",
+    "210330": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+    "210428": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+    "210611": "f244641d602348af8b2ac31a2bb948b4b0ebca8e33ff446dd07298e3e578a9bf",
+    "210628": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677"
+  },
+  "x0_hash": "89d558ca9bee95e37b1e58408873847a450f1a2dc8b08a42e9b2e09d616d43c3"
+}

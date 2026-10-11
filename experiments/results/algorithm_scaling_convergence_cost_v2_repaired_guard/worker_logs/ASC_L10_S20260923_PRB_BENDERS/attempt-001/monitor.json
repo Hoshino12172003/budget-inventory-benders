@@ -1,0 +1,12 @@
+{
+  "condition_id": "ASC_L10_S20260923_PRB_BENDERS",
+  "peak_process_tree_memory_gib": 1.8126373291015625,
+  "preflight_available_memory_gib": [
+    15.105209350585938,
+    15.105213165283203,
+    15.105213165283203
+  ],
+  "stop_reason": null,
+  "wall_clock_seconds": 45.88557240006048,
+  "worker_return_code": 0
+}

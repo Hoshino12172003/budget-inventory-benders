@@ -1,0 +1,82 @@
+{
+  "B_ref": 516702.44165825064,
+  "baseline_feasibility": {
+    "capacity_compatible": true,
+    "capacity_violation_count": 0,
+    "maximum_capacity_excess": 0.0,
+    "maximum_ub_excess": 0.0,
+    "ub_compatible": true,
+    "ub_violation_count": 0
+  },
+  "budget": 516702.44165825064,
+  "canonical_baseline_rule": "lexicographic_min_y_then_x_on_primary_optimal_face_v1",
+  "characteristics": {
+    "I": 36,
+    "J": 16,
+    "R": 36,
+    "actual_master_variables_prb_formula": 1813,
+    "actual_master_variables_pure_formula": 1765,
+    "actual_master_variables_structured_aggregate_formula": 1765,
+    "actual_oracle_variables_pure_formula": 2896,
+    "actual_oracle_variables_structured_total_formula": 14225776,
+    "aggregate_cut_dimension": 576,
+    "direct_constraints": 791070,
+    "direct_variables": 14227589,
+    "estimated_master_variables_prb": 1813,
+    "estimated_master_variables_pure": 1765,
+    "estimated_master_variables_structured_aggregate": 1765,
+    "estimated_oracle_product_risk_blocks": 10672,
+    "estimated_oracle_variables_pure": 2896,
+    "first_stage_variables": 1764,
+    "prb_master_surrogates": 49,
+    "prb_product_cut_dimension": 36,
+    "prb_product_risk_blocks": 10672,
+    "pure_binary_variables": 576,
+    "pure_constraints": 24769,
+    "pure_continuous_variables": 2320,
+    "pure_total_variables": 2896,
+    "scenario_related_dimensions": 667,
+    "size": "XXL10",
+    "uncertainty_components": 576
+  },
+  "code_commit": "c46d09c306deb80086a7ceab12812847c117df87",
+  "config_hash": "38f7d73d468091bfbc1f3b5e0c03711b0ea0c2eee3cd2a876ebd9a11369b7c0f",
+  "dimensions": {
+    "depots": 36,
+    "products": 16,
+    "regions": 36,
+    "scale": "XXL10"
+  },
+  "instance_hash": "29c010cdb8a97ea71b61ce499d42c91c2df128a8f0f7515abb0f424aa9390f35",
+  "instance_id": "ASC_INSTANCE_XXL10_S20260929",
+  "model_identity": "52ac9c5ac6057287181e33ecc66075119dd65936cbf83d9d5c4e770778db77a6",
+  "primitive_instance_hash": "df7c59aae7208740a624b0010d8efbf47e334c2f576ecc5286616f3ef1d3d67c",
+  "scientific_parameter_checks": {
+    "SL": true,
+    "pass": true,
+    "phi": true,
+    "soft_service_data": true
+  },
+  "scientific_parameters": {
+    "Gamma": 2,
+    "SL": 0.9,
+    "beta": 1.0,
+    "lambda_R": 0.05,
+    "phi_definition": "phi_j = phi_multiplier * max_r p_rj",
+    "phi_multiplier": 1.85,
+    "service_constraint": "soft SLA"
+  },
+  "seed": 20260929,
+  "size": "XXL10",
+  "source_data_hashes": {
+    "210129": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3",
+    "210202": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+    "210310": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+    "210323": "df5fcbaa54a73277948f676fae151d85ad621d9ef417b0906b04066b1ef1109c",
+    "210330": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+    "210428": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+    "210611": "f244641d602348af8b2ac31a2bb948b4b0ebca8e33ff446dd07298e3e578a9bf",
+    "210628": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677"
+  },
+  "x0_hash": "0e1f3745a98856f447f7a0242adee928d877ef9659d7dd4eb9d0f82d7b19daa1"
+}

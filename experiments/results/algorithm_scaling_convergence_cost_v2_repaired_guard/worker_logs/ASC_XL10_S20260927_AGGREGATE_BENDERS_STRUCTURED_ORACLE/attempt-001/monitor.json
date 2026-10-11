@@ -1,0 +1,12 @@
+{
+  "condition_id": "ASC_XL10_S20260927_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+  "peak_process_tree_memory_gib": 4.85675048828125,
+  "preflight_available_memory_gib": [
+    13.980819702148438,
+    13.980819702148438,
+    13.980819702148438
+  ],
+  "stop_reason": null,
+  "wall_clock_seconds": 109.33209009992424,
+  "worker_return_code": 0
+}

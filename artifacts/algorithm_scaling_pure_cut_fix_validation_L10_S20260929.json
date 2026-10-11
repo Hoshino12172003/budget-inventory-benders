@@ -1,0 +1,43 @@
+{
+  "schema": "algorithm_scaling_pure_cut_fix_validation_v1",
+  "condition_id": "ASC_L10_S20260929_PURE_BENDERS",
+  "code_commit": "3d75b79dadac9eb9e9a1328eafae3418f761bb21",
+  "status": "OPTIMAL",
+  "exact_certification": true,
+  "objective": 2557651.111913833,
+  "lower_bound": 2557651.111913597,
+  "upper_bound": 2557651.111913833,
+  "absolute_gap": 2.3562461137771606e-07,
+  "relative_gap": 9.212539203652506e-14,
+  "iterations": 11,
+  "cuts": 10,
+  "final_candidate_dual_cut_violation": 4.656612873077393e-10,
+  "cut_check_tolerance": 1e-07,
+  "master_feasibility_tolerance": 1e-08,
+  "previous_cut_max_violation_verification": {
+    "status": "WITHIN_CUT_CHECK_TOLERANCE",
+    "bound": 1e-08,
+    "basis": "Every previous cut is an explicit constraint in the OPTIMAL master; Gurobi FeasibilityTol is 1e-8, below the 1e-7 cut-check tolerance."
+  },
+  "peak_process_tree_memory_gib": 0.08208465576171875,
+  "core_solve_time_seconds": 1.627463899902068,
+  "worker_wall_clock_seconds": 16.886245899950154,
+  "worker_return_code": 0,
+  "resource_stop_reason": null,
+  "validation_output_root": "artifacts/pure_cut_fix_validation_run",
+  "original_formal_artifacts": {
+    "successful_run_directories_before_and_after": 24,
+    "failed_condition_result_directory_exists": false,
+    "failed_condition_original_attempt_directories": 1,
+    "overwritten": false
+  },
+  "execution_scope": {
+    "conditions_executed": [
+      "ASC_L10_S20260929_PURE_BENDERS"
+    ],
+    "other_L10_conditions_executed": 0,
+    "XL10_conditions_executed": 0,
+    "XXL10_conditions_executed": 0,
+    "batch_continued": false
+  }
+}
