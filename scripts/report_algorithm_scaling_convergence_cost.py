@@ -22,16 +22,35 @@ from robust_inventory_reconfiguration.algorithm_scaling_reporting import (
 
 
 CONFIG = ROOT / "experiments/configs/formal/algorithm_scaling_convergence_cost.yaml"
+FORMAL_STATUS = "algorithm_scaling_formal_status.json"
 
 
 def load_complete_results(config: dict, output_root: Path | None = None):
+    results, trajectories, characteristics, documented, unattempted = load_formal_evidence(
+        config, output_root
+    )
+    if documented or unattempted:
+        raise FileNotFoundError("complete result grid is not available")
+    return results, trajectories, characteristics
+
+
+def load_formal_evidence(config: dict, output_root: Path | None = None):
     output_root = output_root or ROOT / config["output_directory"]
+    status_path = output_root / FORMAL_STATUS
+    status = json.loads(status_path.read_text(encoding="utf-8")) if status_path.is_file() else {}
+    documented = status.get("documented_non_certified", [])
+    documented_by_id = {row["condition_id"]: row for row in documented}
     results = []
     trajectories = []
     characteristics = []
+    unattempted = []
     seen_instances = set()
     for condition in enumerate_conditions():
         run_root = output_root / "runs" / condition.condition_id
+        if not (run_root / "result.json").is_file():
+            if condition.condition_id not in documented_by_id:
+                unattempted.append(condition.condition_id)
+            continue
         result = json.loads((run_root / "result.json").read_text(encoding="utf-8"))
         monitor_root = output_root / "worker_logs" / condition.condition_id
         monitor_paths = sorted(monitor_root.glob("attempt-*/monitor.json"))
@@ -59,7 +78,7 @@ def load_complete_results(config: dict, output_root: Path | None = None):
                 **preparation["characteristics"],
             })
             seen_instances.add(result["instance_id"])
-    return results, trajectories, characteristics
+    return results, trajectories, characteristics, documented, unattempted
 
 
 def main() -> None:
@@ -77,13 +96,23 @@ def main() -> None:
             "required_outputs": config["required_outputs"],
         }, indent=2))
         return
-    results, trajectories, characteristics = load_complete_results(config)
+    results, trajectories, characteristics, documented, unattempted = load_formal_evidence(config)
+    if unattempted:
+        raise RuntimeError(f"unattempted formal conditions: {','.join(unattempted)}")
     classification = write_reports(
         results, trajectories, characteristics,
         ROOT / config["output_directory"],
         objective_tolerance=config["algorithm"]["objective_equivalence_tolerance"],
+        documented_non_certified=documented,
     )
-    print(json.dumps({"status": "REPORTING_COMPLETE", "classification": classification}, indent=2))
+    print(json.dumps({
+        "status": "REPORTING_COMPLETE",
+        "classification": classification,
+        "expected": len(enumerate_conditions()),
+        "certified": len(results),
+        "documented_non_certified": len(documented),
+        "unattempted": len(unattempted),
+    }, indent=2))
 
 
 if __name__ == "__main__":

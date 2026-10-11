@@ -8,6 +8,7 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 
 from robust_inventory_reconfiguration.algorithm_scaling import (
@@ -88,9 +89,24 @@ def _existing_evidence_audit() -> dict:
 
 
 def _post_run_audit(config: dict, output_root: Path) -> dict:
-    from scripts.report_algorithm_scaling_convergence_cost import load_complete_results
+    from scripts.report_algorithm_scaling_convergence_cost import load_formal_evidence
 
-    results, trajectories, characteristics = load_complete_results(config, output_root)
+    results, trajectories, characteristics, documented, unattempted = load_formal_evidence(
+        config, output_root
+    )
+    expected_ids = {condition.condition_id for condition in enumerate_conditions()}
+    result_ids = {row["condition_id"] for row in results}
+    documented_ids = {row["condition_id"] for row in documented}
+    config_identity = canonical_hash(config)
+    documented_evidence_valid = all(
+        row.get("experiment_id") == config["experiment_id"]
+        and row.get("config_hash") == config_identity
+        and row.get("attempted") is True
+        and row.get("exact_certification") is False
+        and (output_root / row["monitor_path"]).is_file()
+        and (output_root / row["stderr_path"]).is_file()
+        for row in documented
+    )
     objective_equivalent = True
     objective_error = None
     try:
@@ -105,15 +121,19 @@ def _post_run_audit(config: dict, output_root: Path) -> dict:
             row["experiment_id"] == config["experiment_id"] for row in results
         ),
         "result_config_identity": all(
-            row["config_hash"] == canonical_hash(config) for row in results
+            row["config_hash"] == config_identity for row in results
         ),
-        "exact_90_results": len(results) == 90,
+        "exact_90_conditions_accounted": result_ids | documented_ids == expected_ids,
+        "exact_89_certified_results": len(results) == 89,
+        "exact_1_documented_non_certified": len(documented) == len(documented_ids) == 1,
+        "zero_unattempted_conditions": not unattempted,
+        "documented_failure_evidence_valid": documented_evidence_valid,
         "exact_30_instances": len(characteristics) == 30,
-        "all_exactly_certified": all(
+        "all_reported_results_exactly_certified": all(
             row["solver_status"] == "OPTIMAL" and row["exact_certification"] is True
             for row in results
         ),
-        "all_trajectories_present": len({row["condition_id"] for row in trajectories}) == 90,
+        "all_certified_trajectories_present": len({row["condition_id"] for row in trajectories}) == 89,
         "trajectory_timing_complete": all(
             row[field] is not None
             for row in trajectories
@@ -136,6 +156,12 @@ def _post_run_audit(config: dict, output_root: Path) -> dict:
     return {
         "status": "POST_RUN_AUDIT_PASS" if all(checks.values()) else "POST_RUN_AUDIT_FAIL",
         "checks": checks,
+        "formal_counts": {
+            "expected": len(expected_ids),
+            "certified": len(results),
+            "documented_non_certified": len(documented),
+            "unattempted": len(unattempted),
+        },
         "objective_equivalence_error": objective_error,
     }
 

@@ -250,3 +250,65 @@ def test_reporting_writes_required_tables_and_enforces_objective_identity(tmp_pa
     changed[0]["final_objective"] = 100.01
     with pytest.raises(ValueError, match="pairwise objective mismatch"):
         validate_pairwise_fairness(changed, 1e-4)
+
+
+def test_reporting_accepts_only_explicitly_documented_non_certified_condition(
+    tmp_path: Path,
+) -> None:
+    results = _synthetic_results()
+    failure_id = "ASC_XXL10_S20260925_PURE_BENDERS"
+    results = [row for row in results if row["condition_id"] != failure_id]
+    trajectories = []
+    for result in results:
+        row = {field: 0 for field in TRAJECTORY_FIELDS}
+        row.update({
+            "experiment_id": result["experiment_id"],
+            "condition_id": result["condition_id"],
+            "method": result["method"],
+            "size": result["size"],
+            "seed": result["seed"],
+            "instance_id": result["instance_id"],
+        })
+        trajectories.append(row)
+    characteristics = [
+        {
+            "instance_id": f"ASC_INSTANCE_{size.scale}_S{seed}",
+            "instance_hash": f"hash-{size.scale}-{seed}",
+            "size": size.scale,
+            "seed": seed,
+        }
+        for size in SIZES
+        for seed in SEEDS
+    ]
+    documented = [{"condition_id": failure_id}]
+
+    classification = write_reports(
+        results,
+        trajectories,
+        characteristics,
+        tmp_path,
+        objective_tolerance=1e-4,
+        documented_non_certified=documented,
+    )
+
+    assert classification == "PRB_FEWER_ITERATIONS_BUT_HIGHER_ORACLE_COST"
+    assert "exact-certified: 89" in (tmp_path / "algorithm_scaling_summary.md").read_text()
+    assert len((tmp_path / "algorithm_scaling_pairwise.csv").read_text().splitlines()) == 89
+
+    with pytest.raises(ValueError, match="certified or explicitly documented"):
+        write_reports(
+            results,
+            trajectories,
+            characteristics,
+            tmp_path,
+            objective_tolerance=1e-4,
+        )
+    with pytest.raises(ValueError, match="certified or explicitly documented"):
+        write_reports(
+            results,
+            trajectories,
+            characteristics,
+            tmp_path,
+            objective_tolerance=1e-4,
+            documented_non_certified=[{"condition_id": "ASC_L10_S20260921_PURE_BENDERS"}],
+        )

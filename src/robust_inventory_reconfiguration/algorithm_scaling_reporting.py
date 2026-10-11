@@ -120,7 +120,13 @@ def validate_pairwise_fairness(results: list[dict], objective_tolerance: float) 
     index = {(row["size"], row["seed"], row["method"]): row for row in results}
     for size in SIZES:
         for seed in SEEDS:
-            group = [index[(size.scale, seed, method)] for method in METHODS]
+            group = [
+                index[(size.scale, seed, method)]
+                for method in METHODS
+                if (size.scale, seed, method) in index
+            ]
+            if len(group) < 2:
+                continue
             identity_fields = ("instance_hash", "config_hash", "model_identity", "Gamma", "beta", "lambda_R", "SL", "phi_multiplier", "solver_profile")
             for field in identity_fields:
                 if len({row[field] for row in group}) != 1:
@@ -143,6 +149,11 @@ def build_pairwise(results: list[dict]) -> list[dict]:
     for size in SIZES:
         for seed in SEEDS:
             for left_method, right_method in pairs:
+                if (
+                    (size.scale, seed, left_method) not in index
+                    or (size.scale, seed, right_method) not in index
+                ):
+                    continue
                 left = index[(size.scale, seed, left_method)]
                 right = index[(size.scale, seed, right_method)]
                 rows.append({
@@ -166,8 +177,13 @@ def classify_tradeoff(results: list[dict]) -> str:
     faster_by_size = []
     dearer_oracle_by_size = []
     for size in SIZES:
-        pure = [index[(size.scale, seed, "pure_benders")] for seed in SEEDS]
-        prb = [index[(size.scale, seed, "prb_benders")] for seed in SEEDS]
+        paired_seeds = [
+            seed for seed in SEEDS
+            if (size.scale, seed, "pure_benders") in index
+            and (size.scale, seed, "prb_benders") in index
+        ]
+        pure = [index[(size.scale, seed, "pure_benders")] for seed in paired_seeds]
+        prb = [index[(size.scale, seed, "prb_benders")] for seed in paired_seeds]
         fewer_by_size.append(median([row["iterations"] for row in prb]) < median([row["iterations"] for row in pure]))
         faster_by_size.append(median([row["total_core_solve_time"] for row in prb]) < median([row["total_core_solve_time"] for row in pure]))
         dearer_oracle_by_size.append(median([row["oracle_time"] for row in prb]) > median([row["oracle_time"] for row in pure]))
@@ -196,13 +212,29 @@ def write_reports(
     output_root: Path,
     *,
     objective_tolerance: float,
+    documented_non_certified: list[dict] | None = None,
 ) -> str:
-    if len(results) != len(SIZES) * len(SEEDS) * len(METHODS):
-        raise ValueError("reporting requires the complete 90-condition formal grid")
+    documented_non_certified = documented_non_certified or []
+    expected_ids = {
+        f"ASC_{size.scale}_S{seed}_{method.upper()}"
+        for size in SIZES
+        for seed in SEEDS
+        for method in METHODS
+    }
+    result_ids = {row["condition_id"] for row in results}
+    failure_ids = {row["condition_id"] for row in documented_non_certified}
+    if result_ids & failure_ids or result_ids | failure_ids != expected_ids:
+        raise ValueError(
+            "reporting requires every formal condition to be certified or explicitly documented non-certified"
+        )
     if len({row["condition_id"] for row in results}) != len(results):
         raise ValueError("duplicate physical algorithm-scaling result")
+    if len(failure_ids) != len(documented_non_certified):
+        raise ValueError("duplicate documented non-certified algorithm-scaling condition")
     for result in results:
         validate_result_schema(result)
+        if result["solver_status"] != "OPTIMAL" or result["exact_certification"] is not True:
+            raise ValueError("certified result set contains a non-certified condition")
     for row in trajectories:
         validate_trajectory_schema(row)
     validate_pairwise_fairness(results, objective_tolerance)
@@ -218,6 +250,8 @@ def write_reports(
     _write_csv(output_root / "algorithm_scaling_instance_characteristics.csv", characteristics, CHARACTERISTIC_FIELDS)
     (output_root / "algorithm_scaling_summary.md").write_text(
         "# Algorithm scaling and convergence-cost trade-off\n\n"
+        f"Expected conditions: {len(expected_ids)}; exact-certified: {len(results)}; "
+        f"documented non-certified: {len(documented_non_certified)}; unattempted: 0.\n\n"
         f"Formal classification: `{classification}`.\n\n"
         "This classification jointly uses paired iterations, core time, master time, and oracle time. "
         "It does not assert that PRB is universally faster.\n",
