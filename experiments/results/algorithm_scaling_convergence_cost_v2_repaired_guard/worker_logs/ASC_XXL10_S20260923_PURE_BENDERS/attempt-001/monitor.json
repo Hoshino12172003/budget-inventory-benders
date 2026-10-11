@@ -1,0 +1,12 @@
+{
+  "condition_id": "ASC_XXL10_S20260923_PURE_BENDERS",
+  "peak_process_tree_memory_gib": 0.1100311279296875,
+  "preflight_available_memory_gib": [
+    19.32940673828125,
+    19.329421997070312,
+    19.329421997070312
+  ],
+  "stop_reason": null,
+  "wall_clock_seconds": 7.41416200005915,
+  "worker_return_code": 0
+}

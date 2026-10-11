@@ -390,7 +390,7 @@
   ],
   "dry_run": {
     "direct_runs": 0,
-    "experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V1",
+    "experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V2_REPAIRED_GUARD",
     "formal_run_authorized": true,
     "instances": 30,
     "management_sensitivity_dimensions": [],
@@ -553,7 +553,38 @@
   "formal_optimization_runs_executed_by_audit": 0,
   "formal_run_authorized": true,
   "post_run_audit": {
-    "status": "NOT_REQUESTED"
+    "checks": {
+      "aggregate_timing_complete": true,
+      "all_certified_trajectories_present": true,
+      "all_reported_results_exactly_certified": true,
+      "documented_failure_evidence_valid": true,
+      "exact_1_documented_non_certified": true,
+      "exact_30_instances": true,
+      "exact_89_certified_results": true,
+      "exact_90_conditions_accounted": true,
+      "no_result_reuse": true,
+      "pairwise_objectives_equivalent": true,
+      "required_tables_present": true,
+      "result_config_identity": true,
+      "result_experiment_identity": true,
+      "trajectory_timing_complete": true,
+      "zero_unattempted_conditions": true
+    },
+    "formal_counts": {
+      "certified": 89,
+      "documented_non_certified": 1,
+      "expected": 90,
+      "unattempted": 0
+    },
+    "objective_equivalence_error": null,
+    "status": "POST_RUN_AUDIT_PASS"
+  },
+  "routing_identity": {
+    "code_commit": "536eb4017d88f3f6179db90d1e12c16a779d9d7e",
+    "config_identity": "38f7d73d468091bfbc1f3b5e0c03711b0ea0c2eee3cd2a876ebd9a11369b7c0f",
+    "config_path": "E:\\paper-code\\paper-code2\\budget-inventory-benders-frozen-51aebd0\\experiments\\configs\\formal\\algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+    "experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V2_REPAIRED_GUARD",
+    "output_root": "E:\\paper-code\\paper-code2\\budget-inventory-benders-frozen-51aebd0\\experiments\\results\\algorithm_scaling_convergence_cost_v2_repaired_guard"
   },
   "schema": "algorithm_scaling_static_audit_v1",
   "status": "STATIC_AUDIT_PASS"

@@ -632,7 +632,7 @@
     }
   ],
   "direct_runs": 0,
-  "experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V1",
+  "experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V2_REPAIRED_GUARD",
   "formal_run_authorized": true,
   "instances": 30,
   "management_sensitivity_dimensions": [],
