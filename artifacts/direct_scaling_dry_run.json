@@ -1,0 +1,33 @@
+{
+  "optimization_calls": 0,
+  "conditions": 30,
+  "authorized": false,
+  "environment": {
+    "pass": false,
+    "checks": {
+      "python_version": true,
+      "gurobipy_version": false,
+      "gurobi_native_version": false
+    },
+    "required": {
+      "python_version": "3.12.7",
+      "gurobipy_version": "13.0.2",
+      "gurobi_native_version": [
+        13,
+        0,
+        2
+      ]
+    },
+    "current": {
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python_version": "3.12.7",
+      "python_executable": "C:\\Program Files\\Python312\\python.exe",
+      "gurobipy_version": "13.0.1",
+      "gurobi_native_version": [
+        13,
+        0,
+        1
+      ]
+    }
+  }
+}

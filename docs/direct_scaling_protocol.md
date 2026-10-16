@@ -1,0 +1,25 @@
+# Direct exact scaling extension protocol
+
+## Scope and identity
+
+This protocol adds one `direct_exact` observation for each of the 30 immutable prepared instances in `ALGORITHM_SCALING_CONVERGENCE_COST_V2_REPAIRED_GUARD`. It does not regenerate instances and does not modify the 89 certified or one documented non-certified three-method observations. Each Direct condition consumes the tracked `instance.json` and `preparation.json` after checking their hashes, dimensions, seed, `x0`, `B_ref`, budget, and scientific parameters.
+
+Formal execution is disabled until a separate authorization commit changes `formal_run_authorized` to true. The runner also fails closed unless Python 3.12.7, gurobipy 13.0.2, native Gurobi 13.0.2, the frozen solver profile, a clean committed worktree, one-worker execution, and the size-specific RAM gate all match.
+
+## Mathematical and solver contract
+
+Direct uses the existing `build_exact_reconfiguration_model` factorized deterministic equivalent. It changes no objective, constraint, linearization, uncertainty set, `Gamma`, `beta`, `lambda_R`, service target, penalty rule, `x0`, or budget. It receives no incumbent, MIP start, cut, bound, or history from Pure, Aggregate, or PRB.
+
+The explicit solver profile is `MIPGap=0`, `FeasibilityTol=OptimalityTol=IntFeasTol=1e-8`, and `NumericFocus=0`. `Threads`, `MIPGapAbs`, `Presolve`, `Method`, `Cuts`, and `Heuristics` retain the Gurobi 13.0.2 defaults; `Seed=0` is the frozen default. Defaults are version-dependent, which is why a different native solver version blocks execution.
+
+## Timing and certification
+
+`T_core_seconds` starts immediately before exact-model construction and stops after independent fixed-first-stage structured recourse certification. The result separately records `model_build_seconds`, `solver_optimize_seconds`, `certification_seconds`, and `total_wall_seconds`; reporting and serialization are outside `T_core` but inside total wall time. `Model.Runtime` is retained only as `solver_optimize_seconds` and is never substituted for `T_core`.
+
+An `OPTIMAL` status is necessary but not sufficient. The independently certified first-stage expenditure plus robust recourse must reproduce the Direct objective within `1e-4`. Time limits preserve incumbent, bound, gap, node count, and status and are never reported as exact.
+
+## Artifact and recovery contract
+
+Each condition writes `result.json`, `first_stage_solution.json`, `provenance.json`, `solver.log`, and `resource_monitor.json` through a short sibling temporary directory followed by an atomic rename. Existing complete results are skipped only after identity and hash verification. Existing incomplete, mismatched, or uncertified outputs cause a hard failure; nothing is overwritten.
+
+Runs are sequential in seed order. The timeout is the existing 900-second scaling contract. Resource stops and timeouts remain observations. The initial authorization covers only conditions passing both the environment and resource gates.

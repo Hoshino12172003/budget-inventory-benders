@@ -1,0 +1,212 @@
+{
+  "schema": "environment_identity_audit_v1",
+  "status": "BLOCK_FORMAL_EXECUTION",
+  "blocking_fields": [
+    "python_executable",
+    "gurobipy_version",
+    "gurobi_native_version",
+    "Presolve",
+    "Method",
+    "Cuts",
+    "Heuristics"
+  ],
+  "fields": {
+    "operating_system": {
+      "frozen_value": "Windows-11-10.0.26200-SP0",
+      "current_value": "Windows-11-10.0.26200-SP0",
+      "source_artifact": "experiments/results/e1_algorithm_benchmark/attempt_002/provenance.json",
+      "match_status": "MATCH",
+      "evidence": "Frozen provenance records Windows-11-10.0.26200-SP0."
+    },
+    "cpu_model": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel",
+      "source_artifact": "No frozen CPU artifact",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": ""
+    },
+    "cpu_cores": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": {
+        "physical": 14,
+        "logical": 14
+      },
+      "source_artifact": "No frozen core-count artifact",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": ""
+    },
+    "physical_memory_gib": {
+      "frozen_value": 31.5,
+      "current_value": 31.5,
+      "source_artifact": "docs/algorithm_scaling_resource_threshold_audit.md",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "python_version": {
+      "frozen_value": "3.12.7",
+      "current_value": "3.12.7",
+      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "python_executable": {
+      "frozen_value": "C:\\Users\\Hu Jiaxin\\Documents\\Codex\\2026-07-07\\z\\work\\paper-code\\.venv\\Scripts\\python.exe",
+      "current_value": "C:\\Program Files\\Python312\\python.exe",
+      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md",
+      "match_status": "BLOCKING_MISMATCH",
+      "evidence": "Frozen interpreter path no longer exists on this host."
+    },
+    "gurobipy_version": {
+      "frozen_value": "13.0.2",
+      "current_value": "13.0.1",
+      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "BLOCKING_MISMATCH",
+      "evidence": ""
+    },
+    "gurobi_native_version": {
+      "frozen_value": [
+        13,
+        0,
+        2
+      ],
+      "current_value": [
+        13,
+        0,
+        1
+      ],
+      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "BLOCKING_MISMATCH",
+      "evidence": ""
+    },
+    "license_environment": {
+      "frozen_value": "Academic license; exact frozen mechanism NOT_VERIFIABLE",
+      "current_value": "No license environment variable; local license may be used",
+      "source_artifact": "worker stdout logs; no complete frozen license provenance",
+      "match_status": "MISMATCH",
+      "evidence": ""
+    },
+    "Threads": {
+      "frozen_value": "DEFAULT_AUTOMATIC",
+      "current_value": "DEFAULT_AUTOMATIC",
+      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "Seed": {
+      "frozen_value": 0,
+      "current_value": 0,
+      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "MIPGap": {
+      "frozen_value": 0.0,
+      "current_value": 0.0,
+      "source_artifact": "src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "MIPGapAbs": {
+      "frozen_value": "GUROBI_13.0.2_DEFAULT_NOT_PERSISTED",
+      "current_value": "GUROBI_13.0.1_DEFAULT_NOT_QUERIED",
+      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "MISMATCH",
+      "evidence": ""
+    },
+    "FeasibilityTol": {
+      "frozen_value": 1e-08,
+      "current_value": 1e-08,
+      "source_artifact": "src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "OptimalityTol": {
+      "frozen_value": 1e-08,
+      "current_value": 1e-08,
+      "source_artifact": "src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "IntFeasTol": {
+      "frozen_value": 1e-08,
+      "current_value": 1e-08,
+      "source_artifact": "src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "Presolve": {
+      "frozen_value": "GUROBI_13.0.2_DEFAULT",
+      "current_value": "GUROBI_13.0.1_DEFAULT",
+      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "BLOCKING_MISMATCH",
+      "evidence": ""
+    },
+    "Method": {
+      "frozen_value": "GUROBI_13.0.2_DEFAULT",
+      "current_value": "GUROBI_13.0.1_DEFAULT",
+      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "BLOCKING_MISMATCH",
+      "evidence": ""
+    },
+    "Cuts": {
+      "frozen_value": "GUROBI_13.0.2_DEFAULT",
+      "current_value": "GUROBI_13.0.1_DEFAULT",
+      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "BLOCKING_MISMATCH",
+      "evidence": ""
+    },
+    "Heuristics": {
+      "frozen_value": "GUROBI_13.0.2_DEFAULT",
+      "current_value": "GUROBI_13.0.1_DEFAULT",
+      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "BLOCKING_MISMATCH",
+      "evidence": ""
+    },
+    "NumericFocus": {
+      "frozen_value": 0,
+      "current_value": 0,
+      "source_artifact": "src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "execution_code_commit": {
+      "frozen_value": "c46d09c306deb80086a7ceab12812847c117df87",
+      "current_value": "7dabe36c4a38f0e55eb769606610adb3185287c8",
+      "source_artifact": "formal scaling result/provenance artifacts",
+      "match_status": "MISMATCH",
+      "evidence": "A new Direct runner commit is expected; model-source identity must be reviewed separately."
+    },
+    "dependency_versions": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": {
+        "gurobipy": "13.0.1",
+        "psutil": "7.2.2",
+        "PyYAML": "6.0.3"
+      },
+      "source_artifact": "No complete frozen dependency lock",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": ""
+    },
+    "concurrent_optimization_tasks": {
+      "frozen_value": "NONE_RECORDED_BUT_NOT_CONTINUOUSLY_MONITORED",
+      "current_value": [],
+      "source_artifact": "Formal monitor artifacts do not persist a process inventory",
+      "match_status": "MISMATCH",
+      "evidence": ""
+    },
+    "core_time_definition": {
+      "frozen_value": "model construction through exact certification",
+      "current_value": "model construction through exact certification",
+      "source_artifact": "docs/e1b_pure_benders_definition_execution_timing_audit.md; docs/direct_scaling_protocol.md",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "resource_timing": {
+      "frozen_value": "process-tree RSS sampled by parent monitor",
+      "current_value": "implemented at 0.25 s sampling",
+      "source_artifact": "docs/algorithm_scaling_resource_threshold_audit.md; experiments/run_direct_scaling.py",
+      "match_status": "MISMATCH",
+      "evidence": ""
+    }
+  }
+}
