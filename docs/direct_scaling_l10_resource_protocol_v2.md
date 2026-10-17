@@ -2,7 +2,7 @@
 
 ## Scope and authorization
 
-This revision prepared one retry of `DIRECT_L10_S20260921`. That authorization produced `attempt-002` and is now closed: `formal_run_authorized=false`. The whitelist remains exactly that condition, so neither the remaining nine L10 conditions nor XL10/XXL10 can be launched with this protocol. Any future retry requires a separate reviewed authorization and must use `attempt-003`.
+Following review of the Windows artifact-persistence fix, this revision authorizes exactly one local retry of `DIRECT_L10_S20260921` as `attempt-003`: `formal_run_authorized=true`. Attempts 001 and 002 remain immutable. The whitelist remains exactly that condition, so neither the remaining nine L10 conditions nor XL10/XXL10 can be launched with this protocol.
 
 No mathematical model, instance, seed, Gurobi parameter, tolerance, precision setting, or the 900-second condition limit is changed.
 

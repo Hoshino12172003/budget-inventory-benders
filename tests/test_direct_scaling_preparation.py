@@ -136,10 +136,10 @@ def test_runner_preserves_solver_log_and_progress_evidence() -> None:
     assert "RESOURCE_MONITOR_FAILURE" in source
 
 
-def test_retry_protocol_is_closed_and_scoped_to_one_condition() -> None:
+def test_retry_protocol_authorizes_attempt_003_for_one_condition() -> None:
     config = runner.load_config(RETRY_CONFIG)
     original = runner.load_config(runner.CONFIG)
-    assert config["formal_run_authorized"] is False
+    assert config["formal_run_authorized"] is True
     assert [row["condition_id"] for row in runner.authorized_conditions(config)] == [
         "DIRECT_L10_S20260921"
     ]
