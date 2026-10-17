@@ -458,6 +458,11 @@ def run_monitored(config_path: Path, config: dict, condition: dict, output_root:
         while process.poll() is None:
             sampled_memory = _process_tree_memory_gib(process.pid)
             if sampled_memory is None:
+                # The worker may exit between poll() and the memory query.
+                # If it has exited, preserve its actual exit code.
+                if process.poll() is not None:
+                    break
+                # A running but unmonitorable worker must still fail closed.
                 stop_reason = "RESOURCE_MONITOR_FAILURE"
                 process.kill()
                 break

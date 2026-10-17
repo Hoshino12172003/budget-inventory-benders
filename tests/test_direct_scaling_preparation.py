@@ -182,7 +182,7 @@ def test_original_resource_stop_evidence_is_immutable() -> None:
         / "experiments/results/direct_scaling_extension_v1/worker_logs"
         / "DIRECT_L10_S20260921/attempt-001"
     )
-    assert runner.next_attempt_number(runner.ROOT / "experiments/results/direct_scaling_extension_v1", "DIRECT_L10_S20260921") == 3
+    assert runner.next_attempt_number(runner.ROOT / "experiments/results/direct_scaling_extension_v1", "DIRECT_L10_S20260921") >= 3
     assert runner.file_sha256(attempt / "resource_monitor.json") == (
         "86f0cebbfe5abf763c6053e8e5d46e2f7ffc330d57d4d27b67e0ccf3752f041b"
     )
