@@ -1,0 +1,422 @@
+{
+  "schema": "direct_scaling_l10_authorization_audit_v1",
+  "status": "PASS",
+  "authorization_parent_commit": "b4b92bcb0aaf96c304e7cfc9571be8439e664a67",
+  "config_path": "E:\\w\\direct-prep\\experiments\\configs\\formal\\direct_scaling_extension.yaml",
+  "config_hash": "4800dc5ce69fe579b5300a1bbf10be6741e0aa88d822da3855541b9666157f20",
+  "model_identity": {
+    "sha256": "f8d608d84249cf72647b3229ab52d99e64a9c983140602702cb59087ea82810d",
+    "files": {
+      "experiments/run_direct_scaling.py": "425f332e621f850a551e9ff3ce7cefac105979ba36f5596962630d761c80ba38",
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+      "src/robust_inventory_reconfiguration/product_risk_subproblem.py": "1c68e8031a5bece2ae863fb0f3df2ed47ba9f5d7cf82d4cd6c20e9ba5bee012f",
+      "src/robust_inventory_reconfiguration/risk_budget_composition.py": "d5b79b3fd576ae1398bf2bd9931c658686a2a520d3b9fac7380c903c8e7aa47f",
+      "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+    }
+  },
+  "environment": {
+    "pass": true,
+    "checks": {
+      "python_version": true,
+      "gurobipy_version": true,
+      "gurobi_native_version": true
+    },
+    "required": {
+      "python_version": "3.12.7",
+      "gurobipy_version": "13.0.1",
+      "gurobi_native_version": [
+        13,
+        0,
+        1
+      ],
+      "comparison_basis": "current_environment_for_new_direct_batch",
+      "scaling_v2_historical_solver_version": "NOT_VERIFIABLE"
+    },
+    "current": {
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python_version": "3.12.7",
+      "python_executable": "C:\\Program Files\\Python312\\python.exe",
+      "gurobipy_version": "13.0.1",
+      "gurobi_native_version": [
+        13,
+        0,
+        1
+      ],
+      "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+    }
+  },
+  "historical_environment_limit": "Scaling V2 Python/Gurobi version and version-dependent defaults are NOT_VERIFIABLE; no exact-environment-match claim is made.",
+  "source_scaling_post_run": {
+    "status": "POST_RUN_AUDIT_PASS",
+    "checks": {
+      "result_experiment_identity": true,
+      "result_config_identity": true,
+      "exact_90_conditions_accounted": true,
+      "exact_89_certified_results": true,
+      "exact_1_documented_non_certified": true,
+      "zero_unattempted_conditions": true,
+      "documented_failure_evidence_valid": true,
+      "exact_30_instances": true,
+      "all_reported_results_exactly_certified": true,
+      "all_certified_trajectories_present": true,
+      "trajectory_timing_complete": true,
+      "aggregate_timing_complete": true,
+      "pairwise_objectives_equivalent": true,
+      "no_result_reuse": true,
+      "required_tables_present": true
+    },
+    "formal_counts": {
+      "expected": 90,
+      "certified": 89,
+      "documented_non_certified": 1,
+      "unattempted": 0
+    },
+    "objective_equivalence_error": null
+  },
+  "authorized_conditions": [
+    {
+      "size": "L10",
+      "seed": 20260921,
+      "condition_id": "DIRECT_L10_S20260921"
+    },
+    {
+      "size": "L10",
+      "seed": 20260922,
+      "condition_id": "DIRECT_L10_S20260922"
+    },
+    {
+      "size": "L10",
+      "seed": 20260923,
+      "condition_id": "DIRECT_L10_S20260923"
+    },
+    {
+      "size": "L10",
+      "seed": 20260924,
+      "condition_id": "DIRECT_L10_S20260924"
+    },
+    {
+      "size": "L10",
+      "seed": 20260925,
+      "condition_id": "DIRECT_L10_S20260925"
+    },
+    {
+      "size": "L10",
+      "seed": 20260926,
+      "condition_id": "DIRECT_L10_S20260926"
+    },
+    {
+      "size": "L10",
+      "seed": 20260927,
+      "condition_id": "DIRECT_L10_S20260927"
+    },
+    {
+      "size": "L10",
+      "seed": 20260928,
+      "condition_id": "DIRECT_L10_S20260928"
+    },
+    {
+      "size": "L10",
+      "seed": 20260929,
+      "condition_id": "DIRECT_L10_S20260929"
+    },
+    {
+      "size": "L10",
+      "seed": 20260930,
+      "condition_id": "DIRECT_L10_S20260930"
+    }
+  ],
+  "frozen_inputs": [
+    {
+      "size": "L10",
+      "seed": 20260921,
+      "condition_id": "DIRECT_L10_S20260921",
+      "instance_sha256": "0d4235a660383c6409999ecf9d4d37a2417edc608a17020dc4c43c176f403a50",
+      "preparation_sha256": "378eb7de95461135945d553307423a4179829b7fa1497c970b530d802694790a",
+      "instance_hash": "dcfed5f1c19e9fa4d85d66af24b421f42641fc79744abbf89cd7baff38dcc41e",
+      "x0_hash": "505e46a4a03a1ff25e265a49392e58081ecd85f50a1223fb1551ce50186051c8"
+    },
+    {
+      "size": "L10",
+      "seed": 20260922,
+      "condition_id": "DIRECT_L10_S20260922",
+      "instance_sha256": "4b2dd555424bf5dca9dddc6b8429f094f0a73cbc780fc176e583d2f7fa5d191a",
+      "preparation_sha256": "f53b55aeaf9dbb0561f9d319e514eaf6dfa2d7259a44a6868eef513f115c655e",
+      "instance_hash": "4ec1e745c3bd6d410027905ecf001bf7ce1d16f203ece8fb66de6f15f48a6f19",
+      "x0_hash": "d8fb2cbdd6fe94af6eeb591d5dac6da9a1d28e02685c2d5a87fb2ed485eecc2f"
+    },
+    {
+      "size": "L10",
+      "seed": 20260923,
+      "condition_id": "DIRECT_L10_S20260923",
+      "instance_sha256": "724cff78d496389f7d8ce1782f245625e4034b1304bae3c3e0a96c0189ce755e",
+      "preparation_sha256": "32aefcdfbc82503ef12790523c7f6ee85204281866d2305c3f41af9e39b15014",
+      "instance_hash": "c2361c3502a0d29e85e3caf71e2dee6e31bf367912c5fcff809288a64af4eb56",
+      "x0_hash": "2156393aa544eebcd67dd552fcaf1048a6c4fad5c4faf42019d1516ee31c36cc"
+    },
+    {
+      "size": "L10",
+      "seed": 20260924,
+      "condition_id": "DIRECT_L10_S20260924",
+      "instance_sha256": "ef07d3006f587c6fc28a81f0704052193ea024b8a217b40f5bbf921201868bad",
+      "preparation_sha256": "a110c28c460299b04ccf69edb51c6ed3680adacb52205112bd8bd91cd20bb659",
+      "instance_hash": "e14485ad862fa11352234fcf8dcd045ef7ad3f17be429ddc5e7234fd9e71f1b9",
+      "x0_hash": "28cde4a482622394877486b09e2e6f558d83248e7b42d9d3b2fb9f1917c992fe"
+    },
+    {
+      "size": "L10",
+      "seed": 20260925,
+      "condition_id": "DIRECT_L10_S20260925",
+      "instance_sha256": "d774a6ac6096362891209251dc74b3849b2aeb8747994c1d33fc026cb56d8ca9",
+      "preparation_sha256": "36278a367b5773154f20a7977f47f897aaa701513a9fb27f48a6e21ff45d50d1",
+      "instance_hash": "a958b2de093d40a6ec2a7782117b0f43320cec315fa5e65321d7e2547a3b3f1e",
+      "x0_hash": "c3e9353dd6643f2d08c916d47a8cb6fd4618bf01219087571113e723de771de9"
+    },
+    {
+      "size": "L10",
+      "seed": 20260926,
+      "condition_id": "DIRECT_L10_S20260926",
+      "instance_sha256": "ddcbe5104ce3de249081c2e7095ef9a2eecf6cc31410b4b0ecfd6af9ea169e7b",
+      "preparation_sha256": "3da17037bb4ec0f82858675a1739dd82bcb9c2d329870430cf867c6f1a0aedb6",
+      "instance_hash": "2a6cbe0ed9559676c890fb034fc63074f7f8fb2d754b5c7186c440a4c29af57b",
+      "x0_hash": "7c25225eadb13f3e24291d9385ea4a23a6efc29dd74029993e4c21563c4f4414"
+    },
+    {
+      "size": "L10",
+      "seed": 20260927,
+      "condition_id": "DIRECT_L10_S20260927",
+      "instance_sha256": "03617652e05a26b6bfa3b6d26d80399e761375e26b4e4b0887d9150377676748",
+      "preparation_sha256": "7995267bb6126669e16279993411efb22995ef1f86475d76d7d78ae40fd008d1",
+      "instance_hash": "9500b90b8cbe3609b5baeb1cf0a395218ba2f48568fbf53c5c34acd1a8898f37",
+      "x0_hash": "077b32550216a8b37dfacdff334686e29e7bcac2a4f088c085bac614c059ef70"
+    },
+    {
+      "size": "L10",
+      "seed": 20260928,
+      "condition_id": "DIRECT_L10_S20260928",
+      "instance_sha256": "7e42e70bb5361d87aa76737ffcd00cb68f5467254dae12bca01d9456670f09fe",
+      "preparation_sha256": "170a739251a3473447428db6cf7659a4ca1e91217d7da7b806a2953b139c4f76",
+      "instance_hash": "e386236362784e9a3ec618b6c65cfd64baf100be92cb216aac5fe55cf772e0d7",
+      "x0_hash": "eac43f1fbb96baedeb385b583e33157b52c192ec517029c7d2e04c00361e4bd7"
+    },
+    {
+      "size": "L10",
+      "seed": 20260929,
+      "condition_id": "DIRECT_L10_S20260929",
+      "instance_sha256": "d63613835c0997ebe77b93eca1241bf6ca91e19c80643422ca419816df61ebd4",
+      "preparation_sha256": "06f8ffc8ac4de3a1d68f8e4d4978b25e9fb42307342738075408b58cdf0e9107",
+      "instance_hash": "fbe2a8c1d60937915e89b88b99359b8e24e9a552b57a1e3bb7083e1710382635",
+      "x0_hash": "8c419dd445e173cfb65c30d5c838233259e9536efab68c5c16c64e73dddc330a"
+    },
+    {
+      "size": "L10",
+      "seed": 20260930,
+      "condition_id": "DIRECT_L10_S20260930",
+      "instance_sha256": "ecd7f259e9a4592849e1ef96b65e84c8653c47d8e3f617cd5323bcee26ce83cb",
+      "preparation_sha256": "95424f4e763500cb0693b6804fc865cb2cfd6f2d8da791764b717256e344c47c",
+      "instance_hash": "7f3ff364f01b9683838561276135fc4b88dfcc34c0213f32c5fdb40393233afb",
+      "x0_hash": "bc53041d595611a7a689bfce5d7bf2eeafcf30e075a889973458db3f29b0fadb"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260921,
+      "condition_id": "DIRECT_XL10_S20260921",
+      "instance_sha256": "16abfafe6fb84902ddac9734edf17716c1d7d9a4c6fd01adad73032054b221a1",
+      "preparation_sha256": "a23ff34dcee1bad5ce98414ef388c73e40cfdc41d640f47c42214f330d01b626",
+      "instance_hash": "73732c6523ff154f1e5e7891641c25102345bc40c65bfb72630c817c78349695",
+      "x0_hash": "89d558ca9bee95e37b1e58408873847a450f1a2dc8b08a42e9b2e09d616d43c3"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260922,
+      "condition_id": "DIRECT_XL10_S20260922",
+      "instance_sha256": "f6cfed126f03e09c17dc3d101573416c06d3a7246c8d4cf8011ed79bda5a3397",
+      "preparation_sha256": "3f0bb3ed34cd3ca2a6ab12f7903f270203f68a7f6b07a13413ad8d2a88c80c87",
+      "instance_hash": "75f43c9f1421dfe6d86b44515045b8a09ee9cd440e617efa8c73864aac421dc9",
+      "x0_hash": "c45a09a72bce163a5e39af89f13591a84ffd0874181bb686d9e56729ba37c5ab"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260923,
+      "condition_id": "DIRECT_XL10_S20260923",
+      "instance_sha256": "bda91e6a734b62909e3edb6a28adece66dba580bd1b69f7499462bcd91a4de8f",
+      "preparation_sha256": "d61031d7885f62ad8a6269d310992e5617e43ec2676b9b66ec7a5016ef523718",
+      "instance_hash": "a940ec29d21128e689d9449c7dafb0ed01609062a895bae7dacd7ee742e2116d",
+      "x0_hash": "ab477b96b2c587abdad36a3197746b063b6503ceb3c3843d1461f71bd089ad2a"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260924,
+      "condition_id": "DIRECT_XL10_S20260924",
+      "instance_sha256": "5ff9a345cc02af8f04e2241951315cb61bfacfe976a7a6b9beb546cafa5e61b7",
+      "preparation_sha256": "6353990d5a9d34ece526f4fa0875397116019ec31265655b8943ebbd104230a5",
+      "instance_hash": "4ed9a3c759bee863883dda561aca00e56c2dcac0adf00581a2aefd94ffb0dcd6",
+      "x0_hash": "3f232c300512bbe0b64ffd83f729c36d0954da43e7bf1fbf0b51daf9a65b3429"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260925,
+      "condition_id": "DIRECT_XL10_S20260925",
+      "instance_sha256": "75af6acf2fae83c65f3ec5e84dbf7a614293dd988e0d2bad756fea067463e6c7",
+      "preparation_sha256": "c84c720c1f573e89ec2b072f867d2abdff42049549f717aa1effe60fbbd930b6",
+      "instance_hash": "06e62ada9743eaa8285ca234b0cd547e3806d5e0ebb2d8fbb4d5901e0cfe9677",
+      "x0_hash": "cb28583113c2f2de4f621002a1a886b9f72424ba02c9c5d592ffc5cfafed2091"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260926,
+      "condition_id": "DIRECT_XL10_S20260926",
+      "instance_sha256": "8ab425c4aea7675ea31afefc98c0015c55e076e9e4686b31ec9bf632fddac39f",
+      "preparation_sha256": "6843dad100950e1d4ba2be9d46a94ea5129ddb7a3efb28d127540f602131ee5f",
+      "instance_hash": "1d5564fb9b210afce2854e4f85afb5834dfaa000d54ba18554ce78364d715ff5",
+      "x0_hash": "89905ac8f7e260e77dd1ac77c72007ae3a0e7cfd633ccd3a39dbfe29f5cde189"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260927,
+      "condition_id": "DIRECT_XL10_S20260927",
+      "instance_sha256": "dd16dd366cd86d838bc542f62ec45f1c5bfc6970af851de5a18f60cd9e516d7f",
+      "preparation_sha256": "848b879d110f29c2bc83407a8565426b4bffac2c6ffe88d48a5a477e2bd5f7d8",
+      "instance_hash": "60d66927dcd07c85d56a7aebebfc3bc5de94fd961e17d3d06d7c658669c946c9",
+      "x0_hash": "1334b2089af441bf2c43c3254a429159c22bbdf89a40c6005cca2378f9578ae2"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260928,
+      "condition_id": "DIRECT_XL10_S20260928",
+      "instance_sha256": "04f22c15e3fac18a30055ff5a17d2d11e3371cd1392ca25d1f7a5ccf5d5e3cf9",
+      "preparation_sha256": "938301e26d15df7968b2c5f4f65e244627b6527a17be43b44d7a2f3712d50ad1",
+      "instance_hash": "dbf39fcb0ae5c6bf15274e8c78787c83ea481893fe6479ba92d155dbc030899c",
+      "x0_hash": "77b107b54ae3b46af549bfa0dc0eaec491125052c306b3203ac262eb94c05947"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260929,
+      "condition_id": "DIRECT_XL10_S20260929",
+      "instance_sha256": "9adcade274fecf70d639ab611ecddf60988081afaacb85380540a975ddbc9a32",
+      "preparation_sha256": "25f78958c02a434da8e80181be8ddea6efad7b57416e6b15850919b571e32ad4",
+      "instance_hash": "0cc5242958c804e8bc4e4e59b3c6f366d9194e3b2866fa188009709b09e1e51a",
+      "x0_hash": "b9dde23fee2a853f69f0c1656df441a0a34da9f66754bafcccad14b00f1a0d9a"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260930,
+      "condition_id": "DIRECT_XL10_S20260930",
+      "instance_sha256": "7767b1474e756d5a8781ba50c0e23a43a2347b421bd62c4a44a522f271982806",
+      "preparation_sha256": "2066a95ade9082a8578f10b23764f80c95b6f90d64ceb95fe364e1882ef323d9",
+      "instance_hash": "3984015d1f5815ecfec2b10a7d1d94a71d255ce0af88aa88a11098f7cdd324b3",
+      "x0_hash": "bf97cdc000804758df9595a8a87a423f083d6410778c3516024d2e1244dbee6a"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260921,
+      "condition_id": "DIRECT_XXL10_S20260921",
+      "instance_sha256": "2ebc009d6f00065ecd948070210075b715154257d17c1701acf1b937b821088f",
+      "preparation_sha256": "17030da831a58cecce755bade73b245b4cdc8db18ebb1f4d5b4171e1e01ca39a",
+      "instance_hash": "81739c07edea3babcb62bbaf91ac6ac37eb13c3201052071c5610c4e8a328f94",
+      "x0_hash": "65813dd3712757d9e6f4fa742525041ea32667b6ded2afda8096b1665aedda03"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260922,
+      "condition_id": "DIRECT_XXL10_S20260922",
+      "instance_sha256": "acabbdba1d68be5d562fa604d6c3110de0d42ed49364be72a2db9f52cffaa9b4",
+      "preparation_sha256": "8d7e5d14bf41606dfd4cc0c16795f7c5a0edf0a1501ab726cc40bc8501164dc6",
+      "instance_hash": "fc193c71c5bad6b678e2a2a95ac0b5f71898cbb754e213848913b465051d5ea9",
+      "x0_hash": "531a741e79c1bc3208f7bc47f0e858193e72979b3f35b06154957491bf432457"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260923,
+      "condition_id": "DIRECT_XXL10_S20260923",
+      "instance_sha256": "83ba7cbc4f6b6c28bc1e532c2012cbb728ade2a7438d3bbab4de7b05882c19e7",
+      "preparation_sha256": "8fc56332c2eadeb38a9c627edb704ddf13fe72cb365a368b20f68ca21cb400f0",
+      "instance_hash": "e6cdf60fec71692b351bc22ff285c394317e71bc2594f16b7ec0fa8fb381fc1f",
+      "x0_hash": "85c7fe2e011914825dae1a75eadb5eb63442b307e818b7b8ccb5f1dac1ff64c3"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260924,
+      "condition_id": "DIRECT_XXL10_S20260924",
+      "instance_sha256": "d2f057a0533fba6e8e3b5419ce690989300464926680c869da2a780db712535c",
+      "preparation_sha256": "a6423b5501807b7fe7735acc338300f91c236853483b716a607147447cdb1cd4",
+      "instance_hash": "e8b237496f9060aa1fdb1c9c86015ee9fc357fb8a752d58d80f6e13e8e4df163",
+      "x0_hash": "11730a46b409c296b69affbbcc628812593f6c5a76265d9d2f2d78f1405e987e"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260925,
+      "condition_id": "DIRECT_XXL10_S20260925",
+      "instance_sha256": "014a198279d174e4a91b3e9239505391aaca9a7676807228b5f3cd607f770343",
+      "preparation_sha256": "aa813dead4af95b2218ca68808711905dfdc32daaa6a202df44deb6f4427cd9f",
+      "instance_hash": "55f9b013e762695a4d04763cddf38be89fe21edff9ccb35ae4be5e9703e683c7",
+      "x0_hash": "0063597cf98a7c560389f2c23ef42830aafb7817336edc26a8de292c204e8b35"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260926,
+      "condition_id": "DIRECT_XXL10_S20260926",
+      "instance_sha256": "fe5a6c0e1c0bf23fd5e17b55ac057cea8068f510639a1fc5e13064d84663bdcd",
+      "preparation_sha256": "6b563ef40c6a3dede00155e28fb1693ce10a53875a853b72acecf2edcc1a2327",
+      "instance_hash": "15e77ea2a6d976f5bfb9f7231663611056fad47f52001b742d4a098be9c4e4a5",
+      "x0_hash": "8066e6cf7f976b965aa6d29f8bec73be7f5b600da52d5020b047179ac5d35f09"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260927,
+      "condition_id": "DIRECT_XXL10_S20260927",
+      "instance_sha256": "df8e2aafa9abd31df71208191e2067cf3e9e0f677187f01c5b01b5a82bc70cf3",
+      "preparation_sha256": "ada567056865550c6d59d91e18ba75a3808a3acc8f0245a06ae67fc5c07a5b06",
+      "instance_hash": "5a945d25c347b2b7dd75a586fa9ae2a90fb1b291efabb78f5efb9f1d0ee35c07",
+      "x0_hash": "ef4ab13b4c4a46a0216ac17c0027265301ef2893f014d1dcc6a9b96c561a60a8"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260928,
+      "condition_id": "DIRECT_XXL10_S20260928",
+      "instance_sha256": "c128428758be44d7a1f4161bbc4e5f8379809e26795bfd6f327d47c087b9c9d9",
+      "preparation_sha256": "05a5cb6fe40aa3e6b2907027a89640fe7b0d7bf57cda780e90a76e329696c20d",
+      "instance_hash": "ab57d56583c28260358ca24c530535fcc2f1c12bf67aa3be4f0870156afab699",
+      "x0_hash": "7b699163a79bd13795be2323d4f065c5d3ec768aeb8fe1f9a46aa591b29a303c"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260929,
+      "condition_id": "DIRECT_XXL10_S20260929",
+      "instance_sha256": "bea9350e445fb4bae6db8fed6d10239feda86e5409ac26a2c0946d6826708f9e",
+      "preparation_sha256": "c3d37d75483be8530142778ede92aa6dc3afef837334eb9d7f8e8ceec13ad560",
+      "instance_hash": "29c010cdb8a97ea71b61ce499d42c91c2df128a8f0f7515abb0f424aa9390f35",
+      "x0_hash": "0e1f3745a98856f447f7a0242adee928d877ef9659d7dd4eb9d0f82d7b19daa1"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260930,
+      "condition_id": "DIRECT_XXL10_S20260930",
+      "instance_sha256": "a13c2853a20eb0fdb362dd3167acf487ded1ba72c6cdcbe7192e01e56c799cd6",
+      "preparation_sha256": "b6ee796fd54dd2e2466d0a787744532f3a0c505c429761df387aa8c3edbfebb9",
+      "instance_hash": "c54138f47da83d6ae327c1b5b30d66e68a7428a4e9f46ab7bc7cadefd4484bdf",
+      "x0_hash": "2633cdb20b4ca4bfdd2a100390e9a56042694a5a74cd4e3eef92fbfeae9c64e6"
+    }
+  ],
+  "resource_snapshot": {
+    "available_memory_gib": 15.751571655273438,
+    "minimum_available_memory_gib": 7,
+    "maximum_process_tree_memory_gib": 4,
+    "minimum_system_available_memory_gib": 3,
+    "free_disk_gib": 246.42511367797852,
+    "minimum_free_disk_gib": 20,
+    "condition_time_limit_seconds": 900
+  },
+  "checks": {
+    "exact_30_frozen_inputs": true,
+    "exact_10_authorized": true,
+    "authorized_only_l10": true,
+    "authorized_seeds_exact": true,
+    "scaling_v2_89_certified": true,
+    "environment_matches_new_direct_contract": true,
+    "ram_launch_gate": true,
+    "disk_launch_gate": true,
+    "formal_authorization_enabled": true,
+    "no_optimization_in_audit": true
+  },
+  "optimization_calls": 0
+}

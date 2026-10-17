@@ -1,0 +1,9 @@
+{
+  "aggregate_cuts_sha256": "f4257c214be0a170c44eb7aa3f6541d3843675ee3e400038c43c788d692197b3",
+  "authorization_sha256": "2ebd2cb40c0e89c7e35a1a9e97a95a3ec16252d3597e6ea5e241892909928385",
+  "first_stage_solution_sha256": "e63537e641ac6428df3525726322136ed21a8b485c462adc2aa9e450b72c9575",
+  "formal_run_authorized": true,
+  "identity_table_sha256": "f3a24b3dba51abde335fd0f2be5efdd1b76384cb9595101f599adbbb4fc27170",
+  "iteration_log_sha256": "52c5d4276977b940df29b6de265bbe4d114feba88011a7f100da0a6ff02608f0",
+  "prb_e1a_result_sha256": "276557a1f3118ef7786e68fd9bdcd38ed5782fc8425d90a7ff64f09137fcffbb"
+}

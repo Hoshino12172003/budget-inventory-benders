@@ -1,0 +1,48 @@
+
+Gurobi 13.0.1 (win64) logging started Sat Oct 17 17:19:08 2026
+
+Set parameter OutputFlag to value 1
+Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) Ultra 5 225H, instruction set [SSE2|AVX|AVX2]
+Thread count: 14 physical cores, 14 logical processors, using up to 14 threads
+
+Non-default parameters:
+TimeLimit  8.8864207270019688e+02
+FeasibilityTol  1e-08
+IntFeasTol  1e-08
+MIPGap  0
+OptimalityTol  1e-08
+
+Optimize a model with 184929 rows, 2258462 columns and 6866733 nonzeros (Min)
+Model fingerprint: 0x400473d1
+Model has 926 linear objective coefficients
+Variable types: 2258437 continuous, 25 integer (25 binary)
+Coefficient statistics:
+  Matrix range     [4e-01, 5e+05]
+  Objective range  [1e+00, 3e+04]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e-07, 3e+05]
+
+Presolve removed 5098 rows and 125780 columns (presolve time = 5s)...
+Presolve removed 5098 rows and 125783 columns (presolve time = 10s)...
+Presolve removed 42281 rows and 556537 columns (presolve time = 15s)...
+Presolve removed 42312 rows and 556537 columns (presolve time = 20s)...
+Presolve removed 42312 rows and 556537 columns (presolve time = 25s)...
+Presolve removed 42312 rows and 556537 columns
+Presolve time: 25.04s
+Presolved: 142617 rows, 1701925 columns, 5177688 nonzeros
+Variable types: 1701900 continuous, 25 integer (25 binary)
+Deterministic concurrent LP optimizer: primal simplex, dual simplex, and barrier
+Showing barrier log only...
+
+Root barrier log...
+
+Ordering time: 0.17s
+
+Barrier statistics:
+ Dense cols : 260
+ AA' NZ     : 1.921e+06
+ Factor NZ  : 5.587e+06 (roughly 800 MB of memory)
+ Factor Ops : 2.411e+08 (less than 1 second per iteration)
+ Threads    : 11

@@ -1,0 +1,239 @@
+{
+  "schema": "environment_identity_audit_v2",
+  "status": "COMPARABLE_WITH_EXPLICIT_PROTOCOL_VERSION_RISK",
+  "exact_environment_match": false,
+  "blocking_fields": [],
+  "renault_e1b": {
+    "gurobipy_version": "13.0.2",
+    "gurobi_native_version": [
+      13,
+      0,
+      2
+    ],
+    "status": "VERIFIED_FROM_16_RESULT_FILES_AND_16_SOLVER_LOGS"
+  },
+  "scaling_v2": {
+    "historical_gurobipy_version": "NOT_VERIFIABLE",
+    "historical_gurobi_native_version": "NOT_VERIFIABLE",
+    "evidence_supported_inference": "13.0.1",
+    "result_files_with_solver_version": 0,
+    "provenance_files_with_solver_version": 0,
+    "worker_logs_with_version_banner": 0
+  },
+  "direct_candidate_environment": {
+    "python_version": "3.12.7",
+    "python_executable": "C:\\Program Files\\Python312\\python.exe",
+    "gurobipy_version": "13.0.1",
+    "gurobi_native_version": [
+      13,
+      0,
+      1
+    ],
+    "matches_new_batch_requirement": true
+  },
+  "resource_gate_snapshot": {
+    "available_memory_gib": 15.437511444091797,
+    "eligible_conditions": {
+      "L10": 10,
+      "XL10": 10,
+      "XXL10": 0
+    },
+    "note": "Read-only preflight snapshot; each formal run must repeat the gate immediately before launch."
+  },
+  "comparability_risk": "Direct can use the same instances, explicit solver profile, model implementation, certification, and T_core definition. Exact software-environment pairing to Scaling V2 cannot be proved because the historical interpreter, Gurobi version, version-dependent defaults, full dependency lock, license mechanism, and concurrent-process state were not persisted.",
+  "fields": {
+    "operating_system": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": "Windows-11-10.0.26200-SP0",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": ""
+    },
+    "cpu_model": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": ""
+    },
+    "cpu_cores": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": {
+        "physical": 14,
+        "logical": 14
+      },
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": ""
+    },
+    "physical_memory_gib": {
+      "frozen_value": 31.5,
+      "current_value": 31.5,
+      "source_artifact": "docs/algorithm_scaling_resource_threshold_audit.md",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "python_version": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": "3.12.7",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": "Scaling V2 did not persist Python version; 3.12.7 is compatible with the current code and is required for the new Direct batch."
+    },
+    "python_executable": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": "C:\\Program Files\\Python312\\python.exe",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": "Scaling V2 did not persist its interpreter path."
+    },
+    "gurobipy_version": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": "13.0.1",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": "13.0.1 is supported by command-history and installation-timestamp evidence but is an inference, not an exact archived field."
+    },
+    "gurobi_native_version": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": [
+        13,
+        0,
+        1
+      ],
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": "Renault E1b independently used 13.0.2; that version is not transferred to Scaling V2."
+    },
+    "license_environment": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": "No license environment variable; local license may be used",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": ""
+    },
+    "Threads": {
+      "frozen_value": "DEFAULT_AUTOMATIC",
+      "current_value": "DEFAULT_AUTOMATIC",
+      "source_artifact": "Scaling V2 config and solver profile",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "Seed": {
+      "frozen_value": 0,
+      "current_value": 0,
+      "source_artifact": "Scaling V2 config and solver profile",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "MIPGap": {
+      "frozen_value": 0.0,
+      "current_value": 0.0,
+      "source_artifact": "src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "MIPGapAbs": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": "GUROBI_13.0.1_DEFAULT",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": ""
+    },
+    "FeasibilityTol": {
+      "frozen_value": 1e-08,
+      "current_value": 1e-08,
+      "source_artifact": "src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "OptimalityTol": {
+      "frozen_value": 1e-08,
+      "current_value": 1e-08,
+      "source_artifact": "src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "IntFeasTol": {
+      "frozen_value": 1e-08,
+      "current_value": 1e-08,
+      "source_artifact": "src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "Presolve": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": "GUROBI_13.0.1_DEFAULT",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": ""
+    },
+    "Method": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": "GUROBI_13.0.1_DEFAULT",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": ""
+    },
+    "Cuts": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": "GUROBI_13.0.1_DEFAULT",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": ""
+    },
+    "Heuristics": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": "GUROBI_13.0.1_DEFAULT",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": ""
+    },
+    "NumericFocus": {
+      "frozen_value": 0,
+      "current_value": 0,
+      "source_artifact": "src/robust_inventory_reconfiguration/solver_profile.py",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "execution_code_commit": {
+      "frozen_value": "c46d09c306deb80086a7ceab12812847c117df87",
+      "current_value": "5e52a0383b6cfff68d10da12f2808dacc01ee844",
+      "source_artifact": "formal scaling result/provenance artifacts",
+      "match_status": "MISMATCH",
+      "evidence": "A new Direct runner commit is expected; model-source identity must be reviewed separately."
+    },
+    "dependency_versions": {
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": {
+        "gurobipy": "13.0.1",
+        "psutil": "7.2.2",
+        "PyYAML": "6.0.3"
+      },
+      "source_artifact": "No complete frozen dependency lock",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": ""
+    },
+    "concurrent_optimization_tasks": {
+      "frozen_value": "NONE_RECORDED_BUT_NOT_CONTINUOUSLY_MONITORED",
+      "current_value": [],
+      "source_artifact": "Formal monitor artifacts do not persist a process inventory",
+      "match_status": "MISMATCH",
+      "evidence": ""
+    },
+    "core_time_definition": {
+      "frozen_value": "model construction through exact certification",
+      "current_value": "model construction through exact certification",
+      "source_artifact": "Scaling V2 result fields; docs/direct_scaling_protocol.md",
+      "match_status": "MATCH",
+      "evidence": ""
+    },
+    "resource_timing": {
+      "frozen_value": "process-tree RSS sampled by parent monitor",
+      "current_value": "implemented at 0.25 s sampling",
+      "source_artifact": "docs/algorithm_scaling_resource_threshold_audit.md; experiments/run_direct_scaling.py",
+      "match_status": "MISMATCH",
+      "evidence": ""
+    }
+  }
+}
