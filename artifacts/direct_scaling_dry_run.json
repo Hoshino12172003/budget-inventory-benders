@@ -1,33 +1,18 @@
 {
-  "optimization_calls": 0,
+  "schema": "direct_scaling_dry_run_v2",
+  "formal_run_authorized": false,
   "conditions": 30,
-  "authorized": false,
-  "environment": {
-    "pass": false,
-    "checks": {
-      "python_version": true,
-      "gurobipy_version": false,
-      "gurobi_native_version": false
+  "instance_identity_pass": true,
+  "environment_status": "COMPARABLE_WITH_EXPLICIT_PROTOCOL_VERSION_RISK",
+  "exact_environment_match": false,
+  "resource_gate_snapshot": {
+    "available_memory_gib": 12.268268585205078,
+    "eligible_conditions": {
+      "L10": 10,
+      "XL10": 10,
+      "XXL10": 0
     },
-    "required": {
-      "python_version": "3.12.7",
-      "gurobipy_version": "13.0.2",
-      "gurobi_native_version": [
-        13,
-        0,
-        2
-      ]
-    },
-    "current": {
-      "platform": "Windows-11-10.0.26200-SP0",
-      "python_version": "3.12.7",
-      "python_executable": "C:\\Program Files\\Python312\\python.exe",
-      "gurobipy_version": "13.0.1",
-      "gurobi_native_version": [
-        13,
-        0,
-        1
-      ]
-    }
-  }
+    "note": "Read-only preflight snapshot; each formal run must repeat the gate immediately before launch."
+  },
+  "optimization_calls": 0
 }

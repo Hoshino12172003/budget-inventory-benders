@@ -11,6 +11,17 @@ from pathlib import Path
 
 import psutil
 
+try:
+    from scripts.summarize_renault_four_method_results import (
+        audit_recovered_results,
+        build_table_rows,
+    )
+except ModuleNotFoundError:
+    from summarize_renault_four_method_results import (
+        audit_recovered_results,
+        build_table_rows,
+    )
+
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "experiments/configs/formal/direct_scaling_extension.yaml"
 SOURCE = ROOT / "experiments/results/algorithm_scaling_convergence_cost_v2_repaired_guard"
@@ -55,7 +66,7 @@ def environment_audit(config: dict) -> dict:
     except ImportError:
         gp_version, native = "NOT_INSTALLED", "NOT_INSTALLED"
     active = [p.info for p in psutil.process_iter(["pid", "name", "cmdline"]) if p.pid != os.getpid() and any(token in (p.info["name"] or "").lower() for token in ("gurobi", "python"))]
-    frozen_source = "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py"
+    scaling_source = "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml"
     dependencies = {}
     for package in ("gurobipy", "psutil", "PyYAML"):
         try:
@@ -63,35 +74,74 @@ def environment_audit(config: dict) -> dict:
         except PackageNotFoundError:
             dependencies[package] = "NOT_INSTALLED"
     fields = {
-        "operating_system": value("Windows-11-10.0.26200-SP0", platform.platform(), "experiments/results/e1_algorithm_benchmark/attempt_002/provenance.json", evidence="Frozen provenance records Windows-11-10.0.26200-SP0."),
-        "cpu_model": value("NOT_VERIFIABLE", platform.processor() or "NOT_VERIFIABLE", "No frozen CPU artifact"),
-        "cpu_cores": value("NOT_VERIFIABLE", {"physical": psutil.cpu_count(logical=False), "logical": psutil.cpu_count(logical=True)}, "No frozen core-count artifact"),
+        "operating_system": value("NOT_VERIFIABLE", platform.platform(), scaling_source),
+        "cpu_model": value("NOT_VERIFIABLE", platform.processor() or "NOT_VERIFIABLE", scaling_source),
+        "cpu_cores": value("NOT_VERIFIABLE", {"physical": psutil.cpu_count(logical=False), "logical": psutil.cpu_count(logical=True)}, scaling_source),
         "physical_memory_gib": value(31.5, round(psutil.virtual_memory().total / 2**30, 1), "docs/algorithm_scaling_resource_threshold_audit.md"),
-        "python_version": value(config["required_environment"]["python_version"], platform.python_version(), frozen_source, critical=True),
-        "python_executable": value(r"C:\Users\Hu Jiaxin\Documents\Codex\2026-07-07\z\work\paper-code\.venv\Scripts\python.exe", sys.executable, "docs/e1b_standard_benders_baseline_audit.md", critical=True, evidence="Frozen interpreter path no longer exists on this host."),
-        "gurobipy_version": value("13.0.2", gp_version, frozen_source, critical=True),
-        "gurobi_native_version": value([13, 0, 2], native, frozen_source, critical=True),
-        "license_environment": value("Academic license; exact frozen mechanism NOT_VERIFIABLE", "Environment variables present" if any(os.getenv(k) for k in ("GRB_LICENSE_FILE", "WLSACCESSID", "GRB_WLSACCESSID")) else "No license environment variable; local license may be used", "worker stdout logs; no complete frozen license provenance"),
-        "Threads": value("DEFAULT_AUTOMATIC", "DEFAULT_AUTOMATIC", frozen_source),
-        "Seed": value(0, 0, frozen_source),
+        "python_version": value("NOT_VERIFIABLE", platform.python_version(), scaling_source, evidence="Scaling V2 did not persist Python version; 3.12.7 is compatible with the current code and is required for the new Direct batch."),
+        "python_executable": value("NOT_VERIFIABLE", sys.executable, scaling_source, evidence="Scaling V2 did not persist its interpreter path."),
+        "gurobipy_version": value("NOT_VERIFIABLE", gp_version, scaling_source, evidence="13.0.1 is supported by command-history and installation-timestamp evidence but is an inference, not an exact archived field."),
+        "gurobi_native_version": value("NOT_VERIFIABLE", native, scaling_source, evidence="Renault E1b independently used 13.0.2; that version is not transferred to Scaling V2."),
+        "license_environment": value("NOT_VERIFIABLE", "Environment variables present" if any(os.getenv(k) for k in ("GRB_LICENSE_FILE", "WLSACCESSID", "GRB_WLSACCESSID")) else "No license environment variable; local license may be used", scaling_source),
+        "Threads": value("DEFAULT_AUTOMATIC", "DEFAULT_AUTOMATIC", "Scaling V2 config and solver profile"),
+        "Seed": value(0, 0, "Scaling V2 config and solver profile"),
         "MIPGap": value(0.0, 0.0, "src/robust_inventory_reconfiguration/solver_profile.py"),
-        "MIPGapAbs": value("GUROBI_13.0.2_DEFAULT_NOT_PERSISTED", "GUROBI_13.0.1_DEFAULT_NOT_QUERIED", frozen_source),
+        "MIPGapAbs": value("NOT_VERIFIABLE", "GUROBI_13.0.1_DEFAULT", scaling_source),
         "FeasibilityTol": value(1e-8, 1e-8, "src/robust_inventory_reconfiguration/solver_profile.py"),
         "OptimalityTol": value(1e-8, 1e-8, "src/robust_inventory_reconfiguration/solver_profile.py"),
         "IntFeasTol": value(1e-8, 1e-8, "src/robust_inventory_reconfiguration/solver_profile.py"),
-        "Presolve": value("GUROBI_13.0.2_DEFAULT", "GUROBI_13.0.1_DEFAULT", frozen_source, critical=True),
-        "Method": value("GUROBI_13.0.2_DEFAULT", "GUROBI_13.0.1_DEFAULT", frozen_source, critical=True),
-        "Cuts": value("GUROBI_13.0.2_DEFAULT", "GUROBI_13.0.1_DEFAULT", frozen_source, critical=True),
-        "Heuristics": value("GUROBI_13.0.2_DEFAULT", "GUROBI_13.0.1_DEFAULT", frozen_source, critical=True),
+        "Presolve": value("NOT_VERIFIABLE", "GUROBI_13.0.1_DEFAULT", scaling_source),
+        "Method": value("NOT_VERIFIABLE", "GUROBI_13.0.1_DEFAULT", scaling_source),
+        "Cuts": value("NOT_VERIFIABLE", "GUROBI_13.0.1_DEFAULT", scaling_source),
+        "Heuristics": value("NOT_VERIFIABLE", "GUROBI_13.0.1_DEFAULT", scaling_source),
         "NumericFocus": value(0, 0, "src/robust_inventory_reconfiguration/solver_profile.py"),
         "execution_code_commit": value("c46d09c306deb80086a7ceab12812847c117df87", subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(), "formal scaling result/provenance artifacts", evidence="A new Direct runner commit is expected; model-source identity must be reviewed separately."),
         "dependency_versions": value("NOT_VERIFIABLE", dependencies, "No complete frozen dependency lock"),
         "concurrent_optimization_tasks": value("NONE_RECORDED_BUT_NOT_CONTINUOUSLY_MONITORED", active, "Formal monitor artifacts do not persist a process inventory"),
-        "core_time_definition": value("model construction through exact certification", "model construction through exact certification", "docs/e1b_pure_benders_definition_execution_timing_audit.md; docs/direct_scaling_protocol.md"),
+        "core_time_definition": value("model construction through exact certification", "model construction through exact certification", "Scaling V2 result fields; docs/direct_scaling_protocol.md"),
         "resource_timing": value("process-tree RSS sampled by parent monitor", "implemented at 0.25 s sampling", "docs/algorithm_scaling_resource_threshold_audit.md; experiments/run_direct_scaling.py"),
     }
     blocking = [name for name, row in fields.items() if row["match_status"] == "BLOCKING_MISMATCH"]
-    return {"schema": "environment_identity_audit_v1", "status": "BLOCK_FORMAL_EXECUTION" if blocking else "PASS", "blocking_fields": blocking, "fields": fields}
+    available_gib = psutil.virtual_memory().available / 2**30
+    resource_gate_eligible_conditions = {
+        size["label"]: len(config["seeds"])
+        if available_gib >= config["resource_policy"]["minimum_available_memory_gib_by_size"][size["label"]]
+        else 0
+        for size in config["sizes"]
+    }
+    return {
+        "schema": "environment_identity_audit_v2",
+        "status": "COMPARABLE_WITH_EXPLICIT_PROTOCOL_VERSION_RISK",
+        "exact_environment_match": False,
+        "blocking_fields": blocking,
+        "renault_e1b": {
+            "gurobipy_version": "13.0.2",
+            "gurobi_native_version": [13, 0, 2],
+            "status": "VERIFIED_FROM_16_RESULT_FILES_AND_16_SOLVER_LOGS",
+        },
+        "scaling_v2": {
+            "historical_gurobipy_version": "NOT_VERIFIABLE",
+            "historical_gurobi_native_version": "NOT_VERIFIABLE",
+            "evidence_supported_inference": "13.0.1",
+            "result_files_with_solver_version": 0,
+            "provenance_files_with_solver_version": 0,
+            "worker_logs_with_version_banner": 0,
+        },
+        "direct_candidate_environment": {
+            "python_version": platform.python_version(),
+            "python_executable": sys.executable,
+            "gurobipy_version": gp_version,
+            "gurobi_native_version": native,
+            "matches_new_batch_requirement": gp_version == config["required_environment"]["gurobipy_version"] and native == config["required_environment"]["gurobi_native_version"],
+        },
+        "resource_gate_snapshot": {
+            "available_memory_gib": available_gib,
+            "eligible_conditions": resource_gate_eligible_conditions,
+            "note": "Read-only preflight snapshot; each formal run must repeat the gate immediately before launch.",
+        },
+        "comparability_risk": "Direct can use the same instances, explicit solver profile, model implementation, certification, and T_core definition. Exact software-environment pairing to Scaling V2 cannot be proved because the historical interpreter, Gurobi version, version-dependent defaults, full dependency lock, license mechanism, and concurrent-process state were not persisted.",
+        "fields": fields,
+    }
 
 
 def instance_manifest(config: dict) -> list[dict]:
@@ -112,25 +162,7 @@ def instance_manifest(config: dict) -> list[dict]:
 
 
 def build_tables(config: dict) -> None:
-    empirical = {row["case"]: row for row in read_csv(ROOT / "table_e1_empirical_performance.csv")}
-    mechanism = read_csv(ROOT / "table_e1c_algorithm_mechanism_comparison.csv")
-    lookup = {(row["case_or_scale"], row["method"]): row for row in mechanism if row["scope"] == "empirical"}
-    table1 = []
-    for case, row in empirical.items():
-        pure = lookup.get((case, "Pure Benders"), {})
-        aggregate = lookup.get((case, "Aggregate Benders + Structured Oracle"), {})
-        objectives = [float(row["direct_objective"]), float(row["prb_objective"])]
-        for source in (pure, aggregate):
-            if source.get("objective"):
-                objectives.append(float(source["objective"]))
-        table1.append({
-            "Case": case, "Direct core time": row["direct_runtime_seconds"],
-            "Pure Benders core time": pure.get("T_core_seconds", "NOT_VERIFIABLE"),
-            "Aggregate+Structured core time": aggregate.get("T_core_seconds", "NOT_VERIFIABLE"),
-            "PRB core time": row["prb_runtime_seconds"],
-            "Objective consistency": ("PASS_ALL_FOUR" if pure and aggregate else "PASS_DIRECT_PRB_ONLY") if max(objectives) - min(objectives) <= 1e-4 else "FAIL",
-            "Certification status": "DIRECT_AND_PRB_CERTIFIED; PURE_AND_AGGREGATE_" + ("CERTIFIED" if pure and aggregate else "NOT_VERIFIABLE_FROM_TRACKED_RAW_ARTIFACTS"),
-        })
+    table1 = build_table_rows(audit_recovered_results())
     write_csv(ARTIFACTS / "table_1_renault_four_method_comparison.csv", table1, list(table1[0]))
 
     summary = read_csv(SOURCE / "algorithm_scaling_summary_by_size.csv")
@@ -168,6 +200,17 @@ def main() -> None:
     manifest = instance_manifest(config)
     write_csv(ARTIFACTS / "direct_scaling_instance_manifest.csv", manifest, list(manifest[0]))
     build_tables(config)
+    dry_run = {
+        "schema": "direct_scaling_dry_run_v2",
+        "formal_run_authorized": config["formal_run_authorized"],
+        "conditions": len(manifest),
+        "instance_identity_pass": all(row["identity_status"] == "PASS" for row in manifest),
+        "environment_status": audit["status"],
+        "exact_environment_match": audit["exact_environment_match"],
+        "resource_gate_snapshot": audit["resource_gate_snapshot"],
+        "optimization_calls": 0,
+    }
+    (ARTIFACTS / "direct_scaling_dry_run.json").write_text(json.dumps(dry_run, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     print(json.dumps({"environment_status": audit["status"], "instances": len(manifest), "instance_identity_pass": all(row["identity_status"] == "PASS" for row in manifest), "optimization_calls": 0}, indent=2))
 
 

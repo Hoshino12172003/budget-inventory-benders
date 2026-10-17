@@ -1,27 +1,58 @@
 {
-  "schema": "environment_identity_audit_v1",
-  "status": "BLOCK_FORMAL_EXECUTION",
-  "blocking_fields": [
-    "python_executable",
-    "gurobipy_version",
-    "gurobi_native_version",
-    "Presolve",
-    "Method",
-    "Cuts",
-    "Heuristics"
-  ],
+  "schema": "environment_identity_audit_v2",
+  "status": "COMPARABLE_WITH_EXPLICIT_PROTOCOL_VERSION_RISK",
+  "exact_environment_match": false,
+  "blocking_fields": [],
+  "renault_e1b": {
+    "gurobipy_version": "13.0.2",
+    "gurobi_native_version": [
+      13,
+      0,
+      2
+    ],
+    "status": "VERIFIED_FROM_16_RESULT_FILES_AND_16_SOLVER_LOGS"
+  },
+  "scaling_v2": {
+    "historical_gurobipy_version": "NOT_VERIFIABLE",
+    "historical_gurobi_native_version": "NOT_VERIFIABLE",
+    "evidence_supported_inference": "13.0.1",
+    "result_files_with_solver_version": 0,
+    "provenance_files_with_solver_version": 0,
+    "worker_logs_with_version_banner": 0
+  },
+  "direct_candidate_environment": {
+    "python_version": "3.12.7",
+    "python_executable": "C:\\Program Files\\Python312\\python.exe",
+    "gurobipy_version": "13.0.1",
+    "gurobi_native_version": [
+      13,
+      0,
+      1
+    ],
+    "matches_new_batch_requirement": true
+  },
+  "resource_gate_snapshot": {
+    "available_memory_gib": 12.268268585205078,
+    "eligible_conditions": {
+      "L10": 10,
+      "XL10": 10,
+      "XXL10": 0
+    },
+    "note": "Read-only preflight snapshot; each formal run must repeat the gate immediately before launch."
+  },
+  "comparability_risk": "Direct can use the same instances, explicit solver profile, model implementation, certification, and T_core definition. Exact software-environment pairing to Scaling V2 cannot be proved because the historical interpreter, Gurobi version, version-dependent defaults, full dependency lock, license mechanism, and concurrent-process state were not persisted.",
   "fields": {
     "operating_system": {
-      "frozen_value": "Windows-11-10.0.26200-SP0",
+      "frozen_value": "NOT_VERIFIABLE",
       "current_value": "Windows-11-10.0.26200-SP0",
-      "source_artifact": "experiments/results/e1_algorithm_benchmark/attempt_002/provenance.json",
-      "match_status": "MATCH",
-      "evidence": "Frozen provenance records Windows-11-10.0.26200-SP0."
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": ""
     },
     "cpu_model": {
       "frozen_value": "NOT_VERIFIABLE",
       "current_value": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel",
-      "source_artifact": "No frozen CPU artifact",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
       "match_status": "NOT_VERIFIABLE",
       "evidence": ""
     },
@@ -31,7 +62,7 @@
         "physical": 14,
         "logical": 14
       },
-      "source_artifact": "No frozen core-count artifact",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
       "match_status": "NOT_VERIFIABLE",
       "evidence": ""
     },
@@ -43,59 +74,55 @@
       "evidence": ""
     },
     "python_version": {
-      "frozen_value": "3.12.7",
+      "frozen_value": "NOT_VERIFIABLE",
       "current_value": "3.12.7",
-      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
-      "match_status": "MATCH",
-      "evidence": ""
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": "Scaling V2 did not persist Python version; 3.12.7 is compatible with the current code and is required for the new Direct batch."
     },
     "python_executable": {
-      "frozen_value": "C:\\Users\\Hu Jiaxin\\Documents\\Codex\\2026-07-07\\z\\work\\paper-code\\.venv\\Scripts\\python.exe",
+      "frozen_value": "NOT_VERIFIABLE",
       "current_value": "C:\\Program Files\\Python312\\python.exe",
-      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md",
-      "match_status": "BLOCKING_MISMATCH",
-      "evidence": "Frozen interpreter path no longer exists on this host."
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": "Scaling V2 did not persist its interpreter path."
     },
     "gurobipy_version": {
-      "frozen_value": "13.0.2",
+      "frozen_value": "NOT_VERIFIABLE",
       "current_value": "13.0.1",
-      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
-      "match_status": "BLOCKING_MISMATCH",
-      "evidence": ""
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": "13.0.1 is supported by command-history and installation-timestamp evidence but is an inference, not an exact archived field."
     },
     "gurobi_native_version": {
-      "frozen_value": [
-        13,
-        0,
-        2
-      ],
+      "frozen_value": "NOT_VERIFIABLE",
       "current_value": [
         13,
         0,
         1
       ],
-      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
-      "match_status": "BLOCKING_MISMATCH",
-      "evidence": ""
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
+      "evidence": "Renault E1b independently used 13.0.2; that version is not transferred to Scaling V2."
     },
     "license_environment": {
-      "frozen_value": "Academic license; exact frozen mechanism NOT_VERIFIABLE",
+      "frozen_value": "NOT_VERIFIABLE",
       "current_value": "No license environment variable; local license may be used",
-      "source_artifact": "worker stdout logs; no complete frozen license provenance",
-      "match_status": "MISMATCH",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
       "evidence": ""
     },
     "Threads": {
       "frozen_value": "DEFAULT_AUTOMATIC",
       "current_value": "DEFAULT_AUTOMATIC",
-      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
+      "source_artifact": "Scaling V2 config and solver profile",
       "match_status": "MATCH",
       "evidence": ""
     },
     "Seed": {
       "frozen_value": 0,
       "current_value": 0,
-      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
+      "source_artifact": "Scaling V2 config and solver profile",
       "match_status": "MATCH",
       "evidence": ""
     },
@@ -107,10 +134,10 @@
       "evidence": ""
     },
     "MIPGapAbs": {
-      "frozen_value": "GUROBI_13.0.2_DEFAULT_NOT_PERSISTED",
-      "current_value": "GUROBI_13.0.1_DEFAULT_NOT_QUERIED",
-      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
-      "match_status": "MISMATCH",
+      "frozen_value": "NOT_VERIFIABLE",
+      "current_value": "GUROBI_13.0.1_DEFAULT",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
       "evidence": ""
     },
     "FeasibilityTol": {
@@ -135,31 +162,31 @@
       "evidence": ""
     },
     "Presolve": {
-      "frozen_value": "GUROBI_13.0.2_DEFAULT",
+      "frozen_value": "NOT_VERIFIABLE",
       "current_value": "GUROBI_13.0.1_DEFAULT",
-      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
-      "match_status": "BLOCKING_MISMATCH",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
       "evidence": ""
     },
     "Method": {
-      "frozen_value": "GUROBI_13.0.2_DEFAULT",
+      "frozen_value": "NOT_VERIFIABLE",
       "current_value": "GUROBI_13.0.1_DEFAULT",
-      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
-      "match_status": "BLOCKING_MISMATCH",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
       "evidence": ""
     },
     "Cuts": {
-      "frozen_value": "GUROBI_13.0.2_DEFAULT",
+      "frozen_value": "NOT_VERIFIABLE",
       "current_value": "GUROBI_13.0.1_DEFAULT",
-      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
-      "match_status": "BLOCKING_MISMATCH",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
       "evidence": ""
     },
     "Heuristics": {
-      "frozen_value": "GUROBI_13.0.2_DEFAULT",
+      "frozen_value": "NOT_VERIFIABLE",
       "current_value": "GUROBI_13.0.1_DEFAULT",
-      "source_artifact": "docs/e1b_standard_benders_baseline_audit.md; docs/e1b_standard_benders_protocol.md; src/robust_inventory_reconfiguration/solver_profile.py",
-      "match_status": "BLOCKING_MISMATCH",
+      "source_artifact": "Scaling V2 result/provenance files and worker logs; experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+      "match_status": "NOT_VERIFIABLE",
       "evidence": ""
     },
     "NumericFocus": {
@@ -171,7 +198,7 @@
     },
     "execution_code_commit": {
       "frozen_value": "c46d09c306deb80086a7ceab12812847c117df87",
-      "current_value": "7dabe36c4a38f0e55eb769606610adb3185287c8",
+      "current_value": "a0806ddc386e33bda47b63e6791a2cc9527a9b80",
       "source_artifact": "formal scaling result/provenance artifacts",
       "match_status": "MISMATCH",
       "evidence": "A new Direct runner commit is expected; model-source identity must be reviewed separately."
@@ -197,7 +224,7 @@
     "core_time_definition": {
       "frozen_value": "model construction through exact certification",
       "current_value": "model construction through exact certification",
-      "source_artifact": "docs/e1b_pure_benders_definition_execution_timing_audit.md; docs/direct_scaling_protocol.md",
+      "source_artifact": "Scaling V2 result fields; docs/direct_scaling_protocol.md",
       "match_status": "MATCH",
       "evidence": ""
     },

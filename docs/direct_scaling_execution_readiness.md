@@ -2,7 +2,7 @@
 
 ## Current status
 
-`NOT_READY_FOR_FORMAL_EXECUTION`
+`READY_FOR_EXPLICIT_AUTHORIZATION_WITH_SIZE_GATES`
 
 Completed without optimization:
 
@@ -12,19 +12,19 @@ Completed without optimization:
 4. Fail-closed runner, short atomic path, resume identity check, sequential parent monitor: implemented.
 5. Result protection and identity tests: implemented.
 6. Dry-run development safety test: PASS with `optimization_calls=0`.
-7. Paper-table generator: implemented; missing evidence is retained as `NOT_VERIFIABLE` or `PENDING_AUTHORIZATION`.
+7. Renault four-method table: complete and directly regenerated from 8/8 Direct, PRB, Pure, and Aggregate evidence.
+8. Recovered E1b archive: PASS (88/88 byte-identical files; 16/16 exact-certified runs).
 
 Blocking items:
 
 - `formal_run_authorized=false` by design.
-- Current gurobipy/native Gurobi is 13.0.1; frozen comparable environment is 13.0.2.
-- The frozen interpreter path no longer exists. A replacement 3.12.7 environment with Gurobi 13.0.2 must be created and recorded; dependency identity beyond Python/Gurobi is not fully recoverable from a lock file.
-- Frozen CPU/core identity and exact license mechanism are `NOT_VERIFIABLE` from committed provenance.
-- XXL10 currently has about 14.86 GiB available, below its 16-GiB preflight threshold.
-- Seven of eight Pure/Aggregate Renault raw result sets are not tracked, so a complete four-method Renault timing table cannot be claimed from this commit.
+- Scaling V2's historical Python executable, Gurobi version, version-dependent defaults, complete dependency lock, exact license mechanism, and continuously monitored concurrent-process state remain `NOT_VERIFIABLE`.
+- Current Python 3.12.7 and Gurobi 13.0.1 satisfy the environment frozen for the new Direct batch. This supports protocol-level paired comparison but not exact historical environment matching.
+- Frozen Scaling V2 CPU/core identity is also `NOT_VERIFIABLE` from committed provenance.
+- At the final read-only audit snapshot, about 12.27 GiB was available; XXL10 is below its 16-GiB preflight threshold.
 
 ## Authorization boundary
 
-Do not authorize the 30-run batch yet. First restore the required solver environment, re-run the environment audit, and obtain at least 16 GiB available before any XXL10 attempt. Once those checks pass, a separate reviewed commit may set authorization true. L10 and XL10 are statically resource-eligible; XXL10 remains conditional on its existing preflight. Formal runs must proceed one condition at a time in seed order.
+The preparation is ready for the user's explicit authorization, but authorization remains false. At the audited preflight, L10 has 10/10 statically eligible conditions, XL10 has 10/10, and XXL10 has 0/10 because available memory is below its unchanged 16-GiB launch threshold. A later authorization must not waive that gate; XXL10 can start only when the existing threshold is met. Formal runs must proceed one condition at a time in seed order.
 
 No formal or development optimization was executed during this preparation.

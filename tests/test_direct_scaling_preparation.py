@@ -53,3 +53,20 @@ def test_short_atomic_directory_name() -> None:
     source = Path(runner.__file__).read_text(encoding="utf-8")
     assert '.tmp-{uuid4().hex[:12]}' in source
     assert "refusing to overwrite Direct result" in source
+
+
+def test_direct_environment_requirement_is_not_inherited_from_renault() -> None:
+    config = runner.load_config(runner.CONFIG)
+    required = config["required_environment"]
+    assert required["gurobipy_version"] == "13.0.1"
+    assert required["gurobi_native_version"] == [13, 0, 1]
+    assert required["scaling_v2_historical_solver_version"] == "NOT_VERIFIABLE"
+
+
+def test_direct_model_identity_covers_runner_and_model_sources() -> None:
+    identity = runner.model_identity()
+    assert len(identity["sha256"]) == 64
+    assert set(identity["files"]) == set(runner.MODEL_FILES)
+    source = Path(runner.__file__).read_text(encoding="utf-8")
+    assert '"model_identity": model_identity_record["sha256"]' in source
+    assert '"model_identity": model_identity_record,' in source

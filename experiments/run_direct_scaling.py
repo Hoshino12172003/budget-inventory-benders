@@ -28,6 +28,13 @@ from robust_inventory_reconfiguration.risk_budget_composition import compose_ris
 
 
 CONFIG = ROOT / "experiments/configs/formal/direct_scaling_extension.yaml"
+MODEL_FILES = (
+    "experiments/run_direct_scaling.py",
+    "src/robust_inventory_reconfiguration/reconfiguration_model.py",
+    "src/robust_inventory_reconfiguration/product_risk_subproblem.py",
+    "src/robust_inventory_reconfiguration/risk_budget_composition.py",
+    "src/robust_inventory_reconfiguration/solver_profile.py",
+)
 
 
 def load_config(path: Path) -> dict:
@@ -50,7 +57,13 @@ def current_environment() -> dict:
         "python_executable": sys.executable,
         "gurobipy_version": gp.__version__,
         "gurobi_native_version": list(gp.gurobi.version()),
+        "gurobipy_file": str(Path(gp.__file__).resolve()),
     }
+
+
+def model_identity() -> dict:
+    files = {path: file_sha256(ROOT / path) for path in MODEL_FILES}
+    return {"sha256": canonical_hash(files), "files": files}
 
 
 def validate_environment(config: dict) -> dict:
@@ -140,6 +153,7 @@ def solve_condition(config: dict, condition: dict, output_root: Path) -> None:
         raise RuntimeError("prepared instance has no x0")
     total_started = perf_counter()
     core_started = perf_counter()
+    model_identity_record = model_identity()
     build_started = perf_counter()
     model, variables = build_exact_reconfiguration_model(
         instance, x0, float(preparation["budget"]),
@@ -177,6 +191,7 @@ def solve_condition(config: dict, condition: dict, output_root: Path) -> None:
         "certification_seconds": certification_seconds, "T_core_seconds": core_seconds,
         "total_wall_seconds": perf_counter() - total_started,
         "config_hash": canonical_hash(config), "instance_hash": preparation["instance_hash"],
+        "model_identity": model_identity_record["sha256"],
         "code_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
         "environment": current_environment(), "resource_preflight": gate,
     }
@@ -192,7 +207,12 @@ def solve_condition(config: dict, condition: dict, output_root: Path) -> None:
             )
             (temporary / "first_stage_solution.json").write_text(json.dumps(artifact, indent=2, allow_nan=False) + "\n", encoding="utf-8")
         shutil.move(str(output_root / f".{condition['condition_id']}.solver.log"), temporary / "solver.log")
-        provenance = {**input_hashes, "result_sha256": file_sha256(temporary / "result.json")}
+        provenance = {
+            **input_hashes,
+            "result_sha256": file_sha256(temporary / "result.json"),
+            "model_identity": model_identity_record,
+            "environment": result["environment"],
+        }
         (temporary / "provenance.json").write_text(json.dumps(provenance, indent=2) + "\n", encoding="utf-8")
         target.parent.mkdir(parents=True, exist_ok=True)
         os.replace(temporary, target)
