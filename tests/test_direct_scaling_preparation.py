@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 from experiments import run_direct_scaling as runner
+from scripts.audit_direct_scaling_l10_authorization import audit as authorization_audit
 
 
 def test_direct_grid_is_frozen_30_conditions() -> None:
@@ -20,10 +21,10 @@ def test_direct_grid_is_frozen_30_conditions() -> None:
 
 
 def test_formal_execution_is_fail_closed_before_environment_probe(monkeypatch) -> None:
-    config = runner.load_config(runner.CONFIG)
+    config = {**runner.load_config(runner.CONFIG), "formal_run_authorized": False}
     monkeypatch.setattr(runner, "current_environment", lambda: pytest.fail("environment probe should not run"))
     with pytest.raises(RuntimeError, match="NOT_AUTHORIZED"):
-        runner.validate_execution_gate(config, "L10")
+        runner.validate_execution_gate(config, runner.conditions(config)[0], runner.ROOT / config["output_directory"])
 
 
 def test_all_frozen_inputs_pass_identity_checks() -> None:
@@ -70,3 +71,41 @@ def test_direct_model_identity_covers_runner_and_model_sources() -> None:
     source = Path(runner.__file__).read_text(encoding="utf-8")
     assert '"model_identity": model_identity_record["sha256"]' in source
     assert '"model_identity": model_identity_record,' in source
+
+
+def test_authorization_is_exactly_the_ten_l10_conditions() -> None:
+    config = runner.load_config(runner.CONFIG)
+    authorized = runner.authorized_conditions(config)
+    assert [row["condition_id"] for row in authorized] == [
+        f"DIRECT_L10_S{seed}" for seed in range(20260921, 20260931)
+    ]
+    assert all(row["size"] == "L10" for row in authorized)
+    assert len(runner.conditions(config)) == 30
+
+
+def test_xl10_and_xxl10_are_rejected_before_environment_probe(monkeypatch, tmp_path: Path) -> None:
+    config = runner.load_config(runner.CONFIG)
+    monkeypatch.setattr(runner, "current_environment", lambda: pytest.fail("environment probe should not run"))
+    for condition in runner.conditions(config):
+        if condition["size"] != "L10":
+            with pytest.raises(RuntimeError, match="CONDITION_NOT_AUTHORIZED"):
+                runner.validate_execution_gate(config, condition, runner.ROOT / config["output_directory"])
+
+
+def test_l10_authorization_audit_passes_without_optimization() -> None:
+    payload = authorization_audit()
+    assert payload["status"] == "PASS"
+    assert payload["optimization_calls"] == 0
+    assert payload["source_scaling_post_run"]["formal_counts"] == {
+        "expected": 90,
+        "certified": 89,
+        "documented_non_certified": 1,
+        "unattempted": 0,
+    }
+
+
+def test_runner_preserves_solver_log_and_progress_evidence() -> None:
+    source = Path(runner.__file__).read_text(encoding="utf-8")
+    assert "model.Params.OutputFlag = 1" in source
+    assert "solver_progress.json" in source
+    assert "RESOURCE_MONITOR_FAILURE" in source

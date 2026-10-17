@@ -203,7 +203,8 @@ def main() -> None:
     dry_run = {
         "schema": "direct_scaling_dry_run_v2",
         "formal_run_authorized": config["formal_run_authorized"],
-        "conditions": len(manifest),
+        "configured_conditions": len(manifest),
+        "authorized_condition_ids": config.get("authorized_condition_ids", []),
         "instance_identity_pass": all(row["identity_status"] == "PASS" for row in manifest),
         "environment_status": audit["status"],
         "exact_environment_match": audit["exact_environment_match"],

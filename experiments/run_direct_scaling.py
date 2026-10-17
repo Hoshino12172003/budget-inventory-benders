@@ -48,6 +48,18 @@ def conditions(config: dict) -> list[dict]:
     ]
 
 
+def authorized_conditions(config: dict) -> list[dict]:
+    grid = conditions(config)
+    lookup = {row["condition_id"]: row for row in grid}
+    identifiers = config.get("authorized_condition_ids", [])
+    if len(identifiers) != len(set(identifiers)):
+        raise RuntimeError("duplicate Direct authorization condition")
+    unknown = sorted(set(identifiers) - set(lookup))
+    if unknown:
+        raise RuntimeError(f"unknown Direct authorization condition: {unknown}")
+    return [lookup[identifier] for identifier in identifiers]
+
+
 def current_environment() -> dict:
     import gurobipy as gp
 
@@ -77,19 +89,45 @@ def validate_environment(config: dict) -> dict:
     return {"pass": all(checks.values()), "checks": checks, "required": required, "current": current}
 
 
-def validate_execution_gate(config: dict, size: str) -> dict:
+def _unexpected_worktree_changes(output_root: Path) -> list[str]:
+    relative_output = output_root.resolve().relative_to(ROOT.resolve()).as_posix() + "/"
+    lines = subprocess.check_output(
+        ["git", "status", "--porcelain=v1", "--untracked-files=all"],
+        cwd=ROOT,
+        text=True,
+    ).splitlines()
+    return [line for line in lines if not line[3:].replace("\\", "/").startswith(relative_output)]
+
+
+def validate_execution_gate(config: dict, condition: dict, output_root: Path) -> dict:
     if config.get("formal_run_authorized") is not True:
         raise RuntimeError("FORMAL_DIRECT_EXECUTION_NOT_AUTHORIZED")
+    if condition["condition_id"] not in {row["condition_id"] for row in authorized_conditions(config)}:
+        raise RuntimeError(f"DIRECT_CONDITION_NOT_AUTHORIZED: {condition['condition_id']}")
+    configured_output = (ROOT / config["output_directory"]).resolve()
+    if output_root.resolve() != configured_output:
+        raise RuntimeError(f"DIRECT_OUTPUT_ROOT_MISMATCH: {output_root} != {configured_output}")
     environment = validate_environment(config)
     if not environment["pass"]:
         raise RuntimeError(f"ENVIRONMENT_IDENTITY_MISMATCH: {environment['checks']}")
-    if subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT).strip():
-        raise RuntimeError("formal Direct execution requires a clean committed worktree")
+    unexpected = _unexpected_worktree_changes(output_root)
+    if unexpected:
+        raise RuntimeError(f"formal Direct execution found changes outside its output root: {unexpected}")
     available = psutil.virtual_memory().available / 2**30
-    minimum = config["resource_policy"]["minimum_available_memory_gib_by_size"][size]
+    minimum = config["resource_policy"]["minimum_available_memory_gib_by_size"][condition["size"]]
     if available < minimum:
-        raise RuntimeError(f"RESOURCE_GATE_BLOCKED {size}: {available:.3f} GiB < {minimum:.3f} GiB")
-    return {"available_memory_gib": available, "minimum_memory_gib": minimum}
+        raise RuntimeError(f"RESOURCE_GATE_BLOCKED {condition['size']}: {available:.3f} GiB < {minimum:.3f} GiB")
+    disk_free = shutil.disk_usage(configured_output.parent).free / 2**30
+    disk_minimum = config["resource_policy"]["minimum_free_disk_gib"]
+    if disk_free < disk_minimum:
+        raise RuntimeError(f"DISK_GATE_BLOCKED: {disk_free:.3f} GiB < {disk_minimum:.3f} GiB")
+    return {
+        "available_memory_gib": available,
+        "minimum_memory_gib": minimum,
+        "free_disk_gib": disk_free,
+        "minimum_free_disk_gib": disk_minimum,
+        "environment": environment,
+    }
 
 
 def verified_input(config: dict, condition: dict):
@@ -139,10 +177,16 @@ def certify_solution(instance, solution: ReconfigurationSolution, gamma: int) ->
     return compose_risk_budget(tables, gamma).value
 
 
+def _write_solver_progress(path: Path, payload: dict) -> None:
+    temporary = path.with_suffix(".tmp")
+    temporary.write_text(json.dumps(payload, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    os.replace(temporary, path)
+
+
 def solve_condition(config: dict, condition: dict, output_root: Path) -> None:
     from gurobipy import GRB
 
-    gate = validate_execution_gate(config, condition["size"])
+    gate = validate_execution_gate(config, condition, output_root)
     output_root.mkdir(parents=True, exist_ok=True)
     target = output_root / "runs" / condition["condition_id"]
     if target.exists():
@@ -164,23 +208,51 @@ def solve_condition(config: dict, condition: dict, output_root: Path) -> None:
     time_limit = config["resource_policy"]["condition_time_limit_seconds"]
     model.Params.TimeLimit = max(1.0, time_limit - model_build_seconds)
     model.Params.LogFile = str(output_root / f".{condition['condition_id']}.solver.log")
-    model.optimize()
+    model.Params.OutputFlag = 1
+    progress_path = output_root / f".{condition['condition_id']}.progress.json"
+    last_progress_seconds = [-5.0]
+
+    def progress_callback(active_model, where):
+        if where != GRB.Callback.MIP:
+            return
+        runtime = float(active_model.cbGet(GRB.Callback.RUNTIME))
+        if runtime - last_progress_seconds[0] < 5.0:
+            return
+        last_progress_seconds[0] = runtime
+        _write_solver_progress(progress_path, {
+            "condition_id": condition["condition_id"],
+            "runtime_seconds": runtime,
+            "incumbent": float(active_model.cbGet(GRB.Callback.MIP_OBJBST)),
+            "best_bound": float(active_model.cbGet(GRB.Callback.MIP_OBJBND)),
+            "node_count": float(active_model.cbGet(GRB.Callback.MIP_NODCNT)),
+        })
+
+    model.optimize(progress_callback)
     optimize_seconds = float(model.Runtime)
     status = {GRB.OPTIMAL: "OPTIMAL", GRB.TIME_LIMIT: "TIME_LIMIT", GRB.MEM_LIMIT: "MEMORY_LIMIT"}.get(model.Status, "OTHER")
     solution = _solution(instance, model, variables) if model.SolCount else None
     certification_seconds = None
     certified_recourse = None
     exact = False
+    certification_status = "NOT_ATTEMPTED"
+    certification_error = None
     if status == "OPTIMAL" and solution is not None:
         started = perf_counter()
-        certified_recourse = certify_solution(instance, solution, config["fixed_scientific_parameters"]["Gamma"])
-        certification_seconds = perf_counter() - started
-        exact = abs(solution.first_stage_expenditure + certified_recourse - solution.objective) <= 1e-4
+        try:
+            certified_recourse = certify_solution(instance, solution, config["fixed_scientific_parameters"]["Gamma"])
+            exact = abs(solution.first_stage_expenditure + certified_recourse - solution.objective) <= 1e-4
+            certification_status = "PASS" if exact else "OBJECTIVE_RESIDUAL_FAILURE"
+        except Exception as exc:
+            certification_status = "ERROR"
+            certification_error = f"{type(exc).__name__}: {exc}"
+        finally:
+            certification_seconds = perf_counter() - started
     core_seconds = perf_counter() - core_started
     result = {
         "experiment_id": config["experiment_id"], "condition_id": condition["condition_id"],
         "method": "direct_exact", "size": condition["size"], "seed": condition["seed"],
         "solver_status": status, "exact_certification": exact,
+        "certification_status": certification_status, "certification_error": certification_error,
         "objective": solution.objective if solution else None,
         "best_bound": float(model.ObjBound) if model.SolCount else None,
         "mip_gap": float(model.MIPGap) if model.SolCount else None,
@@ -192,6 +264,7 @@ def solve_condition(config: dict, condition: dict, output_root: Path) -> None:
         "total_wall_seconds": perf_counter() - total_started,
         "config_hash": canonical_hash(config), "instance_hash": preparation["instance_hash"],
         "model_identity": model_identity_record["sha256"],
+        "solver_parameters": config["solver_parameters"],
         "code_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
         "environment": current_environment(), "resource_preflight": gate,
     }
@@ -207,12 +280,16 @@ def solve_condition(config: dict, condition: dict, output_root: Path) -> None:
             )
             (temporary / "first_stage_solution.json").write_text(json.dumps(artifact, indent=2, allow_nan=False) + "\n", encoding="utf-8")
         shutil.move(str(output_root / f".{condition['condition_id']}.solver.log"), temporary / "solver.log")
+        if progress_path.is_file():
+            shutil.move(str(progress_path), temporary / "solver_progress.json")
         provenance = {
             **input_hashes,
             "result_sha256": file_sha256(temporary / "result.json"),
             "model_identity": model_identity_record,
             "environment": result["environment"],
         }
+        if (temporary / "solver_progress.json").is_file():
+            provenance["solver_progress_sha256"] = file_sha256(temporary / "solver_progress.json")
         (temporary / "provenance.json").write_text(json.dumps(provenance, indent=2) + "\n", encoding="utf-8")
         target.parent.mkdir(parents=True, exist_ok=True)
         os.replace(temporary, target)
@@ -243,12 +320,12 @@ def verified_existing_result(config: dict, condition: dict, output_root: Path) -
     return True
 
 
-def _process_tree_memory_gib(pid: int) -> float:
+def _process_tree_memory_gib(pid: int) -> float | None:
     try:
         parent = psutil.Process(pid)
         processes = [parent, *parent.children(recursive=True)]
     except psutil.Error:
-        return 0.0
+        return None
     total = 0
     for process in processes:
         try:
@@ -259,7 +336,8 @@ def _process_tree_memory_gib(pid: int) -> float:
 
 
 def run_monitored(config_path: Path, config: dict, condition: dict, output_root: Path) -> None:
-    preflight = validate_execution_gate(config, condition["size"])
+    preflight = validate_execution_gate(config, condition, output_root)
+    verified_input(config, condition)
     log_parent = output_root / "worker_logs" / condition["condition_id"]
     attempt = 1
     while (log_parent / f"attempt-{attempt:03d}").exists():
@@ -269,11 +347,18 @@ def run_monitored(config_path: Path, config: dict, condition: dict, output_root:
     command = [sys.executable, str(Path(__file__).resolve()), "--worker", condition["condition_id"], "--config", str(config_path), "--output-root", str(output_root)]
     started = perf_counter()
     peak = 0.0
+    sample_count = 0
     stop_reason = None
     with (log_root / "stdout.log").open("w", encoding="utf-8") as stdout, (log_root / "stderr.log").open("w", encoding="utf-8") as stderr:
         process = subprocess.Popen(command, cwd=ROOT, stdout=stdout, stderr=stderr)
         while process.poll() is None:
-            peak = max(peak, _process_tree_memory_gib(process.pid))
+            sampled_memory = _process_tree_memory_gib(process.pid)
+            if sampled_memory is None:
+                stop_reason = "RESOURCE_MONITOR_FAILURE"
+                process.kill()
+                break
+            sample_count += 1
+            peak = max(peak, sampled_memory)
             available = psutil.virtual_memory().available / 2**30
             elapsed = perf_counter() - started
             cap = config["resource_policy"]["maximum_process_tree_memory_gib_by_size"][condition["size"]]
@@ -288,8 +373,14 @@ def run_monitored(config_path: Path, config: dict, condition: dict, output_root:
                 break
             sleep(0.25)
         return_code = process.wait()
-    monitor = {"condition_id": condition["condition_id"], "preflight": preflight, "peak_process_tree_memory_gib": peak, "wall_clock_seconds": perf_counter() - started, "stop_reason": stop_reason, "worker_return_code": return_code}
+    if sample_count == 0 and stop_reason is None:
+        stop_reason = "RESOURCE_MONITOR_NO_SAMPLES"
+    monitor = {"condition_id": condition["condition_id"], "preflight": preflight, "sample_count": sample_count, "peak_process_tree_memory_gib": peak, "wall_clock_seconds": perf_counter() - started, "stop_reason": stop_reason, "worker_return_code": return_code}
     (log_root / "resource_monitor.json").write_text(json.dumps(monitor, indent=2) + "\n", encoding="utf-8")
+    for suffix, name in (("solver.log", "solver.log"), ("progress.json", "solver_progress.json")):
+        interrupted_artifact = output_root / f".{condition['condition_id']}.{suffix}"
+        if interrupted_artifact.is_file():
+            shutil.move(str(interrupted_artifact), log_root / name)
     if stop_reason or return_code != 0:
         raise RuntimeError(f"Direct worker failed: {condition['condition_id']}: {stop_reason or return_code}")
 
@@ -307,13 +398,20 @@ def main() -> None:
     config = load_config(args.config)
     grid = conditions(config)
     if args.dry_run:
-        print(json.dumps({"optimization_calls": 0, "conditions": len(grid), "authorized": config["formal_run_authorized"], "environment": validate_environment(config)}, indent=2))
+        authorized = authorized_conditions(config)
+        print(json.dumps({
+            "optimization_calls": 0,
+            "configured_conditions": len(grid),
+            "authorized": config["formal_run_authorized"],
+            "authorized_conditions": [row["condition_id"] for row in authorized],
+            "environment": validate_environment(config),
+        }, indent=2))
         return
     output_root = args.output_root or ROOT / config["output_directory"]
     if args.worker:
         solve_condition(config, next(row for row in grid if row["condition_id"] == args.worker), output_root)
         return
-    selected = grid if args.execute_all else [next(row for row in grid if row["condition_id"] == args.execute)]
+    selected = authorized_conditions(config) if args.execute_all else [next(row for row in grid if row["condition_id"] == args.execute)]
     for condition in selected:
         if verified_existing_result(config, condition, output_root):
             print(f"[RESUME VERIFIED] {condition['condition_id']}")
