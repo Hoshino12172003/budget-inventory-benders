@@ -1,0 +1,56 @@
+Set parameter Username
+Set parameter LicenseID to value 2805628
+Academic license - for non-commercial use only - expires 2027-04-10
+Set parameter OutputFlag to value 1
+Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) Ultra 5 225H, instruction set [SSE2|AVX|AVX2]
+Thread count: 14 physical cores, 14 logical processors, using up to 14 threads
+
+Non-default parameters:
+TimeLimit  8.7837232380011119e+02
+FeasibilityTol  1e-08
+IntFeasTol  1e-08
+MIPGap  0
+OptimalityTol  1e-08
+
+Optimize a model with 405479 rows, 6075177 columns and 18422892 nonzeros (Min)
+Model fingerprint: 0x753c9539
+Model has 1291 linear objective coefficients
+Variable types: 6075147 continuous, 30 integer (30 binary)
+Coefficient statistics:
+  Matrix range     [7e-02, 6e+05]
+  Objective range  [1e+00, 3e+04]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e-07, 4e+05]
+
+Presolve removed 13048 rows and 404488 columns (presolve time = 5s)...
+Presolve removed 13445 rows and 405282 columns (presolve time = 10s)...
+Presolve removed 13445 rows and 405288 columns (presolve time = 15s)...
+Presolve removed 13445 rows and 405288 columns (presolve time = 20s)...
+Presolve removed 148435 rows and 2343198 columns (presolve time = 25s)...
+Presolve removed 148435 rows and 2343198 columns (presolve time = 30s)...
+Presolve removed 148509 rows and 2343198 columns (presolve time = 35s)...
+Presolve removed 148509 rows and 2343198 columns (presolve time = 40s)...
+Presolve removed 148509 rows and 2343198 columns (presolve time = 45s)...
+Presolve removed 148509 rows and 2343198 columns
+Presolve time: 45.43s
+Presolved: 256970 rows, 3731979 columns, 11324455 nonzeros
+Variable types: 3731949 continuous, 30 integer (30 binary)
+Deterministic concurrent LP optimizer: primal simplex, dual simplex, and barrier
+Showing barrier log only...
+
+Root barrier log...
+
+Ordering time: 0.44s
+
+Barrier statistics:
+ Dense cols : 310
+ AA' NZ     : 4.123e+06
+ Factor NZ  : 1.151e+07 (roughly 1.7 GB of memory)
+ Factor Ops : 5.625e+08 (less than 1 second per iteration)
+ Threads    : 11
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.34611586e+09 -4.54612804e+11  1.25e+07 1.14e-13  1.19e+07    64s
