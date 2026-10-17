@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "experiment_id": "DIRECT_SCALING_EXTENSION_V1",
-  "formal_run_authorized": true,
+  "formal_run_authorized": false,
   "authorized_condition_ids": [
     "DIRECT_L10_S20260921",
     "DIRECT_L10_S20260922",
@@ -30,5 +30,5 @@
   "solver_parameters": {"Threads": "DEFAULT_AUTOMATIC", "Seed": 0, "MIPGap": 0.0, "MIPGapAbs": "DEFAULT", "FeasibilityTol": 1e-8, "OptimalityTol": 1e-8, "IntFeasTol": 1e-8, "Presolve": "DEFAULT", "Method": "DEFAULT", "Cuts": "DEFAULT", "Heuristics": "DEFAULT", "NumericFocus": 0},
   "resource_policy": {"parallel_workers": 1, "minimum_available_memory_gib_by_size": {"L10": 7, "XL10": 10, "XXL10": 16}, "maximum_process_tree_memory_gib_by_size": {"L10": 4, "XL10": 7, "XXL10": 13}, "minimum_system_available_memory_gib": 3, "minimum_free_disk_gib": 20, "condition_time_limit_seconds": 900},
   "output_directory": "experiments/results/direct_scaling_extension_v1",
-  "authorization_note": "Authorized by the user on 2026-10-17 for the ten listed L10 conditions only; XL10 and XXL10 remain unauthorized."
+  "authorization_note": "The 2026-10-17 L10 authorization was closed after DIRECT_L10_S20260921 reached the unchanged 4-GiB process-tree cap. No retry is authorized; XL10 and XXL10 remain unauthorized."
 }

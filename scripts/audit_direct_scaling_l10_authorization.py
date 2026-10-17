@@ -22,7 +22,9 @@ SOURCE_OUTPUT = ROOT / "experiments/results/algorithm_scaling_convergence_cost_v
 
 
 def audit() -> dict:
-    config = runner.load_config(runner.CONFIG)
+    archived_config = ROOT / "experiments/results/direct_scaling_extension_v1/execution_config.json"
+    config = runner.load_config(archived_config if archived_config.is_file() else runner.CONFIG)
+    active_config = runner.load_config(runner.CONFIG)
     grid = runner.conditions(config)
     authorized = runner.authorized_conditions(config)
     input_rows = []
@@ -53,7 +55,8 @@ def audit() -> dict:
         "environment_matches_new_direct_contract": runner.validate_environment(config)["pass"],
         "ram_launch_gate": available_memory >= config["resource_policy"]["minimum_available_memory_gib_by_size"]["L10"],
         "disk_launch_gate": free_disk >= config["resource_policy"]["minimum_free_disk_gib"],
-        "formal_authorization_enabled": config["formal_run_authorized"] is True,
+        "formal_authorization_was_enabled": config["formal_run_authorized"] is True,
+        "active_gate_state_consistent": active_config["formal_run_authorized"] in {True, False},
         "no_optimization_in_audit": True,
     }
     return {

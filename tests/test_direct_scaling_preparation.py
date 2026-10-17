@@ -84,7 +84,7 @@ def test_authorization_is_exactly_the_ten_l10_conditions() -> None:
 
 
 def test_xl10_and_xxl10_are_rejected_before_environment_probe(monkeypatch, tmp_path: Path) -> None:
-    config = runner.load_config(runner.CONFIG)
+    config = {**runner.load_config(runner.CONFIG), "formal_run_authorized": True}
     monkeypatch.setattr(runner, "current_environment", lambda: pytest.fail("environment probe should not run"))
     for condition in runner.conditions(config):
         if condition["size"] != "L10":

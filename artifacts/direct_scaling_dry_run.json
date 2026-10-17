@@ -1,6 +1,6 @@
 {
   "schema": "direct_scaling_dry_run_v2",
-  "formal_run_authorized": true,
+  "formal_run_authorized": false,
   "configured_conditions": 30,
   "authorized_condition_ids": [
     "DIRECT_L10_S20260921",
@@ -18,7 +18,7 @@
   "environment_status": "COMPARABLE_WITH_EXPLICIT_PROTOCOL_VERSION_RISK",
   "exact_environment_match": false,
   "resource_gate_snapshot": {
-    "available_memory_gib": 15.741466522216797,
+    "available_memory_gib": 15.437511444091797,
     "eligible_conditions": {
       "L10": 10,
       "XL10": 10,

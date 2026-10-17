@@ -32,7 +32,7 @@
     "matches_new_batch_requirement": true
   },
   "resource_gate_snapshot": {
-    "available_memory_gib": 15.741466522216797,
+    "available_memory_gib": 15.437511444091797,
     "eligible_conditions": {
       "L10": 10,
       "XL10": 10,
@@ -198,7 +198,7 @@
     },
     "execution_code_commit": {
       "frozen_value": "c46d09c306deb80086a7ceab12812847c117df87",
-      "current_value": "b4b92bcb0aaf96c304e7cfc9571be8439e664a67",
+      "current_value": "5e52a0383b6cfff68d10da12f2808dacc01ee844",
       "source_artifact": "formal scaling result/provenance artifacts",
       "match_status": "MISMATCH",
       "evidence": "A new Direct runner commit is expected; model-source identity must be reviewed separately."

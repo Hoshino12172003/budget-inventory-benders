@@ -45,6 +45,8 @@ artifacts/*
 !artifacts/renault_e1b_recovery_audit.json
 !artifacts/renault_e1b_recovery_manifest.csv
 !artifacts/direct_scaling_l10_authorization_audit.json
+!artifacts/direct_scaling_l10_execution_audit.json
+!artifacts/table_direct_scaling_l10_four_method_comparison.csv
 !artifacts/x0_audit/
 !artifacts/x0_audit/**
 !artifacts/renault_x0_210202.csv

@@ -2,3 +2,4 @@ experiments/results/formal_acceptance_batch_1/** -text whitespace=cr-at-eol
 experiments/results/e1_algorithm_benchmark/** -text whitespace=cr-at-eol
 experiments/results/e1b_pure_benders_v1/** -text whitespace=-blank-at-eof,cr-at-eol
 experiments/results/e1b_standard_vs_prb_v1/** -text whitespace=-blank-at-eof,cr-at-eol
+experiments/results/direct_scaling_extension_v1/** -text whitespace=-blank-at-eof,cr-at-eol
