@@ -10,6 +10,9 @@ from scripts.audit_direct_scaling_l10_authorization import audit as authorizatio
 
 
 RETRY_CONFIG = runner.ROOT / "experiments/configs/formal/direct_scaling_l10_resource_retry_v2.yaml"
+XL10_LOW_MEMORY_CONFIG = (
+    runner.ROOT / "experiments/configs/formal/direct_scaling_xl10_low_memory_candidate_v1.yaml"
+)
 
 
 def test_direct_grid_is_frozen_30_conditions() -> None:
@@ -205,3 +208,58 @@ def test_attempt002_archive_failure_evidence_is_immutable() -> None:
         "stdout.log": "5032112f6af6b3db5dc3dec22c288eac895f86eefc344509eea5cf07d4ec5c4e",
     }
     assert {path.name: runner.file_sha256(path) for path in attempt.iterdir() if path.is_file()} == expected
+
+
+def test_xl10_low_memory_candidate_is_closed_and_scoped() -> None:
+    candidate = runner.load_config(XL10_LOW_MEMORY_CONFIG)
+    source = runner.load_config(runner.ROOT / "experiments/configs/formal/direct_scaling_xl10_all10_v1.yaml")
+    assert candidate["formal_run_authorized"] is False
+    assert [row["condition_id"] for row in runner.authorized_conditions(candidate)] == [
+        "DIRECT_XL10_S20260921"
+    ]
+    assert candidate["resource_protocol_id"] == "DIRECT_XL10_LOW_MEMORY_CANDIDATE_V1_METHOD2_THREADS2"
+    assert candidate["fixed_scientific_parameters"] == source["fixed_scientific_parameters"]
+    assert candidate["solver_profile"] == source["solver_profile"]
+    assert {
+        key: value for key, value in candidate["solver_parameters"].items() if key not in {"Method", "Threads"}
+    } == {
+        key: value for key, value in source["solver_parameters"].items() if key not in {"Method", "Threads"}
+    }
+    assert candidate["solver_parameters"]["Method"] == 2
+    assert candidate["solver_parameters"]["Threads"] == 2
+    assert candidate["resource_policy"] == source["resource_policy"]
+
+
+def test_xl10_low_memory_candidate_rejects_execution_before_environment_probe(monkeypatch) -> None:
+    config = runner.load_config(XL10_LOW_MEMORY_CONFIG)
+    condition = runner.authorized_conditions(config)[0]
+    monkeypatch.setattr(runner, "current_environment", lambda: pytest.fail("environment probe should not run"))
+    with pytest.raises(RuntimeError, match="NOT_AUTHORIZED"):
+        runner.validate_execution_gate(config, condition, runner.ROOT / config["output_directory"])
+
+
+def test_explicit_direct_solver_parameters_are_applied_and_reported(capsys) -> None:
+    class Params:
+        pass
+
+    class Model:
+        def __init__(self):
+            self.Params = Params()
+
+        def setParam(self, name, value):
+            setattr(self.Params, name, value)
+
+    config = runner.load_config(XL10_LOW_MEMORY_CONFIG)
+    effective = runner.apply_configured_solver_parameters(Model(), config["solver_parameters"])
+    assert effective["Method"] == 2
+    assert effective["Threads"] == 2
+    assert effective["MIPGap"] == 0.0
+    assert effective["FeasibilityTol"] == 1e-8
+    assert effective["OptimalityTol"] == 1e-8
+    assert effective["IntFeasTol"] == 1e-8
+    assert "MIPGapAbs" not in effective
+    assert '"Method": 2' in capsys.readouterr().out
+    source = Path(runner.__file__).read_text(encoding="utf-8")
+    assert source.index("model.Params.LogFile =") < source.index(
+        "effective_solver_parameters = apply_configured_solver_parameters"
+    ) < source.index("model.optimize(progress_callback)")

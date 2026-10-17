@@ -203,6 +203,22 @@ def _release_solver_resources(model) -> None:
     gp.disposeDefaultEnv()
 
 
+def apply_configured_solver_parameters(model, configured: dict) -> dict:
+    effective = {}
+    for name, value in configured.items():
+        if isinstance(value, str):
+            if value.startswith("DEFAULT"):
+                continue
+            raise RuntimeError(f"unsupported Direct solver parameter value: {name}={value!r}")
+        model.setParam(name, value)
+        effective[name] = getattr(model.Params, name)
+    print(
+        "[DIRECT_EFFECTIVE_SOLVER_PARAMETERS] " + json.dumps(effective, sort_keys=True),
+        flush=True,
+    )
+    return effective
+
+
 def _copy_with_windows_lock_retry(source: Path, target: Path, attempts: int = 20, delay: float = 0.1) -> None:
     for attempt in range(attempts):
         try:
@@ -322,6 +338,7 @@ def solve_condition(config: dict, condition: dict, output_root: Path) -> None:
     solver_log_path = output_root / f".{condition['condition_id']}.solver.log"
     model.Params.LogFile = str(solver_log_path)
     model.Params.OutputFlag = 1
+    effective_solver_parameters = apply_configured_solver_parameters(model, config["solver_parameters"])
     progress_path = output_root / f".{condition['condition_id']}.progress.json"
     last_progress_seconds = [-5.0]
 
@@ -379,6 +396,7 @@ def solve_condition(config: dict, condition: dict, output_root: Path) -> None:
             "config_hash": canonical_hash(config), "instance_hash": preparation["instance_hash"],
             "model_identity": model_identity_record["sha256"],
             "solver_parameters": config["solver_parameters"],
+            "effective_solver_parameters": effective_solver_parameters,
             "code_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
             "environment": current_environment(), "resource_preflight": gate,
         }
@@ -530,6 +548,7 @@ def main() -> None:
                 "memory_monitor_interval_seconds": resource_policy.get("memory_monitor_interval_seconds", 0.25),
                 "parallel_workers": resource_policy["parallel_workers"],
             },
+            "solver_parameters": config["solver_parameters"],
             "current_available_memory_gib": psutil.virtual_memory().available / 2**30,
             "environment": environment,
         }, indent=2))
