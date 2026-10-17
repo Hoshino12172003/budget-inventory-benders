@@ -2,7 +2,7 @@
 
 ## Scope and authorization
 
-This revision prepares one possible retry of `DIRECT_L10_S20260921`. A later reviewed authorization commit sets `formal_run_authorized=true`. The whitelist contains exactly that condition, so neither the remaining nine L10 conditions nor XL10/XXL10 can be launched with this protocol.
+This revision prepared one retry of `DIRECT_L10_S20260921`. That authorization produced `attempt-002` and is now closed: `formal_run_authorized=false`. The whitelist remains exactly that condition, so neither the remaining nine L10 conditions nor XL10/XXL10 can be launched with this protocol. Any future retry requires a separate reviewed authorization and must use `attempt-003`.
 
 No mathematical model, instance, seed, Gurobi parameter, tolerance, precision setting, or the 900-second condition limit is changed.
 

@@ -53,9 +53,31 @@ def test_existing_result_mismatch_fails_closed(tmp_path: Path) -> None:
         runner.verified_existing_result(config, condition, tmp_path)
 
 
+def test_incomplete_archive_cannot_be_resumed_as_certified(tmp_path: Path) -> None:
+    config = runner.load_config(runner.CONFIG)
+    condition = runner.conditions(config)[0]
+    target = tmp_path / "runs" / condition["condition_id"]
+    target.mkdir(parents=True)
+    result_path = target / "result.json"
+    result_path.write_text(json.dumps({
+        "condition_id": condition["condition_id"],
+        "size": condition["size"],
+        "seed": condition["seed"],
+        "config_hash": runner.canonical_hash(config),
+        "solver_status": "OPTIMAL",
+        "exact_certification": True,
+    }), encoding="utf-8")
+    (target / "provenance.json").write_text(json.dumps({
+        "result_sha256": runner.file_sha256(result_path),
+        "archive_complete": False,
+    }), encoding="utf-8")
+    with pytest.raises(RuntimeError, match="identity failure"):
+        runner.verified_existing_result(config, condition, tmp_path)
+
+
 def test_short_atomic_directory_name() -> None:
     source = Path(runner.__file__).read_text(encoding="utf-8")
-    assert '.tmp-{uuid4().hex[:12]}' in source
+    assert '.candidate-{uuid4().hex[:12]}' in source
     assert "refusing to overwrite Direct result" in source
 
 
@@ -114,10 +136,10 @@ def test_runner_preserves_solver_log_and_progress_evidence() -> None:
     assert "RESOURCE_MONITOR_FAILURE" in source
 
 
-def test_retry_protocol_is_authorized_and_scoped_to_one_condition() -> None:
+def test_retry_protocol_is_closed_and_scoped_to_one_condition() -> None:
     config = runner.load_config(RETRY_CONFIG)
     original = runner.load_config(runner.CONFIG)
-    assert config["formal_run_authorized"] is True
+    assert config["formal_run_authorized"] is False
     assert [row["condition_id"] for row in runner.authorized_conditions(config)] == [
         "DIRECT_L10_S20260921"
     ]
@@ -160,10 +182,26 @@ def test_original_resource_stop_evidence_is_immutable() -> None:
         / "experiments/results/direct_scaling_extension_v1/worker_logs"
         / "DIRECT_L10_S20260921/attempt-001"
     )
-    assert runner.next_attempt_number(runner.ROOT / "experiments/results/direct_scaling_extension_v1", "DIRECT_L10_S20260921") == 2
+    assert runner.next_attempt_number(runner.ROOT / "experiments/results/direct_scaling_extension_v1", "DIRECT_L10_S20260921") == 3
     assert runner.file_sha256(attempt / "resource_monitor.json") == (
         "86f0cebbfe5abf763c6053e8e5d46e2f7ffc330d57d4d27b67e0ccf3752f041b"
     )
     assert runner.file_sha256(attempt / "solver.log") == (
         "1f0fda1313c70959b5c185c120b53ecb501a852d34bfda9b59165a35e88f864b"
     )
+
+
+def test_attempt002_archive_failure_evidence_is_immutable() -> None:
+    attempt = (
+        runner.ROOT
+        / "experiments/results/direct_scaling_extension_v1/worker_logs"
+        / "DIRECT_L10_S20260921/attempt-002"
+    )
+    expected = {
+        "resource_monitor.json": "318079cbd7f284786c787d30063e837def76d4a6335bdced5d6b5d5e609ac52e",
+        "solver_progress.json": "e5ee13a70c22a800653087aebf5d404969bf9733c16d4d3f99c68c81f6bcdbb6",
+        "solver.log": "07fd3367497928425314a4cfb1586ad0761b0e57dc6b62eb8c668e61d0865657",
+        "stderr.log": "78e77fb8f67d4552a582596010a5feed22684ecc79f7f63c96d7c9fc4215b8c8",
+        "stdout.log": "5032112f6af6b3db5dc3dec22c288eac895f86eefc344509eea5cf07d4ec5c4e",
+    }
+    assert {path.name: runner.file_sha256(path) for path in attempt.iterdir() if path.is_file()} == expected

@@ -178,7 +178,11 @@ def _solution(instance, model, variables) -> ReconfigurationSolution:
 def certify_solution(instance, solution: ReconfigurationSolution, gamma: int) -> float:
     tables = []
     for j in range(instance.num_products):
-        solved = ProductRiskSubproblem(instance, j, gamma).solve([row[j] for row in solution.x])
+        subproblem = ProductRiskSubproblem(instance, j, gamma)
+        try:
+            solved = subproblem.solve([row[j] for row in solution.x])
+        finally:
+            subproblem.model.dispose()
         if not all(item.cut.dual_feasible and item.cut.strong_duality_error <= 1e-4 for item in solved.worst_cases):
             raise RuntimeError("DIRECT_CERTIFICATION_DUAL_FAILURE")
         tables.append([item.value for item in solved.worst_cases])
@@ -189,6 +193,106 @@ def _write_solver_progress(path: Path, payload: dict) -> None:
     temporary = path.with_suffix(".tmp")
     temporary.write_text(json.dumps(payload, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     os.replace(temporary, path)
+
+
+def _release_solver_resources(model) -> None:
+    import gurobipy as gp
+
+    model.Params.LogFile = ""
+    model.dispose()
+    gp.disposeDefaultEnv()
+
+
+def _copy_with_windows_lock_retry(source: Path, target: Path, attempts: int = 20, delay: float = 0.1) -> None:
+    for attempt in range(attempts):
+        try:
+            shutil.copy2(source, target)
+            return
+        except PermissionError as exc:
+            if getattr(exc, "winerror", None) != 32 or attempt + 1 == attempts:
+                raise
+            sleep(delay)
+
+
+def persist_result_artifacts(
+    output_root: Path,
+    condition: dict,
+    result: dict,
+    first_stage_artifact: dict | None,
+    input_hashes: dict,
+    model_identity_record: dict,
+    solver_log_path: Path,
+    progress_path: Path,
+    *,
+    log_copy_attempts: int = 20,
+    log_copy_delay: float = 0.1,
+) -> Path:
+    target = output_root / "runs" / condition["condition_id"]
+    if target.exists():
+        raise FileExistsError(f"refusing to overwrite Direct result: {target}")
+    candidate = output_root / "recovery_candidates" / f".candidate-{uuid4().hex[:12]}"
+    candidate.mkdir(parents=True)
+    marker = candidate / "CANDIDATE_NOT_FORMAL.json"
+    marker.write_text(json.dumps({
+        "condition_id": condition["condition_id"],
+        "formal_artifact": False,
+        "reason": "ATOMIC_PUBLICATION_NOT_COMPLETED",
+    }, indent=2) + "\n", encoding="utf-8")
+    result_path = candidate / "result.json"
+    result_path.write_text(json.dumps(result, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    if first_stage_artifact is not None:
+        (candidate / "first_stage_solution.json").write_text(
+            json.dumps(first_stage_artifact, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+        )
+    provenance = {
+        **input_hashes,
+        "result_sha256": file_sha256(result_path),
+        "model_identity": model_identity_record,
+        "environment": result["environment"],
+        "archive_complete": False,
+    }
+    if (candidate / "first_stage_solution.json").is_file():
+        provenance["first_stage_solution_sha256"] = file_sha256(candidate / "first_stage_solution.json")
+    provenance_path = candidate / "provenance.json"
+    provenance_path.write_text(json.dumps(provenance, indent=2) + "\n", encoding="utf-8")
+    try:
+        _copy_with_windows_lock_retry(
+            solver_log_path,
+            candidate / "solver.log",
+            attempts=log_copy_attempts,
+            delay=log_copy_delay,
+        )
+        provenance["solver_log_sha256"] = file_sha256(candidate / "solver.log")
+        if progress_path.is_file():
+            shutil.copy2(progress_path, candidate / "solver_progress.json")
+            provenance["solver_progress_sha256"] = file_sha256(candidate / "solver_progress.json")
+        provenance["archive_complete"] = True
+        provenance_path.write_text(json.dumps(provenance, indent=2) + "\n", encoding="utf-8")
+        marker.unlink()
+        target.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            os.replace(candidate, target)
+        except Exception:
+            marker.write_text(json.dumps({
+                "condition_id": condition["condition_id"],
+                "formal_artifact": False,
+                "reason": "ATOMIC_PUBLICATION_FAILED",
+            }, indent=2) + "\n", encoding="utf-8")
+            raise
+    except Exception:
+        if not marker.exists():
+            marker.write_text(json.dumps({
+                "condition_id": condition["condition_id"],
+                "formal_artifact": False,
+                "reason": "ARTIFACT_ARCHIVE_FAILED",
+            }, indent=2) + "\n", encoding="utf-8")
+        raise
+    for source in (solver_log_path, progress_path):
+        try:
+            source.unlink(missing_ok=True)
+        except OSError:
+            pass
+    return target
 
 
 def solve_condition(config: dict, condition: dict, output_root: Path) -> None:
@@ -215,7 +319,8 @@ def solve_condition(config: dict, condition: dict, output_root: Path) -> None:
     model_build_seconds = perf_counter() - build_started
     time_limit = config["resource_policy"]["condition_time_limit_seconds"]
     model.Params.TimeLimit = max(1.0, time_limit - model_build_seconds)
-    model.Params.LogFile = str(output_root / f".{condition['condition_id']}.solver.log")
+    solver_log_path = output_root / f".{condition['condition_id']}.solver.log"
+    model.Params.LogFile = str(solver_log_path)
     model.Params.OutputFlag = 1
     progress_path = output_root / f".{condition['condition_id']}.progress.json"
     last_progress_seconds = [-5.0]
@@ -235,75 +340,67 @@ def solve_condition(config: dict, condition: dict, output_root: Path) -> None:
             "node_count": float(active_model.cbGet(GRB.Callback.MIP_NODCNT)),
         })
 
-    model.optimize(progress_callback)
-    optimize_seconds = float(model.Runtime)
-    status = {GRB.OPTIMAL: "OPTIMAL", GRB.TIME_LIMIT: "TIME_LIMIT", GRB.MEM_LIMIT: "MEMORY_LIMIT"}.get(model.Status, "OTHER")
-    solution = _solution(instance, model, variables) if model.SolCount else None
-    certification_seconds = None
-    certified_recourse = None
-    exact = False
-    certification_status = "NOT_ATTEMPTED"
-    certification_error = None
-    if status == "OPTIMAL" and solution is not None:
-        started = perf_counter()
-        try:
-            certified_recourse = certify_solution(instance, solution, config["fixed_scientific_parameters"]["Gamma"])
-            exact = abs(solution.first_stage_expenditure + certified_recourse - solution.objective) <= 1e-4
-            certification_status = "PASS" if exact else "OBJECTIVE_RESIDUAL_FAILURE"
-        except Exception as exc:
-            certification_status = "ERROR"
-            certification_error = f"{type(exc).__name__}: {exc}"
-        finally:
-            certification_seconds = perf_counter() - started
-    core_seconds = perf_counter() - core_started
-    result = {
-        "experiment_id": config["experiment_id"], "condition_id": condition["condition_id"],
-        "method": "direct_exact", "size": condition["size"], "seed": condition["seed"],
-        "solver_status": status, "exact_certification": exact,
-        "certification_status": certification_status, "certification_error": certification_error,
-        "objective": solution.objective if solution else None,
-        "best_bound": float(model.ObjBound) if model.SolCount else None,
-        "mip_gap": float(model.MIPGap) if model.SolCount else None,
-        "node_count": float(model.NodeCount), "variable_count": int(model.NumVars),
-        "binary_variable_count": int(model.NumBinVars), "constraint_count": int(model.NumConstrs),
-        "nonzero_count": int(model.NumNZs), "certified_recourse_value": certified_recourse,
-        "model_build_seconds": model_build_seconds, "solver_optimize_seconds": optimize_seconds,
-        "certification_seconds": certification_seconds, "T_core_seconds": core_seconds,
-        "total_wall_seconds": perf_counter() - total_started,
-        "config_hash": canonical_hash(config), "instance_hash": preparation["instance_hash"],
-        "model_identity": model_identity_record["sha256"],
-        "solver_parameters": config["solver_parameters"],
-        "code_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
-        "environment": current_environment(), "resource_preflight": gate,
-    }
-    temporary = target.parent / f".tmp-{uuid4().hex[:12]}"
-    temporary.mkdir(parents=True)
     try:
-        (temporary / "result.json").write_text(json.dumps(result, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+        model.optimize(progress_callback)
+        optimize_seconds = float(model.Runtime)
+        status = {GRB.OPTIMAL: "OPTIMAL", GRB.TIME_LIMIT: "TIME_LIMIT", GRB.MEM_LIMIT: "MEMORY_LIMIT"}.get(model.Status, "OTHER")
+        solution = _solution(instance, model, variables) if model.SolCount else None
+        certification_seconds = None
+        certified_recourse = None
+        exact = False
+        certification_status = "NOT_ATTEMPTED"
+        certification_error = None
+        if status == "OPTIMAL" and solution is not None:
+            started = perf_counter()
+            try:
+                certified_recourse = certify_solution(instance, solution, config["fixed_scientific_parameters"]["Gamma"])
+                exact = abs(solution.first_stage_expenditure + certified_recourse - solution.objective) <= 1e-4
+                certification_status = "PASS" if exact else "OBJECTIVE_RESIDUAL_FAILURE"
+            except Exception as exc:
+                certification_status = "ERROR"
+                certification_error = f"{type(exc).__name__}: {exc}"
+            finally:
+                certification_seconds = perf_counter() - started
+        core_seconds = perf_counter() - core_started
+        result = {
+            "experiment_id": config["experiment_id"], "condition_id": condition["condition_id"],
+            "method": "direct_exact", "size": condition["size"], "seed": condition["seed"],
+            "solver_status": status, "exact_certification": exact,
+            "certification_status": certification_status, "certification_error": certification_error,
+            "objective": solution.objective if solution else None,
+            "best_bound": float(model.ObjBound) if model.SolCount else None,
+            "mip_gap": float(model.MIPGap) if model.SolCount else None,
+            "node_count": float(model.NodeCount), "variable_count": int(model.NumVars),
+            "binary_variable_count": int(model.NumBinVars), "constraint_count": int(model.NumConstrs),
+            "nonzero_count": int(model.NumNZs), "certified_recourse_value": certified_recourse,
+            "model_build_seconds": model_build_seconds, "solver_optimize_seconds": optimize_seconds,
+            "certification_seconds": certification_seconds, "T_core_seconds": core_seconds,
+            "total_wall_seconds": perf_counter() - total_started,
+            "config_hash": canonical_hash(config), "instance_hash": preparation["instance_hash"],
+            "model_identity": model_identity_record["sha256"],
+            "solver_parameters": config["solver_parameters"],
+            "code_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+            "environment": current_environment(), "resource_preflight": gate,
+        }
+        first_stage_artifact = None
         if solution:
-            artifact = build_first_stage_solution_artifact(
+            first_stage_artifact = build_first_stage_solution_artifact(
                 instance, x0, solution, case_id=condition["condition_id"], mode="direct_exact",
                 identity={"config_hash": result["config_hash"], "data_hash": result["instance_hash"], "x0_hash": preparation["x0_hash"], "git_commit": result["code_commit"]},
                 solver_profile=config["solver_profile"],
             )
-            (temporary / "first_stage_solution.json").write_text(json.dumps(artifact, indent=2, allow_nan=False) + "\n", encoding="utf-8")
-        shutil.move(str(output_root / f".{condition['condition_id']}.solver.log"), temporary / "solver.log")
-        if progress_path.is_file():
-            shutil.move(str(progress_path), temporary / "solver_progress.json")
-        provenance = {
-            **input_hashes,
-            "result_sha256": file_sha256(temporary / "result.json"),
-            "model_identity": model_identity_record,
-            "environment": result["environment"],
-        }
-        if (temporary / "solver_progress.json").is_file():
-            provenance["solver_progress_sha256"] = file_sha256(temporary / "solver_progress.json")
-        (temporary / "provenance.json").write_text(json.dumps(provenance, indent=2) + "\n", encoding="utf-8")
-        target.parent.mkdir(parents=True, exist_ok=True)
-        os.replace(temporary, target)
-    except Exception:
-        shutil.rmtree(temporary, ignore_errors=True)
-        raise
+    finally:
+        _release_solver_resources(model)
+    persist_result_artifacts(
+        output_root,
+        condition,
+        result,
+        first_stage_artifact,
+        input_hashes,
+        model_identity_record,
+        solver_log_path,
+        progress_path,
+    )
 
 
 def verified_existing_result(config: dict, condition: dict, output_root: Path) -> bool:
@@ -321,6 +418,7 @@ def verified_existing_result(config: dict, condition: dict, output_root: Path) -
         "seed": result.get("seed") == condition["seed"],
         "config": result.get("config_hash") == canonical_hash(config),
         "certified": result.get("solver_status") == "OPTIMAL" and result.get("exact_certification") is True,
+        "archive_complete": provenance.get("archive_complete") is True,
         "hash": provenance.get("result_sha256") == file_sha256(paths[0]),
     }
     if not all(checks.values()):
@@ -381,7 +479,7 @@ def run_monitored(config_path: Path, config: dict, condition: dict, output_root:
         return_code = process.wait()
     if sample_count == 0 and stop_reason is None:
         stop_reason = "RESOURCE_MONITOR_NO_SAMPLES"
-    monitor = {"condition_id": condition["condition_id"], "preflight": preflight, "sample_count": sample_count, "peak_process_tree_memory_gib": peak, "wall_clock_seconds": perf_counter() - started, "stop_reason": stop_reason, "worker_return_code": return_code}
+    monitor = {"condition_id": condition["condition_id"], "attempt": f"attempt-{attempt:03d}", "resource_protocol_id": config.get("resource_protocol_id"), "preflight": preflight, "sample_count": sample_count, "peak_process_tree_memory_gib": peak, "wall_clock_seconds": perf_counter() - started, "stop_reason": stop_reason, "worker_return_code": return_code}
     (log_root / "resource_monitor.json").write_text(json.dumps(monitor, indent=2) + "\n", encoding="utf-8")
     for suffix, name in (("solver.log", "solver.log"), ("progress.json", "solver_progress.json")):
         interrupted_artifact = output_root / f".{condition['condition_id']}.{suffix}"

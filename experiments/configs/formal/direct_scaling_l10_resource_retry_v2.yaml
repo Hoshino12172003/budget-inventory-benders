@@ -3,7 +3,7 @@
   "experiment_id": "DIRECT_SCALING_EXTENSION_V1",
   "resource_protocol_id": "DIRECT_L10_RESOURCE_PROTOCOL_V2_6GIB_RETRY",
   "supersedes_resource_protocol_id": "DIRECT_L10_RESOURCE_PROTOCOL_V1_4GIB",
-  "formal_run_authorized": true,
+  "formal_run_authorized": false,
   "authorized_condition_ids": [
     "DIRECT_L10_S20260921"
   ],
@@ -23,5 +23,5 @@
   "solver_parameters": {"Threads": "DEFAULT_AUTOMATIC", "Seed": 0, "MIPGap": 0.0, "MIPGapAbs": "DEFAULT", "FeasibilityTol": 1e-8, "OptimalityTol": 1e-8, "IntFeasTol": 1e-8, "Presolve": "DEFAULT", "Method": "DEFAULT", "Cuts": "DEFAULT", "Heuristics": "DEFAULT", "NumericFocus": 0},
   "resource_policy": {"parallel_workers": 1, "minimum_available_memory_gib_by_size": {"L10": 10, "XL10": 10, "XXL10": 16}, "maximum_process_tree_memory_gib_by_size": {"L10": 6, "XL10": 7, "XXL10": 13}, "minimum_system_available_memory_gib": 3, "minimum_free_disk_gib": 20, "condition_time_limit_seconds": 900, "memory_monitor_interval_seconds": 0.25},
   "output_directory": "experiments/results/direct_scaling_extension_v1",
-  "authorization_note": "Authorized in a separate reviewed commit for exactly one local execution of DIRECT_L10_S20260921. All other L10, XL10, and XXL10 conditions are excluded. The original 4-GiB attempt-001 remains immutable; the authorized retry must use attempt-002."
+  "authorization_note": "Authorization closed after attempt-002 returned solver OPTIMAL but failed formal artifact publication with Windows WinError 32. No further optimization is authorized. Attempts 001 and 002 remain immutable; any future run requires a separate reviewed authorization and must use attempt-003."
 }

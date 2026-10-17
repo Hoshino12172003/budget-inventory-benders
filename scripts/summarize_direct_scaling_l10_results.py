@@ -100,7 +100,13 @@ def summarize() -> tuple[dict, list[dict]]:
         })
     checks = {
         "authorization_exactly_10_l10": len(authorized) == 10 and all(row["size"] == "L10" for row in authorized),
-        "only_one_condition_attempted": not (DIRECT / "runs").exists() and len(list((DIRECT / "worker_logs").glob("*/attempt-*"))) == 1,
+        "only_one_condition_attempted": (
+            (not (DIRECT / "runs").exists() or not any((DIRECT / "runs").iterdir()))
+            and len([
+                path for path in (DIRECT / "worker_logs").iterdir()
+                if path.is_dir() and any(path.glob("attempt-*"))
+            ]) == 1
+        ),
         "resource_stop_recorded": monitor["stop_reason"] == "RESOURCE_PROCESS_CAP",
         "process_cap_not_relaxed": config["resource_policy"]["maximum_process_tree_memory_gib_by_size"]["L10"] == 4,
         "remaining_nine_unattempted": sum(row["Direct status"].startswith("UNATTEMPTED") for row in rows) == 9,
