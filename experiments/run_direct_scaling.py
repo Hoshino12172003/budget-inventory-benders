@@ -60,6 +60,14 @@ def authorized_conditions(config: dict) -> list[dict]:
     return [lookup[identifier] for identifier in identifiers]
 
 
+def next_attempt_number(output_root: Path, condition_id: str) -> int:
+    log_parent = output_root / "worker_logs" / condition_id
+    attempt = 1
+    while (log_parent / f"attempt-{attempt:03d}").exists():
+        attempt += 1
+    return attempt
+
+
 def current_environment() -> dict:
     import gurobipy as gp
 
@@ -339,9 +347,7 @@ def run_monitored(config_path: Path, config: dict, condition: dict, output_root:
     preflight = validate_execution_gate(config, condition, output_root)
     verified_input(config, condition)
     log_parent = output_root / "worker_logs" / condition["condition_id"]
-    attempt = 1
-    while (log_parent / f"attempt-{attempt:03d}").exists():
-        attempt += 1
+    attempt = next_attempt_number(output_root, condition["condition_id"])
     log_root = log_parent / f"attempt-{attempt:03d}"
     log_root.mkdir(parents=True)
     command = [sys.executable, str(Path(__file__).resolve()), "--worker", condition["condition_id"], "--config", str(config_path), "--output-root", str(output_root)]
@@ -371,7 +377,7 @@ def run_monitored(config_path: Path, config: dict, condition: dict, output_root:
             if stop_reason:
                 process.kill()
                 break
-            sleep(0.25)
+            sleep(config["resource_policy"].get("memory_monitor_interval_seconds", 0.25))
         return_code = process.wait()
     if sample_count == 0 and stop_reason is None:
         stop_reason = "RESOURCE_MONITOR_NO_SAMPLES"
@@ -399,12 +405,30 @@ def main() -> None:
     grid = conditions(config)
     if args.dry_run:
         authorized = authorized_conditions(config)
+        output_root = args.output_root or ROOT / config["output_directory"]
+        environment = validate_environment(config)
+        resource_policy = config["resource_policy"]
         print(json.dumps({
             "optimization_calls": 0,
             "configured_conditions": len(grid),
-            "authorized": config["formal_run_authorized"],
+            "formal_run_authorized": config["formal_run_authorized"],
+            "formal_execution_permitted": config["formal_run_authorized"] is True and environment["pass"],
             "authorized_conditions": [row["condition_id"] for row in authorized],
-            "environment": validate_environment(config),
+            "next_attempts": {
+                row["condition_id"]: f"attempt-{next_attempt_number(output_root, row['condition_id']):03d}"
+                for row in authorized
+            },
+            "resource_gates": {
+                "minimum_available_memory_gib_by_size": resource_policy["minimum_available_memory_gib_by_size"],
+                "maximum_process_tree_memory_gib_by_size": resource_policy["maximum_process_tree_memory_gib_by_size"],
+                "minimum_system_available_memory_gib": resource_policy["minimum_system_available_memory_gib"],
+                "minimum_free_disk_gib": resource_policy["minimum_free_disk_gib"],
+                "condition_time_limit_seconds": resource_policy["condition_time_limit_seconds"],
+                "memory_monitor_interval_seconds": resource_policy.get("memory_monitor_interval_seconds", 0.25),
+                "parallel_workers": resource_policy["parallel_workers"],
+            },
+            "current_available_memory_gib": psutil.virtual_memory().available / 2**30,
+            "environment": environment,
         }, indent=2))
         return
     output_root = args.output_root or ROOT / config["output_directory"]

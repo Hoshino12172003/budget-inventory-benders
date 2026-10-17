@@ -9,6 +9,9 @@ from experiments import run_direct_scaling as runner
 from scripts.audit_direct_scaling_l10_authorization import audit as authorization_audit
 
 
+RETRY_CONFIG = runner.ROOT / "experiments/configs/formal/direct_scaling_l10_resource_retry_v2.yaml"
+
+
 def test_direct_grid_is_frozen_30_conditions() -> None:
     config = runner.load_config(runner.CONFIG)
     grid = runner.conditions(config)
@@ -109,3 +112,58 @@ def test_runner_preserves_solver_log_and_progress_evidence() -> None:
     assert "model.Params.OutputFlag = 1" in source
     assert "solver_progress.json" in source
     assert "RESOURCE_MONITOR_FAILURE" in source
+
+
+def test_retry_protocol_is_fail_closed_and_scoped_to_one_condition() -> None:
+    config = runner.load_config(RETRY_CONFIG)
+    original = runner.load_config(runner.CONFIG)
+    assert config["formal_run_authorized"] is False
+    assert [row["condition_id"] for row in runner.authorized_conditions(config)] == [
+        "DIRECT_L10_S20260921"
+    ]
+    assert config["resource_protocol_id"] == "DIRECT_L10_RESOURCE_PROTOCOL_V2_6GIB_RETRY"
+    policy = config["resource_policy"]
+    assert policy["maximum_process_tree_memory_gib_by_size"]["L10"] == 6
+    assert policy["minimum_available_memory_gib_by_size"]["L10"] == 10
+    assert policy["minimum_system_available_memory_gib"] == 3
+    assert policy["condition_time_limit_seconds"] == 900
+    assert policy["memory_monitor_interval_seconds"] == 0.25
+    assert policy["parallel_workers"] == 1
+    assert config["fixed_scientific_parameters"] == original["fixed_scientific_parameters"]
+    assert config["solver_profile"] == original["solver_profile"]
+    assert config["solver_parameters"] == original["solver_parameters"]
+    assert config["source_output_root"] == original["source_output_root"]
+
+
+def test_retry_protocol_rejects_every_other_condition_before_environment_probe(monkeypatch) -> None:
+    config = {**runner.load_config(RETRY_CONFIG), "formal_run_authorized": True}
+    monkeypatch.setattr(runner, "current_environment", lambda: pytest.fail("environment probe should not run"))
+    for condition in runner.conditions(config):
+        if condition["condition_id"] != "DIRECT_L10_S20260921":
+            with pytest.raises(RuntimeError, match="CONDITION_NOT_AUTHORIZED"):
+                runner.validate_execution_gate(config, condition, runner.ROOT / config["output_directory"])
+
+
+def test_retry_uses_next_attempt_without_overwriting_existing_evidence(tmp_path: Path) -> None:
+    condition_id = "DIRECT_L10_S20260921"
+    original = tmp_path / "worker_logs" / condition_id / "attempt-001"
+    original.mkdir(parents=True)
+    marker = original / "resource_monitor.json"
+    marker.write_text("original", encoding="utf-8")
+    assert runner.next_attempt_number(tmp_path, condition_id) == 2
+    assert marker.read_text(encoding="utf-8") == "original"
+
+
+def test_original_resource_stop_evidence_is_immutable() -> None:
+    attempt = (
+        runner.ROOT
+        / "experiments/results/direct_scaling_extension_v1/worker_logs"
+        / "DIRECT_L10_S20260921/attempt-001"
+    )
+    assert runner.next_attempt_number(runner.ROOT / "experiments/results/direct_scaling_extension_v1", "DIRECT_L10_S20260921") == 2
+    assert runner.file_sha256(attempt / "resource_monitor.json") == (
+        "86f0cebbfe5abf763c6053e8e5d46e2f7ffc330d57d4d27b67e0ccf3752f041b"
+    )
+    assert runner.file_sha256(attempt / "solver.log") == (
+        "1f0fda1313c70959b5c185c120b53ecb501a852d34bfda9b59165a35e88f864b"
+    )
