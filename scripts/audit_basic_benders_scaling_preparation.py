@@ -259,6 +259,7 @@ def build_audit() -> dict:
         dry["resource_gate"]["available_memory_gib"] >= dry["resource_gate"]["startup_required_gib"]
         and dry["resource_gate"]["free_disk_gib"] >= dry["resource_gate"]["minimum_free_disk_gib"]
         and not dry["canonical_result_exists"]
+        and dry["git_status_clean"]
     )
     return {
         "schema": "basic_benders_scaling_preparation_audit_v1",

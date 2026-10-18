@@ -76,6 +76,11 @@ def dry_run(config_path: Path = DEFAULT_CONFIG) -> dict:
     output = ROOT / config["output_directory"]
     free_disk = shutil.disk_usage(output.parent).free / 2**30
     canonical = output / "runs" / selected["condition_id"]
+    git_changes = subprocess.check_output(
+        ["git", "status", "--porcelain=v1", "--untracked-files=all"],
+        cwd=ROOT,
+        text=True,
+    ).splitlines()
     return {
         "protocol_id": config["protocol_id"],
         "formal_run_authorized": config["formal_run_authorized"],
@@ -98,6 +103,9 @@ def dry_run(config_path: Path = DEFAULT_CONFIG) -> dict:
             "monitor_interval_seconds": policy["memory_monitor_interval_seconds"],
         },
         "canonical_result_exists": canonical.exists(),
+        "environment": direct_runner.current_environment(),
+        "git_status_clean": not git_changes,
+        "git_status_entries": git_changes,
         "optimization_calls": 0,
     }
 
@@ -114,6 +122,8 @@ def validate_execution_gate(config_path: Path = DEFAULT_CONFIG) -> dict:
         raise RuntimeError("RESOURCE_DISK_GATE")
     if audit["canonical_result_exists"]:
         raise FileExistsError("refusing to overwrite an existing Basic-BD pilot result")
+    if not audit["git_status_clean"]:
+        raise RuntimeError(f"GIT_STATUS_NOT_CLEAN: {audit['git_status_entries']}")
     return audit
 
 
@@ -236,7 +246,20 @@ def _worker(config_path: Path, attempt_dir: Path) -> int:
             and certified.cut.strong_duality_error <= float(tolerance["objective_certification"])
             and objective_residual <= float(tolerance["objective_certification"])
         )
-        trajectory = [asdict(row) for row in solved.iterations]
+        trace_rows = [
+            json.loads(line)
+            for line in (attempt_dir / "oracle_trace.jsonl").read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        if len(trace_rows) < len(solved.iterations) + 2:
+            raise RuntimeError("Basic-BD oracle trace is incomplete")
+        trajectory = []
+        for iteration, oracle_row in zip(solved.iterations, trace_rows):
+            row = asdict(iteration)
+            row["scenarios_checked"] = oracle_row["scenarios_solved"]
+            row["oracle_trace_seconds"] = oracle_row["oracle_seconds"]
+            row["cuts_added"] = 1 if row["cut_added"] else 0
+            trajectory.append(row)
         identity = _model_identity()
         commit = _git_commit()
         result = {
@@ -254,6 +277,7 @@ def _worker(config_path: Path, attempt_dir: Path) -> int:
             "code_commit": commit,
             "model_identity": identity,
             "solver_profile": config["solver_profile"],
+            "environment": direct_runner.current_environment(),
             "solver_status": solved.status,
             "exact_certification": exact,
             "cut_validity": solved.cut_validity_pass,
@@ -333,6 +357,7 @@ def run_single_pilot(config_path: Path = DEFAULT_CONFIG) -> dict:
     started = perf_counter()
     peak = 0
     stop_reason = None
+    samples = []
     with stdout_path.open("w", encoding="utf-8") as stdout, stderr_path.open("w", encoding="utf-8") as stderr:
         process = subprocess.Popen(command, cwd=ROOT, stdout=stdout, stderr=stderr)
         while process.poll() is None:
@@ -340,6 +365,11 @@ def run_single_pilot(config_path: Path = DEFAULT_CONFIG) -> dict:
             rss = _process_tree_rss(process.pid) / 2**30
             available = psutil.virtual_memory().available / 2**30
             peak = max(peak, rss)
+            samples.append({
+                "elapsed_seconds": elapsed,
+                "process_tree_rss_gib": rss,
+                "system_available_gib": available,
+            })
             if elapsed >= policy["condition_time_limit_seconds"]:
                 stop_reason = "TIME_LIMIT"
             elif rss > policy["maximum_process_tree_memory_gib_by_size"][selected["size"]]:
@@ -359,8 +389,24 @@ def run_single_pilot(config_path: Path = DEFAULT_CONFIG) -> dict:
         "stop_reason": stop_reason,
         "worker_return_code": return_code,
         "preflight": audit["resource_gate"],
+        "samples": samples,
     }
     _write_json(attempt / "resource_monitor.json", monitor)
+    outcome = {
+        "condition_id": selected["condition_id"],
+        "attempt": "attempt-001",
+        "status": (
+            "SUCCESS"
+            if return_code == 0 and stop_reason is None
+            else "RESOURCE_OR_TIME_FAILURE"
+            if stop_reason is not None
+            else "NUMERICAL_OR_WORKER_FAILURE"
+        ),
+        "stop_reason": stop_reason,
+        "worker_return_code": return_code,
+        "peak_process_tree_memory_gib": peak,
+    }
+    _write_json(attempt / "outcome.json", outcome)
     if return_code == 0 and stop_reason is None:
         result = json.loads((attempt / "result.json").read_text(encoding="utf-8"))
         if result.get("exact_certification") is not True:

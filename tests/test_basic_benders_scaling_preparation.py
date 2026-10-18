@@ -46,6 +46,18 @@ def test_execution_gate_fails_before_any_optimization(monkeypatch) -> None:
         runner.validate_execution_gate(CONFIG)
 
 
+def test_runner_persists_required_iteration_and_resource_fields() -> None:
+    source = (ROOT / "experiments/run_basic_benders_scaling.py").read_text(encoding="utf-8")
+    for field in (
+        'row["scenarios_checked"]',
+        'row["oracle_trace_seconds"]',
+        'row["cuts_added"]',
+        '"samples": samples',
+        '"peak_process_tree_memory_gib"',
+    ):
+        assert field in source
+
+
 def test_static_audit_covers_all_inputs_and_known_failures() -> None:
     audit = build_audit()
     assert audit["optimization_calls"] == 0
