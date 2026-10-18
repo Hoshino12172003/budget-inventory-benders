@@ -23,6 +23,14 @@ def test_frozen_210202_loader_identity_and_parameters() -> None:
     assert loaded["instance"].initial_inventory == loaded["x0"]
 
 
+def test_all_frozen_cases_use_the_same_scientific_protocol() -> None:
+    for case_id in pilot.CASE_IDS:
+        loaded = pilot.load_frozen_renault_case(case_id)
+        assert loaded["gamma"] == 2
+        assert loaded["lambda_r"] == 0.05
+        assert loaded["instance"].initial_inventory == loaded["x0"]
+
+
 def test_210202_global_scenario_cap_is_respected() -> None:
     loaded = pilot.load_frozen_renault_case("210202")
     instance = loaded["instance"]
@@ -34,8 +42,10 @@ def test_210202_global_scenario_cap_is_respected() -> None:
     assert count <= pilot.MAX_SCENARIOS
 
 
-def test_pilot_is_single_case_and_separately_resource_bounded() -> None:
-    assert pilot.CASE_ID == "210202"
+def test_pilot_is_fixed_case_set_and_separately_resource_bounded() -> None:
+    assert pilot.CASE_IDS == (
+        "210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611"
+    )
     assert pilot.TIME_LIMIT_SECONDS == 300.0
     assert pilot.MAX_SCENARIOS == 5000
     assert pilot.PROCESS_MEMORY_GIB == 4.0

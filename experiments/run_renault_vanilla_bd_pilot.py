@@ -29,7 +29,8 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-CASE_ID = "210202"
+CASE_IDS = ("210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611")
+CASE_ID = CASE_IDS[0]
 GAMMA = 2
 LAMBDA_R = 0.05
 TIME_LIMIT_SECONDS = 300.0
@@ -60,15 +61,16 @@ def load_frozen_renault_case(case_id: str = CASE_ID) -> dict[str, Any]:
     from robust_inventory_reconfiguration.instance import load_instance
     from robust_inventory_reconfiguration.renault_empirical import MAPPING_SHA256
 
-    if str(case_id) != CASE_ID:
-        raise ValueError("this development pilot is restricted to Renault case 210202")
+    case_id = str(case_id)
+    if case_id not in CASE_IDS:
+        raise ValueError(f"case is outside the frozen Renault 8-case set: {case_id}")
     identity_path = ROOT / "table_empirical_8case_identity.csv"
     with identity_path.open(encoding="utf-8", newline="") as stream:
         identities = {row["case"]: row for row in csv.DictReader(stream)}
-    identity = identities[CASE_ID]
-    instance_path = ROOT / f"data/formal_instances_v2/{CASE_ID}.json"
-    x0_path = ROOT / f"artifacts/renault_empirical_8case_v1/x0/{CASE_ID}.json"
-    calibration_path = ROOT / f"artifacts/renault_empirical_8case_v1/calibration/{CASE_ID}.json"
+    identity = identities[case_id]
+    instance_path = ROOT / f"data/formal_instances_v2/{case_id}.json"
+    x0_path = ROOT / f"artifacts/renault_empirical_8case_v1/x0/{case_id}.json"
+    calibration_path = ROOT / f"artifacts/renault_empirical_8case_v1/calibration/{case_id}.json"
     actual = {
         "instance_hash": _sha256(instance_path),
         "x0_hash": _sha256(x0_path),
@@ -455,12 +457,12 @@ def _run_micro(output_dir: Path) -> dict[str, Any]:
     return result
 
 
-def _run_method(method: str, output_dir: Path) -> dict[str, Any]:
+def _run_method(method: str, output_dir: Path, case_id: str) -> dict[str, Any]:
     import gurobipy as gp
     import robust_inventory_reconfiguration.pure_benders as pure
     from robust_inventory_reconfiguration.product_risk_budget_benders import solve_prb_benders
 
-    loaded = load_frozen_renault_case()
+    loaded = load_frozen_renault_case(case_id)
     instance = loaded["instance"]
     x0 = loaded["x0"]
     budget = loaded["budget"]
@@ -482,14 +484,26 @@ def _run_method(method: str, output_dir: Path) -> dict[str, Any]:
         iterations = len(solved.iterations)
         cuts = solved.aggregate_cut_count
         oracle_seconds = solved.global_oracle_runtime
-        internal_exact = solved.exact_certification_pass and solved.cut_validity_pass
+        cut_validity_pass = solved.cut_validity_pass
+        maximum_cut_strong_duality_residual = max(
+            (cut.strong_duality_error for cut in solved.cuts), default=0.0
+        )
+        internal_exact = solved.exact_certification_pass and cut_validity_pass
     else:
         solved = solve_prb_benders(instance, x0, budget, GAMMA, LAMBDA_R)
         iterations = len(solved.iterations)
         cuts = solved.unique_product_cuts
         oracle_seconds = solved.separation_runtime
+        cut_validity_pass = all(
+            cut.dual_feasible and cut.strong_duality_error <= OBJECTIVE_TOLERANCE
+            for cut in solved.cuts
+        )
+        maximum_cut_strong_duality_residual = max(
+            (cut.strong_duality_error for cut in solved.cuts), default=0.0
+        )
         internal_exact = (
             solved.exact_certification_pass and solved.global_risk_budget_coupling_pass
+            and cut_validity_pass
         )
     elapsed_before_certification = perf_counter() - started
     remaining = TIME_LIMIT_SECONDS - elapsed_before_certification
@@ -509,6 +523,8 @@ def _run_method(method: str, output_dir: Path) -> dict[str, Any]:
         "iterations": iterations,
         "oracle_seconds": oracle_seconds,
         "cut_count": cuts,
+        "cut_validity_pass": cut_validity_pass,
+        "maximum_cut_strong_duality_residual": maximum_cut_strong_duality_residual,
         "algorithm_seconds": elapsed_before_certification,
         "independent_certification_seconds": certification_seconds,
         "total_seconds": total,
@@ -521,10 +537,14 @@ def _run_method(method: str, output_dir: Path) -> dict[str, Any]:
     }
 
 
-def _worker(mode: str, output_dir: Path) -> int:
+def _worker(mode: str, output_dir: Path, case_id: str) -> int:
     output_dir.mkdir(parents=True, exist_ok=False)
     try:
-        result = _run_micro(output_dir) if mode == "micro" else _run_method(mode, output_dir)
+        result = (
+            _run_micro(output_dir)
+            if mode == "micro"
+            else _run_method(mode, output_dir, case_id)
+        )
         _write_json(output_dir / "result.json", result)
         return 0 if result.get("status") in {"PASS", "OPTIMAL"} else 1
     except Exception as error:
@@ -576,7 +596,9 @@ def _stop_process_tree(pid: int) -> None:
     psutil.wait_procs(alive, timeout=3)
 
 
-def _run_monitored(mode: str, root: Path, limit: float) -> dict[str, Any]:
+def _run_monitored(
+    mode: str, root: Path, limit: float, case_id: str = CASE_ID
+) -> dict[str, Any]:
     available = psutil.virtual_memory().available / 2**30
     if available < START_AVAILABLE_MEMORY_GIB:
         raise RuntimeError(
@@ -592,6 +614,8 @@ def _run_monitored(mode: str, root: Path, limit: float) -> dict[str, Any]:
         mode,
         "--output-dir",
         str(target),
+        "--case",
+        case_id,
     ]
     started = perf_counter()
     peak = 0
@@ -661,20 +685,20 @@ def _write_hashes(output_dir: Path) -> None:
     (output_dir / "sha256.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def run_pilot(output_dir: Path) -> dict[str, Any]:
+def run_pilot(output_dir: Path, case_id: str = CASE_ID) -> dict[str, Any]:
     import gurobipy as gp
 
     if output_dir.exists():
         raise FileExistsError(f"refusing to overwrite development output: {output_dir}")
     output_dir.mkdir(parents=True)
-    loaded = load_frozen_renault_case()
+    loaded = load_frozen_renault_case(case_id)
     scenarios = sum(
         math.comb(loaded["instance"].num_regions * loaded["instance"].num_products, size)
         for size in range(GAMMA + 1)
     )
     protocol = {
         "classification": "DEVELOPMENT_ONLY_NOT_FORMAL_EVIDENCE",
-        "case_id": CASE_ID,
+        "case_id": case_id,
         "dimensions": {
             "I": loaded["instance"].num_depots,
             "R": loaded["instance"].num_regions,
@@ -714,8 +738,8 @@ def run_pilot(output_dir: Path) -> dict[str, Any]:
         _write_json(output_dir / "summary.json", summary)
         _write_hashes(output_dir)
         return summary
-    vanilla = _run_monitored("vanilla", output_dir, TIME_LIMIT_SECONDS)
-    prb = _run_monitored("prb", output_dir, TIME_LIMIT_SECONDS)
+    vanilla = _run_monitored("vanilla", output_dir, TIME_LIMIT_SECONDS, case_id)
+    prb = _run_monitored("prb", output_dir, TIME_LIMIT_SECONDS, case_id)
     paired = bool(
         vanilla.get("status") == "OPTIMAL"
         and vanilla.get("exact_certification_pass") is True
@@ -747,10 +771,11 @@ def main() -> int:
         default=ROOT / "experiments/results/renault_vanilla_bd_pilot_210202_development_v1",
     )
     parser.add_argument("--worker", choices=("micro", "vanilla", "prb"))
+    parser.add_argument("--case", choices=CASE_IDS, default=CASE_ID)
     args = parser.parse_args()
     if args.worker:
-        return _worker(args.worker, args.output_dir)
-    summary = run_pilot(args.output_dir.resolve())
+        return _worker(args.worker, args.output_dir, args.case)
+    summary = run_pilot(args.output_dir.resolve(), args.case)
     print(json.dumps(summary, indent=2, sort_keys=True, allow_nan=False))
     return 0
 
