@@ -57,6 +57,7 @@ artifacts/*
 !artifacts/basic_benders_l10_pilot_audit.json
 !artifacts/basic_benders_l10_pilot_sha256.csv
 !artifacts/basic_benders_l10_prb_comparison.csv
+!artifacts/basic_benders_l10_remaining9_static_audit.json
 !artifacts/x0_audit/
 !artifacts/x0_audit/**
 !artifacts/renault_x0_210202.csv

@@ -12,6 +12,7 @@ import gc
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -42,11 +43,25 @@ def global_scenario_count(regions: int, products: int, gamma: int) -> int:
     return sum(comb(components, value) for value in range(gamma + 1))
 
 
-def candidate(config: dict) -> dict:
+def candidate(config: dict, condition_id: str | None = None) -> dict:
     allowed = config.get("authorized_condition_ids", [])
-    if allowed != ["BASIC_L10_S20260921"]:
-        raise RuntimeError("Basic-BD pilot scope is not exactly one frozen condition")
-    return {"condition_id": allowed[0], "size": "L10", "seed": 20260921}
+    if len(allowed) != len(set(allowed)) or not allowed:
+        raise RuntimeError("Basic-BD authorization scope is empty or duplicated")
+    if condition_id is None:
+        if len(allowed) != 1:
+            raise RuntimeError("condition_id is required for a multi-condition protocol")
+        condition_id = allowed[0]
+    if condition_id not in allowed:
+        raise RuntimeError(f"Basic-BD condition is not allowlisted: {condition_id}")
+    match = re.fullmatch(r"BASIC_(L10|XL10|XXL10)_S(\d{8})", condition_id)
+    if match is None:
+        raise RuntimeError(f"invalid Basic-BD condition identity: {condition_id}")
+    size, seed_text = match.groups()
+    seed = int(seed_text)
+    configured_sizes = {row["label"] for row in config["sizes"]}
+    if size not in configured_sizes or seed not in config["seeds"]:
+        raise RuntimeError(f"Basic-BD condition is outside the configured grid: {condition_id}")
+    return {"condition_id": condition_id, "size": size, "seed": seed}
 
 
 def source_condition(config: dict, selected: dict) -> dict:
@@ -57,9 +72,9 @@ def source_condition(config: dict, selected: dict) -> dict:
     }
 
 
-def dry_run(config_path: Path = DEFAULT_CONFIG) -> dict:
+def dry_run(config_path: Path = DEFAULT_CONFIG, condition_id: str | None = None) -> dict:
     config = load_config(config_path)
-    selected = candidate(config)
+    selected = candidate(config, condition_id)
     instance, preparation, hashes = direct_runner.verified_input(
         config, source_condition(config, selected)
     )
@@ -81,6 +96,11 @@ def dry_run(config_path: Path = DEFAULT_CONFIG) -> dict:
         cwd=ROOT,
         text=True,
     ).splitlines()
+    relative_output = output.resolve().relative_to(ROOT.resolve()).as_posix() + "/"
+    unexpected_changes = [
+        line for line in git_changes
+        if not line[3:].replace("\\", "/").startswith(relative_output)
+    ]
     return {
         "protocol_id": config["protocol_id"],
         "formal_run_authorized": config["formal_run_authorized"],
@@ -106,15 +126,19 @@ def dry_run(config_path: Path = DEFAULT_CONFIG) -> dict:
         "environment": direct_runner.current_environment(),
         "git_status_clean": not git_changes,
         "git_status_entries": git_changes,
+        "git_status_clean_for_execution": not unexpected_changes,
+        "unexpected_git_status_entries": unexpected_changes,
         "optimization_calls": 0,
     }
 
 
-def validate_execution_gate(config_path: Path = DEFAULT_CONFIG) -> dict:
+def validate_execution_gate(
+    config_path: Path = DEFAULT_CONFIG, condition_id: str | None = None
+) -> dict:
     config = load_config(config_path)
     if config.get("formal_run_authorized") is not True:
         raise RuntimeError("NOT_AUTHORIZED: Basic-BD development pilot remains disabled")
-    audit = dry_run(config_path)
+    audit = dry_run(config_path, condition_id)
     gate = audit["resource_gate"]
     if gate["available_memory_gib"] < gate["startup_required_gib"]:
         raise RuntimeError("RESOURCE_START_MEMORY_GATE")
@@ -122,8 +146,8 @@ def validate_execution_gate(config_path: Path = DEFAULT_CONFIG) -> dict:
         raise RuntimeError("RESOURCE_DISK_GATE")
     if audit["canonical_result_exists"]:
         raise FileExistsError("refusing to overwrite an existing Basic-BD pilot result")
-    if not audit["git_status_clean"]:
-        raise RuntimeError(f"GIT_STATUS_NOT_CLEAN: {audit['git_status_entries']}")
+    if not audit["git_status_clean_for_execution"]:
+        raise RuntimeError(f"GIT_STATUS_NOT_CLEAN: {audit['unexpected_git_status_entries']}")
     return audit
 
 
@@ -189,9 +213,9 @@ def _model_identity() -> dict:
     return {"sha256": direct_runner.canonical_hash(files), "files": files}
 
 
-def _worker(config_path: Path, attempt_dir: Path) -> int:
+def _worker(config_path: Path, attempt_dir: Path, condition_id: str) -> int:
     config = load_config(config_path)
-    selected = candidate(config)
+    selected = candidate(config, condition_id)
     try:
         if config.get("formal_run_authorized") is not True:
             raise RuntimeError("NOT_AUTHORIZED: Basic-BD worker remains disabled")
@@ -334,10 +358,10 @@ def _worker(config_path: Path, attempt_dir: Path) -> int:
         return 1
 
 
-def run_single_pilot(config_path: Path = DEFAULT_CONFIG) -> dict:
-    audit = validate_execution_gate(config_path)
+def run_condition(config_path: Path, condition_id: str) -> dict:
+    audit = validate_execution_gate(config_path, condition_id)
     config = load_config(config_path)
-    selected = candidate(config)
+    selected = candidate(config, condition_id)
     policy = config["resource_policy"]
     output = ROOT / config["output_directory"]
     attempt = output / "worker_logs" / selected["condition_id"] / "attempt-001"
@@ -353,6 +377,8 @@ def run_single_pilot(config_path: Path = DEFAULT_CONFIG) -> dict:
         str(config_path),
         "--attempt-dir",
         str(attempt),
+        "--condition-id",
+        condition_id,
     ]
     started = perf_counter()
     peak = 0
@@ -421,6 +447,12 @@ def run_single_pilot(config_path: Path = DEFAULT_CONFIG) -> dict:
     return monitor
 
 
+def run_single_pilot(config_path: Path = DEFAULT_CONFIG) -> dict:
+    config = load_config(config_path)
+    selected = candidate(config)
+    return run_condition(config_path, selected["condition_id"])
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
@@ -428,11 +460,12 @@ def main() -> int:
     parser.add_argument("--execute", action="store_true")
     parser.add_argument("--worker", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--attempt-dir", type=Path, help=argparse.SUPPRESS)
+    parser.add_argument("--condition-id", help=argparse.SUPPRESS)
     args = parser.parse_args()
     if args.worker:
-        if args.attempt_dir is None:
-            raise ValueError("--attempt-dir is required for worker mode")
-        return _worker(args.config.resolve(), args.attempt_dir.resolve())
+        if args.attempt_dir is None or args.condition_id is None:
+            raise ValueError("--attempt-dir and --condition-id are required for worker mode")
+        return _worker(args.config.resolve(), args.attempt_dir.resolve(), args.condition_id)
     if args.execute:
         print(json.dumps(run_single_pilot(args.config.resolve()), indent=2, allow_nan=False))
         return 0
