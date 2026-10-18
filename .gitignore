@@ -199,4 +199,6 @@ artifacts/*
 !artifacts/algorithm_scaling_resource_threshold_audit.json
 !artifacts/algorithm_scaling_pure_cut_diagnostic_L10_S20260929.json
 !artifacts/algorithm_scaling_pure_cut_fix_validation_L10_S20260929.json
+!artifacts/renault_enhanced_basic_benders_readiness.json
+!artifacts/renault_eb_bd_comparison_template.csv
 experiments/results/algorithm_scaling_convergence_cost_v2_repaired_guard/
