@@ -1,0 +1,106 @@
+{
+    "schema_version":  "1.1",
+    "experiment_id":  "DIRECT_SCALING_EXTENSION_V1",
+    "resource_protocol_id":  "DIRECT_XL10_REMAINING9_LOW_MEMORY_V1",
+    "formal_run_authorized":  true,
+    "authorized_condition_ids":  [
+                                     "DIRECT_XL10_S20260922",
+                                     "DIRECT_XL10_S20260923",
+                                     "DIRECT_XL10_S20260924",
+                                     "DIRECT_XL10_S20260925",
+                                     "DIRECT_XL10_S20260926",
+                                     "DIRECT_XL10_S20260927",
+                                     "DIRECT_XL10_S20260928",
+                                     "DIRECT_XL10_S20260929",
+                                     "DIRECT_XL10_S20260930"
+                                 ],
+    "source_experiment_id":  "ALGORITHM_SCALING_CONVERGENCE_COST_V2_REPAIRED_GUARD",
+    "source_config":  "experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+    "source_output_root":  "experiments/results/algorithm_scaling_convergence_cost_v2_repaired_guard",
+    "method":  "direct_exact",
+    "sizes":  [
+                  {
+                      "label":  "L10",
+                      "I":  25,
+                      "R":  24,
+                      "J":  12
+                  },
+                  {
+                      "label":  "XL10",
+                      "I":  30,
+                      "R":  30,
+                      "J":  14
+                  },
+                  {
+                      "label":  "XXL10",
+                      "I":  36,
+                      "R":  36,
+                      "J":  16
+                  }
+              ],
+    "seeds":  [
+                  20260921,
+                  20260922,
+                  20260923,
+                  20260924,
+                  20260925,
+                  20260926,
+                  20260927,
+                  20260928,
+                  20260929,
+                  20260930
+              ],
+    "fixed_scientific_parameters":  {
+                                        "Gamma":  2,
+                                        "beta":  1.0,
+                                        "lambda_R":  0.05,
+                                        "SL":  0.90,
+                                        "phi_multiplier":  1.85
+                                    },
+    "solver_profile":  "gurobi-balanced-1e-8-v1",
+    "required_environment":  {
+                                 "python_version":  "3.12.7",
+                                 "gurobipy_version":  "13.0.1",
+                                 "gurobi_native_version":  [
+                                                               13,
+                                                               0,
+                                                               1
+                                                           ],
+                                 "comparison_basis":  "current_environment_for_new_direct_batch",
+                                 "scaling_v2_historical_solver_version":  "NOT_VERIFIABLE"
+                             },
+    "solver_parameters":  {
+                              "Threads":  2,
+                              "Seed":  0,
+                              "MIPGap":  0.0,
+                              "MIPGapAbs":  "DEFAULT",
+                              "FeasibilityTol":  1E-08,
+                              "OptimalityTol":  1E-08,
+                              "IntFeasTol":  1E-08,
+                              "Presolve":  "DEFAULT",
+                              "Method":  2,
+                              "Cuts":  "DEFAULT",
+                              "Heuristics":  "DEFAULT",
+                              "NumericFocus":  0
+                          },
+    "resource_policy":  {
+                            "parallel_workers":  1,
+                            "minimum_available_memory_gib_by_size":  {
+                                                                         "L10":  10,
+                                                                         "XL10":  10,
+                                                                         "XXL10":  16
+                                                                     },
+                            "maximum_process_tree_memory_gib_by_size":  {
+                                                                            "L10":  6,
+                                                                            "XL10":  7,
+                                                                            "XXL10":  13
+                                                                        },
+                            "minimum_system_available_memory_gib":  3,
+                            "minimum_free_disk_gib":  20,
+                            "condition_time_limit_seconds":  900,
+                            "memory_monitor_interval_seconds":  0.25
+                        },
+    "output_directory":  "experiments/results/direct_scaling_extension_v1",
+    "authorization_note":  "Authorize nine sequential XL10 Direct runs with Method=2, Threads=2. Stop on any failure. Preserve all previous attempts and certified results.",
+    "supersedes_resource_protocol_id":  "DIRECT_XL10_LOW_MEMORY_CANDIDATE_V1_METHOD2_THREADS2"
+}
