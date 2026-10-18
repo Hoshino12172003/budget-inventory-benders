@@ -459,6 +459,26 @@ def _process_tree_memory_gib(pid: int) -> float | None:
     return total / 2**30
 
 
+def _terminate_process_tree(pid: int) -> None:
+    try:
+        parent = psutil.Process(pid)
+        processes = [*parent.children(recursive=True), parent]
+    except psutil.Error:
+        return
+    for process in processes:
+        try:
+            process.terminate()
+        except psutil.Error:
+            pass
+    _, alive = psutil.wait_procs(processes, timeout=3)
+    for process in alive:
+        try:
+            process.kill()
+        except psutil.Error:
+            pass
+    psutil.wait_procs(alive, timeout=3)
+
+
 def run_monitored(config_path: Path, config: dict, condition: dict, output_root: Path) -> None:
     preflight = validate_execution_gate(config, condition, output_root)
     verified_input(config, condition)
@@ -482,7 +502,7 @@ def run_monitored(config_path: Path, config: dict, condition: dict, output_root:
                     break
                 # A running but unmonitorable worker must still fail closed.
                 stop_reason = "RESOURCE_MONITOR_FAILURE"
-                process.kill()
+                _terminate_process_tree(process.pid)
                 break
             sample_count += 1
             peak = max(peak, sampled_memory)
@@ -496,7 +516,7 @@ def run_monitored(config_path: Path, config: dict, condition: dict, output_root:
             elif elapsed >= config["resource_policy"]["condition_time_limit_seconds"] + 60:
                 stop_reason = "MONITOR_HARD_TIME_LIMIT"
             if stop_reason:
-                process.kill()
+                _terminate_process_tree(process.pid)
                 break
             sleep(config["resource_policy"].get("memory_monitor_interval_seconds", 0.25))
         return_code = process.wait()

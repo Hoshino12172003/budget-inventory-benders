@@ -47,6 +47,7 @@ def write_csv(path: Path, rows: list[dict]) -> None:
 def summarize() -> tuple[dict, list[dict]]:
     config = runner.load_config(EXECUTION_CONFIG)
     candidate_config = runner.load_config(CANDIDATE_CONFIG)
+    candidate_condition = runner.authorized_conditions(candidate_config)[0]
     authorized = runner.authorized_conditions(config)
     source_rows = read_csv(SOURCE / "algorithm_scaling_all_results.csv")
     source = {
@@ -121,7 +122,9 @@ def summarize() -> tuple[dict, list[dict]]:
         "historical_first_resource_stop_preserved": historical_monitor["stop_reason"] == "RESOURCE_PROCESS_CAP",
         "source_l10_30_exact_certified": len(source) == 30 and all(row["exact_certification"] == "True" for row in source.values()),
         "four_method_objectives_consistent": all(row["Four-method objective consistency"] == "PASS" for row in rows),
-        "xl10_candidate_gate_closed": candidate_config["formal_run_authorized"] is False,
+        "xl10_candidate_protocol_exhausted": runner.verified_existing_result(
+            candidate_config, candidate_condition, DIRECT
+        ) is True,
     }
     audit = {
         "schema": "direct_scaling_l10_execution_audit_v2",

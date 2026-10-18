@@ -210,10 +210,10 @@ def test_attempt002_archive_failure_evidence_is_immutable() -> None:
     assert {path.name: runner.file_sha256(path) for path in attempt.iterdir() if path.is_file()} == expected
 
 
-def test_xl10_low_memory_candidate_is_closed_and_scoped() -> None:
+def test_xl10_low_memory_candidate_is_exhausted_and_scoped() -> None:
     candidate = runner.load_config(XL10_LOW_MEMORY_CONFIG)
     source = runner.load_config(runner.ROOT / "experiments/configs/formal/direct_scaling_xl10_all10_v1.yaml")
-    assert candidate["formal_run_authorized"] is False
+    assert candidate["formal_run_authorized"] is True
     assert [row["condition_id"] for row in runner.authorized_conditions(candidate)] == [
         "DIRECT_XL10_S20260921"
     ]
@@ -228,14 +228,18 @@ def test_xl10_low_memory_candidate_is_closed_and_scoped() -> None:
     assert candidate["solver_parameters"]["Method"] == 2
     assert candidate["solver_parameters"]["Threads"] == 2
     assert candidate["resource_policy"] == source["resource_policy"]
+    condition = runner.authorized_conditions(candidate)[0]
+    assert runner.verified_existing_result(
+        candidate, condition, runner.ROOT / candidate["output_directory"]
+    ) is True
 
 
-def test_xl10_low_memory_candidate_rejects_execution_before_environment_probe(monkeypatch) -> None:
+def test_xl10_low_memory_candidate_canonical_result_is_not_overwritable() -> None:
     config = runner.load_config(XL10_LOW_MEMORY_CONFIG)
     condition = runner.authorized_conditions(config)[0]
-    monkeypatch.setattr(runner, "current_environment", lambda: pytest.fail("environment probe should not run"))
-    with pytest.raises(RuntimeError, match="NOT_AUTHORIZED"):
-        runner.validate_execution_gate(config, condition, runner.ROOT / config["output_directory"])
+    output_root = runner.ROOT / config["output_directory"]
+    assert runner.verified_existing_result(config, condition, output_root) is True
+    assert (output_root / "runs" / condition["condition_id"] / "result.json").is_file()
 
 
 def test_explicit_direct_solver_parameters_are_applied_and_reported(capsys) -> None:
