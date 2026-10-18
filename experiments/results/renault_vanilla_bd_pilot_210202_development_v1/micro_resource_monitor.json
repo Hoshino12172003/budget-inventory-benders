@@ -1,0 +1,26 @@
+{
+  "elapsed_seconds": 0.5567777999676764,
+  "limits": {
+    "monitor_interval_seconds": 0.25,
+    "process_tree_gib": 4.0,
+    "start_available_gib": 8.0,
+    "system_available_floor_gib": 3.0,
+    "time_seconds": 120.0
+  },
+  "mode": "micro",
+  "peak_process_tree_rss_gib": 0.020214080810546875,
+  "samples": [
+    {
+      "elapsed_seconds": 0.01634069997817278,
+      "process_tree_rss_gib": 0.00855255126953125,
+      "system_available_gib": 14.45022201538086
+    },
+    {
+      "elapsed_seconds": 0.2922484998125583,
+      "process_tree_rss_gib": 0.020214080810546875,
+      "system_available_gib": 14.339653015136719
+    }
+  ],
+  "stop_reason": null,
+  "worker_return_code": 0
+}
