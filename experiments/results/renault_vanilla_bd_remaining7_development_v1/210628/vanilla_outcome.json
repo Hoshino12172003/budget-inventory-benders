@@ -1,0 +1,34 @@
+{
+  "algorithm_seconds": 12.625940999947488,
+  "cut_count": 7,
+  "cut_validity_pass": true,
+  "exact_certification_pass": true,
+  "gurobi_version": "13.0.1",
+  "identity": {
+    "calibration_hash": "eb6b346748dcc77fdd66eecddb01b15dd96960f1f37991d3e761616048d5b584",
+    "instance_hash": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677",
+    "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+    "x0_hash": "7514da694ef80b8a5053329b2a2c9619090e768884c0555d19a67f9e284b589e"
+  },
+  "independent_certification_seconds": 1.6913372001145035,
+  "independent_global_certification": {
+    "certified_objective": 676700.8373029258,
+    "certified_recourse": 599292.0062276059,
+    "dual_feasible": true,
+    "objective_residual": 0.0,
+    "pass": true,
+    "strong_duality_residual": 1.1641532182693481e-10
+  },
+  "internal_exact_certification_pass": true,
+  "iterations": 8,
+  "maximum_cut_strong_duality_residual": 1.1641532182693481e-10,
+  "method": "Vanilla-BD",
+  "objective": 676700.8373029258,
+  "oracle_seconds": 12.403286900138482,
+  "peak_process_tree_rss_gib": 0.03992462158203125,
+  "resource_stop_reason": null,
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "status": "OPTIMAL",
+  "total_seconds": 14.317281799856573,
+  "worker_return_code": 0
+}

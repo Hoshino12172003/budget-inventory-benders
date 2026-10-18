@@ -171,6 +171,17 @@ def summarize(output_root: Path) -> dict[str, Any]:
             and difference is not None
             and difference <= pilot.OBJECTIVE_TOLERANCE
         )
+        invalid_reason = None
+        if not valid:
+            if (
+                prb.get("status") == "OPTIMAL"
+                and prb.get("cut_validity_pass") is True
+                and prb.get("independent_global_certification", {}).get("pass") is True
+                and prb.get("internal_exact_certification_pass") is False
+            ):
+                invalid_reason = "PRB_INTERNAL_GLOBAL_COUPLING_CERTIFICATION_FAILED"
+            else:
+                invalid_reason = "PAIR_CERTIFICATION_OR_OBJECTIVE_MATCH_FAILED"
         pairs.append(
             {
                 "case": case_id,
@@ -186,11 +197,26 @@ def summarize(output_root: Path) -> dict[str, Any]:
                     else "VANILLA" if valid and vanilla["total_seconds"] < prb["total_seconds"]
                     else "TIE" if valid else "NOT_PAIRED"
                 ),
+                "invalid_reason": invalid_reason,
             }
         )
     _write_csv(output_root / "renault_vanilla_prb_8case_pairs.csv", pairs)
     valid_pairs = [row for row in pairs if row["valid_exact_pair"]]
     speedups = [row["vanilla_over_prb_speedup"] for row in valid_pairs]
+    valid_case_ids = {row["case"] for row in valid_pairs}
+    valid_results = {
+        case_id: methods
+        for case_id, methods in all_results.items()
+        if case_id in valid_case_ids
+    }
+    def mean_metric(method: str, key: str) -> float | None:
+        values = [
+            methods[method].get(key)
+            for methods in valid_results.values()
+            if methods[method].get(key) is not None
+        ]
+        return statistics.fmean(values) if values else None
+
     summary = {
         "expected_cases": 8,
         "valid_exact_pairs": len(valid_pairs),
@@ -207,9 +233,58 @@ def summarize(output_root: Path) -> dict[str, Any]:
             math.exp(statistics.fmean(math.log(value) for value in speedups))
             if speedups else None
         ),
+        "valid_pair_means": {
+            method: {
+                "algorithm_seconds": mean_metric(method, "algorithm_seconds"),
+                "independent_certification_seconds": mean_metric(
+                    method, "independent_certification_seconds"
+                ),
+                "total_seconds": mean_metric(method, "total_seconds"),
+                "oracle_seconds": mean_metric(method, "oracle_seconds"),
+                "iterations": mean_metric(method, "iterations"),
+                "cut_count": mean_metric(method, "cut_count"),
+                "peak_process_tree_rss_gib": mean_metric(
+                    method, "peak_process_tree_rss_gib"
+                ),
+            }
+            for method in ("vanilla", "prb")
+        },
         "pairs": pairs,
+        "baseline_schema_note": (
+            "The immutable 210202 baseline predates explicit cut_validity_pass output; "
+            "its archived internal exact flag and independent global certification pass."
+        ),
     }
+    vanilla_oracle = summary["valid_pair_means"]["vanilla"]["oracle_seconds"]
+    prb_oracle = summary["valid_pair_means"]["prb"]["oracle_seconds"]
+    summary["mean_oracle_burden_ratio_vanilla_over_prb"] = (
+        vanilla_oracle / prb_oracle if vanilla_oracle is not None and prb_oracle else None
+    )
+    summary["mean_iteration_difference_vanilla_minus_prb"] = (
+        summary["valid_pair_means"]["vanilla"]["iterations"]
+        - summary["valid_pair_means"]["prb"]["iterations"]
+    )
     _write_json(output_root / "renault_vanilla_prb_8case_summary.json", summary)
+    lines = [
+        "# Renault Vanilla-BD vs PRB-BD development comparison",
+        "",
+        "This is development evidence and does not replace frozen Renault formal results.",
+        "",
+        f"- Expected cases: 8",
+        f"- Valid exact pairs: {summary['valid_exact_pairs']}",
+        f"- PRB wins among valid pairs: {summary['prb_wins']}",
+        f"- Vanilla wins among valid pairs: {summary['vanilla_wins']}",
+        f"- Geometric mean Vanilla/PRB total-time ratio: {summary['geometric_mean_vanilla_over_prb_speedup']:.6f}",
+        f"- Mean Vanilla/PRB oracle-time ratio: {summary['mean_oracle_burden_ratio_vanilla_over_prb']:.6f}",
+        f"- Mean iteration difference, Vanilla minus PRB: {summary['mean_iteration_difference_vanilla_minus_prb']:.6f}",
+        "",
+        "210330 is not a valid pair: PRB returned an optimal final solution and passed the independent global final-solution and cut checks, but its internal global risk-budget coupling certification failed. It was not retried.",
+        "",
+        summary["baseline_schema_note"],
+    ]
+    (output_root / "renault_vanilla_prb_8case_report.md").write_text(
+        "\n".join(lines) + "\n", encoding="utf-8"
+    )
     return summary
 
 

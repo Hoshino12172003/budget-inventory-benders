@@ -1,0 +1,11 @@
+{"dual_feasibility_max_violation": 5.5067062021407764e-14, "oracle_seconds": 0.6653748999815434, "scenarios_solved": 4657, "strong_duality_residual": 1.1641532182693481e-10, "value": 700959.607214286}
+{"dual_feasibility_max_violation": 5.5067062021407764e-14, "oracle_seconds": 0.7660273001529276, "scenarios_solved": 4657, "strong_duality_residual": 1.1641532182693481e-10, "value": 599374.7413701133}
+{"dual_feasibility_max_violation": 5.5067062021407764e-14, "oracle_seconds": 0.7116571001242846, "scenarios_solved": 4657, "strong_duality_residual": 1.1641532182693481e-10, "value": 593007.0044828763}
+{"dual_feasibility_max_violation": 5.5067062021407764e-14, "oracle_seconds": 1.0702345999889076, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 592349.5480714091}
+{"dual_feasibility_max_violation": 5.5067062021407764e-14, "oracle_seconds": 1.0787164999637753, "scenarios_solved": 4657, "strong_duality_residual": 1.1641532182693481e-10, "value": 592019.7236750182}
+{"dual_feasibility_max_violation": 5.5067062021407764e-14, "oracle_seconds": 1.26534239994362, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 592010.692604651}
+{"dual_feasibility_max_violation": 5.5067062021407764e-14, "oracle_seconds": 1.1781160000246018, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 592009.6105783568}
+{"dual_feasibility_max_violation": 5.5067062021407764e-14, "oracle_seconds": 1.230546899838373, "scenarios_solved": 4657, "strong_duality_residual": 2.3283064365386963e-10, "value": 592009.2018266588}
+{"dual_feasibility_max_violation": 5.5067062021407764e-14, "oracle_seconds": 1.0607153000310063, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 592009.2018260963}
+{"dual_feasibility_max_violation": 5.5067062021407764e-14, "oracle_seconds": 0.9821597000118345, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 592009.2018260963}
+{"dual_feasibility_max_violation": 5.5067062021407764e-14, "oracle_seconds": 1.2259537999052554, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 592009.2018260963}

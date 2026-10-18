@@ -1,0 +1,9 @@
+{
+  "batch_sha256": "36a82d30ff83c0f7841658e2a4b2c5b031e43e4fd33f88f0957983e7eb780332",
+  "git_commit": "6f3ef1af6dad6ec04eac885a11cea7848b1ebbdd",
+  "git_status_porcelain": [
+    "?? experiments/results/renault_vanilla_bd_remaining7_development_v1/"
+  ],
+  "python_executable": "C:\\Program Files\\Python312\\python.exe",
+  "runner_sha256": "7dc1f817141fb7cc1d0050d656afdf2a7be2de1c28f6a8f70467d0fa961795f6"
+}
