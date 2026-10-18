@@ -1,0 +1,1 @@
+instance_id,seed,size,method,exact_certification,cut_validity,failure_reason,objective,LB,UB,final_gap,algorithm_core_time,certification_time,total_time,iterations,cuts_added,oracle_time,peak_process_tree_memory,solver_profile_sha,instance_sha,iteration,trajectory_LB,trajectory_UB,trajectory_gap,trajectory_cumulative_time
