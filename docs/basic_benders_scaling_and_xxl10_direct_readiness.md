@@ -32,6 +32,6 @@ The archived Scaling V2 CSV contains complete LB/UB/gap/cumulative-time trajecto
 
 ## XXL10 Direct
 
-Live available RAM is 14.108 GiB and free disk is 246.329 GiB. The unchanged gate is 16 GiB available RAM, 13 GiB process-tree cap, 3 GiB system floor, 20 GiB disk, and 900 seconds. The static model estimate remains 14,227,589 variables, 791,070 constraints, and 43,069,377 nonzeros; no XXL10 Direct model was built.
+Live available RAM is 14.154 GiB and free disk is 246.329 GiB. The unchanged gate is 16 GiB available RAM, 13 GiB process-tree cap, 3 GiB system floor, 20 GiB disk, and 900 seconds. The static model estimate remains 14,227,589 variables, 791,070 constraints, and 43,069,377 nonzeros; no XXL10 Direct model was built.
 
 A larger-RAM migration must preserve Python/Gurobi, solver-profile, code/config/instance hashes, single-process monitoring, resource gates, archival, and certification. Because the historical Scaling V2 solver version is not verifiable, exact historical software identity must not be claimed.

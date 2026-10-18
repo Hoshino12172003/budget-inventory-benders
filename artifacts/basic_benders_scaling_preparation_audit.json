@@ -24,23 +24,37 @@
       "global_scenario_count": 41617,
       "maximum_global_scenarios": 166177,
       "resource_gate": {
-        "available_memory_gib": 14.125411987304688,
+        "available_memory_gib": 14.178489685058594,
         "startup_required_gib": 7,
         "process_tree_cap_gib": 4,
         "system_available_floor_gib": 3,
-        "free_disk_gib": 246.32900619506836,
+        "free_disk_gib": 246.32886123657227,
         "minimum_free_disk_gib": 20,
         "time_limit_seconds": 900,
         "monitor_interval_seconds": 0.25
       },
       "canonical_result_exists": false,
+      "environment": {
+        "platform": "Windows-11-10.0.26200-SP0",
+        "python_version": "3.12.7",
+        "python_executable": "C:\\Program Files\\Python312\\python.exe",
+        "gurobipy_version": "13.0.1",
+        "gurobi_native_version": [
+          13,
+          0,
+          1
+        ],
+        "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+      },
+      "git_status_clean": true,
+      "git_status_entries": [],
       "optimization_calls": 0
     },
     "decision": "READY_FOR_SINGLE_PILOT_AUTHORIZATION"
   },
   "preparation_code_identity": {
-    "basic_runner_sha256": "a1b9773ce80b8da0424e456415f1102ae26c87c2897a6bd87164cafa9f3cdbc7",
-    "audit_script_sha256": "b25ace28fbba7ad37654a9fc64a0abba6c0bffdc80e7af3a18a150a226452aa7",
+    "basic_runner_sha256": "d4e506c0698146c1758b734a54796350ad0afab3a812b7a2c50013399a4f86df",
+    "audit_script_sha256": "4df1892587beb584083ce19cc957c5d6900c62492de5e9428a24c146f30ce619",
     "gap_plot_script_sha256": "2b455590f504ac5bb4aeee12834245ddb9085405e5ce7d529112dc51dd4d37bc"
   },
   "renault_basic_evidence": {
@@ -684,9 +698,9 @@
     },
     "live": {
       "total_ram_gib": 31.49742889404297,
-      "available_ram_gib": 14.107948303222656,
-      "free_disk_gib": 246.32900619506836,
-      "audit_process_rss_gib": 0.027973175048828125,
+      "available_ram_gib": 14.153907775878906,
+      "free_disk_gib": 246.32886123657227,
+      "audit_process_rss_gib": 0.035068511962890625,
       "active_solver_processes": []
     },
     "gates": {
