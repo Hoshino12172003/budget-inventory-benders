@@ -82,13 +82,13 @@ def test_all_eight_frozen_identities_and_scenario_counts_pass() -> None:
     assert all(row["lambda_R"] == 0.05 for row in rows)
 
 
-def test_dry_run_makes_no_optimization_calls_and_creates_no_attempts() -> None:
+def test_dry_run_makes_no_optimization_calls_and_reports_archived_attempts() -> None:
     dry = runner.build_dry_run()
     assert dry["optimization_calls"] == 0
     assert dry["formal_run_authorized"] is False
     assert len(dry["conditions"]) == 8
-    assert all(not row["attempt_exists"] for row in dry["conditions"])
-    assert all(not row["canonical_exists"] for row in dry["conditions"])
+    assert all(row["attempt_exists"] for row in dry["conditions"])
+    assert all(row["canonical_exists"] for row in dry["conditions"])
 
 
 def test_execute_fails_closed_before_any_dry_run(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -115,12 +115,13 @@ def test_implementation_has_no_forbidden_oracle_or_product_decomposition_depende
     assert "setAttr(GRB.Attr.RHS" in source
 
 
-def test_comparison_template_uses_real_sources_and_excludes_prb_210330() -> None:
+def test_comparison_uses_archived_eb_sources_and_excludes_prb_210330() -> None:
     rows = build_rows()
     assert len(rows) == 48
     eb_rows = [row for row in rows if row["method"] == "EB-BD"]
     assert len(eb_rows) == 8
-    assert all(row["objective"] is None for row in eb_rows)
+    assert all(row["objective"] is not None for row in eb_rows)
+    assert all(row["exact_certification"] is True for row in eb_rows)
     prb_210330 = next(
         row for row in rows if row["case"] == "210330" and row["method"] == "PRB-BD"
     )

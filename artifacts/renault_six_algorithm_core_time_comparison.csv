@@ -1,0 +1,9 @@
+case,direct_core_time_seconds,direct_exact_certification,direct_pairing_eligible,basic_bd_core_time_seconds,basic_bd_exact_certification,basic_bd_pairing_eligible,eb_bd_core_time_seconds,eb_bd_exact_certification,eb_bd_pairing_eligible,aggregate_bd_core_time_seconds,aggregate_bd_exact_certification,aggregate_bd_pairing_eligible,prb_bd_core_time_seconds,prb_bd_exact_certification,prb_bd_pairing_eligible,global_bd_core_time_seconds,global_bd_exact_certification,global_bd_pairing_eligible
+210202,3.3410000801086426,True,True,9.525326400063932,True,True,7.08888759999536,True,True,1.6073459000035655,True,True,1.4471110000740737,True,True,0.41859719999774825,True,True
+210628,2.9079999923706055,True,True,12.625940999947488,True,True,7.364627700066194,True,True,1.5682301000051666,True,True,1.627319100080058,True,True,0.42748179999762215,True,True
+210129,2.9140000343322754,True,True,11.734883300028741,True,True,7.294740199809894,True,True,1.5155339000048116,True,True,1.4521029000170529,True,True,0.4067098000086844,True,True
+210310,3.0299999713897705,True,True,11.34651070018299,True,True,6.892271799966693,True,True,1.5025598999927752,True,True,1.7987470999360085,True,True,0.28921959998842794,True,True
+210330,1.6699998378753662,True,True,10.180209100013599,True,True,6.857881600037217,True,True,1.2926051999966148,True,True,1.2939927999395877,False,False,0.39481070000329055,True,True
+210323,2.3310000896453857,True,True,9.14152880012989,True,True,6.152091100113466,True,True,1.3073450999945635,True,True,1.3746277999598533,True,True,0.3415687000087928,True,True
+210428,3.4130001068115234,True,True,13.22951709991321,True,True,8.449232399929315,True,True,1.8767744999931892,True,True,1.9786328000482172,True,True,0.3858985999977449,True,True
+210611,3.303999900817871,True,True,14.01803299994208,True,True,9.354569299845025,True,True,1.9243862999865087,True,True,1.9216013001278043,True,True,0.4196952000056626,True,True

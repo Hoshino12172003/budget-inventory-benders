@@ -1,0 +1,192 @@
+{
+  "attempt": "attempt-001",
+  "condition_id": "EB_RENAULT_210628",
+  "elapsed_seconds": 9.111160599859431,
+  "limits": {
+    "condition_time_limit_seconds": 300,
+    "execution": "sequential_single_process",
+    "fail_closed": true,
+    "maximum_process_tree_memory_gib": 4,
+    "memory_monitor_interval_seconds": 0.25,
+    "minimum_available_memory_gib": 8,
+    "minimum_free_disk_gib": 20,
+    "minimum_system_available_memory_gib": 3,
+    "parallel_workers": 1,
+    "retry_policy": "no_automatic_retry"
+  },
+  "peak_process_tree_memory_gib": 0.059665679931640625,
+  "samples": [
+    {
+      "elapsed_seconds": 0.014185699867084622,
+      "process_tree_rss_gib": 0.00653076171875,
+      "system_available_gib": 16.131149291992188
+    },
+    {
+      "elapsed_seconds": 0.2831195998005569,
+      "process_tree_rss_gib": 0.02303314208984375,
+      "system_available_gib": 16.11595916748047
+    },
+    {
+      "elapsed_seconds": 0.5571912999730557,
+      "process_tree_rss_gib": 0.05438995361328125,
+      "system_available_gib": 16.08184051513672
+    },
+    {
+      "elapsed_seconds": 0.8278216000180691,
+      "process_tree_rss_gib": 0.054515838623046875,
+      "system_available_gib": 16.06918716430664
+    },
+    {
+      "elapsed_seconds": 1.098204999929294,
+      "process_tree_rss_gib": 0.054615020751953125,
+      "system_available_gib": 16.07900619506836
+    },
+    {
+      "elapsed_seconds": 1.365157000022009,
+      "process_tree_rss_gib": 0.0579071044921875,
+      "system_available_gib": 16.077770233154297
+    },
+    {
+      "elapsed_seconds": 1.6312961999792606,
+      "process_tree_rss_gib": 0.057910919189453125,
+      "system_available_gib": 16.083648681640625
+    },
+    {
+      "elapsed_seconds": 1.8982467998284847,
+      "process_tree_rss_gib": 0.057910919189453125,
+      "system_available_gib": 16.081298828125
+    },
+    {
+      "elapsed_seconds": 2.1654657998587936,
+      "process_tree_rss_gib": 0.058193206787109375,
+      "system_available_gib": 16.086345672607422
+    },
+    {
+      "elapsed_seconds": 2.434807399986312,
+      "process_tree_rss_gib": 0.058197021484375,
+      "system_available_gib": 16.086502075195312
+    },
+    {
+      "elapsed_seconds": 2.705690799979493,
+      "process_tree_rss_gib": 0.058197021484375,
+      "system_available_gib": 16.081050872802734
+    },
+    {
+      "elapsed_seconds": 2.9712523999623954,
+      "process_tree_rss_gib": 0.0586090087890625,
+      "system_available_gib": 16.100387573242188
+    },
+    {
+      "elapsed_seconds": 3.239013799931854,
+      "process_tree_rss_gib": 0.058624267578125,
+      "system_available_gib": 16.088489532470703
+    },
+    {
+      "elapsed_seconds": 3.505699799861759,
+      "process_tree_rss_gib": 0.058628082275390625,
+      "system_available_gib": 16.087890625
+    },
+    {
+      "elapsed_seconds": 3.7712381000164896,
+      "process_tree_rss_gib": 0.058650970458984375,
+      "system_available_gib": 16.10721206665039
+    },
+    {
+      "elapsed_seconds": 4.0362674000207335,
+      "process_tree_rss_gib": 0.0590057373046875,
+      "system_available_gib": 16.096939086914062
+    },
+    {
+      "elapsed_seconds": 4.301779099972919,
+      "process_tree_rss_gib": 0.0590057373046875,
+      "system_available_gib": 16.095874786376953
+    },
+    {
+      "elapsed_seconds": 4.567198099801317,
+      "process_tree_rss_gib": 0.058574676513671875,
+      "system_available_gib": 16.08932113647461
+    },
+    {
+      "elapsed_seconds": 4.83255729987286,
+      "process_tree_rss_gib": 0.0588836669921875,
+      "system_available_gib": 16.095539093017578
+    },
+    {
+      "elapsed_seconds": 5.097521699965,
+      "process_tree_rss_gib": 0.058902740478515625,
+      "system_available_gib": 16.09888458251953
+    },
+    {
+      "elapsed_seconds": 5.368726899847388,
+      "process_tree_rss_gib": 0.058902740478515625,
+      "system_available_gib": 16.09765625
+    },
+    {
+      "elapsed_seconds": 5.637176999822259,
+      "process_tree_rss_gib": 0.058864593505859375,
+      "system_available_gib": 16.091995239257812
+    },
+    {
+      "elapsed_seconds": 5.902325599920005,
+      "process_tree_rss_gib": 0.059192657470703125,
+      "system_available_gib": 16.086288452148438
+    },
+    {
+      "elapsed_seconds": 6.175729600014165,
+      "process_tree_rss_gib": 0.059192657470703125,
+      "system_available_gib": 16.08606719970703
+    },
+    {
+      "elapsed_seconds": 6.4407071999739856,
+      "process_tree_rss_gib": 0.059467315673828125,
+      "system_available_gib": 16.09991455078125
+    },
+    {
+      "elapsed_seconds": 6.705297000007704,
+      "process_tree_rss_gib": 0.05947113037109375,
+      "system_available_gib": 16.100181579589844
+    },
+    {
+      "elapsed_seconds": 6.975326499901712,
+      "process_tree_rss_gib": 0.05947113037109375,
+      "system_available_gib": 16.096099853515625
+    },
+    {
+      "elapsed_seconds": 7.241769199958071,
+      "process_tree_rss_gib": 0.059539794921875,
+      "system_available_gib": 16.079795837402344
+    },
+    {
+      "elapsed_seconds": 7.507172900019214,
+      "process_tree_rss_gib": 0.059665679931640625,
+      "system_available_gib": 16.07854461669922
+    },
+    {
+      "elapsed_seconds": 7.775745999999344,
+      "process_tree_rss_gib": 0.059665679931640625,
+      "system_available_gib": 16.084095001220703
+    },
+    {
+      "elapsed_seconds": 8.041859099874273,
+      "process_tree_rss_gib": 0.058032989501953125,
+      "system_available_gib": 16.081344604492188
+    },
+    {
+      "elapsed_seconds": 8.305182099808007,
+      "process_tree_rss_gib": 0.058010101318359375,
+      "system_available_gib": 16.081844329833984
+    },
+    {
+      "elapsed_seconds": 8.569641500012949,
+      "process_tree_rss_gib": 0.058010101318359375,
+      "system_available_gib": 16.08111572265625
+    },
+    {
+      "elapsed_seconds": 8.843733999878168,
+      "process_tree_rss_gib": 0.0,
+      "system_available_gib": 16.127506256103516
+    }
+  ],
+  "stop_reason": null,
+  "worker_return_code": 0
+}

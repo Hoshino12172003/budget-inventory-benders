@@ -201,4 +201,10 @@ artifacts/*
 !artifacts/algorithm_scaling_pure_cut_fix_validation_L10_S20260929.json
 !artifacts/renault_enhanced_basic_benders_readiness.json
 !artifacts/renault_eb_bd_comparison_template.csv
+!artifacts/renault_eb_bd_results.csv
+!artifacts/renault_six_algorithm_core_time_comparison.csv
+!artifacts/renault_eb_bd_vs_basic_speedup.csv
+!artifacts/renault_eb_bd_run_status.csv
+!artifacts/renault_eb_bd_sha256_manifest.csv
+!artifacts/renault_eb_bd_acceptance_audit.json
 experiments/results/algorithm_scaling_convergence_cost_v2_repaired_guard/

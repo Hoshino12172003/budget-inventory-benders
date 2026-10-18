@@ -1,0 +1,182 @@
+{
+  "attempt": "attempt-001",
+  "condition_id": "EB_RENAULT_210310",
+  "elapsed_seconds": 8.59961079992354,
+  "limits": {
+    "condition_time_limit_seconds": 300,
+    "execution": "sequential_single_process",
+    "fail_closed": true,
+    "maximum_process_tree_memory_gib": 4,
+    "memory_monitor_interval_seconds": 0.25,
+    "minimum_available_memory_gib": 8,
+    "minimum_free_disk_gib": 20,
+    "minimum_system_available_memory_gib": 3,
+    "parallel_workers": 1,
+    "retry_policy": "no_automatic_retry"
+  },
+  "peak_process_tree_memory_gib": 0.059047698974609375,
+  "samples": [
+    {
+      "elapsed_seconds": 0.018975199898704886,
+      "process_tree_rss_gib": 0.007907867431640625,
+      "system_available_gib": 16.14813995361328
+    },
+    {
+      "elapsed_seconds": 0.2901522000320256,
+      "process_tree_rss_gib": 0.0235748291015625,
+      "system_available_gib": 16.148208618164062
+    },
+    {
+      "elapsed_seconds": 0.5602823998779058,
+      "process_tree_rss_gib": 0.0441436767578125,
+      "system_available_gib": 16.124370574951172
+    },
+    {
+      "elapsed_seconds": 0.8317511000204831,
+      "process_tree_rss_gib": 0.054538726806640625,
+      "system_available_gib": 16.11821746826172
+    },
+    {
+      "elapsed_seconds": 1.1049248999916017,
+      "process_tree_rss_gib": 0.054595947265625,
+      "system_available_gib": 16.117721557617188
+    },
+    {
+      "elapsed_seconds": 1.3730706998612732,
+      "process_tree_rss_gib": 0.054595947265625,
+      "system_available_gib": 16.104942321777344
+    },
+    {
+      "elapsed_seconds": 1.6376855999697,
+      "process_tree_rss_gib": 0.0580596923828125,
+      "system_available_gib": 16.112857818603516
+    },
+    {
+      "elapsed_seconds": 1.9025713000446558,
+      "process_tree_rss_gib": 0.0580596923828125,
+      "system_available_gib": 16.11267852783203
+    },
+    {
+      "elapsed_seconds": 2.1733954998198897,
+      "process_tree_rss_gib": 0.0580596923828125,
+      "system_available_gib": 16.101112365722656
+    },
+    {
+      "elapsed_seconds": 2.4387292999308556,
+      "process_tree_rss_gib": 0.05799102783203125,
+      "system_available_gib": 16.098758697509766
+    },
+    {
+      "elapsed_seconds": 2.7070559998974204,
+      "process_tree_rss_gib": 0.057621002197265625,
+      "system_available_gib": 16.101757049560547
+    },
+    {
+      "elapsed_seconds": 2.973947799997404,
+      "process_tree_rss_gib": 0.057621002197265625,
+      "system_available_gib": 16.1187744140625
+    },
+    {
+      "elapsed_seconds": 3.240546999964863,
+      "process_tree_rss_gib": 0.058185577392578125,
+      "system_available_gib": 16.108829498291016
+    },
+    {
+      "elapsed_seconds": 3.5082684999797493,
+      "process_tree_rss_gib": 0.05780029296875,
+      "system_available_gib": 16.10678482055664
+    },
+    {
+      "elapsed_seconds": 3.7777821999043226,
+      "process_tree_rss_gib": 0.05780029296875,
+      "system_available_gib": 16.10262680053711
+    },
+    {
+      "elapsed_seconds": 4.043070700019598,
+      "process_tree_rss_gib": 0.058506011962890625,
+      "system_available_gib": 16.10306167602539
+    },
+    {
+      "elapsed_seconds": 4.308792799944058,
+      "process_tree_rss_gib": 0.0586700439453125,
+      "system_available_gib": 16.11599349975586
+    },
+    {
+      "elapsed_seconds": 4.582750899950042,
+      "process_tree_rss_gib": 0.0586700439453125,
+      "system_available_gib": 16.11627960205078
+    },
+    {
+      "elapsed_seconds": 4.850528399925679,
+      "process_tree_rss_gib": 0.0587615966796875,
+      "system_available_gib": 16.103538513183594
+    },
+    {
+      "elapsed_seconds": 5.122881199931726,
+      "process_tree_rss_gib": 0.05881500244140625,
+      "system_available_gib": 16.102218627929688
+    },
+    {
+      "elapsed_seconds": 5.391736999852583,
+      "process_tree_rss_gib": 0.05881500244140625,
+      "system_available_gib": 16.102130889892578
+    },
+    {
+      "elapsed_seconds": 5.656814199872315,
+      "process_tree_rss_gib": 0.0586090087890625,
+      "system_available_gib": 16.11724853515625
+    },
+    {
+      "elapsed_seconds": 5.924478200031444,
+      "process_tree_rss_gib": 0.058834075927734375,
+      "system_available_gib": 16.11058807373047
+    },
+    {
+      "elapsed_seconds": 6.195924100000411,
+      "process_tree_rss_gib": 0.058834075927734375,
+      "system_available_gib": 16.10881805419922
+    },
+    {
+      "elapsed_seconds": 6.461164299864322,
+      "process_tree_rss_gib": 0.058834075927734375,
+      "system_available_gib": 16.10434341430664
+    },
+    {
+      "elapsed_seconds": 6.731561499880627,
+      "process_tree_rss_gib": 0.05904388427734375,
+      "system_available_gib": 16.09925079345703
+    },
+    {
+      "elapsed_seconds": 6.998414299916476,
+      "process_tree_rss_gib": 0.059047698974609375,
+      "system_available_gib": 16.101078033447266
+    },
+    {
+      "elapsed_seconds": 7.263358099851757,
+      "process_tree_rss_gib": 0.059047698974609375,
+      "system_available_gib": 16.1009521484375
+    },
+    {
+      "elapsed_seconds": 7.536819200031459,
+      "process_tree_rss_gib": 0.0579071044921875,
+      "system_available_gib": 16.09416961669922
+    },
+    {
+      "elapsed_seconds": 7.801560799824074,
+      "process_tree_rss_gib": 0.057956695556640625,
+      "system_available_gib": 16.08971405029297
+    },
+    {
+      "elapsed_seconds": 8.066586300032213,
+      "process_tree_rss_gib": 0.057956695556640625,
+      "system_available_gib": 16.088287353515625
+    },
+    {
+      "elapsed_seconds": 8.33136219996959,
+      "process_tree_rss_gib": 0.05553436279296875,
+      "system_available_gib": 16.09650421142578
+    }
+  ],
+  "stop_reason": null,
+  "worker_return_code": 0
+}

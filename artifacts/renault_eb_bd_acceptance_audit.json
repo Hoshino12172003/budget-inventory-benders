@@ -1,0 +1,128 @@
+{
+  "checks": {
+    "210129": {
+      "canonical_matches_attempt": true,
+      "condition_matches": true,
+      "cut_validity": true,
+      "exact_certification": true,
+      "execution_code_identity": true,
+      "first_stage_sha256": true,
+      "identity_matches": true,
+      "result_sha256": true,
+      "trajectory_sha256": true,
+      "worker_clean_exit": true
+    },
+    "210202": {
+      "canonical_matches_attempt": true,
+      "condition_matches": true,
+      "cut_validity": true,
+      "exact_certification": true,
+      "execution_code_identity": true,
+      "first_stage_sha256": true,
+      "identity_matches": true,
+      "result_sha256": true,
+      "trajectory_sha256": true,
+      "worker_clean_exit": true
+    },
+    "210310": {
+      "canonical_matches_attempt": true,
+      "condition_matches": true,
+      "cut_validity": true,
+      "exact_certification": true,
+      "execution_code_identity": true,
+      "first_stage_sha256": true,
+      "identity_matches": true,
+      "result_sha256": true,
+      "trajectory_sha256": true,
+      "worker_clean_exit": true
+    },
+    "210323": {
+      "canonical_matches_attempt": true,
+      "condition_matches": true,
+      "cut_validity": true,
+      "exact_certification": true,
+      "execution_code_identity": true,
+      "first_stage_sha256": true,
+      "identity_matches": true,
+      "result_sha256": true,
+      "trajectory_sha256": true,
+      "worker_clean_exit": true
+    },
+    "210330": {
+      "canonical_matches_attempt": true,
+      "condition_matches": true,
+      "cut_validity": true,
+      "exact_certification": true,
+      "execution_code_identity": true,
+      "first_stage_sha256": true,
+      "identity_matches": true,
+      "result_sha256": true,
+      "trajectory_sha256": true,
+      "worker_clean_exit": true
+    },
+    "210428": {
+      "canonical_matches_attempt": true,
+      "condition_matches": true,
+      "cut_validity": true,
+      "exact_certification": true,
+      "execution_code_identity": true,
+      "first_stage_sha256": true,
+      "identity_matches": true,
+      "result_sha256": true,
+      "trajectory_sha256": true,
+      "worker_clean_exit": true
+    },
+    "210611": {
+      "canonical_matches_attempt": true,
+      "condition_matches": true,
+      "cut_validity": true,
+      "exact_certification": true,
+      "execution_code_identity": true,
+      "first_stage_sha256": true,
+      "identity_matches": true,
+      "result_sha256": true,
+      "trajectory_sha256": true,
+      "worker_clean_exit": true
+    },
+    "210628": {
+      "canonical_matches_attempt": true,
+      "condition_matches": true,
+      "cut_validity": true,
+      "exact_certification": true,
+      "execution_code_identity": true,
+      "first_stage_sha256": true,
+      "identity_matches": true,
+      "result_sha256": true,
+      "trajectory_sha256": true,
+      "worker_clean_exit": true
+    }
+  },
+  "cut_valid": 8,
+  "eb_oracle_mean_seconds": 7.202045162557624,
+  "eb_oracle_share_of_core_time": 0.9690865026287998,
+  "eb_vs_basic_geometric_speedup": 1.5396324373971884,
+  "eb_vs_direct_wins": 0,
+  "exact_certified": 8,
+  "expected": 8,
+  "mean_core_time_order_fastest_to_slowest": [
+    "Global-BD",
+    "Aggregate-BD",
+    "PRB-BD",
+    "Direct",
+    "EB-BD",
+    "Basic-BD"
+  ],
+  "method_mean_core_seconds": {
+    "Aggregate-BD": 1.5743476124971494,
+    "Basic-BD": 11.475243675027741,
+    "Direct": 2.86387500166893,
+    "EB-BD": 7.4317877124703955,
+    "Global-BD": 0.3854977000009967,
+    "PRB-BD": 1.611766850022832
+  },
+  "objective_consistent_with_direct": 8,
+  "optimization_calls": 0,
+  "prb_210330_strict_pairing_eligible": false,
+  "resource_or_time_failures": 0,
+  "status": "PASS"
+}

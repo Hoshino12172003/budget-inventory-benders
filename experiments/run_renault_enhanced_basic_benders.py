@@ -421,7 +421,9 @@ def run_monitored(config_path: Path, condition_id: str) -> dict[str, Any]:
         temporary = canonical.with_name(f".tmp-{condition_id}")
         if temporary.exists():
             raise FileExistsError(f"stale canonical temporary directory: {temporary}")
-        shutil.copytree(attempt_root, temporary)
+        shutil.copytree(payload, temporary)
+        for artifact_name in ("stdout.log", "stderr.log", "resource_monitor.json"):
+            shutil.copy2(attempt_root / artifact_name, temporary / artifact_name)
         os.replace(temporary, canonical)
         return {"classification": "SUCCESS", **monitor}
     if stop_reason in config["failure_policy"]["continue_after"]:

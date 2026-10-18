@@ -1,0 +1,51 @@
+{
+  "algorithm_core_time_seconds": 8.449232399929315,
+  "attempt": "attempt-001",
+  "case_id": "210428",
+  "condition_id": "EB_RENAULT_210428",
+  "cut_validity": true,
+  "cuts_added": 7,
+  "exact_certification": true,
+  "experiment_id": "RENAULT_ENHANCED_BASIC_BENDERS_DEVELOPMENT_V1",
+  "final_absolute_gap": 1.1641532182693481e-10,
+  "final_lower_bound": 793717.3880816089,
+  "final_relative_gap": 1.4667099848764448e-16,
+  "final_upper_bound": 793717.388081609,
+  "gurobi_version": "13.0.1",
+  "identity": {
+    "calibration_hash": "29ab4dae7c8cce42cc9a771372d9813fbffac137a978f2b2208a41f61256cc58",
+    "instance_hash": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+    "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+    "x0_hash": "cc08b6627d2f100652172e56ae78f3e35a97b8c89385b99da534fc20917a8014"
+  },
+  "independent_certification_seconds": 1.016128599876538,
+  "independent_global_certification": {
+    "certified_objective": 793717.388081609,
+    "certified_recourse": 717805.4120822635,
+    "dual_feasible": true,
+    "objective_residual": 0.0,
+    "pass": true,
+    "strong_duality_residual": 1.1641532182693481e-10
+  },
+  "iterations": 8,
+  "method": "EB-BD",
+  "objective": 793717.388081609,
+  "oracle_engineering": {
+    "candidate_pruning": false,
+    "compact_global_robust_milp_oracle": false,
+    "maximum_cuts_per_iteration": 1,
+    "oracle_instances": 1,
+    "oracle_solve_calls": 9,
+    "product_multicut": false,
+    "product_risk_budget_decomposition": false,
+    "scenario_count_per_oracle_call": 4657,
+    "scenario_lp_solves": 41913,
+    "single_global_theta": true
+  },
+  "oracle_seconds": 8.199884499656036,
+  "protocol_id": "RENAULT_EB_BD_8CASE_V1",
+  "schema": "renault_eb_bd_result_v1",
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "solver_status": "OPTIMAL",
+  "total_time_seconds": 9.465360999805853
+}

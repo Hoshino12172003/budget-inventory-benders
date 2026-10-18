@@ -3,7 +3,7 @@
   "experiment_id": "RENAULT_ENHANCED_BASIC_BENDERS_DEVELOPMENT_V1",
   "protocol_id": "RENAULT_EB_BD_8CASE_V1",
   "classification": "DEVELOPMENT_ONLY_NOT_FORMAL_EVIDENCE",
-  "formal_run_authorized": true,
+  "formal_run_authorized": false,
   "authorized_condition_ids": [
     "EB_RENAULT_210202",
     "EB_RENAULT_210628",
@@ -73,5 +73,5 @@
   },
   "output_directory": "experiments/results/renault_enhanced_basic_benders_development_v1",
   "comparison_output": "artifacts/renault_eb_bd_comparison_template.csv",
-  "authorization_note": "Prepared for static review only. No Renault EB-BD condition is authorized to execute."
+  "authorization_note": "Eight-case development batch completed and archived; further execution is closed."
 }

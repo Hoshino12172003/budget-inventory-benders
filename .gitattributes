@@ -9,3 +9,5 @@ experiments/results/direct_scaling_extension_v1/worker_logs/DIRECT_L10_S20260921
 experiments/results/direct_scaling_extension_v1/worker_logs/DIRECT_L10_S20260921/attempt-002/stdout.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 experiments/results/basic_benders_scaling_development_v1/** -text whitespace=-blank-at-eof,cr-at-eol
 experiments/results/basic_benders_scaling_development_v1/**/solver.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+experiments/results/renault_enhanced_basic_benders_development_v1/** -text whitespace=-blank-at-eof,cr-at-eol
+experiments/results/renault_enhanced_basic_benders_development_v1/**/solver.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
