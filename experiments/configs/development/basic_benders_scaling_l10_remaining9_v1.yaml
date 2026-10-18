@@ -3,7 +3,7 @@
   "experiment_id": "BASIC_BENDERS_SCALING_DEVELOPMENT_V1",
   "protocol_id": "BASIC_BD_SCALING_L10_REMAINING9_V1",
   "derived_from_protocol_id": "BASIC_BD_SCALING_L10_SINGLE_PILOT_V1",
-  "formal_run_authorized": false,
+  "formal_run_authorized": true,
   "authorized_condition_ids": [
     "BASIC_L10_S20260922",
     "BASIC_L10_S20260923",
