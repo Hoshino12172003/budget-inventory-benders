@@ -1,0 +1,456 @@
+{
+  "schema": "renault_enhanced_basic_benders_readiness_v1",
+  "status": "STATIC_AUDIT_PASS",
+  "decision": "READY_FOR_AUTHORIZATION",
+  "formal_run_authorized": false,
+  "optimization_calls": 0,
+  "basic_bd_audit": {
+    "existing_mechanisms": [
+      "one reusable all-product LP per oracle object",
+      "supply RHS update once per first-stage point",
+      "demand RHS updates limited to the scenario symmetric difference",
+      "successive LP reoptimization permits native basis reuse",
+      "dual extraction only for a new incumbent worst scenario",
+      "deterministic cardinality-then-lexicographic combination ordering",
+      "no explicit VBasis/CBasis assignment; warm reuse is native reoptimization of the unchanged LP"
+    ],
+    "observed_bottleneck": "all 4657 scenario LP optimizations are mandatory on every oracle call; Python-side scenario/RHS preparation is repeated on every call",
+    "historical_profile": {
+      "cases": {
+        "210202": {
+          "algorithm_seconds": 9.525326400063932,
+          "oracle_seconds": 9.372126300120726,
+          "oracle_share": 0.9839165511491368,
+          "iterations": 8
+        },
+        "210628": {
+          "algorithm_seconds": 12.625940999947488,
+          "oracle_seconds": 12.403286900138482,
+          "oracle_share": 0.9823653460910413,
+          "iterations": 8
+        },
+        "210129": {
+          "algorithm_seconds": 11.734883300028741,
+          "oracle_seconds": 11.536776400636882,
+          "oracle_share": 0.9831181193432598,
+          "iterations": 8
+        },
+        "210310": {
+          "algorithm_seconds": 11.34651070018299,
+          "oracle_seconds": 11.165966599946842,
+          "oracle_share": 0.9840881390758098,
+          "iterations": 7
+        },
+        "210330": {
+          "algorithm_seconds": 10.180209100013599,
+          "oracle_seconds": 10.008890700060874,
+          "oracle_share": 0.9831714262182988,
+          "iterations": 9
+        },
+        "210323": {
+          "algorithm_seconds": 9.14152880012989,
+          "oracle_seconds": 8.973305500112474,
+          "oracle_share": 0.9815979029661837,
+          "iterations": 7
+        },
+        "210428": {
+          "algorithm_seconds": 13.22951709991321,
+          "oracle_seconds": 13.055108999833465,
+          "oracle_share": 0.9868167448016005,
+          "iterations": 8
+        },
+        "210611": {
+          "algorithm_seconds": 14.01803299994208,
+          "oracle_seconds": 13.798867899924517,
+          "oracle_share": 0.9843654883664157,
+          "iterations": 8
+        }
+      },
+      "mean_oracle_share": 0.9836799647514682,
+      "minimum_oracle_share": 0.9815979029661837,
+      "maximum_oracle_share": 0.9868167448016005
+    },
+    "historical_evidence": {
+      "pilot_210202": {
+        "path": "experiments\\results\\renault_vanilla_bd_pilot_210202_development_v1\\sha256.txt",
+        "sha256": "c6e98d8c4df1ecf51930523a47fdb8b6f01be0af12be4be7ae9e12d61b75fc76",
+        "entries": 20,
+        "failures": [],
+        "status": "PASS"
+      },
+      "remaining_seven": {
+        "path": "experiments\\results\\renault_vanilla_bd_remaining7_development_v1\\sha256.txt",
+        "sha256": "c3cff49a5f829b69d2afed23343db12db0e8a8b6b3c76314d29a689b2a3a5e68",
+        "entries": 91,
+        "failures": [],
+        "status": "PASS"
+      }
+    }
+  },
+  "eb_bd_design": {
+    "changes": [
+      "precompute all 4657 exact global scenario demand/service RHS plans once",
+      "write supply, demand, and service RHS vectors through batched Gurobi setAttr calls",
+      "retain the same reusable all-product LP and all candidate solves"
+    ],
+    "correctness_boundary": [
+      "one global theta",
+      "at most one global optimality cut per iteration",
+      "no product risk-budget composition",
+      "no product multicut",
+      "no compact Global-BD adversarial MILP",
+      "no scenario pruning or skipped candidate"
+    ]
+  },
+  "checks": {
+    "authorization_closed": true,
+    "exact_eight_case_scope": true,
+    "all_frozen_identities": true,
+    "no_existing_attempts": true,
+    "no_existing_canonical_results": true,
+    "all_candidates_enumerated": true,
+    "no_candidate_pruning": true,
+    "batched_rhs_updates": true,
+    "scenario_rhs_precomputed": true,
+    "single_lp_reused": true,
+    "basic_already_reused_lp": true,
+    "basic_already_updated_rhs": true,
+    "no_aggregate_import": true,
+    "no_prb_import": true,
+    "historical_basic_manifests": true,
+    "zero_optimization_dry_run": true
+  },
+  "readiness_gates": {
+    "all_case_identities": true,
+    "all_attempts_absent": true,
+    "all_canonical_results_absent": true,
+    "startup_memory": true,
+    "disk": true,
+    "git_status": true,
+    "no_active_solver_worker": true,
+    "static_algorithm_checks": true
+  },
+  "dry_run": {
+    "schema": "renault_eb_bd_dry_run_v1",
+    "protocol_id": "RENAULT_EB_BD_8CASE_V1",
+    "formal_run_authorized": false,
+    "conditions": [
+      {
+        "case_id": "210202",
+        "condition_id": "EB_RENAULT_210202",
+        "dimensions": [
+          15,
+          12,
+          8
+        ],
+        "budget": 106510.9559990062,
+        "Gamma": 2,
+        "lambda_R": 0.05,
+        "scenario_count": 4657,
+        "identity": {
+          "instance_hash": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+          "x0_hash": "5fe095e76dd1372735ec7a6cb6fead9d6bc42f044b6006c13ed1aeb16dfbc368",
+          "calibration_hash": "7fe326584320b19636d95424cf806f0ab4c89951c3e2a1a84a4a5cc656e40624",
+          "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff"
+        },
+        "checks": {
+          "instance_hash": true,
+          "x0_hash": true,
+          "calibration_hash": true,
+          "mapping_hash": true,
+          "Gamma": true,
+          "lambda_R": true,
+          "scenario_count": true,
+          "scenario_cap": true
+        },
+        "status": "PASS",
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "canonical_exists": false
+      },
+      {
+        "case_id": "210628",
+        "condition_id": "EB_RENAULT_210628",
+        "dimensions": [
+          15,
+          12,
+          8
+        ],
+        "budget": 77408.83107532002,
+        "Gamma": 2,
+        "lambda_R": 0.05,
+        "scenario_count": 4657,
+        "identity": {
+          "instance_hash": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677",
+          "x0_hash": "7514da694ef80b8a5053329b2a2c9619090e768884c0555d19a67f9e284b589e",
+          "calibration_hash": "eb6b346748dcc77fdd66eecddb01b15dd96960f1f37991d3e761616048d5b584",
+          "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff"
+        },
+        "checks": {
+          "instance_hash": true,
+          "x0_hash": true,
+          "calibration_hash": true,
+          "mapping_hash": true,
+          "Gamma": true,
+          "lambda_R": true,
+          "scenario_count": true,
+          "scenario_cap": true
+        },
+        "status": "PASS",
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "canonical_exists": false
+      },
+      {
+        "case_id": "210129",
+        "condition_id": "EB_RENAULT_210129",
+        "dimensions": [
+          15,
+          12,
+          8
+        ],
+        "budget": 90311.11199905835,
+        "Gamma": 2,
+        "lambda_R": 0.05,
+        "scenario_count": 4657,
+        "identity": {
+          "instance_hash": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3",
+          "x0_hash": "ebd9b18371804f725a775db4eb4cacad84398b0c4c48e945aa039d425ea71288",
+          "calibration_hash": "d8fc1abd48548c153081e3e99696fc041eaf81cc81e06ca06a6f369d5a61d753",
+          "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff"
+        },
+        "checks": {
+          "instance_hash": true,
+          "x0_hash": true,
+          "calibration_hash": true,
+          "mapping_hash": true,
+          "Gamma": true,
+          "lambda_R": true,
+          "scenario_count": true,
+          "scenario_cap": true
+        },
+        "status": "PASS",
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "canonical_exists": false
+      },
+      {
+        "case_id": "210310",
+        "condition_id": "EB_RENAULT_210310",
+        "dimensions": [
+          16,
+          12,
+          8
+        ],
+        "budget": 76394.09199991751,
+        "Gamma": 2,
+        "lambda_R": 0.05,
+        "scenario_count": 4657,
+        "identity": {
+          "instance_hash": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+          "x0_hash": "66a15c21d4e760c0d31bbe9a15f21216b3fdd37e6b7bf14836025d544b0d117b",
+          "calibration_hash": "8915940c2bbfee479d054c007033da41d45776504e985c6d07302dea74481ff4",
+          "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff"
+        },
+        "checks": {
+          "instance_hash": true,
+          "x0_hash": true,
+          "calibration_hash": true,
+          "mapping_hash": true,
+          "Gamma": true,
+          "lambda_R": true,
+          "scenario_count": true,
+          "scenario_cap": true
+        },
+        "status": "PASS",
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "canonical_exists": false
+      },
+      {
+        "case_id": "210330",
+        "condition_id": "EB_RENAULT_210330",
+        "dimensions": [
+          11,
+          12,
+          8
+        ],
+        "budget": 65650.34742795816,
+        "Gamma": 2,
+        "lambda_R": 0.05,
+        "scenario_count": 4657,
+        "identity": {
+          "instance_hash": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+          "x0_hash": "11cd91349ff218d7f951a38a65123de8c5e304d36a370c97a39a1ce9b3c3961a",
+          "calibration_hash": "e182dde7a79c1c9e7909fb776df4d1cff0326d39bbee5414c3d7efdb147e071a",
+          "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff"
+        },
+        "checks": {
+          "instance_hash": true,
+          "x0_hash": true,
+          "calibration_hash": true,
+          "mapping_hash": true,
+          "Gamma": true,
+          "lambda_R": true,
+          "scenario_count": true,
+          "scenario_cap": true
+        },
+        "status": "PASS",
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "canonical_exists": false
+      },
+      {
+        "case_id": "210323",
+        "condition_id": "EB_RENAULT_210323",
+        "dimensions": [
+          13,
+          12,
+          8
+        ],
+        "budget": 68276.20285663515,
+        "Gamma": 2,
+        "lambda_R": 0.05,
+        "scenario_count": 4657,
+        "identity": {
+          "instance_hash": "df5fcbaa54a73277948f676fae151d85ad621d9ef417b0906b04066b1ef1109c",
+          "x0_hash": "04c9e1219c4e323ab77f8c8fb70854ecf4eb1c710584f21418b5a0005afaeb60",
+          "calibration_hash": "3fe6ede85f58eac50a9b3c406c39106277b8b8160518bfa0405cd21847fbd576",
+          "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff"
+        },
+        "checks": {
+          "instance_hash": true,
+          "x0_hash": true,
+          "calibration_hash": true,
+          "mapping_hash": true,
+          "Gamma": true,
+          "lambda_R": true,
+          "scenario_count": true,
+          "scenario_cap": true
+        },
+        "status": "PASS",
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "canonical_exists": false
+      },
+      {
+        "case_id": "210428",
+        "condition_id": "EB_RENAULT_210428",
+        "dimensions": [
+          18,
+          12,
+          8
+        ],
+        "budget": 75911.97599934557,
+        "Gamma": 2,
+        "lambda_R": 0.05,
+        "scenario_count": 4657,
+        "identity": {
+          "instance_hash": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+          "x0_hash": "cc08b6627d2f100652172e56ae78f3e35a97b8c89385b99da534fc20917a8014",
+          "calibration_hash": "29ab4dae7c8cce42cc9a771372d9813fbffac137a978f2b2208a41f61256cc58",
+          "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff"
+        },
+        "checks": {
+          "instance_hash": true,
+          "x0_hash": true,
+          "calibration_hash": true,
+          "mapping_hash": true,
+          "Gamma": true,
+          "lambda_R": true,
+          "scenario_count": true,
+          "scenario_cap": true
+        },
+        "status": "PASS",
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "canonical_exists": false
+      },
+      {
+        "case_id": "210611",
+        "condition_id": "EB_RENAULT_210611",
+        "dimensions": [
+          19,
+          12,
+          8
+        ],
+        "budget": 64656.257997955974,
+        "Gamma": 2,
+        "lambda_R": 0.05,
+        "scenario_count": 4657,
+        "identity": {
+          "instance_hash": "f244641d602348af8b2ac31a2bb948b4b0ebca8e33ff446dd07298e3e578a9bf",
+          "x0_hash": "deca1c7decbb01c5500ede566cd790a44cfa86e99c1b761b9f30cd30eb63ef81",
+          "calibration_hash": "9e9dbbbead031ea0ab251686b256ac1e269b7c145ea3549045dee843657fc5bb",
+          "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff"
+        },
+        "checks": {
+          "instance_hash": true,
+          "x0_hash": true,
+          "calibration_hash": true,
+          "mapping_hash": true,
+          "Gamma": true,
+          "lambda_R": true,
+          "scenario_count": true,
+          "scenario_cap": true
+        },
+        "status": "PASS",
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "canonical_exists": false
+      }
+    ],
+    "resource_snapshot": {
+      "available_memory_gib": 11.820480346679688,
+      "free_disk_gib": 246.2978286743164,
+      "active_workers": []
+    },
+    "git_status": {
+      "entries": [
+        "?? experiments/results/basic_benders_scaling_development_v1/batch_reports/",
+        "?? experiments/results/basic_benders_scaling_development_v1/runs/BASIC_L10_S20260922/",
+        "?? experiments/results/basic_benders_scaling_development_v1/runs/BASIC_L10_S20260924/",
+        "?? experiments/results/basic_benders_scaling_development_v1/runs/BASIC_L10_S20260925/",
+        "?? experiments/results/basic_benders_scaling_development_v1/runs/BASIC_L10_S20260926/",
+        "?? experiments/results/basic_benders_scaling_development_v1/runs/BASIC_L10_S20260927/",
+        "?? experiments/results/basic_benders_scaling_development_v1/runs/BASIC_L10_S20260928/",
+        "?? experiments/results/basic_benders_scaling_development_v1/runs/BASIC_L10_S20260929/",
+        "?? experiments/results/basic_benders_scaling_development_v1/runs/BASIC_L10_S20260930/",
+        "?? experiments/results/basic_benders_scaling_development_v1/worker_logs/BASIC_L10_S20260922/",
+        "?? experiments/results/basic_benders_scaling_development_v1/worker_logs/BASIC_L10_S20260923/",
+        "?? experiments/results/basic_benders_scaling_development_v1/worker_logs/BASIC_L10_S20260924/",
+        "?? experiments/results/basic_benders_scaling_development_v1/worker_logs/BASIC_L10_S20260925/",
+        "?? experiments/results/basic_benders_scaling_development_v1/worker_logs/BASIC_L10_S20260926/",
+        "?? experiments/results/basic_benders_scaling_development_v1/worker_logs/BASIC_L10_S20260927/",
+        "?? experiments/results/basic_benders_scaling_development_v1/worker_logs/BASIC_L10_S20260928/",
+        "?? experiments/results/basic_benders_scaling_development_v1/worker_logs/BASIC_L10_S20260929/",
+        "?? experiments/results/basic_benders_scaling_development_v1/worker_logs/BASIC_L10_S20260930/"
+      ],
+      "unexpected_entries": [],
+      "pass": true
+    },
+    "gates": {
+      "all_case_identities": true,
+      "all_attempts_absent": true,
+      "all_canonical_results_absent": true,
+      "startup_memory": true,
+      "disk": true,
+      "git_status": true,
+      "no_active_solver_worker": true
+    },
+    "environment": {
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python_version": "3.12.7",
+      "python_executable": "C:\\Program Files\\Python312\\python.exe",
+      "gurobi_version": "13.0.1"
+    },
+    "decision": "READY_FOR_AUTHORIZATION",
+    "optimization_calls": 0
+  },
+  "sha256": {
+    "config": "b3ec9a1263e182e9ff7d42381de672833d5ea85a865418813add2a4710532e3a",
+    "implementation": "d0404e6ce6483d12a1a3dabe2f01209d2764f8da717c130f09a3c211eaa296b1",
+    "runner": "8fde2a75723003c7ab25d7d112bb727ee76643a519f0b319d89f9f2c882efbf2",
+    "comparison_builder": "5c5ebecd10ad1921b8b78fcce44f61035a45007e4dffccc2adba6824e3177ce1"
+  }
+}
