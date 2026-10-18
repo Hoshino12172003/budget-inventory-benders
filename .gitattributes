@@ -3,5 +3,7 @@ experiments/results/e1_algorithm_benchmark/** -text whitespace=cr-at-eol
 experiments/results/e1b_pure_benders_v1/** -text whitespace=-blank-at-eof,cr-at-eol
 experiments/results/e1b_standard_vs_prb_v1/** -text whitespace=-blank-at-eof,cr-at-eol
 experiments/results/direct_scaling_extension_v1/** -text whitespace=-blank-at-eof,cr-at-eol
+experiments/results/direct_scaling_extension_v1/**/solver.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+experiments/results/direct_scaling_extension_v1/**/stdout.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 experiments/results/direct_scaling_extension_v1/worker_logs/DIRECT_L10_S20260921/attempt-002/solver.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 experiments/results/direct_scaling_extension_v1/worker_logs/DIRECT_L10_S20260921/attempt-002/stdout.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol

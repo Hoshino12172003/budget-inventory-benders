@@ -112,6 +112,11 @@ def validate_execution_gate(config: dict, condition: dict, output_root: Path) ->
         raise RuntimeError("FORMAL_DIRECT_EXECUTION_NOT_AUTHORIZED")
     if condition["condition_id"] not in {row["condition_id"] for row in authorized_conditions(config)}:
         raise RuntimeError(f"DIRECT_CONDITION_NOT_AUTHORIZED: {condition['condition_id']}")
+    freeze_control = ROOT / "experiments/configs/formal/direct_scaling_xl10_frozen_v1.yaml"
+    if condition["size"] == "XL10" and freeze_control.is_file():
+        freeze = load_config(freeze_control)
+        if freeze.get("execution_closed") is True:
+            raise RuntimeError(f"DIRECT_SCALE_FROZEN: {condition['size']}")
     configured_output = (ROOT / config["output_directory"]).resolve()
     if output_root.resolve() != configured_output:
         raise RuntimeError(f"DIRECT_OUTPUT_ROOT_MISMATCH: {output_root} != {configured_output}")

@@ -13,10 +13,12 @@ CONFIG = runner.ROOT / "experiments/configs/formal/direct_scaling_xl10_remaining
 OUTPUT_ROOT = runner.ROOT / "experiments/results/direct_scaling_extension_v1"
 
 
-def test_protocol_is_closed_fixed_and_scoped_to_remaining_seven() -> None:
+def test_historical_protocol_is_fixed_scoped_and_now_globally_frozen() -> None:
     config = runner.load_config(CONFIG)
     source = runner.load_config(batch.XL10_REMAINING9_CONFIG)
-    assert config["formal_run_authorized"] is False
+    freeze = runner.load_config(runner.ROOT / "experiments/configs/formal/direct_scaling_xl10_frozen_v1.yaml")
+    assert config["formal_run_authorized"] is True
+    assert freeze["execution_closed"] is True
     assert config["resource_protocol_id"] == batch.PROTOCOL_ID
     assert [row["condition_id"] for row in runner.authorized_conditions(config)] == batch.CONDITION_IDS
     assert config["fixed_scientific_parameters"] == source["fixed_scientific_parameters"]
@@ -46,7 +48,8 @@ def test_plan_freezes_attempt_numbers_and_rejects_an_extra_retry(tmp_path: Path)
 
 def test_current_plan_and_prior_three_certified_archives_pass() -> None:
     config = runner.load_config(CONFIG)
-    assert {row["condition_id"]: row["next_attempt"] for row in batch.build_plan(config, OUTPUT_ROOT)} == batch.EXPECTED_ATTEMPTS
+    with pytest.raises(RuntimeError, match="attempt identities changed"):
+        batch.build_plan(config, OUTPUT_ROOT)
     audits = batch.audit_prior_certified_results(OUTPUT_ROOT)
     assert [row["condition_id"] for row in audits] == [f"DIRECT_XL10_S{seed}" for seed in range(20260921, 20260924)]
     assert all(row["solver_status"] == "OPTIMAL" and row["exact_certification"] for row in audits)
@@ -110,11 +113,10 @@ def test_seed24_attempt001_resource_evidence_is_immutable() -> None:
     assert runner.file_sha256(attempt / "solver.log") == "b701d8cca12002dc25a34f0e201fd059fb022e131922d7fcc6f59941ea5bf636"
 
 
-def test_execute_is_blocked_while_protocol_is_unauthorized(monkeypatch, tmp_path: Path) -> None:
+def test_completed_batch_rejects_any_additional_attempt(tmp_path: Path) -> None:
     config = runner.load_config(CONFIG)
-    monkeypatch.setattr(batch, "build_plan", lambda *args: pytest.fail("plan must not execute"))
-    with pytest.raises(RuntimeError, match="NOT_AUTHORIZED"):
-        batch.execute_batch(CONFIG, config, tmp_path)
+    with pytest.raises(RuntimeError, match="attempt identities changed"):
+        batch.execute_batch(CONFIG, config, OUTPUT_ROOT)
 
 
 def test_process_tree_termination_waits_then_kills_survivors(monkeypatch) -> None:

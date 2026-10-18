@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "freeze_id": "DIRECT_SCALING_L10_XL10_FREEZE_V1",
+  "experiment_id": "DIRECT_SCALING_EXTENSION_V1",
+  "scale": "XL10",
+  "execution_closed": true,
+  "decision": "No further XL10 Direct retries are authorized.",
+  "certified_conditions": 9,
+  "planned_conditions": 10,
+  "terminal_failure_condition": "DIRECT_XL10_S20260924",
+  "terminal_failure_class": "RESOURCE_PROCESS_CAP",
+  "historical_authorization_records_immutable": true,
+  "xxl10_status": "NOT_EXECUTED_OUTSIDE_COMPLETED_SCALE_SCOPE"
+}

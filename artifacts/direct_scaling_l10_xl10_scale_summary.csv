@@ -1,0 +1,3 @@
+size,planned_conditions,direct_certified,direct_resource_failure,direct_time_failure,direct_numerical_certification_failure,direct_unexecuted,direct_completion_rate,valid_four_method_pairs,direct_mean_core_seconds_paired,pure_mean_core_seconds_paired,aggregate_structured_mean_core_seconds_paired,prb_mean_core_seconds_paired,mean_direct_to_prb_time_ratio_paired,mean_pure_to_prb_time_ratio_paired,mean_aggregate_to_prb_time_ratio_paired
+L10,10,10,0,0,0,0,1.0,10,135.6195261799963,1.491290340013802,38.81344384998083,25.524408310011495,5.545234663883472,0.051817439848337386,1.4431537668455667
+XL10,10,9,1,0,0,0,0.9,9,419.1069461111135,2.3218291222195453,109.246810577771,66.02751753333077,6.536762671991787,0.033194883165438026,1.614588125343291
