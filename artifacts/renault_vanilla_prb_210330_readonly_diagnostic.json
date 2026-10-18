@@ -1,0 +1,55 @@
+{
+  "classification": "DIAGNOSTIC_TOLERANCE_CONTRACT_MISMATCH",
+  "current_development_run": {
+    "case": "210330",
+    "coupling_error": "NOT_PERSISTED_NOT_EXACTLY_RECOVERABLE",
+    "cut_validity_pass": true,
+    "exact_pair_status": "FAIL_PRESERVED",
+    "independent_certified_recourse": 592009.201826656,
+    "independent_final_certification_pass": true,
+    "independent_strong_duality_residual": 1.1641532182693481e-10,
+    "iteration_count": 5,
+    "last_two_iterations": "NOT_PERSISTED_NOT_RECOVERABLE_WITHOUT_RERUN",
+    "maximum_cut_strong_duality_residual": 5.820766091346741e-11,
+    "objective": 657659.5492546142,
+    "product_cut_count": 33,
+    "status": "OPTIMAL"
+  },
+  "frozen_identity": {
+    "calibration_sha256": "e182dde7a79c1c9e7909fb776df4d1cff0326d39bbee5414c3d7efdb147e071a",
+    "instance_sha256": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+    "mapping_sha256": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+    "x0_sha256": "11cd91349ff218d7f951a38a65123de8c5e304d36a370c97a39a1ce9b3c3961a"
+  },
+  "historical_same_identity_evidence": {
+    "coupling_error_reconstructed": 1.6398262232542038e-6,
+    "excess_above_threshold": 6.398262232542038e-7,
+    "exact_composition": 592009.201826656,
+    "final_master_objective": 657659.549256254,
+    "first_stage_expenditure": 65650.34742795814,
+    "inferred_final_master_theta": 592009.2018282958,
+    "residual_over_threshold": 1.6398262232542038,
+    "risk_allocation": [0, 0, 0, 0, 0, 0, 1, 1],
+    "threshold": 1e-6,
+    "upper_bound": 657659.5492546142
+  },
+  "source_sha256": {
+    "current_prb_outcome_json": "5e57b5865aa05cfab464e6dfd56e453b819d3da420e603030e33299135d5e150",
+    "current_prb_result_json": "b817d0c78d170133045e30ae0e224d38ca582e2a5c79e348999364bc07c49fd2",
+    "current_result_manifest": "c3cff49a5f829b69d2afed23343db12db0e8a8b6b3c76314d29a689b2a3a5e68",
+    "historical_audit_json": "e4001fbcab5e52c900e6b7ffb7a7a0a3003ba0ce8839e949f93fcf54564677ae",
+    "historical_audit_markdown": "a6b39c744fde6dd6315fcda68c4bb6839ebaf45aff9d91da37468fe8f0fb2818"
+  },
+  "status": "READ_ONLY_DIAGNOSTIC_COMPLETE_FAIL_RETAINED",
+  "verification_limits": {
+    "best_solution_identity_in_current_run": "NOT_PERSISTED",
+    "current_exact_coupling_error": "NOT_PERSISTED",
+    "current_final_iteration_composition": "NOT_PERSISTED",
+    "current_final_master_theta": "NOT_PERSISTED",
+    "current_last_two_iteration_records": "NOT_PERSISTED",
+    "gurobi_called": false,
+    "historical_results_modified": false,
+    "optimization_rerun": false,
+    "tolerance_changed": false
+  }
+}
