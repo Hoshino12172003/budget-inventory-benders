@@ -1,0 +1,382 @@
+{
+  "schema": "direct_scaling_xxl10_preparation_audit_v1",
+  "protocol_id": "DIRECT_XXL10_LOW_MEMORY_PILOT_V1_METHOD2_THREADS2",
+  "formal_run_authorized": false,
+  "optimization_calls": 0,
+  "decision": "BLOCKED_BY_RESOURCE",
+  "decision_note": "The snapshot decision does not authorize execution. Every future launch must repeat all gates.",
+  "frozen_l10_xl10_evidence": {
+    "status": "PASS",
+    "checks": {
+      "sha256_audit_unchanged": true,
+      "frozen_counts": true,
+      "valid_pairs": true,
+      "scale_completion": true,
+      "xl10_terminal_attempts": true,
+      "xl10_terminal_stops": true
+    },
+    "sha256_records": 179
+  },
+  "xxl10_inputs": [
+    {
+      "condition_id": "DIRECT_XXL10_S20260921",
+      "seed": 20260921,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260921",
+      "instance_hash": "81739c07edea3babcb62bbaf91ac6ac37eb13c3201052071c5610c4e8a328f94",
+      "x0_hash": "65813dd3712757d9e6f4fa742525041ea32667b6ded2afda8096b1665aedda03",
+      "instance_sha256": "2ebc009d6f00065ecd948070210075b715154257d17c1701acf1b937b821088f",
+      "preparation_sha256": "17030da831a58cecce755bade73b245b4cdc8db18ebb1f4d5b4171e1e01ca39a",
+      "Gamma": 2,
+      "beta": 1.0,
+      "lambda_R": 0.05,
+      "dimensions": {
+        "I": 36,
+        "R": 36,
+        "J": 16
+      },
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260922",
+      "seed": 20260922,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260922",
+      "instance_hash": "fc193c71c5bad6b678e2a2a95ac0b5f71898cbb754e213848913b465051d5ea9",
+      "x0_hash": "531a741e79c1bc3208f7bc47f0e858193e72979b3f35b06154957491bf432457",
+      "instance_sha256": "acabbdba1d68be5d562fa604d6c3110de0d42ed49364be72a2db9f52cffaa9b4",
+      "preparation_sha256": "8d7e5d14bf41606dfd4cc0c16795f7c5a0edf0a1501ab726cc40bc8501164dc6",
+      "Gamma": 2,
+      "beta": 1.0,
+      "lambda_R": 0.05,
+      "dimensions": {
+        "I": 36,
+        "R": 36,
+        "J": 16
+      },
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260923",
+      "seed": 20260923,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260923",
+      "instance_hash": "e6cdf60fec71692b351bc22ff285c394317e71bc2594f16b7ec0fa8fb381fc1f",
+      "x0_hash": "85c7fe2e011914825dae1a75eadb5eb63442b307e818b7b8ccb5f1dac1ff64c3",
+      "instance_sha256": "83ba7cbc4f6b6c28bc1e532c2012cbb728ade2a7438d3bbab4de7b05882c19e7",
+      "preparation_sha256": "8fc56332c2eadeb38a9c627edb704ddf13fe72cb365a368b20f68ca21cb400f0",
+      "Gamma": 2,
+      "beta": 1.0,
+      "lambda_R": 0.05,
+      "dimensions": {
+        "I": 36,
+        "R": 36,
+        "J": 16
+      },
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260924",
+      "seed": 20260924,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260924",
+      "instance_hash": "e8b237496f9060aa1fdb1c9c86015ee9fc357fb8a752d58d80f6e13e8e4df163",
+      "x0_hash": "11730a46b409c296b69affbbcc628812593f6c5a76265d9d2f2d78f1405e987e",
+      "instance_sha256": "d2f057a0533fba6e8e3b5419ce690989300464926680c869da2a780db712535c",
+      "preparation_sha256": "a6423b5501807b7fe7735acc338300f91c236853483b716a607147447cdb1cd4",
+      "Gamma": 2,
+      "beta": 1.0,
+      "lambda_R": 0.05,
+      "dimensions": {
+        "I": 36,
+        "R": 36,
+        "J": 16
+      },
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260925",
+      "seed": 20260925,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260925",
+      "instance_hash": "55f9b013e762695a4d04763cddf38be89fe21edff9ccb35ae4be5e9703e683c7",
+      "x0_hash": "0063597cf98a7c560389f2c23ef42830aafb7817336edc26a8de292c204e8b35",
+      "instance_sha256": "014a198279d174e4a91b3e9239505391aaca9a7676807228b5f3cd607f770343",
+      "preparation_sha256": "aa813dead4af95b2218ca68808711905dfdc32daaa6a202df44deb6f4427cd9f",
+      "Gamma": 2,
+      "beta": 1.0,
+      "lambda_R": 0.05,
+      "dimensions": {
+        "I": 36,
+        "R": 36,
+        "J": 16
+      },
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260926",
+      "seed": 20260926,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260926",
+      "instance_hash": "15e77ea2a6d976f5bfb9f7231663611056fad47f52001b742d4a098be9c4e4a5",
+      "x0_hash": "8066e6cf7f976b965aa6d29f8bec73be7f5b600da52d5020b047179ac5d35f09",
+      "instance_sha256": "fe5a6c0e1c0bf23fd5e17b55ac057cea8068f510639a1fc5e13064d84663bdcd",
+      "preparation_sha256": "6b563ef40c6a3dede00155e28fb1693ce10a53875a853b72acecf2edcc1a2327",
+      "Gamma": 2,
+      "beta": 1.0,
+      "lambda_R": 0.05,
+      "dimensions": {
+        "I": 36,
+        "R": 36,
+        "J": 16
+      },
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260927",
+      "seed": 20260927,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260927",
+      "instance_hash": "5a945d25c347b2b7dd75a586fa9ae2a90fb1b291efabb78f5efb9f1d0ee35c07",
+      "x0_hash": "ef4ab13b4c4a46a0216ac17c0027265301ef2893f014d1dcc6a9b96c561a60a8",
+      "instance_sha256": "df8e2aafa9abd31df71208191e2067cf3e9e0f677187f01c5b01b5a82bc70cf3",
+      "preparation_sha256": "ada567056865550c6d59d91e18ba75a3808a3acc8f0245a06ae67fc5c07a5b06",
+      "Gamma": 2,
+      "beta": 1.0,
+      "lambda_R": 0.05,
+      "dimensions": {
+        "I": 36,
+        "R": 36,
+        "J": 16
+      },
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260928",
+      "seed": 20260928,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260928",
+      "instance_hash": "ab57d56583c28260358ca24c530535fcc2f1c12bf67aa3be4f0870156afab699",
+      "x0_hash": "7b699163a79bd13795be2323d4f065c5d3ec768aeb8fe1f9a46aa591b29a303c",
+      "instance_sha256": "c128428758be44d7a1f4161bbc4e5f8379809e26795bfd6f327d47c087b9c9d9",
+      "preparation_sha256": "05a5cb6fe40aa3e6b2907027a89640fe7b0d7bf57cda780e90a76e329696c20d",
+      "Gamma": 2,
+      "beta": 1.0,
+      "lambda_R": 0.05,
+      "dimensions": {
+        "I": 36,
+        "R": 36,
+        "J": 16
+      },
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260929",
+      "seed": 20260929,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260929",
+      "instance_hash": "29c010cdb8a97ea71b61ce499d42c91c2df128a8f0f7515abb0f424aa9390f35",
+      "x0_hash": "0e1f3745a98856f447f7a0242adee928d877ef9659d7dd4eb9d0f82d7b19daa1",
+      "instance_sha256": "bea9350e445fb4bae6db8fed6d10239feda86e5409ac26a2c0946d6826708f9e",
+      "preparation_sha256": "c3d37d75483be8530142778ede92aa6dc3afef837334eb9d7f8e8ceec13ad560",
+      "Gamma": 2,
+      "beta": 1.0,
+      "lambda_R": 0.05,
+      "dimensions": {
+        "I": 36,
+        "R": 36,
+        "J": 16
+      },
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260930",
+      "seed": 20260930,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260930",
+      "instance_hash": "c54138f47da83d6ae327c1b5b30d66e68a7428a4e9f46ab7bc7cadefd4484bdf",
+      "x0_hash": "2633cdb20b4ca4bfdd2a100390e9a56042694a5a74cd4e3eef92fbfeae9c64e6",
+      "instance_sha256": "a13c2853a20eb0fdb362dd3167acf487ded1ba72c6cdcbe7192e01e56c799cd6",
+      "preparation_sha256": "b6ee796fd54dd2e2466d0a787744532f3a0c505c429761df387aa8c3edbfebb9",
+      "Gamma": 2,
+      "beta": 1.0,
+      "lambda_R": 0.05,
+      "dimensions": {
+        "I": 36,
+        "R": 36,
+        "J": 16
+      },
+      "identity_status": "PASS"
+    }
+  ],
+  "candidate_condition": {
+    "size": "XXL10",
+    "seed": 20260921,
+    "condition_id": "DIRECT_XXL10_S20260921"
+  },
+  "next_attempt": "attempt-001",
+  "candidate_config_sha256": "fa4a30898be929435d46b001019719fc3fddd3c804b66f6c447ca18daa642c1d",
+  "candidate_config_hash": "fdc834e77979e9f505867914c2c9aba759feb46bb092f74d1df6ac4553b9429f",
+  "current_model_identity": {
+    "sha256": "4c34d92b00b20f3019724b04a7f923cebf8d512a798a6c785077293b4d5f6b4f",
+    "files": {
+      "experiments/run_direct_scaling.py": "fef8019f9aa9be1d2942a5d3aad363c2c3c28929e52cc02b359d1626a1880edd",
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+      "src/robust_inventory_reconfiguration/product_risk_subproblem.py": "1c68e8031a5bece2ae863fb0f3df2ed47ba9f5d7cf82d4cd6c20e9ba5bee012f",
+      "src/robust_inventory_reconfiguration/risk_budget_composition.py": "d5b79b3fd576ae1398bf2bd9931c658686a2a520d3b9fac7380c903c8e7aa47f",
+      "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+    }
+  },
+  "model_size": {
+    "I": 36,
+    "R": 36,
+    "J": 16,
+    "Gamma": 2,
+    "scenario_patterns_per_product": 667,
+    "scenario_blocks": 10672,
+    "risk_budget_allocations": 153,
+    "variable_count": 14227589,
+    "binary_variable_count": 36,
+    "constraint_count": 791070,
+    "nonzero_count": 43069377,
+    "evidence_class": "THEORETICAL_EXACT_COUNT_FROM_CURRENT_MODEL_FORMULA_NOT_A_GUROBI_BUILD",
+    "relative_to_xl10": {
+      "variables_ratio": 2.3419217250789566,
+      "constraints_ratio": 1.9509518372098185,
+      "nonzeros_ratio": 2.337818459772765
+    }
+  },
+  "model_size_formula_validation": {
+    "L10": {
+      "theoretical": [
+        2258462,
+        184929,
+        6866733
+      ],
+      "actual_unique_counts": [
+        [
+          2258462,
+          184929,
+          6866733
+        ]
+      ],
+      "matching_archives": 10,
+      "formula_matches_all_available_archives": true
+    },
+    "XL10": {
+      "theoretical": [
+        6075177,
+        405479,
+        18422892
+      ],
+      "actual_unique_counts": [
+        [
+          6075177,
+          405479,
+          18422892
+        ]
+      ],
+      "matching_archives": 9,
+      "formula_matches_all_available_archives": true
+    }
+  },
+  "model_size_evidence_note": "XXL10 counts are algebraic counts from the current model formula. No XXL10 Direct model was built, and no XXL10 Direct memory peak is claimed.",
+  "hardware_preflight": {
+    "total_ram_gib": 31.49742889404297,
+    "available_ram_gib": 14.653350830078125,
+    "audit_process_rss_gib": 0.027256011962890625,
+    "free_disk_gib": 246.34591674804688,
+    "active_direct_or_gurobi_processes": [],
+    "startup_memory_gate_gib": 16,
+    "process_tree_cap_gib": 13,
+    "system_available_floor_gib": 3,
+    "minimum_free_disk_gib": 20,
+    "time_limit_seconds": 900,
+    "monitor_interval_seconds": 0.25,
+    "parallel_workers": 1,
+    "memory_gate_pass": false,
+    "disk_gate_pass": true,
+    "process_gate_pass": true
+  },
+  "environment": {
+    "pass": true,
+    "checks": {
+      "python_version": true,
+      "gurobipy_version": true,
+      "gurobi_native_version": true
+    },
+    "required": {
+      "python_version": "3.12.7",
+      "gurobipy_version": "13.0.1",
+      "gurobi_native_version": [
+        13,
+        0,
+        1
+      ],
+      "comparison_basis": "current_environment_for_new_direct_batch",
+      "scaling_v2_historical_solver_version": "NOT_VERIFIABLE"
+    },
+    "current": {
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python_version": "3.12.7",
+      "python_executable": "C:\\Program Files\\Python312\\python.exe",
+      "gurobipy_version": "13.0.1",
+      "gurobi_native_version": [
+        13,
+        0,
+        1
+      ],
+      "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+    }
+  },
+  "solver_parameters": {
+    "Threads": 2,
+    "Seed": 0,
+    "MIPGap": 0.0,
+    "MIPGapAbs": "DEFAULT",
+    "FeasibilityTol": 1e-08,
+    "OptimalityTol": 1e-08,
+    "IntFeasTol": 1e-08,
+    "Presolve": "DEFAULT",
+    "Method": 2,
+    "Cuts": "DEFAULT",
+    "Heuristics": "DEFAULT",
+    "NumericFocus": 0
+  },
+  "resource_policy": {
+    "parallel_workers": 1,
+    "minimum_available_memory_gib_by_size": {
+      "L10": 10,
+      "XL10": 12,
+      "XXL10": 16
+    },
+    "maximum_process_tree_memory_gib_by_size": {
+      "L10": 6,
+      "XL10": 8,
+      "XXL10": 13
+    },
+    "minimum_system_available_memory_gib": 3,
+    "minimum_free_disk_gib": 20,
+    "condition_time_limit_seconds": 900,
+    "memory_monitor_interval_seconds": 0.25
+  },
+  "low_memory_strategy": {
+    "selected": {
+      "Method": 2,
+      "Threads": 2
+    },
+    "basis": "The same explicit pair reduced XL10 automatic-concurrent root-relaxation memory enough for nine certified runs; it does not prove XXL10 feasibility.",
+    "risks": [
+      "Barrier factorization at the MIP root can dominate memory for the 43-million-nonzero matrix.",
+      "Crossover can require additional basis and working memory after Barrier.",
+      "Threads=2 limits parallel work but does not cap Barrier factorization storage.",
+      "XXL10 has about 2.34 times the XL10 variables and nonzeros, so the unchanged 13-GiB cap may still stop the pilot."
+    ],
+    "separate_unselected_candidates": [
+      "Crossover=0 would be a distinct solver protocol and is not included or authorized here.",
+      "NodefileStart would be a distinct protocol and is unlikely to address root-node Barrier memory; it is not included or authorized here."
+    ]
+  },
+  "historical_scaling_environment_limit": "Scaling V2 historical Gurobi and Python versions remain NOT_VERIFIABLE; exact environment identity is not claimed.",
+  "pure_xxl10_seed20260925": {
+    "condition_id": "ASC_XXL10_S20260925_PURE_BENDERS",
+    "status": "EXCLUDED_FROM_VALID_FOUR_METHOD_PAIRING",
+    "failure_category": "HISTORICAL_ORACLE_CUT_STRONG_DUALITY_RESIDUAL",
+    "checks": {
+      "attempted": true,
+      "exact_certification_false": true,
+      "cut_validity_false": true,
+      "not_resource_failure": true
+    }
+  }
+}
