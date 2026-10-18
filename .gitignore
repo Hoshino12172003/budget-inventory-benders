@@ -54,6 +54,9 @@ artifacts/*
 !artifacts/direct_scaling_xxl10_preparation_audit.json
 !artifacts/basic_benders_scaling_preparation_audit.json
 !artifacts/basic_benders_scaling_result_matrix_template.csv
+!artifacts/basic_benders_l10_pilot_audit.json
+!artifacts/basic_benders_l10_pilot_sha256.csv
+!artifacts/basic_benders_l10_prb_comparison.csv
 !artifacts/x0_audit/
 !artifacts/x0_audit/**
 !artifacts/renault_x0_210202.csv

@@ -1,0 +1,56 @@
+{
+  "experiment_id": "BASIC_BENDERS_SCALING_DEVELOPMENT_V1",
+  "protocol_id": "BASIC_BD_SCALING_L10_SINGLE_PILOT_V1",
+  "condition_id": "BASIC_L10_S20260921",
+  "method": "basic_benders",
+  "size": "L10",
+  "seed": 20260921,
+  "instance_id": "ASC_INSTANCE_L10_S20260921",
+  "instance_hash": "dcfed5f1c19e9fa4d85d66af24b421f42641fc79744abbf89cd7baff38dcc41e",
+  "instance_sha256": "0d4235a660383c6409999ecf9d4d37a2417edc608a17020dc4c43c176f403a50",
+  "preparation_sha256": "378eb7de95461135945d553307423a4179829b7fa1497c970b530d802694790a",
+  "config_hash": "a4d5c73a6480407119f742eae0a684de527de40111bcd1a564b8b46b8b705a77",
+  "code_commit": "89da0ce8320670dead059c5d535215aa78449a1f",
+  "model_identity": {
+    "sha256": "b3e43f67c3a1a094596f518e8abdc76d9f3bbd8824eaef7d94b60d6606ba7821",
+    "files": {
+      "experiments/run_basic_benders_scaling.py": "d4e506c0698146c1758b734a54796350ad0afab3a812b7a2c50013399a4f86df",
+      "experiments/run_renault_vanilla_bd_pilot.py": "7dc1f817141fb7cc1d0050d656afdf2a7be2de1c28f6a8f70467d0fa961795f6",
+      "src/robust_inventory_reconfiguration/pure_benders.py": "5e29839964dedf292e32dd471bab7ea4fbf782a8d0ff2470f861e664174c97fd",
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+      "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+    }
+  },
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.7",
+    "python_executable": "C:\\Program Files\\Python312\\python.exe",
+    "gurobipy_version": "13.0.1",
+    "gurobi_native_version": [
+      13,
+      0,
+      1
+    ],
+    "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+  },
+  "solver_status": "OPTIMAL",
+  "exact_certification": true,
+  "cut_validity": true,
+  "final_objective": 2048661.144168571,
+  "final_lower_bound": 2048661.144168571,
+  "final_upper_bound": 2048661.144168571,
+  "final_gap": 0.0,
+  "iterations": 8,
+  "cuts_added": 7,
+  "algorithm_core_time": 274.7447114000097,
+  "oracle_time": 274.5353346003685,
+  "certification_time": 29.908108199946582,
+  "total_time": 305.04424769990146,
+  "independent_certification": {
+    "objective": 2048661.144168571,
+    "objective_residual": 0.0,
+    "dual_feasible": true,
+    "strong_duality_residual": 0.0
+  }
+}

@@ -1,0 +1,2 @@
+size,seed,instance_id,basic_exact_certification,prb_exact_certification,basic_objective,prb_objective,absolute_objective_difference,basic_core_seconds,prb_core_seconds,basic_over_prb_core_time_ratio,basic_iterations,prb_iterations,basic_global_cuts,prb_product_cuts,cut_count_comparability_note,basic_final_gap,prb_final_gap
+L10,20260921,ASC_INSTANCE_L10_S20260921,True,True,2048661.144168571,2048661.1441684843,8.684583008289337e-08,274.7447114000097,25.50361310003791,10.772776011082183,8,7,7,56,DIFFERENT_CUT_GRANULARITY_DO_NOT_TREAT_AS_EQUAL_WORK_UNITS,0.0,0.0
