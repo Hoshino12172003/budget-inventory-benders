@@ -10,11 +10,19 @@ from .scenario_generation_single_cut import Pattern, ScenarioEvaluation
 class ExactScenarioLPEvaluator:
     """Exact single-scenario LP evaluator used only by the SG diagnostic."""
 
-    def __init__(self, instance: Any, gamma: int, x: list[list[float]], *, threads: int) -> None:
+    def __init__(
+        self,
+        instance: Any,
+        gamma: int,
+        x: list[list[float]],
+        *,
+        threads: int | None,
+    ) -> None:
         from gurobipy import GRB
 
         self.oracle = EnhancedGlobalEnumeratedLPOracle(instance, gamma)
-        self.oracle.model.Params.Threads = threads
+        if threads is not None:
+            self.oracle.model.Params.Threads = threads
         self.instance = instance
         self.I = instance.num_depots
         self.R = instance.num_regions
@@ -28,6 +36,24 @@ class ExactScenarioLPEvaluator:
         )
         self.plans = {tuple(plan.pattern): plan for plan in self.oracle.plans}
         self.lp_seconds = 0.0
+        self.deadline: float | None = None
+
+    def set_first_stage(self, x: list[list[float]]) -> None:
+        from gurobipy import GRB
+
+        if len(x) != self.I or any(len(row) != self.J for row in x):
+            raise ValueError("first-stage inventory dimensions do not match the instance")
+        self.x = tuple(tuple(max(0.0, float(value)) for value in row) for row in x)
+        self.supply_rhs = tuple(
+            self.x[i][j] for i in range(self.I) for j in range(self.J)
+        )
+        self.oracle.model.setAttr(
+            GRB.Attr.RHS, self.oracle.supply_constraints, self.supply_rhs
+        )
+
+    def begin_call(self, time_limit: float | None) -> None:
+        self.lp_seconds = 0.0
+        self.deadline = None if time_limit is None else perf_counter() + time_limit
 
     def evaluate(self, pattern: Pattern) -> ScenarioEvaluation:
         from gurobipy import GRB
@@ -38,9 +64,20 @@ class ExactScenarioLPEvaluator:
         model = self.oracle.model
         model.setAttr(GRB.Attr.RHS, self.oracle.demand_constraints, plan.demand_rhs)
         model.setAttr(GRB.Attr.RHS, self.oracle.service_constraints, plan.service_rhs)
+        if self.deadline is not None:
+            from .pure_benders import PureBendersTimeout
+
+            remaining = self.deadline - perf_counter()
+            if remaining <= 0.0:
+                raise PureBendersTimeout("SG-BD exact separation reached its time limit")
+            model.Params.TimeLimit = max(0.001, remaining)
         started = perf_counter()
         model.optimize()
         self.lp_seconds += perf_counter() - started
+        if model.Status == GRB.TIME_LIMIT:
+            from .pure_benders import PureBendersTimeout
+
+            raise PureBendersTimeout("SG-BD scenario LP reached its time limit")
         if model.Status != GRB.OPTIMAL:
             raise RuntimeError(f"SG scenario LP status={model.Status}, pattern={pattern}")
         value = float(model.ObjVal)

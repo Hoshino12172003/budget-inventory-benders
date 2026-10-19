@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "RENAULT_SCENARIO_GENERATION_SINGLE_CUT_BENDERS_DEVELOPMENT_V1",
+  "protocol_id": "RENAULT_SG_BD_8CASE_V1",
+  "classification": "DEVELOPMENT_ONLY_NOT_FORMAL_EVIDENCE",
+  "formal_run_authorized": false,
+  "authorized_condition_ids": [
+    "SG_RENAULT_210202",
+    "SG_RENAULT_210628",
+    "SG_RENAULT_210129",
+    "SG_RENAULT_210310",
+    "SG_RENAULT_210330",
+    "SG_RENAULT_210323",
+    "SG_RENAULT_210428",
+    "SG_RENAULT_210611"
+  ],
+  "case_ids": ["210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611"],
+  "fixed_scientific_parameters": {"Gamma": 2, "lambda_R": 0.05},
+  "frozen_identity_reference": {
+    "path": "experiments/configs/development/renault_enhanced_basic_benders_v1.yaml",
+    "sha256": "ab6bbe267461b633f2a5ca83d536dffde51be1a4cdf422eabf4cdc8f10fb0d2d"
+  },
+  "frozen_direct_reference": {
+    "path": "table_e1_empirical_performance.csv",
+    "sha256": "abb87cd9f99ac7e60656b183dc9bf5028ac3fb5bd61e3db920868745a6eeb6f3"
+  },
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "solver_tolerances": {
+    "relative_gap": 1e-6,
+    "cut_violation": 1e-7,
+    "objective_certification": 1e-4
+  },
+  "algorithm": {
+    "max_iterations": 500,
+    "maximum_global_scenarios": 5000,
+    "global_theta_count": 1,
+    "cuts_per_iteration_maximum": 1,
+    "exact_global_separation_required": true,
+    "previous_worst_pattern_reoptimized_at_current_x": true,
+    "safe_feasible_policy_upper_bound": true,
+    "persist_every_oracle_first_stage_x": true,
+    "independent_full_enumeration_certification_required": true,
+    "product_risk_budget_decomposition": false,
+    "product_multicut": false,
+    "compact_global_robust_milp_oracle": false
+  },
+  "resource_policy": {
+    "execution": "sequential_single_process",
+    "parallel_workers": 1,
+    "minimum_available_memory_gib": 8,
+    "maximum_process_tree_memory_gib": 4,
+    "minimum_system_available_memory_gib": 3,
+    "minimum_free_disk_gib": 20,
+    "condition_time_limit_seconds": 300,
+    "memory_monitor_interval_seconds": 0.25,
+    "fail_closed": true,
+    "retry_policy": "no_automatic_retry"
+  },
+  "failure_policy": {
+    "continue_after": ["TIME_LIMIT", "RESOURCE_PROCESS_CAP", "RESOURCE_SYSTEM_CAP"],
+    "stop_batch_after": ["IDENTITY_FAILURE", "HASH_FAILURE", "NUMERICAL_CERTIFICATION_FAILURE", "UNKNOWN_WORKER_FAILURE"],
+    "require_worker_exit_before_continue": true,
+    "repeat_all_preflight_gates_before_each_condition": true
+  },
+  "output_directory": "experiments/results/renault_sg_benders_development_v1",
+  "authorization_note": "Prepared only; full eight-case SG-BD execution remains disabled."
+}
