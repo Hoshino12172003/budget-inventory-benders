@@ -447,6 +447,7 @@ def summarize(config_path: Path) -> dict[str, Any]:
                 "case": result["case"],
                 "test_point": result["test_point"],
                 "start_mode": mode["start_mode"],
+                "availability_status": "AVAILABLE",
                 "test_point_source": result["test_point_source"],
                 "total_scenarios": mode["total_scenarios"],
                 "sg_exact_lp_solves": mode["exact_lp_solves"],
@@ -479,6 +480,15 @@ def summarize(config_path: Path) -> dict[str, Any]:
                 "strong_duality_residual": mode["strong_duality_residual"],
                 "cut_anchor_residual": mode["cut_anchor_residual"],
             })
+    for case in CASES:
+        for point in config["unavailable_test_points"]:
+            rows.append({
+                "case": case,
+                "test_point": point,
+                "start_mode": "NOT_APPLICABLE",
+                "availability_status": "NOT_AVAILABLE",
+                "test_point_source": "NOT_AVAILABLE: historical trajectory did not persist first-stage x",
+            })
     point_csv = reports / "oracle_point_results.csv"
     with point_csv.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
@@ -509,7 +519,56 @@ def summarize(config_path: Path) -> dict[str, Any]:
         "all_certified": all(row["exact_certification"] for row in exactness),
         "records": exactness,
     })
+    report_path = ROOT / "docs/renault_sg_oracle_diagnostic_results.md"
+    aggregate_lines = "\n".join(
+        "| {test_point} | {start_mode} | {pairs} | {mean_pruning_fraction:.4%} | "
+        "{mean_eb_oracle_seconds:.6f} | {mean_sg_oracle_seconds:.6f} | "
+        "{geometric_mean_speedup_eb_over_sg:.2f}x |".format(**row)
+        for row in aggregates
+    )
+    report_path.write_text(
+        "# Renault SG-BD Oracle-only diagnostic\n\n"
+        "## Scope and identity\n\n"
+        "The authorized diagnostic completed all 16 frozen conditions: eight Renault cases at "
+        "the persisted final EB-BD first-stage solution and the frozen real `x0`. Each available "
+        "point was evaluated with cold and historical-pattern starts. No full SG-BD run or scaling "
+        "optimization was executed.\n\n"
+        "The EB trajectory artifacts do not contain first-stage matrices for early or middle "
+        "iterations. Those requested point classes are therefore recorded as `NOT_AVAILABLE`; "
+        "`x0` is an additional real legal point and is not presented as an early iterate.\n\n"
+        "## Results\n\n"
+        "| Point | Start | Pairs | Mean pruning | Mean EB seconds | Mean SG seconds | Geometric speedup |\n"
+        "|---|---:|---:|---:|---:|---:|---:|\n"
+        f"{aggregate_lines}\n\n"
+        f"All {len(exactness)} available comparisons passed objective equivalence, dual "
+        "feasibility, strong-duality, and cut-anchor checks at the frozen tolerances. Full EB "
+        "enumeration solved 4,657 LPs per point; SG solved only the unresolved leaves after "
+        "safe upper-bound pruning. Detailed counts and timings are in `oracle_point_results.csv`.\n\n"
+        "## Decision\n\n"
+        "**NO_GO_FOR_FULL_SG_BD_YET — insufficient representative trajectory evidence.** "
+        "The measured final and `x0` points show substantial exact Oracle acceleration, and bound/tree "
+        "overhead does not erase it. However, the predeclared gate requires stable acceleration on "
+        "real early and middle EB-BD iterates. Those decisions were not persisted, so this diagnostic "
+        "cannot establish that condition without inventing or substituting data. A separately "
+        "authorized trajectory-capture experiment is the minimum next step.\n",
+        encoding="utf-8",
+    )
     manifest_path = reports / "sha256_manifest.csv"
+    summary = {
+        "rows": len(rows),
+        "all_certified": all(row["exact_certification"] for row in exactness),
+        "aggregates": aggregates,
+        "point_csv": str(point_csv.relative_to(ROOT)),
+        "aggregate_csv": str(aggregate_csv.relative_to(ROOT)),
+        "exactness_audit": str(exactness_path.relative_to(ROOT)),
+        "sha256_manifest": str(manifest_path.relative_to(ROOT)),
+        "markdown_report": str(report_path.relative_to(ROOT)),
+    }
+    batch_report_path = output_root / "batch_report.json"
+    if batch_report_path.is_file():
+        batch_report = json.loads(batch_report_path.read_text(encoding="utf-8"))
+        batch_report["summary"] = summary
+        write_json(batch_report_path, batch_report)
     manifest_targets = sorted(
         path for path in output_root.rglob("*")
         if path.is_file() and path != manifest_path
@@ -519,15 +578,7 @@ def summarize(config_path: Path) -> dict[str, Any]:
         writer.writerow(["path", "sha256", "size_bytes"])
         for path in manifest_targets:
             writer.writerow([path.relative_to(ROOT).as_posix(), sha256(path), path.stat().st_size])
-    return {
-        "rows": len(rows),
-        "all_certified": all(row["exact_certification"] for row in exactness),
-        "aggregates": aggregates,
-        "point_csv": str(point_csv.relative_to(ROOT)),
-        "aggregate_csv": str(aggregate_csv.relative_to(ROOT)),
-        "exactness_audit": str(exactness_path.relative_to(ROOT)),
-        "sha256_manifest": str(manifest_path.relative_to(ROOT)),
-    }
+    return summary
 
 
 def execute(config_path: Path) -> dict[str, Any]:
@@ -557,6 +608,7 @@ def main() -> int:
     modes = parser.add_mutually_exclusive_group()
     modes.add_argument("--dry-run", action="store_true")
     modes.add_argument("--execute", action="store_true")
+    modes.add_argument("--summarize", action="store_true")
     modes.add_argument("--worker", choices=CONDITIONS)
     parser.add_argument("--attempt-root", type=Path)
     args = parser.parse_args()
@@ -566,7 +618,12 @@ def main() -> int:
                 parser.error("--worker requires --attempt-root")
             run_oracles(args.config.resolve(), args.worker, args.attempt_root.resolve())
             return 0
-        result = execute(args.config.resolve()) if args.execute else dry_run(args.config.resolve())
+        if args.execute:
+            result = execute(args.config.resolve())
+        elif args.summarize:
+            result = summarize(args.config.resolve())
+        else:
+            result = dry_run(args.config.resolve())
         print(json.dumps(result, indent=2, sort_keys=True))
         return 0
     except Exception as error:

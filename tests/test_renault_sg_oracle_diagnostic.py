@@ -12,9 +12,9 @@ from experiments import run_renault_sg_oracle_diagnostic as runner
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_protocol_is_authorized_and_exactly_scoped() -> None:
+def test_protocol_is_closed_after_diagnostic_and_exactly_scoped() -> None:
     config = runner.load_config()
-    assert config["formal_run_authorized"] is True
+    assert config["formal_run_authorized"] is False
     assert tuple(config["authorized_case_ids"]) == runner.CASES
     assert tuple(config["test_points"]) == ("final", "x0")
     assert config["unavailable_test_points"] == ["early_iteration", "middle_iteration"]

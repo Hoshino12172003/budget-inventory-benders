@@ -11,3 +11,4 @@ experiments/results/basic_benders_scaling_development_v1/** -text whitespace=-bl
 experiments/results/basic_benders_scaling_development_v1/**/solver.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 experiments/results/renault_enhanced_basic_benders_development_v1/** -text whitespace=-blank-at-eof,cr-at-eol
 experiments/results/renault_enhanced_basic_benders_development_v1/**/solver.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+experiments/results/renault_sg_oracle_diagnostic_v1/** -text whitespace=-blank-at-eof,cr-at-eol

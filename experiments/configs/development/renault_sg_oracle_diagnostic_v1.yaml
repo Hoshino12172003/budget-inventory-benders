@@ -3,7 +3,7 @@
   "experiment_id": "RENAULT_SG_ORACLE_ONLY_DIAGNOSTIC_V1",
   "protocol_id": "RENAULT_SG_ORACLE_DIAGNOSTIC_V1",
   "classification": "DEVELOPMENT_ORACLE_ONLY",
-  "formal_run_authorized": true,
+  "formal_run_authorized": false,
   "authorized_case_ids": ["210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611"],
   "test_points": ["final", "x0"],
   "unavailable_test_points": ["early_iteration", "middle_iteration"],
@@ -25,5 +25,5 @@
     "retry_policy": "no_automatic_retry"
   },
   "output_directory": "experiments/results/renault_sg_oracle_diagnostic_v1",
-  "authorization_note": "Authorized only for the frozen Renault eight-case Oracle-only diagnostic; full SG-BD remains unauthorized."
+  "authorization_note": "Authorized Oracle-only diagnostic completed; execution is closed. Full SG-BD remains unauthorized."
 }

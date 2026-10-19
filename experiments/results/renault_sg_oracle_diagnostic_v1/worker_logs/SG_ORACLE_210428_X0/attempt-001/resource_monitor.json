@@ -1,0 +1,60 @@
+{
+  "condition_id": "SG_ORACLE_210428_X0",
+  "elapsed_seconds": 2.2254765001125634,
+  "limits": {
+    "condition_time_limit_seconds": 300,
+    "execution": "sequential_single_process",
+    "maximum_process_tree_memory_gib": 4,
+    "memory_monitor_interval_seconds": 0.25,
+    "minimum_available_memory_gib": 8,
+    "minimum_free_disk_gib": 20,
+    "minimum_system_available_memory_gib": 3,
+    "parallel_workers": 1,
+    "retry_policy": "no_automatic_retry"
+  },
+  "peak_process_tree_memory_gib": 0.0907135009765625,
+  "samples": [
+    {
+      "elapsed_seconds": 0.019670299952849746,
+      "process_tree_rss_gib": 0.00872802734375,
+      "system_available_gib": 14.293449401855469
+    },
+    {
+      "elapsed_seconds": 0.29691860009916127,
+      "process_tree_rss_gib": 0.024738311767578125,
+      "system_available_gib": 14.278575897216797
+    },
+    {
+      "elapsed_seconds": 0.5737718001473695,
+      "process_tree_rss_gib": 0.05374908447265625,
+      "system_available_gib": 14.258644104003906
+    },
+    {
+      "elapsed_seconds": 0.8503644000738859,
+      "process_tree_rss_gib": 0.053760528564453125,
+      "system_available_gib": 14.264610290527344
+    },
+    {
+      "elapsed_seconds": 1.1279966000001878,
+      "process_tree_rss_gib": 0.0538330078125,
+      "system_available_gib": 14.261848449707031
+    },
+    {
+      "elapsed_seconds": 1.4033028001431376,
+      "process_tree_rss_gib": 0.05384063720703125,
+      "system_available_gib": 14.25091552734375
+    },
+    {
+      "elapsed_seconds": 1.6733530999626964,
+      "process_tree_rss_gib": 0.05384063720703125,
+      "system_available_gib": 14.254390716552734
+    },
+    {
+      "elapsed_seconds": 1.949955000076443,
+      "process_tree_rss_gib": 0.0907135009765625,
+      "system_available_gib": 14.250743865966797
+    }
+  ],
+  "stop_reason": null,
+  "worker_return_code": 0
+}

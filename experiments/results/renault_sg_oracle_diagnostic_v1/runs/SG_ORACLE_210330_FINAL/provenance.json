@@ -1,0 +1,18 @@
+{
+  "condition_id": "SG_ORACLE_210330_FINAL",
+  "config_sha256": "5c5ee27699af0d7aeb0924c5a940996e94444b016d26c81dc45e2d026cc6ebbf",
+  "frozen_identity_source": "experiments\\configs\\development\\renault_enhanced_basic_benders_v1.yaml",
+  "frozen_identity_source_sha256": "ab6bbe267461b633f2a5ca83d536dffde51be1a4cdf422eabf4cdc8f10fb0d2d",
+  "git_commit": "d38ad4422c644efc1212d0e4506a92498c15190f",
+  "instance_identity": {
+    "calibration_hash": "e182dde7a79c1c9e7909fb776df4d1cff0326d39bbee5414c3d7efdb147e071a",
+    "instance_hash": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+    "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+    "x0_hash": "11cd91349ff218d7f951a38a65123de8c5e304d36a370c97a39a1ce9b3c3961a"
+  },
+  "result_sha256": "d7ec24a64f9d2a3b8bd96fa6c4d208447d42b39517a3471ac6c8779e94ebe62b",
+  "runner_sha256": "75c24915ded05c76abe48b130d0a7462da23ddc669be1258483e0a031e2b254a",
+  "sg_bound_sha256": "5b03871dbbe5d7ceea5d070a6c4f626be5171a9efd5a8490baccbe2f2ad427c3",
+  "sg_oracle_sha256": "813684d94778c9380324553566a04b867bb51b8904a19d148d6448cd11a1bbbc",
+  "test_point_sha256": "5644becf096e67985e2f5532e281b4239c37e7cdef4d8b703b8ff8f220abe180"
+}
