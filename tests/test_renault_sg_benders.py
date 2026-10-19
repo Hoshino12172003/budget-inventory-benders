@@ -12,9 +12,9 @@ from experiments import run_renault_sg_benders as runner
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_protocol_is_closed_and_exactly_scoped() -> None:
+def test_protocol_is_authorized_and_exactly_scoped() -> None:
     config = runner.load_config()
-    assert config["formal_run_authorized"] is False
+    assert config["formal_run_authorized"] is True
     assert tuple(config["case_ids"]) == runner.CASES
     assert tuple(config["authorized_condition_ids"]) == runner.CONDITIONS
     assert config["fixed_scientific_parameters"] == {"Gamma": 2, "lambda_R": 0.05}
@@ -47,9 +47,12 @@ def test_all_frozen_identities_and_direct_references_pass() -> None:
     assert all(row["total_scenarios"] == 4657 for row in rows)
 
 
-def test_execute_is_fail_closed_while_authorization_is_false(
+def test_execute_is_fail_closed_when_authorization_is_removed(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
+    config = runner.load_config()
+    config["formal_run_authorized"] = False
+    monkeypatch.setattr(runner, "load_config", lambda *_: config)
     monkeypatch.setattr(
         runner, "build_dry_run", lambda *_: pytest.fail("authorization must fail first")
     )

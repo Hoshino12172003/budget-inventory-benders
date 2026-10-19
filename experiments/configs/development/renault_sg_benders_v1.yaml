@@ -3,7 +3,7 @@
   "experiment_id": "RENAULT_SCENARIO_GENERATION_SINGLE_CUT_BENDERS_DEVELOPMENT_V1",
   "protocol_id": "RENAULT_SG_BD_8CASE_V1",
   "classification": "DEVELOPMENT_ONLY_NOT_FORMAL_EVIDENCE",
-  "formal_run_authorized": false,
+  "formal_run_authorized": true,
   "authorized_condition_ids": [
     "SG_RENAULT_210202",
     "SG_RENAULT_210628",
@@ -63,5 +63,5 @@
     "repeat_all_preflight_gates_before_each_condition": true
   },
   "output_directory": "experiments/results/renault_sg_benders_development_v1",
-  "authorization_note": "Prepared only; full eight-case SG-BD execution remains disabled."
+  "authorization_note": "Authorized only for the frozen Renault eight-case SG-BD development batch; all scaling execution remains unauthorized."
 }
