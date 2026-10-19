@@ -12,9 +12,9 @@ from experiments import run_renault_sg_oracle_diagnostic as runner
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_protocol_is_closed_and_exactly_scoped() -> None:
+def test_protocol_is_authorized_and_exactly_scoped() -> None:
     config = runner.load_config()
-    assert config["formal_run_authorized"] is False
+    assert config["formal_run_authorized"] is True
     assert tuple(config["authorized_case_ids"]) == runner.CASES
     assert tuple(config["test_points"]) == ("final", "x0")
     assert config["unavailable_test_points"] == ["early_iteration", "middle_iteration"]
@@ -57,7 +57,12 @@ def test_only_real_persisted_test_points_are_selected() -> None:
         assert all("x" not in row for row in trajectory)
 
 
-def test_execute_fails_closed_before_preflight(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_execute_fails_closed_when_authorization_is_removed(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    config = runner.load_config()
+    config["formal_run_authorized"] = False
+    monkeypatch.setattr(runner, "load_config", lambda *_: config)
     monkeypatch.setattr(runner, "dry_run", lambda *_: pytest.fail("closed gate must fail first"))
     with pytest.raises(RuntimeError, match="NOT_AUTHORIZED"):
         runner.execute(runner.CONFIG)
