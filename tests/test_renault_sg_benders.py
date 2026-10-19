@@ -12,9 +12,9 @@ from experiments import run_renault_sg_benders as runner
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_protocol_is_authorized_and_exactly_scoped() -> None:
+def test_protocol_is_closed_after_execution_and_exactly_scoped() -> None:
     config = runner.load_config()
-    assert config["formal_run_authorized"] is True
+    assert config["formal_run_authorized"] is False
     assert tuple(config["case_ids"]) == runner.CASES
     assert tuple(config["authorized_condition_ids"]) == runner.CONDITIONS
     assert config["fixed_scientific_parameters"] == {"Gamma": 2, "lambda_R": 0.05}
@@ -69,6 +69,18 @@ def test_sg_implementation_has_no_forbidden_algorithm_import() -> None:
     assert "GlobalRobustAdversarialSubproblem(" not in source
     assert "ScenarioGenerationGlobalOracle(" in source
     assert "maximum_cuts_per_iteration\": 1" in source
+
+
+def test_archived_results_cover_eight_cases_and_preserve_prb_failure() -> None:
+    audit = json.loads(
+        (ROOT / "artifacts/renault_sg_bd_acceptance_audit.json").read_text(encoding="utf-8")
+    )
+    assert audit["status"] == "PASS"
+    assert audit["expected"] == 8
+    assert audit["exact_certified"] == 8
+    assert audit["objective_consistent_with_direct"] == 8
+    assert audit["prb_210330_strict_pairing_eligible"] is False
+    assert all(all(checks.values()) for checks in audit["checks"].values())
 
 
 @pytest.mark.skipif(
