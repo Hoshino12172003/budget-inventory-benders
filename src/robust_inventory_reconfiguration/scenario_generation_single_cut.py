@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import itertools
 import math
+from time import perf_counter
 from typing import Any, Callable, Iterable
 
 
@@ -41,6 +42,8 @@ class ExactSeparationResult:
     safely_pruned_scenarios: int
     branch_pruned_scenarios: int
     leaf_pruned_scenarios: int
+    branch_nodes: int
+    upper_bound_seconds: float
 
 
 def enumerate_patterns(num_regions: int, num_products: int, gamma: int) -> tuple[Pattern, ...]:
@@ -268,7 +271,9 @@ def exact_separation(
     tolerance: float = 1e-9,
 ) -> ExactSeparationResult:
     _validate(instance, x)
+    bound_started = perf_counter()
     affine_bound = build_affine_scenario_upper_bound(instance, x)
+    upper_bound_seconds = perf_counter() - bound_started
     components = _components_by_bound_weight(affine_bound)
     total = sum(math.comb(len(components), size) for size in range(gamma + 1))
     cache: dict[Pattern, ScenarioEvaluation] = {}
@@ -290,11 +295,17 @@ def exact_separation(
 
     branch_pruned: set[Pattern] = set()
     leaf_pruned: set[Pattern] = set()
+    branch_nodes = 0
 
     def visit(index: int, selected: Pattern) -> None:
+        nonlocal branch_nodes, upper_bound_seconds
         assert best_evaluation is not None
+        branch_nodes += 1
         remaining = len(components) - index
-        if _branch_bound(affine_bound, components, index, selected, gamma) <= best_evaluation.value - tolerance:
+        bound_started = perf_counter()
+        node_bound = _branch_bound(affine_bound, components, index, selected, gamma)
+        upper_bound_seconds += perf_counter() - bound_started
+        if node_bound <= best_evaluation.value - tolerance:
             for size in range(min(remaining, gamma - len(selected)) + 1):
                 for suffix in itertools.combinations(components[index:], size):
                     pattern = tuple(sorted((*selected, *suffix)))
@@ -305,7 +316,10 @@ def exact_separation(
             canonical = tuple(sorted(selected))
             if canonical in cache:
                 return
-            if affine_bound.value(canonical) <= best_evaluation.value - tolerance:
+            bound_started = perf_counter()
+            leaf_bound = affine_bound.value(canonical)
+            upper_bound_seconds += perf_counter() - bound_started
+            if leaf_bound <= best_evaluation.value - tolerance:
                 leaf_pruned.add(canonical)
                 return
             evaluate(canonical)
@@ -328,6 +342,8 @@ def exact_separation(
         safely_pruned,
         len(branch_pruned),
         len(leaf_pruned),
+        branch_nodes,
+        upper_bound_seconds,
     )
 
 
