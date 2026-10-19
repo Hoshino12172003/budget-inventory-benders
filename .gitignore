@@ -207,4 +207,5 @@ artifacts/*
 !artifacts/renault_eb_bd_run_status.csv
 !artifacts/renault_eb_bd_sha256_manifest.csv
 !artifacts/renault_eb_bd_acceptance_audit.json
+!artifacts/renault_sg_bd_static_audit.json
 experiments/results/algorithm_scaling_convergence_cost_v2_repaired_guard/
