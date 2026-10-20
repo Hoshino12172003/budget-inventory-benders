@@ -41,6 +41,7 @@ def test_execution_is_fail_closed_when_authorization_is_false(tmp_path):
 def test_authorized_gate_remains_identity_and_resource_checked(monkeypatch, tmp_path):
     config = load_config(DEFAULT_CONFIG)
     config["formal_run_authorized"] = True
+    config["output_directory"] = "experiments/results/.pytest-ef-gate"
     authorized = tmp_path / "authorized.json"
     authorized.write_text(json.dumps(config), encoding="utf-8")
     marker = {

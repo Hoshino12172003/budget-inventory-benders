@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from experiments import run_ef_benders_scaling as runner
+from scripts import run_ef_benders_scaling_l10_remaining9 as batch_runner
 from scripts.audit_ef_benders_scaling_l10_remaining9 import build_audit
 from scripts.run_ef_benders_scaling_l10_remaining9 import DEFAULT_CONFIG, EXPECTED, build_dry_run, pilot_audit
 
@@ -22,7 +23,13 @@ def test_pilot_archive_is_hash_identical_and_accepted():
     assert pilot["resource_monitor"]["peak_process_tree_memory_gib"] == 1.697723388671875
 
 
-def test_dry_run_checks_all_nine_without_optimization():
+def test_dry_run_checks_all_nine_without_optimization(monkeypatch):
+    monkeypatch.setattr(
+        batch_runner,
+        "git_status_for_execution",
+        lambda _output: {"head": "test", "clean_for_execution": True, "unexpected": []},
+    )
+    monkeypatch.setattr(batch_runner, "active_solver_workers", lambda: [])
     dry = build_dry_run(DEFAULT_CONFIG)
     expected = "AUTHORIZED_READY" if dry["formal_run_authorized"] else "READY_FOR_AUTHORIZATION"
     assert dry["decision"] == expected
@@ -32,7 +39,13 @@ def test_dry_run_checks_all_nine_without_optimization():
     assert all(not row["attempt_exists"] and not row["canonical_result_exists"] for row in dry["conditions"])
 
 
-def test_audit_reports_expected_paired_time_order_and_denominator():
+def test_audit_reports_expected_paired_time_order_and_denominator(monkeypatch):
+    monkeypatch.setattr(
+        batch_runner,
+        "git_status_for_execution",
+        lambda _output: {"head": "test", "clean_for_execution": True, "unexpected": []},
+    )
+    monkeypatch.setattr(batch_runner, "active_solver_workers", lambda: [])
     audit = build_audit(DEFAULT_CONFIG)
     assert audit["status"] in ("READY_FOR_AUTHORIZATION", "AUTHORIZED_READY")
     assert audit["fixed_denominator"] == {"completed_pilot": 1, "authorized_remaining": 9, "total": 10}
