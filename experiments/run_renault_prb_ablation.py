@@ -348,7 +348,11 @@ def solve_worker(config_path: Path, cid: str, attempt_root: Path) -> None:
 
 def tree_rss(process: psutil.Process) -> int:
     total = 0
-    for item in [process, *process.children(recursive=True)]:
+    try:
+        processes = [process, *process.children(recursive=True)]
+    except psutil.NoSuchProcess:
+        return 0
+    for item in processes:
         try:
             total += item.memory_info().rss
         except psutil.Error:

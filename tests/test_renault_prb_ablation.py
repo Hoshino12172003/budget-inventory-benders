@@ -4,6 +4,7 @@ import inspect
 from pathlib import Path
 
 import pytest
+import psutil
 
 from experiments import run_renault_prb_ablation as runner
 
@@ -44,11 +45,23 @@ def test_runner_is_fail_closed_and_does_not_call_other_algorithms() -> None:
     assert "solve_standard" not in source
 
 
+def test_resource_monitor_tolerates_worker_exit_race() -> None:
+    class ExitedProcess:
+        def children(self, recursive: bool):
+            raise psutil.NoSuchProcess(12345)
+
+    assert runner.tree_rss(ExitedProcess()) == 0
+
+
 @pytest.mark.parametrize("method", tuple(runner.CONFIGS))
 def test_dry_run_has_zero_optimization_calls(method: str) -> None:
     audit = runner.dry_run(runner.CONFIGS[method])
     assert audit["optimization_calls"] == 0
     assert audit["formal_run_authorized"] is False
     assert audit["gates"]["identity"]
-    assert audit["gates"]["attempts_absent"]
-    assert audit["gates"]["canonical_absent"]
+    if method == "PRB-SG":
+        assert not audit["gates"]["attempts_absent"]
+        assert not audit["gates"]["canonical_absent"]
+    else:
+        assert audit["gates"]["attempts_absent"]
+        assert audit["gates"]["canonical_absent"]

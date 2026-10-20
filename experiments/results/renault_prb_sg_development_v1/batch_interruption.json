@@ -1,0 +1,24 @@
+{
+  "authorization_commit": "1a2dfcb96786b84cf58d5f92f5187c473ae0b707",
+  "classification": "MONITOR_INTEGRITY_FAILURE",
+  "expected_conditions": 8,
+  "method_id": "PRB-SG",
+  "optimization_stopped": true,
+  "retry_performed": false,
+  "root_cause": "worker exited between process.poll and psutil.Process.children, raising psutil.NoSuchProcess",
+  "status_counts": {
+    "canonical_success": 2,
+    "incomplete_recovery_candidate": 1,
+    "unattempted": 5
+  },
+  "conditions": {
+    "PRB_SG_RENAULT_210202": "CANONICAL_SUCCESS",
+    "PRB_SG_RENAULT_210628": "CANONICAL_SUCCESS",
+    "PRB_SG_RENAULT_210129": "SOLVER_AND_CERTIFICATION_COMPLETE_MONITOR_AND_ARCHIVE_INCOMPLETE",
+    "PRB_SG_RENAULT_210310": "UNATTEMPTED",
+    "PRB_SG_RENAULT_210330": "UNATTEMPTED",
+    "PRB_SG_RENAULT_210323": "UNATTEMPTED",
+    "PRB_SG_RENAULT_210428": "UNATTEMPTED",
+    "PRB_SG_RENAULT_210611": "UNATTEMPTED"
+  }
+}
