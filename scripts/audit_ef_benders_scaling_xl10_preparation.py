@@ -52,8 +52,8 @@ def build_audit(config_path: Path = DEFAULT_CONFIG) -> dict:
     projected_peak = l10["maximum_peak_process_tree_memory_gib"] * ratio["nonzeros"]
     direct = direct_xl10_resource_evidence()
     checks = {
-        "authorization_closed": dry["formal_run_authorized"] is False,
-        "dry_run_ready": dry["decision"] == "READY_FOR_AUTHORIZATION",
+        "authorization_boolean": isinstance(dry["formal_run_authorized"], bool),
+        "dry_run_ready": dry["decision"] in ("READY_FOR_AUTHORIZATION", "AUTHORIZED_READY"),
         "zero_optimization": dry["optimization_calls"] == 0,
         "l10_frozen_10_of_10": l10["certified"] == l10["expected"] == 10,
         "identity": all(dry["identity_checks"].values()),
@@ -67,7 +67,7 @@ def build_audit(config_path: Path = DEFAULT_CONFIG) -> dict:
     }
     return {
         "schema": "ef_benders_xl10_pilot_preparation_audit_v1",
-        "status": "READY_FOR_AUTHORIZATION" if all(checks.values()) else "BLOCKED",
+        "status": dry["decision"] if all(checks.values()) else "BLOCKED",
         "checks": checks,
         "optimization_calls": 0,
         "config_path": str(config_path.resolve()),
@@ -109,7 +109,7 @@ def main() -> int:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(audit, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     print(json.dumps(audit, indent=2, allow_nan=False))
-    return 0 if audit["status"] == "READY_FOR_AUTHORIZATION" else 1
+    return 0 if audit["status"] in ("READY_FOR_AUTHORIZATION", "AUTHORIZED_READY") else 1
 
 
 if __name__ == "__main__":

@@ -42,10 +42,10 @@ def test_xl10_static_size_matches_frozen_direct_counts():
     assert size["direct_extensive_form"] == {"variables": 6075177, "constraints": 405479, "nonzeros": 18422892}
 
 
-def test_protocol_is_single_condition_closed_and_resource_frozen():
+def test_protocol_is_single_condition_authorized_and_resource_frozen():
     config = ef_runner.load_config(xl_runner.DEFAULT_CONFIG)
     xl_runner.validate_protocol(config)
-    assert config["formal_run_authorized"] is False
+    assert config["formal_run_authorized"] is True
     assert config["authorized_condition_ids"] == [xl_runner.CONDITION_ID]
     assert config["resource_policy"]["maximum_process_tree_memory_gib_by_size"] == {"XL10": 8}
     assert config["resource_policy"]["minimum_available_memory_gib_by_size"] == {"XL10": 12}
@@ -62,20 +62,24 @@ def test_dry_run_checks_identity_without_optimization(monkeypatch):
     )
     monkeypatch.setattr(xl_runner, "active_solver_workers", lambda: [])
     dry = xl_runner.build_dry_run()
-    assert dry["decision"] == "READY_FOR_AUTHORIZATION"
+    assert dry["decision"] == "AUTHORIZED_READY"
     assert dry["optimization_calls"] == 0
     assert all(dry["identity_checks"].values())
     assert dry["next_attempt"] == "attempt-001"
 
 
-def test_execute_is_closed_before_worker_launch(monkeypatch):
+def test_execute_is_closed_before_worker_launch_when_authorization_is_false(monkeypatch, tmp_path):
+    config = ef_runner.load_config(xl_runner.DEFAULT_CONFIG)
+    config["formal_run_authorized"] = False
+    closed = tmp_path / "closed.json"
+    closed.write_text(json.dumps(config), encoding="utf-8")
     monkeypatch.setattr(
         ef_runner,
         "run_condition",
         lambda *_args, **_kwargs: pytest.fail("optimization launcher must not be called"),
     )
     with pytest.raises(RuntimeError, match="NOT_AUTHORIZED"):
-        xl_runner.execute()
+        xl_runner.execute(closed)
 
 
 def test_archive_acceptance_requires_hashes_and_byte_identity(tmp_path):
