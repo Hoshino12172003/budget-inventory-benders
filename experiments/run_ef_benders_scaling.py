@@ -8,6 +8,7 @@ from pathlib import Path
 from time import perf_counter
 import subprocess
 import sys
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -21,7 +22,6 @@ DEFAULT_CONFIG = ROOT / "experiments/configs/development/ef_benders_scaling_l10_
 def load_config(path: Path = DEFAULT_CONFIG) -> dict:
     config = json.loads(path.read_text(encoding="utf-8"))
     required = {
-        "authorized_condition_ids": ["EF_L10_S20260921"],
         "method": "extensive_form_single_cut_benders",
     }
     for key, value in required.items():
@@ -30,11 +30,19 @@ def load_config(path: Path = DEFAULT_CONFIG) -> dict:
     protocols = {
         "EF_BD_SCALING_L10_SINGLE_PILOT_V1": (4, 7, "BLOCKED_RESOURCE_DESIGN"),
         "EF_BD_L10_RESOURCE_PROTOCOL_V2_7GIB": (7, 11, "READY_FOR_AUTHORIZATION"),
+        "EF_BD_SCALING_L10_REMAINING9_V1": (7, 11, "READY_FOR_AUTHORIZATION"),
     }
     protocol = config.get("protocol_id")
     if protocol not in protocols:
         raise RuntimeError("unexpected EF-BD pilot protocol identity")
     cap, startup, decision = protocols[protocol]
+    expected_scope = (
+        [f"EF_L10_S{seed}" for seed in range(20260922, 20260931)]
+        if protocol == "EF_BD_SCALING_L10_REMAINING9_V1"
+        else ["EF_L10_S20260921"]
+    )
+    if config.get("authorized_condition_ids") != expected_scope:
+        raise RuntimeError("EF-BD protocol condition scope is inconsistent")
     policy = config["resource_policy"]
     if policy["maximum_process_tree_memory_gib_by_size"]["L10"] != cap or policy["minimum_available_memory_gib_by_size"]["L10"] != startup or config.get("readiness_decision") != decision:
         raise RuntimeError("EF-BD resource protocol fields are inconsistent")
@@ -44,14 +52,20 @@ def load_config(path: Path = DEFAULT_CONFIG) -> dict:
 
 
 def candidate(config: dict, condition_id: str | None = None) -> dict:
-    selected = condition_id or config["authorized_condition_ids"][0]
-    if selected != "EF_L10_S20260921":
+    allowed = config["authorized_condition_ids"]
+    selected = condition_id or (allowed[0] if len(allowed) == 1 else None)
+    if selected is None:
+        raise RuntimeError("condition_id is required for a multi-condition EF-BD protocol")
+    if selected not in allowed:
         raise RuntimeError("condition is outside the EF-BD pilot allowlist")
-    return {"condition_id": selected, "size": "L10", "seed": 20260921}
+    match = re.fullmatch(r"EF_L10_S(\d{8})", selected)
+    if match is None:
+        raise RuntimeError("invalid EF-BD condition identity")
+    return {"condition_id": selected, "size": "L10", "seed": int(match.group(1))}
 
 
 def source_condition(config: dict, selected: dict) -> dict:
-    return {"condition_id": "DIRECT_L10_S20260921", "size": "L10", "seed": 20260921}
+    return {"condition_id": f"DIRECT_L10_S{selected['seed']}", "size": "L10", "seed": selected["seed"]}
 
 
 def dry_run(config_path: Path = DEFAULT_CONFIG, condition_id: str | None = None) -> dict:
@@ -63,10 +77,10 @@ def dry_run(config_path: Path = DEFAULT_CONFIG, condition_id: str | None = None)
     import psutil, shutil
     output = ROOT / config["output_directory"]
     policy = config["resource_policy"]
-    direct_result = ROOT / "experiments/results/direct_scaling_extension_v1/runs/DIRECT_L10_S20260921/result.json"
+    direct_result = ROOT / "experiments/results/direct_scaling_extension_v1/runs" / f"DIRECT_L10_S{selected['seed']}" / "result.json"
     paired = {}
     for method in ("PURE_BENDERS", "AGGREGATE_BENDERS_STRUCTURED_ORACLE", "PRB_BENDERS"):
-        path = ROOT / config["source_output_root"] / "runs" / f"ASC_L10_S20260921_{method}" / "result.json"
+        path = ROOT / config["source_output_root"] / "runs" / f"ASC_L10_S{selected['seed']}_{method}" / "result.json"
         row = json.loads(path.read_text(encoding="utf-8"))
         paired[method] = row.get("instance_hash") == preparation["instance_hash"]
     return {
@@ -100,7 +114,19 @@ def validate_execution_gate(config_path: Path = DEFAULT_CONFIG, condition_id: st
         raise RuntimeError("NOT_AUTHORIZED: EF-BD L10 pilot remains disabled")
     if config.get("readiness_decision") != "READY_FOR_AUTHORIZATION":
         raise RuntimeError("BLOCKED_RESOURCE_DESIGN: resource protocol requires independent revision")
-    return dry_run(config_path, condition_id)
+    audit = dry_run(config_path, condition_id)
+    gate = audit["resource_gate"]
+    if gate["available_memory_gib"] < gate["startup_required_gib"]:
+        raise RuntimeError("RESOURCE_START_MEMORY_GATE")
+    if gate["free_disk_gib"] < gate["minimum_free_disk_gib"]:
+        raise RuntimeError("RESOURCE_DISK_GATE")
+    if audit["canonical_result_exists"]:
+        raise FileExistsError("refusing to overwrite an existing EF-BD result")
+    output = (ROOT / config["output_directory"]).resolve()
+    selected = candidate(config, condition_id)
+    if (output / "worker_logs" / selected["condition_id"] / "attempt-001").exists():
+        raise FileExistsError("attempt-001 already exists; automatic retry is forbidden")
+    return audit
 
 
 def _worker(config_path: Path, attempt_dir: Path, condition_id: str) -> int:
@@ -162,6 +188,11 @@ def _configure_base_launcher() -> None:
     base.validate_execution_gate = validate_execution_gate
     base._worker = _worker
     base.__file__ = __file__
+
+
+def run_condition(config_path: Path, condition_id: str) -> dict:
+    _configure_base_launcher()
+    return base.run_condition(config_path.resolve(), condition_id)
 
 
 def main() -> int:
