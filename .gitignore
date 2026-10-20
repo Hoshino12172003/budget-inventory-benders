@@ -227,6 +227,7 @@ artifacts/*
 !artifacts/ef_benders_l10_resource_protocol_v2_audit.json
 !artifacts/ef_benders_l10_remaining9_authorization_audit.json
 !artifacts/ef_benders_scaling_xl10_pilot_preparation_audit.json
+!artifacts/ef_benders_scaling_xl10_pilot_authorization_audit.json
 !experiments/results/renault_extensive_form_benders_development_v1/
 !experiments/results/renault_extensive_form_benders_development_v1/**
 experiments/results/algorithm_scaling_convergence_cost_v2_repaired_guard/
