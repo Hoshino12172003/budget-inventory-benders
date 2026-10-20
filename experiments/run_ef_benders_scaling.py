@@ -1,4 +1,4 @@
-"""Fail-closed EF-BD L10 pilot launcher; dry-run never builds a Gurobi model."""
+"""Fail-closed EF-BD scaling pilot launcher; dry-run never builds a Gurobi model."""
 from __future__ import annotations
 
 import argparse
@@ -19,6 +19,18 @@ from experiments import run_direct_scaling as direct_runner
 DEFAULT_CONFIG = ROOT / "experiments/configs/development/ef_benders_scaling_l10_resource_v2_7gib.yaml"
 
 
+def model_identity() -> dict:
+    paths = (
+        "experiments/run_ef_benders_scaling.py",
+        "src/robust_inventory_reconfiguration/extensive_form_benders.py",
+        "src/robust_inventory_reconfiguration/pure_benders.py",
+        "src/robust_inventory_reconfiguration/reconfiguration_model.py",
+        "src/robust_inventory_reconfiguration/solver_profile.py",
+    )
+    files = {path: direct_runner.file_sha256(ROOT / path) for path in paths}
+    return {"sha256": direct_runner.canonical_hash(files), "files": files}
+
+
 def load_config(path: Path = DEFAULT_CONFIG) -> dict:
     config = json.loads(path.read_text(encoding="utf-8"))
     required = {
@@ -28,23 +40,24 @@ def load_config(path: Path = DEFAULT_CONFIG) -> dict:
         if config.get(key) != value:
             raise RuntimeError(f"invalid frozen EF-BD pilot field: {key}")
     protocols = {
-        "EF_BD_SCALING_L10_SINGLE_PILOT_V1": (4, 7, "BLOCKED_RESOURCE_DESIGN"),
-        "EF_BD_L10_RESOURCE_PROTOCOL_V2_7GIB": (7, 11, "READY_FOR_AUTHORIZATION"),
-        "EF_BD_SCALING_L10_REMAINING9_V1": (7, 11, "READY_FOR_AUTHORIZATION"),
+        "EF_BD_SCALING_L10_SINGLE_PILOT_V1": ("L10", 4, 7, "BLOCKED_RESOURCE_DESIGN"),
+        "EF_BD_L10_RESOURCE_PROTOCOL_V2_7GIB": ("L10", 7, 11, "READY_FOR_AUTHORIZATION"),
+        "EF_BD_SCALING_L10_REMAINING9_V1": ("L10", 7, 11, "READY_FOR_AUTHORIZATION"),
+        "EF_BD_XL10_SINGLE_PILOT_V1": ("XL10", 8, 12, "READY_FOR_AUTHORIZATION"),
     }
     protocol = config.get("protocol_id")
     if protocol not in protocols:
         raise RuntimeError("unexpected EF-BD pilot protocol identity")
-    cap, startup, decision = protocols[protocol]
+    size, cap, startup, decision = protocols[protocol]
     expected_scope = (
         [f"EF_L10_S{seed}" for seed in range(20260922, 20260931)]
         if protocol == "EF_BD_SCALING_L10_REMAINING9_V1"
-        else ["EF_L10_S20260921"]
+        else [f"EF_{size}_S20260921"]
     )
     if config.get("authorized_condition_ids") != expected_scope:
         raise RuntimeError("EF-BD protocol condition scope is inconsistent")
     policy = config["resource_policy"]
-    if policy["maximum_process_tree_memory_gib_by_size"]["L10"] != cap or policy["minimum_available_memory_gib_by_size"]["L10"] != startup or config.get("readiness_decision") != decision:
+    if policy["maximum_process_tree_memory_gib_by_size"][size] != cap or policy["minimum_available_memory_gib_by_size"][size] != startup or config.get("readiness_decision") != decision:
         raise RuntimeError("EF-BD resource protocol fields are inconsistent")
     if not isinstance(config.get("formal_run_authorized"), bool):
         raise RuntimeError("formal_run_authorized must be boolean")
@@ -58,14 +71,15 @@ def candidate(config: dict, condition_id: str | None = None) -> dict:
         raise RuntimeError("condition_id is required for a multi-condition EF-BD protocol")
     if selected not in allowed:
         raise RuntimeError("condition is outside the EF-BD pilot allowlist")
-    match = re.fullmatch(r"EF_L10_S(\d{8})", selected)
+    match = re.fullmatch(r"EF_(L10|XL10)_S(\d{8})", selected)
     if match is None:
         raise RuntimeError("invalid EF-BD condition identity")
-    return {"condition_id": selected, "size": "L10", "seed": int(match.group(1))}
+    return {"condition_id": selected, "size": match.group(1), "seed": int(match.group(2))}
 
 
 def source_condition(config: dict, selected: dict) -> dict:
-    return {"condition_id": f"DIRECT_L10_S{selected['seed']}", "size": "L10", "seed": selected["seed"]}
+    size = selected["size"]
+    return {"condition_id": f"DIRECT_{size}_S{selected['seed']}", "size": size, "seed": selected["seed"]}
 
 
 def dry_run(config_path: Path = DEFAULT_CONFIG, condition_id: str | None = None) -> dict:
@@ -77,10 +91,11 @@ def dry_run(config_path: Path = DEFAULT_CONFIG, condition_id: str | None = None)
     import psutil, shutil
     output = ROOT / config["output_directory"]
     policy = config["resource_policy"]
-    direct_result = ROOT / "experiments/results/direct_scaling_extension_v1/runs" / f"DIRECT_L10_S{selected['seed']}" / "result.json"
+    size = selected["size"]
+    direct_result = ROOT / "experiments/results/direct_scaling_extension_v1/runs" / f"DIRECT_{size}_S{selected['seed']}" / "result.json"
     paired = {}
     for method in ("PURE_BENDERS", "AGGREGATE_BENDERS_STRUCTURED_ORACLE", "PRB_BENDERS"):
-        path = ROOT / config["source_output_root"] / "runs" / f"ASC_L10_S{selected['seed']}_{method}" / "result.json"
+        path = ROOT / config["source_output_root"] / "runs" / f"ASC_{size}_S{selected['seed']}_{method}" / "result.json"
         row = json.loads(path.read_text(encoding="utf-8"))
         paired[method] = row.get("instance_hash") == preparation["instance_hash"]
     return {
@@ -94,8 +109,8 @@ def dry_run(config_path: Path = DEFAULT_CONFIG, condition_id: str | None = None)
         "paired_instance_identity": {"Direct": json.loads(direct_result.read_text(encoding="utf-8"))["instance_hash"] == preparation["instance_hash"], **paired},
         "resource_gate": {
             "available_memory_gib": psutil.virtual_memory().available / 2**30,
-            "startup_required_gib": policy["minimum_available_memory_gib_by_size"]["L10"],
-            "process_tree_cap_gib": policy["maximum_process_tree_memory_gib_by_size"]["L10"],
+            "startup_required_gib": policy["minimum_available_memory_gib_by_size"][size],
+            "process_tree_cap_gib": policy["maximum_process_tree_memory_gib_by_size"][size],
             "system_available_floor_gib": policy["minimum_system_available_memory_gib"],
             "free_disk_gib": shutil.disk_usage(output.parent).free / 2**30,
             "minimum_free_disk_gib": policy["minimum_free_disk_gib"],
@@ -103,6 +118,7 @@ def dry_run(config_path: Path = DEFAULT_CONFIG, condition_id: str | None = None)
             "monitor_interval_seconds": policy["memory_monitor_interval_seconds"],
         },
         "canonical_result_exists": (output / "runs" / selected["condition_id"]).exists(),
+        "attempt_exists": (output / "worker_logs" / selected["condition_id"] / "attempt-001").exists(),
         "next_attempt": "attempt-001", "solver_parameters": config["solver_parameters"],
         "environment": direct_runner.current_environment(), "optimization_calls": 0,
     }
@@ -111,7 +127,7 @@ def dry_run(config_path: Path = DEFAULT_CONFIG, condition_id: str | None = None)
 def validate_execution_gate(config_path: Path = DEFAULT_CONFIG, condition_id: str | None = None) -> dict:
     config = json.loads(config_path.read_text(encoding="utf-8"))
     if config.get("formal_run_authorized") is not True:
-        raise RuntimeError("NOT_AUTHORIZED: EF-BD L10 pilot remains disabled")
+        raise RuntimeError("NOT_AUTHORIZED: EF-BD scaling pilot remains disabled")
     if config.get("readiness_decision") != "READY_FOR_AUTHORIZATION":
         raise RuntimeError("BLOCKED_RESOURCE_DESIGN: resource protocol requires independent revision")
     audit = dry_run(config_path, condition_id)
@@ -160,6 +176,7 @@ def _worker(config_path: Path, attempt_dir: Path, condition_id: str) -> int:
     result = {
         "schema": "ef_benders_scaling_result_v1", "experiment_id": config["experiment_id"],
         "condition_id": condition_id, "attempt": "attempt-001", "method": "EF-BD",
+        "size": selected["size"], "seed": selected["seed"],
         "solver_status": solved.status, "exact_certification": exact, "cut_validity": solved.cut_validity_pass,
         "final_objective": solved.solution.objective, "final_lower_bound": solved.final_lower_bound,
         "final_upper_bound": solved.final_upper_bound, "final_gap": solved.final_relative_gap,
@@ -167,12 +184,22 @@ def _worker(config_path: Path, attempt_dir: Path, condition_id: str) -> int:
         "algorithm_core_time": solved.total_runtime, "master_time": solved.master_runtime,
         "oracle_time": solved.global_oracle_runtime, "certification_time": certification_seconds,
         "total_time": perf_counter() - started, "oracle_engineering": diagnostics,
-        "solver_parameters": config["solver_parameters"], "instance_hash": preparation["instance_hash"],
+        "solver_parameters": config["solver_parameters"], "solver_profile": config["solver_profile"],
+        "environment": direct_runner.current_environment(),
+        "config_hash": direct_runner.canonical_hash(config), "model_identity": model_identity(),
+        "instance_hash": preparation["instance_hash"],
     }
     base._write_json(attempt_dir / "result.json", result)
     base._write_json(attempt_dir / "iteration_trajectory.json", trajectory)
     base._write_json(attempt_dir / "first_stage_solution.json", {"y": solved.solution.y, "x": solved.solution.x, "a_plus": solved.solution.a_plus, "a_minus": solved.solution.a_minus})
-    provenance = {"code_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(), "config_sha256": base._sha256(config_path), "instance_sha256": hashes["instance_sha256"], "preparation_sha256": hashes["preparation_sha256"]}
+    provenance = {
+        "condition_id": condition_id, "attempt": "attempt-001",
+        "code_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "config_sha256": base._sha256(config_path), "config_hash": result["config_hash"],
+        "model_identity": result["model_identity"], "environment": result["environment"],
+        "instance_hash": preparation["instance_hash"], "x0_hash": preparation["x0_hash"],
+        "instance_sha256": hashes["instance_sha256"], "preparation_sha256": hashes["preparation_sha256"],
+    }
     provenance.update({f"{name}_sha256": base._sha256(attempt_dir / filename) for name, filename in (("result", "result.json"), ("trajectory", "iteration_trajectory.json"), ("first_stage", "first_stage_solution.json"))})
     base._write_json(attempt_dir / "provenance.json", provenance)
     return 0 if exact else 2

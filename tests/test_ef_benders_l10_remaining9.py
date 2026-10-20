@@ -23,7 +23,7 @@ def test_pilot_archive_is_hash_identical_and_accepted():
     assert pilot["resource_monitor"]["peak_process_tree_memory_gib"] == 1.697723388671875
 
 
-def test_dry_run_checks_all_nine_without_optimization(monkeypatch):
+def test_dry_run_recognizes_completed_remaining_nine_without_optimization(monkeypatch):
     monkeypatch.setattr(
         batch_runner,
         "git_status_for_execution",
@@ -31,12 +31,11 @@ def test_dry_run_checks_all_nine_without_optimization(monkeypatch):
     )
     monkeypatch.setattr(batch_runner, "active_solver_workers", lambda: [])
     dry = build_dry_run(DEFAULT_CONFIG)
-    expected = "AUTHORIZED_READY" if dry["formal_run_authorized"] else "READY_FOR_AUTHORIZATION"
-    assert dry["decision"] == expected
+    assert dry["decision"] == "BLOCKED"
     assert dry["optimization_calls"] == 0
     assert len(dry["conditions"]) == 9
     assert all(row["identity_status"] == "PASS" for row in dry["conditions"])
-    assert all(not row["attempt_exists"] and not row["canonical_result_exists"] for row in dry["conditions"])
+    assert all(row["attempt_exists"] and row["canonical_result_exists"] for row in dry["conditions"])
 
 
 def test_audit_reports_expected_paired_time_order_and_denominator(monkeypatch):
@@ -47,7 +46,7 @@ def test_audit_reports_expected_paired_time_order_and_denominator(monkeypatch):
     )
     monkeypatch.setattr(batch_runner, "active_solver_workers", lambda: [])
     audit = build_audit(DEFAULT_CONFIG)
-    assert audit["status"] in ("READY_FOR_AUTHORIZATION", "AUTHORIZED_READY")
+    assert audit["status"] == "BLOCKED"
     assert audit["fixed_denominator"] == {"completed_pilot": 1, "authorized_remaining": 9, "total": 10}
     assert audit["paired_time_order_slowest_to_fastest"] == ["Direct", "EF-BD", "Aggregate-BD", "PRB-BD"]
     assert audit["optimization_calls"] == 0
