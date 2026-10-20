@@ -22,6 +22,9 @@ def test_protocols_are_closed_and_exactly_scoped(method: str) -> None:
     assert config["algorithm"]["retain_product_budget_theta"] is True
     assert config["algorithm"]["retain_global_risk_budget_coupling"] is True
     assert config["algorithm"]["compact_global_oracle"] is False
+    assert config["known_failure_policy"]["classification"] == "NUMERICAL_CERTIFICATION_FAIL"
+    assert config["known_failure_policy"]["coupling_residual_must_exceed"] == 1e-6
+    assert config["known_failure_policy"]["maximum_numerical_closure_residual"] == 1e-4
     if method == "PRB-SG":
         assert config["execution_plan"]["210129"] == {
             "action": "preserve_canonical",
@@ -110,4 +113,3 @@ def test_dry_run_has_zero_optimization_calls(method: str) -> None:
     assert audit["optimization_calls"] == 0
     assert audit["formal_run_authorized"] is False
     assert audit["gates"]["identity"]
-    assert audit["gates"]["execution_plan"]

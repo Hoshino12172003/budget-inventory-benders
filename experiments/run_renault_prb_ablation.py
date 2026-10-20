@@ -95,19 +95,19 @@ def load_config(path: Path) -> dict[str, Any]:
         }
         if observed != expected_plan:
             raise RuntimeError("PRB-SG continuation attempt plan mismatch")
-        policy = config.get("known_failure_policy")
-        if policy != {
-            "classification": "NUMERICAL_CERTIFICATION_FAIL",
-            "require_internal_exact_certification": True,
-            "require_independent_global_certification": True,
-            "require_cut_validity": True,
-            "require_direct_objective_consistency": True,
-            "require_complete_identity_and_artifacts": True,
-            "coupling_residual_must_exceed": 1e-6,
-            "maximum_numerical_closure_residual": 1e-4,
-            "continue_after_independent_classification": True,
-        }:
-            raise RuntimeError("known coupling-only failure policy mismatch")
+    policy = config.get("known_failure_policy")
+    if policy != {
+        "classification": "NUMERICAL_CERTIFICATION_FAIL",
+        "require_internal_exact_certification": True,
+        "require_independent_global_certification": True,
+        "require_cut_validity": True,
+        "require_direct_objective_consistency": True,
+        "require_complete_identity_and_artifacts": True,
+        "coupling_residual_must_exceed": 1e-6,
+        "maximum_numerical_closure_residual": 1e-4,
+        "continue_after_independent_classification": True,
+    }:
+        raise RuntimeError("known coupling-only failure policy mismatch")
     resource = config["resource_policy"]
     if resource != {
         "execution": "sequential_single_process",
