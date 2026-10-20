@@ -223,6 +223,7 @@ artifacts/*
 !artifacts/renault_ef_bd_audit.md
 !artifacts/renault_ef_bd_acceptance_audit.json
 !artifacts/renault_ef_bd_frozen_baseline_v1.json
+!artifacts/ef_benders_scaling_l10_preparation_audit.json
 !experiments/results/renault_extensive_form_benders_development_v1/
 !experiments/results/renault_extensive_form_benders_development_v1/**
 experiments/results/algorithm_scaling_convergence_cost_v2_repaired_guard/

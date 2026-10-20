@@ -20,6 +20,7 @@ class ExtensiveFormRecourseOracle:
         gamma: int,
         *,
         trace_path: Path | None = None,
+        threads: int | None = None,
     ) -> None:
         import gurobipy as gp
         from gurobipy import GRB
@@ -35,9 +36,12 @@ class ExtensiveFormRecourseOracle:
         regions = range(instance.num_regions)
         products = range(instance.num_products)
 
+        build_started = perf_counter()
         model = gp.Model(f"ef_bd_recourse_{instance.name}")
         model.Params.OutputFlag = 0
         apply_formal_solver_profile(model, mixed_integer=False)
+        if threads is not None:
+            model.Params.Threads = threads
         eta = model.addVars(products, range(gamma + 1), lb=0.0, name="eta")
         supply: dict[tuple[int, int], list[Any]] = {
             (i, j): [] for i in depots for j in products
@@ -120,6 +124,7 @@ class ExtensiveFormRecourseOracle:
         self.block_patterns = block_patterns
         self.block_constraints = block_constraints
         self.allocation_constraints = allocation_constraints
+        self.build_seconds = perf_counter() - build_started
 
     def solve(
         self,
@@ -211,6 +216,7 @@ class ExtensiveFormRecourseOracle:
                             "active_risk_allocation": active_allocation,
                             "active_global_pattern": pattern,
                             "runtime_seconds": elapsed,
+                            "first_stage_x": x,
                         },
                         sort_keys=True,
                     )
@@ -248,24 +254,36 @@ def solve_extensive_form_benders(
     lambda_r: float,
     *,
     trace_path: Path | None = None,
+    threads: int | None = None,
     **kwargs: Any,
 ) -> tuple[Any, dict[str, Any]]:
     """Solve the unchanged single-theta master with the monolithic Direct recourse LP."""
     from . import pure_benders as pure
 
     original = pure.GlobalRobustAdversarialSubproblem
+    original_master_builder = pure._build_pure_master
     created: list[ExtensiveFormRecourseOracle] = []
+    master_build_seconds = [0.0]
+
+    def master_builder(*args: Any, **builder_kwargs: Any) -> Any:
+        started = perf_counter()
+        built = original_master_builder(*args, **builder_kwargs)
+        master_build_seconds[0] += perf_counter() - started
+        if threads is not None:
+            built[0].Params.Threads = threads
+        return built
 
     def factory(
         oracle_instance: InventoryInstance, oracle_gamma: int
     ) -> ExtensiveFormRecourseOracle:
         oracle = ExtensiveFormRecourseOracle(
-            oracle_instance, oracle_gamma, trace_path=trace_path
+            oracle_instance, oracle_gamma, trace_path=trace_path, threads=threads
         )
         created.append(oracle)
         return oracle
 
     pure.GlobalRobustAdversarialSubproblem = factory
+    pure._build_pure_master = master_builder
     try:
         result = pure.solve_pure_benders(
             instance, x0, budget, gamma, lambda_r, **kwargs
@@ -277,6 +295,9 @@ def solve_extensive_form_benders(
             "scenario_blocks": created[0].scenario_blocks if created else 0,
             "continuous_variables": int(created[0].model.NumVars) if created else 0,
             "constraints": int(created[0].model.NumConstrs) if created else 0,
+            "master_build_seconds": master_build_seconds[0],
+            "oracle_build_seconds": sum(oracle.build_seconds for oracle in created),
+            "threads": threads,
             "single_global_theta": True,
             "maximum_cuts_per_iteration": 1,
             "scenario_pruning": False,
@@ -287,5 +308,6 @@ def solve_extensive_form_benders(
         return result, diagnostics
     finally:
         pure.GlobalRobustAdversarialSubproblem = original
+        pure._build_pure_master = original_master_builder
         for oracle in created:
             oracle.close()
