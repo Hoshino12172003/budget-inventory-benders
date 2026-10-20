@@ -1,0 +1,23 @@
+{
+  "code_commit": "5c4bd0c1dc9a62e9acea6b87510dac5b440abd40",
+  "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\renault_prb_sg_continuation_v3.yaml",
+  "config_sha256": "ddfe9effaf74ba1dca7b3877f0cb5b03483115de3e2a1aa0a50393487e41c3f8",
+  "first_stage_sha256": "466d1b8b3342bbb3e51b89f038cf7604df1217e58c9a9ddf405a9e1602cb48c4",
+  "formal_run_authorized": true,
+  "instance_identity": {
+    "calibration_hash": "29ab4dae7c8cce42cc9a771372d9813fbffac137a978f2b2208a41f61256cc58",
+    "instance_hash": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+    "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+    "x0_hash": "cc08b6627d2f100652172e56ae78f3e35a97b8c89385b99da534fc20917a8014"
+  },
+  "mechanisms": {
+    "adaptive_cut_selection": false,
+    "exact_product_scenario_screening": true
+  },
+  "method_id": "PRB-SG",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.7",
+  "python_executable": "C:\\Program Files\\Python312\\python.exe",
+  "result_sha256": "ef6e7d1af0c1e2221fed94cc93e02b46e0d506ece2f27ca7bae7ef39d69871e6",
+  "trajectory_sha256": "45b89a1b210cb290a837b64772b910c6934a87d95b4bb8bf008e19dd4986ce20"
+}
