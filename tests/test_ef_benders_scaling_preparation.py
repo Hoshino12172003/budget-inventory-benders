@@ -43,7 +43,17 @@ def test_authorized_gate_remains_identity_and_resource_checked(monkeypatch, tmp_
     config["formal_run_authorized"] = True
     authorized = tmp_path / "authorized.json"
     authorized.write_text(json.dumps(config), encoding="utf-8")
-    marker = {"formal_run_authorized": True, "optimization_calls": 0}
+    marker = {
+        "formal_run_authorized": True,
+        "optimization_calls": 0,
+        "resource_gate": {
+            "available_memory_gib": 12,
+            "startup_required_gib": 11,
+            "free_disk_gib": 21,
+            "minimum_free_disk_gib": 20,
+        },
+        "canonical_result_exists": False,
+    }
     monkeypatch.setattr("experiments.run_ef_benders_scaling.dry_run", lambda *_: marker)
     assert validate_execution_gate(authorized) is marker
 
