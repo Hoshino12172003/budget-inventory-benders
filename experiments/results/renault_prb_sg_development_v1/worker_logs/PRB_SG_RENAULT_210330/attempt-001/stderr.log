@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "E:\w\direct-prep\experiments\run_renault_prb_ablation.py", line 577, in main
+    solve_worker(args.config.resolve(), args.worker, args.attempt_root.resolve())
+  File "E:\w\direct-prep\experiments\run_renault_prb_ablation.py", line 420, in solve_worker
+    raise RuntimeError("NUMERICAL_CERTIFICATION_FAILURE")
+RuntimeError: NUMERICAL_CERTIFICATION_FAILURE

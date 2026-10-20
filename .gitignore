@@ -214,4 +214,5 @@ artifacts/*
 !artifacts/renault_seven_algorithm_core_time_comparison.csv
 !artifacts/renault_sg_bd_sha256_manifest.csv
 !artifacts/renault_sg_bd_acceptance_audit.json
+!artifacts/renault_prb_ablation_partial_sha256_manifest.csv
 experiments/results/algorithm_scaling_convergence_cost_v2_repaired_guard/

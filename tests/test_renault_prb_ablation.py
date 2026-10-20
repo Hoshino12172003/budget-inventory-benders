@@ -66,4 +66,14 @@ def test_dry_run_has_zero_optimization_calls(method: str) -> None:
     assert audit["optimization_calls"] == 0
     assert audit["formal_run_authorized"] is False
     assert audit["gates"]["identity"]
-    assert audit["gates"]["execution_plan"]
+    if method == "PRB-SG":
+        assert audit["gates"]["execution_plan"] is False
+        assert any(
+            row["case"] == "210330"
+            and row["planned_action"] == "run"
+            and row["attempt_exists"] is True
+            and row["canonical_exists"] is False
+            for row in audit["conditions"]
+        )
+    else:
+        assert audit["gates"]["execution_plan"]
