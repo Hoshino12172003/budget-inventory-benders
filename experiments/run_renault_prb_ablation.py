@@ -32,7 +32,7 @@ from robust_inventory_reconfiguration.prb_ablation import solve_prb_ablation
 
 CASES = ("210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611")
 CONFIGS = {
-    "PRB-SG": ROOT / "experiments/configs/development/renault_prb_sg_recovery_v2.yaml",
+    "PRB-SG": ROOT / "experiments/configs/development/renault_prb_sg_continuation_v3.yaml",
     "A-PRB": ROOT / "experiments/configs/development/renault_a_prb_v1.yaml",
     "A-PRB-SG": ROOT / "experiments/configs/development/renault_a_prb_sg_v1.yaml",
 }
@@ -82,9 +82,9 @@ def load_config(path: Path) -> dict[str, Any]:
         expected_plan = {
             "210202": ("preserve_canonical", "attempt-001"),
             "210628": ("preserve_canonical", "attempt-001"),
-            "210129": ("run", "attempt-002"),
-            "210310": ("run", "attempt-001"),
-            "210330": ("run", "attempt-001"),
+            "210129": ("preserve_canonical", "attempt-002"),
+            "210310": ("preserve_canonical", "attempt-001"),
+            "210330": ("preserve_numerical_failure", "attempt-001"),
             "210323": ("run", "attempt-001"),
             "210428": ("run", "attempt-001"),
             "210611": ("run", "attempt-001"),
@@ -94,7 +94,20 @@ def load_config(path: Path) -> dict[str, Any]:
             for case in CASES
         }
         if observed != expected_plan:
-            raise RuntimeError("PRB-SG recovery attempt plan mismatch")
+            raise RuntimeError("PRB-SG continuation attempt plan mismatch")
+        policy = config.get("known_failure_policy")
+        if policy != {
+            "classification": "NUMERICAL_CERTIFICATION_FAIL",
+            "require_internal_exact_certification": True,
+            "require_independent_global_certification": True,
+            "require_cut_validity": True,
+            "require_direct_objective_consistency": True,
+            "require_complete_identity_and_artifacts": True,
+            "coupling_residual_must_exceed": 1e-6,
+            "maximum_numerical_closure_residual": 1e-4,
+            "continue_after_independent_classification": True,
+        }:
+            raise RuntimeError("known coupling-only failure policy mismatch")
     resource = config["resource_policy"]
     if resource != {
         "execution": "sequential_single_process",
@@ -147,6 +160,120 @@ def preserved_canonical_audit(
         "mismatches": mismatches,
         "result_sha256_match": bool(result_path.is_file() and expected_hash and sha256(result_path) == expected_hash),
         "exact_certification": result.get("exact_certification") is True,
+    }
+
+
+ATTEMPT_ARTIFACTS = (
+    "result.json",
+    "provenance.json",
+    "iteration_trajectory.json",
+    "first_stage_solution.json",
+    "solver.log",
+    "stdout.log",
+    "stderr.log",
+    "resource_monitor.json",
+)
+
+
+def write_attempt_manifest(attempt: Path) -> dict[str, str]:
+    hashes = {
+        name: sha256(attempt / name)
+        for name in ATTEMPT_ARTIFACTS
+        if (attempt / name).is_file()
+    }
+    write_json(attempt / "attempt_manifest.json", hashes)
+    return hashes
+
+
+def coupling_only_failure_audit(
+    config: dict[str, Any],
+    attempt: Path,
+    condition: str,
+    *,
+    expected_artifact_sha256: dict[str, str] | None = None,
+    expected_config_sha256: str | None = None,
+    expected_code_commit: str | None = None,
+) -> dict[str, Any]:
+    required = {name: (attempt / name).is_file() for name in ATTEMPT_ARTIFACTS}
+    if not all(required.values()):
+        return {"pass": False, "classification": "INTEGRITY_FAILURE", "required_artifacts": required}
+    result = json.loads((attempt / "result.json").read_text(encoding="utf-8"))
+    provenance = json.loads((attempt / "provenance.json").read_text(encoding="utf-8"))
+    monitor = json.loads((attempt / "resource_monitor.json").read_text(encoding="utf-8"))
+    observed_hashes = {name: sha256(attempt / name) for name in ATTEMPT_ARTIFACTS}
+    manifest_path = attempt / "attempt_manifest.json"
+    if expected_artifact_sha256 is not None:
+        manifest_match = observed_hashes == expected_artifact_sha256
+    else:
+        manifest_match = manifest_path.is_file() and json.loads(
+            manifest_path.read_text(encoding="utf-8")
+        ) == observed_hashes
+    tolerance = config["solver_tolerances"]
+    coupling = float(result.get("global_risk_budget_coupling_error", float("inf")))
+    closure = abs(float(result.get("final_lower_bound", float("inf"))) - float(
+        result.get("final_upper_bound", float("-inf"))
+    ))
+    independent = result.get("independent_certification", {})
+    identity = result.get("identity", {})
+    current_commit = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
+    ).strip()
+    if expected_config_sha256 is None:
+        provenance_config = Path(provenance.get("config_path", ""))
+        config_sha_match = (
+            provenance_config.is_file()
+            and provenance_config.resolve() == CONFIGS[config["method_id"]].resolve()
+            and provenance.get("config_sha256") == sha256(provenance_config)
+        )
+    else:
+        config_sha_match = provenance.get("config_sha256") == expected_config_sha256
+    checks = {
+        "artifacts_complete": all(required.values()),
+        "artifact_sha256": manifest_match,
+        "condition_identity": result.get("condition_id") == condition
+        and monitor.get("condition_id") == condition,
+        "method_identity": result.get("method_id") == config["method_id"]
+        and provenance.get("method_id") == config["method_id"],
+        "instance_identity": identity.get("status") == "PASS"
+        and all(identity.get("checks", {}).values())
+        and provenance.get("instance_identity") == identity.get("identity"),
+        "worker_exit": monitor.get("return_code") == 1 and monitor.get("stop_reason") is None,
+        "failure_marker": "NUMERICAL_CERTIFICATION_FAILURE"
+        in (attempt / "stderr.log").read_text(encoding="utf-8"),
+        "result_not_certified": result.get("exact_certification") is False
+        and result.get("solver_status") == "ERROR",
+        "coupling_failed": result.get("global_risk_budget_coupling_pass") is False
+        and coupling > tolerance["global_coupling"]
+        and coupling <= config["known_failure_policy"]["maximum_numerical_closure_residual"],
+        "closure_signature": abs(coupling - closure) <= 1e-12,
+        "internal_exact": result.get("internal_exact_certification") is True,
+        "independent_exact": independent.get("pass") is True
+        and independent.get("dual_feasible") is True
+        and float(independent.get("objective_residual", float("inf")))
+        <= tolerance["objective_certification"]
+        and float(independent.get("strong_duality_residual", float("inf")))
+        <= tolerance["objective_certification"],
+        "cut_validity": result.get("cut_validity") is True,
+        "direct_consistency": float(result.get("direct_objective_residual", float("inf")))
+        <= tolerance["objective_certification"],
+        "provenance_result_sha256": provenance.get("result_sha256") == observed_hashes["result.json"],
+        "provenance_trajectory_sha256": provenance.get("trajectory_sha256")
+        == observed_hashes["iteration_trajectory.json"],
+        "provenance_first_stage_sha256": provenance.get("first_stage_sha256")
+        == observed_hashes["first_stage_solution.json"],
+        "config_sha256": config_sha_match,
+        "code_commit": provenance.get("code_commit")
+        == (expected_code_commit if expected_code_commit is not None else current_commit),
+    }
+    passed = all(checks.values())
+    return {
+        "pass": passed,
+        "classification": "NUMERICAL_CERTIFICATION_FAIL" if passed else "INTEGRITY_FAILURE",
+        "checks": checks,
+        "coupling_residual": coupling,
+        "closure_residual": closure,
+        "threshold": tolerance["global_coupling"],
+        "artifact_sha256": observed_hashes,
     }
 
 
@@ -226,6 +353,21 @@ def dry_run(config_path: Path) -> dict[str, Any]:
                     "exact_certification",
                 )
             )
+        elif plan["action"] == "preserve_numerical_failure":
+            attempt = output_root / "worker_logs" / cid / plan["attempt"]
+            canonical = output_root / "runs" / cid
+            failure = coupling_only_failure_audit(
+                config,
+                attempt,
+                cid,
+                expected_artifact_sha256=plan["artifact_sha256"],
+                expected_config_sha256=plan["config_sha256"],
+                expected_code_commit=plan["code_commit"],
+            )
+            row["attempt_exists"] = attempt.is_dir()
+            row["canonical_exists"] = canonical.exists()
+            row["known_failure_audit"] = failure
+            row["plan_pass"] = attempt.is_dir() and not canonical.exists() and failure["pass"]
         else:
             attempt = output_root / "worker_logs" / cid / plan["attempt"]
             canonical = output_root / "runs" / cid
@@ -504,7 +646,9 @@ def run_monitored(config_path: Path, cid: str, attempt_name: str) -> dict[str, A
         "samples": samples,
     }
     write_json(attempt / "resource_monitor.json", monitor)
+    write_attempt_manifest(attempt)
     classification = "UNKNOWN_WORKER_FAILURE"
+    failure = None
     if stop_reason in {"TIME_LIMIT", "RESOURCE_PROCESS_CAP", "RESOURCE_SYSTEM_CAP"}:
         classification = stop_reason
     elif process.returncode == 0:
@@ -517,8 +661,27 @@ def run_monitored(config_path: Path, cid: str, attempt_name: str) -> dict[str, A
         else:
             classification = "NUMERICAL_CERTIFICATION_FAILURE"
     elif "NUMERICAL_CERTIFICATION_FAILURE" in stderr:
-        classification = "NUMERICAL_CERTIFICATION_FAILURE"
-    return {**monitor, "classification": classification, "attempt": str(attempt), "canonical": str(canonical) if canonical.exists() else None}
+        failure = coupling_only_failure_audit(config, attempt, cid)
+        classification = failure["classification"]
+    row = {
+        **monitor,
+        "classification": classification,
+        "attempt": str(attempt),
+        "canonical": str(canonical) if canonical.exists() else None,
+    }
+    if "failure" in locals() and failure is not None:
+        row["known_failure_audit"] = failure
+    return row
+
+
+def continuation_allowed(classification: str) -> bool:
+    return classification in {
+        "SUCCESS",
+        "NUMERICAL_CERTIFICATION_FAIL",
+        "TIME_LIMIT",
+        "RESOURCE_PROCESS_CAP",
+        "RESOURCE_SYSTEM_CAP",
+    }
 
 
 def execute(config_path: Path) -> dict[str, Any]:
@@ -531,10 +694,14 @@ def execute(config_path: Path) -> dict[str, Any]:
     rows = []
     for case in CASES:
         plan = execution_plan(config, case)
-        if plan["action"] == "preserve_canonical":
+        if plan["action"] in {"preserve_canonical", "preserve_numerical_failure"}:
             rows.append({
                 "condition_id": condition_id(config, case),
-                "classification": "PRESERVED_CANONICAL",
+                "classification": (
+                    "PRESERVED_CANONICAL"
+                    if plan["action"] == "preserve_canonical"
+                    else "PRESERVED_NUMERICAL_CERTIFICATION_FAIL"
+                ),
                 "attempt": plan["attempt"],
             })
             continue
@@ -550,7 +717,7 @@ def execute(config_path: Path) -> dict[str, Any]:
             config_path, condition_id(config, case), plan["attempt"]
         )
         rows.append(row)
-        if row["classification"] not in {"SUCCESS", "TIME_LIMIT", "RESOURCE_PROCESS_CAP", "RESOURCE_SYSTEM_CAP"}:
+        if not continuation_allowed(row["classification"]):
             break
     report = {
         "protocol_id": config["protocol_id"],
@@ -559,7 +726,11 @@ def execute(config_path: Path) -> dict[str, Any]:
         "attempted": len(rows),
         "rows": rows,
     }
-    write_json(ROOT / config["output_directory"] / "batch_report.json", report)
+    report_name = config.get("batch_report_name", "batch_report.json")
+    report_path = ROOT / config["output_directory"] / report_name
+    if report_path.exists():
+        raise FileExistsError(f"refusing to overwrite {report_path}")
+    write_json(report_path, report)
     return report
 
 
