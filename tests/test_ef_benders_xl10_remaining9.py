@@ -29,7 +29,7 @@ def _stable_dry_run(monkeypatch):
 def test_protocol_scope_resources_and_authorization_are_frozen():
     config = ef_runner.load_config(batch.DEFAULT_CONFIG)
     batch.validate_protocol(config)
-    assert config["formal_run_authorized"] is False
+    assert config["formal_run_authorized"] is True
     assert config["authorized_condition_ids"] == batch.EXPECTED
     assert config["resource_policy"]["maximum_process_tree_memory_gib_by_size"] == {"XL10": 8}
     assert config["resource_policy"]["minimum_available_memory_gib_by_size"] == {"XL10": 12}
@@ -49,7 +49,7 @@ def test_completed_pilot_is_byte_identical_and_certified():
 def test_dry_run_validates_nine_absent_attempts_without_optimization(monkeypatch):
     _stable_dry_run(monkeypatch)
     dry = batch.build_dry_run()
-    assert dry["decision"] == "READY_FOR_AUTHORIZATION"
+    assert dry["decision"] == "AUTHORIZED_READY"
     assert dry["optimization_calls"] == 0
     assert len(dry["conditions"]) == 9
     assert all(row["identity_status"] == "PASS" for row in dry["conditions"])
@@ -57,23 +57,27 @@ def test_dry_run_validates_nine_absent_attempts_without_optimization(monkeypatch
     assert all(row["expected_attempt"] == "attempt-001" for row in dry["conditions"])
 
 
-def test_readiness_audit_is_closed_and_zero_optimization(monkeypatch):
+def test_authorization_audit_is_enabled_and_zero_optimization(monkeypatch):
     _stable_dry_run(monkeypatch)
     audit = build_audit()
-    assert audit["status"] == "READY_FOR_AUTHORIZATION"
-    assert audit["checks"]["authorization_closed"] is True
+    assert audit["status"] == "AUTHORIZED_READY"
+    assert audit["checks"]["authorization_enabled"] is True
     assert audit["optimization_calls"] == 0
     assert audit["fixed_denominator"] == {"completed_pilot": 1, "remaining": 9, "total_xl10": 10}
 
 
-def test_execute_refuses_before_worker_launch(monkeypatch):
+def test_execute_refuses_before_worker_launch(monkeypatch, tmp_path):
+    config = ef_runner.load_config(batch.DEFAULT_CONFIG)
+    config["formal_run_authorized"] = False
+    closed = tmp_path / "closed.json"
+    closed.write_text(json.dumps(config), encoding="utf-8")
     monkeypatch.setattr(
         batch.runner,
         "run_condition",
         lambda *_args, **_kwargs: pytest.fail("optimization launcher must not be called"),
     )
     with pytest.raises(RuntimeError, match="NOT_AUTHORIZED"):
-        batch.execute_batch()
+        batch.execute_batch(closed)
 
 
 def test_failure_classification_continues_only_known_stops_after_worker_exit():

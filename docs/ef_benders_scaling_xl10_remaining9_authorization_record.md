@@ -6,10 +6,11 @@
 - Conditions: `EF_XL10_S20260922` through `EF_XL10_S20260930`
 - Attempts: `attempt-001` only
 - Completed pilot: `EF_XL10_S20260921/attempt-001` is immutable and excluded from execution
-- Authorization: `formal_run_authorized=false`
+- Authorization: `formal_run_authorized=true`
+- Authorization commit: `587ab8ac90eeac3e6e3680a368643176e98f5f83`
 - Automatic retry: forbidden
 
-This record prepares the nine-condition serial batch but does not authorize optimization. A later, independent authorization commit may change only the versioned authorization field after repeating the pilot, input, environment, resource, process, Git, and output-absence gates.
+The independent authorization commit changed only the versioned authorization field after repeating the pilot, input, environment, resource, process, Git, and output-absence gates. It did not execute optimization.
 
 ## Frozen method and resources
 
@@ -27,7 +28,7 @@ Zero-optimization dry-run:
 python scripts\run_ef_benders_scaling_xl10_remaining9.py --config experiments\configs\development\ef_benders_scaling_xl10_remaining9_v1.yaml
 ```
 
-The following execution command remains unusable until a separate user authorization changes `formal_run_authorized` to `true`:
+After a fresh live dry-run passes every gate, the authorized execution command is:
 
 ```powershell
 python scripts\run_ef_benders_scaling_xl10_remaining9.py --config experiments\configs\development\ef_benders_scaling_xl10_remaining9_v1.yaml --execute

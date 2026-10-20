@@ -16,7 +16,7 @@ def build_audit(config_path: Path = DEFAULT_CONFIG) -> dict:
     pilot = dry["pilot"]
     checks = {
         "dry_run_ready": dry["decision"] in ("READY_FOR_AUTHORIZATION", "AUTHORIZED_READY"),
-        "authorization_closed": dry["formal_run_authorized"] is False,
+        "authorization_enabled": dry["formal_run_authorized"] is True,
         "pilot_archive": all(pilot["checks"].values()),
         "algorithm_identity": all(dry["algorithm_identity_checks"].values()),
         "environment_identity": all(dry["environment_checks"].values()),
@@ -27,7 +27,7 @@ def build_audit(config_path: Path = DEFAULT_CONFIG) -> dict:
     }
     return {
         "schema": "ef_benders_xl10_remaining9_readiness_audit_v1",
-        "status": "READY_FOR_AUTHORIZATION" if all(checks.values()) else "BLOCKED",
+        "status": "AUTHORIZED_READY" if all(checks.values()) else "BLOCKED",
         "checks": checks,
         "protocol_id": dry["protocol_id"],
         "config_path": str(config_path.resolve()),
@@ -85,7 +85,7 @@ def main() -> int:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(audit, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     print(json.dumps(audit, indent=2, allow_nan=False))
-    return 0 if audit["status"] == "READY_FOR_AUTHORIZATION" else 1
+    return 0 if audit["status"] == "AUTHORIZED_READY" else 1
 
 
 if __name__ == "__main__":
