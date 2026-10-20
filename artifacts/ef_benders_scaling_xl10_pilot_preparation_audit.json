@@ -1,0 +1,455 @@
+{
+  "schema": "ef_benders_xl10_pilot_preparation_audit_v1",
+  "status": "READY_FOR_AUTHORIZATION",
+  "checks": {
+    "authorization_closed": true,
+    "dry_run_ready": true,
+    "zero_optimization": true,
+    "l10_frozen_10_of_10": true,
+    "identity": true,
+    "environment": true,
+    "attempt_absent": true,
+    "canonical_absent": true,
+    "scope": true,
+    "static_direct_count_match": true
+  },
+  "optimization_calls": 0,
+  "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\ef_benders_scaling_xl10_pilot_v1.yaml",
+  "config_sha256": "aa5128463a92f22786d8d04e4118a4b3591a768b80b6089e1888f644856986ef",
+  "condition_id": "EF_XL10_S20260921",
+  "next_attempt": "attempt-001",
+  "dry_run": {
+    "schema": "ef_benders_xl10_pilot_dry_run_v1",
+    "decision": "READY_FOR_AUTHORIZATION",
+    "formal_run_authorized": false,
+    "condition": {
+      "protocol_id": "EF_BD_XL10_SINGLE_PILOT_V1",
+      "formal_run_authorized": false,
+      "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\ef_benders_scaling_xl10_pilot_v1.yaml",
+      "config_sha256": "aa5128463a92f22786d8d04e4118a4b3591a768b80b6089e1888f644856986ef",
+      "config_identity": "9546a1784dd9bf085e68318b4b0aa4dc1fa935eed78fa5e80ff17c1ee2e6f851",
+      "readiness_decision": "READY_FOR_AUTHORIZATION",
+      "condition": {
+        "condition_id": "EF_XL10_S20260921",
+        "size": "XL10",
+        "seed": 20260921
+      },
+      "source_instance_id": "ASC_INSTANCE_XL10_S20260921",
+      "instance_hash": "73732c6523ff154f1e5e7891641c25102345bc40c65bfb72630c817c78349695",
+      "x0_hash": "89d558ca9bee95e37b1e58408873847a450f1a2dc8b08a42e9b2e09d616d43c3",
+      "instance_sha256": "16abfafe6fb84902ddac9734edf17716c1d7d9a4c6fd01adad73032054b221a1",
+      "preparation_sha256": "a23ff34dcee1bad5ce98414ef388c73e40cfdc41d640f47c42214f330d01b626",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "resource_gate": {
+        "available_memory_gib": 13.629081726074219,
+        "startup_required_gib": 12,
+        "process_tree_cap_gib": 8,
+        "system_available_floor_gib": 3,
+        "free_disk_gib": 246.2509422302246,
+        "minimum_free_disk_gib": 20,
+        "time_limit_seconds": 900,
+        "monitor_interval_seconds": 0.25
+      },
+      "canonical_result_exists": false,
+      "attempt_exists": false,
+      "next_attempt": "attempt-001",
+      "solver_parameters": {
+        "Threads": 2
+      },
+      "environment": {
+        "platform": "Windows-11-10.0.26200-SP0",
+        "python_version": "3.12.7",
+        "python_executable": "C:\\Program Files\\Python312\\python.exe",
+        "gurobipy_version": "13.0.1",
+        "gurobi_native_version": [
+          13,
+          0,
+          1
+        ],
+        "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+      },
+      "optimization_calls": 0
+    },
+    "identity_checks": {
+      "condition_id": true,
+      "source_instance_id": true,
+      "instance_hash": true,
+      "x0_hash": true,
+      "instance_sha256": true,
+      "preparation_sha256": true,
+      "paired_methods": true
+    },
+    "environment_checks": {
+      "python_version": true,
+      "gurobipy_version": true,
+      "gurobi_native_version": true
+    },
+    "model_identity": {
+      "sha256": "cd5f0e444873e4685c8d2b7ac4f6f88d0a77558ba55cda1520cf1c05e07bb83e",
+      "files": {
+        "experiments/run_ef_benders_scaling.py": "8dd6da5ff05137f36acd6c056be1033a704e4e4f55688e79d636dc77051f372a",
+        "src/robust_inventory_reconfiguration/extensive_form_benders.py": "e22d214b75ccb2d0cb53fffe59e5850e50fadc20202f4fef27fa3aaff29e6e4d",
+        "src/robust_inventory_reconfiguration/pure_benders.py": "5e29839964dedf292e32dd471bab7ea4fbf782a8d0ff2470f861e664174c97fd",
+        "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+        "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+      }
+    },
+    "git": {
+      "head": "8442bf148126b5f19b7e6e6f204806962a8d22cd",
+      "clean_for_execution": true,
+      "unexpected": []
+    },
+    "active_solver_workers": [],
+    "gates": {
+      "frozen_identity": true,
+      "environment": true,
+      "attempt_absent": true,
+      "canonical_absent": true,
+      "startup_memory": true,
+      "disk": true,
+      "git_identity": true,
+      "no_active_solver_worker": true
+    },
+    "next_attempt": "attempt-001",
+    "optimization_calls": 0
+  },
+  "l10_frozen_baseline": {
+    "status": "PASS",
+    "certified": 10,
+    "expected": 10,
+    "mean_algorithm_core_time": 117.43819992998615,
+    "maximum_peak_process_tree_memory_gib": 1.786865234375,
+    "conditions": [
+      {
+        "condition_id": "EF_L10_S20260921",
+        "attempt": "attempt-001",
+        "checks": {
+          "optimal": true,
+          "exact_certification": true,
+          "cut_validity": true,
+          "resource_monitor": true,
+          "outcome": true,
+          "result_hash": true,
+          "trajectory_hash": true,
+          "first_stage_hash": true,
+          "attempt_canonical_bytes": true
+        },
+        "result_sha256": "972f00285a5738061be2c2903d569fe26eaa5bed98432b0ec4ddf4d9bb4bcd8d",
+        "provenance_sha256": "a580a7a827a030773f87407845e45f6c32b6558d5c37cae7ce5e32f61a997bbe",
+        "peak_process_tree_memory_gib": 1.697723388671875,
+        "algorithm_core_time": 66.63692490011454,
+        "iterations": 8
+      },
+      {
+        "condition_id": "EF_L10_S20260922",
+        "attempt": "attempt-001",
+        "checks": {
+          "optimal": true,
+          "exact_certification": true,
+          "cut_validity": true,
+          "resource_monitor": true,
+          "outcome": true,
+          "result_hash": true,
+          "trajectory_hash": true,
+          "first_stage_hash": true,
+          "attempt_canonical_bytes": true
+        },
+        "result_sha256": "e97937496f46f7d3667d4638d55482e0dbe07d41f72650d4086c44d620205e6d",
+        "provenance_sha256": "3e79036638f1c64cbccff2078455ab787d5138c16c088af6f850b01e24bbaeff",
+        "peak_process_tree_memory_gib": 1.6084136962890625,
+        "algorithm_core_time": 56.57599789998494,
+        "iterations": 8
+      },
+      {
+        "condition_id": "EF_L10_S20260923",
+        "attempt": "attempt-001",
+        "checks": {
+          "optimal": true,
+          "exact_certification": true,
+          "cut_validity": true,
+          "resource_monitor": true,
+          "outcome": true,
+          "result_hash": true,
+          "trajectory_hash": true,
+          "first_stage_hash": true,
+          "attempt_canonical_bytes": true
+        },
+        "result_sha256": "ff76837ae249f1c4e117abd4cab9c1e2762f4be11acc1dce9fd912ffad528cf0",
+        "provenance_sha256": "cd440739813cd694dcc65d5e130abc369ec386fba51c8b34c66a433925b5ccdd",
+        "peak_process_tree_memory_gib": 1.786865234375,
+        "algorithm_core_time": 294.6956378999166,
+        "iterations": 52
+      },
+      {
+        "condition_id": "EF_L10_S20260924",
+        "attempt": "attempt-001",
+        "checks": {
+          "optimal": true,
+          "exact_certification": true,
+          "cut_validity": true,
+          "resource_monitor": true,
+          "outcome": true,
+          "result_hash": true,
+          "trajectory_hash": true,
+          "first_stage_hash": true,
+          "attempt_canonical_bytes": true
+        },
+        "result_sha256": "656cdcab3969b2e8e17b9cf9ffc1348bd93bdbc09f67e4b0eea3e422dc558a8f",
+        "provenance_sha256": "b8a70dacdabd98256b3cc4299803985315caedf30d0d279590d62bf069e126e4",
+        "peak_process_tree_memory_gib": 1.7117385864257812,
+        "algorithm_core_time": 110.5456242999062,
+        "iterations": 13
+      },
+      {
+        "condition_id": "EF_L10_S20260925",
+        "attempt": "attempt-001",
+        "checks": {
+          "optimal": true,
+          "exact_certification": true,
+          "cut_validity": true,
+          "resource_monitor": true,
+          "outcome": true,
+          "result_hash": true,
+          "trajectory_hash": true,
+          "first_stage_hash": true,
+          "attempt_canonical_bytes": true
+        },
+        "result_sha256": "5f9198a7f04f3781fe4634e5b91743481d4fbc0700a20cc94bbcc9a363ddb0f1",
+        "provenance_sha256": "500de85191f515d8c7e309cf3907f73881b532516bcd64ebb974b77e1af934e4",
+        "peak_process_tree_memory_gib": 1.5936508178710938,
+        "algorithm_core_time": 63.64877039985731,
+        "iterations": 8
+      },
+      {
+        "condition_id": "EF_L10_S20260926",
+        "attempt": "attempt-001",
+        "checks": {
+          "optimal": true,
+          "exact_certification": true,
+          "cut_validity": true,
+          "resource_monitor": true,
+          "outcome": true,
+          "result_hash": true,
+          "trajectory_hash": true,
+          "first_stage_hash": true,
+          "attempt_canonical_bytes": true
+        },
+        "result_sha256": "693f24c73439f7362579aa6dec8e9d740f75be8e71e0aaf713ee976ceb059de6",
+        "provenance_sha256": "ef72d1fe1807f466e22017190582b2eb523a25484de82972bfd30e745f7bf025",
+        "peak_process_tree_memory_gib": 1.5748634338378906,
+        "algorithm_core_time": 113.31830550008453,
+        "iterations": 16
+      },
+      {
+        "condition_id": "EF_L10_S20260927",
+        "attempt": "attempt-001",
+        "checks": {
+          "optimal": true,
+          "exact_certification": true,
+          "cut_validity": true,
+          "resource_monitor": true,
+          "outcome": true,
+          "result_hash": true,
+          "trajectory_hash": true,
+          "first_stage_hash": true,
+          "attempt_canonical_bytes": true
+        },
+        "result_sha256": "75375490137a3bbf41bc2adde3e55caac773a13f3acc6521b310f1cc82b7bfe5",
+        "provenance_sha256": "0abaf3e709fe37a8321809643691367f951edd739f28efb616e8f361cff4cbeb",
+        "peak_process_tree_memory_gib": 1.6028671264648438,
+        "algorithm_core_time": 98.50780789996497,
+        "iterations": 10
+      },
+      {
+        "condition_id": "EF_L10_S20260928",
+        "attempt": "attempt-001",
+        "checks": {
+          "optimal": true,
+          "exact_certification": true,
+          "cut_validity": true,
+          "resource_monitor": true,
+          "outcome": true,
+          "result_hash": true,
+          "trajectory_hash": true,
+          "first_stage_hash": true,
+          "attempt_canonical_bytes": true
+        },
+        "result_sha256": "ed5d2c0b907deb3ace7959cf15e8396848910f115bb95f9ce5c193ecef1afe98",
+        "provenance_sha256": "03260881c1331d4bf81bf2417bd1fb9e35f7272a470a227166bbfafda7410f82",
+        "peak_process_tree_memory_gib": 1.7277603149414062,
+        "algorithm_core_time": 123.39743799995631,
+        "iterations": 8
+      },
+      {
+        "condition_id": "EF_L10_S20260929",
+        "attempt": "attempt-001",
+        "checks": {
+          "optimal": true,
+          "exact_certification": true,
+          "cut_validity": true,
+          "resource_monitor": true,
+          "outcome": true,
+          "result_hash": true,
+          "trajectory_hash": true,
+          "first_stage_hash": true,
+          "attempt_canonical_bytes": true
+        },
+        "result_sha256": "c5439634d9ad6efe81d5893d357d1015cd4b3db19d521c3a66628dc384d1cf85",
+        "provenance_sha256": "64f19cbd2d6e309eabcb1562510b9da6622128c82892c228ac93c061487da5c5",
+        "peak_process_tree_memory_gib": 1.5952682495117188,
+        "algorithm_core_time": 97.17784100002609,
+        "iterations": 10
+      },
+      {
+        "condition_id": "EF_L10_S20260930",
+        "attempt": "attempt-001",
+        "checks": {
+          "optimal": true,
+          "exact_certification": true,
+          "cut_validity": true,
+          "resource_monitor": true,
+          "outcome": true,
+          "result_hash": true,
+          "trajectory_hash": true,
+          "first_stage_hash": true,
+          "attempt_canonical_bytes": true
+        },
+        "result_sha256": "751579fc684678283d36cbfcf9a46f86fe462f8eb6148ae0cbabd09f25c79701",
+        "provenance_sha256": "e0bfcf8bc3912b34c7c57e61a5c04fbbf6501cbba6ff1fe543578bc98fe07079",
+        "peak_process_tree_memory_gib": 1.5185546875,
+        "algorithm_core_time": 149.87765150004998,
+        "iterations": 17
+      }
+    ]
+  },
+  "model_size": {
+    "XL10": {
+      "product_local_scenario_blocks": 6524,
+      "risk_budget_allocations": 120,
+      "ef_oracle": {
+        "variables": 6073887,
+        "constraints": 404608,
+        "nonzeros": 18223332
+      },
+      "direct_extensive_form": {
+        "variables": 6075177,
+        "constraints": 405479,
+        "nonzeros": 18422892
+      },
+      "count_classification": "THEORETICAL_EXACT_FROM_MODEL_STRUCTURE_NOT_GUROBI_BUILD"
+    },
+    "relative_to_L10": {
+      "variables": 2.690492780406257,
+      "constraints": 2.1953413672050917,
+      "nonzeros": 2.690313674259631
+    },
+    "count_evidence": "Exact algebraic count from the current model structure; no Gurobi model was built or optimized."
+  },
+  "resource_assessment": {
+    "configured_process_cap_gib": 8,
+    "configured_startup_gate_gib": 12,
+    "configured_system_floor_gib": 3,
+    "maximum_observed_ef_l10_peak_gib": 1.786865234375,
+    "linear_nonzero_scaled_projection_gib": 4.807227974098203,
+    "same_seed_direct_xl10_certified_peak_gib": 6.852397918701172,
+    "direct_evidence": {
+      "attempts": [
+        {
+          "attempt_path": "worker_logs\\DIRECT_XL10_S20260921\\attempt-001",
+          "peak_process_tree_memory_gib": 7.215446472167969,
+          "stop_reason": "RESOURCE_PROCESS_CAP",
+          "worker_return_code": 1
+        },
+        {
+          "attempt_path": "worker_logs\\DIRECT_XL10_S20260921\\attempt-002",
+          "peak_process_tree_memory_gib": 6.852397918701172,
+          "stop_reason": null,
+          "worker_return_code": 0
+        },
+        {
+          "attempt_path": "worker_logs\\DIRECT_XL10_S20260922\\attempt-001",
+          "peak_process_tree_memory_gib": 6.254497528076172,
+          "stop_reason": null,
+          "worker_return_code": 0
+        },
+        {
+          "attempt_path": "worker_logs\\DIRECT_XL10_S20260923\\attempt-001",
+          "peak_process_tree_memory_gib": 5.723178863525391,
+          "stop_reason": null,
+          "worker_return_code": 0
+        },
+        {
+          "attempt_path": "worker_logs\\DIRECT_XL10_S20260924\\attempt-001",
+          "peak_process_tree_memory_gib": 7.251808166503906,
+          "stop_reason": "RESOURCE_PROCESS_CAP",
+          "worker_return_code": 1
+        },
+        {
+          "attempt_path": "worker_logs\\DIRECT_XL10_S20260924\\attempt-002",
+          "peak_process_tree_memory_gib": 8.289241790771484,
+          "stop_reason": "RESOURCE_PROCESS_CAP",
+          "worker_return_code": 15
+        },
+        {
+          "attempt_path": "worker_logs\\DIRECT_XL10_S20260925\\attempt-001",
+          "peak_process_tree_memory_gib": 6.87261962890625,
+          "stop_reason": null,
+          "worker_return_code": 0
+        },
+        {
+          "attempt_path": "worker_logs\\DIRECT_XL10_S20260926\\attempt-001",
+          "peak_process_tree_memory_gib": 4.443412780761719,
+          "stop_reason": null,
+          "worker_return_code": 0
+        },
+        {
+          "attempt_path": "worker_logs\\DIRECT_XL10_S20260927\\attempt-001",
+          "peak_process_tree_memory_gib": 6.498100280761719,
+          "stop_reason": null,
+          "worker_return_code": 0
+        },
+        {
+          "attempt_path": "worker_logs\\DIRECT_XL10_S20260928\\attempt-001",
+          "peak_process_tree_memory_gib": 5.731243133544922,
+          "stop_reason": null,
+          "worker_return_code": 0
+        },
+        {
+          "attempt_path": "worker_logs\\DIRECT_XL10_S20260929\\attempt-001",
+          "peak_process_tree_memory_gib": 6.707538604736328,
+          "stop_reason": null,
+          "worker_return_code": 0
+        },
+        {
+          "attempt_path": "worker_logs\\DIRECT_XL10_S20260930\\attempt-001",
+          "peak_process_tree_memory_gib": 5.853115081787109,
+          "stop_reason": null,
+          "worker_return_code": 0
+        }
+      ],
+      "same_seed_attempts": [
+        {
+          "attempt_path": "worker_logs\\DIRECT_XL10_S20260921\\attempt-001",
+          "peak_process_tree_memory_gib": 7.215446472167969,
+          "stop_reason": "RESOURCE_PROCESS_CAP",
+          "worker_return_code": 1
+        },
+        {
+          "attempt_path": "worker_logs\\DIRECT_XL10_S20260921\\attempt-002",
+          "peak_process_tree_memory_gib": 6.852397918701172,
+          "stop_reason": null,
+          "worker_return_code": 0
+        }
+      ],
+      "same_seed_certified_core_time_seconds": 385.78581020003185,
+      "same_seed_certified_instance_hash": "73732c6523ff154f1e5e7891641c25102345bc40c65bfb72630c817c78349695"
+    },
+    "risk": "MODERATE_TO_HIGH",
+    "conclusion": "Eight GiB is a conservative single-pilot safety cap, not a completion guarantee. It is 3.193 GiB above the linear EF-L10 nonzero-scaled projection and 1.148 GiB above the certified same-seed Direct XL10 peak. The 12 GiB startup gate leaves 4 GiB at the cap, above the 3 GiB system floor."
+  }
+}
