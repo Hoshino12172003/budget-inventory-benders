@@ -3,7 +3,7 @@
   "experiment_id": "EF_BENDERS_SCALING_DEVELOPMENT_V1",
   "protocol_id": "EF_BD_SCALING_L10_REMAINING9_V1",
   "derived_from_protocol_id": "EF_BD_L10_RESOURCE_PROTOCOL_V2_7GIB",
-  "formal_run_authorized": false,
+  "formal_run_authorized": true,
   "authorized_condition_ids": [
     "EF_L10_S20260922", "EF_L10_S20260923", "EF_L10_S20260924",
     "EF_L10_S20260925", "EF_L10_S20260926", "EF_L10_S20260927",
