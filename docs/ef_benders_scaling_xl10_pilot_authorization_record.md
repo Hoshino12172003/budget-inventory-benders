@@ -8,4 +8,3 @@
 - Retry: forbidden without a new, separately reviewed protocol and authorization
 
 This record prepares but does not authorize optimization. A later authorization commit may change only the versioned authorization field after repeating identity, environment, resource, process, Git, and output-absence checks.
-

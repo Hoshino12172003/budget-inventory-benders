@@ -31,4 +31,3 @@ The candidate protocol uses an 8-GiB process-tree cap, 12-GiB startup gate, 3-Gi
 Resource or time termination remains a preserved failed attempt. Numerical, identity, hash, worker, or archive failure is fail-closed. A canonical result is accepted only after exact certification, cut validity, clean resource termination, provenance hashes, and attempt/canonical byte equality all pass.
 
 No optimization is authorized by this preparation.
-
