@@ -3,7 +3,7 @@
   "experiment_id": "RENAULT_EXTENSIVE_FORM_BENDERS_DEVELOPMENT_V1",
   "protocol_id": "RENAULT_EF_BD_8CASE_V1",
   "classification": "DEVELOPMENT_ONLY_NOT_FORMAL_EVIDENCE",
-  "formal_run_authorized": false,
+  "formal_run_authorized": true,
   "authorized_condition_ids": [
     "EF_RENAULT_210202", "EF_RENAULT_210628", "EF_RENAULT_210129", "EF_RENAULT_210310",
     "EF_RENAULT_210330", "EF_RENAULT_210323", "EF_RENAULT_210428", "EF_RENAULT_210611"
