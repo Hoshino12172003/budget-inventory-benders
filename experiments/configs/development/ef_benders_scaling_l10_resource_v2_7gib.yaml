@@ -3,7 +3,7 @@
   "experiment_id": "EF_BENDERS_SCALING_DEVELOPMENT_V1",
   "protocol_id": "EF_BD_L10_RESOURCE_PROTOCOL_V2_7GIB",
   "supersedes_protocol_id": "EF_BD_SCALING_L10_SINGLE_PILOT_V1",
-  "formal_run_authorized": false,
+  "formal_run_authorized": true,
   "authorized_condition_ids": ["EF_L10_S20260921"],
   "source_experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V2_REPAIRED_GUARD",
   "source_config": "experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
