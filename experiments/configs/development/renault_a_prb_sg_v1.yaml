@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "RENAULT_ADAPTIVE_PRB_SG_DEVELOPMENT_V1",
+  "protocol_id": "RENAULT_A_PRB_SG_8CASE_V1",
+  "classification": "DEVELOPMENT_ONLY_NOT_FORMAL_EVIDENCE",
+  "formal_run_authorized": false,
+  "method_id": "A-PRB-SG",
+  "condition_prefix": "A_PRB_SG_RENAULT_",
+  "case_ids": ["210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611"],
+  "fixed_scientific_parameters": {"Gamma": 2, "lambda_R": 0.05},
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "solver_tolerances": {"relative_gap": 1e-6, "cut_violation": 1e-7, "objective_certification": 1e-4, "global_coupling": 1e-6},
+  "mechanisms": {"adaptive_cut_selection": true, "exact_product_scenario_screening": true},
+  "algorithm": {"max_iterations": 500, "retain_product_budget_theta": true, "retain_global_risk_budget_coupling": true, "compact_global_oracle": false},
+  "resource_policy": {"execution": "sequential_single_process", "parallel_workers": 1, "minimum_available_memory_gib": 8, "maximum_process_tree_memory_gib": 4, "minimum_system_available_memory_gib": 3, "minimum_free_disk_gib": 20, "condition_time_limit_seconds": 300, "memory_monitor_interval_seconds": 0.25, "retry_policy": "no_automatic_retry"},
+  "identity_source": "experiments/configs/development/renault_sg_benders_v1.yaml",
+  "identity_source_sha256": "634d7fe045e8165f65306d1abfef86fdd793011dd68b2ab9d559a6b7ae5cd512",
+  "output_directory": "experiments/results/renault_a_prb_sg_development_v1"
+}
