@@ -1,0 +1,61 @@
+{
+  "algorithm_core_time_seconds": 5.0114257000386715,
+  "branch_nodes": 0,
+  "candidate_cuts": 240,
+  "case": "210202",
+  "condition_id": "A_PRB_RENAULT_210202",
+  "cut_validity": true,
+  "cuts_added": 31,
+  "direct_objective": 1058780.7942496864,
+  "direct_objective_residual": 2.3283064365386963e-10,
+  "exact_certification": true,
+  "final_gap": 0.0,
+  "final_lower_bound": 1058780.7942496866,
+  "final_upper_bound": 1058780.7942496866,
+  "global_risk_budget_coupling_error": 0.0,
+  "global_risk_budget_coupling_pass": true,
+  "identity": {
+    "case": "210202",
+    "checks": {
+      "Gamma": true,
+      "calibration_hash": true,
+      "instance_hash": true,
+      "lambda_R": true,
+      "mapping_hash": true,
+      "x0_hash": true
+    },
+    "condition_id": "A_PRB_RENAULT_210202",
+    "identity": {
+      "calibration_hash": "7fe326584320b19636d95424cf806f0ab4c89951c3e2a1a84a4a5cc656e40624",
+      "instance_hash": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+      "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+      "x0_hash": "5fe095e76dd1372735ec7a6cb6fead9d6bc42f044b6006c13ed1aeb16dfbc368"
+    },
+    "status": "PASS"
+  },
+  "independent_certification": {
+    "dual_feasible": true,
+    "objective": 1058780.7942496864,
+    "objective_residual": 2.3283064365386963e-10,
+    "pass": true,
+    "recourse": 952269.8382506802,
+    "strong_duality_residual": 1.1641532182693481e-10
+  },
+  "independent_certification_time_seconds": 1.734403199981898,
+  "internal_certification_time_seconds": 1.4206000999547541,
+  "internal_exact_certification": true,
+  "iterations": 10,
+  "master_time_seconds": 0.19843109999783337,
+  "method_id": "A-PRB",
+  "objective": 1058780.7942496866,
+  "oracle_time_seconds": 2.2483939002268016,
+  "pruning_fraction": 0.0,
+  "safely_pruned_patterns": 0,
+  "scenario_lp_solves": 6320,
+  "scenario_patterns": 6320,
+  "selected_cuts": 31,
+  "solver_status": "OPTIMAL",
+  "total_time_seconds": 6.74582890002057,
+  "upper_bound_seconds": 0.0,
+  "violated_cuts": 91
+}

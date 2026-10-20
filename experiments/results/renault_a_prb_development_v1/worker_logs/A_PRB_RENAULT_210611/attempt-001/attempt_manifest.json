@@ -1,0 +1,10 @@
+{
+  "first_stage_solution.json": "863687b77f74dbdcba782b920b85e36bc486a48188d76de5c9083ccad47b3755",
+  "iteration_trajectory.json": "f2529f86d6b29b557786139ea41a88cbfe4df2c132a1874608b071a0c3807fa4",
+  "provenance.json": "4bcfcea658e321eacaafc9a30ea0bdd8f9042a4f9fd8054c7c866e2b857e0260",
+  "resource_monitor.json": "c8074c60a77f22bcd11fc8ec7b9013607acca186a9586f4ea44a208c176536ed",
+  "result.json": "9bf43bd26351b1a18a6b72808196055b851ae5bd2e183c03e41c910ad381cc1a",
+  "solver.log": "ed168ff0f236aba971a9dd4e14022d9fa7029c9b98cdba1ef3ac3557f02eadd6",
+  "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout.log": "3f53973a113428b121fa3558cc18e3ca4b1a88436f7a805217e57161fc089277"
+}

@@ -1,0 +1,61 @@
+{
+  "algorithm_core_time_seconds": 4.910300000105053,
+  "branch_nodes": 0,
+  "candidate_cuts": 264,
+  "case": "210628",
+  "condition_id": "A_PRB_RENAULT_210628",
+  "cut_validity": true,
+  "cuts_added": 32,
+  "direct_objective": 676700.8373030961,
+  "direct_objective_residual": 1.7345882952213287e-08,
+  "exact_certification": true,
+  "final_gap": 0.0,
+  "final_lower_bound": 676700.8373031134,
+  "final_upper_bound": 676700.8373031134,
+  "global_risk_budget_coupling_error": 1.1641532182693481e-10,
+  "global_risk_budget_coupling_pass": true,
+  "identity": {
+    "case": "210628",
+    "checks": {
+      "Gamma": true,
+      "calibration_hash": true,
+      "instance_hash": true,
+      "lambda_R": true,
+      "mapping_hash": true,
+      "x0_hash": true
+    },
+    "condition_id": "A_PRB_RENAULT_210628",
+    "identity": {
+      "calibration_hash": "eb6b346748dcc77fdd66eecddb01b15dd96960f1f37991d3e761616048d5b584",
+      "instance_hash": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677",
+      "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+      "x0_hash": "7514da694ef80b8a5053329b2a2c9619090e768884c0555d19a67f9e284b589e"
+    },
+    "status": "PASS"
+  },
+  "independent_certification": {
+    "dual_feasible": true,
+    "objective": 676700.8373031134,
+    "objective_residual": 0.0,
+    "pass": true,
+    "recourse": 599292.0062277921,
+    "strong_duality_residual": 1.1641532182693481e-10
+  },
+  "independent_certification_time_seconds": 1.5703809999395162,
+  "internal_certification_time_seconds": 1.4002521000802517,
+  "internal_exact_certification": true,
+  "iterations": 11,
+  "master_time_seconds": 0.2040344998240471,
+  "method_id": "A-PRB",
+  "objective": 676700.8373031134,
+  "oracle_time_seconds": 2.259823600295931,
+  "pruning_fraction": 0.0,
+  "safely_pruned_patterns": 0,
+  "scenario_lp_solves": 6952,
+  "scenario_patterns": 6952,
+  "selected_cuts": 32,
+  "solver_status": "OPTIMAL",
+  "total_time_seconds": 6.480681000044569,
+  "upper_bound_seconds": 0.0,
+  "violated_cuts": 93
+}
