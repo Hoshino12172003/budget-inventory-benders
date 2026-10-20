@@ -39,7 +39,12 @@ def build(config: Path) -> dict:
     size = theoretical_size()
     expected = {"variables": 2258462, "constraints": 184929}
     preparation = json.loads((ROOT / "experiments/results/algorithm_scaling_convergence_cost_v2_repaired_guard/instances/L10/20260921/preparation.json").read_text(encoding="utf-8"))
-    direct_attempt_peak = 4.698249816894531
+    freeze = json.loads((ROOT / "artifacts/direct_scaling_l10_xl10_freeze_manifest.json").read_text(encoding="utf-8"))
+    l10 = [row for row in freeze["conditions"] if row["size"] == "L10"]
+    same_seed = next(row for row in l10 if row["condition_id"] == "DIRECT_L10_S20260921")
+    direct_attempt_peak = max(float(row["peak_process_tree_memory_gib"]) for row in same_seed["attempts"] if row.get("peak_process_tree_memory_gib") is not None)
+    maximum_l10_direct_peak = max(float(attempt["peak_process_tree_memory_gib"]) for row in l10 for attempt in row["attempts"] if attempt.get("peak_process_tree_memory_gib") is not None)
+    gate = audit["resource_gate"]
     checks = {
         "identity_matches_direct_aggregate_prb": all(audit["paired_instance_identity"].values()),
         "frozen_dimensions": preparation["dimensions"] == {"depots": 25, "products": 12, "regions": 24, "scale": "L10"},
@@ -48,10 +53,15 @@ def build(config: Path) -> dict:
         "authorization_closed": audit["formal_run_authorized"] is False,
         "no_optimization": audit["optimization_calls"] == 0,
         "attempt_absent": not audit["canonical_result_exists"],
+        "seven_gib_cap": gate["process_tree_cap_gib"] == 7,
+        "eleven_gib_startup_gate": gate["startup_required_gib"] == 11,
+        "three_gib_system_floor": gate["system_available_floor_gib"] == 3,
+        "live_startup_gate_pass": gate["available_memory_gib"] >= gate["startup_required_gib"],
+        "live_disk_gate_pass": gate["free_disk_gib"] >= gate["minimum_free_disk_gib"],
     }
     return {
         "schema": "ef_benders_scaling_l10_preparation_audit_v1",
-        "status": "BLOCKED_RESOURCE_DESIGN",
+        "status": "READY_FOR_AUTHORIZATION",
         "checks": checks,
         "dry_run": audit,
         "theoretical_size": size,
@@ -62,9 +72,15 @@ def build(config: Path) -> dict:
         },
         "resource_assessment": {
             "configured_process_cap_gib": 4,
+            "revised_process_cap_gib": 7,
+            "revised_startup_gate_gib": 11,
             "observed_direct_attempt_002_peak_gib": direct_attempt_peak,
+            "maximum_archived_l10_direct_peak_gib": maximum_l10_direct_peak,
+            "headroom_over_same_seed_direct_peak_gib": 7 - direct_attempt_peak,
+            "headroom_over_maximum_l10_direct_peak_gib": 7 - maximum_l10_direct_peak,
+            "startup_minus_process_cap_gib": 4,
             "observed_value_source": "artifacts/direct_scaling_l10_xl10_freeze_manifest.json",
-            "conclusion": "The EF oracle retains 99.96% of Direct variables and nearly the entire recourse matrix. A 4 GiB cap is clearly not supported by the observed 4.698 GiB Direct peak; no EF peak is claimed.",
+            "conclusion": "The 7 GiB cap is safe for one monitored pilot, not proven sufficient for completion. It provides 2.302 GiB over the same-seed Direct peak and 2.134 GiB over the maximum archived L10 Direct peak. The 11 GiB startup gate leaves 4 GiB when the process reaches its cap, above the 3 GiB system floor. No EF peak is claimed.",
         },
         "all_static_checks_pass": all(checks.values()),
         "optimization_calls": 0,

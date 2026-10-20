@@ -15,22 +15,31 @@ sys.path.insert(0, str(ROOT))
 from experiments import run_basic_benders_scaling as base
 from experiments import run_direct_scaling as direct_runner
 
-DEFAULT_CONFIG = ROOT / "experiments/configs/development/ef_benders_scaling_l10_pilot_v1.yaml"
+DEFAULT_CONFIG = ROOT / "experiments/configs/development/ef_benders_scaling_l10_resource_v2_7gib.yaml"
 
 
 def load_config(path: Path = DEFAULT_CONFIG) -> dict:
     config = json.loads(path.read_text(encoding="utf-8"))
     required = {
-        "protocol_id": "EF_BD_SCALING_L10_SINGLE_PILOT_V1",
         "authorized_condition_ids": ["EF_L10_S20260921"],
         "method": "extensive_form_single_cut_benders",
-        "formal_run_authorized": False,
     }
     for key, value in required.items():
         if config.get(key) != value:
             raise RuntimeError(f"invalid frozen EF-BD pilot field: {key}")
-    if config.get("readiness_decision") != "BLOCKED_RESOURCE_DESIGN":
-        raise RuntimeError("EF-BD pilot resource decision is not fail-closed")
+    protocols = {
+        "EF_BD_SCALING_L10_SINGLE_PILOT_V1": (4, 7, "BLOCKED_RESOURCE_DESIGN"),
+        "EF_BD_L10_RESOURCE_PROTOCOL_V2_7GIB": (7, 11, "READY_FOR_AUTHORIZATION"),
+    }
+    protocol = config.get("protocol_id")
+    if protocol not in protocols:
+        raise RuntimeError("unexpected EF-BD pilot protocol identity")
+    cap, startup, decision = protocols[protocol]
+    policy = config["resource_policy"]
+    if policy["maximum_process_tree_memory_gib_by_size"]["L10"] != cap or policy["minimum_available_memory_gib_by_size"]["L10"] != startup or config.get("readiness_decision") != decision:
+        raise RuntimeError("EF-BD resource protocol fields are inconsistent")
+    if not isinstance(config.get("formal_run_authorized"), bool):
+        raise RuntimeError("formal_run_authorized must be boolean")
     return config
 
 
@@ -63,6 +72,9 @@ def dry_run(config_path: Path = DEFAULT_CONFIG, condition_id: str | None = None)
         paired[method] = row.get("instance_hash") == preparation["instance_hash"]
     return {
         "protocol_id": config["protocol_id"], "formal_run_authorized": original_authorized,
+        "config_path": str(config_path.resolve()),
+        "config_sha256": direct_runner.file_sha256(config_path.resolve()),
+        "config_identity": direct_runner.canonical_hash(config),
         "readiness_decision": config["readiness_decision"], "condition": selected,
         "source_instance_id": preparation["instance_id"], "instance_hash": preparation["instance_hash"],
         "x0_hash": preparation["x0_hash"], **hashes,
@@ -89,7 +101,7 @@ def validate_execution_gate(config_path: Path = DEFAULT_CONFIG, condition_id: st
         raise RuntimeError("NOT_AUTHORIZED: EF-BD L10 pilot remains disabled")
     if config.get("readiness_decision") != "READY_FOR_AUTHORIZATION":
         raise RuntimeError("BLOCKED_RESOURCE_DESIGN: resource protocol requires independent revision")
-    raise RuntimeError("authorization requires a new reviewed protocol; frozen preparation config is immutable")
+    return dry_run(config_path, condition_id)
 
 
 def _worker(config_path: Path, attempt_dir: Path, condition_id: str) -> int:

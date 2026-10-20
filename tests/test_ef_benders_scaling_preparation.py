@@ -1,5 +1,9 @@
 from pathlib import Path
 
+import psutil
+import pytest
+
+from experiments import run_basic_benders_scaling as monitor
 from experiments.run_ef_benders_scaling import DEFAULT_CONFIG, dry_run, load_config, validate_execution_gate
 from scripts.audit_ef_benders_scaling_l10_preparation import theoretical_size
 
@@ -18,6 +22,10 @@ def test_dry_run_is_single_condition_and_zero_optimization():
     assert audit["optimization_calls"] == 0
     assert all(audit["paired_instance_identity"].values())
     assert audit["next_attempt"] == "attempt-001"
+    assert audit["readiness_decision"] == "READY_FOR_AUTHORIZATION"
+    assert audit["resource_gate"]["process_tree_cap_gib"] == 7
+    assert audit["resource_gate"]["startup_required_gib"] == 11
+    assert audit["resource_gate"]["system_available_floor_gib"] == 3
 
 
 def test_execution_is_fail_closed_by_resource_design():
@@ -27,6 +35,19 @@ def test_execution_is_fail_closed_by_resource_design():
         assert "NOT_AUTHORIZED" in str(error)
     else:
         raise AssertionError("execution gate unexpectedly opened")
+
+
+def test_windows_process_disappearance_race_is_safe(monkeypatch):
+    monkeypatch.setattr(monitor.psutil, "Process", lambda _pid: (_ for _ in ()).throw(psutil.NoSuchProcess(42)))
+    assert monitor._process_tree_rss(42) == 0
+
+
+def test_monitor_contract_covers_both_memory_stops_and_worker_exit():
+    source = (Path(__file__).parents[1] / "experiments/run_basic_benders_scaling.py").read_text(encoding="utf-8")
+    assert 'stop_reason = "RESOURCE_PROCESS_CAP"' in source
+    assert 'stop_reason = "RESOURCE_SYSTEM_CAP"' in source
+    assert '"worker_return_code": return_code' in source
+    assert 'if return_code == 0 and stop_reason is None' in source
 
 
 def test_config_preserves_single_cut_algorithm_boundary():
