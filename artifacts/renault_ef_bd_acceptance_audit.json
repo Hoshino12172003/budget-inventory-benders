@@ -1,0 +1,68 @@
+{
+  "ef_certified": 8,
+  "ef_mean_core_seconds": 3.7256622125278227,
+  "ef_mean_master_seconds": 0.1103308500314597,
+  "ef_mean_oracle_seconds": 0.6700184251822066,
+  "ef_total_cuts": 55,
+  "ef_total_iterations": 63,
+  "ef_total_optimizer_calls": 71,
+  "ef_vs_aggregate": [
+    0,
+    8,
+    0.4227929904924934
+  ],
+  "ef_vs_basic": [
+    8,
+    0,
+    3.0779003836154937
+  ],
+  "ef_vs_direct": [
+    0,
+    8,
+    0.7586612601655793
+  ],
+  "optimization_calls": 0,
+  "ordering": [
+    [
+      "SG-BD",
+      8,
+      0.2963791874644812
+    ],
+    [
+      "Global-BD",
+      8,
+      0.3854977000009967
+    ],
+    [
+      "Aggregate-BD",
+      8,
+      1.5743476124971494
+    ],
+    [
+      "PRB-BD",
+      7,
+      1.6571631428918667
+    ],
+    [
+      "Direct",
+      8,
+      2.86387500166893
+    ],
+    [
+      "EF-BD",
+      8,
+      3.7256622125278227
+    ],
+    [
+      "EB-BD",
+      8,
+      7.4317877124703955
+    ],
+    [
+      "Basic-BD",
+      8,
+      11.475243675027741
+    ]
+  ],
+  "status": "PASS"
+}
