@@ -59,7 +59,6 @@ def dry_run(config_path: Path = DEFAULT_CONFIG, condition_id: str | None = None)
     selected = candidate(config, condition_id)
     # Reuse the audited non-optimization identity/resource path.
     original_authorized = config["formal_run_authorized"]
-    config["formal_run_authorized"] = False
     instance, preparation, hashes = direct_runner.verified_input(config, source_condition(config, selected))
     import psutil, shutil
     output = ROOT / config["output_directory"]

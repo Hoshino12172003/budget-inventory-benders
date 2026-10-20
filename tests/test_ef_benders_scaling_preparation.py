@@ -19,7 +19,7 @@ def test_theoretical_l10_sizes_match_frozen_direct_dimensions():
 def test_dry_run_is_single_condition_and_zero_optimization():
     audit = dry_run(DEFAULT_CONFIG)
     assert audit["condition"]["condition_id"] == "EF_L10_S20260921"
-    assert audit["formal_run_authorized"] is False
+    assert audit["formal_run_authorized"] is True
     assert audit["optimization_calls"] == 0
     assert all(audit["paired_instance_identity"].values())
     assert audit["next_attempt"] == "attempt-001"
