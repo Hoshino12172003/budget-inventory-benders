@@ -1,99 +1,9 @@
 [
   {
-    "case": "210202",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/result.json",
-    "sha256": "383b0f07f026f33010746bbff2ce3f3087d55afdc9b2a658e07dd2ddf3a1ef57",
-    "size": 2027
-  },
-  {
-    "case": "210202",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/provenance.json",
-    "sha256": "ac9d03bd0f07a047ca21934db65e584bf422c044160a9de55a5a7aaa235d4e8e",
-    "size": 1251
-  },
-  {
-    "case": "210202",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/iteration_trajectory.json",
-    "sha256": "cec8818b48156365ca138fcc8fcf2f1f5d7f8cf3bfa7ef5b010122c02be52d37",
-    "size": 3132
-  },
-  {
-    "case": "210202",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/first_stage_solution.json",
-    "sha256": "75834ce3a84df4b566e4d5f75b523855bd6dd645254a163f0c2e5f1afb4a65b1",
-    "size": 5252
-  },
-  {
-    "case": "210202",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/resource_monitor.json",
-    "sha256": "f0e6c7e809f67692e4689fa563aa76d60cb127f5cb6457a1e05f9ba3ebbe3689",
-    "size": 4221
-  },
-  {
-    "case": "210202",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/solver.log",
-    "sha256": "1de7b6024fef38d9b5b6fb017a2184d39bce0201e276e0e26170de7fb8e9de33",
-    "size": 68
-  },
-  {
-    "case": "210202",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/oracle_trace.jsonl",
-    "sha256": "073f08d0148f71321ebffbad1e6765cb14b4fd77a57daecd1a5d00b0c4b8879c",
-    "size": 2391
-  },
-  {
-    "case": "210628",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/result.json",
-    "sha256": "65835e64ebc38a6ff36805d045e5404968c70e897cdd8dae05ac839e011b5fde",
-    "size": 2025
-  },
-  {
-    "case": "210628",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/provenance.json",
-    "sha256": "a8436a80d82ffd8bd31ee9827e6e8e1fa7e70c7901e1f8d5d758a67e4f30efdb",
-    "size": 1251
-  },
-  {
-    "case": "210628",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/iteration_trajectory.json",
-    "sha256": "d0c8aeee86b9306aea0934f220bd93502305080f62c3be91c477037a547a349e",
-    "size": 4027
-  },
-  {
-    "case": "210628",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/first_stage_solution.json",
-    "sha256": "86887397912607eb6f01d75083702dfa90837c13210c63753501db5d4d9d0bdb",
-    "size": 5204
-  },
-  {
-    "case": "210628",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/resource_monitor.json",
-    "sha256": "0c1b12333eda12909ae182d16790c8f932c05d154f833683a46fe52f4f4ae1d9",
-    "size": 4552
-  },
-  {
-    "case": "210628",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/solver.log",
-    "sha256": "0ab0a1a90d201be21e5003f64ff7a66e6c612eb5e1e54725f0158d6fc0a0517b",
-    "size": 68
-  },
-  {
-    "case": "210628",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/oracle_trace.jsonl",
-    "sha256": "902c3b4d5cf89ddc1c76c138f0033e3a218ad509af859a321eda99f7687b4e99",
-    "size": 2930
-  },
-  {
     "case": "210129",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210129/result.json",
-    "sha256": "c57f2fe9cf74f19e5fd820a574f30924f59e185eac0273795b0f2e40d793fc2b",
-    "size": 1998
-  },
-  {
-    "case": "210129",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210129/provenance.json",
-    "sha256": "8c325e8d910f1462cb77b433db25ffe0ea2638f7fa5f40446b7e4ed7a8a85263",
-    "size": 1251
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210129/first_stage_solution.json",
+    "sha256": "da9e49af158cf4f811ecfa1d95e22c01ea77a08d3f74532ccbb6df57d6bbe029",
+    "size": 5269
   },
   {
     "case": "210129",
@@ -103,9 +13,15 @@
   },
   {
     "case": "210129",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210129/first_stage_solution.json",
-    "sha256": "da9e49af158cf4f811ecfa1d95e22c01ea77a08d3f74532ccbb6df57d6bbe029",
-    "size": 5269
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210129/oracle_trace.jsonl",
+    "sha256": "36777900f65208a685bf3eae55ae6771387765be3f3e1001f7f5d94657080f8a",
+    "size": 2725
+  },
+  {
+    "case": "210129",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210129/provenance.json",
+    "sha256": "8c325e8d910f1462cb77b433db25ffe0ea2638f7fa5f40446b7e4ed7a8a85263",
+    "size": 1251
   },
   {
     "case": "210129",
@@ -115,33 +31,81 @@
   },
   {
     "case": "210129",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210129/result.json",
+    "sha256": "c57f2fe9cf74f19e5fd820a574f30924f59e185eac0273795b0f2e40d793fc2b",
+    "size": 1998
+  },
+  {
+    "case": "210129",
     "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210129/solver.log",
     "sha256": "935012a15d889400383194ea55f6643aebc8231f140911bbd1f0d9f5d3e76905",
     "size": 68
   },
   {
     "case": "210129",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210129/oracle_trace.jsonl",
-    "sha256": "36777900f65208a685bf3eae55ae6771387765be3f3e1001f7f5d94657080f8a",
-    "size": 2725
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210129/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
   },
   {
-    "case": "210310",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210310/result.json",
-    "sha256": "5b5ccbe6e66dee147551b459909766b2df5039bdcaf9a5d404fe3bf97b4ea68c",
-    "size": 2007
+    "case": "210129",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210129/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
   },
   {
-    "case": "210310",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210310/provenance.json",
-    "sha256": "bda1fb3c85b092bc1220832c0380975618484e2d0e475e388e60ca3801cf400d",
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/first_stage_solution.json",
+    "sha256": "75834ce3a84df4b566e4d5f75b523855bd6dd645254a163f0c2e5f1afb4a65b1",
+    "size": 5252
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/iteration_trajectory.json",
+    "sha256": "cec8818b48156365ca138fcc8fcf2f1f5d7f8cf3bfa7ef5b010122c02be52d37",
+    "size": 3132
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/oracle_trace.jsonl",
+    "sha256": "073f08d0148f71321ebffbad1e6765cb14b4fd77a57daecd1a5d00b0c4b8879c",
+    "size": 2391
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/provenance.json",
+    "sha256": "ac9d03bd0f07a047ca21934db65e584bf422c044160a9de55a5a7aaa235d4e8e",
     "size": 1251
   },
   {
-    "case": "210310",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210310/iteration_trajectory.json",
-    "sha256": "f89617af8d71e019d5a7aa050cd1eb4740e572c34b9f3bb510a56a5f43430220",
-    "size": 3123
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/resource_monitor.json",
+    "sha256": "f0e6c7e809f67692e4689fa563aa76d60cb127f5cb6457a1e05f9ba3ebbe3689",
+    "size": 4221
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/result.json",
+    "sha256": "383b0f07f026f33010746bbff2ce3f3087d55afdc9b2a658e07dd2ddf3a1ef57",
+    "size": 2027
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/solver.log",
+    "sha256": "1de7b6024fef38d9b5b6fb017a2184d39bce0201e276e0e26170de7fb8e9de33",
+    "size": 68
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210202/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
   },
   {
     "case": "210310",
@@ -151,9 +115,33 @@
   },
   {
     "case": "210310",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210310/iteration_trajectory.json",
+    "sha256": "f89617af8d71e019d5a7aa050cd1eb4740e572c34b9f3bb510a56a5f43430220",
+    "size": 3123
+  },
+  {
+    "case": "210310",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210310/oracle_trace.jsonl",
+    "sha256": "3dfae746cb850a68bc9fbd549267304efa5304e04d76ac61141daa7bf18a0de6",
+    "size": 2447
+  },
+  {
+    "case": "210310",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210310/provenance.json",
+    "sha256": "bda1fb3c85b092bc1220832c0380975618484e2d0e475e388e60ca3801cf400d",
+    "size": 1251
+  },
+  {
+    "case": "210310",
     "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210310/resource_monitor.json",
     "sha256": "f4bd91960d68748657864e542fa45efa14fb54ed8f3bef0923a5a95d9d358cd1",
     "size": 4391
+  },
+  {
+    "case": "210310",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210310/result.json",
+    "sha256": "5b5ccbe6e66dee147551b459909766b2df5039bdcaf9a5d404fe3bf97b4ea68c",
+    "size": 2007
   },
   {
     "case": "210310",
@@ -163,69 +151,15 @@
   },
   {
     "case": "210310",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210310/oracle_trace.jsonl",
-    "sha256": "3dfae746cb850a68bc9fbd549267304efa5304e04d76ac61141daa7bf18a0de6",
-    "size": 2447
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210310/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
   },
   {
-    "case": "210330",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/result.json",
-    "sha256": "f5404ef71ff168d29e943120605722eb06fe95a63aa06ea224f0467b18739902",
-    "size": 2027
-  },
-  {
-    "case": "210330",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/provenance.json",
-    "sha256": "269cbe9368f3ae3102d20208a3fe12c7ba5a63124b1c849f1981032b6d2207fe",
-    "size": 1251
-  },
-  {
-    "case": "210330",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/iteration_trajectory.json",
-    "sha256": "99a3f6212fb56625835f93e013369b2a0da35c1cebfc07fa6ae4185300168071",
-    "size": 4010
-  },
-  {
-    "case": "210330",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/first_stage_solution.json",
-    "sha256": "db94efaba1f0813439051c44cc9f15249a9f7b21e0a56de6d2e9d08b3706e702",
-    "size": 3919
-  },
-  {
-    "case": "210330",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/resource_monitor.json",
-    "sha256": "5341a6b1523a8f8b51019fb71f68b15e081cd41a0488417d259913e86255e117",
-    "size": 3743
-  },
-  {
-    "case": "210330",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/solver.log",
-    "sha256": "d079360415d925b968237ce2a67bab58f8fb7bd4f7e002622521bbdd4af509e6",
-    "size": 68
-  },
-  {
-    "case": "210330",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/oracle_trace.jsonl",
-    "sha256": "fa3ae0e64ec30fb4c7f120821070211fd1c9dce9030e2eda40a74913f95f8fd5",
-    "size": 2946
-  },
-  {
-    "case": "210323",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210323/result.json",
-    "sha256": "eee7d11318211fe9fa56c089c879a4ea863d8686b7dd5ce28165b2f82ff9d722",
-    "size": 2025
-  },
-  {
-    "case": "210323",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210323/provenance.json",
-    "sha256": "d5d339a686e5358fab0c14cd474ad1153059a1794b590fbf0a72f0bc6185fc38",
-    "size": 1251
-  },
-  {
-    "case": "210323",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210323/iteration_trajectory.json",
-    "sha256": "a3670aba2631640e82177e74e43336a0b25582ca09b3182ce578f14aff915547",
-    "size": 3159
+    "case": "210310",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210310/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
   },
   {
     "case": "210323",
@@ -235,9 +169,33 @@
   },
   {
     "case": "210323",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210323/iteration_trajectory.json",
+    "sha256": "a3670aba2631640e82177e74e43336a0b25582ca09b3182ce578f14aff915547",
+    "size": 3159
+  },
+  {
+    "case": "210323",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210323/oracle_trace.jsonl",
+    "sha256": "c72b13a69f3f5ba01bdcc0a34504607d24b238c2a5ebdd3e71552f661c55e9c7",
+    "size": 2374
+  },
+  {
+    "case": "210323",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210323/provenance.json",
+    "sha256": "d5d339a686e5358fab0c14cd474ad1153059a1794b590fbf0a72f0bc6185fc38",
+    "size": 1251
+  },
+  {
+    "case": "210323",
     "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210323/resource_monitor.json",
     "sha256": "56892ec9d3e3edc8832fced666b8bcf7a518abaf19a21e4b4bd2648a6a12bdca",
     "size": 3723
+  },
+  {
+    "case": "210323",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210323/result.json",
+    "sha256": "eee7d11318211fe9fa56c089c879a4ea863d8686b7dd5ce28165b2f82ff9d722",
+    "size": 2025
   },
   {
     "case": "210323",
@@ -247,27 +205,69 @@
   },
   {
     "case": "210323",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210323/oracle_trace.jsonl",
-    "sha256": "c72b13a69f3f5ba01bdcc0a34504607d24b238c2a5ebdd3e71552f661c55e9c7",
-    "size": 2374
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210323/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
   },
   {
-    "case": "210428",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210428/result.json",
-    "sha256": "24b930d07fe5af9d498cf629f792c930490b29968f2269bb4896bce9a9921487",
-    "size": 2062
+    "case": "210323",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210323/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
   },
   {
-    "case": "210428",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210428/provenance.json",
-    "sha256": "572b079273b15c4dc1d0fc38e4bd6a817d37089048f8c003498d5ac9d5f3631d",
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/first_stage_solution.json",
+    "sha256": "db94efaba1f0813439051c44cc9f15249a9f7b21e0a56de6d2e9d08b3706e702",
+    "size": 3919
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/iteration_trajectory.json",
+    "sha256": "99a3f6212fb56625835f93e013369b2a0da35c1cebfc07fa6ae4185300168071",
+    "size": 4010
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/oracle_trace.jsonl",
+    "sha256": "fa3ae0e64ec30fb4c7f120821070211fd1c9dce9030e2eda40a74913f95f8fd5",
+    "size": 2946
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/provenance.json",
+    "sha256": "269cbe9368f3ae3102d20208a3fe12c7ba5a63124b1c849f1981032b6d2207fe",
     "size": 1251
   },
   {
-    "case": "210428",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210428/iteration_trajectory.json",
-    "sha256": "b37ec5da68dd5985f23c59ac5e13be8fdbc2d8ba652c3152a3e2217d061b2085",
-    "size": 3602
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/resource_monitor.json",
+    "sha256": "5341a6b1523a8f8b51019fb71f68b15e081cd41a0488417d259913e86255e117",
+    "size": 3743
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/result.json",
+    "sha256": "f5404ef71ff168d29e943120605722eb06fe95a63aa06ea224f0467b18739902",
+    "size": 2027
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/solver.log",
+    "sha256": "d079360415d925b968237ce2a67bab58f8fb7bd4f7e002622521bbdd4af509e6",
+    "size": 68
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210330/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
   },
   {
     "case": "210428",
@@ -277,9 +277,33 @@
   },
   {
     "case": "210428",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210428/iteration_trajectory.json",
+    "sha256": "b37ec5da68dd5985f23c59ac5e13be8fdbc2d8ba652c3152a3e2217d061b2085",
+    "size": 3602
+  },
+  {
+    "case": "210428",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210428/oracle_trace.jsonl",
+    "sha256": "79cf71e0925edd448f4dfefe5cfad343653d0c53b67bf8d7ec64592b4aa71fd5",
+    "size": 2746
+  },
+  {
+    "case": "210428",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210428/provenance.json",
+    "sha256": "572b079273b15c4dc1d0fc38e4bd6a817d37089048f8c003498d5ac9d5f3631d",
+    "size": 1251
+  },
+  {
+    "case": "210428",
     "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210428/resource_monitor.json",
     "sha256": "67e2b8167b1776b49dfbcdfea97bac9030a7eb99255515c97ad03209fbfe58da",
     "size": 4697
+  },
+  {
+    "case": "210428",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210428/result.json",
+    "sha256": "24b930d07fe5af9d498cf629f792c930490b29968f2269bb4896bce9a9921487",
+    "size": 2062
   },
   {
     "case": "210428",
@@ -289,27 +313,15 @@
   },
   {
     "case": "210428",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210428/oracle_trace.jsonl",
-    "sha256": "79cf71e0925edd448f4dfefe5cfad343653d0c53b67bf8d7ec64592b4aa71fd5",
-    "size": 2746
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210428/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
   },
   {
-    "case": "210611",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210611/result.json",
-    "sha256": "92a9581fecd46142ddd40da5e6d5b2385ea180886cadb3dc00ce3f779aa85ec2",
-    "size": 2040
-  },
-  {
-    "case": "210611",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210611/provenance.json",
-    "sha256": "ee21dda6c9b9adf2e6f712608d27be1f6b09d8b1eea65551a509d05aac6a43d8",
-    "size": 1251
-  },
-  {
-    "case": "210611",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210611/iteration_trajectory.json",
-    "sha256": "ee92d356813f3e67bc8a6a3b98b823e828987069dcb52e0dd9295b76fabc4480",
-    "size": 3592
+    "case": "210428",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210428/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
   },
   {
     "case": "210611",
@@ -319,9 +331,33 @@
   },
   {
     "case": "210611",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210611/iteration_trajectory.json",
+    "sha256": "ee92d356813f3e67bc8a6a3b98b823e828987069dcb52e0dd9295b76fabc4480",
+    "size": 3592
+  },
+  {
+    "case": "210611",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210611/oracle_trace.jsonl",
+    "sha256": "e9a0fddd7321a4053a1f897dd5853f1f027c8a30d13d1d73029e679e855e2007",
+    "size": 2666
+  },
+  {
+    "case": "210611",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210611/provenance.json",
+    "sha256": "ee21dda6c9b9adf2e6f712608d27be1f6b09d8b1eea65551a509d05aac6a43d8",
+    "size": 1251
+  },
+  {
+    "case": "210611",
     "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210611/resource_monitor.json",
     "sha256": "f42a4b6b144fb95e5ef27c31d3406431b05b1a59f8495732fbd81ed5faebbab2",
     "size": 5025
+  },
+  {
+    "case": "210611",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210611/result.json",
+    "sha256": "92a9581fecd46142ddd40da5e6d5b2385ea180886cadb3dc00ce3f779aa85ec2",
+    "size": 2040
   },
   {
     "case": "210611",
@@ -331,8 +367,500 @@
   },
   {
     "case": "210611",
-    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210611/oracle_trace.jsonl",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210611/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  {
+    "case": "210611",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210611/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/first_stage_solution.json",
+    "sha256": "86887397912607eb6f01d75083702dfa90837c13210c63753501db5d4d9d0bdb",
+    "size": 5204
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/iteration_trajectory.json",
+    "sha256": "d0c8aeee86b9306aea0934f220bd93502305080f62c3be91c477037a547a349e",
+    "size": 4027
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/oracle_trace.jsonl",
+    "sha256": "902c3b4d5cf89ddc1c76c138f0033e3a218ad509af859a321eda99f7687b4e99",
+    "size": 2930
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/provenance.json",
+    "sha256": "a8436a80d82ffd8bd31ee9827e6e8e1fa7e70c7901e1f8d5d758a67e4f30efdb",
+    "size": 1251
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/resource_monitor.json",
+    "sha256": "0c1b12333eda12909ae182d16790c8f932c05d154f833683a46fe52f4f4ae1d9",
+    "size": 4552
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/result.json",
+    "sha256": "65835e64ebc38a6ff36805d045e5404968c70e897cdd8dae05ac839e011b5fde",
+    "size": 2025
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/solver.log",
+    "sha256": "0ab0a1a90d201be21e5003f64ff7a66e6c612eb5e1e54725f0158d6fc0a0517b",
+    "size": 68
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/runs/EF_RENAULT_210628/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
+  },
+  {
+    "case": "210129",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210129/attempt-001/payload/first_stage_solution.json",
+    "sha256": "da9e49af158cf4f811ecfa1d95e22c01ea77a08d3f74532ccbb6df57d6bbe029",
+    "size": 5269
+  },
+  {
+    "case": "210129",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210129/attempt-001/payload/iteration_trajectory.json",
+    "sha256": "5c710e0d9fb88ef5a3041bf7ecc61e7ae6cad943c3306a9054025af9d6b60f5d",
+    "size": 3545
+  },
+  {
+    "case": "210129",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210129/attempt-001/payload/oracle_trace.jsonl",
+    "sha256": "36777900f65208a685bf3eae55ae6771387765be3f3e1001f7f5d94657080f8a",
+    "size": 2725
+  },
+  {
+    "case": "210129",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210129/attempt-001/payload/provenance.json",
+    "sha256": "8c325e8d910f1462cb77b433db25ffe0ea2638f7fa5f40446b7e4ed7a8a85263",
+    "size": 1251
+  },
+  {
+    "case": "210129",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210129/attempt-001/payload/result.json",
+    "sha256": "c57f2fe9cf74f19e5fd820a574f30924f59e185eac0273795b0f2e40d793fc2b",
+    "size": 1998
+  },
+  {
+    "case": "210129",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210129/attempt-001/payload/solver.log",
+    "sha256": "935012a15d889400383194ea55f6643aebc8231f140911bbd1f0d9f5d3e76905",
+    "size": 68
+  },
+  {
+    "case": "210129",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210129/attempt-001/resource_monitor.json",
+    "sha256": "9bdda11e9025220ca1e2ee6bab6acccad56fab60a3aefeaff09cacbd5f5d956c",
+    "size": 4383
+  },
+  {
+    "case": "210129",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210129/attempt-001/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  {
+    "case": "210129",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210129/attempt-001/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210202/attempt-001/payload/first_stage_solution.json",
+    "sha256": "75834ce3a84df4b566e4d5f75b523855bd6dd645254a163f0c2e5f1afb4a65b1",
+    "size": 5252
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210202/attempt-001/payload/iteration_trajectory.json",
+    "sha256": "cec8818b48156365ca138fcc8fcf2f1f5d7f8cf3bfa7ef5b010122c02be52d37",
+    "size": 3132
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210202/attempt-001/payload/oracle_trace.jsonl",
+    "sha256": "073f08d0148f71321ebffbad1e6765cb14b4fd77a57daecd1a5d00b0c4b8879c",
+    "size": 2391
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210202/attempt-001/payload/provenance.json",
+    "sha256": "ac9d03bd0f07a047ca21934db65e584bf422c044160a9de55a5a7aaa235d4e8e",
+    "size": 1251
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210202/attempt-001/payload/result.json",
+    "sha256": "383b0f07f026f33010746bbff2ce3f3087d55afdc9b2a658e07dd2ddf3a1ef57",
+    "size": 2027
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210202/attempt-001/payload/solver.log",
+    "sha256": "1de7b6024fef38d9b5b6fb017a2184d39bce0201e276e0e26170de7fb8e9de33",
+    "size": 68
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210202/attempt-001/resource_monitor.json",
+    "sha256": "f0e6c7e809f67692e4689fa563aa76d60cb127f5cb6457a1e05f9ba3ebbe3689",
+    "size": 4221
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210202/attempt-001/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  {
+    "case": "210202",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210202/attempt-001/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
+  },
+  {
+    "case": "210310",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210310/attempt-001/payload/first_stage_solution.json",
+    "sha256": "83a1cabb53ad0bdba93cb296bce19b1b2e48f8bdb685e88b493cfc600a3f959d",
+    "size": 5600
+  },
+  {
+    "case": "210310",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210310/attempt-001/payload/iteration_trajectory.json",
+    "sha256": "f89617af8d71e019d5a7aa050cd1eb4740e572c34b9f3bb510a56a5f43430220",
+    "size": 3123
+  },
+  {
+    "case": "210310",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210310/attempt-001/payload/oracle_trace.jsonl",
+    "sha256": "3dfae746cb850a68bc9fbd549267304efa5304e04d76ac61141daa7bf18a0de6",
+    "size": 2447
+  },
+  {
+    "case": "210310",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210310/attempt-001/payload/provenance.json",
+    "sha256": "bda1fb3c85b092bc1220832c0380975618484e2d0e475e388e60ca3801cf400d",
+    "size": 1251
+  },
+  {
+    "case": "210310",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210310/attempt-001/payload/result.json",
+    "sha256": "5b5ccbe6e66dee147551b459909766b2df5039bdcaf9a5d404fe3bf97b4ea68c",
+    "size": 2007
+  },
+  {
+    "case": "210310",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210310/attempt-001/payload/solver.log",
+    "sha256": "76e92dde31e8745019d5ba17aa39451da731e9c247a7eec8eda27902aea15d83",
+    "size": 68
+  },
+  {
+    "case": "210310",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210310/attempt-001/resource_monitor.json",
+    "sha256": "f4bd91960d68748657864e542fa45efa14fb54ed8f3bef0923a5a95d9d358cd1",
+    "size": 4391
+  },
+  {
+    "case": "210310",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210310/attempt-001/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  {
+    "case": "210310",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210310/attempt-001/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
+  },
+  {
+    "case": "210323",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210323/attempt-001/payload/first_stage_solution.json",
+    "sha256": "ebbc2fca21452357c0517791bc04087e6d9d50f9a50f7009bc1e41850cb06aad",
+    "size": 4573
+  },
+  {
+    "case": "210323",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210323/attempt-001/payload/iteration_trajectory.json",
+    "sha256": "a3670aba2631640e82177e74e43336a0b25582ca09b3182ce578f14aff915547",
+    "size": 3159
+  },
+  {
+    "case": "210323",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210323/attempt-001/payload/oracle_trace.jsonl",
+    "sha256": "c72b13a69f3f5ba01bdcc0a34504607d24b238c2a5ebdd3e71552f661c55e9c7",
+    "size": 2374
+  },
+  {
+    "case": "210323",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210323/attempt-001/payload/provenance.json",
+    "sha256": "d5d339a686e5358fab0c14cd474ad1153059a1794b590fbf0a72f0bc6185fc38",
+    "size": 1251
+  },
+  {
+    "case": "210323",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210323/attempt-001/payload/result.json",
+    "sha256": "eee7d11318211fe9fa56c089c879a4ea863d8686b7dd5ce28165b2f82ff9d722",
+    "size": 2025
+  },
+  {
+    "case": "210323",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210323/attempt-001/payload/solver.log",
+    "sha256": "16480119303908d60dfed95aa6dae3b369f24ada99192a0c5bae9742cd34c0bf",
+    "size": 68
+  },
+  {
+    "case": "210323",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210323/attempt-001/resource_monitor.json",
+    "sha256": "56892ec9d3e3edc8832fced666b8bcf7a518abaf19a21e4b4bd2648a6a12bdca",
+    "size": 3723
+  },
+  {
+    "case": "210323",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210323/attempt-001/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  {
+    "case": "210323",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210323/attempt-001/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210330/attempt-001/payload/first_stage_solution.json",
+    "sha256": "db94efaba1f0813439051c44cc9f15249a9f7b21e0a56de6d2e9d08b3706e702",
+    "size": 3919
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210330/attempt-001/payload/iteration_trajectory.json",
+    "sha256": "99a3f6212fb56625835f93e013369b2a0da35c1cebfc07fa6ae4185300168071",
+    "size": 4010
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210330/attempt-001/payload/oracle_trace.jsonl",
+    "sha256": "fa3ae0e64ec30fb4c7f120821070211fd1c9dce9030e2eda40a74913f95f8fd5",
+    "size": 2946
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210330/attempt-001/payload/provenance.json",
+    "sha256": "269cbe9368f3ae3102d20208a3fe12c7ba5a63124b1c849f1981032b6d2207fe",
+    "size": 1251
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210330/attempt-001/payload/result.json",
+    "sha256": "f5404ef71ff168d29e943120605722eb06fe95a63aa06ea224f0467b18739902",
+    "size": 2027
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210330/attempt-001/payload/solver.log",
+    "sha256": "d079360415d925b968237ce2a67bab58f8fb7bd4f7e002622521bbdd4af509e6",
+    "size": 68
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210330/attempt-001/resource_monitor.json",
+    "sha256": "5341a6b1523a8f8b51019fb71f68b15e081cd41a0488417d259913e86255e117",
+    "size": 3743
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210330/attempt-001/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  {
+    "case": "210330",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210330/attempt-001/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
+  },
+  {
+    "case": "210428",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210428/attempt-001/payload/first_stage_solution.json",
+    "sha256": "eedcd1a717f1ec309ed70122e43ad59c642522b4518624a147ada1cd55663263",
+    "size": 6240
+  },
+  {
+    "case": "210428",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210428/attempt-001/payload/iteration_trajectory.json",
+    "sha256": "b37ec5da68dd5985f23c59ac5e13be8fdbc2d8ba652c3152a3e2217d061b2085",
+    "size": 3602
+  },
+  {
+    "case": "210428",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210428/attempt-001/payload/oracle_trace.jsonl",
+    "sha256": "79cf71e0925edd448f4dfefe5cfad343653d0c53b67bf8d7ec64592b4aa71fd5",
+    "size": 2746
+  },
+  {
+    "case": "210428",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210428/attempt-001/payload/provenance.json",
+    "sha256": "572b079273b15c4dc1d0fc38e4bd6a817d37089048f8c003498d5ac9d5f3631d",
+    "size": 1251
+  },
+  {
+    "case": "210428",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210428/attempt-001/payload/result.json",
+    "sha256": "24b930d07fe5af9d498cf629f792c930490b29968f2269bb4896bce9a9921487",
+    "size": 2062
+  },
+  {
+    "case": "210428",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210428/attempt-001/payload/solver.log",
+    "sha256": "8294ff7da33c1a56501b408873444e7b2799a44e5960c5e4d9278f0fee44313c",
+    "size": 68
+  },
+  {
+    "case": "210428",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210428/attempt-001/resource_monitor.json",
+    "sha256": "67e2b8167b1776b49dfbcdfea97bac9030a7eb99255515c97ad03209fbfe58da",
+    "size": 4697
+  },
+  {
+    "case": "210428",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210428/attempt-001/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  {
+    "case": "210428",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210428/attempt-001/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
+  },
+  {
+    "case": "210611",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210611/attempt-001/payload/first_stage_solution.json",
+    "sha256": "3e47abac8fac8602b04ef70e217f444a6788d8edb857ac244f8172847f8b7a55",
+    "size": 6659
+  },
+  {
+    "case": "210611",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210611/attempt-001/payload/iteration_trajectory.json",
+    "sha256": "ee92d356813f3e67bc8a6a3b98b823e828987069dcb52e0dd9295b76fabc4480",
+    "size": 3592
+  },
+  {
+    "case": "210611",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210611/attempt-001/payload/oracle_trace.jsonl",
     "sha256": "e9a0fddd7321a4053a1f897dd5853f1f027c8a30d13d1d73029e679e855e2007",
     "size": 2666
+  },
+  {
+    "case": "210611",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210611/attempt-001/payload/provenance.json",
+    "sha256": "ee21dda6c9b9adf2e6f712608d27be1f6b09d8b1eea65551a509d05aac6a43d8",
+    "size": 1251
+  },
+  {
+    "case": "210611",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210611/attempt-001/payload/result.json",
+    "sha256": "92a9581fecd46142ddd40da5e6d5b2385ea180886cadb3dc00ce3f779aa85ec2",
+    "size": 2040
+  },
+  {
+    "case": "210611",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210611/attempt-001/payload/solver.log",
+    "sha256": "23a2e98cc736b0dd30c25231a7bfe644268cb353114c2f96205d5986bb93b6a0",
+    "size": 68
+  },
+  {
+    "case": "210611",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210611/attempt-001/resource_monitor.json",
+    "sha256": "f42a4b6b144fb95e5ef27c31d3406431b05b1a59f8495732fbd81ed5faebbab2",
+    "size": 5025
+  },
+  {
+    "case": "210611",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210611/attempt-001/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  {
+    "case": "210611",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210611/attempt-001/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210628/attempt-001/payload/first_stage_solution.json",
+    "sha256": "86887397912607eb6f01d75083702dfa90837c13210c63753501db5d4d9d0bdb",
+    "size": 5204
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210628/attempt-001/payload/iteration_trajectory.json",
+    "sha256": "d0c8aeee86b9306aea0934f220bd93502305080f62c3be91c477037a547a349e",
+    "size": 4027
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210628/attempt-001/payload/oracle_trace.jsonl",
+    "sha256": "902c3b4d5cf89ddc1c76c138f0033e3a218ad509af859a321eda99f7687b4e99",
+    "size": 2930
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210628/attempt-001/payload/provenance.json",
+    "sha256": "a8436a80d82ffd8bd31ee9827e6e8e1fa7e70c7901e1f8d5d758a67e4f30efdb",
+    "size": 1251
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210628/attempt-001/payload/result.json",
+    "sha256": "65835e64ebc38a6ff36805d045e5404968c70e897cdd8dae05ac839e011b5fde",
+    "size": 2025
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210628/attempt-001/payload/solver.log",
+    "sha256": "0ab0a1a90d201be21e5003f64ff7a66e6c612eb5e1e54725f0158d6fc0a0517b",
+    "size": 68
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210628/attempt-001/resource_monitor.json",
+    "sha256": "0c1b12333eda12909ae182d16790c8f932c05d154f833683a46fe52f4f4ae1d9",
+    "size": 4552
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210628/attempt-001/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  {
+    "case": "210628",
+    "path": "experiments/results/renault_extensive_form_benders_development_v1/worker_logs/EF_RENAULT_210628/attempt-001/stdout.log",
+    "sha256": "ff87e0405196bf13d6e47f18c355ca07ab6a03ee42f5d16e4e5354ce473426b1",
+    "size": 135
   }
 ]

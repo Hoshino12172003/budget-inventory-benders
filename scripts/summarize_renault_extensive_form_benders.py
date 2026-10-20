@@ -18,6 +18,7 @@ from scripts.summarize_renault_enhanced_basic_benders import build_rows as build
 
 CASES = ("210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611")
 EF_ROOT = ROOT / "experiments/results/renault_extensive_form_benders_development_v1/runs"
+EVIDENCE_ROOT = ROOT / "experiments/results/renault_extensive_form_benders_development_v1"
 ARTIFACTS = ROOT / "artifacts"
 
 
@@ -88,13 +89,15 @@ def _ef_rows() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
             "provenance_sha256": sha256(provenance_path),
             "execution_git_commit": provenance["git_commit"],
         })
-        for path in (result_path, provenance_path, trajectory_path, first_stage_path, monitor_path, run / "solver.log", run / "oracle_trace.jsonl"):
-            manifest.append({
-                "case": case,
-                "path": str(path.relative_to(ROOT)).replace("\\", "/"),
-                "size": path.stat().st_size,
-                "sha256": sha256(path),
-            })
+    for path in sorted(item for item in EVIDENCE_ROOT.rglob("*") if item.is_file()):
+        relative = path.relative_to(EVIDENCE_ROOT)
+        condition = next(part for part in relative.parts if part.startswith("EF_RENAULT_"))
+        manifest.append({
+            "case": condition.rsplit("_", 1)[1],
+            "path": str(path.relative_to(ROOT)).replace("\\", "/"),
+            "size": path.stat().st_size,
+            "sha256": sha256(path),
+        })
     return rows, manifest
 
 
