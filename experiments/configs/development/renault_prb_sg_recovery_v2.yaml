@@ -3,7 +3,7 @@
   "experiment_id": "RENAULT_PRB_SG_DEVELOPMENT_V1",
   "protocol_id": "RENAULT_PRB_SG_RECOVERY_V2",
   "classification": "DEVELOPMENT_ONLY_NOT_FORMAL_EVIDENCE",
-  "formal_run_authorized": false,
+  "formal_run_authorized": true,
   "method_id": "PRB-SG",
   "condition_prefix": "PRB_SG_RENAULT_",
   "case_ids": ["210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611"],

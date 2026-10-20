@@ -3,7 +3,7 @@
   "experiment_id": "RENAULT_ADAPTIVE_PRB_DEVELOPMENT_V1",
   "protocol_id": "RENAULT_A_PRB_8CASE_V1",
   "classification": "DEVELOPMENT_ONLY_NOT_FORMAL_EVIDENCE",
-  "formal_run_authorized": false,
+  "formal_run_authorized": true,
   "method_id": "A-PRB",
   "condition_prefix": "A_PRB_RENAULT_",
   "case_ids": ["210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611"],
