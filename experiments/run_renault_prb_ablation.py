@@ -32,7 +32,7 @@ from robust_inventory_reconfiguration.prb_ablation import solve_prb_ablation
 
 CASES = ("210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611")
 CONFIGS = {
-    "PRB-SG": ROOT / "experiments/configs/development/renault_prb_sg_v1.yaml",
+    "PRB-SG": ROOT / "experiments/configs/development/renault_prb_sg_recovery_v2.yaml",
     "A-PRB": ROOT / "experiments/configs/development/renault_a_prb_v1.yaml",
     "A-PRB-SG": ROOT / "experiments/configs/development/renault_a_prb_sg_v1.yaml",
 }
@@ -72,6 +72,29 @@ def load_config(path: Path) -> dict[str, Any]:
     }[method]
     if mechanisms != expected:
         raise RuntimeError("method mechanism identity mismatch")
+    if method == "PRB-SG":
+        historical = ROOT / config["historical_protocol_config"]
+        if sha256(historical) != config["historical_protocol_config_sha256"]:
+            raise RuntimeError("historical PRB-SG protocol hash mismatch")
+        plan = config.get("execution_plan", {})
+        if tuple(plan) != CASES:
+            raise RuntimeError("PRB-SG recovery plan differs from the frozen case order")
+        expected_plan = {
+            "210202": ("preserve_canonical", "attempt-001"),
+            "210628": ("preserve_canonical", "attempt-001"),
+            "210129": ("run", "attempt-002"),
+            "210310": ("run", "attempt-001"),
+            "210330": ("run", "attempt-001"),
+            "210323": ("run", "attempt-001"),
+            "210428": ("run", "attempt-001"),
+            "210611": ("run", "attempt-001"),
+        }
+        observed = {
+            case: (plan[case]["action"], plan[case]["attempt"])
+            for case in CASES
+        }
+        if observed != expected_plan:
+            raise RuntimeError("PRB-SG recovery attempt plan mismatch")
     resource = config["resource_policy"]
     if resource != {
         "execution": "sequential_single_process",
@@ -93,6 +116,38 @@ def load_config(path: Path) -> dict[str, Any]:
 
 def condition_id(config: dict[str, Any], case: str) -> str:
     return f"{config['condition_prefix']}{case}"
+
+
+def execution_plan(config: dict[str, Any], case: str) -> dict[str, Any]:
+    if "execution_plan" in config:
+        return config["execution_plan"][case]
+    return {"action": "run", "attempt": "attempt-001"}
+
+
+def preserved_canonical_audit(
+    output_root: Path, condition: str, plan: dict[str, Any]
+) -> dict[str, Any]:
+    attempt = output_root / "worker_logs" / condition / plan["attempt"]
+    canonical = output_root / "runs" / condition
+    mismatches = []
+    if attempt.is_dir() and canonical.is_dir():
+        for source in attempt.iterdir():
+            if not source.is_file():
+                continue
+            target = canonical / source.name
+            if not target.is_file() or sha256(source) != sha256(target):
+                mismatches.append(source.name)
+    result_path = canonical / "result.json"
+    result = json.loads(result_path.read_text(encoding="utf-8")) if result_path.is_file() else {}
+    expected_hash = plan.get("result_sha256")
+    return {
+        "attempt_exists": attempt.is_dir(),
+        "canonical_exists": canonical.is_dir(),
+        "canonical_matches_attempt": attempt.is_dir() and canonical.is_dir() and not mismatches,
+        "mismatches": mismatches,
+        "result_sha256_match": bool(result_path.is_file() and expected_hash and sha256(result_path) == expected_hash),
+        "exact_certification": result.get("exact_certification") is True,
+    }
 
 
 def identity_audit(config: dict[str, Any], case: str) -> dict[str, Any]:
@@ -155,8 +210,28 @@ def dry_run(config_path: Path) -> dict[str, Any]:
     for case in CASES:
         row = identity_audit(config, case)
         cid = condition_id(config, case)
-        row["attempt_exists"] = (output_root / "worker_logs" / cid / "attempt-001").exists()
-        row["canonical_exists"] = (output_root / "runs" / cid).exists()
+        plan = execution_plan(config, case)
+        row["planned_action"] = plan["action"]
+        row["planned_attempt"] = plan["attempt"]
+        if plan["action"] == "preserve_canonical":
+            preserved = preserved_canonical_audit(output_root, cid, plan)
+            row.update(preserved)
+            row["plan_pass"] = all(
+                preserved[key]
+                for key in (
+                    "attempt_exists",
+                    "canonical_exists",
+                    "canonical_matches_attempt",
+                    "result_sha256_match",
+                    "exact_certification",
+                )
+            )
+        else:
+            attempt = output_root / "worker_logs" / cid / plan["attempt"]
+            canonical = output_root / "runs" / cid
+            row["attempt_exists"] = attempt.exists()
+            row["canonical_exists"] = canonical.exists()
+            row["plan_pass"] = not attempt.exists() and not canonical.exists()
         conditions.append(row)
     resource = config["resource_policy"]
     available = psutil.virtual_memory().available / 2**30
@@ -165,8 +240,7 @@ def dry_run(config_path: Path) -> dict[str, Any]:
     workers = active_workers()
     gates = {
         "identity": all(row["status"] == "PASS" for row in conditions),
-        "attempts_absent": all(not row["attempt_exists"] for row in conditions),
-        "canonical_absent": all(not row["canonical_exists"] for row in conditions),
+        "execution_plan": all(row["plan_pass"] for row in conditions),
         "startup_memory": available >= resource["minimum_available_memory_gib"],
         "disk": free_disk >= resource["minimum_free_disk_gib"],
         "git_status": git["pass"],
@@ -379,10 +453,10 @@ def terminate_tree(process: psutil.Process) -> None:
             pass
 
 
-def run_monitored(config_path: Path, cid: str) -> dict[str, Any]:
+def run_monitored(config_path: Path, cid: str, attempt_name: str) -> dict[str, Any]:
     config = load_config(config_path)
     output_root = ROOT / config["output_directory"]
-    attempt = output_root / "worker_logs" / cid / "attempt-001"
+    attempt = output_root / "worker_logs" / cid / attempt_name
     canonical = output_root / "runs" / cid
     if attempt.exists() or canonical.exists():
         raise FileExistsError(f"refusing to overwrite {cid}")
@@ -456,6 +530,14 @@ def execute(config_path: Path) -> dict[str, Any]:
         raise RuntimeError(f"PREFLIGHT_BLOCKED: {initial['gates']}")
     rows = []
     for case in CASES:
+        plan = execution_plan(config, case)
+        if plan["action"] == "preserve_canonical":
+            rows.append({
+                "condition_id": condition_id(config, case),
+                "classification": "PRESERVED_CANONICAL",
+                "attempt": plan["attempt"],
+            })
+            continue
         current = dry_run(config_path)
         resource = config["resource_policy"]
         if (
@@ -464,7 +546,9 @@ def execute(config_path: Path) -> dict[str, Any]:
             or current["resource_snapshot"]["active_workers"]
         ):
             raise RuntimeError("PER_CONDITION_RESOURCE_GATE_BLOCKED")
-        row = run_monitored(config_path, condition_id(config, case))
+        row = run_monitored(
+            config_path, condition_id(config, case), plan["attempt"]
+        )
         rows.append(row)
         if row["classification"] not in {"SUCCESS", "TIME_LIMIT", "RESOURCE_PROCESS_CAP", "RESOURCE_SYSTEM_CAP"}:
             break

@@ -21,6 +21,13 @@ def test_protocols_are_closed_and_exactly_scoped(method: str) -> None:
     assert config["algorithm"]["retain_product_budget_theta"] is True
     assert config["algorithm"]["retain_global_risk_budget_coupling"] is True
     assert config["algorithm"]["compact_global_oracle"] is False
+    if method == "PRB-SG":
+        assert config["execution_plan"]["210129"] == {
+            "action": "run",
+            "attempt": "attempt-002",
+        }
+        assert config["execution_plan"]["210202"]["action"] == "preserve_canonical"
+        assert config["execution_plan"]["210628"]["action"] == "preserve_canonical"
 
 
 def test_methods_form_the_declared_two_by_two_ablation() -> None:
@@ -59,9 +66,4 @@ def test_dry_run_has_zero_optimization_calls(method: str) -> None:
     assert audit["optimization_calls"] == 0
     assert audit["formal_run_authorized"] is False
     assert audit["gates"]["identity"]
-    if method == "PRB-SG":
-        assert not audit["gates"]["attempts_absent"]
-        assert not audit["gates"]["canonical_absent"]
-    else:
-        assert audit["gates"]["attempts_absent"]
-        assert audit["gates"]["canonical_absent"]
+    assert audit["gates"]["execution_plan"]

@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "RENAULT_PRB_SG_DEVELOPMENT_V1",
+  "protocol_id": "RENAULT_PRB_SG_RECOVERY_V2",
+  "classification": "DEVELOPMENT_ONLY_NOT_FORMAL_EVIDENCE",
+  "formal_run_authorized": false,
+  "method_id": "PRB-SG",
+  "condition_prefix": "PRB_SG_RENAULT_",
+  "case_ids": ["210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611"],
+  "execution_plan": {
+    "210202": {"action": "preserve_canonical", "attempt": "attempt-001", "result_sha256": "10150baec5c4acad66ce8bf450991027012a834b7b395f0648205d99f2b93f1f"},
+    "210628": {"action": "preserve_canonical", "attempt": "attempt-001", "result_sha256": "1c0d2e4472cb46607049ed582c9092598a578e1993e2f7dc894a6e94b27d28aa"},
+    "210129": {"action": "run", "attempt": "attempt-002"},
+    "210310": {"action": "run", "attempt": "attempt-001"},
+    "210330": {"action": "run", "attempt": "attempt-001"},
+    "210323": {"action": "run", "attempt": "attempt-001"},
+    "210428": {"action": "run", "attempt": "attempt-001"},
+    "210611": {"action": "run", "attempt": "attempt-001"}
+  },
+  "historical_protocol_config": "experiments/configs/development/renault_prb_sg_v1.yaml",
+  "historical_protocol_config_sha256": "1449a88539b4a6d327781542529ec157dfb6fd76a193fc284a6dc2f732e83ba1",
+  "fixed_scientific_parameters": {"Gamma": 2, "lambda_R": 0.05},
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "solver_tolerances": {"relative_gap": 1e-6, "cut_violation": 1e-7, "objective_certification": 1e-4, "global_coupling": 1e-6},
+  "mechanisms": {"adaptive_cut_selection": false, "exact_product_scenario_screening": true},
+  "algorithm": {"max_iterations": 500, "retain_product_budget_theta": true, "retain_global_risk_budget_coupling": true, "compact_global_oracle": false},
+  "resource_policy": {"execution": "sequential_single_process", "parallel_workers": 1, "minimum_available_memory_gib": 8, "maximum_process_tree_memory_gib": 4, "minimum_system_available_memory_gib": 3, "minimum_free_disk_gib": 20, "condition_time_limit_seconds": 300, "memory_monitor_interval_seconds": 0.25, "retry_policy": "no_automatic_retry"},
+  "identity_source": "experiments/configs/development/renault_sg_benders_v1.yaml",
+  "identity_source_sha256": "634d7fe045e8165f65306d1abfef86fdd793011dd68b2ab9d559a6b7ae5cd512",
+  "output_directory": "experiments/results/renault_prb_sg_development_v1"
+}
