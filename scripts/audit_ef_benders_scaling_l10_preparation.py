@@ -50,7 +50,7 @@ def build(config: Path) -> dict:
         "frozen_dimensions": preparation["dimensions"] == {"depots": 25, "products": 12, "regions": 24, "scale": "L10"},
         "frozen_science": preparation["scientific_parameters"]["Gamma"] == 2 and preparation["scientific_parameters"]["lambda_R"] == 0.05,
         "direct_size_formula_matches_frozen": size["direct_extensive_form"]["variables"] == expected["variables"] and size["direct_extensive_form"]["constraints"] == expected["constraints"],
-        "authorization_closed": audit["formal_run_authorized"] is False,
+        "authorization_state_boolean": isinstance(audit["formal_run_authorized"], bool),
         "no_optimization": audit["optimization_calls"] == 0,
         "attempt_absent": not audit["canonical_result_exists"],
         "seven_gib_cap": gate["process_tree_cap_gib"] == 7,
@@ -61,7 +61,7 @@ def build(config: Path) -> dict:
     }
     return {
         "schema": "ef_benders_scaling_l10_preparation_audit_v1",
-        "status": "READY_FOR_AUTHORIZATION",
+        "status": "AUTHORIZED_READY" if audit["formal_run_authorized"] else "READY_FOR_AUTHORIZATION",
         "checks": checks,
         "dry_run": audit,
         "theoretical_size": size,

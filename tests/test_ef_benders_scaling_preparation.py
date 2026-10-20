@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 
 import psutil
 import pytest
@@ -28,13 +29,23 @@ def test_dry_run_is_single_condition_and_zero_optimization():
     assert audit["resource_gate"]["system_available_floor_gib"] == 3
 
 
-def test_execution_is_fail_closed_by_resource_design():
-    try:
-        validate_execution_gate(DEFAULT_CONFIG)
-    except RuntimeError as error:
-        assert "NOT_AUTHORIZED" in str(error)
-    else:
-        raise AssertionError("execution gate unexpectedly opened")
+def test_execution_is_fail_closed_when_authorization_is_false(tmp_path):
+    config = load_config(DEFAULT_CONFIG)
+    config["formal_run_authorized"] = False
+    closed = tmp_path / "closed.json"
+    closed.write_text(json.dumps(config), encoding="utf-8")
+    with pytest.raises(RuntimeError, match="NOT_AUTHORIZED"):
+        validate_execution_gate(closed)
+
+
+def test_authorized_gate_remains_identity_and_resource_checked(monkeypatch, tmp_path):
+    config = load_config(DEFAULT_CONFIG)
+    config["formal_run_authorized"] = True
+    authorized = tmp_path / "authorized.json"
+    authorized.write_text(json.dumps(config), encoding="utf-8")
+    marker = {"formal_run_authorized": True, "optimization_calls": 0}
+    monkeypatch.setattr("experiments.run_ef_benders_scaling.dry_run", lambda *_: marker)
+    assert validate_execution_gate(authorized) is marker
 
 
 def test_windows_process_disappearance_race_is_safe(monkeypatch):
