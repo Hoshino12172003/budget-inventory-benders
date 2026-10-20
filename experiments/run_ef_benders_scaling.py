@@ -44,16 +44,18 @@ def load_config(path: Path = DEFAULT_CONFIG) -> dict:
         "EF_BD_L10_RESOURCE_PROTOCOL_V2_7GIB": ("L10", 7, 11, "READY_FOR_AUTHORIZATION"),
         "EF_BD_SCALING_L10_REMAINING9_V1": ("L10", 7, 11, "READY_FOR_AUTHORIZATION"),
         "EF_BD_XL10_SINGLE_PILOT_V1": ("XL10", 8, 12, "READY_FOR_AUTHORIZATION"),
+        "EF_BD_XL10_REMAINING9_V1": ("XL10", 8, 12, "READY_FOR_AUTHORIZATION"),
     }
     protocol = config.get("protocol_id")
     if protocol not in protocols:
         raise RuntimeError("unexpected EF-BD pilot protocol identity")
     size, cap, startup, decision = protocols[protocol]
-    expected_scope = (
-        [f"EF_L10_S{seed}" for seed in range(20260922, 20260931)]
-        if protocol == "EF_BD_SCALING_L10_REMAINING9_V1"
-        else [f"EF_{size}_S20260921"]
-    )
+    if protocol == "EF_BD_SCALING_L10_REMAINING9_V1":
+        expected_scope = [f"EF_L10_S{seed}" for seed in range(20260922, 20260931)]
+    elif protocol == "EF_BD_XL10_REMAINING9_V1":
+        expected_scope = [f"EF_XL10_S{seed}" for seed in range(20260922, 20260931)]
+    else:
+        expected_scope = [f"EF_{size}_S20260921"]
     if config.get("authorized_condition_ids") != expected_scope:
         raise RuntimeError("EF-BD protocol condition scope is inconsistent")
     policy = config["resource_policy"]
@@ -93,6 +95,9 @@ def dry_run(config_path: Path = DEFAULT_CONFIG, condition_id: str | None = None)
     policy = config["resource_policy"]
     size = selected["size"]
     direct_result = ROOT / "experiments/results/direct_scaling_extension_v1/runs" / f"DIRECT_{size}_S{selected['seed']}" / "result.json"
+    direct_identity = True
+    if direct_result.is_file():
+        direct_identity = json.loads(direct_result.read_text(encoding="utf-8"))["instance_hash"] == preparation["instance_hash"]
     paired = {}
     for method in ("PURE_BENDERS", "AGGREGATE_BENDERS_STRUCTURED_ORACLE", "PRB_BENDERS"):
         path = ROOT / config["source_output_root"] / "runs" / f"ASC_{size}_S{selected['seed']}_{method}" / "result.json"
@@ -106,7 +111,7 @@ def dry_run(config_path: Path = DEFAULT_CONFIG, condition_id: str | None = None)
         "readiness_decision": config["readiness_decision"], "condition": selected,
         "source_instance_id": preparation["instance_id"], "instance_hash": preparation["instance_hash"],
         "x0_hash": preparation["x0_hash"], **hashes,
-        "paired_instance_identity": {"Direct": json.loads(direct_result.read_text(encoding="utf-8"))["instance_hash"] == preparation["instance_hash"], **paired},
+        "paired_instance_identity": {"Direct": direct_identity, **paired},
         "resource_gate": {
             "available_memory_gib": psutil.virtual_memory().available / 2**30,
             "startup_required_gib": policy["minimum_available_memory_gib_by_size"][size],

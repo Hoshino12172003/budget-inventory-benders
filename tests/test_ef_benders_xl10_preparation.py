@@ -54,7 +54,16 @@ def test_protocol_is_single_condition_authorized_and_resource_frozen():
         ef_runner.candidate(config, "EF_XL10_S20260922")
 
 
-def test_dry_run_checks_identity_without_optimization(monkeypatch):
+def test_completed_pilot_dry_run_is_closed_without_optimization(monkeypatch):
+    original = ef_runner.dry_run
+
+    def stable_resources(config_path, condition_id):
+        row = original(config_path, condition_id)
+        row["resource_gate"]["available_memory_gib"] = 64.0
+        row["resource_gate"]["free_disk_gib"] = 64.0
+        return row
+
+    monkeypatch.setattr(xl_runner.runner, "dry_run", stable_resources)
     monkeypatch.setattr(
         xl_runner,
         "git_status_for_execution",
@@ -62,9 +71,11 @@ def test_dry_run_checks_identity_without_optimization(monkeypatch):
     )
     monkeypatch.setattr(xl_runner, "active_solver_workers", lambda: [])
     dry = xl_runner.build_dry_run()
-    assert dry["decision"] == "AUTHORIZED_READY"
+    assert dry["decision"] == "BLOCKED"
     assert dry["optimization_calls"] == 0
     assert all(dry["identity_checks"].values())
+    assert dry["gates"]["attempt_absent"] is False
+    assert dry["gates"]["canonical_absent"] is False
     assert dry["next_attempt"] == "attempt-001"
 
 
