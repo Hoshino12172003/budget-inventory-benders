@@ -3,7 +3,10 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import sys
 
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 from scripts.run_direct_scaling_xxl10_remaining8 import DEFAULT_CONFIG, ROOT, build_dry_run, base
 
 
