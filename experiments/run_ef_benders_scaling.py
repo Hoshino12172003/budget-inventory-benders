@@ -46,6 +46,7 @@ def load_config(path: Path = DEFAULT_CONFIG) -> dict:
         "EF_BD_XL10_SINGLE_PILOT_V1": ("XL10", 8, 12, "READY_FOR_AUTHORIZATION"),
         "EF_BD_XL10_REMAINING9_V1": ("XL10", 8, 12, "READY_FOR_AUTHORIZATION"),
         "EF_BD_XXL10_PAIRED_PILOT_V1": ("XXL10", 13, 17, "READY_FOR_AUTHORIZATION"),
+        "EF_BD_XXL10_REMAINING9_V1": ("XXL10", 13, 17, "READY_FOR_AUTHORIZATION"),
     }
     protocol = config.get("protocol_id")
     if protocol not in protocols:
@@ -55,6 +56,8 @@ def load_config(path: Path = DEFAULT_CONFIG) -> dict:
         expected_scope = [f"EF_L10_S{seed}" for seed in range(20260922, 20260931)]
     elif protocol == "EF_BD_XL10_REMAINING9_V1":
         expected_scope = [f"EF_XL10_S{seed}" for seed in range(20260922, 20260931)]
+    elif protocol == "EF_BD_XXL10_REMAINING9_V1":
+        expected_scope = [f"EF_XXL10_S{seed}" for seed in range(20260922, 20260931)]
     else:
         expected_scope = [f"EF_{size}_S20260921"]
     if config.get("authorized_condition_ids") != expected_scope:
@@ -102,8 +105,11 @@ def dry_run(config_path: Path = DEFAULT_CONFIG, condition_id: str | None = None)
     paired = {}
     for method in ("PURE_BENDERS", "AGGREGATE_BENDERS_STRUCTURED_ORACLE", "PRB_BENDERS"):
         path = ROOT / config["source_output_root"] / "runs" / f"ASC_{size}_S{selected['seed']}_{method}" / "result.json"
-        row = json.loads(path.read_text(encoding="utf-8"))
-        paired[method] = row.get("instance_hash") == preparation["instance_hash"]
+        if path.is_file():
+            row = json.loads(path.read_text(encoding="utf-8"))
+            paired[method] = row.get("instance_hash") == preparation["instance_hash"]
+        else:
+            paired[method] = None
     return {
         "protocol_id": config["protocol_id"], "formal_run_authorized": original_authorized,
         "config_path": str(config_path.resolve()),

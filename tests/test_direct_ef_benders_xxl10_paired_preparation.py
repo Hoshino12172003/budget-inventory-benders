@@ -21,13 +21,13 @@ def test_xxl10_static_sizes_are_exact_formula_counts():
     assert direct_size["scenario_blocks"] == ef_size["product_local_scenario_blocks"] == 10672
 
 
-def test_direct_and_ef_protocols_are_separate_closed_single_pilots():
+def test_direct_and_ef_protocols_preserve_independent_authorization_history():
     direct_config = direct_core.load_config(direct.DEFAULT_CONFIG)
     ef_config = ef_core.load_config(ef.DEFAULT_CONFIG)
     direct.validate_protocol(direct_config)
     ef.validate_protocol(ef_config)
     assert direct_config["formal_run_authorized"] is False
-    assert ef_config["formal_run_authorized"] is False
+    assert ef_config["formal_run_authorized"] is True
     assert direct_config["authorized_condition_ids"] == [direct.CONDITION_ID]
     assert ef_config["authorized_condition_ids"] == [ef.CONDITION_ID]
     assert direct_config["output_directory"] != ef_config["output_directory"]
@@ -46,12 +46,13 @@ def test_direct_dry_run_is_identity_complete_and_zero_optimization():
     assert dry["optimization_calls"] == 0
 
 
-def test_ef_dry_run_is_identity_complete_and_zero_optimization():
+def test_ef_dry_run_reports_archived_pilot_without_optimization():
     dry = ef.build_dry_run()
     assert all(dry["identity_checks"].values())
     assert all(dry["model_identity_checks"].values())
-    assert dry["next_attempt"] == "attempt-001"
-    assert dry["gates"]["canonical_absent"] is True
+    assert dry["condition"]["attempt_exists"] is True
+    assert dry["condition"]["canonical_result_exists"] is True
+    assert dry["gates"]["canonical_absent"] is False
     assert dry["optimization_calls"] == 0
 
 
@@ -60,13 +61,17 @@ def test_both_execution_paths_fail_closed_before_worker_launch(monkeypatch):
     monkeypatch.setattr(ef.runner, "run_condition", lambda *_args: pytest.fail("EF-BD optimization must not launch"))
     with pytest.raises(RuntimeError, match="NOT_AUTHORIZED"):
         direct.execute()
-    with pytest.raises(RuntimeError, match="NOT_AUTHORIZED"):
+    with pytest.raises(RuntimeError, match="PILOT_BLOCKED"):
         ef.execute()
 
 
 def test_paired_audit_uses_same_frozen_input_and_historical_memory():
     audit = build_audit()
-    assert all(audit["identity_checks"].values())
+    assert audit["identity_checks"]["authorization_separate_and_closed"] is False
+    assert all(
+        value for key, value in audit["identity_checks"].items()
+        if key != "authorization_separate_and_closed"
+    )
     assert audit["frozen_instance"]["instance_hash"] == "81739c07edea3babcb62bbaf91ac6ac37eb13c3201052071c5610c4e8a328f94"
     assert audit["historical_memory"]["Direct_XL10"]["maximum_all_attempt_peak_gib"] == 8.289241790771484
     assert audit["historical_memory"]["EF_BD_XL10"]["maximum_certified_peak_gib"] == 4.7296600341796875

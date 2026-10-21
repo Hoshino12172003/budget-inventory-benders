@@ -46,22 +46,24 @@ def test_completed_pilot_is_byte_identical_and_certified():
     assert pilot["resource_monitor"]["peak_process_tree_memory_gib"] == 4.7296600341796875
 
 
-def test_dry_run_validates_nine_absent_attempts_without_optimization(monkeypatch):
+def test_dry_run_preserves_nine_completed_archives_without_optimization(monkeypatch):
     _stable_dry_run(monkeypatch)
     dry = batch.build_dry_run()
-    assert dry["decision"] == "AUTHORIZED_READY"
+    assert dry["decision"] == "BLOCKED"
     assert dry["optimization_calls"] == 0
     assert len(dry["conditions"]) == 9
     assert all(row["identity_status"] == "PASS" for row in dry["conditions"])
-    assert all(not row["attempt_exists"] and not row["canonical_result_exists"] for row in dry["conditions"])
+    assert all(row["attempt_exists"] and row["canonical_result_exists"] for row in dry["conditions"])
     assert all(row["expected_attempt"] == "attempt-001" for row in dry["conditions"])
 
 
-def test_authorization_audit_is_enabled_and_zero_optimization(monkeypatch):
+def test_authorization_audit_reports_completed_scope_as_closed(monkeypatch):
     _stable_dry_run(monkeypatch)
     audit = build_audit()
-    assert audit["status"] == "AUTHORIZED_READY"
+    assert audit["status"] == "BLOCKED"
     assert audit["checks"]["authorization_enabled"] is True
+    assert audit["checks"]["all_nine_attempts_absent"] is False
+    assert audit["checks"]["all_nine_canonical_absent"] is False
     assert audit["optimization_calls"] == 0
     assert audit["fixed_denominator"] == {"completed_pilot": 1, "remaining": 9, "total_xl10": 10}
 
