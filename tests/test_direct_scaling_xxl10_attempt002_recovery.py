@@ -35,7 +35,7 @@ def test_protocol_preserves_solver_science_and_resource_contract():
     pilot.validate_protocol(config)
     assert config["recovery_control"] == {
         "attempt": "attempt-002",
-        "authorized": False,
+        "authorized": True,
         "required_prior_attempt": "attempt-001",
         "required_failure": "WORKER_INNER_GIT_GATE_MISMATCH",
     }
@@ -99,9 +99,9 @@ def test_git_allowlist_accepts_only_archives_and_exact_audits(tmp_path):
     assert pilot.unexpected_git_entries(rejected, output) == rejected
 
 
-def test_execute_requires_separate_recovery_authorization(monkeypatch):
+def test_completed_recovery_cannot_launch_again(monkeypatch):
     monkeypatch.setattr(pilot.runner, "run_monitored", lambda *_args: pytest.fail("optimization must not launch"))
-    with pytest.raises(RuntimeError, match="RECOVERY_ATTEMPT_002_NOT_AUTHORIZED"):
+    with pytest.raises(RuntimeError, match="DIRECT_XXL10_RECOVERY_BLOCKED"):
         pilot.execute()
 
 
@@ -109,9 +109,9 @@ def test_dry_run_is_attempt_002_and_zero_optimization():
     dry = pilot.build_dry_run()
     assert dry["next_attempt"] == "attempt-002"
     assert dry["attempt_001"]["classification"] == "WORKER_INNER_GIT_GATE_MISMATCH"
-    assert dry["gates"]["attempt_002_state"] is True
-    assert dry["gates"]["canonical_absent"] is True
-    assert dry["recovery_attempt_authorized"] is False
+    assert dry["gates"]["attempt_002_state"] is False
+    assert dry["gates"]["canonical_absent"] is False
+    assert dry["recovery_attempt_authorized"] is True
     assert dry["optimization_calls"] == 0
 
 
