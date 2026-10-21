@@ -49,7 +49,7 @@ def active_paired_solver_workers(*, exclude_pid: int | None = None) -> list[dict
                 continue
             name = (process.info.get("name") or "").lower()
             command = " ".join(process.info.get("cmdline") or []).lower()
-            worker = "--worker" in command and any(
+            worker = name.startswith("python") and "--worker" in command and any(
                 script in command
                 for script in (
                     "run_direct_scaling.py",
