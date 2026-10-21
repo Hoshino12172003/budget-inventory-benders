@@ -6,7 +6,7 @@
   "formal_run_authorized": true,
   "recovery_control": {
     "attempt": "attempt-002",
-    "authorized": false,
+    "authorized": true,
     "required_prior_attempt": "attempt-001",
     "required_failure": "WORKER_INNER_GIT_GATE_MISMATCH"
   },
