@@ -25,6 +25,7 @@ FAILURE_FRAGMENT = "RuntimeError: formal Direct execution found changes outside 
 ATTEMPT_001_FILES = {"stdout.log", "stderr.log", "resource_monitor.json"}
 HISTORICAL_ARCHIVE_PREFIXES = (
     "experiments/results/basic_benders_scaling_development_v1/",
+    "experiments/results/direct_scaling_xxl10_remaining9_v1/",
     "experiments/results/ef_benders_scaling_development_v1/",
     "experiments/results/ef_benders_scaling_xl10_pilot_v1/",
     "experiments/results/ef_benders_scaling_xl10_remaining9_v1/",
@@ -34,6 +35,7 @@ HISTORICAL_ARCHIVE_PREFIXES = (
 AUDIT_PATHS = {
     "artifacts/direct_ef_benders_xxl10_paired_preparation_audit.json",
     "artifacts/direct_scaling_xxl10_attempt002_recovery_audit.json",
+    "artifacts/direct_scaling_xxl10_remaining8_readiness_audit.json",
 }
 
 

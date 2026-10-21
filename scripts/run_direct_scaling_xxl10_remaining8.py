@@ -4,11 +4,13 @@ import argparse
 import json
 import os
 from pathlib import Path
+import sys
 
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 from scripts import run_direct_scaling_xxl10_remaining9 as base
 
 
-ROOT = base.ROOT
 runner = base.runner
 DEFAULT_CONFIG = ROOT / "experiments/configs/development/direct_scaling_xxl10_remaining8_v1.yaml"
 REFERENCE_CONFIG = base.DEFAULT_CONFIG
