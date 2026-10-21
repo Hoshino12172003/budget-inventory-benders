@@ -26,7 +26,8 @@ def test_direct_and_ef_protocols_preserve_independent_authorization_history():
     ef_config = ef_core.load_config(ef.DEFAULT_CONFIG)
     direct.validate_protocol(direct_config)
     ef.validate_protocol(ef_config)
-    assert direct_config["formal_run_authorized"] is False
+    assert direct_config["formal_run_authorized"] is True
+    assert direct_config["recovery_control"]["authorized"] is False
     assert ef_config["formal_run_authorized"] is True
     assert direct_config["authorized_condition_ids"] == [direct.CONDITION_ID]
     assert ef_config["authorized_condition_ids"] == [ef.CONDITION_ID]
@@ -41,7 +42,8 @@ def test_direct_dry_run_is_identity_complete_and_zero_optimization():
     dry = direct.build_dry_run()
     assert all(dry["identity_checks"].values())
     assert all(dry["model_identity_checks"].values())
-    assert dry["next_attempt"] == "attempt-001"
+    assert dry["next_attempt"] == "attempt-002"
+    assert dry["attempt_001"]["classification"] == "WORKER_INNER_GIT_GATE_MISMATCH"
     assert dry["gates"]["canonical_absent"] is True
     assert dry["optimization_calls"] == 0
 
@@ -59,7 +61,7 @@ def test_ef_dry_run_reports_archived_pilot_without_optimization():
 def test_both_execution_paths_fail_closed_before_worker_launch(monkeypatch):
     monkeypatch.setattr(direct.runner, "run_monitored", lambda *_args: pytest.fail("Direct optimization must not launch"))
     monkeypatch.setattr(ef.runner, "run_condition", lambda *_args: pytest.fail("EF-BD optimization must not launch"))
-    with pytest.raises(RuntimeError, match="NOT_AUTHORIZED"):
+    with pytest.raises(RuntimeError, match="RECOVERY_ATTEMPT_002_NOT_AUTHORIZED"):
         direct.execute()
     with pytest.raises(RuntimeError, match="PILOT_BLOCKED"):
         ef.execute()

@@ -4,6 +4,12 @@
   "resource_protocol_id": "DIRECT_XXL10_PAIRED_PILOT_V1_METHOD2_THREADS2",
   "derived_from_resource_protocol_id": "DIRECT_XXL10_LOW_MEMORY_PILOT_V1_METHOD2_THREADS2",
   "formal_run_authorized": true,
+  "recovery_control": {
+    "attempt": "attempt-002",
+    "authorized": false,
+    "required_prior_attempt": "attempt-001",
+    "required_failure": "WORKER_INNER_GIT_GATE_MISMATCH"
+  },
   "authorized_condition_ids": ["DIRECT_XXL10_S20260921"],
   "source_experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V2_REPAIRED_GUARD",
   "source_config": "experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",

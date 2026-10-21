@@ -52,6 +52,7 @@ artifacts/*
 !artifacts/direct_scaling_l10_xl10_valid_pairs.csv
 !artifacts/direct_scaling_l10_xl10_scale_summary.csv
 !artifacts/direct_scaling_xxl10_preparation_audit.json
+!artifacts/direct_scaling_xxl10_attempt002_recovery_audit.json
 !artifacts/basic_benders_scaling_preparation_audit.json
 !artifacts/basic_benders_scaling_result_matrix_template.csv
 !artifacts/basic_benders_l10_pilot_audit.json
