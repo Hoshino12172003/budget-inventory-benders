@@ -3,7 +3,7 @@
   "experiment_id": "EF_BENDERS_SCALING_XXL10_REMAINING9_DEVELOPMENT_V1",
   "protocol_id": "EF_BD_XXL10_REMAINING9_V1",
   "derived_from_protocol_id": "EF_BD_XXL10_PAIRED_PILOT_V1",
-  "formal_run_authorized": false,
+  "formal_run_authorized": true,
   "authorized_condition_ids": [
     "EF_XXL10_S20260922", "EF_XXL10_S20260923", "EF_XXL10_S20260924",
     "EF_XXL10_S20260925", "EF_XXL10_S20260926", "EF_XXL10_S20260927",
