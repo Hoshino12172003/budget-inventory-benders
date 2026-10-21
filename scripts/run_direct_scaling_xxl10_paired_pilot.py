@@ -46,6 +46,7 @@ def git_status_for_execution(output: Path) -> dict:
         "experiments/results/ef_benders_scaling_xl10_pilot_v1/",
         "experiments/results/ef_benders_scaling_xl10_remaining9_v1/",
         "experiments/results/ef_benders_scaling_xxl10_paired_pilot_v1/",
+        "experiments/results/ef_benders_scaling_xxl10_remaining9_v1/",
         "artifacts/direct_ef_benders_xxl10_paired_preparation_audit.json",
     )
     unexpected = [line for line in entries if not line[3:].replace("\\", "/").startswith(allowed)]
