@@ -45,6 +45,7 @@ def load_config(path: Path = DEFAULT_CONFIG) -> dict:
         "EF_BD_SCALING_L10_REMAINING9_V1": ("L10", 7, 11, "READY_FOR_AUTHORIZATION"),
         "EF_BD_XL10_SINGLE_PILOT_V1": ("XL10", 8, 12, "READY_FOR_AUTHORIZATION"),
         "EF_BD_XL10_REMAINING9_V1": ("XL10", 8, 12, "READY_FOR_AUTHORIZATION"),
+        "EF_BD_XXL10_PAIRED_PILOT_V1": ("XXL10", 13, 17, "READY_FOR_AUTHORIZATION"),
     }
     protocol = config.get("protocol_id")
     if protocol not in protocols:
@@ -73,7 +74,7 @@ def candidate(config: dict, condition_id: str | None = None) -> dict:
         raise RuntimeError("condition_id is required for a multi-condition EF-BD protocol")
     if selected not in allowed:
         raise RuntimeError("condition is outside the EF-BD pilot allowlist")
-    match = re.fullmatch(r"EF_(L10|XL10)_S(\d{8})", selected)
+    match = re.fullmatch(r"EF_(L10|XL10|XXL10)_S(\d{8})", selected)
     if match is None:
         raise RuntimeError("invalid EF-BD condition identity")
     return {"condition_id": selected, "size": match.group(1), "seed": int(match.group(2))}
