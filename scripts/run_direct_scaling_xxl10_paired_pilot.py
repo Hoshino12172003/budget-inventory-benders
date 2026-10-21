@@ -266,6 +266,18 @@ def worker_preflight(config_path: Path, *, expect_attempt_002: bool, require_rec
     return {**state["resource_gate"], "git": state["git"], "optimization_calls": 0}
 
 
+def worker_preflight_report(config_path: Path, *, expect_attempt_002: bool) -> dict:
+    state = _identity_and_resource(config_path.resolve(), expect_attempt_002=expect_attempt_002)
+    gates = _gates(state)
+    return {
+        "pass": all(gates.values()),
+        "gates": gates,
+        "resource_gate": state["resource_gate"],
+        "git": state["git"],
+        "optimization_calls": 0,
+    }
+
+
 def worker_solve(config_path: Path, output_root: Path, condition_id: str) -> None:
     config = runner.load_config(config_path)
     condition = runner.authorized_conditions(config)[0]
@@ -315,7 +327,7 @@ def main() -> int:
     if args.worker:
         worker_solve(config_path, args.output_root.resolve(), args.worker)
     elif args.worker_preflight:
-        print(json.dumps(worker_preflight(config_path, expect_attempt_002=False, require_recovery_authorization=False), indent=2, allow_nan=False))
+        print(json.dumps(worker_preflight_report(config_path, expect_attempt_002=False), indent=2, allow_nan=False))
     elif args.execute:
         execute(config_path)
     else:

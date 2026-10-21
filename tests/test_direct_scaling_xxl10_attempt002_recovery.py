@@ -126,4 +126,5 @@ def test_independent_worker_preflight_exercises_child_git_gate():
     assert completed.returncode == 0, completed.stderr
     payload = json.loads(completed.stdout)
     assert payload["git"]["clean_for_execution"] is True
+    assert payload["gates"]["git_identity"] is True
     assert payload["optimization_calls"] == 0
