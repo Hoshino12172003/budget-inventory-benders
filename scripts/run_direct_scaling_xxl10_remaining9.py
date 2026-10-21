@@ -27,6 +27,7 @@ AUDIT_PATH = "artifacts/direct_scaling_xxl10_remaining9_readiness_audit.json"
 HISTORICAL_PREFIXES = (
     "experiments/results/basic_benders_scaling_development_v1/",
     "experiments/results/direct_scaling_xxl10_paired_pilot_v1/",
+    "experiments/results/direct_scaling_xxl10_remaining9_v1/",
     "experiments/results/ef_benders_scaling_development_v1/",
     "experiments/results/ef_benders_scaling_xl10_pilot_v1/",
     "experiments/results/ef_benders_scaling_xl10_remaining9_v1/",
@@ -55,7 +56,11 @@ def active_solver_workers(*, exclude_pid: int | None = None) -> list[dict]:
             name = (process.info.get("name") or "").lower()
             command = " ".join(process.info.get("cmdline") or []).lower()
             worker = name.startswith("python") and "--worker" in command and any(
-                script in command for script in ("run_direct_scaling.py", "run_direct_scaling_xxl10_remaining9.py")
+                script in command for script in (
+                    "run_direct_scaling.py",
+                    "run_direct_scaling_xxl10_remaining9.py",
+                    "run_direct_scaling_xxl10_remaining8.py",
+                )
             )
             if name.startswith("gurobi") or worker:
                 found.append({"pid": process.info["pid"], "name": name, "cmdline": process.info.get("cmdline") or []})
@@ -82,7 +87,7 @@ def unexpected_git_entries(entries: list[str], output: Path) -> list[str]:
     unexpected = []
     for line in entries:
         path = line[3:].replace("\\", "/")
-        if path == AUDIT_PATH or path.startswith((output_prefix, *HISTORICAL_PREFIXES)):
+        if path in {AUDIT_PATH, "artifacts/direct_scaling_xxl10_remaining8_readiness_audit.json"} or path.startswith((output_prefix, *HISTORICAL_PREFIXES)):
             continue
         unexpected.append(line)
     return unexpected
@@ -390,8 +395,12 @@ def classify_completed_result(result: dict, monitor: dict) -> str:
     status = result.get("solver_status")
     if status == "OPTIMAL" and result.get("exact_certification") is True and result.get("certification_status") == "PASS":
         return "CERTIFIED_SUCCESS"
-    if status == "TIME_LIMIT" and result.get("exact_certification") is False and result.get("certification_status") == "NOT_ATTEMPTED" and all(result.get(key) is not None for key in ("objective", "best_bound", "mip_gap")):
-        return "TIME_LIMIT"
+    if status == "TIME_LIMIT" and result.get("exact_certification") is False and result.get("certification_status") == "NOT_ATTEMPTED":
+        progress = [result.get(key) for key in ("objective", "best_bound", "mip_gap")]
+        if all(value is not None for value in progress):
+            return "TIME_LIMIT_WITH_INCUMBENT"
+        if all(value is None for value in progress):
+            return "TIME_LIMIT_NO_INCUMBENT"
     if status == "MEMORY_LIMIT" and result.get("exact_certification") is False:
         return "RESOURCE_LIMIT"
     return "INTEGRITY_FAILURE"

@@ -54,6 +54,7 @@ artifacts/*
 !artifacts/direct_scaling_xxl10_preparation_audit.json
 !artifacts/direct_scaling_xxl10_attempt002_recovery_audit.json
 !artifacts/direct_scaling_xxl10_remaining9_readiness_audit.json
+!artifacts/direct_scaling_xxl10_remaining8_readiness_audit.json
 !artifacts/basic_benders_scaling_preparation_audit.json
 !artifacts/basic_benders_scaling_result_matrix_template.csv
 !artifacts/basic_benders_l10_pilot_audit.json

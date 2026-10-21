@@ -21,7 +21,7 @@ def test_protocol_is_closed_scoped_and_byte_equivalent_to_pilot_settings():
     config = batch.runner.load_config(batch.DEFAULT_CONFIG)
     pilot = batch.runner.load_config(batch.PILOT_CONFIG)
     batch.validate_protocol(config)
-    assert config["formal_run_authorized"] is False
+    assert config["formal_run_authorized"] is True
     assert config["authorized_condition_ids"] == batch.EXPECTED
     assert config["fixed_scientific_parameters"] == pilot["fixed_scientific_parameters"]
     assert config["solver_parameters"] == pilot["solver_parameters"]
@@ -51,25 +51,21 @@ def test_pilot_is_preserved_as_time_limited_not_certified():
     assert pilot["file_sha256"]["worker_logs/DIRECT_XXL10_S20260921/attempt-002/resource_monitor.json"] == "3fdd9d36f51aef716769c05be22abcf970ab35b9f6aeb3553bcf254a7f0f1c53"
 
 
-def test_all_nine_frozen_and_paired_identities_pass(monkeypatch):
+def test_all_nine_frozen_and_paired_identities_pass(monkeypatch, tmp_path):
     _stable_live(monkeypatch)
-    dry = batch.build_dry_run()
-    assert dry["decision"] == "READY_FOR_AUTHORIZATION"
-    assert len(dry["conditions"]) == 9
-    assert all(all(row["identity_checks"].values()) for row in dry["conditions"])
-    assert all(all(row["paired_identity_checks"].values()) for row in dry["conditions"])
-    assert all(row["next_attempt"] == "attempt-001" for row in dry["conditions"])
-    assert all(row["attempt_state_valid"] and row["canonical_absent"] for row in dry["conditions"])
-    assert dry["optimization_calls"] == 0
-    assert dry["baseline_archives"]["pass"] is True
-    assert len(dry["baseline_archives"]["records"]) == 30
+    config = batch.runner.load_config(batch.DEFAULT_CONFIG)
+    rows = [batch.condition_audit(config, row, tmp_path) for row in batch.runner.authorized_conditions(config)]
+    assert len(rows) == 9
+    assert all(all(row["identity_checks"].values()) for row in rows)
+    assert all(all(row["paired_identity_checks"].values()) for row in rows)
 
 
 @pytest.mark.parametrize(
     ("result", "expected"),
     [
         ({"solver_status": "OPTIMAL", "exact_certification": True, "certification_status": "PASS"}, "CERTIFIED_SUCCESS"),
-        ({"solver_status": "TIME_LIMIT", "exact_certification": False, "certification_status": "NOT_ATTEMPTED", "objective": 2.0, "best_bound": 1.9, "mip_gap": 0.05}, "TIME_LIMIT"),
+        ({"solver_status": "TIME_LIMIT", "exact_certification": False, "certification_status": "NOT_ATTEMPTED", "objective": 2.0, "best_bound": 1.9, "mip_gap": 0.05}, "TIME_LIMIT_WITH_INCUMBENT"),
+        ({"solver_status": "TIME_LIMIT", "exact_certification": False, "certification_status": "NOT_ATTEMPTED", "objective": None, "best_bound": None, "mip_gap": None}, "TIME_LIMIT_NO_INCUMBENT"),
         ({"solver_status": "MEMORY_LIMIT", "exact_certification": False}, "RESOURCE_LIMIT"),
         ({"solver_status": "OPTIMAL", "exact_certification": False, "certification_status": "OBJECTIVE_RESIDUAL_FAILURE"}, "INTEGRITY_FAILURE"),
         ({"solver_status": "OTHER", "exact_certification": False}, "INTEGRITY_FAILURE"),
@@ -80,7 +76,7 @@ def test_completed_result_classification_is_fail_closed(result, expected):
     assert batch.classify_completed_result(result, monitor) == expected
 
 
-def test_time_limit_requires_feasible_progress_and_clean_worker():
+def test_time_limit_requires_consistent_progress_fields_and_clean_worker():
     result = {"solver_status": "TIME_LIMIT", "exact_certification": False, "certification_status": "NOT_ATTEMPTED", "objective": 2.0, "best_bound": None, "mip_gap": None}
     assert batch.classify_completed_result(result, {"worker_return_code": 0, "stop_reason": None}) == "INTEGRITY_FAILURE"
     result.update({"best_bound": 1.0, "mip_gap": 0.5})
@@ -141,9 +137,9 @@ def test_parent_launches_wrapper_worker_not_core_worker(monkeypatch, tmp_path):
     batch.run_one(batch.DEFAULT_CONFIG, config, condition, tmp_path)
 
 
-def test_execute_refuses_before_any_worker_launch(monkeypatch):
+def test_completed_batch_cannot_launch_a_duplicate_worker(monkeypatch):
     monkeypatch.setattr(batch, "run_one", lambda *_args: pytest.fail("optimization must not launch"))
-    with pytest.raises(RuntimeError, match="FORMAL_DIRECT_EXECUTION_NOT_AUTHORIZED"):
+    with pytest.raises(RuntimeError, match="DIRECT_XXL10_REMAINING9_BLOCKED"):
         batch.execute_batch()
 
 
