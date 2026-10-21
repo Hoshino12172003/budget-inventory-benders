@@ -3,7 +3,7 @@
   "experiment_id": "DIRECT_SCALING_XXL10_REMAINING9_DEVELOPMENT_V1",
   "resource_protocol_id": "DIRECT_XXL10_REMAINING9_V1_METHOD2_THREADS2",
   "derived_from_resource_protocol_id": "DIRECT_XXL10_PAIRED_PILOT_V1_METHOD2_THREADS2",
-  "formal_run_authorized": false,
+  "formal_run_authorized": true,
   "authorized_condition_ids": [
     "DIRECT_XXL10_S20260922", "DIRECT_XXL10_S20260923", "DIRECT_XXL10_S20260924",
     "DIRECT_XXL10_S20260925", "DIRECT_XXL10_S20260926", "DIRECT_XXL10_S20260927",
