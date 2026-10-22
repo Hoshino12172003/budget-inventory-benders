@@ -1,0 +1,20 @@
+{
+  "condition_id": "DIRECT_XXL10_S20260926",
+  "attempt": "attempt-001",
+  "resource_protocol_id": "DIRECT_XXL10_REMAINING8_RECOVERY_V1_METHOD2_THREADS2",
+  "preflight": {
+    "available_memory_gib": 18.137222290039062,
+    "startup_required_gib": 16,
+    "process_tree_cap_gib": 13,
+    "system_available_floor_gib": 3,
+    "free_disk_gib": 245.92470169067383,
+    "minimum_free_disk_gib": 20,
+    "time_limit_seconds": 900,
+    "monitor_interval_seconds": 0.25
+  },
+  "sample_count": 3449,
+  "peak_process_tree_memory_gib": 10.230854034423828,
+  "wall_clock_seconds": 911.1033497999888,
+  "stop_reason": null,
+  "worker_return_code": 0
+}

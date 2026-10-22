@@ -1,0 +1,36 @@
+{
+  "condition_id": "EF_XXL10_S20260927",
+  "attempt": "attempt-001",
+  "code_commit": "7a9dcd555d98ed4f49346254c4fe0ca5f392dfa9",
+  "config_sha256": "31e7334f7ea6861502ac1fa92d9cb39f503ee646bac97a8ef278ebbc3562f69b",
+  "config_hash": "05ce0d405fd48c6effe627ee4758464675919f0a2122ed30ed4453d9f7ce5302",
+  "model_identity": {
+    "sha256": "ff6364b407d294ee4a1720d4ed7eb66f536d9f4d4874ea29f4088a09b8ef36ab",
+    "files": {
+      "experiments/run_ef_benders_scaling.py": "5a8c017816712e4d5f02f8bc7ed0b0050dac491225a39f5b82b7fb7cee285415",
+      "src/robust_inventory_reconfiguration/extensive_form_benders.py": "e22d214b75ccb2d0cb53fffe59e5850e50fadc20202f4fef27fa3aaff29e6e4d",
+      "src/robust_inventory_reconfiguration/pure_benders.py": "5e29839964dedf292e32dd471bab7ea4fbf782a8d0ff2470f861e664174c97fd",
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+      "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+    }
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.7",
+    "python_executable": "C:\\Program Files\\Python312\\python.exe",
+    "gurobipy_version": "13.0.1",
+    "gurobi_native_version": [
+      13,
+      0,
+      1
+    ],
+    "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+  },
+  "instance_hash": "5a945d25c347b2b7dd75a586fa9ae2a90fb1b291efabb78f5efb9f1d0ee35c07",
+  "x0_hash": "ef4ab13b4c4a46a0216ac17c0027265301ef2893f014d1dcc6a9b96c561a60a8",
+  "instance_sha256": "df8e2aafa9abd31df71208191e2067cf3e9e0f677187f01c5b01b5a82bc70cf3",
+  "preparation_sha256": "ada567056865550c6d59d91e18ba75a3808a3acc8f0245a06ae67fc5c07a5b06",
+  "result_sha256": "68ec69310aaef7c39a7a82c7ae77792e0835ceac4faa858100d46c61d2a57029",
+  "trajectory_sha256": "48fe11c14fc4bd8710af24d323a5a01145b89fa747f3da418dce6d31a7f66744",
+  "first_stage_sha256": "d31d33836af6d5268fde6f187de669f1cdde07110cda0fcc3f995a04af78ed69"
+}

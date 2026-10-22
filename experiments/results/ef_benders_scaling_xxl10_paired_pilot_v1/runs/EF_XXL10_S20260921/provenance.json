@@ -1,0 +1,36 @@
+{
+  "condition_id": "EF_XXL10_S20260921",
+  "attempt": "attempt-001",
+  "code_commit": "e72746b66ba6eb3c30810fe4d64dbd4b91b852b7",
+  "config_sha256": "ce23a03b822d2407035f704311a65740d167086397619e46ab65606a1d02cad1",
+  "config_hash": "ac04c8367ec3ce52f7b926224bb6b96a0e2c7623acb7cdd88fdcf45e64ca3391",
+  "model_identity": {
+    "sha256": "362f7733c7b5f1bd5da2e46e82f29011d22d8a8a6b13fe2f6f302575217af803",
+    "files": {
+      "experiments/run_ef_benders_scaling.py": "629313e545368b029114e7d8610617d8cb916778e771b37609cab40c1ac23ef0",
+      "src/robust_inventory_reconfiguration/extensive_form_benders.py": "e22d214b75ccb2d0cb53fffe59e5850e50fadc20202f4fef27fa3aaff29e6e4d",
+      "src/robust_inventory_reconfiguration/pure_benders.py": "5e29839964dedf292e32dd471bab7ea4fbf782a8d0ff2470f861e664174c97fd",
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+      "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+    }
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.7",
+    "python_executable": "C:\\Program Files\\Python312\\python.exe",
+    "gurobipy_version": "13.0.1",
+    "gurobi_native_version": [
+      13,
+      0,
+      1
+    ],
+    "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+  },
+  "instance_hash": "81739c07edea3babcb62bbaf91ac6ac37eb13c3201052071c5610c4e8a328f94",
+  "x0_hash": "65813dd3712757d9e6f4fa742525041ea32667b6ded2afda8096b1665aedda03",
+  "instance_sha256": "2ebc009d6f00065ecd948070210075b715154257d17c1701acf1b937b821088f",
+  "preparation_sha256": "17030da831a58cecce755bade73b245b4cdc8db18ebb1f4d5b4171e1e01ca39a",
+  "result_sha256": "c8bcc33ee838239c76820dcc27361de3054ebd6f7a3143f4fa8b3c5a8480fd5b",
+  "trajectory_sha256": "9f2c9893a05513f4954f5d63e06a8260decea184dbd03bdf2346fc639db7cf02",
+  "first_stage_sha256": "7053ef7639f979b00e839e13e69ecbc873b40da9e9dc387c906057c1e44b33d8"
+}
