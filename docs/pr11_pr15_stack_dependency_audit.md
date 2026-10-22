@@ -13,7 +13,7 @@ The verified dependency chain is:
 
 `main` → PR #11 → PR #12 → PR #13 → PR #14 → PR #15.
 
-PR #15 now targets `codex/direct-scaling-experiment-preparation` and remains a Draft PR. Relative to that remote base it contains exactly **106 commits** and **1,854 changed files**. The file distribution is:
+PR #15 now targets `codex/direct-scaling-experiment-preparation` and remains a Draft PR. The underlying experiment/archive history contains exactly **106 commits** and **1,854 changed files** relative to that remote base. The two additive audit-document commits created by this task bring the final PR comparison to **108 commits** and **1,855 changed files**. The final file distribution is:
 
 | Area | Files |
 |---|---:|
@@ -21,7 +21,7 @@ PR #15 now targets `codex/direct-scaling-experiment-preparation` and remains a D
 | `artifacts/` | 53 |
 | `scripts/` | 36 |
 | `tests/` | 28 |
-| `docs/` | 27 |
+| `docs/` | 28 |
 | `src/` | 6 |
 | `.gitattributes` / `.gitignore` | 2 |
 
@@ -86,7 +86,7 @@ All 1,650 result-tree changes in the PR #15 comparison are additions. No result 
 ### PR #15
 
 - GitHub state: Draft, mergeable, clean after rebasing the review base only; branch history was not rewritten.
-- Exact comparison against the PR #14 remote head: 106 commits, 1,854 files, 745,114 insertions, and 86 deletions. Result-tree changes are additions only.
+- Final comparison against the PR #14 remote head: 108 commits and 1,855 files, including the two additive audit-document commits. The pre-audit experiment/archive delta was 106 commits and 1,854 files. Result-tree changes are additions only.
 - The four-method XXL10 archive contains 40/40 seed-method records. Direct remains 3/10 exact-certified; EF-BD, Aggregate-BD, and PRB-BD remain 10/10 exact-certified.
 - The Direct three-stage history, seed-20260922 post-hoc timeout classification, and seed-20260927 monitor hard-timeout evidence remain preserved.
 - PR #15-specific regression coverage passes. It is suitable for Draft review, but it must not be merged before PR #11–#14 are merged in order and the execution-gate blockers above are resolved.
