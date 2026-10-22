@@ -14,6 +14,7 @@ from datetime import datetime, timezone
 from decimal import Decimal
 from functools import lru_cache
 from pathlib import Path
+from robust_inventory_reconfiguration.formal_execution_freeze import require_protocol_not_frozen
 from uuid import uuid4
 
 
@@ -732,6 +733,7 @@ def write_run(result: dict, first_stage, output_root: Path, manifest: dict) -> N
 
 
 def validate_execution_gate(condition: Condition, output_root: Path) -> tuple[dict, dict[str, str]]:
+    require_protocol_not_frozen(ROOT, MANIFEST)
     manifest = load_manifest()
     validate_manifest(manifest)
     validate_static_audit(manifest)

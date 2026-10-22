@@ -10,6 +10,7 @@ import subprocess
 from datetime import datetime, timezone
 from decimal import Decimal
 from pathlib import Path
+from robust_inventory_reconfiguration.formal_execution_freeze import require_protocol_not_frozen
 from uuid import uuid4
 
 from robust_inventory_reconfiguration.first_stage_solution import (
@@ -183,6 +184,7 @@ def validate_b100_reuse(case: str, manifest: dict, identity: dict[str, str]) -> 
 
 
 def validate_gate(case: str, beta: Decimal, output_root: Path = RESULT_ROOT) -> tuple[dict, dict[str, str]]:
+    require_protocol_not_frozen(ROOT, MANIFEST)
     manifest = load_manifest()
     validate_manifest(manifest)
     run_id = make_run_id(case, beta)

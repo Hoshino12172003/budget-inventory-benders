@@ -10,6 +10,7 @@ import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
+from robust_inventory_reconfiguration.formal_execution_freeze import require_protocol_not_frozen
 from time import perf_counter
 from uuid import uuid4
 
@@ -462,6 +463,8 @@ def classify_output_state(
 
 
 def validate_execution_gate(condition: Condition, output_root: Path = RESULT_ROOT) -> tuple[dict, dict[str, str]]:
+    require_protocol_not_frozen(ROOT, MANIFEST)
+    require_protocol_not_frozen(ROOT, AUTHORIZATION_RECORD)
     manifest = load_manifest()
     validate_manifest(manifest)
     validate_authorization_record(manifest)
