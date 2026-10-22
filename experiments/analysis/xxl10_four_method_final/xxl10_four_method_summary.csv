@@ -1,0 +1,5 @@
+﻿method,scheduled_n,executed_n,exact_certified_n,exact_certification_rate,time_or_monitor_limited_n,mean_core_time_certified_seconds,mean_oracle_time_certified_seconds
+Direct,10,10,3,0.3,7,901.6943744667806,
+EF-BD,10,10,10,1.0,0,342.66759593002496,134.39108183004427
+Aggregate-BD,10,10,10,1.0,0,227.06517278997927,161.51925137999933
+PRB-BD,10,10,10,1.0,0,143.3404476800002,79.66762821997982

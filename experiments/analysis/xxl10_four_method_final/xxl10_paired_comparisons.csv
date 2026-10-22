@@ -1,0 +1,7 @@
+﻿baseline,comparator,paired_n,geometric_mean_baseline_over_comparator,comparator_wins,baseline_wins,ties,wilcoxon_statistic,wilcoxon_two_sided_p
+Direct,EF-BD,3,2.5622471755052283,3,0,0,0.0,0.25
+Direct,Aggregate-BD,3,3.908670887487978,3,0,0,0.0,0.25
+Direct,PRB-BD,3,6.299011459431882,3,0,0,0.0,0.25
+EF-BD,Aggregate-BD,10,1.503265759161734,10,0,0,0.0,0.001953125
+EF-BD,PRB-BD,10,2.3753233108374907,10,0,0,0.0,0.001953125
+Aggregate-BD,PRB-BD,10,1.5801087042400555,10,0,0,0.0,0.001953125
