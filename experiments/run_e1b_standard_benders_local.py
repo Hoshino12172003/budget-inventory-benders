@@ -16,6 +16,7 @@ from robust_inventory_reconfiguration.first_stage_solution import (
     build_first_stage_solution_artifact,
     write_first_stage_solution_artifact,
 )
+from robust_inventory_reconfiguration.formal_execution_freeze import require_protocol_not_frozen
 from robust_inventory_reconfiguration.instance import load_instance
 from robust_inventory_reconfiguration.renault_empirical import (
     CASES,
@@ -75,6 +76,7 @@ def validate_execution_gate(
     manifest = _read_json(AUTHORIZATION)
     if manifest.get("formal_run_authorized") is not True:
         raise PermissionError("E1B_STANDARD_BENDERS_FORMAL_RUN_NOT_AUTHORIZED")
+    require_protocol_not_frozen(ROOT, AUTHORIZATION)
     if manifest.get("dataset_id") != DATASET_ID:
         raise RuntimeError("E1b dataset identity mismatch")
     run_id = f"E1B-{case_id}-STANDARD"

@@ -6,6 +6,7 @@ import hashlib
 import json
 import subprocess
 from pathlib import Path
+from robust_inventory_reconfiguration.formal_execution_freeze import require_protocol_not_frozen
 
 from robust_inventory_reconfiguration.first_stage_solution import load_first_stage_solution_artifact, matrix_from_artifact
 from robust_inventory_reconfiguration.instance import load_instance
@@ -25,6 +26,7 @@ def sha256(path: Path) -> str:
 
 
 def validate_gate(case: str, policy: str, output_root: Path) -> tuple[dict, dict]:
+    require_protocol_not_frozen(ROOT, MANIFEST)
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     run_id = f"E2-{case}-{policy}"
     if manifest.get("formal_run_authorized") is not True or run_id not in manifest.get("authorized_run_ids", []):

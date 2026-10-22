@@ -10,6 +10,7 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from robust_inventory_reconfiguration.formal_execution_freeze import require_protocol_not_frozen
 from uuid import uuid4
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -221,6 +222,7 @@ def ensure_output_absent(path: Path) -> None:
 
 
 def validate_gate(case: str, token: str, output_root: Path = RESULT_ROOT) -> tuple[dict, dict[str, str]]:
+    require_protocol_not_frozen(ROOT, MANIFEST)
     manifest = load_manifest()
     validate_manifest(manifest)
     run_id = make_run_id(case, token)

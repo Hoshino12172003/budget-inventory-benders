@@ -1,0 +1,31 @@
+{
+  "schema": "e1b_frozen_identity_reconciliation_v1",
+  "status": "HISTORICAL_BLOBS_VERIFIED",
+  "entries": {
+    "standard_implementation_sha256": {
+      "path": "src/robust_inventory_reconfiguration/standard_benders.py",
+      "commit": "014f3dc833d227c4c88791fcc0072530f471c11b",
+      "sha256": "e99b3e1edb1820120aead5fecf0611c2f82eb14775177ccd3099e5a47e992eac"
+    },
+    "runner_sha256": {
+      "path": "experiments/run_e1b_standard_benders_local.py",
+      "commit": "014f3dc833d227c4c88791fcc0072530f471c11b",
+      "sha256": "c28e8cf95cef0838fe28b216caf15e4b7d6174cae3b8683ed6f20575f04defeb"
+    },
+    "result_schema_sha256": {
+      "path": "experiments/schemas/e1b_standard_result.schema.json",
+      "commit": "014f3dc833d227c4c88791fcc0072530f471c11b",
+      "sha256": "a82136e4625ea738bb39435d5c5c2774f54fa5aa9a32c27b782d3fcd991b120d"
+    },
+    "protocol_sha256": {
+      "path": "docs/e1b_standard_benders_protocol.md",
+      "commit": "014f3dc833d227c4c88791fcc0072530f471c11b",
+      "sha256": "c62342e0e9c4d36bdf831dbe614ff4253c607eaf3c6c8e9c52917a85d4ed8ccd"
+    },
+    "baseline_audit_sha256": {
+      "path": "docs/e1b_standard_benders_baseline_audit.md",
+      "commit": "b2504a3e2cc2df6ad7a72eb8f002f3113f92d5ae",
+      "sha256": "d521aa8c71e1ee520d3f04bacb5d320dbc70b10572f1f96d21cc610d07174207"
+    }
+  }
+}

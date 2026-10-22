@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any
 
 from robust_inventory_reconfiguration.exact_benchmark import _extract_solution
+from robust_inventory_reconfiguration.formal_execution_freeze import require_protocol_not_frozen
 from robust_inventory_reconfiguration.formal_acceptance import (
     AUTHORIZED_RUN_IDS,
     acceptance_output_path,
@@ -207,6 +208,7 @@ def write_json(path: Path, value: Any) -> None:
 
 
 def main() -> None:
+    require_protocol_not_frozen(ROOT, MANIFEST)
     manifest = load_formal_config(MANIFEST)
     validate_acceptance_manifest(manifest)
     output = acceptance_output_path(ROOT, manifest)

@@ -16,6 +16,7 @@ from robust_inventory_reconfiguration.first_stage_solution import (
     build_first_stage_solution_artifact,
     write_first_stage_solution_artifact,
 )
+from robust_inventory_reconfiguration.formal_execution_freeze import require_protocol_not_frozen
 from robust_inventory_reconfiguration.instance import load_instance
 from robust_inventory_reconfiguration.pure_benders import (
     PureBendersTimeout,
@@ -71,6 +72,7 @@ def validate_execution_gate(case_id: str, output_root: Path = DEFAULT_OUTPUT_ROO
     manifest = _read_json(AUTHORIZATION)
     if manifest.get("formal_run_authorized") is not True:
         raise PermissionError("E1B_PURE_BENDERS_FORMAL_RUN_NOT_AUTHORIZED")
+    require_protocol_not_frozen(ROOT, AUTHORIZATION)
     run_id = f"E1B-{case_id}-PURE"
     if run_id not in manifest.get("authorized_pure_run_ids", []):
         raise PermissionError(f"run is not authorized: {run_id}")
