@@ -11,6 +11,7 @@ from time import perf_counter
 from typing import Any
 
 from robust_inventory_reconfiguration.exact_benchmark import solve_exact_benchmark
+from robust_inventory_reconfiguration.formal_execution_freeze import require_protocol_not_frozen
 from robust_inventory_reconfiguration.first_stage_solution import (
     build_first_stage_solution_artifact, write_first_stage_solution_artifact,
 )
@@ -45,6 +46,7 @@ def validate_execution_gate(
 ) -> tuple[dict[str, Any], dict[str, str]]:
     if case_id not in CASES or method not in METHODS:
         raise RuntimeError("run is outside the frozen E1 empirical contract")
+    require_protocol_not_frozen(ROOT, AUTHORIZATION)
     manifest = json.loads(AUTHORIZATION.read_text(encoding="utf-8"))
     if manifest.get("dataset_id") != DATASET_ID or manifest.get("formal_run_authorized") is not True:
         raise PermissionError("E1_EMPIRICAL_8CASE_FORMAL_RUN_NOT_AUTHORIZED")

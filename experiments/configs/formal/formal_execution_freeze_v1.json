@@ -1,0 +1,21 @@
+{
+  "schema": "formal_execution_freeze_v1",
+  "status": "EXECUTION_REVOKED",
+  "effective_date": "2026-10-22",
+  "reason": "Completed historical formal protocols are immutable evidence and must not be reused for new optimization attempts.",
+  "future_execution_rule": "A future run requires a new versioned protocol and a new explicit authorization; historical authorization files cannot be reactivated.",
+  "revoked_config_paths": [
+    "experiments/configs/e7_risk_friction_interaction_v1.json",
+    "experiments/configs/formal_acceptance_batch_1.yaml",
+    "experiments/configs/formal/e1_empirical_8case_authorization.json",
+    "experiments/configs/formal/e1b_pure_benders_authorization.json",
+    "experiments/configs/formal/e1b_standard_vs_prb_authorization.json",
+    "experiments/configs/formal/e2_existing_nominal_robust_authorization.json",
+    "experiments/configs/formal/e3_budget_sensitivity_authorization.json",
+    "experiments/configs/formal/e4_gamma_sensitivity_authorization.json",
+    "experiments/configs/formal/e5_reconfiguration_friction_authorization.json",
+    "experiments/configs/formal/e6_budget_risk_interaction_authorization.json",
+    "experiments/configs/formal/e7_risk_friction_interaction_authorization.json",
+    "experiments/configs/formal/service_calibration_robustness_formal.yaml"
+  ]
+}
