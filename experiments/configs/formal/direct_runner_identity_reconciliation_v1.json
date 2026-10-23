@@ -1,0 +1,9 @@
+{
+  "schema": "direct_runner_identity_reconciliation_v1",
+  "status": "HISTORICAL_BLOB_PRESERVED_CURRENT_SAFETY_PATCHED",
+  "path": "experiments/run_direct_scaling.py",
+  "historical_execution_commit": "3d4bcd10d837d3425a76ecaf54162a1e4a57e26b",
+  "historical_sha256": "fef8019f9aa9be1d2942a5d3aad363c2c3c28929e52cc02b359d1626a1880edd",
+  "current_change_scope": "Execution-only revocation gate; no mathematical model, solver parameter, instance, tolerance, or result modification.",
+  "rule": "Historical provenance continues to resolve the frozen blob. Completed protocols use the current fail-closed runner and cannot be reactivated."
+}

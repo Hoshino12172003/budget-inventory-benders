@@ -6,7 +6,11 @@
   "future_execution_rule": "A future run requires a new versioned protocol and a new explicit authorization; historical authorization files cannot be reactivated.",
   "revoked_experiment_ids": [
     "ALGORITHM_SCALING_CONVERGENCE_COST_V1",
-    "ALGORITHM_SCALING_CONVERGENCE_COST_V2_REPAIRED_GUARD"
+    "ALGORITHM_SCALING_CONVERGENCE_COST_V2_REPAIRED_GUARD",
+    "DIRECT_SCALING_EXTENSION_V1",
+    "DIRECT_EF_PAIRED_XXL10_DEVELOPMENT_V1",
+    "DIRECT_SCALING_XXL10_REMAINING8_RECOVERY_V1",
+    "DIRECT_SCALING_XXL10_REMAINING9_DEVELOPMENT_V1"
   ],
   "revoked_config_paths": [
     "experiments/configs/e7_risk_friction_interaction_v1.json",
@@ -22,6 +26,16 @@
     "experiments/configs/formal/e7_risk_friction_interaction_authorization.json",
     "experiments/configs/formal/service_calibration_robustness_formal.yaml",
     "experiments/configs/formal/algorithm_scaling_convergence_cost.yaml",
-    "experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml"
+    "experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+    "experiments/configs/formal/direct_scaling_l10_remaining9_v1.yaml",
+    "experiments/configs/formal/direct_scaling_l10_resource_retry_v2.yaml",
+    "experiments/configs/formal/direct_scaling_xl10_all10_v1.yaml",
+    "experiments/configs/formal/direct_scaling_xl10_low_memory_candidate_v1.yaml",
+    "experiments/configs/formal/direct_scaling_xl10_pilot_v1.yaml",
+    "experiments/configs/formal/direct_scaling_xl10_remaining7_8gib_v1.yaml",
+    "experiments/configs/formal/direct_scaling_xl10_remaining9_v1.yaml",
+    "experiments/configs/development/direct_scaling_xxl10_paired_pilot_v1.yaml",
+    "experiments/configs/development/direct_scaling_xxl10_remaining8_v1.yaml",
+    "experiments/configs/development/direct_scaling_xxl10_remaining9_v1.yaml"
   ]
 }

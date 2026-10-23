@@ -18,6 +18,10 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from robust_inventory_reconfiguration.algorithm_scaling import canonical_hash, file_sha256
 from robust_inventory_reconfiguration.first_stage_solution import build_first_stage_solution_artifact
+from robust_inventory_reconfiguration.formal_execution_freeze import (
+    experiment_is_frozen,
+    require_experiment_not_frozen,
+)
 from robust_inventory_reconfiguration.instance import load_instance
 from robust_inventory_reconfiguration.product_risk_subproblem import ProductRiskSubproblem
 from robust_inventory_reconfiguration.reconfiguration_model import (
@@ -117,6 +121,7 @@ def validate_execution_gate(config: dict, condition: dict, output_root: Path) ->
         freeze = load_config(freeze_control)
         if freeze.get("execution_closed") is True:
             raise RuntimeError(f"DIRECT_SCALE_FROZEN: {condition['size']}")
+    require_experiment_not_frozen(ROOT, config["experiment_id"])
     configured_output = (ROOT / config["output_directory"]).resolve()
     if output_root.resolve() != configured_output:
         raise RuntimeError(f"DIRECT_OUTPUT_ROOT_MISMATCH: {output_root} != {configured_output}")
@@ -558,7 +563,8 @@ def main() -> None:
             "optimization_calls": 0,
             "configured_conditions": len(grid),
             "formal_run_authorized": config["formal_run_authorized"],
-            "formal_execution_permitted": config["formal_run_authorized"] is True and environment["pass"],
+            "formal_execution_permitted": config["formal_run_authorized"] is True and environment["pass"] and not experiment_is_frozen(ROOT, config["experiment_id"]),
+            "historical_execution_frozen": experiment_is_frozen(ROOT, config["experiment_id"]),
             "authorized_conditions": [row["condition_id"] for row in authorized],
             "next_attempts": {
                 row["condition_id"]: f"attempt-{next_attempt_number(output_root, row['condition_id']):03d}"
