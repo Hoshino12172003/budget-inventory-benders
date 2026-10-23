@@ -143,8 +143,19 @@ def test_no_legacy_baseline_execution_dependency() -> None:
 
 
 def test_unauthorized_execution_is_blocked() -> None:
-    with pytest.raises(PermissionError, match="SERVICE_CALIBRATION_FORMAL_RUN_NOT_AUTHORIZED"):
-        require_formal_authorization(config())
+    with pytest.raises(PermissionError, match="FORMAL_PROTOCOL_FROZEN"):
+        __import__("experiments.run_service_calibration_robustness", fromlist=["validate_execution_gate"]).validate_execution_gate(config())
+
+
+def test_direct_solver_entry_is_blocked_before_optimizer(monkeypatch) -> None:
+    runner = __import__("experiments.run_service_calibration_robustness", fromlist=["solve_condition"])
+    monkeypatch.setattr(
+        runner,
+        "solve_prb_benders",
+        lambda *args, **kwargs: (_ for _ in ()).throw(AssertionError("optimizer invoked")),
+    )
+    with pytest.raises(PermissionError, match="FORMAL_PROTOCOL_FROZEN"):
+        runner.solve_condition(enumerate_conditions()[0], config())
 
 
 def test_authorized_config_still_enumerates_exactly_40_solves() -> None:

@@ -29,6 +29,7 @@ def test_exact_sixteen_run_authorization_and_exclusions() -> None:
 
 def test_runner_accepts_one_frozen_run_without_solving(monkeypatch, tmp_path) -> None:
     monkeypatch.setattr(runner.subprocess, "check_output", _clean_git)
+    monkeypatch.setattr(runner, "require_protocol_not_frozen", lambda *args: None)
     manifest, identity = runner.validate_execution_gate("210202", "direct", tmp_path)
     assert manifest["formal_run_authorized"] is True
     assert identity["case"] == "210202"
@@ -36,6 +37,7 @@ def test_runner_accepts_one_frozen_run_without_solving(monkeypatch, tmp_path) ->
 
 def test_runner_blocks_wrong_identity_hash(monkeypatch, tmp_path) -> None:
     monkeypatch.setattr(runner.subprocess, "check_output", _clean_git)
+    monkeypatch.setattr(runner, "require_protocol_not_frozen", lambda *args: None)
     original = runner._identity("210202")
     monkeypatch.setattr(runner, "_identity", lambda case_id: {**original, "instance_hash": "wrong"})
     with pytest.raises(RuntimeError, match="instance_hash mismatch"):
@@ -44,6 +46,7 @@ def test_runner_blocks_wrong_identity_hash(monkeypatch, tmp_path) -> None:
 
 def test_runner_blocks_existing_output(monkeypatch, tmp_path) -> None:
     monkeypatch.setattr(runner.subprocess, "check_output", _clean_git)
+    monkeypatch.setattr(runner, "require_protocol_not_frozen", lambda *args: None)
     (tmp_path / "E1-210202-DIRECT").mkdir()
     with pytest.raises(FileExistsError, match="refusing to overwrite"):
         runner.validate_execution_gate("210202", "direct", tmp_path)
