@@ -1,0 +1,129 @@
+{
+  "condition_id": "A_PRB_RENAULT_210129",
+  "elapsed_seconds": 6.577974200015888,
+  "peak_process_tree_rss_gib": 0.16517257690429688,
+  "return_code": 0,
+  "samples": [
+    {
+      "available_memory_gib": 16.796661376953125,
+      "elapsed_seconds": 4.600035026669502e-06,
+      "process_tree_rss_gib": 0.004322052001953125
+    },
+    {
+      "available_memory_gib": 16.794544219970703,
+      "elapsed_seconds": 0.2711755000054836,
+      "process_tree_rss_gib": 0.02382659912109375
+    },
+    {
+      "available_memory_gib": 16.780174255371094,
+      "elapsed_seconds": 0.5432591000571847,
+      "process_tree_rss_gib": 0.037143707275390625
+    },
+    {
+      "available_memory_gib": 16.76183319091797,
+      "elapsed_seconds": 0.8112204000353813,
+      "process_tree_rss_gib": 0.055789947509765625
+    },
+    {
+      "available_memory_gib": 16.745582580566406,
+      "elapsed_seconds": 1.0808920001145452,
+      "process_tree_rss_gib": 0.07899856567382812
+    },
+    {
+      "available_memory_gib": 16.721294403076172,
+      "elapsed_seconds": 1.3568438000511378,
+      "process_tree_rss_gib": 0.102447509765625
+    },
+    {
+      "available_memory_gib": 16.69603729248047,
+      "elapsed_seconds": 1.6284708001185209,
+      "process_tree_rss_gib": 0.13020706176757812
+    },
+    {
+      "available_memory_gib": 16.67593002319336,
+      "elapsed_seconds": 1.9008183002006263,
+      "process_tree_rss_gib": 0.14422607421875
+    },
+    {
+      "available_memory_gib": 16.67177963256836,
+      "elapsed_seconds": 2.177955500083044,
+      "process_tree_rss_gib": 0.1469573974609375
+    },
+    {
+      "available_memory_gib": 16.67508316040039,
+      "elapsed_seconds": 2.4511471001897007,
+      "process_tree_rss_gib": 0.14553070068359375
+    },
+    {
+      "available_memory_gib": 16.675048828125,
+      "elapsed_seconds": 2.7291232000570744,
+      "process_tree_rss_gib": 0.14702224731445312
+    },
+    {
+      "available_memory_gib": 16.671249389648438,
+      "elapsed_seconds": 3.0077911000698805,
+      "process_tree_rss_gib": 0.14627838134765625
+    },
+    {
+      "available_memory_gib": 16.6785888671875,
+      "elapsed_seconds": 3.2816670001484454,
+      "process_tree_rss_gib": 0.1454925537109375
+    },
+    {
+      "available_memory_gib": 16.673873901367188,
+      "elapsed_seconds": 3.555978400167078,
+      "process_tree_rss_gib": 0.151611328125
+    },
+    {
+      "available_memory_gib": 16.669105529785156,
+      "elapsed_seconds": 3.8316737001296133,
+      "process_tree_rss_gib": 0.15852737426757812
+    },
+    {
+      "available_memory_gib": 16.664230346679688,
+      "elapsed_seconds": 4.110953800147399,
+      "process_tree_rss_gib": 0.15982437133789062
+    },
+    {
+      "available_memory_gib": 16.660926818847656,
+      "elapsed_seconds": 4.383704500040039,
+      "process_tree_rss_gib": 0.15921783447265625
+    },
+    {
+      "available_memory_gib": 16.662826538085938,
+      "elapsed_seconds": 4.665299399988726,
+      "process_tree_rss_gib": 0.16517257690429688
+    },
+    {
+      "available_memory_gib": 16.747879028320312,
+      "elapsed_seconds": 4.93383780005388,
+      "process_tree_rss_gib": 0.07684326171875
+    },
+    {
+      "available_memory_gib": 16.748306274414062,
+      "elapsed_seconds": 5.205611400073394,
+      "process_tree_rss_gib": 0.07686996459960938
+    },
+    {
+      "available_memory_gib": 16.75030517578125,
+      "elapsed_seconds": 5.477623400045559,
+      "process_tree_rss_gib": 0.07686996459960938
+    },
+    {
+      "available_memory_gib": 16.75078582763672,
+      "elapsed_seconds": 5.747146500041708,
+      "process_tree_rss_gib": 0.07686996459960938
+    },
+    {
+      "available_memory_gib": 16.75125503540039,
+      "elapsed_seconds": 6.022432200144976,
+      "process_tree_rss_gib": 0.07686996459960938
+    },
+    {
+      "available_memory_gib": 16.75445556640625,
+      "elapsed_seconds": 6.294719400117174,
+      "process_tree_rss_gib": 0.07603836059570312
+    }
+  ],
+  "stop_reason": null
+}

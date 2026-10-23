@@ -1,0 +1,113 @@
+{
+  "resource_protocol_id": "DIRECT_XL10_REMAINING7_8GIB_V1",
+  "denominator": 7,
+  "counts": {
+    "SUCCESS": 6,
+    "RESOURCE_OR_TIME_FAILURE": 1,
+    "INTEGRITY_FAILURE": 0,
+    "UNEXECUTED": 0,
+    "certified": 6,
+    "resource_failure": 1,
+    "time_failure": 0
+  },
+  "rows": [
+    {
+      "condition_id": "DIRECT_XL10_S20260924",
+      "attempt": "attempt-002",
+      "status": "RESOURCE_OR_TIME_FAILURE",
+      "solver_status": null,
+      "exact_certification": null,
+      "stop_reason": "RESOURCE_PROCESS_CAP",
+      "peak_process_tree_memory_gib": 8.289241790771484,
+      "wall_clock_seconds": 537.0170885999687,
+      "objective": null,
+      "best_bound": null,
+      "mip_gap": null,
+      "detail": "RuntimeError: Direct worker failed: DIRECT_XL10_S20260924: RESOURCE_PROCESS_CAP"
+    },
+    {
+      "condition_id": "DIRECT_XL10_S20260925",
+      "attempt": "attempt-001",
+      "status": "SUCCESS",
+      "solver_status": "OPTIMAL",
+      "exact_certification": true,
+      "stop_reason": null,
+      "peak_process_tree_memory_gib": 6.87261962890625,
+      "wall_clock_seconds": 501.2272637998685,
+      "objective": 2630213.231138081,
+      "best_bound": 2630213.231138081,
+      "mip_gap": 0.0,
+      "detail": ""
+    },
+    {
+      "condition_id": "DIRECT_XL10_S20260926",
+      "attempt": "attempt-001",
+      "status": "SUCCESS",
+      "solver_status": "OPTIMAL",
+      "exact_certification": true,
+      "stop_reason": null,
+      "peak_process_tree_memory_gib": 4.443412780761719,
+      "wall_clock_seconds": 708.5110899999272,
+      "objective": 2715332.325280839,
+      "best_bound": 2715332.3252808372,
+      "mip_gap": 6.859731797426707e-16,
+      "detail": ""
+    },
+    {
+      "condition_id": "DIRECT_XL10_S20260927",
+      "attempt": "attempt-001",
+      "status": "SUCCESS",
+      "solver_status": "OPTIMAL",
+      "exact_certification": true,
+      "stop_reason": null,
+      "peak_process_tree_memory_gib": 6.498100280761719,
+      "wall_clock_seconds": 343.33283400000073,
+      "objective": 2763461.335084839,
+      "best_bound": 2763461.335084839,
+      "mip_gap": 0.0,
+      "detail": ""
+    },
+    {
+      "condition_id": "DIRECT_XL10_S20260928",
+      "attempt": "attempt-001",
+      "status": "SUCCESS",
+      "solver_status": "OPTIMAL",
+      "exact_certification": true,
+      "stop_reason": null,
+      "peak_process_tree_memory_gib": 5.731243133544922,
+      "wall_clock_seconds": 390.6316715001594,
+      "objective": 3197847.8265760494,
+      "best_bound": 3197847.8265760494,
+      "mip_gap": 0.0,
+      "detail": ""
+    },
+    {
+      "condition_id": "DIRECT_XL10_S20260929",
+      "attempt": "attempt-001",
+      "status": "SUCCESS",
+      "solver_status": "OPTIMAL",
+      "exact_certification": true,
+      "stop_reason": null,
+      "peak_process_tree_memory_gib": 6.707538604736328,
+      "wall_clock_seconds": 481.97561180009507,
+      "objective": 3922194.045111007,
+      "best_bound": 3922194.045111007,
+      "mip_gap": 0.0,
+      "detail": ""
+    },
+    {
+      "condition_id": "DIRECT_XL10_S20260930",
+      "attempt": "attempt-001",
+      "status": "SUCCESS",
+      "solver_status": "OPTIMAL",
+      "exact_certification": true,
+      "stop_reason": null,
+      "peak_process_tree_memory_gib": 5.853115081787109,
+      "wall_clock_seconds": 361.28891590004787,
+      "objective": 2868739.2370715947,
+      "best_bound": 2868739.2370715947,
+      "mip_gap": 0.0,
+      "detail": ""
+    }
+  ]
+}

@@ -1,0 +1,4672 @@
+{
+  "schema_version": "1.0",
+  "case_id": "BASIC_L10_S20260921",
+  "mode": "basic_benders",
+  "dimensions": {
+    "depots": 25,
+    "products": 12,
+    "x_entries": 300
+  },
+  "depot_ids": [
+    "E1C_D000",
+    "E1C_D001",
+    "E1C_D002",
+    "E1C_D003",
+    "E1C_D004",
+    "E1C_D005",
+    "E1C_D006",
+    "E1C_D007",
+    "E1C_D008",
+    "E1C_D009",
+    "E1C_D010",
+    "E1C_D011",
+    "E1C_D012",
+    "E1C_D013",
+    "E1C_D014",
+    "E1C_D015",
+    "E1C_D016",
+    "E1C_D017",
+    "E1C_D018",
+    "E1C_D019",
+    "E1C_D020",
+    "E1C_D021",
+    "E1C_D022",
+    "E1C_D023",
+    "E1C_D024"
+  ],
+  "product_ids": [
+    "E1C_P000_FROM_CON-S-0130",
+    "E1C_P001_FROM_SLI---1200",
+    "E1C_P002_FROM_BAC-O-4325",
+    "E1C_P003_FROM_BAC-O-6433",
+    "E1C_P004_FROM_SLI---0770",
+    "E1C_P005_FROM_BAC-O-4312",
+    "E1C_P006_FROM_BAC---1041",
+    "E1C_P007_FROM_BAC-O-6423",
+    "E1C_P008_FROM_BAC-O-6423",
+    "E1C_P009_FROM_CON-S-0130",
+    "E1C_P010_FROM_BAC---1041",
+    "E1C_P011_FROM_BAC-O-6433"
+  ],
+  "y": [
+    {
+      "depot_id": "E1C_D000",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "value": 1
+    },
+    {
+      "depot_id": "E1C_D003",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "value": 1
+    },
+    {
+      "depot_id": "E1C_D005",
+      "value": 1
+    },
+    {
+      "depot_id": "E1C_D006",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "value": 1
+    },
+    {
+      "depot_id": "E1C_D011",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "value": 1
+    },
+    {
+      "depot_id": "E1C_D019",
+      "value": 1
+    },
+    {
+      "depot_id": "E1C_D020",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "value": 0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "value": 1
+    }
+  ],
+  "x": [
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 22.153191916786227
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 25.230769278277993
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 45.38461820439625
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 61.59581012428766
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 52.568823357277374
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 61.59583326675152
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 215.56695470336126
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 29.79329595049985
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 170.0113173346813
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 15.786631694463194
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 22.32421086457364
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 1e-07
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 121.51497131849472
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 325.89711079607184
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 199.3832279405482
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 63.15178565028572
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 157.8660716214371
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 284.37997730292835
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 85.67385964010386
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    }
+  ],
+  "a_plus": [
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    }
+  ],
+  "a_minus": [
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D000",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D001",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D002",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D003",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D004",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D005",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D006",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D007",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D008",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D009",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D010",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D011",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D012",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D013",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D014",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D015",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D016",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D017",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D018",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D019",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D020",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D021",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D022",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D023",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P000_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P001_FROM_SLI---1200",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P002_FROM_BAC-O-4325",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P003_FROM_BAC-O-6433",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P004_FROM_SLI---0770",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P005_FROM_BAC-O-4312",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P006_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P007_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P008_FROM_BAC-O-6423",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P009_FROM_CON-S-0130",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P010_FROM_BAC---1041",
+      "value": 0.0
+    },
+    {
+      "depot_id": "E1C_D024",
+      "product_id": "E1C_P011_FROM_BAC-O-6433",
+      "value": 0.0
+    }
+  ],
+  "objective": 2048661.144168571,
+  "first_stage_expenditure": 277177.9889470517,
+  "robust_recourse_cost": 1771483.1552215195,
+  "total_inventory": 1959.878461065226,
+  "active_depots": 7,
+  "RI": 1.3686046766576052e-16,
+  "reconfiguration_cost": 0.0,
+  "config_hash": "a4d5c73a6480407119f742eae0a684de527de40111bcd1a564b8b46b8b705a77",
+  "data_hash": "dcfed5f1c19e9fa4d85d66af24b421f42641fc79744abbf89cd7baff38dcc41e",
+  "x0_hash": "505e46a4a03a1ff25e265a49392e58081ecd85f50a1223fb1551ce50186051c8",
+  "git_commit": "89da0ce8320670dead059c5d535215aa78449a1f",
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "solution_payload_sha256": "2c28270c1fc9110fa3090cf81299d9f2bf036cfb3b917ee453997d5cd1501628"
+}

@@ -1,0 +1,86 @@
+{
+  "elapsed_seconds": 4.019238100154325,
+  "limits": {
+    "monitor_interval_seconds": 0.25,
+    "process_tree_gib": 4.0,
+    "start_available_gib": 8.0,
+    "system_available_floor_gib": 3.0,
+    "time_seconds": 300.0
+  },
+  "mode": "prb",
+  "peak_process_tree_rss_gib": 0.16280746459960938,
+  "samples": [
+    {
+      "elapsed_seconds": 0.020420700078830123,
+      "process_tree_rss_gib": 0.008647918701171875,
+      "system_available_gib": 12.665813446044922
+    },
+    {
+      "elapsed_seconds": 0.3043087001424283,
+      "process_tree_rss_gib": 0.02222442626953125,
+      "system_available_gib": 12.661373138427734
+    },
+    {
+      "elapsed_seconds": 0.5869442999828607,
+      "process_tree_rss_gib": 0.036838531494140625,
+      "system_available_gib": 12.654769897460938
+    },
+    {
+      "elapsed_seconds": 0.8631949000991881,
+      "process_tree_rss_gib": 0.064666748046875,
+      "system_available_gib": 12.636024475097656
+    },
+    {
+      "elapsed_seconds": 1.1606954000890255,
+      "process_tree_rss_gib": 0.09189987182617188,
+      "system_available_gib": 12.611080169677734
+    },
+    {
+      "elapsed_seconds": 1.4605974999722093,
+      "process_tree_rss_gib": 0.1305389404296875,
+      "system_available_gib": 12.57607650756836
+    },
+    {
+      "elapsed_seconds": 1.7366611999459565,
+      "process_tree_rss_gib": 0.15898513793945312,
+      "system_available_gib": 12.555858612060547
+    },
+    {
+      "elapsed_seconds": 2.0164885001722723,
+      "process_tree_rss_gib": 0.1606903076171875,
+      "system_available_gib": 12.552310943603516
+    },
+    {
+      "elapsed_seconds": 2.3177171000279486,
+      "process_tree_rss_gib": 0.16280746459960938,
+      "system_available_gib": 12.545417785644531
+    },
+    {
+      "elapsed_seconds": 2.6147456001490355,
+      "process_tree_rss_gib": 0.06787109375,
+      "system_available_gib": 12.626533508300781
+    },
+    {
+      "elapsed_seconds": 2.9148681999649853,
+      "process_tree_rss_gib": 0.06804656982421875,
+      "system_available_gib": 12.634017944335938
+    },
+    {
+      "elapsed_seconds": 3.1892099000979215,
+      "process_tree_rss_gib": 0.06804656982421875,
+      "system_available_gib": 12.634086608886719
+    },
+    {
+      "elapsed_seconds": 3.471085600089282,
+      "process_tree_rss_gib": 0.06804656982421875,
+      "system_available_gib": 12.614738464355469
+    },
+    {
+      "elapsed_seconds": 3.748474200023338,
+      "process_tree_rss_gib": 0.06804656982421875,
+      "system_available_gib": 12.562503814697266
+    }
+  ],
+  "stop_reason": null,
+  "worker_return_code": 0
+}

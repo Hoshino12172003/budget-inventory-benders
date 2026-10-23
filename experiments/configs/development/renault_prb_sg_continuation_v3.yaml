@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "RENAULT_PRB_SG_DEVELOPMENT_V1",
+  "protocol_id": "RENAULT_PRB_SG_CONTINUATION_V3",
+  "classification": "DEVELOPMENT_ONLY_NOT_FORMAL_EVIDENCE",
+  "formal_run_authorized": false,
+  "method_id": "PRB-SG",
+  "condition_prefix": "PRB_SG_RENAULT_",
+  "case_ids": ["210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611"],
+  "execution_plan": {
+    "210202": {"action": "preserve_canonical", "attempt": "attempt-001", "result_sha256": "10150baec5c4acad66ce8bf450991027012a834b7b395f0648205d99f2b93f1f"},
+    "210628": {"action": "preserve_canonical", "attempt": "attempt-001", "result_sha256": "1c0d2e4472cb46607049ed582c9092598a578e1993e2f7dc894a6e94b27d28aa"},
+    "210129": {"action": "preserve_canonical", "attempt": "attempt-002", "result_sha256": "41a9ea2c66a05153a10d2d80eb431d18a9fdd86bd8dd8fc5455e39cf56ef6441"},
+    "210310": {"action": "preserve_canonical", "attempt": "attempt-001", "result_sha256": "b61ce49c7d4a4164f9088b48a411d26bed39b91d5bcab0b95e16ac33c88a276b"},
+    "210330": {
+      "action": "preserve_numerical_failure",
+      "attempt": "attempt-001",
+      "code_commit": "ca7dd129c7a092631dfbb0332a5b6852cb515395",
+      "config_sha256": "311084c6efc62401a832954bd10c9cf02a5ff956ee8af22f4e310f7df3675896",
+      "artifact_sha256": {
+        "result.json": "f0ce4bba68cabb775727a2b30c4e6137652f7ec96efa5394c450ea3c64f2240d",
+        "provenance.json": "bd185b96e1ec27f7f7b3dd88209cb52f14dd6b8f8d94073eb6e4c15a6747b300",
+        "iteration_trajectory.json": "2fa4e9b49b40bc1bbd81f1113e9c4b086a4351d5acd1af748ee135f142cebc85",
+        "first_stage_solution.json": "952f1e4396b64622c8c426048a5c47b69ffe638e1e975bbe9aaa0e8e0d04a310",
+        "solver.log": "522cf9f194309b9c5c31e0bdd375221b3e9668be1d934d51e7864ae3acb7a400",
+        "stdout.log": "3f53973a113428b121fa3558cc18e3ca4b1a88436f7a805217e57161fc089277",
+        "stderr.log": "96721a43cf6ccadaca9a6cc2f6733154272bbb3fa2da7e484a482c08ae1b8ac2",
+        "resource_monitor.json": "46a769293b0b408947a977c23ecb904234ffd74e5a39103a4d5a4f9a1208b48e"
+      }
+    },
+    "210323": {"action": "run", "attempt": "attempt-001"},
+    "210428": {"action": "run", "attempt": "attempt-001"},
+    "210611": {"action": "run", "attempt": "attempt-001"}
+  },
+  "known_failure_policy": {
+    "classification": "NUMERICAL_CERTIFICATION_FAIL",
+    "require_internal_exact_certification": true,
+    "require_independent_global_certification": true,
+    "require_cut_validity": true,
+    "require_direct_objective_consistency": true,
+    "require_complete_identity_and_artifacts": true,
+    "coupling_residual_must_exceed": 1e-6,
+    "maximum_numerical_closure_residual": 1e-4,
+    "continue_after_independent_classification": true
+  },
+  "historical_protocol_config": "experiments/configs/development/renault_prb_sg_v1.yaml",
+  "historical_protocol_config_sha256": "1449a88539b4a6d327781542529ec157dfb6fd76a193fc284a6dc2f732e83ba1",
+  "fixed_scientific_parameters": {"Gamma": 2, "lambda_R": 0.05},
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "solver_tolerances": {"relative_gap": 1e-6, "cut_violation": 1e-7, "objective_certification": 1e-4, "global_coupling": 1e-6},
+  "mechanisms": {"adaptive_cut_selection": false, "exact_product_scenario_screening": true},
+  "algorithm": {"max_iterations": 500, "retain_product_budget_theta": true, "retain_global_risk_budget_coupling": true, "compact_global_oracle": false},
+  "resource_policy": {"execution": "sequential_single_process", "parallel_workers": 1, "minimum_available_memory_gib": 8, "maximum_process_tree_memory_gib": 4, "minimum_system_available_memory_gib": 3, "minimum_free_disk_gib": 20, "condition_time_limit_seconds": 300, "memory_monitor_interval_seconds": 0.25, "retry_policy": "no_automatic_retry"},
+  "identity_source": "experiments/configs/development/renault_sg_benders_v1.yaml",
+  "identity_source_sha256": "634d7fe045e8165f65306d1abfef86fdd793011dd68b2ab9d559a6b7ae5cd512",
+  "output_directory": "experiments/results/renault_prb_sg_development_v1",
+  "batch_report_name": "continuation_batch_report.json"
+}

@@ -1,0 +1,681 @@
+{
+  "schema": "basic_benders_l10_remaining9_static_audit_v1",
+  "status": "STATIC_AUDIT_PASS",
+  "decision": "READY_FOR_AUTHORIZATION",
+  "formal_run_authorized": false,
+  "optimization_calls": 0,
+  "checks": {
+    "authorization_closed": true,
+    "exact_scope": true,
+    "fixed_denominator_nine": true,
+    "all_identity_checks": true,
+    "all_attempts_absent": true,
+    "all_canonical_absent": true,
+    "pilot_preserved": true,
+    "sequential_execution": true,
+    "preflight_each_condition": true,
+    "no_automatic_retry": true,
+    "failures_preserved": true,
+    "integrity_failure_stops": true,
+    "zero_optimization_dry_run": true
+  },
+  "protocol_id": "BASIC_BD_SCALING_L10_REMAINING9_V1",
+  "config_sha256": "a2a2947bdc880bfb876a6eb31c6f72b05c959b372a346ac6043ca17a4bc01fc3",
+  "runner_sha256": "72de34eb56e3b608f50aab1364b1a47d576a5bca23f7ea811a57dba3ac580cd5",
+  "batch_runner_sha256": "a635d5db2b9588cfafce152486e366e390640b022a26fd486b9e292e20c8e432",
+  "conditions": [
+    {
+      "condition_id": "BASIC_L10_S20260922",
+      "seed": 20260922,
+      "expected_attempt": "attempt-001",
+      "instance_hash": "4ec1e745c3bd6d410027905ecf001bf7ce1d16f203ece8fb66de6f15f48a6f19",
+      "x0_hash": "d8fb2cbdd6fe94af6eeb591d5dac6da9a1d28e02685c2d5a87fb2ed485eecc2f",
+      "instance_sha256": "4b2dd555424bf5dca9dddc6b8429f094f0a73cbc780fc176e583d2f7fa5d191a",
+      "preparation_sha256": "f53b55aeaf9dbb0561f9d319e514eaf6dfa2d7259a44a6868eef513f115c655e",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "BASIC_L10_S20260923",
+      "seed": 20260923,
+      "expected_attempt": "attempt-001",
+      "instance_hash": "c2361c3502a0d29e85e3caf71e2dee6e31bf367912c5fcff809288a64af4eb56",
+      "x0_hash": "2156393aa544eebcd67dd552fcaf1048a6c4fad5c4faf42019d1516ee31c36cc",
+      "instance_sha256": "724cff78d496389f7d8ce1782f245625e4034b1304bae3c3e0a96c0189ce755e",
+      "preparation_sha256": "32aefcdfbc82503ef12790523c7f6ee85204281866d2305c3f41af9e39b15014",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "BASIC_L10_S20260924",
+      "seed": 20260924,
+      "expected_attempt": "attempt-001",
+      "instance_hash": "e14485ad862fa11352234fcf8dcd045ef7ad3f17be429ddc5e7234fd9e71f1b9",
+      "x0_hash": "28cde4a482622394877486b09e2e6f558d83248e7b42d9d3b2fb9f1917c992fe",
+      "instance_sha256": "ef07d3006f587c6fc28a81f0704052193ea024b8a217b40f5bbf921201868bad",
+      "preparation_sha256": "a110c28c460299b04ccf69edb51c6ed3680adacb52205112bd8bd91cd20bb659",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "BASIC_L10_S20260925",
+      "seed": 20260925,
+      "expected_attempt": "attempt-001",
+      "instance_hash": "a958b2de093d40a6ec2a7782117b0f43320cec315fa5e65321d7e2547a3b3f1e",
+      "x0_hash": "c3e9353dd6643f2d08c916d47a8cb6fd4618bf01219087571113e723de771de9",
+      "instance_sha256": "d774a6ac6096362891209251dc74b3849b2aeb8747994c1d33fc026cb56d8ca9",
+      "preparation_sha256": "36278a367b5773154f20a7977f47f897aaa701513a9fb27f48a6e21ff45d50d1",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "BASIC_L10_S20260926",
+      "seed": 20260926,
+      "expected_attempt": "attempt-001",
+      "instance_hash": "2a6cbe0ed9559676c890fb034fc63074f7f8fb2d754b5c7186c440a4c29af57b",
+      "x0_hash": "7c25225eadb13f3e24291d9385ea4a23a6efc29dd74029993e4c21563c4f4414",
+      "instance_sha256": "ddcbe5104ce3de249081c2e7095ef9a2eecf6cc31410b4b0ecfd6af9ea169e7b",
+      "preparation_sha256": "3da17037bb4ec0f82858675a1739dd82bcb9c2d329870430cf867c6f1a0aedb6",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "BASIC_L10_S20260927",
+      "seed": 20260927,
+      "expected_attempt": "attempt-001",
+      "instance_hash": "9500b90b8cbe3609b5baeb1cf0a395218ba2f48568fbf53c5c34acd1a8898f37",
+      "x0_hash": "077b32550216a8b37dfacdff334686e29e7bcac2a4f088c085bac614c059ef70",
+      "instance_sha256": "03617652e05a26b6bfa3b6d26d80399e761375e26b4e4b0887d9150377676748",
+      "preparation_sha256": "7995267bb6126669e16279993411efb22995ef1f86475d76d7d78ae40fd008d1",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "BASIC_L10_S20260928",
+      "seed": 20260928,
+      "expected_attempt": "attempt-001",
+      "instance_hash": "e386236362784e9a3ec618b6c65cfd64baf100be92cb216aac5fe55cf772e0d7",
+      "x0_hash": "eac43f1fbb96baedeb385b583e33157b52c192ec517029c7d2e04c00361e4bd7",
+      "instance_sha256": "7e42e70bb5361d87aa76737ffcd00cb68f5467254dae12bca01d9456670f09fe",
+      "preparation_sha256": "170a739251a3473447428db6cf7659a4ca1e91217d7da7b806a2953b139c4f76",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "BASIC_L10_S20260929",
+      "seed": 20260929,
+      "expected_attempt": "attempt-001",
+      "instance_hash": "fbe2a8c1d60937915e89b88b99359b8e24e9a552b57a1e3bb7083e1710382635",
+      "x0_hash": "8c419dd445e173cfb65c30d5c838233259e9536efab68c5c16c64e73dddc330a",
+      "instance_sha256": "d63613835c0997ebe77b93eca1241bf6ca91e19c80643422ca419816df61ebd4",
+      "preparation_sha256": "06f8ffc8ac4de3a1d68f8e4d4978b25e9fb42307342738075408b58cdf0e9107",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "BASIC_L10_S20260930",
+      "seed": 20260930,
+      "expected_attempt": "attempt-001",
+      "instance_hash": "7f3ff364f01b9683838561276135fc4b88dfcc34c0213f32c5fdb40393233afb",
+      "x0_hash": "bc53041d595611a7a689bfce5d7bf2eeafcf30e075a889973458db3f29b0fadb",
+      "instance_sha256": "ecd7f259e9a4592849e1ef96b65e84c8653c47d8e3f617cd5323bcee26ce83cb",
+      "preparation_sha256": "95424f4e763500cb0693b6804fc865cb2cfd6f2d8da791764b717256e344c47c",
+      "identity_status": "PASS"
+    }
+  ],
+  "resource_gate": {
+    "available_memory_gib": 13.806190490722656,
+    "startup_required_gib": 7,
+    "process_tree_cap_gib": 4,
+    "system_available_floor_gib": 3,
+    "free_disk_gib": 246.31289291381836,
+    "minimum_free_disk_gib": 20,
+    "time_limit_seconds": 900,
+    "monitor_interval_seconds": 0.25
+  },
+  "failure_policy": {
+    "continue_after": [
+      "TIME_LIMIT",
+      "RESOURCE_PROCESS_CAP",
+      "RESOURCE_SYSTEM_CAP"
+    ],
+    "stop_batch_after": [
+      "IDENTITY_FAILURE",
+      "HASH_FAILURE",
+      "NUMERICAL_CERTIFICATION_FAILURE",
+      "UNKNOWN_WORKER_FAILURE"
+    ],
+    "require_worker_exit_before_continue": true,
+    "repeat_all_preflight_gates_before_each_condition": true
+  },
+  "pilot_preservation": {
+    "condition_id": "BASIC_L10_S20260921",
+    "attempt": "attempt-001",
+    "result_sha256": "df3c488d3d4d467498bef7f4358bb85f76c3a3940739830b1b18cfe203681aea",
+    "status": "PASS_EXACT_CERTIFIED_DEVELOPMENT_PILOT"
+  },
+  "dry_run": {
+    "schema": "basic_benders_l10_remaining9_dry_run_v1",
+    "protocol_id": "BASIC_BD_SCALING_L10_REMAINING9_V1",
+    "formal_run_authorized": false,
+    "fixed_denominator": 9,
+    "conditions": [
+      {
+        "protocol_id": "BASIC_BD_SCALING_L10_REMAINING9_V1",
+        "formal_run_authorized": false,
+        "condition": {
+          "condition_id": "BASIC_L10_S20260922",
+          "size": "L10",
+          "seed": 20260922
+        },
+        "source_instance_id": "ASC_INSTANCE_L10_S20260922",
+        "instance_hash": "4ec1e745c3bd6d410027905ecf001bf7ce1d16f203ece8fb66de6f15f48a6f19",
+        "x0_hash": "d8fb2cbdd6fe94af6eeb591d5dac6da9a1d28e02685c2d5a87fb2ed485eecc2f",
+        "instance_sha256": "4b2dd555424bf5dca9dddc6b8429f094f0a73cbc780fc176e583d2f7fa5d191a",
+        "preparation_sha256": "f53b55aeaf9dbb0561f9d319e514eaf6dfa2d7259a44a6868eef513f115c655e",
+        "global_scenario_count": 41617,
+        "maximum_global_scenarios": 166177,
+        "resource_gate": {
+          "available_memory_gib": 13.806190490722656,
+          "startup_required_gib": 7,
+          "process_tree_cap_gib": 4,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 246.31289291381836,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "git_status_clean": true,
+        "git_status_entries": [],
+        "git_status_clean_for_execution": true,
+        "unexpected_git_status_entries": [],
+        "optimization_calls": 0,
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "identity_checks": {
+          "instance_sha256": true,
+          "preparation_sha256": true,
+          "instance_hash": true,
+          "x0_hash": true
+        },
+        "identity_status": "PASS"
+      },
+      {
+        "protocol_id": "BASIC_BD_SCALING_L10_REMAINING9_V1",
+        "formal_run_authorized": false,
+        "condition": {
+          "condition_id": "BASIC_L10_S20260923",
+          "size": "L10",
+          "seed": 20260923
+        },
+        "source_instance_id": "ASC_INSTANCE_L10_S20260923",
+        "instance_hash": "c2361c3502a0d29e85e3caf71e2dee6e31bf367912c5fcff809288a64af4eb56",
+        "x0_hash": "2156393aa544eebcd67dd552fcaf1048a6c4fad5c4faf42019d1516ee31c36cc",
+        "instance_sha256": "724cff78d496389f7d8ce1782f245625e4034b1304bae3c3e0a96c0189ce755e",
+        "preparation_sha256": "32aefcdfbc82503ef12790523c7f6ee85204281866d2305c3f41af9e39b15014",
+        "global_scenario_count": 41617,
+        "maximum_global_scenarios": 166177,
+        "resource_gate": {
+          "available_memory_gib": 13.798110961914062,
+          "startup_required_gib": 7,
+          "process_tree_cap_gib": 4,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 246.31289291381836,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "git_status_clean": true,
+        "git_status_entries": [],
+        "git_status_clean_for_execution": true,
+        "unexpected_git_status_entries": [],
+        "optimization_calls": 0,
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "identity_checks": {
+          "instance_sha256": true,
+          "preparation_sha256": true,
+          "instance_hash": true,
+          "x0_hash": true
+        },
+        "identity_status": "PASS"
+      },
+      {
+        "protocol_id": "BASIC_BD_SCALING_L10_REMAINING9_V1",
+        "formal_run_authorized": false,
+        "condition": {
+          "condition_id": "BASIC_L10_S20260924",
+          "size": "L10",
+          "seed": 20260924
+        },
+        "source_instance_id": "ASC_INSTANCE_L10_S20260924",
+        "instance_hash": "e14485ad862fa11352234fcf8dcd045ef7ad3f17be429ddc5e7234fd9e71f1b9",
+        "x0_hash": "28cde4a482622394877486b09e2e6f558d83248e7b42d9d3b2fb9f1917c992fe",
+        "instance_sha256": "ef07d3006f587c6fc28a81f0704052193ea024b8a217b40f5bbf921201868bad",
+        "preparation_sha256": "a110c28c460299b04ccf69edb51c6ed3680adacb52205112bd8bd91cd20bb659",
+        "global_scenario_count": 41617,
+        "maximum_global_scenarios": 166177,
+        "resource_gate": {
+          "available_memory_gib": 13.790802001953125,
+          "startup_required_gib": 7,
+          "process_tree_cap_gib": 4,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 246.31289291381836,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "git_status_clean": true,
+        "git_status_entries": [],
+        "git_status_clean_for_execution": true,
+        "unexpected_git_status_entries": [],
+        "optimization_calls": 0,
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "identity_checks": {
+          "instance_sha256": true,
+          "preparation_sha256": true,
+          "instance_hash": true,
+          "x0_hash": true
+        },
+        "identity_status": "PASS"
+      },
+      {
+        "protocol_id": "BASIC_BD_SCALING_L10_REMAINING9_V1",
+        "formal_run_authorized": false,
+        "condition": {
+          "condition_id": "BASIC_L10_S20260925",
+          "size": "L10",
+          "seed": 20260925
+        },
+        "source_instance_id": "ASC_INSTANCE_L10_S20260925",
+        "instance_hash": "a958b2de093d40a6ec2a7782117b0f43320cec315fa5e65321d7e2547a3b3f1e",
+        "x0_hash": "c3e9353dd6643f2d08c916d47a8cb6fd4618bf01219087571113e723de771de9",
+        "instance_sha256": "d774a6ac6096362891209251dc74b3849b2aeb8747994c1d33fc026cb56d8ca9",
+        "preparation_sha256": "36278a367b5773154f20a7977f47f897aaa701513a9fb27f48a6e21ff45d50d1",
+        "global_scenario_count": 41617,
+        "maximum_global_scenarios": 166177,
+        "resource_gate": {
+          "available_memory_gib": 13.79446792602539,
+          "startup_required_gib": 7,
+          "process_tree_cap_gib": 4,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 246.31289291381836,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "git_status_clean": true,
+        "git_status_entries": [],
+        "git_status_clean_for_execution": true,
+        "unexpected_git_status_entries": [],
+        "optimization_calls": 0,
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "identity_checks": {
+          "instance_sha256": true,
+          "preparation_sha256": true,
+          "instance_hash": true,
+          "x0_hash": true
+        },
+        "identity_status": "PASS"
+      },
+      {
+        "protocol_id": "BASIC_BD_SCALING_L10_REMAINING9_V1",
+        "formal_run_authorized": false,
+        "condition": {
+          "condition_id": "BASIC_L10_S20260926",
+          "size": "L10",
+          "seed": 20260926
+        },
+        "source_instance_id": "ASC_INSTANCE_L10_S20260926",
+        "instance_hash": "2a6cbe0ed9559676c890fb034fc63074f7f8fb2d754b5c7186c440a4c29af57b",
+        "x0_hash": "7c25225eadb13f3e24291d9385ea4a23a6efc29dd74029993e4c21563c4f4414",
+        "instance_sha256": "ddcbe5104ce3de249081c2e7095ef9a2eecf6cc31410b4b0ecfd6af9ea169e7b",
+        "preparation_sha256": "3da17037bb4ec0f82858675a1739dd82bcb9c2d329870430cf867c6f1a0aedb6",
+        "global_scenario_count": 41617,
+        "maximum_global_scenarios": 166177,
+        "resource_gate": {
+          "available_memory_gib": 13.797004699707031,
+          "startup_required_gib": 7,
+          "process_tree_cap_gib": 4,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 246.31289291381836,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "git_status_clean": true,
+        "git_status_entries": [],
+        "git_status_clean_for_execution": true,
+        "unexpected_git_status_entries": [],
+        "optimization_calls": 0,
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "identity_checks": {
+          "instance_sha256": true,
+          "preparation_sha256": true,
+          "instance_hash": true,
+          "x0_hash": true
+        },
+        "identity_status": "PASS"
+      },
+      {
+        "protocol_id": "BASIC_BD_SCALING_L10_REMAINING9_V1",
+        "formal_run_authorized": false,
+        "condition": {
+          "condition_id": "BASIC_L10_S20260927",
+          "size": "L10",
+          "seed": 20260927
+        },
+        "source_instance_id": "ASC_INSTANCE_L10_S20260927",
+        "instance_hash": "9500b90b8cbe3609b5baeb1cf0a395218ba2f48568fbf53c5c34acd1a8898f37",
+        "x0_hash": "077b32550216a8b37dfacdff334686e29e7bcac2a4f088c085bac614c059ef70",
+        "instance_sha256": "03617652e05a26b6bfa3b6d26d80399e761375e26b4e4b0887d9150377676748",
+        "preparation_sha256": "7995267bb6126669e16279993411efb22995ef1f86475d76d7d78ae40fd008d1",
+        "global_scenario_count": 41617,
+        "maximum_global_scenarios": 166177,
+        "resource_gate": {
+          "available_memory_gib": 13.794788360595703,
+          "startup_required_gib": 7,
+          "process_tree_cap_gib": 4,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 246.31289291381836,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "git_status_clean": true,
+        "git_status_entries": [],
+        "git_status_clean_for_execution": true,
+        "unexpected_git_status_entries": [],
+        "optimization_calls": 0,
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "identity_checks": {
+          "instance_sha256": true,
+          "preparation_sha256": true,
+          "instance_hash": true,
+          "x0_hash": true
+        },
+        "identity_status": "PASS"
+      },
+      {
+        "protocol_id": "BASIC_BD_SCALING_L10_REMAINING9_V1",
+        "formal_run_authorized": false,
+        "condition": {
+          "condition_id": "BASIC_L10_S20260928",
+          "size": "L10",
+          "seed": 20260928
+        },
+        "source_instance_id": "ASC_INSTANCE_L10_S20260928",
+        "instance_hash": "e386236362784e9a3ec618b6c65cfd64baf100be92cb216aac5fe55cf772e0d7",
+        "x0_hash": "eac43f1fbb96baedeb385b583e33157b52c192ec517029c7d2e04c00361e4bd7",
+        "instance_sha256": "7e42e70bb5361d87aa76737ffcd00cb68f5467254dae12bca01d9456670f09fe",
+        "preparation_sha256": "170a739251a3473447428db6cf7659a4ca1e91217d7da7b806a2953b139c4f76",
+        "global_scenario_count": 41617,
+        "maximum_global_scenarios": 166177,
+        "resource_gate": {
+          "available_memory_gib": 13.788047790527344,
+          "startup_required_gib": 7,
+          "process_tree_cap_gib": 4,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 246.31289291381836,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "git_status_clean": true,
+        "git_status_entries": [],
+        "git_status_clean_for_execution": true,
+        "unexpected_git_status_entries": [],
+        "optimization_calls": 0,
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "identity_checks": {
+          "instance_sha256": true,
+          "preparation_sha256": true,
+          "instance_hash": true,
+          "x0_hash": true
+        },
+        "identity_status": "PASS"
+      },
+      {
+        "protocol_id": "BASIC_BD_SCALING_L10_REMAINING9_V1",
+        "formal_run_authorized": false,
+        "condition": {
+          "condition_id": "BASIC_L10_S20260929",
+          "size": "L10",
+          "seed": 20260929
+        },
+        "source_instance_id": "ASC_INSTANCE_L10_S20260929",
+        "instance_hash": "fbe2a8c1d60937915e89b88b99359b8e24e9a552b57a1e3bb7083e1710382635",
+        "x0_hash": "8c419dd445e173cfb65c30d5c838233259e9536efab68c5c16c64e73dddc330a",
+        "instance_sha256": "d63613835c0997ebe77b93eca1241bf6ca91e19c80643422ca419816df61ebd4",
+        "preparation_sha256": "06f8ffc8ac4de3a1d68f8e4d4978b25e9fb42307342738075408b58cdf0e9107",
+        "global_scenario_count": 41617,
+        "maximum_global_scenarios": 166177,
+        "resource_gate": {
+          "available_memory_gib": 13.776660919189453,
+          "startup_required_gib": 7,
+          "process_tree_cap_gib": 4,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 246.31289291381836,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "git_status_clean": true,
+        "git_status_entries": [],
+        "git_status_clean_for_execution": true,
+        "unexpected_git_status_entries": [],
+        "optimization_calls": 0,
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "identity_checks": {
+          "instance_sha256": true,
+          "preparation_sha256": true,
+          "instance_hash": true,
+          "x0_hash": true
+        },
+        "identity_status": "PASS"
+      },
+      {
+        "protocol_id": "BASIC_BD_SCALING_L10_REMAINING9_V1",
+        "formal_run_authorized": false,
+        "condition": {
+          "condition_id": "BASIC_L10_S20260930",
+          "size": "L10",
+          "seed": 20260930
+        },
+        "source_instance_id": "ASC_INSTANCE_L10_S20260930",
+        "instance_hash": "7f3ff364f01b9683838561276135fc4b88dfcc34c0213f32c5fdb40393233afb",
+        "x0_hash": "bc53041d595611a7a689bfce5d7bf2eeafcf30e075a889973458db3f29b0fadb",
+        "instance_sha256": "ecd7f259e9a4592849e1ef96b65e84c8653c47d8e3f617cd5323bcee26ce83cb",
+        "preparation_sha256": "95424f4e763500cb0693b6804fc865cb2cfd6f2d8da791764b717256e344c47c",
+        "global_scenario_count": 41617,
+        "maximum_global_scenarios": 166177,
+        "resource_gate": {
+          "available_memory_gib": 13.780437469482422,
+          "startup_required_gib": 7,
+          "process_tree_cap_gib": 4,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 246.31289291381836,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "git_status_clean": true,
+        "git_status_entries": [],
+        "git_status_clean_for_execution": true,
+        "unexpected_git_status_entries": [],
+        "optimization_calls": 0,
+        "expected_attempt": "attempt-001",
+        "attempt_exists": false,
+        "identity_checks": {
+          "instance_sha256": true,
+          "preparation_sha256": true,
+          "instance_hash": true,
+          "x0_hash": true
+        },
+        "identity_status": "PASS"
+      }
+    ],
+    "resource_policy": {
+      "execution": "sequential_single_process",
+      "parallel_workers": 1,
+      "minimum_available_memory_gib_by_size": {
+        "L10": 7,
+        "XL10": 10,
+        "XXL10": 16
+      },
+      "maximum_process_tree_memory_gib_by_size": {
+        "L10": 4,
+        "XL10": 7,
+        "XXL10": 13
+      },
+      "minimum_system_available_memory_gib": 3,
+      "minimum_free_disk_gib": 20,
+      "condition_time_limit_seconds": 900,
+      "memory_monitor_interval_seconds": 0.25,
+      "fail_closed": true,
+      "retry_policy": "no_automatic_retry"
+    },
+    "failure_policy": {
+      "continue_after": [
+        "TIME_LIMIT",
+        "RESOURCE_PROCESS_CAP",
+        "RESOURCE_SYSTEM_CAP"
+      ],
+      "stop_batch_after": [
+        "IDENTITY_FAILURE",
+        "HASH_FAILURE",
+        "NUMERICAL_CERTIFICATION_FAILURE",
+        "UNKNOWN_WORKER_FAILURE"
+      ],
+      "require_worker_exit_before_continue": true,
+      "repeat_all_preflight_gates_before_each_condition": true
+    },
+    "active_solver_workers": [],
+    "gates": {
+      "all_nine_identities": true,
+      "all_attempts_absent": true,
+      "all_canonical_results_absent": true,
+      "startup_memory": true,
+      "disk": true,
+      "git_status": true,
+      "no_active_solver_worker": true
+    },
+    "decision": "READY_FOR_AUTHORIZATION",
+    "optimization_calls": 0
+  }
+}

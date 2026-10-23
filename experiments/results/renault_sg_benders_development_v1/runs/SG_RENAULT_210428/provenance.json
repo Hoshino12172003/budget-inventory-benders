@@ -1,0 +1,21 @@
+{
+  "attempt": "attempt-001",
+  "bound_sha256": "5b03871dbbe5d7ceea5d070a6c4f626be5171a9efd5a8490baccbe2f2ad427c3",
+  "condition_id": "SG_RENAULT_210428",
+  "config_sha256": "51a9b20563cce5109884ad631ff0317125a70c1c2b6b97e0a2128300bd5fa388",
+  "first_stage_sha256": "eedcd1a717f1ec309ed70122e43ad59c642522b4518624a147ada1cd55663263",
+  "formal_run_authorized": true,
+  "git_commit": "6f543b8ad828130d7d335cd74b84e3cd8ba6614b",
+  "identity": {
+    "calibration_hash": "29ab4dae7c8cce42cc9a771372d9813fbffac137a978f2b2208a41f61256cc58",
+    "instance_hash": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+    "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+    "x0_hash": "cc08b6627d2f100652172e56ae78f3e35a97b8c89385b99da534fc20917a8014"
+  },
+  "implementation_sha256": "b2e99d87c2d8c71e0f79644a6b0c3f4781a11f2f6d55bfbc5f2b29bd7c922f6c",
+  "oracle_trace_sha256": "f78b9d9fca525baa28258d17cef27ab7cf836e5ddfdda93229720e720d05086d",
+  "result_sha256": "dab25e1fe5121118bb7a043a3097814d8ce650c5d8aee0ae0c4139b97779e82c",
+  "runner_sha256": "d3e52615c595669ae27a5b4e856c4472f1e1814d96d04abc4722e992d560a0e7",
+  "schema": "renault_sg_bd_provenance_v1",
+  "trajectory_sha256": "28c3c0eeac399d4b94374e287a25205f342975e7691a790190237b41ecb076fc"
+}

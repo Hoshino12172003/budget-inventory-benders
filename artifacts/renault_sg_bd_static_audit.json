@@ -1,0 +1,107 @@
+{
+  "cases": [
+    {
+      "case": "210202",
+      "certified_final_recourse_incumbent": 952269.8382506805,
+      "identity_ok": true,
+      "instance_hash": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+      "leaf_pruning_fraction": 0.9978526948679407,
+      "leaf_upper_bound_prunable": 4647,
+      "screen_seconds": 0.00794290006160736,
+      "total_scenarios": 4657,
+      "unresolved_requiring_exact_lp_at_most": 10
+    },
+    {
+      "case": "210628",
+      "certified_final_recourse_incumbent": 599292.0062276059,
+      "identity_ok": true,
+      "instance_hash": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677",
+      "leaf_pruning_fraction": 0.999785269486794,
+      "leaf_upper_bound_prunable": 4656,
+      "screen_seconds": 0.008938100188970566,
+      "total_scenarios": 4657,
+      "unresolved_requiring_exact_lp_at_most": 1
+    },
+    {
+      "case": "210129",
+      "certified_final_recourse_incumbent": 760949.1358334915,
+      "identity_ok": true,
+      "instance_hash": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3",
+      "leaf_pruning_fraction": 0.9987116169207645,
+      "leaf_upper_bound_prunable": 4651,
+      "screen_seconds": 0.009562499821186066,
+      "total_scenarios": 4657,
+      "unresolved_requiring_exact_lp_at_most": 6
+    },
+    {
+      "case": "210310",
+      "certified_final_recourse_incumbent": 638420.455707797,
+      "identity_ok": true,
+      "instance_hash": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+      "leaf_pruning_fraction": 0.999785269486794,
+      "leaf_upper_bound_prunable": 4656,
+      "screen_seconds": 0.006964399944990873,
+      "total_scenarios": 4657,
+      "unresolved_requiring_exact_lp_at_most": 1
+    },
+    {
+      "case": "210330",
+      "certified_final_recourse_incumbent": 592009.2018260963,
+      "identity_ok": true,
+      "instance_hash": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+      "leaf_pruning_fraction": 0.9995705389735882,
+      "leaf_upper_bound_prunable": 4655,
+      "screen_seconds": 0.006684100022539496,
+      "total_scenarios": 4657,
+      "unresolved_requiring_exact_lp_at_most": 2
+    },
+    {
+      "case": "210323",
+      "certified_final_recourse_incumbent": 558871.0260758683,
+      "identity_ok": true,
+      "instance_hash": "df5fcbaa54a73277948f676fae151d85ad621d9ef417b0906b04066b1ef1109c",
+      "leaf_pruning_fraction": 0.9995705389735882,
+      "leaf_upper_bound_prunable": 4655,
+      "screen_seconds": 0.004551100078970194,
+      "total_scenarios": 4657,
+      "unresolved_requiring_exact_lp_at_most": 2
+    },
+    {
+      "case": "210428",
+      "certified_final_recourse_incumbent": 717805.4120822635,
+      "identity_ok": true,
+      "instance_hash": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+      "leaf_pruning_fraction": 0.999785269486794,
+      "leaf_upper_bound_prunable": 4656,
+      "screen_seconds": 0.0035993000492453575,
+      "total_scenarios": 4657,
+      "unresolved_requiring_exact_lp_at_most": 1
+    },
+    {
+      "case": "210611",
+      "certified_final_recourse_incumbent": 552759.4101443572,
+      "identity_ok": true,
+      "instance_hash": "f244641d602348af8b2ac31a2bb948b4b0ebca8e33ff446dd07298e3e578a9bf",
+      "leaf_pruning_fraction": 0.999785269486794,
+      "leaf_upper_bound_prunable": 4656,
+      "screen_seconds": 0.005874399794265628,
+      "total_scenarios": 4657,
+      "unresolved_requiring_exact_lp_at_most": 1
+    }
+  ],
+  "config_sha256": "ed663d3b0b3573fa0d1644235d1eff9ae5c589f24bec16e9c0aa93a74c61ad04",
+  "decision": "READY_FOR_ORACLE_DIAGNOSTIC",
+  "gates": {
+    "all_eight_identities": true,
+    "all_scenario_counts": true,
+    "formal_run_authorized_false": true,
+    "frozen_identity_reference": true,
+    "oracle_diagnostic_authorized_false": true,
+    "static_pruning_potential": true
+  },
+  "implementation_sha256": "bdf65ac0daa57a755a00d3af2617b1b6349e6fc7b794cd1b8e191bad3463380c",
+  "interpretation": "Optimistic final-solution screen using an already-certified incumbent; not an Oracle runtime result and not evidence of full-run speedup.",
+  "optimization_calls": 0,
+  "schema": "renault_sg_bd_static_audit_v1",
+  "status": "PASS"
+}

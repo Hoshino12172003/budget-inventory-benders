@@ -21,3 +21,9 @@ def require_experiment_not_frozen(repository_root: Path, experiment_id: str) -> 
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
     if experiment_id in registry.get("revoked_experiment_ids", []):
         raise PermissionError(f"FORMAL_EXPERIMENT_FROZEN:{experiment_id}")
+
+
+def experiment_is_frozen(repository_root: Path, experiment_id: str) -> bool:
+    registry_path = repository_root.resolve() / FREEZE_REGISTRY
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    return experiment_id in registry.get("revoked_experiment_ids", [])

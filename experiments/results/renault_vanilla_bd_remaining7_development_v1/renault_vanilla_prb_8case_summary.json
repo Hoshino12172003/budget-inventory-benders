@@ -1,0 +1,115 @@
+{
+  "baseline_schema_note": "The immutable 210202 baseline predates explicit cut_validity_pass output; its archived internal exact flag and independent global certification pass.",
+  "expected_cases": 8,
+  "geometric_mean_vanilla_over_prb_speedup": 4.822024892329685,
+  "mean_iteration_difference_vanilla_minus_prb": 3.1428571428571432,
+  "mean_oracle_burden_ratio_vanilla_over_prb": 16.73074481963833,
+  "mean_prb_total_seconds": 2.7583963999391665,
+  "mean_vanilla_total_seconds": 13.21381882854205,
+  "pairs": [
+    {
+      "case": "210202",
+      "invalid_reason": null,
+      "objective_difference": 0.0,
+      "prb_total_seconds": 2.189956899965182,
+      "valid_exact_pair": true,
+      "vanilla_over_prb_speedup": 4.954553763201386,
+      "vanilla_total_seconds": 10.850259199971333,
+      "winner": "PRB"
+    },
+    {
+      "case": "210628",
+      "invalid_reason": null,
+      "objective_difference": 1.8766149878501892e-07,
+      "prb_total_seconds": 2.654619300039485,
+      "valid_exact_pair": true,
+      "vanilla_over_prb_speedup": 5.393346533585293,
+      "vanilla_total_seconds": 14.317281799856573,
+      "winner": "PRB"
+    },
+    {
+      "case": "210129",
+      "invalid_reason": null,
+      "objective_difference": 1.1641532182693481e-10,
+      "prb_total_seconds": 2.4068688000552356,
+      "valid_exact_pair": true,
+      "vanilla_over_prb_speedup": 5.247237655738554,
+      "vanilla_total_seconds": 12.6294126000721,
+      "winner": "PRB"
+    },
+    {
+      "case": "210310",
+      "invalid_reason": null,
+      "objective_difference": 1.3154931366443634e-08,
+      "prb_total_seconds": 2.9803093997761607,
+      "valid_exact_pair": true,
+      "vanilla_over_prb_speedup": 4.455878809448362,
+      "vanilla_total_seconds": 13.279897500062361,
+      "winner": "PRB"
+    },
+    {
+      "case": "210330",
+      "invalid_reason": "PRB_INTERNAL_GLOBAL_COUPLING_CERTIFICATION_FAILED",
+      "objective_difference": 5.597248673439026e-07,
+      "prb_total_seconds": 2.021334199933335,
+      "valid_exact_pair": false,
+      "vanilla_over_prb_speedup": null,
+      "vanilla_total_seconds": 11.427861700067297,
+      "winner": "NOT_PAIRED"
+    },
+    {
+      "case": "210323",
+      "invalid_reason": null,
+      "objective_difference": 1.979060471057892e-09,
+      "prb_total_seconds": 2.165446499828249,
+      "valid_exact_pair": true,
+      "vanilla_over_prb_speedup": 4.8413154981853905,
+      "vanilla_total_seconds": 10.48360970010981,
+      "winner": "PRB"
+    },
+    {
+      "case": "210428",
+      "invalid_reason": null,
+      "objective_difference": 6.577465683221817e-08,
+      "prb_total_seconds": 3.3462219999637455,
+      "valid_exact_pair": true,
+      "vanilla_over_prb_speedup": 4.5004872360406,
+      "vanilla_total_seconds": 15.059629399795085,
+      "winner": "PRB"
+    },
+    {
+      "case": "210611",
+      "invalid_reason": null,
+      "objective_difference": 1.521548256278038e-07,
+      "prb_total_seconds": 3.5653518999461085,
+      "valid_exact_pair": true,
+      "vanilla_over_prb_speedup": 4.4530363468938585,
+      "vanilla_total_seconds": 15.876641599927098,
+      "winner": "PRB"
+    }
+  ],
+  "prb_wins": 7,
+  "ties": 0,
+  "valid_exact_pairs": 7,
+  "valid_pair_means": {
+    "prb": {
+      "algorithm_seconds": 1.6571631428918667,
+      "cut_count": 32.42857142857143,
+      "independent_certification_seconds": 1.101229714229703,
+      "iterations": 4.571428571428571,
+      "oracle_seconds": 0.6856960427082542,
+      "peak_process_tree_rss_gib": 0.15050724574497767,
+      "total_seconds": 2.7583963999391665
+    },
+    "vanilla": {
+      "algorithm_seconds": 11.660248614315476,
+      "cut_count": 6.714285714285714,
+      "independent_certification_seconds": 1.553566899982148,
+      "iterations": 7.714285714285714,
+      "oracle_seconds": 11.472205514387626,
+      "peak_process_tree_rss_gib": 0.039997100830078125,
+      "total_seconds": 13.21381882854205
+    }
+  },
+  "vanilla_wins": 0
+}

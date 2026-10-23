@@ -1,0 +1,82 @@
+{
+  "algorithm_core_time_seconds": 0.25659889983944595,
+  "all_oracle_calls_certified": true,
+  "attempt": "attempt-001",
+  "case_id": "210330",
+  "condition_id": "SG_RENAULT_210330",
+  "cut_validity": true,
+  "cuts_added": 8,
+  "direct_objective": 657659.5492540546,
+  "direct_objective_residual": 1.1641532182693481e-10,
+  "exact_certification": true,
+  "experiment_id": "RENAULT_SCENARIO_GENERATION_SINGLE_CUT_BENDERS_DEVELOPMENT_V1",
+  "final_absolute_gap": 0.0,
+  "final_lower_bound": 657659.5492540544,
+  "final_relative_gap": 0.0,
+  "final_upper_bound": 657659.5492540544,
+  "gurobi_version": "13.0.1",
+  "identity": {
+    "calibration_hash": "e182dde7a79c1c9e7909fb776df4d1cff0326d39bbee5414c3d7efdb147e071a",
+    "instance_hash": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+    "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+    "x0_hash": "11cd91349ff218d7f951a38a65123de8c5e304d36a370c97a39a1ce9b3c3961a"
+  },
+  "independent_certification_seconds": 0.7931776000186801,
+  "independent_global_certification": {
+    "certified_objective": 657659.5492540547,
+    "certified_recourse": 592009.2018260965,
+    "dual_feasible": true,
+    "eb_worst_pattern": [
+      [
+        1,
+        6
+      ],
+      [
+        1,
+        7
+      ]
+    ],
+    "objective_residual": 2.3283064365386963e-10,
+    "pass": true,
+    "sg_worst_pattern": [
+      [
+        1,
+        7
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "sg_worst_value_residual": 2.3283064365386963e-10,
+    "strong_duality_residual": 2.3283064365386963e-10,
+    "worst_pattern_equal": false
+  },
+  "iterations": 9,
+  "maximum_cut_anchor_residual": 1.1641532182693481e-10,
+  "maximum_oracle_cut_anchor_residual": 1.1641532182693481e-10,
+  "maximum_oracle_dual_feasibility_violation": 5.5067062021407764e-14,
+  "maximum_oracle_strong_duality_residual": 1.1641532182693481e-10,
+  "method": "SG-BD",
+  "objective": 657659.5492540544,
+  "oracle_engineering": {
+    "compact_global_robust_milp_oracle": false,
+    "maximum_cuts_per_iteration": 1,
+    "oracle_instances": 1,
+    "oracle_seconds": 0.04840340046212077,
+    "oracle_solve_calls": 10,
+    "product_multicut": false,
+    "product_risk_budget_decomposition": false,
+    "safe_candidate_pruning": true,
+    "safely_pruned_scenarios": 46550,
+    "scenario_lp_solves": 20,
+    "single_global_theta": true,
+    "upper_bound_seconds": 0.016314901178702712
+  },
+  "oracle_seconds": 0.04840340046212077,
+  "protocol_id": "RENAULT_SG_BD_8CASE_V1",
+  "schema": "renault_sg_bd_result_v1",
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "solver_status": "OPTIMAL",
+  "total_time_seconds": 1.049776499858126
+}

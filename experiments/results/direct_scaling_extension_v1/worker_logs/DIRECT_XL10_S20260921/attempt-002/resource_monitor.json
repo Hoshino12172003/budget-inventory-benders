@@ -1,0 +1,47 @@
+{
+  "condition_id": "DIRECT_XL10_S20260921",
+  "attempt": "attempt-002",
+  "resource_protocol_id": "DIRECT_XL10_LOW_MEMORY_CANDIDATE_V1_METHOD2_THREADS2",
+  "preflight": {
+    "available_memory_gib": 16.199413299560547,
+    "minimum_memory_gib": 10,
+    "free_disk_gib": 246.37026596069336,
+    "minimum_free_disk_gib": 20,
+    "environment": {
+      "pass": true,
+      "checks": {
+        "python_version": true,
+        "gurobipy_version": true,
+        "gurobi_native_version": true
+      },
+      "required": {
+        "python_version": "3.12.7",
+        "gurobipy_version": "13.0.1",
+        "gurobi_native_version": [
+          13,
+          0,
+          1
+        ],
+        "comparison_basis": "current_environment_for_new_direct_batch",
+        "scaling_v2_historical_solver_version": "NOT_VERIFIABLE"
+      },
+      "current": {
+        "platform": "Windows-11-10.0.26200-SP0",
+        "python_version": "3.12.7",
+        "python_executable": "C:\\Program Files\\Python312\\python.exe",
+        "gurobipy_version": "13.0.1",
+        "gurobi_native_version": [
+          13,
+          0,
+          1
+        ],
+        "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+      }
+    }
+  },
+  "sample_count": 1463,
+  "peak_process_tree_memory_gib": 6.852397918701172,
+  "wall_clock_seconds": 387.8488318999298,
+  "stop_reason": null,
+  "worker_return_code": 0
+}

@@ -1,0 +1,13 @@
+{
+  "cut_count": 4,
+  "direct_objective": 111.89645669291339,
+  "direct_status": "OPTIMAL",
+  "dual_feasibility_pass": true,
+  "iteration_count": 5,
+  "maximum_cut_validity_excess": 2.842170943040401e-14,
+  "maximum_strong_duality_residual": 0.0,
+  "objective_difference": 2.842170943040401e-14,
+  "status": "PASS",
+  "vanilla_objective": 111.89645669291336,
+  "vanilla_status": "OPTIMAL"
+}

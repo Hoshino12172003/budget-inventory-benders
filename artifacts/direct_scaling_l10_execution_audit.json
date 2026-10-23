@@ -1,0 +1,121 @@
+{
+  "schema": "direct_scaling_l10_execution_audit_v1",
+  "status": "BATCH_STOPPED_AFTER_RESOURCE_CAP",
+  "counts": {
+    "authorized": 10,
+    "attempted": 1,
+    "exact_certified": 0,
+    "resource_stop": 1,
+    "unattempted": 9
+  },
+  "attempted_condition": "DIRECT_L10_S20260921",
+  "stop_scope": "Remaining L10 conditions were not started because the first same-scale Direct model exceeded the unchanged process-tree cap.",
+  "resource_monitor": {
+    "condition_id": "DIRECT_L10_S20260921",
+    "preflight": {
+      "available_memory_gib": 16.069889068603516,
+      "minimum_memory_gib": 7,
+      "free_disk_gib": 246.42444229125977,
+      "minimum_free_disk_gib": 20,
+      "environment": {
+        "pass": true,
+        "checks": {
+          "python_version": true,
+          "gurobipy_version": true,
+          "gurobi_native_version": true
+        },
+        "required": {
+          "python_version": "3.12.7",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "comparison_basis": "current_environment_for_new_direct_batch",
+          "scaling_v2_historical_solver_version": "NOT_VERIFIABLE"
+        },
+        "current": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        }
+      }
+    },
+    "sample_count": 193,
+    "peak_process_tree_memory_gib": 4.02410888671875,
+    "wall_clock_seconds": 53.49900479987264,
+    "stop_reason": "RESOURCE_PROCESS_CAP",
+    "worker_return_code": 1
+  },
+  "last_solver_progress": {
+    "condition_id": "DIRECT_L10_S20260921",
+    "runtime_seconds": 36.10300016403198,
+    "incumbent": 1e+100,
+    "best_bound": -275.41877067477606,
+    "node_count": 0.0
+  },
+  "available_incumbent": null,
+  "available_best_bound": -275.41877067477606,
+  "model_build_seconds_derived_from_logged_remaining_time_limit": 11.357927299803123,
+  "solver_log_model_dimensions": {
+    "variables": 2258462,
+    "constraints": 184929,
+    "nonzeros": 6866733
+  },
+  "config_hash": "4800dc5ce69fe579b5300a1bbf10be6741e0aa88d822da3855541b9666157f20",
+  "execution_config_sha256": "6ebf6edc700266d26f330ec6525cef2cf7db38d1e0dde52effdde9ec1f9aafea",
+  "model_identity": {
+    "sha256": "f8d608d84249cf72647b3229ab52d99e64a9c983140602702cb59087ea82810d",
+    "files": {
+      "experiments/run_direct_scaling.py": "425f332e621f850a551e9ff3ce7cefac105979ba36f5596962630d761c80ba38",
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+      "src/robust_inventory_reconfiguration/product_risk_subproblem.py": "1c68e8031a5bece2ae863fb0f3df2ed47ba9f5d7cf82d4cd6c20e9ba5bee012f",
+      "src/robust_inventory_reconfiguration/risk_budget_composition.py": "d5b79b3fd576ae1398bf2bd9931c658686a2a520d3b9fac7380c903c8e7aa47f",
+      "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+    }
+  },
+  "execution_code_commit": "5e52a0383b6cfff68d10da12f2808dacc01ee844",
+  "historical_environment_limit": "Scaling V2 software environment remains NOT_VERIFIABLE; no exact environment identity is claimed.",
+  "attempt_files": {
+    "resource_monitor.json": {
+      "sha256": "86f0cebbfe5abf763c6053e8e5d46e2f7ffc330d57d4d27b67e0ccf3752f041b",
+      "size_bytes": 1383
+    },
+    "solver.log": {
+      "sha256": "1f0fda1313c70959b5c185c120b53ecb501a852d34bfda9b59165a35e88f864b",
+      "size_bytes": 1775
+    },
+    "solver_progress.json": {
+      "sha256": "71c51f37a40d54b9fa40c3fbe5dafba2901895ca8d334989ab3bd415906c07de",
+      "size_bytes": 173
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    "stdout.log": {
+      "sha256": "b28cabacdaf08e098b97b913707385bd40bc83b2c71a5114c69365e7c77e68ba",
+      "size_bytes": 1842
+    }
+  },
+  "checks": {
+    "authorization_exactly_10_l10": true,
+    "only_one_condition_attempted": true,
+    "resource_stop_recorded": true,
+    "process_cap_not_relaxed": true,
+    "remaining_nine_unattempted": true,
+    "source_l10_30_exact_certified": true,
+    "source_objectives_consistent": true,
+    "no_direct_result_misrepresented": true,
+    "execution_gate_closed_after_stop": true
+  },
+  "optimization_calls_by_summarizer": 0
+}

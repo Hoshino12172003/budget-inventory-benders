@@ -1,0 +1,57 @@
+{
+  "attempt": "attempt-001",
+  "condition_id": "SG_RENAULT_210611",
+  "elapsed_seconds": 1.9103508000262082,
+  "limits": {
+    "condition_time_limit_seconds": 300,
+    "execution": "sequential_single_process",
+    "fail_closed": true,
+    "maximum_process_tree_memory_gib": 4,
+    "memory_monitor_interval_seconds": 0.25,
+    "minimum_available_memory_gib": 8,
+    "minimum_free_disk_gib": 20,
+    "minimum_system_available_memory_gib": 3,
+    "parallel_workers": 1,
+    "retry_policy": "no_automatic_retry"
+  },
+  "peak_process_tree_memory_gib": 0.080322265625,
+  "samples": [
+    {
+      "elapsed_seconds": 0.014251200016587973,
+      "process_tree_rss_gib": 0.008159637451171875,
+      "system_available_gib": 14.110485076904297
+    },
+    {
+      "elapsed_seconds": 0.28678009985014796,
+      "process_tree_rss_gib": 0.02500152587890625,
+      "system_available_gib": 14.040142059326172
+    },
+    {
+      "elapsed_seconds": 0.5625244998373091,
+      "process_tree_rss_gib": 0.059963226318359375,
+      "system_available_gib": 14.006881713867188
+    },
+    {
+      "elapsed_seconds": 0.8306015999987721,
+      "process_tree_rss_gib": 0.080322265625,
+      "system_available_gib": 14.004531860351562
+    },
+    {
+      "elapsed_seconds": 1.0969581999816,
+      "process_tree_rss_gib": 0.07967758178710938,
+      "system_available_gib": 13.995983123779297
+    },
+    {
+      "elapsed_seconds": 1.3703059998806566,
+      "process_tree_rss_gib": 0.07967758178710938,
+      "system_available_gib": 13.999034881591797
+    },
+    {
+      "elapsed_seconds": 1.6421397000085562,
+      "process_tree_rss_gib": 0.07967758178710938,
+      "system_available_gib": 13.98324203491211
+    }
+  ],
+  "stop_reason": null,
+  "worker_return_code": 0
+}

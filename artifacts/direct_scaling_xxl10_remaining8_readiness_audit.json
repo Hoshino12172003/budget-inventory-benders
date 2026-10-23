@@ -1,0 +1,414 @@
+{
+  "schema": "direct_xxl10_remaining8_recovery_readiness_audit_v1",
+  "status": "RESOURCE_BLOCKED",
+  "formal_run_authorized": false,
+  "fixed_denominator": 8,
+  "config_sha256": "82296c9b8c53d908f580cfa181f7e10068c5049f05d66bcb0340463bcee33a70",
+  "core_runner_sha256": "fef8019f9aa9be1d2942a5d3aad363c2c3c28929e52cc02b359d1626a1880edd",
+  "historical_seed22": {
+    "condition_id": "DIRECT_XXL10_S20260922",
+    "historical_batch_status": "STOPPED_INTEGRITY_FAILURE",
+    "historical_classification": "INTEGRITY_FAILURE",
+    "posthoc_classification": "TIME_LIMIT_NO_INCUMBENT",
+    "checks": {
+      "hashes_unchanged": true,
+      "solver_status": true,
+      "no_incumbent_fields": true,
+      "not_certified": true,
+      "worker_clean": true,
+      "archive_complete": true,
+      "result_hash": true,
+      "log_hash": true,
+      "log_solution_count_zero": true,
+      "log_time_limit": true,
+      "historical_report_preserved": true,
+      "posthoc_classification": true
+    },
+    "result": {
+      "experiment_id": "DIRECT_SCALING_XXL10_REMAINING9_DEVELOPMENT_V1",
+      "condition_id": "DIRECT_XXL10_S20260922",
+      "method": "direct_exact",
+      "size": "XXL10",
+      "seed": 20260922,
+      "solver_status": "TIME_LIMIT",
+      "exact_certification": false,
+      "certification_status": "NOT_ATTEMPTED",
+      "certification_error": null,
+      "objective": null,
+      "best_bound": null,
+      "mip_gap": null,
+      "node_count": 1.0,
+      "variable_count": 14227589,
+      "binary_variable_count": 36,
+      "constraint_count": 791070,
+      "nonzero_count": 43069377,
+      "certified_recourse_value": null,
+      "model_build_seconds": 56.02301139989868,
+      "solver_optimize_seconds": 846.6240000724792,
+      "certification_seconds": null,
+      "T_core_seconds": 904.7092959999572,
+      "total_wall_seconds": 904.7096460999455,
+      "config_hash": "10e9155b1dd8bb8e56c3b3ffb50e1e9ba5e27293ca5f8b727202e59edebd5a04",
+      "instance_hash": "fc193c71c5bad6b678e2a2a95ac0b5f71898cbb754e213848913b465051d5ea9",
+      "model_identity": "4c34d92b00b20f3019724b04a7f923cebf8d512a798a6c785077293b4d5f6b4f",
+      "solver_parameters": {
+        "Threads": 2,
+        "Seed": 0,
+        "MIPGap": 0.0,
+        "MIPGapAbs": "DEFAULT",
+        "FeasibilityTol": 1e-08,
+        "OptimalityTol": 1e-08,
+        "IntFeasTol": 1e-08,
+        "Presolve": "DEFAULT",
+        "Method": 2,
+        "Cuts": "DEFAULT",
+        "Heuristics": "DEFAULT",
+        "NumericFocus": 0
+      },
+      "effective_solver_parameters": {
+        "Threads": 2,
+        "Seed": 0,
+        "MIPGap": 0.0,
+        "FeasibilityTol": 1e-08,
+        "OptimalityTol": 1e-08,
+        "IntFeasTol": 1e-08,
+        "Method": 2,
+        "NumericFocus": 0
+      },
+      "code_commit": "f64f86dece8801c9ff1e0e63716f0ebbe79bf4de",
+      "environment": {
+        "platform": "Windows-11-10.0.26200-SP0",
+        "python_version": "3.12.7",
+        "python_executable": "C:\\Program Files\\Python312\\python.exe",
+        "gurobipy_version": "13.0.1",
+        "gurobi_native_version": [
+          13,
+          0,
+          1
+        ],
+        "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+      },
+      "resource_preflight": {
+        "available_memory_gib": 18.037296295166016,
+        "startup_required_gib": 16,
+        "process_tree_cap_gib": 13,
+        "system_available_floor_gib": 3,
+        "free_disk_gib": 245.92767333984375,
+        "minimum_free_disk_gib": 20,
+        "time_limit_seconds": 900,
+        "monitor_interval_seconds": 0.25
+      }
+    },
+    "monitor": {
+      "condition_id": "DIRECT_XXL10_S20260922",
+      "attempt": "attempt-001",
+      "resource_protocol_id": "DIRECT_XXL10_REMAINING9_V1_METHOD2_THREADS2",
+      "preflight": {
+        "available_memory_gib": 18.006256103515625,
+        "startup_required_gib": 16,
+        "process_tree_cap_gib": 13,
+        "system_available_floor_gib": 3,
+        "free_disk_gib": 245.92767333984375,
+        "minimum_free_disk_gib": 20,
+        "time_limit_seconds": 900,
+        "monitor_interval_seconds": 0.25
+      },
+      "sample_count": 3440,
+      "peak_process_tree_memory_gib": 10.263145446777344,
+      "wall_clock_seconds": 910.5214237000328,
+      "stop_reason": null,
+      "worker_return_code": 0
+    },
+    "file_sha256": {
+      "batch_reports/DIRECT_XXL10_REMAINING9_V1_METHOD2_THREADS2.json": "47206b4790f12666ba536ccdd7ab56906dfdf24669eb6a838ebbd07bf01ca1c8",
+      "runs/DIRECT_XXL10_S20260922/provenance.json": "19a3279b422582c60b9b18871ccadf9cc8267560c0b364f303931ed98d38d066",
+      "runs/DIRECT_XXL10_S20260922/result.json": "68cfaf2858ef997dc19c380eeec2df05f40ea3f45a477339c80595f25c0e28fb",
+      "runs/DIRECT_XXL10_S20260922/solver.log": "56aa1118100975945dfcd72394005ec6c43b245b5b0d862f82c787d93dc81746",
+      "runs/DIRECT_XXL10_S20260922/solver_progress.json": "c0e82056b914a1219b5f9dc1f8fa8f8b96b7593beca2e599dd44a65ba6df2954",
+      "worker_logs/DIRECT_XXL10_S20260922/attempt-001/resource_monitor.json": "2c2caebd9740dc56687de14a56555a57f8ac79418d21e59e93cb1d23feae8778",
+      "worker_logs/DIRECT_XXL10_S20260922/attempt-001/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worker_logs/DIRECT_XXL10_S20260922/attempt-001/stdout.log": "e2091a472b586d488765d32880d10982c05d7cc1dbbf2d3d58c49e7acdcf37bf"
+    }
+  },
+  "conditions": [
+    {
+      "condition_id": "DIRECT_XXL10_S20260923",
+      "seed": 20260923,
+      "identity_checks": {
+        "condition": true,
+        "dimensions": true,
+        "instance_sha256": true,
+        "preparation_sha256": true,
+        "instance_hash": true,
+        "x0_hash": true
+      },
+      "paired_identity_checks": {
+        "EF_BD": true,
+        "AGGREGATE_BD": true,
+        "PRB_BD": true
+      },
+      "attempt_state_valid": true,
+      "canonical_absent": true,
+      "next_attempt": "attempt-001",
+      "instance_sha256": "83ba7cbc4f6b6c28bc1e532c2012cbb728ade2a7438d3bbab4de7b05882c19e7",
+      "preparation_sha256": "8fc56332c2eadeb38a9c627edb704ddf13fe72cb365a368b20f68ca21cb400f0",
+      "instance_hash": "e6cdf60fec71692b351bc22ff285c394317e71bc2594f16b7ec0fa8fb381fc1f",
+      "x0_hash": "85c7fe2e011914825dae1a75eadb5eb63442b307e818b7b8ccb5f1dac1ff64c3"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260924",
+      "seed": 20260924,
+      "identity_checks": {
+        "condition": true,
+        "dimensions": true,
+        "instance_sha256": true,
+        "preparation_sha256": true,
+        "instance_hash": true,
+        "x0_hash": true
+      },
+      "paired_identity_checks": {
+        "EF_BD": true,
+        "AGGREGATE_BD": true,
+        "PRB_BD": true
+      },
+      "attempt_state_valid": true,
+      "canonical_absent": true,
+      "next_attempt": "attempt-001",
+      "instance_sha256": "d2f057a0533fba6e8e3b5419ce690989300464926680c869da2a780db712535c",
+      "preparation_sha256": "a6423b5501807b7fe7735acc338300f91c236853483b716a607147447cdb1cd4",
+      "instance_hash": "e8b237496f9060aa1fdb1c9c86015ee9fc357fb8a752d58d80f6e13e8e4df163",
+      "x0_hash": "11730a46b409c296b69affbbcc628812593f6c5a76265d9d2f2d78f1405e987e"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260925",
+      "seed": 20260925,
+      "identity_checks": {
+        "condition": true,
+        "dimensions": true,
+        "instance_sha256": true,
+        "preparation_sha256": true,
+        "instance_hash": true,
+        "x0_hash": true
+      },
+      "paired_identity_checks": {
+        "EF_BD": true,
+        "AGGREGATE_BD": true,
+        "PRB_BD": true
+      },
+      "attempt_state_valid": true,
+      "canonical_absent": true,
+      "next_attempt": "attempt-001",
+      "instance_sha256": "014a198279d174e4a91b3e9239505391aaca9a7676807228b5f3cd607f770343",
+      "preparation_sha256": "aa813dead4af95b2218ca68808711905dfdc32daaa6a202df44deb6f4427cd9f",
+      "instance_hash": "55f9b013e762695a4d04763cddf38be89fe21edff9ccb35ae4be5e9703e683c7",
+      "x0_hash": "0063597cf98a7c560389f2c23ef42830aafb7817336edc26a8de292c204e8b35"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260926",
+      "seed": 20260926,
+      "identity_checks": {
+        "condition": true,
+        "dimensions": true,
+        "instance_sha256": true,
+        "preparation_sha256": true,
+        "instance_hash": true,
+        "x0_hash": true
+      },
+      "paired_identity_checks": {
+        "EF_BD": true,
+        "AGGREGATE_BD": true,
+        "PRB_BD": true
+      },
+      "attempt_state_valid": true,
+      "canonical_absent": true,
+      "next_attempt": "attempt-001",
+      "instance_sha256": "fe5a6c0e1c0bf23fd5e17b55ac057cea8068f510639a1fc5e13064d84663bdcd",
+      "preparation_sha256": "6b563ef40c6a3dede00155e28fb1693ce10a53875a853b72acecf2edcc1a2327",
+      "instance_hash": "15e77ea2a6d976f5bfb9f7231663611056fad47f52001b742d4a098be9c4e4a5",
+      "x0_hash": "8066e6cf7f976b965aa6d29f8bec73be7f5b600da52d5020b047179ac5d35f09"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260927",
+      "seed": 20260927,
+      "identity_checks": {
+        "condition": true,
+        "dimensions": true,
+        "instance_sha256": true,
+        "preparation_sha256": true,
+        "instance_hash": true,
+        "x0_hash": true
+      },
+      "paired_identity_checks": {
+        "EF_BD": true,
+        "AGGREGATE_BD": true,
+        "PRB_BD": true
+      },
+      "attempt_state_valid": true,
+      "canonical_absent": true,
+      "next_attempt": "attempt-001",
+      "instance_sha256": "df8e2aafa9abd31df71208191e2067cf3e9e0f677187f01c5b01b5a82bc70cf3",
+      "preparation_sha256": "ada567056865550c6d59d91e18ba75a3808a3acc8f0245a06ae67fc5c07a5b06",
+      "instance_hash": "5a945d25c347b2b7dd75a586fa9ae2a90fb1b291efabb78f5efb9f1d0ee35c07",
+      "x0_hash": "ef4ab13b4c4a46a0216ac17c0027265301ef2893f014d1dcc6a9b96c561a60a8"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260928",
+      "seed": 20260928,
+      "identity_checks": {
+        "condition": true,
+        "dimensions": true,
+        "instance_sha256": true,
+        "preparation_sha256": true,
+        "instance_hash": true,
+        "x0_hash": true
+      },
+      "paired_identity_checks": {
+        "EF_BD": true,
+        "AGGREGATE_BD": true,
+        "PRB_BD": true
+      },
+      "attempt_state_valid": true,
+      "canonical_absent": true,
+      "next_attempt": "attempt-001",
+      "instance_sha256": "c128428758be44d7a1f4161bbc4e5f8379809e26795bfd6f327d47c087b9c9d9",
+      "preparation_sha256": "05a5cb6fe40aa3e6b2907027a89640fe7b0d7bf57cda780e90a76e329696c20d",
+      "instance_hash": "ab57d56583c28260358ca24c530535fcc2f1c12bf67aa3be4f0870156afab699",
+      "x0_hash": "7b699163a79bd13795be2323d4f065c5d3ec768aeb8fe1f9a46aa591b29a303c"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260929",
+      "seed": 20260929,
+      "identity_checks": {
+        "condition": true,
+        "dimensions": true,
+        "instance_sha256": true,
+        "preparation_sha256": true,
+        "instance_hash": true,
+        "x0_hash": true
+      },
+      "paired_identity_checks": {
+        "EF_BD": true,
+        "AGGREGATE_BD": true,
+        "PRB_BD": true
+      },
+      "attempt_state_valid": true,
+      "canonical_absent": true,
+      "next_attempt": "attempt-001",
+      "instance_sha256": "bea9350e445fb4bae6db8fed6d10239feda86e5409ac26a2c0946d6826708f9e",
+      "preparation_sha256": "c3d37d75483be8530142778ede92aa6dc3afef837334eb9d7f8e8ceec13ad560",
+      "instance_hash": "29c010cdb8a97ea71b61ce499d42c91c2df128a8f0f7515abb0f424aa9390f35",
+      "x0_hash": "0e1f3745a98856f447f7a0242adee928d877ef9659d7dd4eb9d0f82d7b19daa1"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260930",
+      "seed": 20260930,
+      "identity_checks": {
+        "condition": true,
+        "dimensions": true,
+        "instance_sha256": true,
+        "preparation_sha256": true,
+        "instance_hash": true,
+        "x0_hash": true
+      },
+      "paired_identity_checks": {
+        "EF_BD": true,
+        "AGGREGATE_BD": true,
+        "PRB_BD": true
+      },
+      "attempt_state_valid": true,
+      "canonical_absent": true,
+      "next_attempt": "attempt-001",
+      "instance_sha256": "a13c2853a20eb0fdb362dd3167acf487ded1ba72c6cdcbe7192e01e56c799cd6",
+      "preparation_sha256": "b6ee796fd54dd2e2466d0a787744532f3a0c505c429761df387aa8c3edbfebb9",
+      "instance_hash": "c54138f47da83d6ae327c1b5b30d66e68a7428a4e9f46ab7bc7cadefd4484bdf",
+      "x0_hash": "2633cdb20b4ca4bfdd2a100390e9a56042694a5a74cd4e3eef92fbfeae9c64e6"
+    }
+  ],
+  "model_identity": {
+    "sha256": "4c34d92b00b20f3019724b04a7f923cebf8d512a798a6c785077293b4d5f6b4f",
+    "files": {
+      "experiments/run_direct_scaling.py": "fef8019f9aa9be1d2942a5d3aad363c2c3c28929e52cc02b359d1626a1880edd",
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+      "src/robust_inventory_reconfiguration/product_risk_subproblem.py": "1c68e8031a5bece2ae863fb0f3df2ed47ba9f5d7cf82d4cd6c20e9ba5bee012f",
+      "src/robust_inventory_reconfiguration/risk_budget_composition.py": "d5b79b3fd576ae1398bf2bd9931c658686a2a520d3b9fac7380c903c8e7aa47f",
+      "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+    }
+  },
+  "environment": {
+    "pass": true,
+    "checks": {
+      "python_version": true,
+      "gurobipy_version": true,
+      "gurobi_native_version": true
+    },
+    "required": {
+      "python_version": "3.12.7",
+      "gurobipy_version": "13.0.1",
+      "gurobi_native_version": [
+        13,
+        0,
+        1
+      ],
+      "comparison_basis": "same_current_environment_for_new_paired_runs",
+      "scaling_v2_historical_solver_version": "NOT_VERIFIABLE"
+    },
+    "current": {
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python_version": "3.12.7",
+      "python_executable": "C:\\Program Files\\Python312\\python.exe",
+      "gurobipy_version": "13.0.1",
+      "gurobi_native_version": [
+        13,
+        0,
+        1
+      ],
+      "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+    }
+  },
+  "resource_policy": {
+    "execution": "sequential_single_worker",
+    "parallel_workers": 1,
+    "minimum_available_memory_gib_by_size": {
+      "XXL10": 16
+    },
+    "maximum_process_tree_memory_gib_by_size": {
+      "XXL10": 13
+    },
+    "minimum_system_available_memory_gib": 3,
+    "minimum_free_disk_gib": 20,
+    "condition_time_limit_seconds": 900,
+    "memory_monitor_interval_seconds": 0.25,
+    "fail_closed": true,
+    "retry_policy": "no_automatic_retry"
+  },
+  "resource_gate": {
+    "available_memory_gib": 15.68490982055664,
+    "startup_required_gib": 16,
+    "process_tree_cap_gib": 13,
+    "system_available_floor_gib": 3,
+    "free_disk_gib": 245.92608261108398,
+    "minimum_free_disk_gib": 20,
+    "time_limit_seconds": 900,
+    "monitor_interval_seconds": 0.25
+  },
+  "git": {
+    "head": "f90a91c033d7cc97b22093b57283ffe758413437",
+    "clean_for_execution": true,
+    "unexpected": []
+  },
+  "active_workers": [],
+  "gates": {
+    "historical_seed22": true,
+    "all_eight_identities": true,
+    "all_eight_paired": true,
+    "all_attempts_absent": true,
+    "all_canonical_absent": true,
+    "model": true,
+    "environment": true,
+    "git": true,
+    "startup_memory": false,
+    "disk": true,
+    "no_other_worker": true
+  },
+  "optimization_calls": 0
+}

@@ -1,0 +1,281 @@
+{
+  "schema": "direct_ef_benders_xxl10_paired_preparation_audit_v1",
+  "optimization_calls": 0,
+  "identity_checks": {
+    "same_instance_hash": true,
+    "same_x0_hash": true,
+    "same_instance_file": true,
+    "same_preparation_file": true,
+    "same_source_instance": true,
+    "direct_identity": true,
+    "ef_identity": true,
+    "authorization_separate_and_closed": true,
+    "output_roots_separate": true,
+    "zero_optimization": true
+  },
+  "frozen_instance": {
+    "source_instance_id": "ASC_INSTANCE_XXL10_S20260921",
+    "instance_hash": "81739c07edea3babcb62bbaf91ac6ac37eb13c3201052071c5610c4e8a328f94",
+    "x0_hash": "65813dd3712757d9e6f4fa742525041ea32667b6ded2afda8096b1665aedda03",
+    "instance_sha256": "2ebc009d6f00065ecd948070210075b715154257d17c1701acf1b937b821088f",
+    "preparation_sha256": "17030da831a58cecce755bade73b245b4cdc8db18ebb1f4d5b4171e1e01ca39a",
+    "dimensions": {
+      "I": 36,
+      "R": 36,
+      "J": 16
+    },
+    "Gamma": 2
+  },
+  "model_size": {
+    "Direct": {
+      "variables": 14227589,
+      "binary_variables": 36,
+      "constraints": 791070,
+      "nonzeros": 43069377,
+      "scenario_blocks": 10672,
+      "relative_to_xl10_nonzeros": 2.337818459772765
+    },
+    "EF-BD": {
+      "variables": 14225825,
+      "constraints": 789881,
+      "nonzeros": 42679929,
+      "binary_variables": 0,
+      "scenario_blocks": 10672,
+      "relative_to_xl10_nonzeros": 2.342048589138364
+    },
+    "evidence_class": "THEORETICAL_EXACT_COUNTS_FROM_MODEL_FORMULAS_NO_GUROBI_MODEL_BUILD"
+  },
+  "historical_memory": {
+    "Direct_XL10": {
+      "attempts": 12,
+      "maximum_certified_peak_gib": 6.87261962890625,
+      "maximum_all_attempt_peak_gib": 8.289241790771484,
+      "linear_nonzero_scaled_certified_peak_gib": 16.066937035453684,
+      "warning": "The scaled value exceeds the 13-GiB cap and is not a memory prediction; Direct completion risk is high."
+    },
+    "EF_BD_XL10": {
+      "attempts": 10,
+      "maximum_certified_peak_gib": 4.7296600341796875,
+      "linear_nonzero_scaled_peak_gib": 11.077093610154643,
+      "warning": "The scaled value is only a risk reference; Barrier factorization, Crossover, Python objects, and allocator behavior are nonlinear."
+    }
+  },
+  "Direct": {
+    "schema": "direct_xxl10_paired_pilot_dry_run_v1",
+    "decision": "RESOURCE_BLOCKED",
+    "formal_run_authorized": false,
+    "condition": {
+      "size": "XXL10",
+      "seed": 20260921,
+      "condition_id": "DIRECT_XXL10_S20260921"
+    },
+    "next_attempt": "attempt-001",
+    "input_identity": {
+      "source_instance_id": "ASC_INSTANCE_XXL10_S20260921",
+      "instance_hash": "81739c07edea3babcb62bbaf91ac6ac37eb13c3201052071c5610c4e8a328f94",
+      "x0_hash": "65813dd3712757d9e6f4fa742525041ea32667b6ded2afda8096b1665aedda03",
+      "instance_sha256": "2ebc009d6f00065ecd948070210075b715154257d17c1701acf1b937b821088f",
+      "preparation_sha256": "17030da831a58cecce755bade73b245b4cdc8db18ebb1f4d5b4171e1e01ca39a"
+    },
+    "identity_checks": {
+      "condition_id": true,
+      "source_instance_id": true,
+      "dimensions": true,
+      "instance_hash": true,
+      "x0_hash": true,
+      "instance_sha256": true,
+      "preparation_sha256": true
+    },
+    "model_identity_checks": {
+      "experiments/run_direct_scaling.py": true,
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py": true,
+      "src/robust_inventory_reconfiguration/product_risk_subproblem.py": true,
+      "src/robust_inventory_reconfiguration/risk_budget_composition.py": true,
+      "src/robust_inventory_reconfiguration/solver_profile.py": true
+    },
+    "environment": {
+      "pass": true,
+      "checks": {
+        "python_version": true,
+        "gurobipy_version": true,
+        "gurobi_native_version": true
+      },
+      "required": {
+        "python_version": "3.12.7",
+        "gurobipy_version": "13.0.1",
+        "gurobi_native_version": [
+          13,
+          0,
+          1
+        ],
+        "comparison_basis": "same_current_environment_for_new_paired_pilots",
+        "scaling_v2_historical_solver_version": "NOT_VERIFIABLE"
+      },
+      "current": {
+        "platform": "Windows-11-10.0.26200-SP0",
+        "python_version": "3.12.7",
+        "python_executable": "C:\\Program Files\\Python312\\python.exe",
+        "gurobipy_version": "13.0.1",
+        "gurobi_native_version": [
+          13,
+          0,
+          1
+        ],
+        "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+      }
+    },
+    "resource_gate": {
+      "available_memory_gib": 13.54378890991211,
+      "startup_required_gib": 16,
+      "process_tree_cap_gib": 13,
+      "system_available_floor_gib": 3,
+      "free_disk_gib": 245.95095825195312,
+      "minimum_free_disk_gib": 20,
+      "time_limit_seconds": 900,
+      "monitor_interval_seconds": 0.25
+    },
+    "git": {
+      "head": "7167ac258498418c186e2e94e291065d3d478960",
+      "clean_for_execution": true,
+      "unexpected": []
+    },
+    "active_paired_solver_workers": [],
+    "gates": {
+      "frozen_identity": true,
+      "frozen_model": true,
+      "environment": true,
+      "attempt_absent": true,
+      "canonical_absent": true,
+      "startup_memory": false,
+      "disk": true,
+      "git_identity": true,
+      "no_active_paired_worker": true
+    },
+    "config_sha256": "da001ad1ede9e02f982c12e506b29219b09d991df8eb34e1d88688b6c2a84066",
+    "config_identity": "0e686916fc06f3aea1ab9eb7cd98b0adcf0a01999bc0ab1237edf63c0223b15c",
+    "model_identity": {
+      "sha256": "4c34d92b00b20f3019724b04a7f923cebf8d512a798a6c785077293b4d5f6b4f",
+      "files": {
+        "experiments/run_direct_scaling.py": "fef8019f9aa9be1d2942a5d3aad363c2c3c28929e52cc02b359d1626a1880edd",
+        "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+        "src/robust_inventory_reconfiguration/product_risk_subproblem.py": "1c68e8031a5bece2ae863fb0f3df2ed47ba9f5d7cf82d4cd6c20e9ba5bee012f",
+        "src/robust_inventory_reconfiguration/risk_budget_composition.py": "d5b79b3fd576ae1398bf2bd9931c658686a2a520d3b9fac7380c903c8e7aa47f",
+        "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+      }
+    },
+    "optimization_calls": 0
+  },
+  "EF-BD": {
+    "schema": "ef_benders_xxl10_paired_pilot_dry_run_v1",
+    "decision": "RESOURCE_BLOCKED",
+    "formal_run_authorized": false,
+    "condition": {
+      "protocol_id": "EF_BD_XXL10_PAIRED_PILOT_V1",
+      "formal_run_authorized": false,
+      "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\ef_benders_scaling_xxl10_paired_pilot_v1.yaml",
+      "config_sha256": "553fcaebb7541b0281e529f6d1ee4451073ffacbf5f938661e0fdb629048284b",
+      "config_identity": "c4373049e5647a33d64aa758fd50b699f621700a93ba4740ec359b2ed5ba696f",
+      "readiness_decision": "READY_FOR_AUTHORIZATION",
+      "condition": {
+        "condition_id": "EF_XXL10_S20260921",
+        "size": "XXL10",
+        "seed": 20260921
+      },
+      "source_instance_id": "ASC_INSTANCE_XXL10_S20260921",
+      "instance_hash": "81739c07edea3babcb62bbaf91ac6ac37eb13c3201052071c5610c4e8a328f94",
+      "x0_hash": "65813dd3712757d9e6f4fa742525041ea32667b6ded2afda8096b1665aedda03",
+      "instance_sha256": "2ebc009d6f00065ecd948070210075b715154257d17c1701acf1b937b821088f",
+      "preparation_sha256": "17030da831a58cecce755bade73b245b4cdc8db18ebb1f4d5b4171e1e01ca39a",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "resource_gate": {
+        "available_memory_gib": 13.542205810546875,
+        "startup_required_gib": 17,
+        "process_tree_cap_gib": 13,
+        "system_available_floor_gib": 3,
+        "free_disk_gib": 245.95095825195312,
+        "minimum_free_disk_gib": 20,
+        "time_limit_seconds": 900,
+        "monitor_interval_seconds": 0.25
+      },
+      "canonical_result_exists": false,
+      "attempt_exists": false,
+      "next_attempt": "attempt-001",
+      "solver_parameters": {
+        "Threads": 2
+      },
+      "environment": {
+        "platform": "Windows-11-10.0.26200-SP0",
+        "python_version": "3.12.7",
+        "python_executable": "C:\\Program Files\\Python312\\python.exe",
+        "gurobipy_version": "13.0.1",
+        "gurobi_native_version": [
+          13,
+          0,
+          1
+        ],
+        "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+      },
+      "optimization_calls": 0
+    },
+    "identity_checks": {
+      "condition_id": true,
+      "source_instance_id": true,
+      "instance_hash": true,
+      "x0_hash": true,
+      "instance_sha256": true,
+      "preparation_sha256": true,
+      "paired_methods": true
+    },
+    "model_identity_checks": {
+      "src/robust_inventory_reconfiguration/extensive_form_benders.py": true,
+      "src/robust_inventory_reconfiguration/pure_benders.py": true,
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py": true,
+      "src/robust_inventory_reconfiguration/solver_profile.py": true
+    },
+    "environment_checks": {
+      "python_version": true,
+      "gurobipy_version": true,
+      "gurobi_native_version": true
+    },
+    "model_identity": {
+      "sha256": "362f7733c7b5f1bd5da2e46e82f29011d22d8a8a6b13fe2f6f302575217af803",
+      "files": {
+        "experiments/run_ef_benders_scaling.py": "629313e545368b029114e7d8610617d8cb916778e771b37609cab40c1ac23ef0",
+        "src/robust_inventory_reconfiguration/extensive_form_benders.py": "e22d214b75ccb2d0cb53fffe59e5850e50fadc20202f4fef27fa3aaff29e6e4d",
+        "src/robust_inventory_reconfiguration/pure_benders.py": "5e29839964dedf292e32dd471bab7ea4fbf782a8d0ff2470f861e664174c97fd",
+        "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+        "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+      }
+    },
+    "git": {
+      "head": "7167ac258498418c186e2e94e291065d3d478960",
+      "clean_for_execution": true,
+      "unexpected": []
+    },
+    "active_paired_solver_workers": [],
+    "gates": {
+      "frozen_identity": true,
+      "frozen_algorithm": true,
+      "environment": true,
+      "attempt_absent": true,
+      "canonical_absent": true,
+      "startup_memory": false,
+      "disk": true,
+      "git_identity": true,
+      "no_active_paired_worker": true
+    },
+    "next_attempt": "attempt-001",
+    "optimization_calls": 0
+  },
+  "recommendation": {
+    "current_machine": "DO_NOT_EXECUTE_WHILE_LIVE_STARTUP_GATES_FAIL",
+    "Direct": "RESOURCE_BLOCKED; even after 16 GiB becomes available, one monitored attempt has high probability of hitting the unchanged 13-GiB cap.",
+    "EF-BD": "RESOURCE_BLOCKED; reconsider one monitored attempt only after at least 17 GiB is available. Completion is not guaranteed.",
+    "pairing": "Never run both methods concurrently; authorize and execute each protocol separately."
+  }
+}

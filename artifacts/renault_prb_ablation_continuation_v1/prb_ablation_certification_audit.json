@@ -1,0 +1,286 @@
+{
+  "fixed_denominator": 8,
+  "methods": {
+    "A-PRB": {
+      "cases": {
+        "210129": {
+          "coupling_residual": 1.1641532182693481e-10,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "a1bcb710e62fa69d3a2563290817056389dacd4711e6e2f12b50c5a6d482c576",
+          "source": "experiments/results/renault_a_prb_development_v1/runs/A_PRB_RENAULT_210129/result.json",
+          "status": "PASS"
+        },
+        "210202": {
+          "coupling_residual": 0.0,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "152e38c5c80c90833baa1c062d455d0c511af164283631e0527c9a1bc292c71f",
+          "source": "experiments/results/renault_a_prb_development_v1/runs/A_PRB_RENAULT_210202/result.json",
+          "status": "PASS"
+        },
+        "210310": {
+          "coupling_residual": 1.1641532182693481e-10,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "5ca9ed5a1835c4085819e0c457322563eb172aec884e64144be48ecf72182132",
+          "source": "experiments/results/renault_a_prb_development_v1/runs/A_PRB_RENAULT_210310/result.json",
+          "status": "PASS"
+        },
+        "210323": {
+          "coupling_residual": 1.1641532182693481e-10,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "3bf8cdd6215cb2071e517985a354d9f5d6d97c4a35f63f2d2faa5a830fe10821",
+          "source": "experiments/results/renault_a_prb_development_v1/runs/A_PRB_RENAULT_210323/result.json",
+          "status": "PASS"
+        },
+        "210330": {
+          "coupling_residual": 0.0,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "672a0dd89b2634372061a98d8789f67d469eb65ee50091ce4a09c1e807090fd9",
+          "source": "experiments/results/renault_a_prb_development_v1/runs/A_PRB_RENAULT_210330/result.json",
+          "status": "PASS"
+        },
+        "210428": {
+          "coupling_residual": 1.1641532182693481e-10,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "fdfe7908255133df8e6efb74948c904a2c3ea6f2adee0946d2ea33f9e89c45bb",
+          "source": "experiments/results/renault_a_prb_development_v1/runs/A_PRB_RENAULT_210428/result.json",
+          "status": "PASS"
+        },
+        "210611": {
+          "coupling_residual": 0.0,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "9bf43bd26351b1a18a6b72808196055b851ae5bd2e183c03e41c910ad381cc1a",
+          "source": "experiments/results/renault_a_prb_development_v1/runs/A_PRB_RENAULT_210611/result.json",
+          "status": "PASS"
+        },
+        "210628": {
+          "coupling_residual": 1.1641532182693481e-10,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "02f0e46e42f11680e02e297c56a73a39eb73e2890afc3c178b404eca9281a119",
+          "source": "experiments/results/renault_a_prb_development_v1/runs/A_PRB_RENAULT_210628/result.json",
+          "status": "PASS"
+        }
+      },
+      "fail": 0,
+      "pass": 8
+    },
+    "A-PRB-SG": {
+      "cases": {
+        "210129": {
+          "coupling_residual": 1.1641532182693481e-10,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "d67cc1de30c161e4b0766222cbe1b46b9be4238e9073689bd93c82f6121fadad",
+          "source": "experiments/results/renault_a_prb_sg_development_v1/runs/A_PRB_SG_RENAULT_210129/result.json",
+          "status": "PASS"
+        },
+        "210202": {
+          "coupling_residual": 0.0,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "5b4fac2109e37de74fab47742d7e927c27c5df92b5698f41ea8b7fa14e71b16c",
+          "source": "experiments/results/renault_a_prb_sg_development_v1/runs/A_PRB_SG_RENAULT_210202/result.json",
+          "status": "PASS"
+        },
+        "210310": {
+          "coupling_residual": 1.2223608791828156e-08,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "15b9221f6ccb9494c3bd28631c6f756b3f0a7b1ef5796bd6ac34df888b140565",
+          "source": "experiments/results/renault_a_prb_sg_development_v1/runs/A_PRB_SG_RENAULT_210310/result.json",
+          "status": "PASS"
+        },
+        "210323": {
+          "coupling_residual": 1.1641532182693481e-10,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "8e4005e921a3c43d0a68703603523fd69a46798c28f97fbc9d203ab41bc24a3a",
+          "source": "experiments/results/renault_a_prb_sg_development_v1/runs/A_PRB_SG_RENAULT_210323/result.json",
+          "status": "PASS"
+        },
+        "210330": {
+          "coupling_residual": 0.0,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "c3970811b515a2a18eb7aff414b1f3078abe437df1717460c4bc4365c961219b",
+          "source": "experiments/results/renault_a_prb_sg_development_v1/runs/A_PRB_SG_RENAULT_210330/result.json",
+          "status": "PASS"
+        },
+        "210428": {
+          "coupling_residual": 1.1641532182693481e-10,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "5d0a580443caafd663fbb21f47b4a0c8065118c88d4e311db6b67a1806887e46",
+          "source": "experiments/results/renault_a_prb_sg_development_v1/runs/A_PRB_SG_RENAULT_210428/result.json",
+          "status": "PASS"
+        },
+        "210611": {
+          "coupling_residual": 0.0,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "49ff5ab9e759e390852b15ffde69fab42e3b198d1fc5a97e0e27013fb3b394eb",
+          "source": "experiments/results/renault_a_prb_sg_development_v1/runs/A_PRB_SG_RENAULT_210611/result.json",
+          "status": "PASS"
+        },
+        "210628": {
+          "coupling_residual": 1.1641532182693481e-10,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "63c3a43cc8f8b5a1dfd57f12556c5f8510a008bd41687aceb6c51813aadf4099",
+          "source": "experiments/results/renault_a_prb_sg_development_v1/runs/A_PRB_SG_RENAULT_210628/result.json",
+          "status": "PASS"
+        }
+      },
+      "fail": 0,
+      "pass": 8
+    },
+    "PRB-BD": {
+      "cases": {
+        "210129": {
+          "coupling_residual": "",
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "a37830168005daae9e21924ee5b30e5e8e5b18af241f40c6c588bbc1f9ae6bc2",
+          "source": "experiments/results/renault_vanilla_bd_remaining7_development_v1/210129/prb_outcome.json",
+          "status": "PASS"
+        },
+        "210202": {
+          "coupling_residual": "",
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "9260c308713d89597b627dca216d4f24ab3201bafb2cdaf781332c1a7a8d12aa",
+          "source": "experiments/results/renault_vanilla_bd_pilot_210202_development_v1/prb_outcome.json",
+          "status": "PASS"
+        },
+        "210310": {
+          "coupling_residual": "",
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "e81fe4fd921981b050787cc58390dad621c7bf3f8946858b8c147c9cde07b068",
+          "source": "experiments/results/renault_vanilla_bd_remaining7_development_v1/210310/prb_outcome.json",
+          "status": "PASS"
+        },
+        "210323": {
+          "coupling_residual": "",
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "955d62789bf5763b628110a9c7c0d5bd7c8ed7bfaa2ff902817e98beecb36a1e",
+          "source": "experiments/results/renault_vanilla_bd_remaining7_development_v1/210323/prb_outcome.json",
+          "status": "PASS"
+        },
+        "210330": {
+          "coupling_residual": 1.6398262232542038e-06,
+          "cut_validity": true,
+          "exact_certification": false,
+          "result_sha256": "5e57b5865aa05cfab464e6dfd56e453b819d3da420e603030e33299135d5e150",
+          "source": "experiments/results/renault_vanilla_bd_remaining7_development_v1/210330/prb_outcome.json",
+          "status": "NUMERICAL_CERTIFICATION_FAIL"
+        },
+        "210428": {
+          "coupling_residual": "",
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "bfe6e6256029925020673e06c93f7bbc549102e3b5061a9ab6d56a215f223f54",
+          "source": "experiments/results/renault_vanilla_bd_remaining7_development_v1/210428/prb_outcome.json",
+          "status": "PASS"
+        },
+        "210611": {
+          "coupling_residual": "",
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "4a486383b5aa95514cb548b08128b2d140773fe676937a0b68d6276751905286",
+          "source": "experiments/results/renault_vanilla_bd_remaining7_development_v1/210611/prb_outcome.json",
+          "status": "PASS"
+        },
+        "210628": {
+          "coupling_residual": "",
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "679ef810af5bb06ffe5a3fe5c5b6946e39fcd1ea2f205429ed8b50364aedd176",
+          "source": "experiments/results/renault_vanilla_bd_remaining7_development_v1/210628/prb_outcome.json",
+          "status": "PASS"
+        }
+      },
+      "fail": 1,
+      "pass": 7
+    },
+    "PRB-SG": {
+      "cases": {
+        "210129": {
+          "coupling_residual": 1.1641532182693481e-10,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "41a9ea2c66a05153a10d2d80eb431d18a9fdd86bd8dd8fc5455e39cf56ef6441",
+          "source": "experiments/results/renault_prb_sg_development_v1/runs/PRB_SG_RENAULT_210129/result.json",
+          "status": "PASS"
+        },
+        "210202": {
+          "coupling_residual": 1.1641532182693481e-10,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "10150baec5c4acad66ce8bf450991027012a834b7b395f0648205d99f2b93f1f",
+          "source": "experiments/results/renault_prb_sg_development_v1/runs/PRB_SG_RENAULT_210202/result.json",
+          "status": "PASS"
+        },
+        "210310": {
+          "coupling_residual": 4.656612873077393e-10,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "b61ce49c7d4a4164f9088b48a411d26bed39b91d5bcab0b95e16ac33c88a276b",
+          "source": "experiments/results/renault_prb_sg_development_v1/runs/PRB_SG_RENAULT_210310/result.json",
+          "status": "PASS"
+        },
+        "210323": {
+          "coupling_residual": 1.1641532182693481e-10,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "4861676ec9b9ac822f87fcdaf1259ea35032e77151255dce908a582e1147e397",
+          "source": "experiments/results/renault_prb_sg_development_v1/runs/PRB_SG_RENAULT_210323/result.json",
+          "status": "PASS"
+        },
+        "210330": {
+          "coupling_residual": 1.6398262232542038e-06,
+          "cut_validity": true,
+          "exact_certification": false,
+          "result_sha256": "f0ce4bba68cabb775727a2b30c4e6137652f7ec96efa5394c450ea3c64f2240d",
+          "source": "experiments/results/renault_prb_sg_development_v1/worker_logs/PRB_SG_RENAULT_210330/attempt-001/result.json",
+          "status": "NUMERICAL_CERTIFICATION_FAIL"
+        },
+        "210428": {
+          "coupling_residual": 0.0,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "ef6e7d1af0c1e2221fed94cc93e02b46e0d506ece2f27ca7bae7ef39d69871e6",
+          "source": "experiments/results/renault_prb_sg_development_v1/runs/PRB_SG_RENAULT_210428/result.json",
+          "status": "PASS"
+        },
+        "210611": {
+          "coupling_residual": 1.6111880540847778e-07,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "dd036ae847e80a2599148ae91dc7a8292d8abe622adc526ae3d96b543a788144",
+          "source": "experiments/results/renault_prb_sg_development_v1/runs/PRB_SG_RENAULT_210611/result.json",
+          "status": "PASS"
+        },
+        "210628": {
+          "coupling_residual": 1.1641532182693481e-10,
+          "cut_validity": true,
+          "exact_certification": true,
+          "result_sha256": "1c0d2e4472cb46607049ed582c9092598a578e1993e2f7dc894a6e94b27d28aa",
+          "source": "experiments/results/renault_prb_sg_development_v1/runs/PRB_SG_RENAULT_210628/result.json",
+          "status": "PASS"
+        }
+      },
+      "fail": 1,
+      "pass": 7
+    }
+  },
+  "schema": "renault_prb_ablation_certification_audit_v1"
+}

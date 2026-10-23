@@ -1,0 +1,249 @@
+{
+  "schema": "ef_benders_xxl10_remaining9_readiness_audit_v1",
+  "status": "RESOURCE_BLOCKED",
+  "checks": {
+    "dry_run_ready": false,
+    "authorization_closed": true,
+    "pilot_archive": true,
+    "algorithm_identity": true,
+    "environment_identity": true,
+    "all_nine_identities": true,
+    "all_nine_attempts_absent": true,
+    "all_nine_canonical_absent": true,
+    "zero_optimization": true
+  },
+  "protocol_id": "EF_BD_XXL10_REMAINING9_V1",
+  "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\ef_benders_scaling_xxl10_remaining9_v1.yaml",
+  "config_sha256": "d96e769c22ed1e5635527eb5051822aab3f249a14d6836ad73665d724a04f53c",
+  "fixed_denominator": {
+    "completed_pilot": 1,
+    "remaining": 9,
+    "total_xxl10": 10
+  },
+  "pilot": {
+    "condition_id": "EF_XXL10_S20260921",
+    "attempt": "attempt-001",
+    "result_sha256": "c8bcc33ee838239c76820dcc27361de3054ebd6f7a3143f4fa8b3c5a8480fd5b",
+    "provenance_sha256": "a97181ae94ff6aad5e5c1bfd02afcfd0f0f4333c7e590035838acc058528ef08",
+    "resource_monitor_sha256": "4684914ddad750a119bace23d7b8b3c4b987caf412ba65b715f37d32af06bf36",
+    "solver_status": "OPTIMAL",
+    "exact_certification": true,
+    "cut_validity": true,
+    "algorithm_core_time": 287.82764680008404,
+    "monitor_elapsed_seconds": 373.4123421001714,
+    "peak_process_tree_memory_gib": 10.958301544189453
+  },
+  "conditions": [
+    {
+      "condition_id": "EF_XXL10_S20260922",
+      "seed": 20260922,
+      "instance_hash": "fc193c71c5bad6b678e2a2a95ac0b5f71898cbb754e213848913b465051d5ea9",
+      "x0_hash": "531a741e79c1bc3208f7bc47f0e858193e72979b3f35b06154957491bf432457",
+      "instance_sha256": "acabbdba1d68be5d562fa604d6c3110de0d42ed49364be72a2db9f52cffaa9b4",
+      "preparation_sha256": "8d7e5d14bf41606dfd4cc0c16795f7c5a0edf0a1501ab726cc40bc8501164dc6",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XXL10_S20260923",
+      "seed": 20260923,
+      "instance_hash": "e6cdf60fec71692b351bc22ff285c394317e71bc2594f16b7ec0fa8fb381fc1f",
+      "x0_hash": "85c7fe2e011914825dae1a75eadb5eb63442b307e818b7b8ccb5f1dac1ff64c3",
+      "instance_sha256": "83ba7cbc4f6b6c28bc1e532c2012cbb728ade2a7438d3bbab4de7b05882c19e7",
+      "preparation_sha256": "8fc56332c2eadeb38a9c627edb704ddf13fe72cb365a368b20f68ca21cb400f0",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XXL10_S20260924",
+      "seed": 20260924,
+      "instance_hash": "e8b237496f9060aa1fdb1c9c86015ee9fc357fb8a752d58d80f6e13e8e4df163",
+      "x0_hash": "11730a46b409c296b69affbbcc628812593f6c5a76265d9d2f2d78f1405e987e",
+      "instance_sha256": "d2f057a0533fba6e8e3b5419ce690989300464926680c869da2a780db712535c",
+      "preparation_sha256": "a6423b5501807b7fe7735acc338300f91c236853483b716a607147447cdb1cd4",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XXL10_S20260925",
+      "seed": 20260925,
+      "instance_hash": "55f9b013e762695a4d04763cddf38be89fe21edff9ccb35ae4be5e9703e683c7",
+      "x0_hash": "0063597cf98a7c560389f2c23ef42830aafb7817336edc26a8de292c204e8b35",
+      "instance_sha256": "014a198279d174e4a91b3e9239505391aaca9a7676807228b5f3cd607f770343",
+      "preparation_sha256": "aa813dead4af95b2218ca68808711905dfdc32daaa6a202df44deb6f4427cd9f",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": null,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XXL10_S20260926",
+      "seed": 20260926,
+      "instance_hash": "15e77ea2a6d976f5bfb9f7231663611056fad47f52001b742d4a098be9c4e4a5",
+      "x0_hash": "8066e6cf7f976b965aa6d29f8bec73be7f5b600da52d5020b047179ac5d35f09",
+      "instance_sha256": "fe5a6c0e1c0bf23fd5e17b55ac057cea8068f510639a1fc5e13064d84663bdcd",
+      "preparation_sha256": "6b563ef40c6a3dede00155e28fb1693ce10a53875a853b72acecf2edcc1a2327",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XXL10_S20260927",
+      "seed": 20260927,
+      "instance_hash": "5a945d25c347b2b7dd75a586fa9ae2a90fb1b291efabb78f5efb9f1d0ee35c07",
+      "x0_hash": "ef4ab13b4c4a46a0216ac17c0027265301ef2893f014d1dcc6a9b96c561a60a8",
+      "instance_sha256": "df8e2aafa9abd31df71208191e2067cf3e9e0f677187f01c5b01b5a82bc70cf3",
+      "preparation_sha256": "ada567056865550c6d59d91e18ba75a3808a3acc8f0245a06ae67fc5c07a5b06",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XXL10_S20260928",
+      "seed": 20260928,
+      "instance_hash": "ab57d56583c28260358ca24c530535fcc2f1c12bf67aa3be4f0870156afab699",
+      "x0_hash": "7b699163a79bd13795be2323d4f065c5d3ec768aeb8fe1f9a46aa591b29a303c",
+      "instance_sha256": "c128428758be44d7a1f4161bbc4e5f8379809e26795bfd6f327d47c087b9c9d9",
+      "preparation_sha256": "05a5cb6fe40aa3e6b2907027a89640fe7b0d7bf57cda780e90a76e329696c20d",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XXL10_S20260929",
+      "seed": 20260929,
+      "instance_hash": "29c010cdb8a97ea71b61ce499d42c91c2df128a8f0f7515abb0f424aa9390f35",
+      "x0_hash": "0e1f3745a98856f447f7a0242adee928d877ef9659d7dd4eb9d0f82d7b19daa1",
+      "instance_sha256": "bea9350e445fb4bae6db8fed6d10239feda86e5409ac26a2c0946d6826708f9e",
+      "preparation_sha256": "c3d37d75483be8530142778ede92aa6dc3afef837334eb9d7f8e8ceec13ad560",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XXL10_S20260930",
+      "seed": 20260930,
+      "instance_hash": "c54138f47da83d6ae327c1b5b30d66e68a7428a4e9f46ab7bc7cadefd4484bdf",
+      "x0_hash": "2633cdb20b4ca4bfdd2a100390e9a56042694a5a74cd4e3eef92fbfeae9c64e6",
+      "instance_sha256": "a13c2853a20eb0fdb362dd3167acf487ded1ba72c6cdcbe7192e01e56c799cd6",
+      "preparation_sha256": "b6ee796fd54dd2e2466d0a787744532f3a0c505c429761df387aa8c3edbfebb9",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    }
+  ],
+  "resource_policy": {
+    "execution": "sequential_single_process",
+    "parallel_workers": 1,
+    "minimum_available_memory_gib_by_size": {
+      "XXL10": 17
+    },
+    "maximum_process_tree_memory_gib_by_size": {
+      "XXL10": 13
+    },
+    "minimum_system_available_memory_gib": 3,
+    "minimum_free_disk_gib": 20,
+    "condition_time_limit_seconds": 900,
+    "memory_monitor_interval_seconds": 0.25,
+    "fail_closed": true,
+    "retry_policy": "no_automatic_retry"
+  },
+  "resource_gate_snapshot": {
+    "available_memory_gib": 16.384689331054688,
+    "startup_required_gib": 17,
+    "process_tree_cap_gib": 13,
+    "system_available_floor_gib": 3,
+    "free_disk_gib": 245.949951171875,
+    "minimum_free_disk_gib": 20,
+    "time_limit_seconds": 900,
+    "monitor_interval_seconds": 0.25
+  },
+  "failure_policy": {
+    "continue_after": [
+      "TIME_LIMIT",
+      "RESOURCE_PROCESS_CAP",
+      "RESOURCE_SYSTEM_CAP"
+    ],
+    "stop_batch_after": [
+      "IDENTITY_FAILURE",
+      "HASH_FAILURE",
+      "NUMERICAL_CERTIFICATION_FAILURE",
+      "UNKNOWN_WORKER_FAILURE",
+      "ARCHIVE_FAILURE"
+    ],
+    "require_worker_exit_before_continue": true,
+    "repeat_all_preflight_gates_before_each_condition": true
+  },
+  "git": {
+    "head": "f6228ef462c3b6785d186e7a8c5d5673c6d35a93",
+    "clean_for_execution": true,
+    "unexpected": []
+  },
+  "active_solver_workers": [],
+  "optimization_calls": 0
+}

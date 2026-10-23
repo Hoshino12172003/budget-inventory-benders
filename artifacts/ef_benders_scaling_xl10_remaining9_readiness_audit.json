@@ -1,0 +1,266 @@
+{
+  "schema": "ef_benders_xl10_remaining9_readiness_audit_v1",
+  "status": "READY_FOR_AUTHORIZATION",
+  "checks": {
+    "dry_run_ready": true,
+    "authorization_closed": true,
+    "pilot_archive": true,
+    "algorithm_identity": true,
+    "environment_identity": true,
+    "all_nine_identities": true,
+    "all_nine_attempts_absent": true,
+    "all_nine_canonical_absent": true,
+    "zero_optimization": true
+  },
+  "protocol_id": "EF_BD_XL10_REMAINING9_V1",
+  "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\ef_benders_scaling_xl10_remaining9_v1.yaml",
+  "config_sha256": "58809d6f0417a81db696c26ac541c16b91e161bd68970a4e0bc884be8fe5710c",
+  "fixed_denominator": {
+    "completed_pilot": 1,
+    "remaining": 9,
+    "total_xl10": 10
+  },
+  "pilot": {
+    "condition_id": "EF_XL10_S20260921",
+    "attempt": "attempt-001",
+    "result_sha256": "98d6826e4da7da243e4e7d54bd1d844847881e1efe230c907d2b48513295a853",
+    "provenance_sha256": "01bef51616e4c85f65b90a4b451c22e43bd2ac2d441636618945765822a5cc36",
+    "resource_monitor_sha256": "fe029f54548eb2c8eeee9951b3d2548120aa0dcf8b073ffffece7147c63f2c79",
+    "peak_process_tree_memory_gib": 4.7296600341796875,
+    "result_summary": {
+      "solver_status": "OPTIMAL",
+      "exact_certification": true,
+      "cut_validity": true,
+      "final_objective": 3153985.8116781656,
+      "algorithm_core_time": 162.4874189000111,
+      "iterations": 14,
+      "cuts_added": 13,
+      "oracle_time": 58.30578040005639,
+      "certification_time": 35.850199999986216,
+      "total_time": 199.64955109986477,
+      "instance_hash": "73732c6523ff154f1e5e7891641c25102345bc40c65bfb72630c817c78349695"
+    },
+    "timing_accounting": {
+      "algorithm_core_time_seconds": 162.4874189000111,
+      "oracle_build_seconds_in_core": 25.540123300161213,
+      "oracle_optimize_seconds_in_core": 58.30578040005639,
+      "master_optimize_seconds_in_core": 0.24579839943908155,
+      "other_core_seconds": 78.39571680035442,
+      "independent_certification_seconds_outside_core": 35.850199999986216,
+      "total_time_seconds": 199.64955109986477
+    }
+  },
+  "conditions": [
+    {
+      "condition_id": "EF_XL10_S20260922",
+      "seed": 20260922,
+      "instance_hash": "75f43c9f1421dfe6d86b44515045b8a09ee9cd440e617efa8c73864aac421dc9",
+      "x0_hash": "c45a09a72bce163a5e39af89f13591a84ffd0874181bb686d9e56729ba37c5ab",
+      "instance_sha256": "f6cfed126f03e09c17dc3d101573416c06d3a7246c8d4cf8011ed79bda5a3397",
+      "preparation_sha256": "3f0bb3ed34cd3ca2a6ab12f7903f270203f68a7f6b07a13413ad8d2a88c80c87",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XL10_S20260923",
+      "seed": 20260923,
+      "instance_hash": "a940ec29d21128e689d9449c7dafb0ed01609062a895bae7dacd7ee742e2116d",
+      "x0_hash": "ab477b96b2c587abdad36a3197746b063b6503ceb3c3843d1461f71bd089ad2a",
+      "instance_sha256": "bda91e6a734b62909e3edb6a28adece66dba580bd1b69f7499462bcd91a4de8f",
+      "preparation_sha256": "d61031d7885f62ad8a6269d310992e5617e43ec2676b9b66ec7a5016ef523718",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XL10_S20260924",
+      "seed": 20260924,
+      "instance_hash": "4ed9a3c759bee863883dda561aca00e56c2dcac0adf00581a2aefd94ffb0dcd6",
+      "x0_hash": "3f232c300512bbe0b64ffd83f729c36d0954da43e7bf1fbf0b51daf9a65b3429",
+      "instance_sha256": "5ff9a345cc02af8f04e2241951315cb61bfacfe976a7a6b9beb546cafa5e61b7",
+      "preparation_sha256": "6353990d5a9d34ece526f4fa0875397116019ec31265655b8943ebbd104230a5",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XL10_S20260925",
+      "seed": 20260925,
+      "instance_hash": "06e62ada9743eaa8285ca234b0cd547e3806d5e0ebb2d8fbb4d5901e0cfe9677",
+      "x0_hash": "cb28583113c2f2de4f621002a1a886b9f72424ba02c9c5d592ffc5cfafed2091",
+      "instance_sha256": "75af6acf2fae83c65f3ec5e84dbf7a614293dd988e0d2bad756fea067463e6c7",
+      "preparation_sha256": "c84c720c1f573e89ec2b072f867d2abdff42049549f717aa1effe60fbbd930b6",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XL10_S20260926",
+      "seed": 20260926,
+      "instance_hash": "1d5564fb9b210afce2854e4f85afb5834dfaa000d54ba18554ce78364d715ff5",
+      "x0_hash": "89905ac8f7e260e77dd1ac77c72007ae3a0e7cfd633ccd3a39dbfe29f5cde189",
+      "instance_sha256": "8ab425c4aea7675ea31afefc98c0015c55e076e9e4686b31ec9bf632fddac39f",
+      "preparation_sha256": "6843dad100950e1d4ba2be9d46a94ea5129ddb7a3efb28d127540f602131ee5f",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XL10_S20260927",
+      "seed": 20260927,
+      "instance_hash": "60d66927dcd07c85d56a7aebebfc3bc5de94fd961e17d3d06d7c658669c946c9",
+      "x0_hash": "1334b2089af441bf2c43c3254a429159c22bbdf89a40c6005cca2378f9578ae2",
+      "instance_sha256": "dd16dd366cd86d838bc542f62ec45f1c5bfc6970af851de5a18f60cd9e516d7f",
+      "preparation_sha256": "848b879d110f29c2bc83407a8565426b4bffac2c6ffe88d48a5a477e2bd5f7d8",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XL10_S20260928",
+      "seed": 20260928,
+      "instance_hash": "dbf39fcb0ae5c6bf15274e8c78787c83ea481893fe6479ba92d155dbc030899c",
+      "x0_hash": "77b107b54ae3b46af549bfa0dc0eaec491125052c306b3203ac262eb94c05947",
+      "instance_sha256": "04f22c15e3fac18a30055ff5a17d2d11e3371cd1392ca25d1f7a5ccf5d5e3cf9",
+      "preparation_sha256": "938301e26d15df7968b2c5f4f65e244627b6527a17be43b44d7a2f3712d50ad1",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XL10_S20260929",
+      "seed": 20260929,
+      "instance_hash": "0cc5242958c804e8bc4e4e59b3c6f366d9194e3b2866fa188009709b09e1e51a",
+      "x0_hash": "b9dde23fee2a853f69f0c1656df441a0a34da9f66754bafcccad14b00f1a0d9a",
+      "instance_sha256": "9adcade274fecf70d639ab611ecddf60988081afaacb85380540a975ddbc9a32",
+      "preparation_sha256": "25f78958c02a434da8e80181be8ddea6efad7b57416e6b15850919b571e32ad4",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_XL10_S20260930",
+      "seed": 20260930,
+      "instance_hash": "3984015d1f5815ecfec2b10a7d1d94a71d255ce0af88aa88a11098f7cdd324b3",
+      "x0_hash": "bf97cdc000804758df9595a8a87a423f083d6410778c3516024d2e1244dbee6a",
+      "instance_sha256": "7767b1474e756d5a8781ba50c0e23a43a2347b421bd62c4a44a522f271982806",
+      "preparation_sha256": "2066a95ade9082a8578f10b23764f80c95b6f90d64ceb95fe364e1882ef323d9",
+      "paired_instance_identity": {
+        "Direct": true,
+        "PURE_BENDERS": true,
+        "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+        "PRB_BENDERS": true
+      },
+      "expected_attempt": "attempt-001",
+      "attempt_exists": false,
+      "canonical_exists": false,
+      "identity_status": "PASS"
+    }
+  ],
+  "resource_policy": {
+    "execution": "sequential_single_process",
+    "parallel_workers": 1,
+    "minimum_available_memory_gib_by_size": {
+      "XL10": 12
+    },
+    "maximum_process_tree_memory_gib_by_size": {
+      "XL10": 8
+    },
+    "minimum_system_available_memory_gib": 3,
+    "minimum_free_disk_gib": 20,
+    "condition_time_limit_seconds": 900,
+    "memory_monitor_interval_seconds": 0.25,
+    "fail_closed": true,
+    "retry_policy": "no_automatic_retry"
+  },
+  "resource_gate_snapshot": {
+    "available_memory_gib": 12.657428741455078,
+    "startup_required_gib": 12,
+    "process_tree_cap_gib": 8,
+    "system_available_floor_gib": 3,
+    "free_disk_gib": 246.24431991577148,
+    "minimum_free_disk_gib": 20,
+    "time_limit_seconds": 900,
+    "monitor_interval_seconds": 0.25
+  },
+  "failure_policy": {
+    "continue_after": [
+      "TIME_LIMIT",
+      "RESOURCE_PROCESS_CAP",
+      "RESOURCE_SYSTEM_CAP"
+    ],
+    "stop_batch_after": [
+      "IDENTITY_FAILURE",
+      "HASH_FAILURE",
+      "NUMERICAL_CERTIFICATION_FAILURE",
+      "UNKNOWN_WORKER_FAILURE",
+      "ARCHIVE_FAILURE"
+    ],
+    "require_worker_exit_before_continue": true,
+    "repeat_all_preflight_gates_before_each_condition": true
+  },
+  "git": {
+    "head": "522756c2d3296117ec0cdf4de179d42c4c7e8cb1",
+    "clean_for_execution": true,
+    "unexpected": []
+  },
+  "active_solver_workers": [],
+  "optimization_calls": 0
+}

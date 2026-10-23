@@ -1,0 +1,92 @@
+{
+  "experiment_id": "DIRECT_SCALING_EXTENSION_V1",
+  "condition_id": "DIRECT_L10_S20260928",
+  "method": "direct_exact",
+  "size": "L10",
+  "seed": 20260928,
+  "solver_status": "OPTIMAL",
+  "exact_certification": true,
+  "certification_status": "PASS",
+  "certification_error": null,
+  "objective": 2293258.463024308,
+  "best_bound": 2293258.463024308,
+  "mip_gap": 0.0,
+  "node_count": 1.0,
+  "variable_count": 2258462,
+  "binary_variable_count": 25,
+  "constraint_count": 184929,
+  "nonzero_count": 6866733,
+  "certified_recourse_value": 2130888.492734932,
+  "model_build_seconds": 10.307099099969491,
+  "solver_optimize_seconds": 106.15700006484985,
+  "certification_seconds": 17.490893100155517,
+  "T_core_seconds": 134.3438996002078,
+  "total_wall_seconds": 134.3440391998738,
+  "config_hash": "3ca50742ed63f766415b1b4774e60d51e26d71617b45ecb297e85065623d6573",
+  "instance_hash": "e386236362784e9a3ec618b6c65cfd64baf100be92cb216aac5fe55cf772e0d7",
+  "model_identity": "19f9a7ab580162ea8b65a5c592131c7a8601ce0dbbce70242c0bf3c6a03dfe9f",
+  "solver_parameters": {
+    "Threads": "DEFAULT_AUTOMATIC",
+    "Seed": 0,
+    "MIPGap": 0.0,
+    "MIPGapAbs": "DEFAULT",
+    "FeasibilityTol": 1e-08,
+    "OptimalityTol": 1e-08,
+    "IntFeasTol": 1e-08,
+    "Presolve": "DEFAULT",
+    "Method": "DEFAULT",
+    "Cuts": "DEFAULT",
+    "Heuristics": "DEFAULT",
+    "NumericFocus": 0
+  },
+  "code_commit": "2116d1ff2b56d40e8b09c804830861cb6c20aa88",
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.7",
+    "python_executable": "C:\\Program Files\\Python312\\python.exe",
+    "gurobipy_version": "13.0.1",
+    "gurobi_native_version": [
+      13,
+      0,
+      1
+    ],
+    "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+  },
+  "resource_preflight": {
+    "available_memory_gib": 14.14892578125,
+    "minimum_memory_gib": 10,
+    "free_disk_gib": 246.38268280029297,
+    "minimum_free_disk_gib": 20,
+    "environment": {
+      "pass": true,
+      "checks": {
+        "python_version": true,
+        "gurobipy_version": true,
+        "gurobi_native_version": true
+      },
+      "required": {
+        "python_version": "3.12.7",
+        "gurobipy_version": "13.0.1",
+        "gurobi_native_version": [
+          13,
+          0,
+          1
+        ],
+        "comparison_basis": "current_environment_for_new_direct_batch",
+        "scaling_v2_historical_solver_version": "NOT_VERIFIABLE"
+      },
+      "current": {
+        "platform": "Windows-11-10.0.26200-SP0",
+        "python_version": "3.12.7",
+        "python_executable": "C:\\Program Files\\Python312\\python.exe",
+        "gurobipy_version": "13.0.1",
+        "gurobi_native_version": [
+          13,
+          0,
+          1
+        ],
+        "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+      }
+    }
+  }
+}

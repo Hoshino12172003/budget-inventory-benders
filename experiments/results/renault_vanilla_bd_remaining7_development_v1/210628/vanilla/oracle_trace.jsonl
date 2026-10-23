@@ -1,0 +1,10 @@
+{"dual_feasibility_max_violation": 5.595524044110789e-14, "oracle_seconds": 0.966903300024569, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 725580.2390000001}
+{"dual_feasibility_max_violation": 5.595524044110789e-14, "oracle_seconds": 0.8169907999690622, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 610919.1167091831}
+{"dual_feasibility_max_violation": 5.595524044110789e-14, "oracle_seconds": 1.4280264000408351, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 600471.1387407668}
+{"dual_feasibility_max_violation": 5.595524044110789e-14, "oracle_seconds": 1.5762189999222755, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 601768.6665745728}
+{"dual_feasibility_max_violation": 5.595524044110789e-14, "oracle_seconds": 1.4443276999518275, "scenarios_solved": 4657, "strong_duality_residual": 1.1641532182693481e-10, "value": 603091.0648817458}
+{"dual_feasibility_max_violation": 5.595524044110789e-14, "oracle_seconds": 1.5154516000766307, "scenarios_solved": 4657, "strong_duality_residual": 1.1641532182693481e-10, "value": 599325.8555631479}
+{"dual_feasibility_max_violation": 5.595524044110789e-14, "oracle_seconds": 1.5756639000028372, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 599413.6064863927}
+{"dual_feasibility_max_violation": 5.595524044110789e-14, "oracle_seconds": 1.6010412001051009, "scenarios_solved": 4657, "strong_duality_residual": 1.1641532182693481e-10, "value": 599292.0062276059}
+{"dual_feasibility_max_violation": 5.595524044110789e-14, "oracle_seconds": 1.4786630000453442, "scenarios_solved": 4657, "strong_duality_residual": 1.1641532182693481e-10, "value": 599292.0062276059}
+{"dual_feasibility_max_violation": 5.595524044110789e-14, "oracle_seconds": 1.6791769000701606, "scenarios_solved": 4657, "strong_duality_residual": 1.1641532182693481e-10, "value": 599292.0062276059}

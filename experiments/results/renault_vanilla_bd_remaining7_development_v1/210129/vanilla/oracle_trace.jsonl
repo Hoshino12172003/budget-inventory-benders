@@ -1,0 +1,10 @@
+{"dual_feasibility_max_violation": 5.684341886080802e-14, "oracle_seconds": 0.9531205000821501, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 914294.3753125}
+{"dual_feasibility_max_violation": 5.684341886080802e-14, "oracle_seconds": 0.9259369999635965, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 768369.0550017953}
+{"dual_feasibility_max_violation": 5.684341886080802e-14, "oracle_seconds": 1.2046153000555933, "scenarios_solved": 4657, "strong_duality_residual": 1.1641532182693481e-10, "value": 762260.3940275736}
+{"dual_feasibility_max_violation": 5.684341886080802e-14, "oracle_seconds": 1.5161397000774741, "scenarios_solved": 4657, "strong_duality_residual": 1.1641532182693481e-10, "value": 761324.2735021926}
+{"dual_feasibility_max_violation": 5.684341886080802e-14, "oracle_seconds": 1.485407300060615, "scenarios_solved": 4657, "strong_duality_residual": 1.1641532182693481e-10, "value": 760990.1568039168}
+{"dual_feasibility_max_violation": 5.684341886080802e-14, "oracle_seconds": 1.2517546000890434, "scenarios_solved": 4657, "strong_duality_residual": 1.1641532182693481e-10, "value": 760949.2482501426}
+{"dual_feasibility_max_violation": 5.684341886080802e-14, "oracle_seconds": 1.451352700125426, "scenarios_solved": 4657, "strong_duality_residual": 1.1641532182693481e-10, "value": 760949.2522308625}
+{"dual_feasibility_max_violation": 5.684341886080802e-14, "oracle_seconds": 1.4396989000961185, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 760949.1358334915}
+{"dual_feasibility_max_violation": 5.684341886080802e-14, "oracle_seconds": 1.3087504000868648, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 760949.1358334915}
+{"dual_feasibility_max_violation": 5.684341886080802e-14, "oracle_seconds": 0.8876030999235809, "scenarios_solved": 4657, "strong_duality_residual": 0.0, "value": 760949.1358334915}

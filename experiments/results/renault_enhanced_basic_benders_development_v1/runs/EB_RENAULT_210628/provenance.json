@@ -1,0 +1,20 @@
+{
+  "attempt": "attempt-001",
+  "condition_id": "EB_RENAULT_210628",
+  "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\renault_enhanced_basic_benders_v1.yaml",
+  "config_sha256": "d9c0bbc8709120d861b198eabd6339b27bae5716742538f89b44bc92b71eb38a",
+  "first_stage_sha256": "7c7884b7fded4d12547690a030efc4450818fd4ebee40273ae3d8b3a377ec388",
+  "formal_run_authorized": true,
+  "git_commit": "f33a37daa37100975d1ba90b91de915a5f780e7a",
+  "identity": {
+    "calibration_hash": "eb6b346748dcc77fdd66eecddb01b15dd96960f1f37991d3e761616048d5b584",
+    "instance_hash": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677",
+    "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+    "x0_hash": "7514da694ef80b8a5053329b2a2c9619090e768884c0555d19a67f9e284b589e"
+  },
+  "implementation_sha256": "d0404e6ce6483d12a1a3dabe2f01209d2764f8da717c130f09a3c211eaa296b1",
+  "result_sha256": "be719ccfc9d584a630b81d84765fca8c9c9098e7e2b47a130d626b60b0243da8",
+  "runner_sha256": "8fde2a75723003c7ab25d7d112bb727ee76643a519f0b319d89f9f2c882efbf2",
+  "schema": "renault_eb_bd_provenance_v1",
+  "trajectory_sha256": "438fb4020f37d57426afcd3b2ad412c34e2966d422821ee970bc24023575c0f7"
+}

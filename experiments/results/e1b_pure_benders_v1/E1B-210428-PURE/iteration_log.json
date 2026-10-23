@@ -1,0 +1,92 @@
+[
+  {
+    "absolute_gap": 843200.847666667,
+    "cut_added": true,
+    "cut_violation": 843200.8476666668,
+    "iteration": 1,
+    "lower_bound": 3734.4599999669745,
+    "relative_gap": 0.9955906195359174,
+    "upper_bound": 846935.307666634
+  },
+  {
+    "absolute_gap": 16076.636156467954,
+    "cut_added": true,
+    "cut_violation": 16076.636156467954,
+    "iteration": 2,
+    "lower_bound": 788103.8706899567,
+    "relative_gap": 0.019991327841944483,
+    "upper_bound": 804180.5068464247
+  },
+  {
+    "absolute_gap": 3624.6366930165095,
+    "cut_added": true,
+    "cut_violation": 3624.6366930165095,
+    "iteration": 3,
+    "lower_bound": 791212.3172376616,
+    "relative_gap": 0.004560226691891622,
+    "upper_bound": 794836.9539306781
+  },
+  {
+    "absolute_gap": 2058.1246124752797,
+    "cut_added": true,
+    "cut_violation": 3482.7083252088632,
+    "iteration": 4,
+    "lower_bound": 792778.8293182028,
+    "relative_gap": 0.0025893670422560394,
+    "upper_bound": 794836.9539306781
+  },
+  {
+    "absolute_gap": 1471.0743233048124,
+    "cut_added": true,
+    "cut_violation": 1578.3130201093154,
+    "iteration": 5,
+    "lower_bound": 793365.8796073733,
+    "relative_gap": 0.0018507875307381752,
+    "upper_bound": 794836.9539306781
+  },
+  {
+    "absolute_gap": 151.61160146968905,
+    "cut_added": true,
+    "cut_violation": 151.61160146968905,
+    "iteration": 6,
+    "lower_bound": 793613.6674512752,
+    "relative_gap": 0.00019100306535279257,
+    "upper_bound": 793765.2790527449
+  },
+  {
+    "absolute_gap": 68.04907897266094,
+    "cut_added": true,
+    "cut_violation": 110.98176273109857,
+    "iteration": 7,
+    "lower_bound": 793697.2299737722,
+    "relative_gap": 8.572947289136736e-05,
+    "upper_bound": 793765.2790527449
+  },
+  {
+    "absolute_gap": 55.51921526994556,
+    "cut_added": true,
+    "cut_violation": 55.51921526994556,
+    "iteration": 8,
+    "lower_bound": 793705.863755625,
+    "relative_gap": 6.994446500048655e-05,
+    "upper_bound": 793761.3829708949
+  },
+  {
+    "absolute_gap": 1.0035000741481781e-07,
+    "cut_added": true,
+    "cut_violation": 1.0035000741481781e-07,
+    "iteration": 9,
+    "lower_bound": 793717.3880816088,
+    "relative_gap": 1.264304006963336e-13,
+    "upper_bound": 793717.3880817092
+  },
+  {
+    "absolute_gap": 0.0,
+    "cut_added": false,
+    "cut_violation": 0.0,
+    "iteration": 10,
+    "lower_bound": 793717.388081671,
+    "relative_gap": 0.0,
+    "upper_bound": 793717.388081671
+  }
+]

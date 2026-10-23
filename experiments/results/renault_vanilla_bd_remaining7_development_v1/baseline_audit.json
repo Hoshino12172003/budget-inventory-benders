@@ -1,0 +1,8 @@
+{
+  "commit": "5b9e113",
+  "manifest_entries": 20,
+  "manifest_failures": [],
+  "manifest_sha256": "c6e98d8c4df1ecf51930523a47fdb8b6f01be0af12be4be7ae9e12d61b75fc76",
+  "script_sha256": "e1781528f00f68f8723555fb486d6ac78952a6c4d46fc51e7013952251f09bc7",
+  "valid_exact_pair": true
+}

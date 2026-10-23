@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "C:\Program Files\Python312\Lib\shutil.py", line 847, in move
+    os.rename(src, real_dst)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: 'experiments\\results\\direct_scaling_extension_v1\\.DIRECT_L10_S20260921.solver.log' -> 'experiments\\results\\direct_scaling_extension_v1\\runs\\.tmp-9edb629efc3b\\solver.log'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\w\direct-prep\experiments\run_direct_scaling.py", line 447, in <module>
+    main()
+  File "E:\w\direct-prep\experiments\run_direct_scaling.py", line 436, in main
+    solve_condition(config, next(row for row in grid if row["condition_id"] == args.worker), output_root)
+  File "E:\w\direct-prep\experiments\run_direct_scaling.py", line 290, in solve_condition
+    shutil.move(str(output_root / f".{condition['condition_id']}.solver.log"), temporary / "solver.log")
+  File "C:\Program Files\Python312\Lib\shutil.py", line 868, in move
+    os.unlink(src)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: 'experiments\\results\\direct_scaling_extension_v1\\.DIRECT_L10_S20260921.solver.log'

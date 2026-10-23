@@ -1,0 +1,730 @@
+{
+  "schema": "basic_benders_scaling_preparation_audit_v1",
+  "optimization_calls": 0,
+  "basic_protocol": {
+    "protocol_id": "BASIC_BD_SCALING_L10_SINGLE_PILOT_V1",
+    "formal_run_authorized": false,
+    "authorized_condition_ids": [
+      "BASIC_L10_S20260921"
+    ],
+    "config_sha256": "f24237d56b23d26e7acf4f22402f1cc9a3c1601f80cb839c9157dcbca5c755ad",
+    "dry_run": {
+      "protocol_id": "BASIC_BD_SCALING_L10_SINGLE_PILOT_V1",
+      "formal_run_authorized": false,
+      "condition": {
+        "condition_id": "BASIC_L10_S20260921",
+        "size": "L10",
+        "seed": 20260921
+      },
+      "source_instance_id": "ASC_INSTANCE_L10_S20260921",
+      "instance_hash": "dcfed5f1c19e9fa4d85d66af24b421f42641fc79744abbf89cd7baff38dcc41e",
+      "x0_hash": "505e46a4a03a1ff25e265a49392e58081ecd85f50a1223fb1551ce50186051c8",
+      "instance_sha256": "0d4235a660383c6409999ecf9d4d37a2417edc608a17020dc4c43c176f403a50",
+      "preparation_sha256": "378eb7de95461135945d553307423a4179829b7fa1497c970b530d802694790a",
+      "global_scenario_count": 41617,
+      "maximum_global_scenarios": 166177,
+      "resource_gate": {
+        "available_memory_gib": 14.178489685058594,
+        "startup_required_gib": 7,
+        "process_tree_cap_gib": 4,
+        "system_available_floor_gib": 3,
+        "free_disk_gib": 246.32886123657227,
+        "minimum_free_disk_gib": 20,
+        "time_limit_seconds": 900,
+        "monitor_interval_seconds": 0.25
+      },
+      "canonical_result_exists": false,
+      "environment": {
+        "platform": "Windows-11-10.0.26200-SP0",
+        "python_version": "3.12.7",
+        "python_executable": "C:\\Program Files\\Python312\\python.exe",
+        "gurobipy_version": "13.0.1",
+        "gurobi_native_version": [
+          13,
+          0,
+          1
+        ],
+        "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+      },
+      "git_status_clean": true,
+      "git_status_entries": [],
+      "optimization_calls": 0
+    },
+    "decision": "READY_FOR_SINGLE_PILOT_AUTHORIZATION"
+  },
+  "preparation_code_identity": {
+    "basic_runner_sha256": "d4e506c0698146c1758b734a54796350ad0afab3a812b7a2c50013399a4f86df",
+    "audit_script_sha256": "4df1892587beb584083ce19cc957c5d6900c62492de5e9428a24c146f30ce619",
+    "gap_plot_script_sha256": "2b455590f504ac5bb4aeee12834245ddb9085405e5ce7d529112dc51dd4d37bc"
+  },
+  "renault_basic_evidence": {
+    "status": "PASS",
+    "checks": {
+      "pilot_manifest": true,
+      "remaining_manifest": true,
+      "micro_direct_equivalence": true,
+      "micro_dual_feasibility": true,
+      "micro_strong_duality": true,
+      "micro_cut_validity": true,
+      "basic_exact_8_of_8": true,
+      "one_aggregate_cut_per_iteration": true,
+      "no_product_risk_composition": true,
+      "no_global_adversarial_milp_construction": true,
+      "known_prb_210330_excluded": true
+    },
+    "manifests": [
+      {
+        "manifest": "experiments\\results\\renault_vanilla_bd_pilot_210202_development_v1\\sha256.txt",
+        "entries": 20,
+        "failures": [],
+        "pass": true
+      },
+      {
+        "manifest": "experiments\\results\\renault_vanilla_bd_remaining7_development_v1\\sha256.txt",
+        "entries": 91,
+        "failures": [],
+        "pass": true
+      }
+    ],
+    "basic_exact_cases": 8,
+    "valid_basic_prb_pairs": 7,
+    "implementation_sha256": "7dc1f817141fb7cc1d0050d656afdf2a7be2de1c28f6a8f70467d0fa961795f6"
+  },
+  "frozen_l10_xl10_direct_evidence": {
+    "status": "PASS",
+    "checks": {
+      "sha256_audit_unchanged": true,
+      "frozen_counts": true,
+      "valid_pairs": true,
+      "scale_completion": true,
+      "xl10_terminal_attempts": true,
+      "xl10_terminal_stops": true
+    },
+    "sha256_records": 179
+  },
+  "scaling_v2": {
+    "checks": {
+      "expected_90": true,
+      "certified_89": true,
+      "documented_failure_1": true,
+      "unattempted_0": true,
+      "known_global_failure": true
+    },
+    "status": {
+      "schema": "algorithm_scaling_formal_status_v1",
+      "experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V2_REPAIRED_GUARD",
+      "config_hash": "38f7d73d468091bfbc1f3b5e0c03711b0ea0c2eee3cd2a876ebd9a11369b7c0f",
+      "execution_code_commit": "c46d09c306deb80086a7ceab12812847c117df87",
+      "expected_conditions": 90,
+      "certified_conditions": 89,
+      "documented_non_certified_conditions": 1,
+      "unattempted_conditions": 0,
+      "documented_non_certified": [
+        {
+          "condition_id": "ASC_XXL10_S20260925_PURE_BENDERS",
+          "size": "XXL10",
+          "seed": 20260925,
+          "method": "pure_benders",
+          "experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V2_REPAIRED_GUARD",
+          "config_hash": "38f7d73d468091bfbc1f3b5e0c03711b0ea0c2eee3cd2a876ebd9a11369b7c0f",
+          "code_commit": "c46d09c306deb80086a7ceab12812847c117df87",
+          "attempted": true,
+          "result_artifact_written": false,
+          "solver_status": "OPTIMAL",
+          "exact_certification": false,
+          "solution_level_certification": true,
+          "cut_validity_certification": false,
+          "failure_category": "HISTORICAL_ORACLE_CUT_STRONG_DUALITY_RESIDUAL",
+          "final_objective": 4530867.061051665,
+          "final_lower_bound": 4530867.061051657,
+          "final_upper_bound": 4530867.061051665,
+          "absolute_gap": 7.450580596923828e-09,
+          "relative_gap": 1.6444050325313374e-15,
+          "objective_certification_tolerance": 0.0001,
+          "benders_stopping_tolerance": 1e-06,
+          "gurobi_mip_gap": 0.0,
+          "gurobi_achieved_mip_gap": 3.371e-14,
+          "feasibility_tolerance": 1e-08,
+          "optimality_tolerance": 1e-08,
+          "iterations": 12,
+          "cuts": 11,
+          "final_theta": 4034565.3534531123,
+          "certified_recourse_value": 4034565.35345312,
+          "final_first_stage_objective": 496301.707598545,
+          "final_solution_strong_duality_residual": 4.656612873077393e-10,
+          "final_cut_rhs_minus_theta": 8.381903171539307e-09,
+          "maximum_historical_cut_strong_duality_residual": 7.542721918394751e+20,
+          "peak_process_tree_memory_gib": 0.11346435546875,
+          "preflight_available_memory_gib": 19.246238708496094,
+          "resource_stop_reason": null,
+          "monitor_path": "worker_logs/ASC_XXL10_S20260925_PURE_BENDERS/attempt-001/monitor.json",
+          "stderr_path": "worker_logs/ASC_XXL10_S20260925_PURE_BENDERS/attempt-001/stderr.log",
+          "disposition": "PRESERVED_AS_NON_CERTIFIED_NO_TOLERANCE_RELAXATION_NO_RERUN"
+        }
+      ]
+    }
+  },
+  "scaling_v2_archive_integrity": {
+    "canonical_certified_archives": 89,
+    "sha256_failures": [],
+    "status": "PASS"
+  },
+  "frozen_inputs": [
+    {
+      "size": "L10",
+      "seed": 20260921,
+      "instance_id": "ASC_INSTANCE_L10_S20260921",
+      "instance_hash": "dcfed5f1c19e9fa4d85d66af24b421f42641fc79744abbf89cd7baff38dcc41e",
+      "x0_hash": "505e46a4a03a1ff25e265a49392e58081ecd85f50a1223fb1551ce50186051c8",
+      "instance_sha256": "0d4235a660383c6409999ecf9d4d37a2417edc608a17020dc4c43c176f403a50",
+      "preparation_sha256": "378eb7de95461135945d553307423a4179829b7fa1497c970b530d802694790a",
+      "dimensions": [
+        25,
+        24,
+        12
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "L10",
+      "seed": 20260922,
+      "instance_id": "ASC_INSTANCE_L10_S20260922",
+      "instance_hash": "4ec1e745c3bd6d410027905ecf001bf7ce1d16f203ece8fb66de6f15f48a6f19",
+      "x0_hash": "d8fb2cbdd6fe94af6eeb591d5dac6da9a1d28e02685c2d5a87fb2ed485eecc2f",
+      "instance_sha256": "4b2dd555424bf5dca9dddc6b8429f094f0a73cbc780fc176e583d2f7fa5d191a",
+      "preparation_sha256": "f53b55aeaf9dbb0561f9d319e514eaf6dfa2d7259a44a6868eef513f115c655e",
+      "dimensions": [
+        25,
+        24,
+        12
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "L10",
+      "seed": 20260923,
+      "instance_id": "ASC_INSTANCE_L10_S20260923",
+      "instance_hash": "c2361c3502a0d29e85e3caf71e2dee6e31bf367912c5fcff809288a64af4eb56",
+      "x0_hash": "2156393aa544eebcd67dd552fcaf1048a6c4fad5c4faf42019d1516ee31c36cc",
+      "instance_sha256": "724cff78d496389f7d8ce1782f245625e4034b1304bae3c3e0a96c0189ce755e",
+      "preparation_sha256": "32aefcdfbc82503ef12790523c7f6ee85204281866d2305c3f41af9e39b15014",
+      "dimensions": [
+        25,
+        24,
+        12
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "L10",
+      "seed": 20260924,
+      "instance_id": "ASC_INSTANCE_L10_S20260924",
+      "instance_hash": "e14485ad862fa11352234fcf8dcd045ef7ad3f17be429ddc5e7234fd9e71f1b9",
+      "x0_hash": "28cde4a482622394877486b09e2e6f558d83248e7b42d9d3b2fb9f1917c992fe",
+      "instance_sha256": "ef07d3006f587c6fc28a81f0704052193ea024b8a217b40f5bbf921201868bad",
+      "preparation_sha256": "a110c28c460299b04ccf69edb51c6ed3680adacb52205112bd8bd91cd20bb659",
+      "dimensions": [
+        25,
+        24,
+        12
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "L10",
+      "seed": 20260925,
+      "instance_id": "ASC_INSTANCE_L10_S20260925",
+      "instance_hash": "a958b2de093d40a6ec2a7782117b0f43320cec315fa5e65321d7e2547a3b3f1e",
+      "x0_hash": "c3e9353dd6643f2d08c916d47a8cb6fd4618bf01219087571113e723de771de9",
+      "instance_sha256": "d774a6ac6096362891209251dc74b3849b2aeb8747994c1d33fc026cb56d8ca9",
+      "preparation_sha256": "36278a367b5773154f20a7977f47f897aaa701513a9fb27f48a6e21ff45d50d1",
+      "dimensions": [
+        25,
+        24,
+        12
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "L10",
+      "seed": 20260926,
+      "instance_id": "ASC_INSTANCE_L10_S20260926",
+      "instance_hash": "2a6cbe0ed9559676c890fb034fc63074f7f8fb2d754b5c7186c440a4c29af57b",
+      "x0_hash": "7c25225eadb13f3e24291d9385ea4a23a6efc29dd74029993e4c21563c4f4414",
+      "instance_sha256": "ddcbe5104ce3de249081c2e7095ef9a2eecf6cc31410b4b0ecfd6af9ea169e7b",
+      "preparation_sha256": "3da17037bb4ec0f82858675a1739dd82bcb9c2d329870430cf867c6f1a0aedb6",
+      "dimensions": [
+        25,
+        24,
+        12
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "L10",
+      "seed": 20260927,
+      "instance_id": "ASC_INSTANCE_L10_S20260927",
+      "instance_hash": "9500b90b8cbe3609b5baeb1cf0a395218ba2f48568fbf53c5c34acd1a8898f37",
+      "x0_hash": "077b32550216a8b37dfacdff334686e29e7bcac2a4f088c085bac614c059ef70",
+      "instance_sha256": "03617652e05a26b6bfa3b6d26d80399e761375e26b4e4b0887d9150377676748",
+      "preparation_sha256": "7995267bb6126669e16279993411efb22995ef1f86475d76d7d78ae40fd008d1",
+      "dimensions": [
+        25,
+        24,
+        12
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "L10",
+      "seed": 20260928,
+      "instance_id": "ASC_INSTANCE_L10_S20260928",
+      "instance_hash": "e386236362784e9a3ec618b6c65cfd64baf100be92cb216aac5fe55cf772e0d7",
+      "x0_hash": "eac43f1fbb96baedeb385b583e33157b52c192ec517029c7d2e04c00361e4bd7",
+      "instance_sha256": "7e42e70bb5361d87aa76737ffcd00cb68f5467254dae12bca01d9456670f09fe",
+      "preparation_sha256": "170a739251a3473447428db6cf7659a4ca1e91217d7da7b806a2953b139c4f76",
+      "dimensions": [
+        25,
+        24,
+        12
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "L10",
+      "seed": 20260929,
+      "instance_id": "ASC_INSTANCE_L10_S20260929",
+      "instance_hash": "fbe2a8c1d60937915e89b88b99359b8e24e9a552b57a1e3bb7083e1710382635",
+      "x0_hash": "8c419dd445e173cfb65c30d5c838233259e9536efab68c5c16c64e73dddc330a",
+      "instance_sha256": "d63613835c0997ebe77b93eca1241bf6ca91e19c80643422ca419816df61ebd4",
+      "preparation_sha256": "06f8ffc8ac4de3a1d68f8e4d4978b25e9fb42307342738075408b58cdf0e9107",
+      "dimensions": [
+        25,
+        24,
+        12
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "L10",
+      "seed": 20260930,
+      "instance_id": "ASC_INSTANCE_L10_S20260930",
+      "instance_hash": "7f3ff364f01b9683838561276135fc4b88dfcc34c0213f32c5fdb40393233afb",
+      "x0_hash": "bc53041d595611a7a689bfce5d7bf2eeafcf30e075a889973458db3f29b0fadb",
+      "instance_sha256": "ecd7f259e9a4592849e1ef96b65e84c8653c47d8e3f617cd5323bcee26ce83cb",
+      "preparation_sha256": "95424f4e763500cb0693b6804fc865cb2cfd6f2d8da791764b717256e344c47c",
+      "dimensions": [
+        25,
+        24,
+        12
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260921,
+      "instance_id": "ASC_INSTANCE_XL10_S20260921",
+      "instance_hash": "73732c6523ff154f1e5e7891641c25102345bc40c65bfb72630c817c78349695",
+      "x0_hash": "89d558ca9bee95e37b1e58408873847a450f1a2dc8b08a42e9b2e09d616d43c3",
+      "instance_sha256": "16abfafe6fb84902ddac9734edf17716c1d7d9a4c6fd01adad73032054b221a1",
+      "preparation_sha256": "a23ff34dcee1bad5ce98414ef388c73e40cfdc41d640f47c42214f330d01b626",
+      "dimensions": [
+        30,
+        30,
+        14
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260922,
+      "instance_id": "ASC_INSTANCE_XL10_S20260922",
+      "instance_hash": "75f43c9f1421dfe6d86b44515045b8a09ee9cd440e617efa8c73864aac421dc9",
+      "x0_hash": "c45a09a72bce163a5e39af89f13591a84ffd0874181bb686d9e56729ba37c5ab",
+      "instance_sha256": "f6cfed126f03e09c17dc3d101573416c06d3a7246c8d4cf8011ed79bda5a3397",
+      "preparation_sha256": "3f0bb3ed34cd3ca2a6ab12f7903f270203f68a7f6b07a13413ad8d2a88c80c87",
+      "dimensions": [
+        30,
+        30,
+        14
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260923,
+      "instance_id": "ASC_INSTANCE_XL10_S20260923",
+      "instance_hash": "a940ec29d21128e689d9449c7dafb0ed01609062a895bae7dacd7ee742e2116d",
+      "x0_hash": "ab477b96b2c587abdad36a3197746b063b6503ceb3c3843d1461f71bd089ad2a",
+      "instance_sha256": "bda91e6a734b62909e3edb6a28adece66dba580bd1b69f7499462bcd91a4de8f",
+      "preparation_sha256": "d61031d7885f62ad8a6269d310992e5617e43ec2676b9b66ec7a5016ef523718",
+      "dimensions": [
+        30,
+        30,
+        14
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260924,
+      "instance_id": "ASC_INSTANCE_XL10_S20260924",
+      "instance_hash": "4ed9a3c759bee863883dda561aca00e56c2dcac0adf00581a2aefd94ffb0dcd6",
+      "x0_hash": "3f232c300512bbe0b64ffd83f729c36d0954da43e7bf1fbf0b51daf9a65b3429",
+      "instance_sha256": "5ff9a345cc02af8f04e2241951315cb61bfacfe976a7a6b9beb546cafa5e61b7",
+      "preparation_sha256": "6353990d5a9d34ece526f4fa0875397116019ec31265655b8943ebbd104230a5",
+      "dimensions": [
+        30,
+        30,
+        14
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260925,
+      "instance_id": "ASC_INSTANCE_XL10_S20260925",
+      "instance_hash": "06e62ada9743eaa8285ca234b0cd547e3806d5e0ebb2d8fbb4d5901e0cfe9677",
+      "x0_hash": "cb28583113c2f2de4f621002a1a886b9f72424ba02c9c5d592ffc5cfafed2091",
+      "instance_sha256": "75af6acf2fae83c65f3ec5e84dbf7a614293dd988e0d2bad756fea067463e6c7",
+      "preparation_sha256": "c84c720c1f573e89ec2b072f867d2abdff42049549f717aa1effe60fbbd930b6",
+      "dimensions": [
+        30,
+        30,
+        14
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260926,
+      "instance_id": "ASC_INSTANCE_XL10_S20260926",
+      "instance_hash": "1d5564fb9b210afce2854e4f85afb5834dfaa000d54ba18554ce78364d715ff5",
+      "x0_hash": "89905ac8f7e260e77dd1ac77c72007ae3a0e7cfd633ccd3a39dbfe29f5cde189",
+      "instance_sha256": "8ab425c4aea7675ea31afefc98c0015c55e076e9e4686b31ec9bf632fddac39f",
+      "preparation_sha256": "6843dad100950e1d4ba2be9d46a94ea5129ddb7a3efb28d127540f602131ee5f",
+      "dimensions": [
+        30,
+        30,
+        14
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260927,
+      "instance_id": "ASC_INSTANCE_XL10_S20260927",
+      "instance_hash": "60d66927dcd07c85d56a7aebebfc3bc5de94fd961e17d3d06d7c658669c946c9",
+      "x0_hash": "1334b2089af441bf2c43c3254a429159c22bbdf89a40c6005cca2378f9578ae2",
+      "instance_sha256": "dd16dd366cd86d838bc542f62ec45f1c5bfc6970af851de5a18f60cd9e516d7f",
+      "preparation_sha256": "848b879d110f29c2bc83407a8565426b4bffac2c6ffe88d48a5a477e2bd5f7d8",
+      "dimensions": [
+        30,
+        30,
+        14
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260928,
+      "instance_id": "ASC_INSTANCE_XL10_S20260928",
+      "instance_hash": "dbf39fcb0ae5c6bf15274e8c78787c83ea481893fe6479ba92d155dbc030899c",
+      "x0_hash": "77b107b54ae3b46af549bfa0dc0eaec491125052c306b3203ac262eb94c05947",
+      "instance_sha256": "04f22c15e3fac18a30055ff5a17d2d11e3371cd1392ca25d1f7a5ccf5d5e3cf9",
+      "preparation_sha256": "938301e26d15df7968b2c5f4f65e244627b6527a17be43b44d7a2f3712d50ad1",
+      "dimensions": [
+        30,
+        30,
+        14
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260929,
+      "instance_id": "ASC_INSTANCE_XL10_S20260929",
+      "instance_hash": "0cc5242958c804e8bc4e4e59b3c6f366d9194e3b2866fa188009709b09e1e51a",
+      "x0_hash": "b9dde23fee2a853f69f0c1656df441a0a34da9f66754bafcccad14b00f1a0d9a",
+      "instance_sha256": "9adcade274fecf70d639ab611ecddf60988081afaacb85380540a975ddbc9a32",
+      "preparation_sha256": "25f78958c02a434da8e80181be8ddea6efad7b57416e6b15850919b571e32ad4",
+      "dimensions": [
+        30,
+        30,
+        14
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XL10",
+      "seed": 20260930,
+      "instance_id": "ASC_INSTANCE_XL10_S20260930",
+      "instance_hash": "3984015d1f5815ecfec2b10a7d1d94a71d255ce0af88aa88a11098f7cdd324b3",
+      "x0_hash": "bf97cdc000804758df9595a8a87a423f083d6410778c3516024d2e1244dbee6a",
+      "instance_sha256": "7767b1474e756d5a8781ba50c0e23a43a2347b421bd62c4a44a522f271982806",
+      "preparation_sha256": "2066a95ade9082a8578f10b23764f80c95b6f90d64ceb95fe364e1882ef323d9",
+      "dimensions": [
+        30,
+        30,
+        14
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260921,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260921",
+      "instance_hash": "81739c07edea3babcb62bbaf91ac6ac37eb13c3201052071c5610c4e8a328f94",
+      "x0_hash": "65813dd3712757d9e6f4fa742525041ea32667b6ded2afda8096b1665aedda03",
+      "instance_sha256": "2ebc009d6f00065ecd948070210075b715154257d17c1701acf1b937b821088f",
+      "preparation_sha256": "17030da831a58cecce755bade73b245b4cdc8db18ebb1f4d5b4171e1e01ca39a",
+      "dimensions": [
+        36,
+        36,
+        16
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260922,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260922",
+      "instance_hash": "fc193c71c5bad6b678e2a2a95ac0b5f71898cbb754e213848913b465051d5ea9",
+      "x0_hash": "531a741e79c1bc3208f7bc47f0e858193e72979b3f35b06154957491bf432457",
+      "instance_sha256": "acabbdba1d68be5d562fa604d6c3110de0d42ed49364be72a2db9f52cffaa9b4",
+      "preparation_sha256": "8d7e5d14bf41606dfd4cc0c16795f7c5a0edf0a1501ab726cc40bc8501164dc6",
+      "dimensions": [
+        36,
+        36,
+        16
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260923,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260923",
+      "instance_hash": "e6cdf60fec71692b351bc22ff285c394317e71bc2594f16b7ec0fa8fb381fc1f",
+      "x0_hash": "85c7fe2e011914825dae1a75eadb5eb63442b307e818b7b8ccb5f1dac1ff64c3",
+      "instance_sha256": "83ba7cbc4f6b6c28bc1e532c2012cbb728ade2a7438d3bbab4de7b05882c19e7",
+      "preparation_sha256": "8fc56332c2eadeb38a9c627edb704ddf13fe72cb365a368b20f68ca21cb400f0",
+      "dimensions": [
+        36,
+        36,
+        16
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260924,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260924",
+      "instance_hash": "e8b237496f9060aa1fdb1c9c86015ee9fc357fb8a752d58d80f6e13e8e4df163",
+      "x0_hash": "11730a46b409c296b69affbbcc628812593f6c5a76265d9d2f2d78f1405e987e",
+      "instance_sha256": "d2f057a0533fba6e8e3b5419ce690989300464926680c869da2a780db712535c",
+      "preparation_sha256": "a6423b5501807b7fe7735acc338300f91c236853483b716a607147447cdb1cd4",
+      "dimensions": [
+        36,
+        36,
+        16
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260925,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260925",
+      "instance_hash": "55f9b013e762695a4d04763cddf38be89fe21edff9ccb35ae4be5e9703e683c7",
+      "x0_hash": "0063597cf98a7c560389f2c23ef42830aafb7817336edc26a8de292c204e8b35",
+      "instance_sha256": "014a198279d174e4a91b3e9239505391aaca9a7676807228b5f3cd607f770343",
+      "preparation_sha256": "aa813dead4af95b2218ca68808711905dfdc32daaa6a202df44deb6f4427cd9f",
+      "dimensions": [
+        36,
+        36,
+        16
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260926,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260926",
+      "instance_hash": "15e77ea2a6d976f5bfb9f7231663611056fad47f52001b742d4a098be9c4e4a5",
+      "x0_hash": "8066e6cf7f976b965aa6d29f8bec73be7f5b600da52d5020b047179ac5d35f09",
+      "instance_sha256": "fe5a6c0e1c0bf23fd5e17b55ac057cea8068f510639a1fc5e13064d84663bdcd",
+      "preparation_sha256": "6b563ef40c6a3dede00155e28fb1693ce10a53875a853b72acecf2edcc1a2327",
+      "dimensions": [
+        36,
+        36,
+        16
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260927,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260927",
+      "instance_hash": "5a945d25c347b2b7dd75a586fa9ae2a90fb1b291efabb78f5efb9f1d0ee35c07",
+      "x0_hash": "ef4ab13b4c4a46a0216ac17c0027265301ef2893f014d1dcc6a9b96c561a60a8",
+      "instance_sha256": "df8e2aafa9abd31df71208191e2067cf3e9e0f677187f01c5b01b5a82bc70cf3",
+      "preparation_sha256": "ada567056865550c6d59d91e18ba75a3808a3acc8f0245a06ae67fc5c07a5b06",
+      "dimensions": [
+        36,
+        36,
+        16
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260928,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260928",
+      "instance_hash": "ab57d56583c28260358ca24c530535fcc2f1c12bf67aa3be4f0870156afab699",
+      "x0_hash": "7b699163a79bd13795be2323d4f065c5d3ec768aeb8fe1f9a46aa591b29a303c",
+      "instance_sha256": "c128428758be44d7a1f4161bbc4e5f8379809e26795bfd6f327d47c087b9c9d9",
+      "preparation_sha256": "05a5cb6fe40aa3e6b2907027a89640fe7b0d7bf57cda780e90a76e329696c20d",
+      "dimensions": [
+        36,
+        36,
+        16
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260929,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260929",
+      "instance_hash": "29c010cdb8a97ea71b61ce499d42c91c2df128a8f0f7515abb0f424aa9390f35",
+      "x0_hash": "0e1f3745a98856f447f7a0242adee928d877ef9659d7dd4eb9d0f82d7b19daa1",
+      "instance_sha256": "bea9350e445fb4bae6db8fed6d10239feda86e5409ac26a2c0946d6826708f9e",
+      "preparation_sha256": "c3d37d75483be8530142778ede92aa6dc3afef837334eb9d7f8e8ceec13ad560",
+      "dimensions": [
+        36,
+        36,
+        16
+      ],
+      "identity_status": "PASS"
+    },
+    {
+      "size": "XXL10",
+      "seed": 20260930,
+      "instance_id": "ASC_INSTANCE_XXL10_S20260930",
+      "instance_hash": "c54138f47da83d6ae327c1b5b30d66e68a7428a4e9f46ab7bc7cadefd4484bdf",
+      "x0_hash": "2633cdb20b4ca4bfdd2a100390e9a56042694a5a74cd4e3eef92fbfeae9c64e6",
+      "instance_sha256": "a13c2853a20eb0fdb362dd3167acf487ded1ba72c6cdcbe7192e01e56c799cd6",
+      "preparation_sha256": "b6ee796fd54dd2e2466d0a787744532f3a0c505c429761df387aa8c3edbfebb9",
+      "dimensions": [
+        36,
+        36,
+        16
+      ],
+      "identity_status": "PASS"
+    }
+  ],
+  "workloads": {
+    "L10": {
+      "I": 25,
+      "R": 24,
+      "J": 12,
+      "Gamma": 2,
+      "global_scenarios_per_oracle_call": 41617,
+      "reusable_recourse_lp_variables": 7500,
+      "reusable_recourse_lp_constraints": 600,
+      "maximum_scenario_lp_solves_at_500_iterations_plus_two_certifications": 20891734,
+      "evidence_class": "THEORETICAL_COUNT_NO_MODEL_BUILD_NO_OPTIMIZATION",
+      "primary_risk": "TIME_FROM_SEQUENTIAL_SCENARIO_LP_ENUMERATION",
+      "memory_note": "The implementation reuses one recourse LP, so memory does not scale by materializing all scenarios."
+    },
+    "XL10": {
+      "I": 30,
+      "R": 30,
+      "J": 14,
+      "Gamma": 2,
+      "global_scenarios_per_oracle_call": 88411,
+      "reusable_recourse_lp_variables": 13034,
+      "reusable_recourse_lp_constraints": 854,
+      "maximum_scenario_lp_solves_at_500_iterations_plus_two_certifications": 44382322,
+      "evidence_class": "THEORETICAL_COUNT_NO_MODEL_BUILD_NO_OPTIMIZATION",
+      "primary_risk": "TIME_FROM_SEQUENTIAL_SCENARIO_LP_ENUMERATION",
+      "memory_note": "The implementation reuses one recourse LP, so memory does not scale by materializing all scenarios."
+    },
+    "XXL10": {
+      "I": 36,
+      "R": 36,
+      "J": 16,
+      "Gamma": 2,
+      "global_scenarios_per_oracle_call": 166177,
+      "reusable_recourse_lp_variables": 21328,
+      "reusable_recourse_lp_constraints": 1168,
+      "maximum_scenario_lp_solves_at_500_iterations_plus_two_certifications": 83420854,
+      "evidence_class": "THEORETICAL_COUNT_NO_MODEL_BUILD_NO_OPTIMIZATION",
+      "primary_risk": "TIME_FROM_SEQUENTIAL_SCENARIO_LP_ENUMERATION",
+      "memory_note": "The implementation reuses one recourse LP, so memory does not scale by materializing all scenarios."
+    }
+  },
+  "convergence_trajectory": {
+    "status": "PARTIAL_FOR_FUTURE_FIVE_METHOD_COMPARISON",
+    "checks": {
+      "required_fields": true,
+      "certified_condition_trajectories": true,
+      "non_certified_not_misrepresented": true,
+      "no_nan": true
+    },
+    "persisted_rows": 1093,
+    "persisted_conditions": 89,
+    "scaling_v2_methods": [
+      "aggregate_benders_structured_oracle",
+      "prb_benders",
+      "pure_benders"
+    ],
+    "basic_scaling_conditions": 0,
+    "gap_thresholds_supported": [
+      0.01,
+      0.001,
+      0.0001
+    ],
+    "fairness_conclusion": "Existing certified Scaling V2 Benders trajectories are sufficient within those three methods; no Basic-BD scaling trajectory exists yet, so a four-Benders gap comparison is not yet possible."
+  },
+  "xxl10_direct": {
+    "status": "BLOCKED_BY_RESOURCE",
+    "checks": {
+      "authorization_closed": true,
+      "single_candidate": true,
+      "process_cap_13_gib": true,
+      "startup_gate_16_gib": true,
+      "system_floor_3_gib": true,
+      "timeout_900_seconds": true,
+      "disk_gate_20_gib": true
+    },
+    "live": {
+      "total_ram_gib": 31.49742889404297,
+      "available_ram_gib": 14.153907775878906,
+      "free_disk_gib": 246.32886123657227,
+      "audit_process_rss_gib": 0.035068511962890625,
+      "active_solver_processes": []
+    },
+    "gates": {
+      "memory": false,
+      "disk": true,
+      "no_active_solver": true
+    },
+    "model_size": {
+      "variables": 14227589,
+      "binary_variables": 36,
+      "constraints": 791070,
+      "nonzeros": 43069377,
+      "evidence_class": "THEORETICAL_FORMULA_PREVIOUSLY_VALIDATED_ON_L10_XL10_NO_XXL10_BUILD"
+    },
+    "migration_requirements": [
+      "At least 16 GiB available RAM at every launch and enough total RAM to retain the 13 GiB process cap plus the 3 GiB system floor.",
+      "Python 3.12.7, gurobipy/native Gurobi 13.0.1, the frozen solver profile, model identity, config hash, and all instance hashes must match the candidate protocol.",
+      "Single-process execution, 20 GiB free disk, 0.25-second monitoring, 900-second timeout, fail-closed archival, and independent certification must remain enabled.",
+      "Historical Scaling V2 solver version remains NOT_VERIFIABLE, so migration can preserve the new Direct protocol identity but cannot establish exact historical software identity."
+    ]
+  },
+  "known_exclusions": [
+    "ASC_XXL10_S20260925_PURE_BENDERS: historical cut-validity certification failure",
+    "DIRECT_XL10_S20260924: frozen resource failure",
+    "Renault PRB 210330: internal global-risk-budget coupling certification failure"
+  ]
+}

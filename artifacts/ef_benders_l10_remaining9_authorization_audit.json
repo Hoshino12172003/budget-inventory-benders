@@ -1,0 +1,150 @@
+{
+  "schema": "ef_benders_l10_remaining9_authorization_audit_v1",
+  "status": "AUTHORIZED_READY",
+  "checks": {
+    "dry_run_ready": true,
+    "pilot_archive": true,
+    "paired_instance_hash": true,
+    "paired_exact": true,
+    "all_nine_identities": true,
+    "all_nine_attempts_absent": true,
+    "all_nine_canonical_absent": true,
+    "zero_optimization": true
+  },
+  "protocol_id": "EF_BD_SCALING_L10_REMAINING9_V1",
+  "config_sha256": "43e0dad8dd742ceede0f939baf213cd9a6cbb8182ac24d0221211c59cdd14505",
+  "fixed_denominator": {
+    "completed_pilot": 1,
+    "authorized_remaining": 9,
+    "total": 10
+  },
+  "pilot": {
+    "condition_id": "EF_L10_S20260921",
+    "attempt": "attempt-001",
+    "result_sha256": "972f00285a5738061be2c2903d569fe26eaa5bed98432b0ec4ddf4d9bb4bcd8d",
+    "provenance_sha256": "a580a7a827a030773f87407845e45f6c32b6558d5c37cae7ce5e32f61a997bbe",
+    "resource_monitor_sha256": "3f72026eee9a3bfeee1de7f605275aa86433a54f012fa157decf0f0978e9fd40",
+    "peak_process_tree_memory_gib": 1.697723388671875,
+    "timing_accounting": {
+      "algorithm_core_time_seconds": 66.63692490011454,
+      "oracle_build_seconds_in_core": 17.369720299961045,
+      "oracle_optimize_seconds_in_core": 17.689034399809316,
+      "master_optimize_seconds_in_core": 0.15193139971233904,
+      "other_core_seconds": 31.426238800631836,
+      "independent_certification_seconds_outside_core": 23.616589199984446,
+      "total_time_seconds": 90.98759960010648
+    }
+  },
+  "paired_core_times_seconds": {
+    "Direct": 120.75475109997205,
+    "EF-BD": 66.63692490011454,
+    "Aggregate-BD": 28.722643799963407,
+    "PRB-BD": 25.50361310003791
+  },
+  "paired_time_order_slowest_to_fastest": [
+    "Direct",
+    "EF-BD",
+    "Aggregate-BD",
+    "PRB-BD"
+  ],
+  "conditions": [
+    {
+      "condition_id": "EF_L10_S20260922",
+      "seed": 20260922,
+      "instance_hash": "4ec1e745c3bd6d410027905ecf001bf7ce1d16f203ece8fb66de6f15f48a6f19",
+      "instance_sha256": "4b2dd555424bf5dca9dddc6b8429f094f0a73cbc780fc176e583d2f7fa5d191a",
+      "preparation_sha256": "f53b55aeaf9dbb0561f9d319e514eaf6dfa2d7259a44a6868eef513f115c655e",
+      "expected_attempt": "attempt-001",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_L10_S20260923",
+      "seed": 20260923,
+      "instance_hash": "c2361c3502a0d29e85e3caf71e2dee6e31bf367912c5fcff809288a64af4eb56",
+      "instance_sha256": "724cff78d496389f7d8ce1782f245625e4034b1304bae3c3e0a96c0189ce755e",
+      "preparation_sha256": "32aefcdfbc82503ef12790523c7f6ee85204281866d2305c3f41af9e39b15014",
+      "expected_attempt": "attempt-001",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_L10_S20260924",
+      "seed": 20260924,
+      "instance_hash": "e14485ad862fa11352234fcf8dcd045ef7ad3f17be429ddc5e7234fd9e71f1b9",
+      "instance_sha256": "ef07d3006f587c6fc28a81f0704052193ea024b8a217b40f5bbf921201868bad",
+      "preparation_sha256": "a110c28c460299b04ccf69edb51c6ed3680adacb52205112bd8bd91cd20bb659",
+      "expected_attempt": "attempt-001",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_L10_S20260925",
+      "seed": 20260925,
+      "instance_hash": "a958b2de093d40a6ec2a7782117b0f43320cec315fa5e65321d7e2547a3b3f1e",
+      "instance_sha256": "d774a6ac6096362891209251dc74b3849b2aeb8747994c1d33fc026cb56d8ca9",
+      "preparation_sha256": "36278a367b5773154f20a7977f47f897aaa701513a9fb27f48a6e21ff45d50d1",
+      "expected_attempt": "attempt-001",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_L10_S20260926",
+      "seed": 20260926,
+      "instance_hash": "2a6cbe0ed9559676c890fb034fc63074f7f8fb2d754b5c7186c440a4c29af57b",
+      "instance_sha256": "ddcbe5104ce3de249081c2e7095ef9a2eecf6cc31410b4b0ecfd6af9ea169e7b",
+      "preparation_sha256": "3da17037bb4ec0f82858675a1739dd82bcb9c2d329870430cf867c6f1a0aedb6",
+      "expected_attempt": "attempt-001",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_L10_S20260927",
+      "seed": 20260927,
+      "instance_hash": "9500b90b8cbe3609b5baeb1cf0a395218ba2f48568fbf53c5c34acd1a8898f37",
+      "instance_sha256": "03617652e05a26b6bfa3b6d26d80399e761375e26b4e4b0887d9150377676748",
+      "preparation_sha256": "7995267bb6126669e16279993411efb22995ef1f86475d76d7d78ae40fd008d1",
+      "expected_attempt": "attempt-001",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_L10_S20260928",
+      "seed": 20260928,
+      "instance_hash": "e386236362784e9a3ec618b6c65cfd64baf100be92cb216aac5fe55cf772e0d7",
+      "instance_sha256": "7e42e70bb5361d87aa76737ffcd00cb68f5467254dae12bca01d9456670f09fe",
+      "preparation_sha256": "170a739251a3473447428db6cf7659a4ca1e91217d7da7b806a2953b139c4f76",
+      "expected_attempt": "attempt-001",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_L10_S20260929",
+      "seed": 20260929,
+      "instance_hash": "fbe2a8c1d60937915e89b88b99359b8e24e9a552b57a1e3bb7083e1710382635",
+      "instance_sha256": "d63613835c0997ebe77b93eca1241bf6ca91e19c80643422ca419816df61ebd4",
+      "preparation_sha256": "06f8ffc8ac4de3a1d68f8e4d4978b25e9fb42307342738075408b58cdf0e9107",
+      "expected_attempt": "attempt-001",
+      "identity_status": "PASS"
+    },
+    {
+      "condition_id": "EF_L10_S20260930",
+      "seed": 20260930,
+      "instance_hash": "7f3ff364f01b9683838561276135fc4b88dfcc34c0213f32c5fdb40393233afb",
+      "instance_sha256": "ecd7f259e9a4592849e1ef96b65e84c8653c47d8e3f617cd5323bcee26ce83cb",
+      "preparation_sha256": "95424f4e763500cb0693b6804fc865cb2cfd6f2d8da791764b717256e344c47c",
+      "expected_attempt": "attempt-001",
+      "identity_status": "PASS"
+    }
+  ],
+  "resource_gate": {
+    "available_memory_gib": 16.078170776367188,
+    "startup_required_gib": 11,
+    "process_tree_cap_gib": 7,
+    "system_available_floor_gib": 3,
+    "free_disk_gib": 246.26375579833984,
+    "minimum_free_disk_gib": 20,
+    "time_limit_seconds": 900,
+    "monitor_interval_seconds": 0.25
+  },
+  "git": {
+    "head": "8a2f3c7c1687689592af0e5aef2c32369f5201d7",
+    "clean_for_execution": true,
+    "unexpected": []
+  },
+  "active_solver_workers": [],
+  "optimization_calls": 0
+}

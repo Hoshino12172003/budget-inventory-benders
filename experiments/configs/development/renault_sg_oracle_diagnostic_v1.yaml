@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "RENAULT_SG_ORACLE_ONLY_DIAGNOSTIC_V1",
+  "protocol_id": "RENAULT_SG_ORACLE_DIAGNOSTIC_V1",
+  "classification": "DEVELOPMENT_ORACLE_ONLY",
+  "formal_run_authorized": false,
+  "authorized_case_ids": ["210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611"],
+  "test_points": ["final", "x0"],
+  "unavailable_test_points": ["early_iteration", "middle_iteration"],
+  "start_modes": ["cold", "historical_warm"],
+  "frozen_identity_source": "experiments/configs/development/renault_enhanced_basic_benders_v1.yaml",
+  "fixed_scientific_parameters": {"Gamma": 2, "lambda_R": 0.05},
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "solver": {"Threads": 1, "FeasibilityTol": 1e-8, "OptimalityTol": 1e-8},
+  "comparison_tolerance": 1e-4,
+  "resource_policy": {
+    "execution": "sequential_single_process",
+    "parallel_workers": 1,
+    "minimum_available_memory_gib": 8,
+    "maximum_process_tree_memory_gib": 4,
+    "minimum_system_available_memory_gib": 3,
+    "minimum_free_disk_gib": 20,
+    "condition_time_limit_seconds": 300,
+    "memory_monitor_interval_seconds": 0.25,
+    "retry_policy": "no_automatic_retry"
+  },
+  "output_directory": "experiments/results/renault_sg_oracle_diagnostic_v1",
+  "authorization_note": "Authorized Oracle-only diagnostic completed; execution is closed. Full SG-BD remains unauthorized."
+}

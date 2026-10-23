@@ -1,0 +1,61 @@
+{
+  "algorithm_core_time_seconds": 2.0622968999668956,
+  "branch_nodes": 388,
+  "candidate_cuts": 120,
+  "case": "210611",
+  "condition_id": "PRB_SG_RENAULT_210611",
+  "cut_validity": true,
+  "cuts_added": 34,
+  "direct_objective": 617415.6681422364,
+  "direct_objective_residual": 7.718335837125778e-08,
+  "exact_certification": true,
+  "final_gap": 0.0,
+  "final_lower_bound": 617415.6681423222,
+  "final_upper_bound": 617415.6681421611,
+  "global_risk_budget_coupling_error": 1.6111880540847778e-07,
+  "global_risk_budget_coupling_pass": true,
+  "identity": {
+    "case": "210611",
+    "checks": {
+      "Gamma": true,
+      "calibration_hash": true,
+      "instance_hash": true,
+      "lambda_R": true,
+      "mapping_hash": true,
+      "x0_hash": true
+    },
+    "condition_id": "PRB_SG_RENAULT_210611",
+    "identity": {
+      "calibration_hash": "9e9dbbbead031ea0ab251686b256ac1e269b7c145ea3549045dee843657fc5bb",
+      "instance_hash": "f244641d602348af8b2ac31a2bb948b4b0ebca8e33ff446dd07298e3e578a9bf",
+      "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+      "x0_hash": "deca1c7decbb01c5500ede566cd790a44cfa86e99c1b761b9f30cd30eb63ef81"
+    },
+    "status": "PASS"
+  },
+  "independent_certification": {
+    "dual_feasible": true,
+    "objective": 617415.6681421612,
+    "objective_residual": 1.979060471057892e-09,
+    "pass": true,
+    "recourse": 552759.4101442052,
+    "strong_duality_residual": 1.1641532182693481e-10
+  },
+  "independent_certification_time_seconds": 1.949379599886015,
+  "internal_certification_time_seconds": 1.6694873000960797,
+  "internal_exact_certification": true,
+  "iterations": 5,
+  "master_time_seconds": 0.13174960017204285,
+  "method_id": "PRB-SG",
+  "objective": 617415.6681421592,
+  "oracle_time_seconds": 0.11048949998803437,
+  "pruning_fraction": 0.9579113924050633,
+  "safely_pruned_patterns": 3027,
+  "scenario_lp_solves": 133,
+  "scenario_patterns": 3160,
+  "selected_cuts": 34,
+  "solver_status": "OPTIMAL",
+  "total_time_seconds": 4.011676499852911,
+  "upper_bound_seconds": 0.02016610186547041,
+  "violated_cuts": 34
+}

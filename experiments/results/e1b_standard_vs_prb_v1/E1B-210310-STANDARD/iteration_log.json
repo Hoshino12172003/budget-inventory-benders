@@ -1,0 +1,86 @@
+[
+  {
+    "absolute_gap": 766417.0453333337,
+    "cut_added": true,
+    "cut_violation": 766417.0453333334,
+    "iteration": 1,
+    "lower_bound": 3743.7199999954246,
+    "master_best_bound": 3743.7199999956983,
+    "master_gap": 0.0,
+    "master_objective": 3743.7199999954246,
+    "relative_gap": 0.9951390408749592,
+    "upper_bound": 770160.7653333291
+  },
+  {
+    "absolute_gap": 9858.937182791065,
+    "cut_added": true,
+    "cut_violation": 9858.937182791065,
+    "iteration": 2,
+    "lower_bound": 711260.576892862,
+    "master_best_bound": 711260.576892862,
+    "master_gap": 0.0,
+    "master_objective": 711260.576892862,
+    "relative_gap": 0.013671710431284708,
+    "upper_bound": 721119.514075653
+  },
+  {
+    "absolute_gap": 3194.0605543025304,
+    "cut_added": true,
+    "cut_violation": 3194.0605543025304,
+    "iteration": 3,
+    "lower_bound": 713257.0221975748,
+    "master_best_bound": 713257.0221975748,
+    "master_gap": 0.0,
+    "master_objective": 713257.0221975748,
+    "relative_gap": 0.004458169763711144,
+    "upper_bound": 716451.0827518774
+  },
+  {
+    "absolute_gap": 952.8701700735837,
+    "cut_added": true,
+    "cut_violation": 952.8701700735837,
+    "iteration": 4,
+    "lower_bound": 714419.9160027292,
+    "master_best_bound": 714419.9160027292,
+    "master_gap": 0.0,
+    "master_objective": 714419.9160027292,
+    "relative_gap": 0.001331991080023293,
+    "upper_bound": 715372.7861728028
+  },
+  {
+    "absolute_gap": 56.70620015321765,
+    "cut_added": true,
+    "cut_violation": 56.70620015321765,
+    "iteration": 5,
+    "lower_bound": 714768.3316168336,
+    "master_best_bound": 714768.3316168336,
+    "master_gap": 0.0,
+    "master_objective": 714768.3316168336,
+    "relative_gap": 7.93287827835374e-05,
+    "upper_bound": 714825.0378169868
+  },
+  {
+    "absolute_gap": 23.1969613089459,
+    "cut_added": true,
+    "cut_violation": 33.86305473651737,
+    "iteration": 6,
+    "lower_bound": 714801.8408556778,
+    "master_best_bound": 714801.8408556778,
+    "master_gap": 0.0,
+    "master_objective": 714801.8408556778,
+    "relative_gap": 3.245124342564636e-05,
+    "upper_bound": 714825.0378169868
+  },
+  {
+    "absolute_gap": 0.0,
+    "cut_added": false,
+    "cut_violation": 0.0,
+    "iteration": 7,
+    "lower_bound": 714814.5477077013,
+    "master_best_bound": 714814.5477077013,
+    "master_gap": 0.0,
+    "master_objective": 714814.5477077013,
+    "relative_gap": 0.0,
+    "upper_bound": 714814.5477077013
+  }
+]

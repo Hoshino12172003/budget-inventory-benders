@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "DIRECT_SCALING_XXL10_REMAINING9_DEVELOPMENT_V1",
+  "resource_protocol_id": "DIRECT_XXL10_REMAINING9_V1_METHOD2_THREADS2",
+  "derived_from_resource_protocol_id": "DIRECT_XXL10_PAIRED_PILOT_V1_METHOD2_THREADS2",
+  "formal_run_authorized": true,
+  "authorized_condition_ids": [
+    "DIRECT_XXL10_S20260922", "DIRECT_XXL10_S20260923", "DIRECT_XXL10_S20260924",
+    "DIRECT_XXL10_S20260925", "DIRECT_XXL10_S20260926", "DIRECT_XXL10_S20260927",
+    "DIRECT_XXL10_S20260928", "DIRECT_XXL10_S20260929", "DIRECT_XXL10_S20260930"
+  ],
+  "source_experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V2_REPAIRED_GUARD",
+  "source_config": "experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+  "source_output_root": "experiments/results/algorithm_scaling_convergence_cost_v2_repaired_guard",
+  "method": "direct_exact",
+  "sizes": [{"label": "XXL10", "I": 36, "R": 36, "J": 16}],
+  "seeds": [20260922, 20260923, 20260924, 20260925, 20260926, 20260927, 20260928, 20260929, 20260930],
+  "fixed_scientific_parameters": {"Gamma": 2, "beta": 1.0, "lambda_R": 0.05, "SL": 0.90, "phi_multiplier": 1.85},
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "required_environment": {
+    "python_version": "3.12.7",
+    "gurobipy_version": "13.0.1",
+    "gurobi_native_version": [13, 0, 1],
+    "comparison_basis": "same_current_environment_for_new_paired_runs",
+    "scaling_v2_historical_solver_version": "NOT_VERIFIABLE"
+  },
+  "solver_parameters": {"Threads": 2, "Seed": 0, "MIPGap": 0.0, "MIPGapAbs": "DEFAULT", "FeasibilityTol": 1e-8, "OptimalityTol": 1e-8, "IntFeasTol": 1e-8, "Presolve": "DEFAULT", "Method": 2, "Cuts": "DEFAULT", "Heuristics": "DEFAULT", "NumericFocus": 0},
+  "resource_policy": {
+    "execution": "sequential_single_worker", "parallel_workers": 1,
+    "minimum_available_memory_gib_by_size": {"XXL10": 16},
+    "maximum_process_tree_memory_gib_by_size": {"XXL10": 13},
+    "minimum_system_available_memory_gib": 3, "minimum_free_disk_gib": 20,
+    "condition_time_limit_seconds": 900, "memory_monitor_interval_seconds": 0.25,
+    "fail_closed": true, "retry_policy": "no_automatic_retry"
+  },
+  "failure_policy": {
+    "continue_after": ["TIME_LIMIT", "RESOURCE_PROCESS_CAP", "RESOURCE_SYSTEM_CAP", "MONITOR_HARD_TIME_LIMIT"],
+    "stop_batch_after": ["IDENTITY_FAILURE", "HASH_FAILURE", "NUMERICAL_CERTIFICATION_FAILURE", "UNKNOWN_WORKER_FAILURE", "ARCHIVE_FAILURE"],
+    "require_worker_exit_before_continue": true,
+    "repeat_all_preflight_gates_before_each_condition": true
+  },
+  "frozen_pilot_identity": {
+    "condition_id": "DIRECT_XXL10_S20260921", "attempt": "attempt-002",
+    "instance_hash": "81739c07edea3babcb62bbaf91ac6ac37eb13c3201052071c5610c4e8a328f94",
+    "x0_hash": "65813dd3712757d9e6f4fa742525041ea32667b6ded2afda8096b1665aedda03",
+    "result_sha256": "9287438574bff1dc9eb7f115a4c6dbcd4c9efb9baa0c8fd58d167d0e16ef1e80"
+  },
+  "frozen_model_files": {
+    "experiments/run_direct_scaling.py": "fef8019f9aa9be1d2942a5d3aad363c2c3c28929e52cc02b359d1626a1880edd",
+    "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+    "src/robust_inventory_reconfiguration/product_risk_subproblem.py": "1c68e8031a5bece2ae863fb0f3df2ed47ba9f5d7cf82d4cd6c20e9ba5bee012f",
+    "src/robust_inventory_reconfiguration/risk_budget_composition.py": "d5b79b3fd576ae1398bf2bd9931c658686a2a520d3b9fac7380c903c8e7aa47f",
+    "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+  },
+  "frozen_input_identity": {
+    "DIRECT_XXL10_S20260922": {"instance_sha256": "acabbdba1d68be5d562fa604d6c3110de0d42ed49364be72a2db9f52cffaa9b4", "preparation_sha256": "8d7e5d14bf41606dfd4cc0c16795f7c5a0edf0a1501ab726cc40bc8501164dc6", "instance_hash": "fc193c71c5bad6b678e2a2a95ac0b5f71898cbb754e213848913b465051d5ea9", "x0_hash": "531a741e79c1bc3208f7bc47f0e858193e72979b3f35b06154957491bf432457"},
+    "DIRECT_XXL10_S20260923": {"instance_sha256": "83ba7cbc4f6b6c28bc1e532c2012cbb728ade2a7438d3bbab4de7b05882c19e7", "preparation_sha256": "8fc56332c2eadeb38a9c627edb704ddf13fe72cb365a368b20f68ca21cb400f0", "instance_hash": "e6cdf60fec71692b351bc22ff285c394317e71bc2594f16b7ec0fa8fb381fc1f", "x0_hash": "85c7fe2e011914825dae1a75eadb5eb63442b307e818b7b8ccb5f1dac1ff64c3"},
+    "DIRECT_XXL10_S20260924": {"instance_sha256": "d2f057a0533fba6e8e3b5419ce690989300464926680c869da2a780db712535c", "preparation_sha256": "a6423b5501807b7fe7735acc338300f91c236853483b716a607147447cdb1cd4", "instance_hash": "e8b237496f9060aa1fdb1c9c86015ee9fc357fb8a752d58d80f6e13e8e4df163", "x0_hash": "11730a46b409c296b69affbbcc628812593f6c5a76265d9d2f2d78f1405e987e"},
+    "DIRECT_XXL10_S20260925": {"instance_sha256": "014a198279d174e4a91b3e9239505391aaca9a7676807228b5f3cd607f770343", "preparation_sha256": "aa813dead4af95b2218ca68808711905dfdc32daaa6a202df44deb6f4427cd9f", "instance_hash": "55f9b013e762695a4d04763cddf38be89fe21edff9ccb35ae4be5e9703e683c7", "x0_hash": "0063597cf98a7c560389f2c23ef42830aafb7817336edc26a8de292c204e8b35"},
+    "DIRECT_XXL10_S20260926": {"instance_sha256": "fe5a6c0e1c0bf23fd5e17b55ac057cea8068f510639a1fc5e13064d84663bdcd", "preparation_sha256": "6b563ef40c6a3dede00155e28fb1693ce10a53875a853b72acecf2edcc1a2327", "instance_hash": "15e77ea2a6d976f5bfb9f7231663611056fad47f52001b742d4a098be9c4e4a5", "x0_hash": "8066e6cf7f976b965aa6d29f8bec73be7f5b600da52d5020b047179ac5d35f09"},
+    "DIRECT_XXL10_S20260927": {"instance_sha256": "df8e2aafa9abd31df71208191e2067cf3e9e0f677187f01c5b01b5a82bc70cf3", "preparation_sha256": "ada567056865550c6d59d91e18ba75a3808a3acc8f0245a06ae67fc5c07a5b06", "instance_hash": "5a945d25c347b2b7dd75a586fa9ae2a90fb1b291efabb78f5efb9f1d0ee35c07", "x0_hash": "ef4ab13b4c4a46a0216ac17c0027265301ef2893f014d1dcc6a9b96c561a60a8"},
+    "DIRECT_XXL10_S20260928": {"instance_sha256": "c128428758be44d7a1f4161bbc4e5f8379809e26795bfd6f327d47c087b9c9d9", "preparation_sha256": "05a5cb6fe40aa3e6b2907027a89640fe7b0d7bf57cda780e90a76e329696c20d", "instance_hash": "ab57d56583c28260358ca24c530535fcc2f1c12bf67aa3be4f0870156afab699", "x0_hash": "7b699163a79bd13795be2323d4f065c5d3ec768aeb8fe1f9a46aa591b29a303c"},
+    "DIRECT_XXL10_S20260929": {"instance_sha256": "bea9350e445fb4bae6db8fed6d10239feda86e5409ac26a2c0946d6826708f9e", "preparation_sha256": "c3d37d75483be8530142778ede92aa6dc3afef837334eb9d7f8e8ceec13ad560", "instance_hash": "29c010cdb8a97ea71b61ce499d42c91c2df128a8f0f7515abb0f424aa9390f35", "x0_hash": "0e1f3745a98856f447f7a0242adee928d877ef9659d7dd4eb9d0f82d7b19daa1"},
+    "DIRECT_XXL10_S20260930": {"instance_sha256": "a13c2853a20eb0fdb362dd3167acf487ded1ba72c6cdcbe7192e01e56c799cd6", "preparation_sha256": "b6ee796fd54dd2e2466d0a787744532f3a0c505c429761df387aa8c3edbfebb9", "instance_hash": "c54138f47da83d6ae327c1b5b30d66e68a7428a4e9f46ab7bc7cadefd4484bdf", "x0_hash": "2633cdb20b4ca4bfdd2a100390e9a56042694a5a74cd4e3eef92fbfeae9c64e6"}
+  },
+  "readiness_decision": "READY_FOR_AUTHORIZATION",
+  "authorization_record": "docs/direct_scaling_xxl10_remaining9_authorization_record.md",
+  "output_directory": "experiments/results/direct_scaling_xxl10_remaining9_v1"
+}

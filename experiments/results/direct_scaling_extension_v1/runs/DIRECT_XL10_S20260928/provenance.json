@@ -1,0 +1,31 @@
+{
+  "instance_sha256": "04f22c15e3fac18a30055ff5a17d2d11e3371cd1392ca25d1f7a5ccf5d5e3cf9",
+  "preparation_sha256": "938301e26d15df7968b2c5f4f65e244627b6527a17be43b44d7a2f3712d50ad1",
+  "result_sha256": "376de7fa64838e0cc57e51b847408aa29758a1b537d414263f5a456085951305",
+  "model_identity": {
+    "sha256": "62383c4acd408aca1c3581d947eee325004785bb89958a4753a6c9566d692bf2",
+    "files": {
+      "experiments/run_direct_scaling.py": "bd8c330a5511225bc19343060c40a79fc9ef3d3ece59e000dad0d88da414e3d0",
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+      "src/robust_inventory_reconfiguration/product_risk_subproblem.py": "1c68e8031a5bece2ae863fb0f3df2ed47ba9f5d7cf82d4cd6c20e9ba5bee012f",
+      "src/robust_inventory_reconfiguration/risk_budget_composition.py": "d5b79b3fd576ae1398bf2bd9931c658686a2a520d3b9fac7380c903c8e7aa47f",
+      "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+    }
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.7",
+    "python_executable": "C:\\Program Files\\Python312\\python.exe",
+    "gurobipy_version": "13.0.1",
+    "gurobi_native_version": [
+      13,
+      0,
+      1
+    ],
+    "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+  },
+  "archive_complete": true,
+  "first_stage_solution_sha256": "35c67ad241cbc7fe7adff842a40a0a09468868ecf6b45784fbcb9f3318abad84",
+  "solver_log_sha256": "56e95992ac868d120becbb0402a5c08306af29f86e6b0c0911ba5237c8b492e8",
+  "solver_progress_sha256": "db5af943a78bf794b60b6e6e4b8747568b90a7071a08e826f96088cc8c9d12d9"
+}

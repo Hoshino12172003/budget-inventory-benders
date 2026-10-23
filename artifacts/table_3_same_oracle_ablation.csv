@@ -1,0 +1,7 @@
+Scale,Method,Iterations,Core time,Oracle time,Master time,Cuts,Peak memory GiB,Iterations to 99.9% LB,Iterations to 99.99% LB,Cut unit note
+L10,aggregate_benders_structured_oracle,14.8,38.81344384998083,27.84928242015885,0.24439822994172572,13.8,1.8151969909667969,4.9,7.5,Aggregate and PRB cuts have different granularity
+L10,prb_benders,7.4,25.524408310011495,14.70928212996805,0.13116778001422064,58.5,1.8145294189453125,3.2,4.7,Aggregate and PRB cuts have different granularity
+XL10,aggregate_benders_structured_oracle,14.3,108.11601962998975,78.15681049990235,0.3265208400436677,13.3,4.859588623046875,5.0,7.9,Aggregate and PRB cuts have different granularity
+XL10,prb_benders,6.4,65.77393593000015,35.88414778994629,0.1491633599740453,65.3,4.861946105957031,3.1,4.4,Aggregate and PRB cuts have different granularity
+XXL10,aggregate_benders_structured_oracle,13.2,227.06517278997927,161.51925137999933,0.38223111008992416,12.2,10.814521789550781,4.6,8.5,Aggregate and PRB cuts have different granularity
+XXL10,prb_benders,6.3,143.3404476800002,79.66762821997982,0.2181736900471151,70.5,10.816329956054688,3.0,4.6,Aggregate and PRB cuts have different granularity

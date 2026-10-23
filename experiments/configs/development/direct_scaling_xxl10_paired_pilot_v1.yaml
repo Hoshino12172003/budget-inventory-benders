@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "DIRECT_EF_PAIRED_XXL10_DEVELOPMENT_V1",
+  "resource_protocol_id": "DIRECT_XXL10_PAIRED_PILOT_V1_METHOD2_THREADS2",
+  "derived_from_resource_protocol_id": "DIRECT_XXL10_LOW_MEMORY_PILOT_V1_METHOD2_THREADS2",
+  "formal_run_authorized": true,
+  "recovery_control": {
+    "attempt": "attempt-002",
+    "authorized": true,
+    "required_prior_attempt": "attempt-001",
+    "required_failure": "WORKER_INNER_GIT_GATE_MISMATCH"
+  },
+  "authorized_condition_ids": ["DIRECT_XXL10_S20260921"],
+  "source_experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V2_REPAIRED_GUARD",
+  "source_config": "experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+  "source_output_root": "experiments/results/algorithm_scaling_convergence_cost_v2_repaired_guard",
+  "method": "direct_exact",
+  "sizes": [{"label": "XXL10", "I": 36, "R": 36, "J": 16}],
+  "seeds": [20260921],
+  "fixed_scientific_parameters": {"Gamma": 2, "beta": 1.0, "lambda_R": 0.05, "SL": 0.90, "phi_multiplier": 1.85},
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "required_environment": {
+    "python_version": "3.12.7",
+    "gurobipy_version": "13.0.1",
+    "gurobi_native_version": [13, 0, 1],
+    "comparison_basis": "same_current_environment_for_new_paired_pilots",
+    "scaling_v2_historical_solver_version": "NOT_VERIFIABLE"
+  },
+  "solver_parameters": {"Threads": 2, "Seed": 0, "MIPGap": 0.0, "MIPGapAbs": "DEFAULT", "FeasibilityTol": 1e-8, "OptimalityTol": 1e-8, "IntFeasTol": 1e-8, "Presolve": "DEFAULT", "Method": 2, "Cuts": "DEFAULT", "Heuristics": "DEFAULT", "NumericFocus": 0},
+  "resource_policy": {
+    "execution": "single_process_single_condition", "parallel_workers": 1,
+    "minimum_available_memory_gib_by_size": {"XXL10": 16},
+    "maximum_process_tree_memory_gib_by_size": {"XXL10": 13},
+    "minimum_system_available_memory_gib": 3, "minimum_free_disk_gib": 20,
+    "condition_time_limit_seconds": 900, "memory_monitor_interval_seconds": 0.25,
+    "fail_closed": true, "retry_policy": "no_automatic_retry"
+  },
+  "frozen_input_identity": {
+    "condition_id": "DIRECT_XXL10_S20260921",
+    "source_instance_id": "ASC_INSTANCE_XXL10_S20260921",
+    "instance_hash": "81739c07edea3babcb62bbaf91ac6ac37eb13c3201052071c5610c4e8a328f94",
+    "x0_hash": "65813dd3712757d9e6f4fa742525041ea32667b6ded2afda8096b1665aedda03",
+    "instance_sha256": "2ebc009d6f00065ecd948070210075b715154257d17c1701acf1b937b821088f",
+    "preparation_sha256": "17030da831a58cecce755bade73b245b4cdc8db18ebb1f4d5b4171e1e01ca39a"
+  },
+  "frozen_model_files": {
+    "experiments/run_direct_scaling.py": "fef8019f9aa9be1d2942a5d3aad363c2c3c28929e52cc02b359d1626a1880edd",
+    "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+    "src/robust_inventory_reconfiguration/product_risk_subproblem.py": "1c68e8031a5bece2ae863fb0f3df2ed47ba9f5d7cf82d4cd6c20e9ba5bee012f",
+    "src/robust_inventory_reconfiguration/risk_budget_composition.py": "d5b79b3fd576ae1398bf2bd9931c658686a2a520d3b9fac7380c903c8e7aa47f",
+    "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+  },
+  "readiness_decision": "READY_FOR_AUTHORIZATION",
+  "output_directory": "experiments/results/direct_scaling_xxl10_paired_pilot_v1",
+  "authorization_record": "docs/direct_scaling_xxl10_paired_pilot_authorization_record.md"
+}

@@ -1,0 +1,66 @@
+{
+  "elapsed_seconds": 2.8658678999636322,
+  "limits": {
+    "monitor_interval_seconds": 0.25,
+    "process_tree_gib": 4.0,
+    "start_available_gib": 8.0,
+    "system_available_floor_gib": 3.0,
+    "time_seconds": 300.0
+  },
+  "mode": "prb",
+  "peak_process_tree_rss_gib": 0.12831497192382812,
+  "samples": [
+    {
+      "elapsed_seconds": 0.017541399924084544,
+      "process_tree_rss_gib": 0.00925445556640625,
+      "system_available_gib": 12.793750762939453
+    },
+    {
+      "elapsed_seconds": 0.31727959983982146,
+      "process_tree_rss_gib": 0.021884918212890625,
+      "system_available_gib": 12.786323547363281
+    },
+    {
+      "elapsed_seconds": 0.6050782999955118,
+      "process_tree_rss_gib": 0.03150177001953125,
+      "system_available_gib": 12.777263641357422
+    },
+    {
+      "elapsed_seconds": 0.8919726999010891,
+      "process_tree_rss_gib": 0.05865478515625,
+      "system_available_gib": 12.745292663574219
+    },
+    {
+      "elapsed_seconds": 1.1728373998776078,
+      "process_tree_rss_gib": 0.0814971923828125,
+      "system_available_gib": 12.727500915527344
+    },
+    {
+      "elapsed_seconds": 1.4470032998360693,
+      "process_tree_rss_gib": 0.12091827392578125,
+      "system_available_gib": 12.693389892578125
+    },
+    {
+      "elapsed_seconds": 1.7187557998113334,
+      "process_tree_rss_gib": 0.12831497192382812,
+      "system_available_gib": 12.676383972167969
+    },
+    {
+      "elapsed_seconds": 2.0019913997966796,
+      "process_tree_rss_gib": 0.06278228759765625,
+      "system_available_gib": 12.745281219482422
+    },
+    {
+      "elapsed_seconds": 2.2852111000102013,
+      "process_tree_rss_gib": 0.0624237060546875,
+      "system_available_gib": 12.744239807128906
+    },
+    {
+      "elapsed_seconds": 2.5764720998704433,
+      "process_tree_rss_gib": 0.062496185302734375,
+      "system_available_gib": 12.746528625488281
+    }
+  ],
+  "stop_reason": null,
+  "worker_return_code": 0
+}

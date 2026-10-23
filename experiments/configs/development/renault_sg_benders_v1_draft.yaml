@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0-draft",
+  "experiment_id": "RENAULT_SCENARIO_GENERATION_SINGLE_CUT_BENDERS_DEVELOPMENT_V1",
+  "protocol_id": "RENAULT_SG_BD_8CASE_DRAFT_V1",
+  "classification": "DEVELOPMENT_DRAFT_NOT_AUTHORIZED",
+  "formal_run_authorized": false,
+  "oracle_diagnostic_authorized": false,
+  "case_ids": ["210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611"],
+  "frozen_identity_reference": {
+    "path": "experiments/configs/development/renault_enhanced_basic_benders_v1.yaml",
+    "sha256": "ab6bbe267461b633f2a5ca83d536dffde51be1a4cdf422eabf4cdc8f10fb0d2d"
+  },
+  "fixed_scientific_parameters": {"Gamma": 2, "lambda_R": 0.05},
+  "algorithm": {
+    "global_theta_count": 1,
+    "cuts_per_iteration_maximum": 1,
+    "exact_global_separation_required": true,
+    "branch_upper_bound": "no_shipment_feasible_policy",
+    "leaf_upper_bound": "greedy_feasible_recourse_policy",
+    "historical_scenario_requires_current_x_evaluation": true,
+    "product_risk_budget_decomposition": false,
+    "product_multicut": false,
+    "compact_global_robust_milp_oracle": false
+  },
+  "solver_tolerances": {
+    "relative_gap": 1e-6,
+    "cut_violation": 1e-7,
+    "objective_certification": 1e-4
+  },
+  "candidate_resource_policy": {
+    "execution": "sequential_single_process",
+    "parallel_workers": 1,
+    "minimum_available_memory_gib": 8,
+    "maximum_process_tree_memory_gib": 4,
+    "minimum_system_available_memory_gib": 3,
+    "minimum_free_disk_gib": 20,
+    "condition_time_limit_seconds": 300,
+    "memory_monitor_interval_seconds": 0.25,
+    "retry_policy": "no_automatic_retry"
+  },
+  "execution_note": "Draft only. Oracle diagnostic and full SG-BD execution require separate explicit authorization."
+}

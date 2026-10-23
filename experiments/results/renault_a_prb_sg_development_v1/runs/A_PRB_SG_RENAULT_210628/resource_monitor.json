@@ -1,0 +1,94 @@
+{
+  "condition_id": "A_PRB_SG_RENAULT_210628",
+  "elapsed_seconds": 4.656089199939743,
+  "peak_process_tree_rss_gib": 0.063385009765625,
+  "return_code": 0,
+  "samples": [
+    {
+      "available_memory_gib": 16.799701690673828,
+      "elapsed_seconds": 7.800059393048286e-06,
+      "process_tree_rss_gib": 0.0081787109375
+    },
+    {
+      "available_memory_gib": 16.78322982788086,
+      "elapsed_seconds": 0.2726042000576854,
+      "process_tree_rss_gib": 0.022991180419921875
+    },
+    {
+      "available_memory_gib": 16.785381317138672,
+      "elapsed_seconds": 0.5479806999210268,
+      "process_tree_rss_gib": 0.037994384765625
+    },
+    {
+      "available_memory_gib": 16.782573699951172,
+      "elapsed_seconds": 0.8172194000799209,
+      "process_tree_rss_gib": 0.04166412353515625
+    },
+    {
+      "available_memory_gib": 16.773983001708984,
+      "elapsed_seconds": 1.0896882999222726,
+      "process_tree_rss_gib": 0.04882049560546875
+    },
+    {
+      "available_memory_gib": 16.774879455566406,
+      "elapsed_seconds": 1.362489900086075,
+      "process_tree_rss_gib": 0.055606842041015625
+    },
+    {
+      "available_memory_gib": 16.77437973022461,
+      "elapsed_seconds": 1.6363983999472111,
+      "process_tree_rss_gib": 0.0542144775390625
+    },
+    {
+      "available_memory_gib": 16.73824691772461,
+      "elapsed_seconds": 1.907827999908477,
+      "process_tree_rss_gib": 0.0593719482421875
+    },
+    {
+      "available_memory_gib": 16.751300811767578,
+      "elapsed_seconds": 2.1842157999053597,
+      "process_tree_rss_gib": 0.055675506591796875
+    },
+    {
+      "available_memory_gib": 16.74078369140625,
+      "elapsed_seconds": 2.4593370999209583,
+      "process_tree_rss_gib": 0.06114959716796875
+    },
+    {
+      "available_memory_gib": 16.746295928955078,
+      "elapsed_seconds": 2.729839399922639,
+      "process_tree_rss_gib": 0.060516357421875
+    },
+    {
+      "available_memory_gib": 16.747398376464844,
+      "elapsed_seconds": 3.0086218998767436,
+      "process_tree_rss_gib": 0.0605621337890625
+    },
+    {
+      "available_memory_gib": 16.76785659790039,
+      "elapsed_seconds": 3.283835700014606,
+      "process_tree_rss_gib": 0.060657501220703125
+    },
+    {
+      "available_memory_gib": 16.76883316040039,
+      "elapsed_seconds": 3.5591957999859005,
+      "process_tree_rss_gib": 0.060657501220703125
+    },
+    {
+      "available_memory_gib": 16.769405364990234,
+      "elapsed_seconds": 3.8310553999617696,
+      "process_tree_rss_gib": 0.060657501220703125
+    },
+    {
+      "available_memory_gib": 16.774375915527344,
+      "elapsed_seconds": 4.103653300087899,
+      "process_tree_rss_gib": 0.063385009765625
+    },
+    {
+      "available_memory_gib": 16.770282745361328,
+      "elapsed_seconds": 4.3760941999498755,
+      "process_tree_rss_gib": 0.059360504150390625
+    }
+  ],
+  "stop_reason": null
+}

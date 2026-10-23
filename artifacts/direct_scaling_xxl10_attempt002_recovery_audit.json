@@ -1,0 +1,137 @@
+{
+  "schema": "direct_xxl10_attempt002_recovery_audit_v1",
+  "condition_id": "DIRECT_XXL10_S20260921",
+  "recovery_attempt": "attempt-002",
+  "decision": "RESOURCE_BLOCKED",
+  "optimization_calls": 0,
+  "core_runner": {
+    "path": "experiments/run_direct_scaling.py",
+    "expected_sha256": "fef8019f9aa9be1d2942a5d3aad363c2c3c28929e52cc02b359d1626a1880edd",
+    "actual_sha256": "fef8019f9aa9be1d2942a5d3aad363c2c3c28929e52cc02b359d1626a1880edd",
+    "unchanged": true
+  },
+  "config_sha256": "9c242395b47d891fe4d57ab3ab9b25eb747858ff15ca305bbb064c1a9300b8c8",
+  "attempt_001": {
+    "classification": "WORKER_INNER_GIT_GATE_MISMATCH",
+    "checks": {
+      "directory_exists": true,
+      "exact_file_set": true,
+      "failure_signature": true,
+      "condition": true,
+      "attempt": true,
+      "worker_return_code": true,
+      "stop_reason": true,
+      "low_peak_before_model_build": true,
+      "short_wall_time": true
+    },
+    "files": {
+      "resource_monitor.json": {
+        "sha256": "1aa29286cdc79fae802430cae77d8d1ef3ff35ba6275b0e41b581502fe420581",
+        "size": 654
+      },
+      "stderr.log": {
+        "sha256": "aeee8e2b36e7fe78a9e99335f80df304d888c3cea266dd7ae4fb7fd6a0f5427f",
+        "size": 87535
+      },
+      "stdout.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    },
+    "monitor": {
+      "condition_id": "DIRECT_XXL10_S20260921",
+      "attempt": "attempt-001",
+      "resource_protocol_id": "DIRECT_XXL10_PAIRED_PILOT_V1_METHOD2_THREADS2",
+      "preflight": {
+        "available_memory_gib": 17.844959259033203,
+        "startup_required_gib": 16,
+        "process_tree_cap_gib": 13,
+        "system_available_floor_gib": 3,
+        "free_disk_gib": 245.94109725952148,
+        "minimum_free_disk_gib": 20,
+        "time_limit_seconds": 900,
+        "monitor_interval_seconds": 0.25
+      },
+      "sample_count": 3,
+      "peak_process_tree_memory_gib": 0.034252166748046875,
+      "wall_clock_seconds": 0.8216574001125991,
+      "stop_reason": null,
+      "worker_return_code": 1
+    }
+  },
+  "identity_checks": {
+    "condition_id": true,
+    "source_instance_id": true,
+    "dimensions": true,
+    "instance_hash": true,
+    "x0_hash": true,
+    "instance_sha256": true,
+    "preparation_sha256": true
+  },
+  "model_identity_checks": {
+    "experiments/run_direct_scaling.py": true,
+    "src/robust_inventory_reconfiguration/reconfiguration_model.py": true,
+    "src/robust_inventory_reconfiguration/product_risk_subproblem.py": true,
+    "src/robust_inventory_reconfiguration/risk_budget_composition.py": true,
+    "src/robust_inventory_reconfiguration/solver_profile.py": true
+  },
+  "environment": {
+    "pass": true,
+    "checks": {
+      "python_version": true,
+      "gurobipy_version": true,
+      "gurobi_native_version": true
+    },
+    "required": {
+      "python_version": "3.12.7",
+      "gurobipy_version": "13.0.1",
+      "gurobi_native_version": [
+        13,
+        0,
+        1
+      ],
+      "comparison_basis": "same_current_environment_for_new_paired_pilots",
+      "scaling_v2_historical_solver_version": "NOT_VERIFIABLE"
+    },
+    "current": {
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python_version": "3.12.7",
+      "python_executable": "C:\\Program Files\\Python312\\python.exe",
+      "gurobipy_version": "13.0.1",
+      "gurobi_native_version": [
+        13,
+        0,
+        1
+      ],
+      "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+    }
+  },
+  "resource_gate": {
+    "available_memory_gib": 14.241912841796875,
+    "startup_required_gib": 16,
+    "process_tree_cap_gib": 13,
+    "system_available_floor_gib": 3,
+    "free_disk_gib": 245.93276977539062,
+    "minimum_free_disk_gib": 20,
+    "time_limit_seconds": 900,
+    "monitor_interval_seconds": 0.25
+  },
+  "git": {
+    "head": "a03e81483a3b9a1e718250ed35b1292327496f80",
+    "clean_for_execution": true,
+    "unexpected": []
+  },
+  "active_paired_solver_workers": [],
+  "gates": {
+    "attempt_001_known_failure": true,
+    "frozen_identity": true,
+    "frozen_model": true,
+    "environment": true,
+    "attempt_002_state": true,
+    "canonical_absent": true,
+    "startup_memory": false,
+    "disk": true,
+    "git_identity": true,
+    "no_other_paired_worker": true
+  }
+}

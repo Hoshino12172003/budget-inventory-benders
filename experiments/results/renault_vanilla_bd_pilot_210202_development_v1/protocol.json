@@ -1,0 +1,38 @@
+{
+  "Gamma": 2,
+  "budget": 106510.9559990062,
+  "case_id": "210202",
+  "classification": "DEVELOPMENT_ONLY_NOT_FORMAL_EVIDENCE",
+  "dimensions": {
+    "I": 15,
+    "J": 8,
+    "R": 12
+  },
+  "global_scenario_count": 4657,
+  "gurobi_version": "13.0.1",
+  "identity": {
+    "calibration_hash": "7fe326584320b19636d95424cf806f0ab4c89951c3e2a1a84a4a5cc656e40624",
+    "instance_hash": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+    "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+    "x0_hash": "5fe095e76dd1372735ec7a6cb6fead9d6bc42f044b6006c13ed1aeb16dfbc368"
+  },
+  "implementation_note": "Vanilla reuses only the unchanged Pure single-theta master; its oracle is exhaustive global scenario enumeration and does not call Pure's global adversarial MILP or Aggregate/PRB product-risk composition.",
+  "lambda_R": 0.05,
+  "maximum_scenarios": 5000,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.7 (tags/v3.12.7:0b05ead, Oct  1 2024, 03:06:41) [MSC v.1941 64 bit (AMD64)]",
+  "python_executable": "C:\\Program Files\\Python312\\python.exe",
+  "resource_limits": {
+    "monitor_interval_seconds": 0.25,
+    "process_tree_gib": 4.0,
+    "sequential_single_process": true,
+    "start_available_gib": 8.0,
+    "system_available_floor_gib": 3.0
+  },
+  "source_paths": {
+    "calibration": "E:\\w\\direct-prep\\artifacts\\renault_empirical_8case_v1\\calibration\\210202.json",
+    "instance": "E:\\w\\direct-prep\\data\\formal_instances_v2\\210202.json",
+    "x0": "E:\\w\\direct-prep\\artifacts\\renault_empirical_8case_v1\\x0\\210202.json"
+  },
+  "time_limit_seconds_per_method": 300.0
+}

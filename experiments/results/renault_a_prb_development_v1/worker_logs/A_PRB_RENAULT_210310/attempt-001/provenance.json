@@ -1,0 +1,23 @@
+{
+  "code_commit": "27952bc409f17b26d0b891288fbee38b18ba033d",
+  "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\renault_a_prb_v1.yaml",
+  "config_sha256": "9497042ce5e0cd630c650d8f8f2e4112873a923dbbdffcfee16b91c567357715",
+  "first_stage_sha256": "0cb61662f8310434f45bc3cd07cfca20169e684c953427a920a6391586ca872f",
+  "formal_run_authorized": true,
+  "instance_identity": {
+    "calibration_hash": "8915940c2bbfee479d054c007033da41d45776504e985c6d07302dea74481ff4",
+    "instance_hash": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+    "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+    "x0_hash": "66a15c21d4e760c0d31bbe9a15f21216b3fdd37e6b7bf14836025d544b0d117b"
+  },
+  "mechanisms": {
+    "adaptive_cut_selection": true,
+    "exact_product_scenario_screening": false
+  },
+  "method_id": "A-PRB",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.7",
+  "python_executable": "C:\\Program Files\\Python312\\python.exe",
+  "result_sha256": "5ca9ed5a1835c4085819e0c457322563eb172aec884e64144be48ecf72182132",
+  "trajectory_sha256": "df91727b6f52c4b4e9d28bb8fcd7e403e2a4e41312960b2425fdcadcc8aa737d"
+}

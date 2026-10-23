@@ -1,0 +1,19 @@
+{
+  "result_sha256": "df3c488d3d4d467498bef7f4358bb85f76c3a3940739830b1b18cfe203681aea",
+  "trajectory_sha256": "7f5e62f83e86d6b4ef230a7b98573776f4e545d07e9ff41b1194653aea65efe1",
+  "first_stage_solution_sha256": "137c49f916bdd077e201c492af878a3a45515996fd4539a10da26fdc18b6410e",
+  "instance_sha256": "0d4235a660383c6409999ecf9d4d37a2417edc608a17020dc4c43c176f403a50",
+  "preparation_sha256": "378eb7de95461135945d553307423a4179829b7fa1497c970b530d802694790a",
+  "config_hash": "a4d5c73a6480407119f742eae0a684de527de40111bcd1a564b8b46b8b705a77",
+  "model_identity": {
+    "sha256": "b3e43f67c3a1a094596f518e8abdc76d9f3bbd8824eaef7d94b60d6606ba7821",
+    "files": {
+      "experiments/run_basic_benders_scaling.py": "d4e506c0698146c1758b734a54796350ad0afab3a812b7a2c50013399a4f86df",
+      "experiments/run_renault_vanilla_bd_pilot.py": "7dc1f817141fb7cc1d0050d656afdf2a7be2de1c28f6a8f70467d0fa961795f6",
+      "src/robust_inventory_reconfiguration/pure_benders.py": "5e29839964dedf292e32dd471bab7ea4fbf782a8d0ff2470f861e664174c97fd",
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+      "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+    }
+  },
+  "code_commit": "89da0ce8320670dead059c5d535215aa78449a1f"
+}

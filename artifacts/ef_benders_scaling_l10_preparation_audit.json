@@ -1,0 +1,94 @@
+{
+  "schema": "ef_benders_scaling_l10_preparation_audit_v1",
+  "status": "BLOCKED_RESOURCE_DESIGN",
+  "checks": {
+    "identity_matches_direct_aggregate_prb": true,
+    "frozen_dimensions": true,
+    "frozen_science": true,
+    "direct_size_formula_matches_frozen": true,
+    "authorization_closed": true,
+    "no_optimization": true,
+    "attempt_absent": true
+  },
+  "dry_run": {
+    "protocol_id": "EF_BD_SCALING_L10_SINGLE_PILOT_V1",
+    "formal_run_authorized": false,
+    "readiness_decision": "BLOCKED_RESOURCE_DESIGN",
+    "condition": {
+      "condition_id": "EF_L10_S20260921",
+      "size": "L10",
+      "seed": 20260921
+    },
+    "source_instance_id": "ASC_INSTANCE_L10_S20260921",
+    "instance_hash": "dcfed5f1c19e9fa4d85d66af24b421f42641fc79744abbf89cd7baff38dcc41e",
+    "x0_hash": "505e46a4a03a1ff25e265a49392e58081ecd85f50a1223fb1551ce50186051c8",
+    "instance_sha256": "0d4235a660383c6409999ecf9d4d37a2417edc608a17020dc4c43c176f403a50",
+    "preparation_sha256": "378eb7de95461135945d553307423a4179829b7fa1497c970b530d802694790a",
+    "paired_instance_identity": {
+      "Direct": true,
+      "PURE_BENDERS": true,
+      "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+      "PRB_BENDERS": true
+    },
+    "resource_gate": {
+      "available_memory_gib": 16.561725616455078,
+      "startup_required_gib": 7,
+      "process_tree_cap_gib": 4,
+      "system_available_floor_gib": 3,
+      "free_disk_gib": 246.2649040222168,
+      "minimum_free_disk_gib": 20,
+      "time_limit_seconds": 900,
+      "monitor_interval_seconds": 0.25
+    },
+    "canonical_result_exists": false,
+    "next_attempt": "attempt-001",
+    "solver_parameters": {
+      "Threads": 2
+    },
+    "environment": {
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python_version": "3.12.7",
+      "python_executable": "C:\\Program Files\\Python312\\python.exe",
+      "gurobipy_version": "13.0.1",
+      "gurobi_native_version": [
+        13,
+        0,
+        1
+      ],
+      "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+    },
+    "optimization_calls": 0
+  },
+  "theoretical_size": {
+    "product_local_scenario_blocks": 3612,
+    "risk_budget_allocations": 91,
+    "ef_oracle": {
+      "variables": 2257537,
+      "constraints": 184303,
+      "nonzeros": 6773683
+    },
+    "direct_extensive_form": {
+      "variables": 2258462,
+      "constraints": 184929,
+      "nonzeros": 6866733
+    },
+    "count_classification": "THEORETICAL_EXACT_FROM_MODEL_STRUCTURE_NOT_GUROBI_BUILD"
+  },
+  "model_mapping": {
+    "strictly_equivalent": true,
+    "basis": "The generic InventoryInstance, unchanged Pure single-theta master, and recourse rows/objective cloned from build_exact_reconfiguration_model are used directly.",
+    "excluded_mechanisms": [
+      "PRB product multicut",
+      "Pure compact adversarial MILP",
+      "SG scenario pruning"
+    ]
+  },
+  "resource_assessment": {
+    "configured_process_cap_gib": 4,
+    "observed_direct_attempt_002_peak_gib": 4.698249816894531,
+    "observed_value_source": "artifacts/direct_scaling_l10_xl10_freeze_manifest.json",
+    "conclusion": "The EF oracle retains 99.96% of Direct variables and nearly the entire recourse matrix. A 4 GiB cap is clearly not supported by the observed 4.698 GiB Direct peak; no EF peak is claimed."
+  },
+  "all_static_checks_pass": true,
+  "optimization_calls": 0
+}

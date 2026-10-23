@@ -1,0 +1,30 @@
+{
+  "schema": "direct_scaling_dry_run_v2",
+  "formal_run_authorized": false,
+  "configured_conditions": 30,
+  "authorized_condition_ids": [
+    "DIRECT_L10_S20260921",
+    "DIRECT_L10_S20260922",
+    "DIRECT_L10_S20260923",
+    "DIRECT_L10_S20260924",
+    "DIRECT_L10_S20260925",
+    "DIRECT_L10_S20260926",
+    "DIRECT_L10_S20260927",
+    "DIRECT_L10_S20260928",
+    "DIRECT_L10_S20260929",
+    "DIRECT_L10_S20260930"
+  ],
+  "instance_identity_pass": true,
+  "environment_status": "COMPARABLE_WITH_EXPLICIT_PROTOCOL_VERSION_RISK",
+  "exact_environment_match": false,
+  "resource_gate_snapshot": {
+    "available_memory_gib": 15.437511444091797,
+    "eligible_conditions": {
+      "L10": 10,
+      "XL10": 10,
+      "XXL10": 0
+    },
+    "note": "Read-only preflight snapshot; each formal run must repeat the gate immediately before launch."
+  },
+  "optimization_calls": 0
+}
