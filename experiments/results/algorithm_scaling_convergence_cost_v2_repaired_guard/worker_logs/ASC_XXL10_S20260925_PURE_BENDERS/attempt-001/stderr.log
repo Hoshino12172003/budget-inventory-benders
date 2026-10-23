@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "E:\paper-code\paper-code2\budget-inventory-benders-frozen-51aebd0\experiments\run_algorithm_scaling_convergence_cost.py", line 479, in <module>
+    main()
+  File "E:\paper-code\paper-code2\budget-inventory-benders-frozen-51aebd0\experiments\run_algorithm_scaling_convergence_cost.py", line 462, in main
+    _worker(conditions[args.worker_condition], output_root, config)
+  File "E:\paper-code\paper-code2\budget-inventory-benders-frozen-51aebd0\experiments\run_algorithm_scaling_convergence_cost.py", line 435, in _worker
+    result, trajectory = _solve(condition, instance, preparation, config)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\paper-code\paper-code2\budget-inventory-benders-frozen-51aebd0\experiments\run_algorithm_scaling_convergence_cost.py", line 229, in _solve
+    raise RuntimeError(f"algorithm scaling condition is not exactly certified: {condition.condition_id}")
+RuntimeError: algorithm scaling condition is not exactly certified: ASC_XXL10_S20260925_PURE_BENDERS

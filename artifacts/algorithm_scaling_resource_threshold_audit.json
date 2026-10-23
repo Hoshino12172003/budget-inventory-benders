@@ -1,0 +1,343 @@
+{
+  "checks": {
+    "evidence_has_90_observations": true,
+    "no_development_memory_failure": true,
+    "process_caps_exceed_empirical_peaks": true,
+    "sequential_execution_preserved": true,
+    "system_reserve_is_at_least_3_gib": true,
+    "thresholds_are_size_dependent": true,
+    "twelve_gib_allows_L10": true,
+    "twelve_gib_allows_XL10": true,
+    "twelve_gib_blocks_XXL10": true
+  },
+  "development_evidence": [
+    {
+      "core_runtime_seconds": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 6.3273603999987245,
+        "median": 1.407714999979362,
+        "minimum": 0.8378904999990482
+      },
+      "method": "pure_benders",
+      "nonoptimal": 1,
+      "observations": 10,
+      "optimal": 9,
+      "peak_process_tree_memory_gib": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 0.08319091796875,
+        "median": 0.06650543212890625,
+        "minimum": 0.055248260498046875
+      },
+      "resource_stop": 0,
+      "size": "L10"
+    },
+    {
+      "core_runtime_seconds": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 109.66744339998695,
+        "median": 31.037082400012878,
+        "minimum": 26.07340339999064
+      },
+      "method": "aggregate_benders_structured_oracle",
+      "nonoptimal": 0,
+      "observations": 10,
+      "optimal": 10,
+      "peak_process_tree_memory_gib": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 1.8200645446777344,
+        "median": 1.8144683837890625,
+        "minimum": 1.8107757568359375
+      },
+      "resource_stop": 0,
+      "size": "L10"
+    },
+    {
+      "core_runtime_seconds": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 45.632186400005594,
+        "median": 25.60967089998303,
+        "minimum": 19.019667200016556
+      },
+      "method": "prb_benders",
+      "nonoptimal": 0,
+      "observations": 10,
+      "optimal": 10,
+      "peak_process_tree_memory_gib": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 1.8178291320800781,
+        "median": 1.8152904510498047,
+        "minimum": 1.8118553161621094
+      },
+      "resource_stop": 0,
+      "size": "L10"
+    },
+    {
+      "core_runtime_seconds": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 6.631280500005232,
+        "median": 1.7846352999913506,
+        "minimum": 1.4795081000193022
+      },
+      "method": "pure_benders",
+      "nonoptimal": 1,
+      "observations": 10,
+      "optimal": 9,
+      "peak_process_tree_memory_gib": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 0.09404373168945312,
+        "median": 0.06984138488769531,
+        "minimum": 0.062835693359375
+      },
+      "resource_stop": 0,
+      "size": "XL10"
+    },
+    {
+      "core_runtime_seconds": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 231.9424906000204,
+        "median": 100.55660589999752,
+        "minimum": 76.71851790000801
+      },
+      "method": "aggregate_benders_structured_oracle",
+      "nonoptimal": 0,
+      "observations": 10,
+      "optimal": 10,
+      "peak_process_tree_memory_gib": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 4.864635467529297,
+        "median": 4.861749649047852,
+        "minimum": 4.860363006591797
+      },
+      "resource_stop": 0,
+      "size": "XL10"
+    },
+    {
+      "core_runtime_seconds": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 101.00011369999265,
+        "median": 64.70440465000866,
+        "minimum": 58.530912800022634
+      },
+      "method": "prb_benders",
+      "nonoptimal": 0,
+      "observations": 10,
+      "optimal": 10,
+      "peak_process_tree_memory_gib": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 4.86676025390625,
+        "median": 4.864830017089844,
+        "minimum": 4.8619537353515625
+      },
+      "resource_stop": 0,
+      "size": "XL10"
+    },
+    {
+      "core_runtime_seconds": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 3.6164430000062566,
+        "median": 3.0100843500113115,
+        "minimum": 2.6245674999954645
+      },
+      "method": "pure_benders",
+      "nonoptimal": 1,
+      "observations": 10,
+      "optimal": 9,
+      "peak_process_tree_memory_gib": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 0.08614349365234375,
+        "median": 0.08393669128417969,
+        "minimum": 0.08015060424804688
+      },
+      "resource_stop": 0,
+      "size": "XXL10"
+    },
+    {
+      "core_runtime_seconds": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 316.89172879999387,
+        "median": 275.00826610000513,
+        "minimum": 244.9908584000077
+      },
+      "method": "aggregate_benders_structured_oracle",
+      "nonoptimal": 0,
+      "observations": 10,
+      "optimal": 10,
+      "peak_process_tree_memory_gib": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 10.818435668945312,
+        "median": 10.815973281860352,
+        "minimum": 10.810760498046875
+      },
+      "resource_stop": 0,
+      "size": "XXL10"
+    },
+    {
+      "core_runtime_seconds": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 192.45258149999427,
+        "median": 171.34281529999862,
+        "minimum": 157.31968910002615
+      },
+      "method": "prb_benders",
+      "nonoptimal": 0,
+      "observations": 10,
+      "optimal": 10,
+      "peak_process_tree_memory_gib": {
+        "evidence_type": "EMPIRICAL_DEVELOPMENT_MEASUREMENT",
+        "maximum": 10.821491241455078,
+        "median": 10.817113876342773,
+        "minimum": 10.813945770263672
+      },
+      "resource_stop": 0,
+      "size": "XXL10"
+    }
+  ],
+  "formal_optimization_runs_executed_by_audit": 0,
+  "instance_characteristics": [
+    {
+      "I": 25,
+      "J": 12,
+      "R": 24,
+      "actual_master_variables_prb_formula": 962,
+      "actual_master_variables_pure_formula": 926,
+      "actual_master_variables_structured_aggregate_formula": 926,
+      "actual_oracle_variables_pure_formula": 1464,
+      "actual_oracle_variables_structured_total_formula": 2257500,
+      "aggregate_cut_dimension": 300,
+      "direct_constraints": 184929,
+      "direct_variables": 2258462,
+      "estimated_master_variables_prb": 962,
+      "estimated_master_variables_pure": 926,
+      "estimated_master_variables_structured_aggregate": 926,
+      "estimated_oracle_product_risk_blocks": 3612,
+      "estimated_oracle_variables_pure": 1464,
+      "first_stage_variables": 925,
+      "prb_master_surrogates": 37,
+      "prb_product_cut_dimension": 25,
+      "prb_product_risk_blocks": 3612,
+      "pure_binary_variables": 288,
+      "pure_constraints": 9217,
+      "pure_continuous_variables": 1176,
+      "pure_total_variables": 1464,
+      "scenario_related_dimensions": 301,
+      "size": "L10",
+      "uncertainty_components": 288
+    },
+    {
+      "I": 30,
+      "J": 14,
+      "R": 30,
+      "actual_master_variables_prb_formula": 1333,
+      "actual_master_variables_pure_formula": 1291,
+      "actual_master_variables_structured_aggregate_formula": 1291,
+      "actual_oracle_variables_pure_formula": 2114,
+      "actual_oracle_variables_structured_total_formula": 6073844,
+      "aggregate_cut_dimension": 420,
+      "direct_constraints": 405479,
+      "direct_variables": 6075177,
+      "estimated_master_variables_prb": 1333,
+      "estimated_master_variables_pure": 1291,
+      "estimated_master_variables_structured_aggregate": 1291,
+      "estimated_oracle_product_risk_blocks": 6524,
+      "estimated_oracle_variables_pure": 2114,
+      "first_stage_variables": 1290,
+      "prb_master_surrogates": 43,
+      "prb_product_cut_dimension": 30,
+      "prb_product_risk_blocks": 6524,
+      "pure_binary_variables": 420,
+      "pure_constraints": 15541,
+      "pure_continuous_variables": 1694,
+      "pure_total_variables": 2114,
+      "scenario_related_dimensions": 466,
+      "size": "XL10",
+      "uncertainty_components": 420
+    },
+    {
+      "I": 36,
+      "J": 16,
+      "R": 36,
+      "actual_master_variables_prb_formula": 1813,
+      "actual_master_variables_pure_formula": 1765,
+      "actual_master_variables_structured_aggregate_formula": 1765,
+      "actual_oracle_variables_pure_formula": 2896,
+      "actual_oracle_variables_structured_total_formula": 14225776,
+      "aggregate_cut_dimension": 576,
+      "direct_constraints": 791070,
+      "direct_variables": 14227589,
+      "estimated_master_variables_prb": 1813,
+      "estimated_master_variables_pure": 1765,
+      "estimated_master_variables_structured_aggregate": 1765,
+      "estimated_oracle_product_risk_blocks": 10672,
+      "estimated_oracle_variables_pure": 2896,
+      "first_stage_variables": 1764,
+      "prb_master_surrogates": 49,
+      "prb_product_cut_dimension": 36,
+      "prb_product_risk_blocks": 10672,
+      "pure_binary_variables": 576,
+      "pure_constraints": 24769,
+      "pure_continuous_variables": 2320,
+      "pure_total_variables": 2896,
+      "scenario_related_dimensions": 667,
+      "size": "XXL10",
+      "uncertainty_components": 576
+    }
+  ],
+  "legacy_18_gib_origin": {
+    "evidence": [
+      "docs/e1c_scaling_resource_audit.md",
+      "docs/e1c_development_probe_report.md",
+      "experiments/run_prb_large_scale_simulation.py"
+    ],
+    "finding": "CONSERVATIVE_FIXED_RESERVE_POLICY_NOT_SIZE_SPECIFIC_PEAK_ESTIMATE",
+    "interpretation": "18 GiB replaced an unattainable 24-GiB gate because a cleaned 31.5-GiB host exposed about 19.15 GiB; it was not calibrated separately for L10, XL10, or XXL10.",
+    "nominal_reserve_gib": 4,
+    "preflight_gib": 18,
+    "process_cap_gib": 14
+  },
+  "measurement_limits": {
+    "fabricated_values": false,
+    "gurobi_memory_info": "NOT_RECORDED",
+    "raw_per-run_monitor_logs": "NOT_PRESENT_ON_CURRENT_CODE_LINE",
+    "shared_instance_preparation_peak": "NOT_RECORDED_IN_TRACKED_SUMMARY"
+  },
+  "recommendations": [
+    {
+      "empirical_worst_peak_gib": 1.8200645446777344,
+      "launch_margin_above_empirical_peak_gib": 5.179935455322266,
+      "process_margin_above_empirical_peak_gib": 2.1799354553222656,
+      "recommended_minimum_free_ram_gib": 7.0,
+      "recommended_process_tree_cap_gib": 4.0,
+      "reserve_at_process_cap_gib": 3.0,
+      "size": "L10",
+      "system_emergency_floor_gib": 3.0,
+      "threshold_evidence_type": "INFERRED_CONSERVATIVE_MARGIN_FROM_EMPIRICAL_PEAK",
+      "twelve_gib_preflight_passes": true
+    },
+    {
+      "empirical_worst_peak_gib": 4.86676025390625,
+      "launch_margin_above_empirical_peak_gib": 5.13323974609375,
+      "process_margin_above_empirical_peak_gib": 2.13323974609375,
+      "recommended_minimum_free_ram_gib": 10.0,
+      "recommended_process_tree_cap_gib": 7.0,
+      "reserve_at_process_cap_gib": 3.0,
+      "size": "XL10",
+      "system_emergency_floor_gib": 3.0,
+      "threshold_evidence_type": "INFERRED_CONSERVATIVE_MARGIN_FROM_EMPIRICAL_PEAK",
+      "twelve_gib_preflight_passes": true
+    },
+    {
+      "empirical_worst_peak_gib": 10.821491241455078,
+      "launch_margin_above_empirical_peak_gib": 5.178508758544922,
+      "process_margin_above_empirical_peak_gib": 2.178508758544922,
+      "recommended_minimum_free_ram_gib": 16.0,
+      "recommended_process_tree_cap_gib": 13.0,
+      "reserve_at_process_cap_gib": 3.0,
+      "size": "XXL10",
+      "system_emergency_floor_gib": 3.0,
+      "threshold_evidence_type": "INFERRED_CONSERVATIVE_MARGIN_FROM_EMPIRICAL_PEAK",
+      "twelve_gib_preflight_passes": false
+    }
+  ],
+  "schema": "algorithm_scaling_resource_threshold_audit_v1",
+  "status": "RESOURCE_THRESHOLD_AUDIT_PASS"
+}

@@ -1,0 +1,785 @@
+{
+  "conditions": [
+    {
+      "condition_id": "ASC_L10_S20260921_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260921",
+      "method": "pure_benders",
+      "seed": 20260921,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260921_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_L10_S20260921",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260921,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260921_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260921",
+      "method": "prb_benders",
+      "seed": 20260921,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260922_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260922",
+      "method": "pure_benders",
+      "seed": 20260922,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260922_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_L10_S20260922",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260922,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260922_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260922",
+      "method": "prb_benders",
+      "seed": 20260922,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260923_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260923",
+      "method": "pure_benders",
+      "seed": 20260923,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260923_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_L10_S20260923",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260923,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260923_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260923",
+      "method": "prb_benders",
+      "seed": 20260923,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260924_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260924",
+      "method": "pure_benders",
+      "seed": 20260924,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260924_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_L10_S20260924",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260924,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260924_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260924",
+      "method": "prb_benders",
+      "seed": 20260924,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260925_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260925",
+      "method": "pure_benders",
+      "seed": 20260925,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260925_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_L10_S20260925",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260925,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260925_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260925",
+      "method": "prb_benders",
+      "seed": 20260925,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260926_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260926",
+      "method": "pure_benders",
+      "seed": 20260926,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260926_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_L10_S20260926",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260926,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260926_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260926",
+      "method": "prb_benders",
+      "seed": 20260926,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260927_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260927",
+      "method": "pure_benders",
+      "seed": 20260927,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260927_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_L10_S20260927",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260927,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260927_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260927",
+      "method": "prb_benders",
+      "seed": 20260927,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260928_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260928",
+      "method": "pure_benders",
+      "seed": 20260928,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260928_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_L10_S20260928",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260928,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260928_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260928",
+      "method": "prb_benders",
+      "seed": 20260928,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260929_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260929",
+      "method": "pure_benders",
+      "seed": 20260929,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260929_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_L10_S20260929",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260929,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260929_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260929",
+      "method": "prb_benders",
+      "seed": 20260929,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260930_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260930",
+      "method": "pure_benders",
+      "seed": 20260930,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260930_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_L10_S20260930",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260930,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_L10_S20260930_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_L10_S20260930",
+      "method": "prb_benders",
+      "seed": 20260930,
+      "size": "L10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260921_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260921",
+      "method": "pure_benders",
+      "seed": 20260921,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260921_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XL10_S20260921",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260921,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260921_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260921",
+      "method": "prb_benders",
+      "seed": 20260921,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260922_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260922",
+      "method": "pure_benders",
+      "seed": 20260922,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260922_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XL10_S20260922",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260922,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260922_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260922",
+      "method": "prb_benders",
+      "seed": 20260922,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260923_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260923",
+      "method": "pure_benders",
+      "seed": 20260923,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260923_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XL10_S20260923",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260923,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260923_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260923",
+      "method": "prb_benders",
+      "seed": 20260923,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260924_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260924",
+      "method": "pure_benders",
+      "seed": 20260924,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260924_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XL10_S20260924",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260924,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260924_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260924",
+      "method": "prb_benders",
+      "seed": 20260924,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260925_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260925",
+      "method": "pure_benders",
+      "seed": 20260925,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260925_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XL10_S20260925",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260925,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260925_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260925",
+      "method": "prb_benders",
+      "seed": 20260925,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260926_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260926",
+      "method": "pure_benders",
+      "seed": 20260926,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260926_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XL10_S20260926",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260926,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260926_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260926",
+      "method": "prb_benders",
+      "seed": 20260926,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260927_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260927",
+      "method": "pure_benders",
+      "seed": 20260927,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260927_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XL10_S20260927",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260927,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260927_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260927",
+      "method": "prb_benders",
+      "seed": 20260927,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260928_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260928",
+      "method": "pure_benders",
+      "seed": 20260928,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260928_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XL10_S20260928",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260928,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260928_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260928",
+      "method": "prb_benders",
+      "seed": 20260928,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260929_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260929",
+      "method": "pure_benders",
+      "seed": 20260929,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260929_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XL10_S20260929",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260929,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260929_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260929",
+      "method": "prb_benders",
+      "seed": 20260929,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260930_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260930",
+      "method": "pure_benders",
+      "seed": 20260930,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260930_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XL10_S20260930",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260930,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XL10_S20260930_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XL10_S20260930",
+      "method": "prb_benders",
+      "seed": 20260930,
+      "size": "XL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260921_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260921",
+      "method": "pure_benders",
+      "seed": 20260921,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260921_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260921",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260921,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260921_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260921",
+      "method": "prb_benders",
+      "seed": 20260921,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260922_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260922",
+      "method": "pure_benders",
+      "seed": 20260922,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260922_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260922",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260922,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260922_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260922",
+      "method": "prb_benders",
+      "seed": 20260922,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260923_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260923",
+      "method": "pure_benders",
+      "seed": 20260923,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260923_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260923",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260923,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260923_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260923",
+      "method": "prb_benders",
+      "seed": 20260923,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260924_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260924",
+      "method": "pure_benders",
+      "seed": 20260924,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260924_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260924",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260924,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260924_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260924",
+      "method": "prb_benders",
+      "seed": 20260924,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260925_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260925",
+      "method": "pure_benders",
+      "seed": 20260925,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260925_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260925",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260925,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260925_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260925",
+      "method": "prb_benders",
+      "seed": 20260925,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260926_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260926",
+      "method": "pure_benders",
+      "seed": 20260926,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260926_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260926",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260926,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260926_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260926",
+      "method": "prb_benders",
+      "seed": 20260926,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260927_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260927",
+      "method": "pure_benders",
+      "seed": 20260927,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260927_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260927",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260927,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260927_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260927",
+      "method": "prb_benders",
+      "seed": 20260927,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260928_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260928",
+      "method": "pure_benders",
+      "seed": 20260928,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260928_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260928",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260928,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260928_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260928",
+      "method": "prb_benders",
+      "seed": 20260928,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260929_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260929",
+      "method": "pure_benders",
+      "seed": 20260929,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260929_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260929",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260929,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260929_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260929",
+      "method": "prb_benders",
+      "seed": 20260929,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260930_PURE_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260930",
+      "method": "pure_benders",
+      "seed": 20260930,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260930_AGGREGATE_BENDERS_STRUCTURED_ORACLE",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260930",
+      "method": "aggregate_benders_structured_oracle",
+      "seed": 20260930,
+      "size": "XXL10"
+    },
+    {
+      "condition_id": "ASC_XXL10_S20260930_PRB_BENDERS",
+      "instance_id": "ASC_INSTANCE_XXL10_S20260930",
+      "method": "prb_benders",
+      "seed": 20260930,
+      "size": "XXL10"
+    }
+  ],
+  "direct_runs": 0,
+  "experiment_id": "ALGORITHM_SCALING_CONVERGENCE_COST_V2_REPAIRED_GUARD",
+  "formal_run_authorized": true,
+  "instances": 30,
+  "management_sensitivity_dimensions": [],
+  "methods": [
+    "pure_benders",
+    "aggregate_benders_structured_oracle",
+    "prb_benders"
+  ],
+  "optimization_calls": 0,
+  "physical_runs": 90,
+  "resource_thresholds_by_size": {
+    "L10": {
+      "maximum_process_tree_memory_gib": 4.0,
+      "minimum_available_memory_gib": 7.0,
+      "minimum_system_available_memory_gib": 3.0
+    },
+    "XL10": {
+      "maximum_process_tree_memory_gib": 7.0,
+      "minimum_available_memory_gib": 10.0,
+      "minimum_system_available_memory_gib": 3.0
+    },
+    "XXL10": {
+      "maximum_process_tree_memory_gib": 13.0,
+      "minimum_available_memory_gib": 16.0,
+      "minimum_system_available_memory_gib": 3.0
+    }
+  },
+  "runs_by_method": {
+    "aggregate_benders_structured_oracle": 30,
+    "prb_benders": 30,
+    "pure_benders": 30
+  },
+  "runs_by_size": {
+    "L10": 30,
+    "XL10": 30,
+    "XXL10": 30
+  },
+  "scientific_parameters": {
+    "Gamma": 2,
+    "SL": 0.9,
+    "beta": 1.0,
+    "lambda_R": 0.05,
+    "phi_definition": "phi_j = phi_multiplier * max_r p_rj",
+    "phi_multiplier": 1.85,
+    "service_constraint": "soft SLA"
+  },
+  "seeds": [
+    20260921,
+    20260922,
+    20260923,
+    20260924,
+    20260925,
+    20260926,
+    20260927,
+    20260928,
+    20260929,
+    20260930
+  ],
+  "sequential_execution": true,
+  "shared_instance_preparations": 30,
+  "sizes": [
+    {
+      "I": 25,
+      "J": 12,
+      "R": 24,
+      "actual_master_variables_prb_formula": 962,
+      "actual_master_variables_pure_formula": 926,
+      "actual_master_variables_structured_aggregate_formula": 926,
+      "actual_oracle_variables_pure_formula": 1464,
+      "actual_oracle_variables_structured_total_formula": 2257500,
+      "aggregate_cut_dimension": 300,
+      "direct_constraints": 184929,
+      "direct_variables": 2258462,
+      "estimated_master_variables_prb": 962,
+      "estimated_master_variables_pure": 926,
+      "estimated_master_variables_structured_aggregate": 926,
+      "estimated_oracle_product_risk_blocks": 3612,
+      "estimated_oracle_variables_pure": 1464,
+      "first_stage_variables": 925,
+      "prb_master_surrogates": 37,
+      "prb_product_cut_dimension": 25,
+      "prb_product_risk_blocks": 3612,
+      "pure_binary_variables": 288,
+      "pure_constraints": 9217,
+      "pure_continuous_variables": 1176,
+      "pure_total_variables": 1464,
+      "scenario_related_dimensions": 301,
+      "size": "L10",
+      "uncertainty_components": 288
+    },
+    {
+      "I": 30,
+      "J": 14,
+      "R": 30,
+      "actual_master_variables_prb_formula": 1333,
+      "actual_master_variables_pure_formula": 1291,
+      "actual_master_variables_structured_aggregate_formula": 1291,
+      "actual_oracle_variables_pure_formula": 2114,
+      "actual_oracle_variables_structured_total_formula": 6073844,
+      "aggregate_cut_dimension": 420,
+      "direct_constraints": 405479,
+      "direct_variables": 6075177,
+      "estimated_master_variables_prb": 1333,
+      "estimated_master_variables_pure": 1291,
+      "estimated_master_variables_structured_aggregate": 1291,
+      "estimated_oracle_product_risk_blocks": 6524,
+      "estimated_oracle_variables_pure": 2114,
+      "first_stage_variables": 1290,
+      "prb_master_surrogates": 43,
+      "prb_product_cut_dimension": 30,
+      "prb_product_risk_blocks": 6524,
+      "pure_binary_variables": 420,
+      "pure_constraints": 15541,
+      "pure_continuous_variables": 1694,
+      "pure_total_variables": 2114,
+      "scenario_related_dimensions": 466,
+      "size": "XL10",
+      "uncertainty_components": 420
+    },
+    {
+      "I": 36,
+      "J": 16,
+      "R": 36,
+      "actual_master_variables_prb_formula": 1813,
+      "actual_master_variables_pure_formula": 1765,
+      "actual_master_variables_structured_aggregate_formula": 1765,
+      "actual_oracle_variables_pure_formula": 2896,
+      "actual_oracle_variables_structured_total_formula": 14225776,
+      "aggregate_cut_dimension": 576,
+      "direct_constraints": 791070,
+      "direct_variables": 14227589,
+      "estimated_master_variables_prb": 1813,
+      "estimated_master_variables_pure": 1765,
+      "estimated_master_variables_structured_aggregate": 1765,
+      "estimated_oracle_product_risk_blocks": 10672,
+      "estimated_oracle_variables_pure": 2896,
+      "first_stage_variables": 1764,
+      "prb_master_surrogates": 49,
+      "prb_product_cut_dimension": 36,
+      "prb_product_risk_blocks": 10672,
+      "pure_binary_variables": 576,
+      "pure_constraints": 24769,
+      "pure_continuous_variables": 2320,
+      "pure_total_variables": 2896,
+      "scenario_related_dimensions": 667,
+      "size": "XXL10",
+      "uncertainty_components": 576
+    }
+  ]
+}
