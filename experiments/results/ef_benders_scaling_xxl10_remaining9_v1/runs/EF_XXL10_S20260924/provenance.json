@@ -1,0 +1,36 @@
+{
+  "condition_id": "EF_XXL10_S20260924",
+  "attempt": "attempt-001",
+  "code_commit": "7a9dcd555d98ed4f49346254c4fe0ca5f392dfa9",
+  "config_sha256": "31e7334f7ea6861502ac1fa92d9cb39f503ee646bac97a8ef278ebbc3562f69b",
+  "config_hash": "05ce0d405fd48c6effe627ee4758464675919f0a2122ed30ed4453d9f7ce5302",
+  "model_identity": {
+    "sha256": "ff6364b407d294ee4a1720d4ed7eb66f536d9f4d4874ea29f4088a09b8ef36ab",
+    "files": {
+      "experiments/run_ef_benders_scaling.py": "5a8c017816712e4d5f02f8bc7ed0b0050dac491225a39f5b82b7fb7cee285415",
+      "src/robust_inventory_reconfiguration/extensive_form_benders.py": "e22d214b75ccb2d0cb53fffe59e5850e50fadc20202f4fef27fa3aaff29e6e4d",
+      "src/robust_inventory_reconfiguration/pure_benders.py": "5e29839964dedf292e32dd471bab7ea4fbf782a8d0ff2470f861e664174c97fd",
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+      "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+    }
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.7",
+    "python_executable": "C:\\Program Files\\Python312\\python.exe",
+    "gurobipy_version": "13.0.1",
+    "gurobi_native_version": [
+      13,
+      0,
+      1
+    ],
+    "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+  },
+  "instance_hash": "e8b237496f9060aa1fdb1c9c86015ee9fc357fb8a752d58d80f6e13e8e4df163",
+  "x0_hash": "11730a46b409c296b69affbbcc628812593f6c5a76265d9d2f2d78f1405e987e",
+  "instance_sha256": "d2f057a0533fba6e8e3b5419ce690989300464926680c869da2a780db712535c",
+  "preparation_sha256": "a6423b5501807b7fe7735acc338300f91c236853483b716a607147447cdb1cd4",
+  "result_sha256": "836828f44c8af70873b65f116c2b257f20c4f0bef9f95d0890656ec0dd0e0286",
+  "trajectory_sha256": "2f7b303c56be963c87c1b006f8db1b9206701a352a5a781359abcfcb49576044",
+  "first_stage_sha256": "91655478ae7e1875413c0a283b597bab2009885353a72f02cf909ce94741588e"
+}

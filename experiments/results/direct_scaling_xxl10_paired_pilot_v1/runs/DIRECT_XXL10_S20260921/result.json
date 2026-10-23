@@ -1,0 +1,81 @@
+{
+  "experiment_id": "DIRECT_EF_PAIRED_XXL10_DEVELOPMENT_V1",
+  "condition_id": "DIRECT_XXL10_S20260921",
+  "method": "direct_exact",
+  "size": "XXL10",
+  "seed": 20260921,
+  "solver_status": "TIME_LIMIT",
+  "exact_certification": false,
+  "certification_status": "NOT_ATTEMPTED",
+  "certification_error": null,
+  "objective": 4754158.590790098,
+  "best_bound": 4751359.2883982835,
+  "mip_gap": 0.0005888113192599344,
+  "node_count": 1.0,
+  "variable_count": 14227589,
+  "binary_variable_count": 36,
+  "constraint_count": 791070,
+  "nonzero_count": 43069377,
+  "certified_recourse_value": null,
+  "model_build_seconds": 56.47748370002955,
+  "solver_optimize_seconds": 846.5020000934601,
+  "certification_seconds": null,
+  "T_core_seconds": 905.2125882001128,
+  "total_wall_seconds": 905.2127533000894,
+  "config_hash": "52c606716de72aa26df9bfc7eaf74ded823f9db4b9449d16ad0991c496f613d1",
+  "instance_hash": "81739c07edea3babcb62bbaf91ac6ac37eb13c3201052071c5610c4e8a328f94",
+  "model_identity": "4c34d92b00b20f3019724b04a7f923cebf8d512a798a6c785077293b4d5f6b4f",
+  "solver_parameters": {
+    "Threads": 2,
+    "Seed": 0,
+    "MIPGap": 0.0,
+    "MIPGapAbs": "DEFAULT",
+    "FeasibilityTol": 1e-08,
+    "OptimalityTol": 1e-08,
+    "IntFeasTol": 1e-08,
+    "Presolve": "DEFAULT",
+    "Method": 2,
+    "Cuts": "DEFAULT",
+    "Heuristics": "DEFAULT",
+    "NumericFocus": 0
+  },
+  "effective_solver_parameters": {
+    "Threads": 2,
+    "Seed": 0,
+    "MIPGap": 0.0,
+    "FeasibilityTol": 1e-08,
+    "OptimalityTol": 1e-08,
+    "IntFeasTol": 1e-08,
+    "Method": 2,
+    "NumericFocus": 0
+  },
+  "code_commit": "62d1ebd224019e53beed4c6b48d8913cd5cb3272",
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.7",
+    "python_executable": "C:\\Program Files\\Python312\\python.exe",
+    "gurobipy_version": "13.0.1",
+    "gurobi_native_version": [
+      13,
+      0,
+      1
+    ],
+    "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+  },
+  "resource_preflight": {
+    "available_memory_gib": 16.722698211669922,
+    "startup_required_gib": 16,
+    "process_tree_cap_gib": 13,
+    "system_available_floor_gib": 3,
+    "free_disk_gib": 245.93170928955078,
+    "minimum_free_disk_gib": 20,
+    "time_limit_seconds": 900,
+    "monitor_interval_seconds": 0.25,
+    "git": {
+      "head": "62d1ebd224019e53beed4c6b48d8913cd5cb3272",
+      "clean_for_execution": true,
+      "unexpected": []
+    },
+    "optimization_calls": 0
+  }
+}

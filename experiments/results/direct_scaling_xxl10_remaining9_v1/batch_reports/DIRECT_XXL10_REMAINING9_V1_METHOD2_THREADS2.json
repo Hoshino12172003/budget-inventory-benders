@@ -1,0 +1,64 @@
+{
+  "protocol_id": "DIRECT_XXL10_REMAINING9_V1_METHOD2_THREADS2",
+  "fixed_denominator": 9,
+  "status": "STOPPED_INTEGRITY_FAILURE",
+  "records": [
+    {
+      "condition_id": "DIRECT_XXL10_S20260922",
+      "attempt": "attempt-001",
+      "classification": "INTEGRITY_FAILURE",
+      "solver_status": "TIME_LIMIT",
+      "exact_certification": false,
+      "certification_status": "NOT_ATTEMPTED",
+      "objective": null,
+      "best_bound": null,
+      "mip_gap": null,
+      "T_core_seconds": 904.7092959999572,
+      "stop_reason": null,
+      "worker_return_code": 0,
+      "peak_process_tree_memory_gib": 10.263145446777344,
+      "wall_clock_seconds": 910.5214237000328,
+      "detail": ""
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260923",
+      "attempt": "attempt-001",
+      "classification": "NOT_RUN"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260924",
+      "attempt": "attempt-001",
+      "classification": "NOT_RUN"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260925",
+      "attempt": "attempt-001",
+      "classification": "NOT_RUN"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260926",
+      "attempt": "attempt-001",
+      "classification": "NOT_RUN"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260927",
+      "attempt": "attempt-001",
+      "classification": "NOT_RUN"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260928",
+      "attempt": "attempt-001",
+      "classification": "NOT_RUN"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260929",
+      "attempt": "attempt-001",
+      "classification": "NOT_RUN"
+    },
+    {
+      "condition_id": "DIRECT_XXL10_S20260930",
+      "attempt": "attempt-001",
+      "classification": "NOT_RUN"
+    }
+  ]
+}

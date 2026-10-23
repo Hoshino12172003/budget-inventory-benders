@@ -17,10 +17,10 @@ def _stable_live(monkeypatch):
     monkeypatch.setattr(recovery.base, "active_solver_workers", lambda **_kwargs: [])
 
 
-def test_protocol_is_closed_scoped_and_unauthorized():
+def test_protocol_is_closed_scoped_and_authorized_history():
     config = recovery.runner.load_config(recovery.DEFAULT_CONFIG)
     recovery.validate_protocol(config)
-    assert config["formal_run_authorized"] is False
+    assert config["formal_run_authorized"] is True
     assert config["authorized_condition_ids"] == recovery.EXPECTED
     assert len(config["frozen_input_identity"]) == 8
     assert recovery.base.sha256(recovery.ROOT / "experiments/run_direct_scaling.py") == recovery.CORE_SHA256
@@ -47,16 +47,13 @@ def test_historical_seed22_is_byte_preserved_and_normally_time_limited():
     assert audit["file_sha256"] == recovery.HISTORICAL_SHA256
 
 
-def test_all_eight_frozen_and_paired_identities_pass(monkeypatch):
+def test_all_eight_frozen_and_paired_identities_pass(monkeypatch, tmp_path):
     _stable_live(monkeypatch)
-    dry = recovery.build_dry_run()
-    assert dry["decision"] == "READY_FOR_AUTHORIZATION"
-    assert len(dry["conditions"]) == 8
-    assert all(all(row["identity_checks"].values()) for row in dry["conditions"])
-    assert all(all(row["paired_identity_checks"].values()) for row in dry["conditions"])
-    assert all(row["next_attempt"] == "attempt-001" for row in dry["conditions"])
-    assert all(row["attempt_state_valid"] and row["canonical_absent"] for row in dry["conditions"])
-    assert dry["optimization_calls"] == 0
+    config = recovery.runner.load_config(recovery.DEFAULT_CONFIG)
+    rows = [recovery.base.condition_audit(config, row, tmp_path) for row in recovery.runner.authorized_conditions(config)]
+    assert len(rows) == 8
+    assert all(all(row["identity_checks"].values()) for row in rows)
+    assert all(all(row["paired_identity_checks"].values()) for row in rows)
 
 
 def test_time_limit_variants_are_not_certified_success():
@@ -95,9 +92,9 @@ def test_parent_launches_recovery_worker(monkeypatch, tmp_path):
     recovery.run_one(recovery.DEFAULT_CONFIG, config, condition, tmp_path)
 
 
-def test_execute_refuses_before_worker_launch(monkeypatch):
+def test_completed_batch_cannot_launch_duplicate_worker(monkeypatch):
     monkeypatch.setattr(recovery, "run_one", lambda *_args: pytest.fail("optimization must not launch"))
-    with pytest.raises(RuntimeError, match="FORMAL_DIRECT_EXECUTION_NOT_AUTHORIZED"):
+    with pytest.raises(RuntimeError, match="DIRECT_XXL10_REMAINING8_BLOCKED"):
         recovery.execute_batch()
 
 

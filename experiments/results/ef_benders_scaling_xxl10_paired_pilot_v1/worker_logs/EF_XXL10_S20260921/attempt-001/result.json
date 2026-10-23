@@ -1,0 +1,68 @@
+{
+  "schema": "ef_benders_scaling_result_v1",
+  "experiment_id": "DIRECT_EF_PAIRED_XXL10_DEVELOPMENT_V1",
+  "condition_id": "EF_XXL10_S20260921",
+  "attempt": "attempt-001",
+  "method": "EF-BD",
+  "size": "XXL10",
+  "seed": 20260921,
+  "solver_status": "OPTIMAL",
+  "exact_certification": true,
+  "cut_validity": true,
+  "final_objective": 4754158.5907900315,
+  "final_lower_bound": 4754158.5907900315,
+  "final_upper_bound": 4754158.5907900315,
+  "final_gap": 0.0,
+  "iterations": 11,
+  "cuts_added": 10,
+  "algorithm_core_time": 287.82764680008404,
+  "master_time": 0.18491369998082519,
+  "oracle_time": 98.98437369987369,
+  "certification_time": 81.79696099995635,
+  "total_time": 372.5072995000519,
+  "oracle_engineering": {
+    "oracle_instances": 1,
+    "oracle_solve_calls": 12,
+    "optimizer_calls_per_oracle": 1,
+    "scenario_blocks": 10672,
+    "continuous_variables": 14225825,
+    "constraints": 789881,
+    "master_build_seconds": 0.03632590011693537,
+    "oracle_build_seconds": 53.97547259996645,
+    "threads": 2,
+    "single_global_theta": true,
+    "maximum_cuts_per_iteration": 1,
+    "scenario_pruning": false,
+    "product_subproblem_decomposition": false,
+    "product_multicut": false,
+    "compact_global_robust_milp_oracle": false
+  },
+  "solver_parameters": {
+    "Threads": 2
+  },
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.7",
+    "python_executable": "C:\\Program Files\\Python312\\python.exe",
+    "gurobipy_version": "13.0.1",
+    "gurobi_native_version": [
+      13,
+      0,
+      1
+    ],
+    "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+  },
+  "config_hash": "ac04c8367ec3ce52f7b926224bb6b96a0e2c7623acb7cdd88fdcf45e64ca3391",
+  "model_identity": {
+    "sha256": "362f7733c7b5f1bd5da2e46e82f29011d22d8a8a6b13fe2f6f302575217af803",
+    "files": {
+      "experiments/run_ef_benders_scaling.py": "629313e545368b029114e7d8610617d8cb916778e771b37609cab40c1ac23ef0",
+      "src/robust_inventory_reconfiguration/extensive_form_benders.py": "e22d214b75ccb2d0cb53fffe59e5850e50fadc20202f4fef27fa3aaff29e6e4d",
+      "src/robust_inventory_reconfiguration/pure_benders.py": "5e29839964dedf292e32dd471bab7ea4fbf782a8d0ff2470f861e664174c97fd",
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+      "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+    }
+  },
+  "instance_hash": "81739c07edea3babcb62bbaf91ac6ac37eb13c3201052071c5610c4e8a328f94"
+}

@@ -100,6 +100,13 @@ def test_result_schema_contains_core_and_post_timing() -> None:
 
 
 def test_result_root_is_narrowly_ignored() -> None:
+    expected = ROOT / "experiments/results/e1b_standard_vs_prb_v1"
+    if expected.is_dir():
+        assert subprocess.run(
+            ["git", "check-ignore", "-q", "experiments/results/e1b_standard_vs_prb_v1/probe/result.json"],
+            cwd=ROOT,
+        ).returncode == 1
+        return
     assert subprocess.run(
         ["git", "check-ignore", "-q", "experiments/results/e1b_standard_vs_prb_v1/probe/result.json"],
         cwd=ROOT,

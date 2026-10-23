@@ -1,0 +1,556 @@
+{
+  "protocol_id": "EF_BD_XXL10_REMAINING9_V1",
+  "fixed_denominator": 9,
+  "status": "COMPLETE",
+  "records": [
+    {
+      "condition_id": "EF_XXL10_S20260922",
+      "attempt": "attempt-001",
+      "classification": "SUCCESS",
+      "stop_reason": null,
+      "worker_return_code": 0,
+      "peak_process_tree_memory_gib": 10.9556884765625,
+      "preflight": {
+        "protocol_id": "EF_BD_XXL10_REMAINING9_V1",
+        "formal_run_authorized": true,
+        "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\ef_benders_scaling_xxl10_remaining9_v1.yaml",
+        "config_sha256": "31e7334f7ea6861502ac1fa92d9cb39f503ee646bac97a8ef278ebbc3562f69b",
+        "config_identity": "05ce0d405fd48c6effe627ee4758464675919f0a2122ed30ed4453d9f7ce5302",
+        "readiness_decision": "READY_FOR_AUTHORIZATION",
+        "condition": {
+          "condition_id": "EF_XXL10_S20260922",
+          "size": "XXL10",
+          "seed": 20260922
+        },
+        "source_instance_id": "ASC_INSTANCE_XXL10_S20260922",
+        "instance_hash": "fc193c71c5bad6b678e2a2a95ac0b5f71898cbb754e213848913b465051d5ea9",
+        "x0_hash": "531a741e79c1bc3208f7bc47f0e858193e72979b3f35b06154957491bf432457",
+        "instance_sha256": "acabbdba1d68be5d562fa604d6c3110de0d42ed49364be72a2db9f52cffaa9b4",
+        "preparation_sha256": "8d7e5d14bf41606dfd4cc0c16795f7c5a0edf0a1501ab726cc40bc8501164dc6",
+        "paired_instance_identity": {
+          "Direct": true,
+          "PURE_BENDERS": true,
+          "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+          "PRB_BENDERS": true
+        },
+        "resource_gate": {
+          "available_memory_gib": 18.31629180908203,
+          "startup_required_gib": 17,
+          "process_tree_cap_gib": 13,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 245.94966506958008,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "attempt_exists": false,
+        "next_attempt": "attempt-001",
+        "solver_parameters": {
+          "Threads": 2
+        },
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "optimization_calls": 0
+      }
+    },
+    {
+      "condition_id": "EF_XXL10_S20260923",
+      "attempt": "attempt-001",
+      "classification": "SUCCESS",
+      "stop_reason": null,
+      "worker_return_code": 0,
+      "peak_process_tree_memory_gib": 10.95870590209961,
+      "preflight": {
+        "protocol_id": "EF_BD_XXL10_REMAINING9_V1",
+        "formal_run_authorized": true,
+        "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\ef_benders_scaling_xxl10_remaining9_v1.yaml",
+        "config_sha256": "31e7334f7ea6861502ac1fa92d9cb39f503ee646bac97a8ef278ebbc3562f69b",
+        "config_identity": "05ce0d405fd48c6effe627ee4758464675919f0a2122ed30ed4453d9f7ce5302",
+        "readiness_decision": "READY_FOR_AUTHORIZATION",
+        "condition": {
+          "condition_id": "EF_XXL10_S20260923",
+          "size": "XXL10",
+          "seed": 20260923
+        },
+        "source_instance_id": "ASC_INSTANCE_XXL10_S20260923",
+        "instance_hash": "e6cdf60fec71692b351bc22ff285c394317e71bc2594f16b7ec0fa8fb381fc1f",
+        "x0_hash": "85c7fe2e011914825dae1a75eadb5eb63442b307e818b7b8ccb5f1dac1ff64c3",
+        "instance_sha256": "83ba7cbc4f6b6c28bc1e532c2012cbb728ade2a7438d3bbab4de7b05882c19e7",
+        "preparation_sha256": "8fc56332c2eadeb38a9c627edb704ddf13fe72cb365a368b20f68ca21cb400f0",
+        "paired_instance_identity": {
+          "Direct": true,
+          "PURE_BENDERS": true,
+          "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+          "PRB_BENDERS": true
+        },
+        "resource_gate": {
+          "available_memory_gib": 18.808799743652344,
+          "startup_required_gib": 17,
+          "process_tree_cap_gib": 13,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 245.9482421875,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "attempt_exists": false,
+        "next_attempt": "attempt-001",
+        "solver_parameters": {
+          "Threads": 2
+        },
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "optimization_calls": 0
+      }
+    },
+    {
+      "condition_id": "EF_XXL10_S20260924",
+      "attempt": "attempt-001",
+      "classification": "SUCCESS",
+      "stop_reason": null,
+      "worker_return_code": 0,
+      "peak_process_tree_memory_gib": 10.96761703491211,
+      "preflight": {
+        "protocol_id": "EF_BD_XXL10_REMAINING9_V1",
+        "formal_run_authorized": true,
+        "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\ef_benders_scaling_xxl10_remaining9_v1.yaml",
+        "config_sha256": "31e7334f7ea6861502ac1fa92d9cb39f503ee646bac97a8ef278ebbc3562f69b",
+        "config_identity": "05ce0d405fd48c6effe627ee4758464675919f0a2122ed30ed4453d9f7ce5302",
+        "readiness_decision": "READY_FOR_AUTHORIZATION",
+        "condition": {
+          "condition_id": "EF_XXL10_S20260924",
+          "size": "XXL10",
+          "seed": 20260924
+        },
+        "source_instance_id": "ASC_INSTANCE_XXL10_S20260924",
+        "instance_hash": "e8b237496f9060aa1fdb1c9c86015ee9fc357fb8a752d58d80f6e13e8e4df163",
+        "x0_hash": "11730a46b409c296b69affbbcc628812593f6c5a76265d9d2f2d78f1405e987e",
+        "instance_sha256": "d2f057a0533fba6e8e3b5419ce690989300464926680c869da2a780db712535c",
+        "preparation_sha256": "a6423b5501807b7fe7735acc338300f91c236853483b716a607147447cdb1cd4",
+        "paired_instance_identity": {
+          "Direct": true,
+          "PURE_BENDERS": true,
+          "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+          "PRB_BENDERS": true
+        },
+        "resource_gate": {
+          "available_memory_gib": 17.744537353515625,
+          "startup_required_gib": 17,
+          "process_tree_cap_gib": 13,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 245.94738388061523,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "attempt_exists": false,
+        "next_attempt": "attempt-001",
+        "solver_parameters": {
+          "Threads": 2
+        },
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "optimization_calls": 0
+      }
+    },
+    {
+      "condition_id": "EF_XXL10_S20260925",
+      "attempt": "attempt-001",
+      "classification": "SUCCESS",
+      "stop_reason": null,
+      "worker_return_code": 0,
+      "peak_process_tree_memory_gib": 10.95843505859375,
+      "preflight": {
+        "protocol_id": "EF_BD_XXL10_REMAINING9_V1",
+        "formal_run_authorized": true,
+        "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\ef_benders_scaling_xxl10_remaining9_v1.yaml",
+        "config_sha256": "31e7334f7ea6861502ac1fa92d9cb39f503ee646bac97a8ef278ebbc3562f69b",
+        "config_identity": "05ce0d405fd48c6effe627ee4758464675919f0a2122ed30ed4453d9f7ce5302",
+        "readiness_decision": "READY_FOR_AUTHORIZATION",
+        "condition": {
+          "condition_id": "EF_XXL10_S20260925",
+          "size": "XXL10",
+          "seed": 20260925
+        },
+        "source_instance_id": "ASC_INSTANCE_XXL10_S20260925",
+        "instance_hash": "55f9b013e762695a4d04763cddf38be89fe21edff9ccb35ae4be5e9703e683c7",
+        "x0_hash": "0063597cf98a7c560389f2c23ef42830aafb7817336edc26a8de292c204e8b35",
+        "instance_sha256": "014a198279d174e4a91b3e9239505391aaca9a7676807228b5f3cd607f770343",
+        "preparation_sha256": "aa813dead4af95b2218ca68808711905dfdc32daaa6a202df44deb6f4427cd9f",
+        "paired_instance_identity": {
+          "Direct": true,
+          "PURE_BENDERS": null,
+          "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+          "PRB_BENDERS": true
+        },
+        "resource_gate": {
+          "available_memory_gib": 18.759517669677734,
+          "startup_required_gib": 17,
+          "process_tree_cap_gib": 13,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 245.9463233947754,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "attempt_exists": false,
+        "next_attempt": "attempt-001",
+        "solver_parameters": {
+          "Threads": 2
+        },
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "optimization_calls": 0
+      }
+    },
+    {
+      "condition_id": "EF_XXL10_S20260926",
+      "attempt": "attempt-001",
+      "classification": "SUCCESS",
+      "stop_reason": null,
+      "worker_return_code": 0,
+      "peak_process_tree_memory_gib": 10.953380584716797,
+      "preflight": {
+        "protocol_id": "EF_BD_XXL10_REMAINING9_V1",
+        "formal_run_authorized": true,
+        "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\ef_benders_scaling_xxl10_remaining9_v1.yaml",
+        "config_sha256": "31e7334f7ea6861502ac1fa92d9cb39f503ee646bac97a8ef278ebbc3562f69b",
+        "config_identity": "05ce0d405fd48c6effe627ee4758464675919f0a2122ed30ed4453d9f7ce5302",
+        "readiness_decision": "READY_FOR_AUTHORIZATION",
+        "condition": {
+          "condition_id": "EF_XXL10_S20260926",
+          "size": "XXL10",
+          "seed": 20260926
+        },
+        "source_instance_id": "ASC_INSTANCE_XXL10_S20260926",
+        "instance_hash": "15e77ea2a6d976f5bfb9f7231663611056fad47f52001b742d4a098be9c4e4a5",
+        "x0_hash": "8066e6cf7f976b965aa6d29f8bec73be7f5b600da52d5020b047179ac5d35f09",
+        "instance_sha256": "fe5a6c0e1c0bf23fd5e17b55ac057cea8068f510639a1fc5e13064d84663bdcd",
+        "preparation_sha256": "6b563ef40c6a3dede00155e28fb1693ce10a53875a853b72acecf2edcc1a2327",
+        "paired_instance_identity": {
+          "Direct": true,
+          "PURE_BENDERS": true,
+          "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+          "PRB_BENDERS": true
+        },
+        "resource_gate": {
+          "available_memory_gib": 18.871204376220703,
+          "startup_required_gib": 17,
+          "process_tree_cap_gib": 13,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 245.9453582763672,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "attempt_exists": false,
+        "next_attempt": "attempt-001",
+        "solver_parameters": {
+          "Threads": 2
+        },
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "optimization_calls": 0
+      }
+    },
+    {
+      "condition_id": "EF_XXL10_S20260927",
+      "attempt": "attempt-001",
+      "classification": "SUCCESS",
+      "stop_reason": null,
+      "worker_return_code": 0,
+      "peak_process_tree_memory_gib": 10.95804214477539,
+      "preflight": {
+        "protocol_id": "EF_BD_XXL10_REMAINING9_V1",
+        "formal_run_authorized": true,
+        "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\ef_benders_scaling_xxl10_remaining9_v1.yaml",
+        "config_sha256": "31e7334f7ea6861502ac1fa92d9cb39f503ee646bac97a8ef278ebbc3562f69b",
+        "config_identity": "05ce0d405fd48c6effe627ee4758464675919f0a2122ed30ed4453d9f7ce5302",
+        "readiness_decision": "READY_FOR_AUTHORIZATION",
+        "condition": {
+          "condition_id": "EF_XXL10_S20260927",
+          "size": "XXL10",
+          "seed": 20260927
+        },
+        "source_instance_id": "ASC_INSTANCE_XXL10_S20260927",
+        "instance_hash": "5a945d25c347b2b7dd75a586fa9ae2a90fb1b291efabb78f5efb9f1d0ee35c07",
+        "x0_hash": "ef4ab13b4c4a46a0216ac17c0027265301ef2893f014d1dcc6a9b96c561a60a8",
+        "instance_sha256": "df8e2aafa9abd31df71208191e2067cf3e9e0f677187f01c5b01b5a82bc70cf3",
+        "preparation_sha256": "ada567056865550c6d59d91e18ba75a3808a3acc8f0245a06ae67fc5c07a5b06",
+        "paired_instance_identity": {
+          "Direct": true,
+          "PURE_BENDERS": true,
+          "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+          "PRB_BENDERS": true
+        },
+        "resource_gate": {
+          "available_memory_gib": 18.858051300048828,
+          "startup_required_gib": 17,
+          "process_tree_cap_gib": 13,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 245.94453048706055,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "attempt_exists": false,
+        "next_attempt": "attempt-001",
+        "solver_parameters": {
+          "Threads": 2
+        },
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "optimization_calls": 0
+      }
+    },
+    {
+      "condition_id": "EF_XXL10_S20260928",
+      "attempt": "attempt-001",
+      "classification": "SUCCESS",
+      "stop_reason": null,
+      "worker_return_code": 0,
+      "peak_process_tree_memory_gib": 10.962543487548828,
+      "preflight": {
+        "protocol_id": "EF_BD_XXL10_REMAINING9_V1",
+        "formal_run_authorized": true,
+        "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\ef_benders_scaling_xxl10_remaining9_v1.yaml",
+        "config_sha256": "31e7334f7ea6861502ac1fa92d9cb39f503ee646bac97a8ef278ebbc3562f69b",
+        "config_identity": "05ce0d405fd48c6effe627ee4758464675919f0a2122ed30ed4453d9f7ce5302",
+        "readiness_decision": "READY_FOR_AUTHORIZATION",
+        "condition": {
+          "condition_id": "EF_XXL10_S20260928",
+          "size": "XXL10",
+          "seed": 20260928
+        },
+        "source_instance_id": "ASC_INSTANCE_XXL10_S20260928",
+        "instance_hash": "ab57d56583c28260358ca24c530535fcc2f1c12bf67aa3be4f0870156afab699",
+        "x0_hash": "7b699163a79bd13795be2323d4f065c5d3ec768aeb8fe1f9a46aa591b29a303c",
+        "instance_sha256": "c128428758be44d7a1f4161bbc4e5f8379809e26795bfd6f327d47c087b9c9d9",
+        "preparation_sha256": "05a5cb6fe40aa3e6b2907027a89640fe7b0d7bf57cda780e90a76e329696c20d",
+        "paired_instance_identity": {
+          "Direct": true,
+          "PURE_BENDERS": true,
+          "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+          "PRB_BENDERS": true
+        },
+        "resource_gate": {
+          "available_memory_gib": 18.884994506835938,
+          "startup_required_gib": 17,
+          "process_tree_cap_gib": 13,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 245.94360733032227,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "attempt_exists": false,
+        "next_attempt": "attempt-001",
+        "solver_parameters": {
+          "Threads": 2
+        },
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "optimization_calls": 0
+      }
+    },
+    {
+      "condition_id": "EF_XXL10_S20260929",
+      "attempt": "attempt-001",
+      "classification": "SUCCESS",
+      "stop_reason": null,
+      "worker_return_code": 0,
+      "peak_process_tree_memory_gib": 10.974571228027344,
+      "preflight": {
+        "protocol_id": "EF_BD_XXL10_REMAINING9_V1",
+        "formal_run_authorized": true,
+        "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\ef_benders_scaling_xxl10_remaining9_v1.yaml",
+        "config_sha256": "31e7334f7ea6861502ac1fa92d9cb39f503ee646bac97a8ef278ebbc3562f69b",
+        "config_identity": "05ce0d405fd48c6effe627ee4758464675919f0a2122ed30ed4453d9f7ce5302",
+        "readiness_decision": "READY_FOR_AUTHORIZATION",
+        "condition": {
+          "condition_id": "EF_XXL10_S20260929",
+          "size": "XXL10",
+          "seed": 20260929
+        },
+        "source_instance_id": "ASC_INSTANCE_XXL10_S20260929",
+        "instance_hash": "29c010cdb8a97ea71b61ce499d42c91c2df128a8f0f7515abb0f424aa9390f35",
+        "x0_hash": "0e1f3745a98856f447f7a0242adee928d877ef9659d7dd4eb9d0f82d7b19daa1",
+        "instance_sha256": "bea9350e445fb4bae6db8fed6d10239feda86e5409ac26a2c0946d6826708f9e",
+        "preparation_sha256": "c3d37d75483be8530142778ede92aa6dc3afef837334eb9d7f8e8ceec13ad560",
+        "paired_instance_identity": {
+          "Direct": true,
+          "PURE_BENDERS": true,
+          "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+          "PRB_BENDERS": true
+        },
+        "resource_gate": {
+          "available_memory_gib": 18.800067901611328,
+          "startup_required_gib": 17,
+          "process_tree_cap_gib": 13,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 245.94273376464844,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "attempt_exists": false,
+        "next_attempt": "attempt-001",
+        "solver_parameters": {
+          "Threads": 2
+        },
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "optimization_calls": 0
+      }
+    },
+    {
+      "condition_id": "EF_XXL10_S20260930",
+      "attempt": "attempt-001",
+      "classification": "SUCCESS",
+      "stop_reason": null,
+      "worker_return_code": 0,
+      "peak_process_tree_memory_gib": 10.997184753417969,
+      "preflight": {
+        "protocol_id": "EF_BD_XXL10_REMAINING9_V1",
+        "formal_run_authorized": true,
+        "config_path": "E:\\w\\direct-prep\\experiments\\configs\\development\\ef_benders_scaling_xxl10_remaining9_v1.yaml",
+        "config_sha256": "31e7334f7ea6861502ac1fa92d9cb39f503ee646bac97a8ef278ebbc3562f69b",
+        "config_identity": "05ce0d405fd48c6effe627ee4758464675919f0a2122ed30ed4453d9f7ce5302",
+        "readiness_decision": "READY_FOR_AUTHORIZATION",
+        "condition": {
+          "condition_id": "EF_XXL10_S20260930",
+          "size": "XXL10",
+          "seed": 20260930
+        },
+        "source_instance_id": "ASC_INSTANCE_XXL10_S20260930",
+        "instance_hash": "c54138f47da83d6ae327c1b5b30d66e68a7428a4e9f46ab7bc7cadefd4484bdf",
+        "x0_hash": "2633cdb20b4ca4bfdd2a100390e9a56042694a5a74cd4e3eef92fbfeae9c64e6",
+        "instance_sha256": "a13c2853a20eb0fdb362dd3167acf487ded1ba72c6cdcbe7192e01e56c799cd6",
+        "preparation_sha256": "b6ee796fd54dd2e2466d0a787744532f3a0c505c429761df387aa8c3edbfebb9",
+        "paired_instance_identity": {
+          "Direct": true,
+          "PURE_BENDERS": true,
+          "AGGREGATE_BENDERS_STRUCTURED_ORACLE": true,
+          "PRB_BENDERS": true
+        },
+        "resource_gate": {
+          "available_memory_gib": 18.60488510131836,
+          "startup_required_gib": 17,
+          "process_tree_cap_gib": 13,
+          "system_available_floor_gib": 3,
+          "free_disk_gib": 245.94189834594727,
+          "minimum_free_disk_gib": 20,
+          "time_limit_seconds": 900,
+          "monitor_interval_seconds": 0.25
+        },
+        "canonical_result_exists": false,
+        "attempt_exists": false,
+        "next_attempt": "attempt-001",
+        "solver_parameters": {
+          "Threads": 2
+        },
+        "environment": {
+          "platform": "Windows-11-10.0.26200-SP0",
+          "python_version": "3.12.7",
+          "python_executable": "C:\\Program Files\\Python312\\python.exe",
+          "gurobipy_version": "13.0.1",
+          "gurobi_native_version": [
+            13,
+            0,
+            1
+          ],
+          "gurobipy_file": "C:\\Users\\Hu Jiaxin\\AppData\\Roaming\\Python\\Python312\\site-packages\\gurobipy\\__init__.py"
+        },
+        "optimization_calls": 0
+      }
+    }
+  ]
+}

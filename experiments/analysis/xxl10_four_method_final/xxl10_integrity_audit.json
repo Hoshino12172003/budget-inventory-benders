@@ -1,0 +1,52 @@
+{
+  "schema": "xxl10_four_method_final_integrity_audit_v1",
+  "generated_date": "2026-10-23",
+  "optimization_calls": 0,
+  "direct_core_runner_sha256": "fef8019f9aa9be1d2942a5d3aad363c2c3c28929e52cc02b359d1626a1880edd",
+  "current_direct_runner_sha256": "f699f409013947015a65b421e4b1198312263d8a3db40cd4de5a9414d5eaf056",
+  "current_direct_runner_change_scope": "execution-only revocation gate",
+  "record_count": 40,
+  "counts": {
+    "Direct": {
+      "executed": 10,
+      "exact_certified": 3
+    },
+    "EF-BD": {
+      "executed": 10,
+      "exact_certified": 10
+    },
+    "Aggregate-BD": {
+      "executed": 10,
+      "exact_certified": 10
+    },
+    "PRB-BD": {
+      "executed": 10,
+      "exact_certified": 10
+    }
+  },
+  "direct_stage_counts": {
+    "pilot": 1,
+    "remaining9": 1,
+    "remaining8": 8
+  },
+  "seed22_historical_report_preserved": true,
+  "seed22_posthoc_classification": "TIME_LIMIT_NO_INCUMBENT",
+  "seed27_monitor_hard_time_limit_preserved": true,
+  "all_40_instance_identities_match": true,
+  "all_available_provenance_hashes_match": true,
+  "source_file_count": 336,
+  "source_bytes": 10718438,
+  "analysis_sha256": {
+    "experiments/analysis/xxl10_four_method_final/README.md": "b929f93955b5d39070b61431f23b259528ef1ce3ca925e87cc48aaa4c3a0b8a5",
+    "experiments/analysis/xxl10_four_method_final/xxl10_certified_core_time_by_seed.pdf": "b68c0fcfac5da7f30545f283e9462e7ff6b07117cda120b03ee3fbfaf303643d",
+    "experiments/analysis/xxl10_four_method_final/xxl10_certified_core_time_by_seed.png": "29a204507d63f78a1261c23bf10db7faa6f53ab12ca52ce23a88ed3c4cc585a1",
+    "experiments/analysis/xxl10_four_method_final/xxl10_data_sources.csv": "0b5bb2b787ee83218b546b19e279b1afd9a8092624f0e2a8dffc56e90d35c40c",
+    "experiments/analysis/xxl10_four_method_final/xxl10_direct_diagnostics.csv": "817eb7730d3babc789eb79a7b1eb1816a8c66c227f052c3930dfb42d0fd0988e",
+    "experiments/analysis/xxl10_four_method_final/xxl10_four_method_paper_table.md": "119b2e46a2622be5d0873bf34d44e1759f2e177b5eabc899d9133a25efc5cd96",
+    "experiments/analysis/xxl10_four_method_final/xxl10_four_method_records.csv": "1e6153692bab2018e2b750e1df7e948726327739222a4aa3b10391ef76399819",
+    "experiments/analysis/xxl10_four_method_final/xxl10_four_method_results.xlsx": "0dff2b4e4e8f766a300f286851e12de754cd4f5f202a5fc4ef230c6e2dc267c2",
+    "experiments/analysis/xxl10_four_method_final/xxl10_four_method_summary.csv": "d68713b62552b88a3f0cf450dc5fba8ccd97cab6711d0fc947a65980d54c3359",
+    "experiments/analysis/xxl10_four_method_final/xxl10_paired_comparisons.csv": "918ab18b72fc0fea7351390a8cab0f5f7e0e8ca1109d91336c020317ef9f2276",
+    "experiments/analysis/xxl10_four_method_final/xxl10_source_sha256_manifest.csv": "3f37aaa782107aca375ca4ab216832ff1cd6b70d249d909440a4010a0dfadaa7"
+  }
+}

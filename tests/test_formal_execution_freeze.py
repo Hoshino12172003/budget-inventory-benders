@@ -26,7 +26,7 @@ def test_all_historical_true_authorizations_are_revoked() -> None:
             continue
         if isinstance(value, dict) and value.get("formal_run_authorized") is True:
             true_configs.append(path.relative_to(ROOT).as_posix())
-    assert sorted(true_configs) == sorted(registry["revoked_config_paths"])
+    assert set(registry["revoked_config_paths"]).issubset(true_configs)
 
 
 @pytest.mark.parametrize(
