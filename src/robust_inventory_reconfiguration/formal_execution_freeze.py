@@ -14,3 +14,10 @@ def require_protocol_not_frozen(repository_root: Path, config_path: Path) -> Non
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
     if relative in registry["revoked_config_paths"]:
         raise PermissionError(f"FORMAL_PROTOCOL_FROZEN:{relative}")
+
+
+def require_experiment_not_frozen(repository_root: Path, experiment_id: str) -> None:
+    registry_path = repository_root.resolve() / FREEZE_REGISTRY
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    if experiment_id in registry.get("revoked_experiment_ids", []):
+        raise PermissionError(f"FORMAL_EXPERIMENT_FROZEN:{experiment_id}")

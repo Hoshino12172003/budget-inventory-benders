@@ -85,6 +85,21 @@ def test_formal_execution_authorization_is_explicit_and_revocable() -> None:
         require_formal_authorization(unauthorized)
 
 
+def test_historical_scaling_runner_and_worker_are_frozen(monkeypatch, tmp_path) -> None:
+    import experiments.run_algorithm_scaling_convergence_cost as runner
+
+    value = config()
+    with pytest.raises(PermissionError, match="FORMAL_EXPERIMENT_FROZEN"):
+        runner.validate_execution_gate(value)
+    monkeypatch.setattr(
+        runner,
+        "_prepare_instance",
+        lambda *args, **kwargs: (_ for _ in ()).throw(AssertionError("preparation invoked")),
+    )
+    with pytest.raises(PermissionError, match="FORMAL_EXPERIMENT_FROZEN"):
+        runner._worker(enumerate_conditions()[0], tmp_path, value)
+
+
 def test_size_dependent_resource_thresholds_and_12_gib_decision() -> None:
     value = config()
     assert resource_thresholds(value, "L10") == {
