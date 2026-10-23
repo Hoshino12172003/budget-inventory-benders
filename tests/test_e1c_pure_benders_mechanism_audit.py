@@ -13,7 +13,11 @@ def test_mechanism_audit_records_exact_available_comparisons() -> None:
     )
 
     assert audit["status"] == "PURE_BENDERS_MECHANISM_AUDIT_PASS"
-    assert audit["empirical_objective_consistency"]["passed"] == 8
+    empirical = audit["empirical_objective_consistency"]
+    assert empirical["status"] == "HISTORICAL_SUMMARY_ONLY_OBJECTIVE_VALUES"
+    assert empirical["evidence_level"] == "HISTORICAL_SUMMARY_ONLY"
+    assert empirical["confirmatory_use_allowed"] is False
+    assert empirical["passed"] == 8
     assert audit["development_objective_consistency"]["status"] == (
         "E1C_OBJECTIVE_CONSISTENCY_PASS"
     )

@@ -1,4 +1,10 @@
 {
+  "evidence_reconciliation": {
+    "evidence_level": "HISTORICAL_SUMMARY_ONLY",
+    "missing_source_cases": ["210310", "210330"],
+    "confirmatory_use_allowed": false,
+    "values_modified": false
+  },
   "audit_only_fixed_first_stage_evaluations": 8,
   "cases": [
     {

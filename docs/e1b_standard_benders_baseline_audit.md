@@ -18,15 +18,21 @@ the protocol proves global validity and generating-point tightness.
 
 ## Independence and fairness
 
+Evidence reconciliation: the Standard-BD implementation and its recovered raw
+results are independently auditable, but the eight E1a PRB comparison sources
+are missing. PRB cells are therefore `HISTORICAL_SUMMARY_ONLY`, not
+`PRIMARY_VERIFIED`.
+
 The Standard master has no `eta` variables and accepts no PRB cut pool, warm
 start, or iteration history. It shares only scientifically common components:
 the first-stage equations, exact product recourse LP oracle, Gamma composer,
 solver profile, and artifact utilities. Unit tests inspect the master variable
 names and public solver signature in addition to numerical validity checks.
 
-The eight frozen E1a PRB results contain adequate comparable core timings and
-component timings, so a timing-only PRB rerun is not required. All eight record
-Gurobi `13.0.2` on the same hardware identity. Execution-readiness was
+The historical summary reports comparable PRB timings, but the eight source
+`result.json` files cannot be independently inspected. Those timing fields may
+not be used for a confirmatory Standard-versus-PRB speed comparison. The
+historical E1a/E1b protocol records Gurobi `13.0.2`. Execution-readiness was
 revalidated with
 `C:\Users\Hu Jiaxin\Documents\Codex\2026-07-07\z\work\paper-code\.venv\Scripts\python.exe`.
 That runner context imports `gurobipy 13.0.2`, native Gurobi `(13, 0, 2)`, from
@@ -34,11 +40,11 @@ the environment's `Lib\site-packages\gurobipy\__init__.py`. The earlier
 `13.0.1` observation came from the unrelated system-Python executable and is
 not an E1b execution blocker.
 
-Audit-only revalidation also reconfirmed all eight immutable E1a PRB result
-hashes, objectives, core-runtime fields, and exact-certification statuses. The
-dataset identity, mapping hash, instance hash, x0 hash, calibration/B_ref hash,
-Gamma, beta, lambda_R, tolerance, thread/seed convention, and solver profile
-pass for 8/8 cases. No formal optimization was invoked.
+The authorization manifest preserves the eight expected paths and hashes, but
+the files are absent and zero expected hashes were recovered. Later development
+records match all eight instance and x0 identities and objectives, with 7/8
+strict certifications; they remain `DEVELOPMENT_CROSSCHECK` evidence and do
+not validate the original runtime fields. No formal optimization was invoked.
 
 ## Verification scope
 
@@ -51,8 +57,7 @@ identity. No Renault E1b optimization was executed.
 
 ## Execution decision
 
-The mathematical baseline, implementation, identities, environment, and timing
-contract are ready for authorization. Formal execution remains disabled by
-`formal_run_authorized = false`; this is the intended authorization boundary,
-not an execution-readiness defect. The readiness classification is
-`E1B_READY_FOR_AUTHORIZATION`.
+The mathematical baseline remains valid. Any historical Standard-BD results
+with their own raw evidence may be retained, but the paired PRB performance
+claim is source-incomplete. The scientific comparison classification is
+`E1B_PRB_COMPARISON_HISTORICAL_SUMMARY_ONLY`.

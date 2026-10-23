@@ -1,5 +1,10 @@
 # E1 objective mismatch audit: 210310 and 210330
 
+Evidence level: `HISTORICAL_SUMMARY_ONLY`. The original E1a PRB
+`result.json` files for both cases are missing. The fixed-first-stage values
+below are retained as a historical diagnostic and are not confirmatory evidence
+for the original PRB run identity or certification.
+
 The four paper-final run directories are immutable inputs. This audit fixes each saved
 first-stage solution and evaluates its robust recourse with both the Direct extensive
 form and the product-wise PRB certifier. No first-stage problem is reoptimized.

@@ -7,6 +7,22 @@
     "optimization_reruns": 0,
     "tolerance_changed": false
   },
+  "evidence_reconciliation": {
+    "evidence_level": "HISTORICAL_SUMMARY_ONLY",
+    "expected_prb_sources": 8,
+    "available_prb_sources": 0,
+    "expected_sha256_matches": 0,
+    "confirmatory_runtime_use_allowed": false,
+    "confirmatory_certification_use_allowed": false,
+    "development_crosscheck": {
+      "same_instance_and_x0_identity": 8,
+      "objective_matches": 8,
+      "strict_certification_pass": 7,
+      "strict_certification_fail": 1,
+      "failed_case": "210330",
+      "replacement_for_e1a": false
+    }
+  },
   "completed_pairs": 8,
   "completed_runs": 16,
   "completeness": {
@@ -312,5 +328,5 @@
     "ties": 0
   },
   "statistical_test": "not performed; n=8 descriptive paired summaries are reported",
-  "status": "E1_COMPUTATIONAL_PERFORMANCE_COMPLETE"
+  "status": "E1_HISTORICAL_SUMMARY_SOURCE_INCOMPLETE"
 }

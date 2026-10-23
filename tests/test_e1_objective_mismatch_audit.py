@@ -30,6 +30,11 @@ def test_audit_is_fixed_first_stage_and_preserves_primary_results() -> None:
     assert audit["model_changed"] is False
     assert audit["dataset_changed"] is False
     assert audit["e2_e7_authorization"] is False
+    evidence = audit["evidence_reconciliation"]
+    assert evidence["evidence_level"] == "HISTORICAL_SUMMARY_ONLY"
+    assert evidence["missing_source_cases"] == ["210310", "210330"]
+    assert evidence["confirmatory_use_allowed"] is False
+    assert evidence["values_modified"] is False
 
 
 def test_audit_table_contains_both_cross_evaluations() -> None:

@@ -1,5 +1,10 @@
 # E1 210330 global-coupling diagnostic audit
 
+Evidence level: `HISTORICAL_SUMMARY_ONLY`. The underlying original E1a PRB
+`result.json` is `SOURCE_MISSING`. A later development crosscheck reproduces
+the objective but fails the strict coupling gate; this report does not convert
+that failure into a PASS.
+
 This audit reads the immutable `E1-210330-PRB` result and recomputes robust
 recourse only at its saved final first-stage solution. It does not reoptimize the
 first stage or overwrite a paper-final result.
@@ -80,7 +85,7 @@ tolerances without reoptimizing the first stage.
 
 No production code or threshold is changed: the implementation matches its
 documented absolute diagnostic definition, and broadening the threshold merely
-to change this flag is prohibited. The paper-final certification should state
+to change this flag is prohibited. Any historical description should state
 that 210330 passes exact-recourse and Direct/PRB objective consistency, while
 the frozen `1e-6` master-surrogate coupling diagnostic remains unmet by a
 numerical residual that does not violate the Gamma budget or alter the result.

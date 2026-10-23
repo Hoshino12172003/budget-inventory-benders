@@ -10,7 +10,9 @@
     "paper_final_observation": false
   },
   "empirical_objective_consistency": {
-    "status": "EMPIRICAL_OBJECTIVE_CONSISTENCY_PASS",
+    "status": "HISTORICAL_SUMMARY_ONLY_OBJECTIVE_VALUES",
+    "evidence_level": "HISTORICAL_SUMMARY_ONLY",
+    "confirmatory_use_allowed": false,
     "passed": 8,
     "total": 8,
     "cases": [

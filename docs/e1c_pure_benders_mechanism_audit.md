@@ -1,5 +1,11 @@
 # E1c Pure Benders mechanism audit
 
+Evidence reconciliation: Renault empirical PRB rows used in this audit are
+`HISTORICAL_SUMMARY_ONLY` because their eight source `result.json` files are
+missing. The independently archived scaling observations retain their own
+evidence status. Any statement combining the Renault anchor with scaling must
+be read with this limitation; the empirical anchor is not confirmatory.
+
 ## Decision
 
 `PURE_BENDERS_MECHANISM_AUDIT_PASS`
@@ -12,8 +18,9 @@ observations.
 
 The primary computational verdict is
 `PRB_SCALABILITY_ADVANTAGE_NOT_SUPPORTED`. Pure Benders is exact on every
-available comparison, and its measured core time is lower than PRB at the
-empirical, L, and XL-low scales. This does not remove PRB's structural value;
+available source-complete scaling comparison. A historical derivative reports
+Pure core time below PRB at the Renault empirical anchor; L and XL-low retain
+their separate scaling evidence. This does not remove PRB's structural value;
 it says that the tested implementation and Gamma=2 regime do not provide
 evidence of a PRB runtime or scaling advantage.
 
@@ -23,17 +30,20 @@ The frozen tolerance is \(10^{-4}\).
 
 | Case | Pure | PRB | Direct | max absolute difference | Result |
 |---|---:|---:|---:|---:|---|
-| 210129 | 851260.2478325499 | 851260.2478325500 | 851260.2478325500 | 1.16e-10 | PASS |
-| 210202 | 1058780.7942496866 | 1058780.7942496866 | 1058780.7942496864 | 2.33e-10 | PASS |
-| 210310 | 714814.5477077000 | 714814.5477077012 | 714814.5477075904 | 1.10e-7 | PASS |
-| 210323 | 627147.2289325034 | 627147.2289325014 | 627147.2289325034 | 1.98e-9 | PASS |
-| 210330 | 657659.5492540544 | 657659.5492546142 | 657659.5492540546 | 5.60e-7 | PASS |
-| 210428 | 793717.3880816710 | 793717.3880816748 | 793717.3880816699 | 3.84e-9 | PASS |
-| 210611 | 617415.6681423270 | 617415.6681421611 | 617415.6681422364 | 1.66e-7 | PASS |
-| 210628 | 676700.8373030793 | 676700.8373031134 | 676700.8373030961 | 3.41e-8 | PASS |
+| 210129 | 851260.2478325499 | 851260.2478325500 | 851260.2478325500 | 1.16e-10 | HISTORICAL |
+| 210202 | 1058780.7942496866 | 1058780.7942496866 | 1058780.7942496864 | 2.33e-10 | HISTORICAL |
+| 210310 | 714814.5477077000 | 714814.5477077012 | 714814.5477075904 | 1.10e-7 | HISTORICAL |
+| 210323 | 627147.2289325034 | 627147.2289325014 | 627147.2289325034 | 1.98e-9 | HISTORICAL |
+| 210330 | 657659.5492540544 | 657659.5492546142 | 657659.5492540546 | 5.60e-7 | HISTORICAL |
+| 210428 | 793717.3880816710 | 793717.3880816748 | 793717.3880816699 | 3.84e-9 | HISTORICAL |
+| 210611 | 617415.6681423270 | 617415.6681421611 | 617415.6681422364 | 1.66e-7 | HISTORICAL |
+| 210628 | 676700.8373030793 | 676700.8373031134 | 676700.8373030961 | 3.41e-8 | HISTORICAL |
 
-All 24 empirical method artifacts report `OPTIMAL` with their method-specific
-exact certification. Hence `EMPIRICAL_OBJECTIVE_CONSISTENCY_PASS`.
+The historical derivative reports all 24 empirical method objectives as
+`OPTIMAL`. Later development evidence corroborates the PRB objective values,
+but strict PRB certification is 7/8 because 210330 fails the coupling gate.
+Accordingly this is `HISTORICAL_SUMMARY_ONLY_OBJECTIVE_VALUES`, not a
+source-complete empirical certification PASS.
 
 For L, Pure, PRB, Aggregate, and Direct objectives are respectively
 2537677.6592963980, 2537677.6592963985, 2537677.6592963985, and
@@ -48,7 +58,8 @@ those fields are `NOT_RECORDED`, not inferred. Hence
 
 ## 2. Decision equivalence
 
-Pure and PRB have identical active-depot vectors in all eight empirical cases
+The historical derivative reports identical Pure and PRB active-depot vectors
+in all eight empirical cases
 and both development instances. Using 1e-5 as the material coordinate
 tolerance:
 

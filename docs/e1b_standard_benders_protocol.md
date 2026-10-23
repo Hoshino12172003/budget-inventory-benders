@@ -2,6 +2,10 @@
 
 ## Scientific question
 
+Source limitation: the eight E1a PRB files referenced by this protocol are
+missing. Their comparison cells are `HISTORICAL_SUMMARY_ONLY`; the protocol
+does not constitute an independent E1b PRB execution.
+
 E1b asks whether exploiting product-wise recourse separability and the global
 risk-budget structure provides computational gains beyond standard Benders
 decomposition itself. E1a remains the Direct-versus-PRB exactness and
@@ -85,12 +89,13 @@ tolerance adjustment.
 
 ## Timing and metrics
 
-The primary comparison is `core_runtime_seconds`, excluding exhaustive service
+The originally planned comparison uses `core_runtime_seconds`, excluding exhaustive service
 evaluation and reporting. Standard timing additionally records master, exact
 oracle, aggregate-cut construction, and final certification time. The frozen
-E1a PRB `runtime_seconds` is its comparable core time and already excludes its
-later service evaluation; its master, subproblem, and certification components
-are available for all eight cases. No PRB timing-only rerun is currently needed.
+derivative reports E1a PRB `runtime_seconds` as comparable core time. Because
+the source `result.json` files are unavailable, those PRB timing and component
+fields are not eligible for confirmatory paired statistics. This reconciliation
+does not authorize a rerun.
 
 Reported metrics are objective and difference, Standard/PRB core runtime and
 speedup, iterations, total cuts, cuts per iteration, master time, oracle or
@@ -103,8 +108,9 @@ they were equivalent units.
 
 The cases are `210129`, `210202`, `210310`, `210323`, `210330`, `210428`,
 `210611`, and `210628`, each with its case-specific depot set, 12 regions, and
-the frozen eight products. Only eight new Standard runs are planned. PRB rows
-are immutable references to the corresponding E1a artifacts. The local runner
+the frozen eight products. Only eight new Standard runs were planned. PRB rows
+were intended as immutable references to the corresponding E1a artifacts;
+those sources are now `SOURCE_MISSING`. The local runner
 validates authorization, a clean worktree, dataset and per-case identities,
 solver/hardware compatibility, and the referenced PRB artifact before solving.
 It refuses overwrite and writes through an isolated partial directory.

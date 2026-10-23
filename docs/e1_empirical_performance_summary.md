@@ -1,14 +1,22 @@
-# E1 empirical computational performance summary
+# E1 empirical computational performance summary (historical derivative)
 
-All 16 paper-final result directories were read from `RENAULT_EMPIRICAL_8CASE_V1`.
-The summary uses the persisted `runtime_seconds` field and does not rerun an
-optimization. All eight paired objective differences pass the frozen `1e-4`
-consistency tolerance, and no run is resource-limited.
+Evidence level: `HISTORICAL_SUMMARY_ONLY`
 
-Direct solver logs are present for 8/8 Direct runs. PRB solver logs are not
-recorded because the PRB runner does not create a separate solver log; its
-certification, iteration, cut, bound, and runtime diagnostics are persisted in
-`result.json`. This missing optional log does not affect the completeness gate.
+The eight original E1a PRB `result.json` files are unavailable and none of
+their expected SHA-256 identities was recovered. The numerical values below
+are retained unchanged for historical traceability, but the PRB runtimes,
+iterations, cuts, speedups, and original certification labels are not primary
+verified evidence and must not be used as confirmatory paper results. Later
+development runs are reported separately as `DEVELOPMENT_CROSSCHECK` evidence
+(7/8 strict PASS); they are not replacements for E1a.
+
+This document was originally generated from 16 result directories. Only the
+derived table remains available for the eight PRB rows. The historical values
+are not recomputed here and no optimization was run.
+
+The absence at issue is not an optional solver log: the eight PRB
+`result.json` source records themselves are missing. Therefore the prior
+completeness gate is withdrawn.
 
 ## Main results
 
@@ -24,7 +32,7 @@ certification, iteration, cut, bound, and runtime diagnostics are persisted in
 | 210611 | 19 | 617415.6681422364 | 617415.6681421611 | 7.532e-08 | 3.304000 | 1.742742 | 1.896 |
 
 
-## Aggregate runtime and speedup
+## Historical runtime and speedup (not confirmatory)
 
 | Runtime statistic (s) | Direct | PRB |
 |---|---:|---:|
@@ -44,7 +52,9 @@ certification, iteration, cut, bound, and runtime diagnostics are persisted in
 | Maximum | 2.708844 |
 | PRB wins | 8/8 |
 
-PRB is faster in all 8 cases. Direct has mean and median runtimes of
+The historical derivative reports PRB as faster in all 8 cases. This is not an
+independently reproducible performance conclusion. It reports Direct mean and
+median runtimes of
 `2.863875` s and
 `2.972000` s. PRB has mean and median
 runtimes of `1.278166` s and
@@ -58,7 +68,7 @@ The maximum, mean, and median absolute objective differences are
 `9.6275471150875092e-08`, and
 `1.1117663234472275e-08`.
 
-## PRB diagnostics
+## Historical PRB diagnostics (not confirmatory)
 
 Iterations have mean `4.625`, median
 `5.000`, and range
@@ -68,13 +78,15 @@ Cuts have mean `32.500` and range
 Mean master solves and product-subproblem evaluations are
 `4.625` and
 `135.000`.
-All four fields were recorded for 8/8 PRB runs.
+All four fields appear in the derivative summary, but their original source
+records cannot now be inspected.
 
 The 210330 row retains `global_coupling_pass=false` and classification
 `DIAGNOSTIC_TOLERANCE_CONTRACT_MISMATCH`. Its objective consistency and exact
 recourse recertification pass, its Gamma allocation is feasible, and its
-objective is unaffected. It remains in the performance summary as an optimal
-paper-final run.
+objective was historically reported as unaffected. A later development run
+reproduces the objective but fails the strict coupling certification gate; the
+case must not be described as an independently verified E1a PASS.
 
 ## Network-size description
 
@@ -89,9 +101,10 @@ associations from eight observations. They do not establish a scalability law
 or support a general large-scale scalability claim. No hypothesis test was
 performed.
 
-## Paper-ready Chinese summary
+## Superseded Chinese summary
 
-在八个具有异质网络结构的 Renault 实证算例上，PRB-Benders 与 Direct 精确模型的目标值均在冻结的 `1e-4` 容差内一致，最大绝对差为 `5.596e-07`。PRB-Benders 在 8/8 个算例中缩短了计算时间：Direct 的平均和中位运行时间分别为 `2.864` 秒和 `2.972` 秒，PRB-Benders 分别为 `1.278` 秒和 `1.238` 秒。Direct/PRB 运行时间比的几何平均为 `2.225`，范围为 `1.699`–`2.709`。210330 的 global-coupling 标志源于不影响目标值、可行性或 Gamma 分配的数值诊断契约差异，因此不改变性能比较结论。现有证据支持 PRB-Benders 在这些异质实证算例上取得一致的计算收益，但不构成一般性的大规模可扩展性结论。
+历史汇总表记录了八个 Renault 算例的 PRB-Benders 目标值和运行时间，但对应的八个原始 `result.json` 已无法恢复，因此这些运行时间、迭代次数、割数和加速比仅作为 `HISTORICAL_SUMMARY_ONLY` 保存，不能作为可独立复核的正式性能结论。后续开发批次在相同实例身份下复现了 8/8 个目标值，其中 7/8 通过严格认证，210330 未通过全局风险预算耦合检查；该批次属于 `DEVELOPMENT_CROSSCHECK`，不能替代原 E1a 正式运行。
 
-The evidence supports consistent computational gains across heterogeneous
-empirical instances, not a general large-scale scalability claim.
+No confirmatory Renault E1a runtime-advantage claim is retained. Independent
+Scaling V2 and XXL10 results are assessed under their own source-complete
+evidence chains.
