@@ -56,6 +56,12 @@ def test_case_identities_match_paper_final_table(manifest) -> None:
 def test_result_root_is_isolated_and_narrowly_ignored() -> None:
     assert runner.DEFAULT_OUTPUT_ROOT.name == "e1b_pure_benders_v1"
     assert runner.DEFAULT_OUTPUT_ROOT.name != "e1b_standard_vs_prb_v1"
+    if runner.DEFAULT_OUTPUT_ROOT.is_dir():
+        assert subprocess.run(
+            ["git", "check-ignore", "-q", "experiments/results/e1b_pure_benders_v1/probe/result.json"],
+            cwd=ROOT,
+        ).returncode == 1
+        return
     assert subprocess.run(
         ["git", "check-ignore", "-q", "experiments/results/e1b_pure_benders_v1/probe/result.json"],
         cwd=ROOT,

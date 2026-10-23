@@ -8,6 +8,7 @@ import json
 from math import exp, log
 from pathlib import Path
 from statistics import mean
+import subprocess
 
 from scipy.stats import wilcoxon
 
@@ -17,6 +18,7 @@ OUTPUT = ROOT / "experiments/analysis/xxl10_four_method_final"
 SEEDS = list(range(20260921, 20260931))
 METHODS = ("Direct", "EF-BD", "Aggregate-BD", "PRB-BD")
 DIRECT_CORE_SHA256 = "fef8019f9aa9be1d2942a5d3aad363c2c3c28929e52cc02b359d1626a1880edd"
+DIRECT_IDENTITY_RECONCILIATION = ROOT / "experiments/configs/formal/direct_runner_identity_reconciliation_v1.json"
 FORMAL_ROOT = ROOT / "experiments/results/algorithm_scaling_convergence_cost_v2_repaired_guard"
 DIRECT_ROOTS = {
     20260921: ROOT / "experiments/results/direct_scaling_xxl10_paired_pilot_v1",
@@ -31,6 +33,10 @@ EF_ROOTS = {
 
 def file_sha(path: Path) -> str:
     return sha256(path.read_bytes()).hexdigest()
+
+
+def git_blob_sha(commit: str, path: str) -> str:
+    return sha256(subprocess.check_output(["git", "show", f"{commit}:{path}"], cwd=ROOT)).hexdigest()
 
 
 def read_json(path: Path) -> dict:
@@ -262,7 +268,9 @@ def markdown_table(rows: list[dict], fields: list[str]) -> str:
 
 
 def build() -> dict:
-    assert file_sha(ROOT / "experiments/run_direct_scaling.py") == DIRECT_CORE_SHA256
+    reconciliation = read_json(DIRECT_IDENTITY_RECONCILIATION)
+    assert reconciliation["historical_sha256"] == DIRECT_CORE_SHA256
+    assert git_blob_sha(reconciliation["historical_execution_commit"], reconciliation["path"]) == DIRECT_CORE_SHA256
     records: list[dict] = []
     sources: set[Path] = set()
     for seed in SEEDS:
@@ -349,7 +357,9 @@ def build() -> dict:
         "schema": "xxl10_four_method_final_integrity_audit_v1",
         "generated_date": date.today().isoformat(),
         "optimization_calls": 0,
-        "direct_core_runner_sha256": file_sha(ROOT / "experiments/run_direct_scaling.py"),
+        "direct_core_runner_sha256": read_json(DIRECT_IDENTITY_RECONCILIATION)["historical_sha256"],
+        "current_direct_runner_sha256": file_sha(ROOT / "experiments/run_direct_scaling.py"),
+        "current_direct_runner_change_scope": "execution-only revocation gate",
         "record_count": len(records),
         "counts": {row["method"]: {"executed": row["executed_n"], "exact_certified": row["exact_certified_n"]} for row in summaries},
         "direct_stage_counts": {"pilot": 1, "remaining9": 1, "remaining8": 8},

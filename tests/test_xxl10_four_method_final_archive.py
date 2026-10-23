@@ -27,6 +27,8 @@ def test_direct_edge_cases_remain_noncertified_and_uninvented():
 def test_integrity_audit_keeps_direct_core_hash_frozen():
     audit = read_json(OUTPUT / "xxl10_integrity_audit.json")
     assert audit["direct_core_runner_sha256"] == "fef8019f9aa9be1d2942a5d3aad363c2c3c28929e52cc02b359d1626a1880edd"
+    assert audit["current_direct_runner_sha256"] != audit["direct_core_runner_sha256"]
+    assert audit["current_direct_runner_change_scope"] == "execution-only revocation gate"
     assert audit["all_40_instance_identities_match"] is True
     assert audit["all_available_provenance_hashes_match"] is True
 

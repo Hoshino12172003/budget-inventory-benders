@@ -1,8 +1,10 @@
 {
   "schema": "xxl10_four_method_final_integrity_audit_v1",
-  "generated_date": "2026-10-22",
+  "generated_date": "2026-10-23",
   "optimization_calls": 0,
   "direct_core_runner_sha256": "fef8019f9aa9be1d2942a5d3aad363c2c3c28929e52cc02b359d1626a1880edd",
+  "current_direct_runner_sha256": "f699f409013947015a65b421e4b1198312263d8a3db40cd4de5a9414d5eaf056",
+  "current_direct_runner_change_scope": "execution-only revocation gate",
   "record_count": 40,
   "counts": {
     "Direct": {

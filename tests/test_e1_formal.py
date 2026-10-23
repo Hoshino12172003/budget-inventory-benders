@@ -56,7 +56,8 @@ def test_e1_result_schema_contains_common_and_method_fields() -> None:
 
 def test_reuse_rows_load_historical_snake_case_fields() -> None:
     audit = reuse_identity_audit(load_formal_config(E1_CONFIG), load_formal_config(FREEZE))
-    assert audit["status"] == "E1_REUSE_ACCEPTED"
+    assert audit["status"] == "BLOCK_E1_REUSE_IDENTITY"
+    assert audit["checks"]["mathematical_model"] is False
     rows = reused_rows(audit)
     assert len(rows) == 2
     assert rows[0]["variable_count"] == 122376
