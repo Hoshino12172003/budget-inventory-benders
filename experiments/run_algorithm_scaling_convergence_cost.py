@@ -40,6 +40,7 @@ from robust_inventory_reconfiguration.algorithm_scaling import (
     validate_scientific_parameters,
 )
 from robust_inventory_reconfiguration.e1c_scaling import build_renault_calibrated_instance
+from robust_inventory_reconfiguration.formal_execution_freeze import require_experiment_not_frozen
 from robust_inventory_reconfiguration.instance import load_instance, save_instance
 from robust_inventory_reconfiguration.nominal_baseline import (
     baseline_feasibility,
@@ -77,6 +78,7 @@ def _model_identity(config: dict) -> str:
 def validate_execution_gate(config: dict) -> None:
     validate_config(config)
     require_formal_authorization(config)
+    require_experiment_not_frozen(ROOT, config["experiment_id"])
     if subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT).strip():
         raise RuntimeError("formal algorithm-scaling execution requires a clean committed worktree")
 
@@ -178,6 +180,7 @@ def _prepare_instance(output_root: Path, condition, config: dict):
 
 
 def _solve(condition, instance, preparation: dict, config: dict):
+    require_experiment_not_frozen(ROOT, config["experiment_id"])
     x0 = instance.initial_inventory
     if x0 is None:
         raise RuntimeError("prepared instance has no initial inventory")
@@ -431,6 +434,7 @@ def _run_monitored(condition, config_path: Path, output_root: Path, config: dict
 
 
 def _worker(condition, output_root: Path, config: dict) -> None:
+    require_experiment_not_frozen(ROOT, config["experiment_id"])
     instance, preparation = _prepare_instance(output_root, condition, config)
     result, trajectory = _solve(condition, instance, preparation, config)
     _write_result(output_root, condition, result, trajectory)

@@ -1,0 +1,41 @@
+{
+  "schema": "formal_execution_freeze_v1",
+  "status": "EXECUTION_REVOKED",
+  "effective_date": "2026-10-22",
+  "reason": "Completed historical formal protocols are immutable evidence and must not be reused for new optimization attempts.",
+  "future_execution_rule": "A future run requires a new versioned protocol and a new explicit authorization; historical authorization files cannot be reactivated.",
+  "revoked_experiment_ids": [
+    "ALGORITHM_SCALING_CONVERGENCE_COST_V1",
+    "ALGORITHM_SCALING_CONVERGENCE_COST_V2_REPAIRED_GUARD",
+    "DIRECT_SCALING_EXTENSION_V1",
+    "DIRECT_EF_PAIRED_XXL10_DEVELOPMENT_V1",
+    "DIRECT_SCALING_XXL10_REMAINING8_RECOVERY_V1",
+    "DIRECT_SCALING_XXL10_REMAINING9_DEVELOPMENT_V1"
+  ],
+  "revoked_config_paths": [
+    "experiments/configs/e7_risk_friction_interaction_v1.json",
+    "experiments/configs/formal_acceptance_batch_1.yaml",
+    "experiments/configs/formal/e1_empirical_8case_authorization.json",
+    "experiments/configs/formal/e1b_pure_benders_authorization.json",
+    "experiments/configs/formal/e1b_standard_vs_prb_authorization.json",
+    "experiments/configs/formal/e2_existing_nominal_robust_authorization.json",
+    "experiments/configs/formal/e3_budget_sensitivity_authorization.json",
+    "experiments/configs/formal/e4_gamma_sensitivity_authorization.json",
+    "experiments/configs/formal/e5_reconfiguration_friction_authorization.json",
+    "experiments/configs/formal/e6_budget_risk_interaction_authorization.json",
+    "experiments/configs/formal/e7_risk_friction_interaction_authorization.json",
+    "experiments/configs/formal/service_calibration_robustness_formal.yaml",
+    "experiments/configs/formal/algorithm_scaling_convergence_cost.yaml",
+    "experiments/configs/formal/algorithm_scaling_convergence_cost_v2_repaired_guard.yaml",
+    "experiments/configs/formal/direct_scaling_l10_remaining9_v1.yaml",
+    "experiments/configs/formal/direct_scaling_l10_resource_retry_v2.yaml",
+    "experiments/configs/formal/direct_scaling_xl10_all10_v1.yaml",
+    "experiments/configs/formal/direct_scaling_xl10_low_memory_candidate_v1.yaml",
+    "experiments/configs/formal/direct_scaling_xl10_pilot_v1.yaml",
+    "experiments/configs/formal/direct_scaling_xl10_remaining7_8gib_v1.yaml",
+    "experiments/configs/formal/direct_scaling_xl10_remaining9_v1.yaml",
+    "experiments/configs/development/direct_scaling_xxl10_paired_pilot_v1.yaml",
+    "experiments/configs/development/direct_scaling_xxl10_remaining8_v1.yaml",
+    "experiments/configs/development/direct_scaling_xxl10_remaining9_v1.yaml"
+  ]
+}

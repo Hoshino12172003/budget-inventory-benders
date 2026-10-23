@@ -22,6 +22,7 @@ from robust_inventory_reconfiguration.first_stage_solution import (
     build_first_stage_solution_artifact,
     write_first_stage_solution_artifact,
 )
+from robust_inventory_reconfiguration.formal_execution_freeze import require_protocol_not_frozen
 from robust_inventory_reconfiguration.instance import load_instance
 from robust_inventory_reconfiguration.product_risk_budget_benders import solve_prb_benders
 from robust_inventory_reconfiguration.service_calibration import (
@@ -64,6 +65,7 @@ def _condition_map():
 def validate_execution_gate(config: dict) -> None:
     validate_config(config)
     require_formal_authorization(config)
+    require_protocol_not_frozen(ROOT, CONFIG)
     if source_model_identity(ROOT, config["code_identity"]["model_files"]) != config["code_identity"]["current_model_identity_sha256"]:
         raise RuntimeError("SERVICE_CALIBRATION_MODEL_IDENTITY_MISMATCH")
     if subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT).strip():
@@ -71,6 +73,7 @@ def validate_execution_gate(config: dict) -> None:
 
 
 def solve_condition(condition, config: dict) -> tuple[dict, dict, list[dict]]:
+    require_protocol_not_frozen(ROOT, CONFIG)
     base_instance_path = ROOT / f"data/formal_instances_v2/{condition.case_id}.json"
     base_instance = load_instance(base_instance_path)
     instance = calibrated_instance(
