@@ -29,6 +29,11 @@ def canonical_hash(instance) -> str:
     return hashlib.sha256(payload.encode()).hexdigest()
 
 
+def checkout_text_sha256(path: Path) -> str:
+    """Hash repository text independently of the checkout's CRLF policy."""
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+
+
 def test_design_is_fail_closed_and_balanced() -> None:
     design = json.loads(CONFIG.read_text(encoding="utf-8"))
     assert design["formal_run_authorized"] is False
@@ -50,7 +55,7 @@ def test_design_is_fail_closed_and_balanced() -> None:
         "PROPOSAL_ONLY_NOT_AUTHORIZED"
     )
     assert design["replicate_freeze_rule"]["default"] == 5
-    assert sha256_file(ROOT / design["generator"]["path"]) == design["generator"]["sha256"]
+    assert checkout_text_sha256(ROOT / design["generator"]["path"]) == design["generator"]["sha256"]
     assert design["source_instance_hashes"] == {
         case: sha256_file(ROOT / f"data/formal_instances_v2/{case}.json") for case in CASES
     }

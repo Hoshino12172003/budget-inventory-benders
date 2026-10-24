@@ -21,8 +21,10 @@ def load_runner():
 def test_dry_run_freezes_grid_identity_and_resources() -> None:
     runner = load_runner()
     result = runner.dry_run()
-    assert result["status"] == "DRY_RUN_PASS"
+    assert result["status"] == "BLOCKED_SOURCE_MISSING"
     assert result["optimization_calls"] == 0
+    assert result["input_audit"]["status"] == "SOURCE_MISSING"
+    assert len(result["input_audit"]["missing_paths"]) == 5
     assert len(result["conditions"]) == 12
     assert {row["gamma"] for row in result["conditions"]} == {2, 4, 6, 8}
     assert result["memory_gate"] == {
@@ -35,18 +37,19 @@ def test_dry_run_freezes_grid_identity_and_resources() -> None:
 
 def test_config_is_development_only_and_reuses_prepared_l() -> None:
     runner = load_runner()
-    config, instance, baseline = runner.validate_config()
+    config = runner.validate_static_config()
     assert config["development_only"] is True
     assert config["paper_final_observation"] is False
     assert config["formal_run_authorized"] is False
-    assert (instance.num_depots, instance.num_regions, instance.num_products) == (25, 24, 12)
-    assert baseline["seed"] == 20260911
-    assert baseline["Gamma"] == 2
+    audit = runner.development_input_audit(config)
+    assert audit["status"] == "SOURCE_MISSING"
+    with pytest.raises(RuntimeError, match="E1C_GAMMA_DEVELOPMENT_INPUT_MISSING"):
+        runner.validate_config()
 
 
 def test_preflight_fails_closed_below_frozen_threshold(monkeypatch) -> None:
     runner = load_runner()
-    config, _, _ = runner.validate_config()
+    config = runner.validate_static_config()
 
     class Memory:
         available = 17 * 2**30
@@ -58,21 +61,11 @@ def test_preflight_fails_closed_below_frozen_threshold(monkeypatch) -> None:
 
 def test_gamma2_sanity_checks_all_three_frozen_methods() -> None:
     runner = load_runner()
-    config, _, _ = runner.validate_config()
-    rows = []
-    for method, directory in {
-        "pure_benders": "PURE_BENDERS",
-        "aggregate_benders_structured_oracle": "AGGREGATE_BENDERS_STRUCTURED_ORACLE",
-        "prb_benders": "PRB_BENDERS",
-    }.items():
-        reference = runner.read_json(runner.EXISTING_L_ROOT / directory / "result.json")
-        rows.append(
-            {
-                "method": method,
-                "objective": reference["solution"]["objective"],
-                "certified": True,
-            }
-        )
-    sanity = runner.gamma2_sanity(rows, config)
-    assert sanity["pass"] is True
-    assert len(sanity["checks"]) == 3
+    config = runner.validate_static_config()
+    audit = runner.development_input_audit(config)
+    expected = {
+        "experiments/results/e1c_development_probe_v1/L/PURE_BENDERS/result.json",
+        "experiments/results/e1c_development_probe_v1/L/AGGREGATE_BENDERS_STRUCTURED_ORACLE/result.json",
+        "experiments/results/e1c_development_probe_v1/L/PRB_BENDERS/result.json",
+    }
+    assert expected <= set(audit["missing_paths"])

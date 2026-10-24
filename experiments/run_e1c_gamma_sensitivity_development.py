@@ -56,7 +56,7 @@ def canonical_hash(value: object) -> str:
     return hashlib.sha256(payload.encode()).hexdigest()
 
 
-def validate_config() -> tuple[dict[str, Any], Any, dict[str, Any]]:
+def validate_static_config() -> dict[str, Any]:
     config = read_json(CONFIG_PATH)
     if config["development_run_authorized"] is not True:
         raise PermissionError("E1C_GAMMA_DEVELOPMENT_NOT_AUTHORIZED")
@@ -80,6 +80,33 @@ def validate_config() -> tuple[dict[str, Any], Any, dict[str, Any]]:
     for key, value in frozen.items():
         if config[key] != value:
             raise RuntimeError(f"frozen setting changed: {key}")
+    return config
+
+
+def development_input_audit(config: dict[str, Any]) -> dict[str, Any]:
+    required = [
+        ROOT / config["prepared_instance"],
+        ROOT / config["prepared_baseline"],
+        EXISTING_L_ROOT / "PURE_BENDERS/result.json",
+        EXISTING_L_ROOT / "AGGREGATE_BENDERS_STRUCTURED_ORACLE/result.json",
+        EXISTING_L_ROOT / "PRB_BENDERS/result.json",
+    ]
+    missing = [path.relative_to(ROOT).as_posix() for path in required if not path.is_file()]
+    return {
+        "status": "AVAILABLE" if not missing else "SOURCE_MISSING",
+        "required_paths": [path.relative_to(ROOT).as_posix() for path in required],
+        "missing_paths": missing,
+    }
+
+
+def validate_config() -> tuple[dict[str, Any], Any, dict[str, Any]]:
+    config = validate_static_config()
+    input_audit = development_input_audit(config)
+    if input_audit["status"] != "AVAILABLE":
+        raise RuntimeError(
+            "E1C_GAMMA_DEVELOPMENT_INPUT_MISSING: "
+            + ", ".join(input_audit["missing_paths"])
+        )
     instance_path = ROOT / config["prepared_instance"]
     baseline_path = ROOT / config["prepared_baseline"]
     instance = load_instance(instance_path)
@@ -372,13 +399,16 @@ def worker(method: str, gamma: int) -> None:
 
 
 def dry_run() -> dict[str, Any]:
-    config, instance, baseline = validate_config()
-    return {
-        "status": "DRY_RUN_PASS",
+    config = validate_static_config()
+    input_audit = development_input_audit(config)
+    result = {
+        "status": (
+            "DRY_RUN_PASS"
+            if input_audit["status"] == "AVAILABLE"
+            else "BLOCKED_SOURCE_MISSING"
+        ),
         "optimization_calls": 0,
-        "instance_hash": canonical_hash(instance.to_dict()),
-        "x0_hash": canonical_hash(instance.initial_inventory),
-        "B_ref": baseline["B_ref"],
+        "input_audit": input_audit,
         "conditions": [
             {"gamma": gamma, "method": method}
             for gamma in GAMMAS
@@ -392,6 +422,16 @@ def dry_run() -> dict[str, Any]:
             "poll_seconds": config["memory_poll_interval_seconds"],
         },
     }
+    if input_audit["status"] == "AVAILABLE":
+        _, instance, baseline = validate_config()
+        result.update(
+            {
+                "instance_hash": canonical_hash(instance.to_dict()),
+                "x0_hash": canonical_hash(instance.initial_inventory),
+                "B_ref": baseline["B_ref"],
+            }
+        )
+    return result
 
 
 def gamma2_sanity(results: list[dict[str, Any]], config: dict[str, Any]) -> dict[str, Any]:
