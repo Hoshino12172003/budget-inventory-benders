@@ -15,6 +15,7 @@
     "experiments/configs/formal/e4_gamma_sensitivity_authorization.json",
     "experiments/configs/formal/e5_reconfiguration_friction_authorization.json",
     "experiments/configs/formal/e6_budget_risk_interaction_authorization.json",
-    "experiments/configs/formal/e7_risk_friction_interaction_authorization.json"
+    "experiments/configs/formal/e7_risk_friction_interaction_authorization.json",
+    "experiments/configs/formal/service_calibration_robustness_formal.yaml"
   ]
 }

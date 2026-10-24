@@ -34,6 +34,7 @@ e4_gamma_sensitivity_v1.zip
 e5_reconfiguration_friction_v1.zip
 e6_full_review_package.zip
 e7_full_review_package.zip
+experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/*/service_scenarios.json
 artifacts/*
 !artifacts/.gitkeep
 !artifacts/x0_audit/
