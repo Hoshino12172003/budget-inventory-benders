@@ -1,0 +1,42 @@
+section,metric,value,unit,recorded_count,notes
+Direct runtime,mean,2.86387500166893,seconds,8,
+Direct runtime,median,2.972000002861023,seconds,8,
+Direct runtime,geometric_mean,2.798850902810941,seconds,8,
+Direct runtime,minimum,1.6699998378753662,seconds,8,
+Direct runtime,maximum,3.4130001068115234,seconds,8,
+Direct runtime,sample_standard_deviation,0.5933256473087842,seconds,8,
+PRB runtime,mean,1.2781659250031225,seconds,8,
+PRB runtime,median,1.2380125001072884,seconds,8,
+PRB runtime,geometric_mean,1.2577438185765506,seconds,8,
+PRB runtime,minimum,0.9831330000888556,seconds,8,
+PRB runtime,maximum,1.7427417999133468,seconds,8,
+PRB runtime,sample_standard_deviation,0.25031863359247175,seconds,8,
+Speedup,mean,2.2462095760674123,ratio,8,Direct runtime divided by PRB runtime
+Speedup,median,2.2919327410224506,ratio,8,Direct runtime divided by PRB runtime
+Speedup,geometric_mean,2.2252948982715224,ratio,8,Direct runtime divided by PRB runtime
+Speedup,minimum,1.698650983869356,ratio,8,Direct runtime divided by PRB runtime
+Speedup,maximum,2.708843502028776,ratio,8,Direct runtime divided by PRB runtime
+Speedup,sample_standard_deviation,0.31866370633395463,ratio,8,Direct runtime divided by PRB runtime
+Speedup,prb_faster_count,8,count,8,Direct runtime divided by PRB runtime
+Speedup,direct_faster_count,0,count,8,Direct runtime divided by PRB runtime
+Speedup,ties,0,count,8,Direct runtime divided by PRB runtime
+Objective consistency,maximum_absolute_difference,5.596084520220757e-07,objective units,8,Frozen tolerance 1e-4
+Objective consistency,mean_absolute_difference,9.627547115087509e-08,objective units,8,Frozen tolerance 1e-4
+Objective consistency,median_absolute_difference,1.1117663234472275e-08,objective units,8,Frozen tolerance 1e-4
+Objective consistency,gate_pass_count,8,count,8,Frozen tolerance 1e-4
+PRB iterations,mean,4.625,count,8,
+PRB iterations,median,5.0,count,8,
+PRB iterations,minimum,4,count,8,
+PRB iterations,maximum,5,count,8,
+PRB cuts,mean,32.5,count,8,
+PRB cuts,minimum,31,count,8,
+PRB cuts,maximum,34,count,8,
+Paired runtime,median_direct_minus_prb,1.6739814318716526,seconds,8,Paired case difference
+PRB master solves,mean,4.625,count,8,
+PRB product subproblem evaluations,mean,135,count,8,
+Network size,I_vs_direct_runtime_pearson,0.889168426202515,correlation,8,Descriptive only; n=8
+Network size,I_vs_direct_runtime_spearman,0.8051175601825399,correlation,8,Descriptive only; n=8
+Network size,I_vs_prb_runtime_pearson,0.9579509906340502,correlation,8,Descriptive only; n=8
+Network size,I_vs_prb_runtime_spearman,0.9759000729485332,correlation,8,Descriptive only; n=8
+Network size,I_vs_speedup_pearson,0.14204140584165784,correlation,8,Descriptive only; n=8
+Network size,I_vs_speedup_spearman,-0.12198750911856665,correlation,8,Descriptive only; n=8

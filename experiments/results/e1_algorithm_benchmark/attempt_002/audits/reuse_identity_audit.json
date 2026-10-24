@@ -1,0 +1,20 @@
+{
+  "status": "E1_REUSE_ACCEPTED",
+  "checks": {
+    "case_id": true,
+    "beta_and_B": true,
+    "Gamma": true,
+    "lambda_R": true,
+    "source_data": true,
+    "processed_data": true,
+    "x0": true,
+    "calibration_artifact": true,
+    "formal_config": true,
+    "mathematical_model": true,
+    "uncertainty_set": true,
+    "solver_profile": true,
+    "certification_contract": true,
+    "result_schema": true,
+    "objective_consistency": true
+  }
+}

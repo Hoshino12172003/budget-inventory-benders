@@ -1,0 +1,97 @@
+{
+  "schema": "e1_210330_global_coupling_audit_v1",
+  "case": "210330",
+  "run_id": "E1-210330-PRB",
+  "classification": "DIAGNOSTIC_TOLERANCE_CONTRACT_MISMATCH",
+  "diagnostic_definition": {
+    "formula": "abs(final_master_theta - final_iteration_exact_composition)",
+    "implementation": "src/robust_inventory_reconfiguration/product_risk_budget_benders.py:220-221",
+    "threshold": 1e-06,
+    "comparison": "absolute",
+    "values_used_at_run_time": "in-memory full-precision binary64 values",
+    "serialized_values_used_at_run_time": false,
+    "necessary_feasibility_condition": false,
+    "meaning": "numerical closure between the final master recourse surrogate and exact product-wise risk-budget composition"
+  },
+  "persisted_primary_state": {
+    "lower_bound": 657659.549256254,
+    "upper_bound": 657659.5492546142,
+    "final_master_value": 657659.549256254,
+    "first_stage_expenditure": 65650.34742795814,
+    "inferred_final_master_theta": 592009.2018282958,
+    "reported_objective": 657659.5492546142,
+    "reported_exact_recourse": 592009.201826656,
+    "reported_global_coupling_pass": false,
+    "reported_residual_was_persisted": false,
+    "original_residual_reconstructed_from_persisted_lb_minus_ub": 1.6398262232542038e-06,
+    "original_in_memory_residual_exactly_recoverable": false,
+    "relative_scale_of_original_residual": 2.4934272225086203e-12
+  },
+  "fixed_final_state_recomputation": {
+    "products": [
+      "BAC---1041",
+      "BAC-O-4312",
+      "BAC-O-4325",
+      "BAC-O-6423",
+      "BAC-O-6433",
+      "CON-S-0130",
+      "SLI---0770",
+      "SLI---1200"
+    ],
+    "product_values_by_local_gamma_0_1_2": [
+      [9776.742857142857, 13292.71542857143, 14095.565714285716],
+      [3138.6193174985583, 4677.0068523258715, 5843.210852325872],
+      [33265.8625, 36944.895000000004, 39343.395000000004],
+      [24149.468571428573, 26362.484571428577, 28227.680000000008],
+      [32520.804642857147, 37150.48071428572, 39829.03414285714],
+      [3835.429580585897, 21435.85100915732, 32891.543866300184],
+      [251839.0735714286, 269439.495, 286121.6335714286],
+      [164988.8175, 215882.77935714292, 226892.57964285722]
+    ],
+    "global_gamma_allocation": [0, 0, 0, 0, 0, 0, 1, 1],
+    "gamma_allocation_sum": 2,
+    "Gamma": 2,
+    "gamma_budget_excess": 0,
+    "fresh_exact_recourse": 592009.201826656,
+    "stored_exact_recourse": 592009.201826656,
+    "recomputed_final_state_residual": 0.0,
+    "same_x_direct_vs_prb_recourse_difference": 6.984919309616089e-10,
+    "maximum_product_strong_duality_error": 5.820766091346741e-11,
+    "all_product_duals_feasible": true
+  },
+  "source_audit": {
+    "json_serialization": false,
+    "float_summation_order": "not separately identifiable from persisted artifacts",
+    "rounded_gamma_or_product_values": false,
+    "relative_vs_absolute_confusion": false,
+    "stale_pre_final_iteration_values": false,
+    "final_recourse_vs_penultimate_master_state": false,
+    "source": "the persisted final master surrogate lower bound exceeds the certified feasible upper bound by 1.6398262232542038e-06, slightly above the separately frozen 1e-06 absolute diagnostic threshold",
+    "exact_attribution_limit": "per-iteration theta, eta, cuts, and constraint residuals were not persisted, so the numerical residual cannot be apportioned further among master constraint, cut, and floating-point accumulation"
+  },
+  "mathematical_effect": {
+    "objective_affected": false,
+    "first_stage_affected": false,
+    "exact_recourse_affected": false,
+    "feasibility_affected": false,
+    "gamma_budget_affected": false,
+    "direct_prb_equivalence_affected": false,
+    "blocker": null
+  },
+  "execution_and_change_control": {
+    "audit_only_fixed_final_state_recomputation": true,
+    "first_stage_reoptimized": false,
+    "primary_run_overwritten": false,
+    "production_code_changed": false,
+    "threshold_changed": false,
+    "model_changed": false,
+    "dataset_changed": false,
+    "other_e1_cases_rerun": false
+  },
+  "primary_file_sha256_before_and_after": {
+    "first_stage_solution.json": "b7982ff566500d2214d3e629033e223f81f430b4864a115deebbd7e2f7ffc46b",
+    "provenance.json": "745a53c133e1fcc763a5cb061794091b1f38e59da608c1bdd6155750544fcd95",
+    "result.json": "276557a1f3118ef7786e68fd9bdcd38ed5782fc8425d90a7ff64f09137fcffbb"
+  },
+  "recommended_certification_wording": "The 210330 PRB solution is exact-recourse certified and passes Direct/PRB objective consistency. Its frozen 1e-06 absolute master-surrogate coupling diagnostic is not met because of a 1.6398262232542038e-06 numerical closure residual; the final Gamma allocation is feasible and the certified objective is unaffected."
+}

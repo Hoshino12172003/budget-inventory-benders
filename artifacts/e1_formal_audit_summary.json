@@ -1,0 +1,13 @@
+{
+  "status": "BLOCK_E1_SYNTHETIC_REPRODUCIBILITY",
+  "reuse_identity_audit": "PASS",
+  "renault_objective_consistency_audit": "PASS",
+  "first_stage_solution_persistence_audit": "PASS",
+  "result_schema_audit": "PASS",
+  "solver_profile_identity_audit": "PASS",
+  "provenance_hash_audit": "PASS",
+  "synthetic_reproducibility_audit": "BLOCK",
+  "resource_limit_events": [],
+  "unauthorized_runs_executed": 0,
+  "e2_e7_authorization": false
+}

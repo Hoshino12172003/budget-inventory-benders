@@ -1,0 +1,1092 @@
+{
+  "conditions": [
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210202",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210202-B080-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210202",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210202-B080-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210202-B080",
+      "source_candidates": [
+        "E3-210202-B080"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210202",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210202-B080-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210202",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210202-B100-G0",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210202-G0",
+      "source_candidates": [
+        "E4-210202-G0"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210202",
+      "classification": "REUSE",
+      "overlap_identity_checks": {
+        "E4_points_to_E3": true,
+        "condition": true,
+        "economic_identity": true,
+        "first_stage_identity": true
+      },
+      "run_id": "E6-210202-B100-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210202-B100",
+      "source_candidates": [
+        "E3-210202-B100",
+        "E4-210202-G2"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210202",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210202-B100-G4",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210202-G4",
+      "source_candidates": [
+        "E4-210202-G4"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210202",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210202-B120-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210202",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210202-B120-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210202-B120",
+      "source_candidates": [
+        "E3-210202-B120"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210202",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210202-B120-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210628",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210628-B080-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210628",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210628-B080-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210628-B080",
+      "source_candidates": [
+        "E3-210628-B080"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210628",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210628-B080-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210628",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210628-B100-G0",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210628-G0",
+      "source_candidates": [
+        "E4-210628-G0"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210628",
+      "classification": "REUSE",
+      "overlap_identity_checks": {
+        "E4_points_to_E3": true,
+        "condition": true,
+        "economic_identity": true,
+        "first_stage_identity": true
+      },
+      "run_id": "E6-210628-B100-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210628-B100",
+      "source_candidates": [
+        "E3-210628-B100",
+        "E4-210628-G2"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210628",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210628-B100-G4",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210628-G4",
+      "source_candidates": [
+        "E4-210628-G4"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210628",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210628-B120-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210628",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210628-B120-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210628-B120",
+      "source_candidates": [
+        "E3-210628-B120"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210628",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210628-B120-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210129",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210129-B080-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210129",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210129-B080-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210129-B080",
+      "source_candidates": [
+        "E3-210129-B080"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210129",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210129-B080-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210129",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210129-B100-G0",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210129-G0",
+      "source_candidates": [
+        "E4-210129-G0"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210129",
+      "classification": "REUSE",
+      "overlap_identity_checks": {
+        "E4_points_to_E3": true,
+        "condition": true,
+        "economic_identity": true,
+        "first_stage_identity": true
+      },
+      "run_id": "E6-210129-B100-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210129-B100",
+      "source_candidates": [
+        "E3-210129-B100",
+        "E4-210129-G2"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210129",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210129-B100-G4",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210129-G4",
+      "source_candidates": [
+        "E4-210129-G4"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210129",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210129-B120-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210129",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210129-B120-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210129-B120",
+      "source_candidates": [
+        "E3-210129-B120"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210129",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210129-B120-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210310",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210310-B080-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210310",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210310-B080-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210310-B080",
+      "source_candidates": [
+        "E3-210310-B080"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210310",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210310-B080-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210310",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210310-B100-G0",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210310-G0",
+      "source_candidates": [
+        "E4-210310-G0"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210310",
+      "classification": "REUSE",
+      "overlap_identity_checks": {
+        "E4_points_to_E3": true,
+        "condition": true,
+        "economic_identity": true,
+        "first_stage_identity": true
+      },
+      "run_id": "E6-210310-B100-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210310-B100",
+      "source_candidates": [
+        "E3-210310-B100",
+        "E4-210310-G2"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210310",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210310-B100-G4",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210310-G4",
+      "source_candidates": [
+        "E4-210310-G4"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210310",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210310-B120-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210310",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210310-B120-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210310-B120",
+      "source_candidates": [
+        "E3-210310-B120"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210310",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210310-B120-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210330",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210330-B080-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210330",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210330-B080-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210330-B080",
+      "source_candidates": [
+        "E3-210330-B080"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210330",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210330-B080-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210330",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210330-B100-G0",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210330-G0",
+      "source_candidates": [
+        "E4-210330-G0"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210330",
+      "classification": "REUSE",
+      "overlap_identity_checks": {
+        "E4_points_to_E3": true,
+        "condition": true,
+        "economic_identity": true,
+        "first_stage_identity": true
+      },
+      "run_id": "E6-210330-B100-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210330-B100",
+      "source_candidates": [
+        "E3-210330-B100",
+        "E4-210330-G2"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210330",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210330-B100-G4",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210330-G4",
+      "source_candidates": [
+        "E4-210330-G4"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210330",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210330-B120-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210330",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210330-B120-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210330-B120",
+      "source_candidates": [
+        "E3-210330-B120"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210330",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210330-B120-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210323",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210323-B080-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210323",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210323-B080-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210323-B080",
+      "source_candidates": [
+        "E3-210323-B080"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210323",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210323-B080-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210323",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210323-B100-G0",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210323-G0",
+      "source_candidates": [
+        "E4-210323-G0"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210323",
+      "classification": "REUSE",
+      "overlap_identity_checks": {
+        "E4_points_to_E3": true,
+        "condition": true,
+        "economic_identity": true,
+        "first_stage_identity": true
+      },
+      "run_id": "E6-210323-B100-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210323-B100",
+      "source_candidates": [
+        "E3-210323-B100",
+        "E4-210323-G2"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210323",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210323-B100-G4",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210323-G4",
+      "source_candidates": [
+        "E4-210323-G4"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210323",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210323-B120-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210323",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210323-B120-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210323-B120",
+      "source_candidates": [
+        "E3-210323-B120"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210323",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210323-B120-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210428",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210428-B080-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210428",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210428-B080-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210428-B080",
+      "source_candidates": [
+        "E3-210428-B080"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210428",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210428-B080-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210428",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210428-B100-G0",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210428-G0",
+      "source_candidates": [
+        "E4-210428-G0"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210428",
+      "classification": "REUSE",
+      "overlap_identity_checks": {
+        "E4_points_to_E3": true,
+        "condition": true,
+        "economic_identity": true,
+        "first_stage_identity": true
+      },
+      "run_id": "E6-210428-B100-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210428-B100",
+      "source_candidates": [
+        "E3-210428-B100",
+        "E4-210428-G2"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210428",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210428-B100-G4",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210428-G4",
+      "source_candidates": [
+        "E4-210428-G4"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210428",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210428-B120-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210428",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210428-B120-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210428-B120",
+      "source_candidates": [
+        "E3-210428-B120"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210428",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210428-B120-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210611",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210611-B080-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210611",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210611-B080-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210611-B080",
+      "source_candidates": [
+        "E3-210611-B080"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 0.8,
+      "beta_token": "B080",
+      "case": "210611",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210611-B080-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210611",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210611-B100-G0",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210611-G0",
+      "source_candidates": [
+        "E4-210611-G0"
+      ]
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210611",
+      "classification": "REUSE",
+      "overlap_identity_checks": {
+        "E4_points_to_E3": true,
+        "condition": true,
+        "economic_identity": true,
+        "first_stage_identity": true
+      },
+      "run_id": "E6-210611-B100-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210611-B100",
+      "source_candidates": [
+        "E3-210611-B100",
+        "E4-210611-G2"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.0,
+      "beta_token": "B100",
+      "case": "210611",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210611-B100-G4",
+      "selected_source_experiment": "E4",
+      "selected_source_run": "E4-210611-G4",
+      "source_candidates": [
+        "E4-210611-G4"
+      ]
+    },
+    {
+      "Gamma": 0,
+      "Gamma_token": "G0",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210611",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210611-B120-G0",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    },
+    {
+      "Gamma": 2,
+      "Gamma_token": "G2",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210611",
+      "classification": "REUSE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210611-B120-G2",
+      "selected_source_experiment": "E3",
+      "selected_source_run": "E3-210611-B120",
+      "source_candidates": [
+        "E3-210611-B120"
+      ]
+    },
+    {
+      "Gamma": 4,
+      "Gamma_token": "G4",
+      "beta": 1.2,
+      "beta_token": "B120",
+      "case": "210611",
+      "classification": "NEW_SOLVE",
+      "overlap_identity_checks": null,
+      "run_id": "E6-210611-B120-G4",
+      "selected_source_experiment": null,
+      "selected_source_run": null,
+      "source_candidates": []
+    }
+  ],
+  "expected_reuse_parameter_cells_from_source_design": [
+    "B080-G2",
+    "B100-G0",
+    "B100-G2",
+    "B100-G4",
+    "B120-G2"
+  ],
+  "new_solve_conditions": 32,
+  "overlap_policy": "B100-G2 validates E3 and E4 identity, selects E3 once",
+  "reusable_conditions": 40,
+  "reuse_parameter_cells": [
+    "B080-G2",
+    "B100-G0",
+    "B100-G2",
+    "B100-G4",
+    "B120-G2"
+  ],
+  "schema": "e6_reuse_plan_v1",
+  "selected_source_counts": {
+    "E3": 24,
+    "E4": 16
+  },
+  "status": "PASS",
+  "total_conditions": 72
+}

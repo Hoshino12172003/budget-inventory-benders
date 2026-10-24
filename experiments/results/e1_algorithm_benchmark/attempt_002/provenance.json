@@ -1,0 +1,13 @@
+{
+  "attempt_id": "e1_formal_algorithm_benchmark_attempt_002",
+  "authorization_manifest_hash": "1a62866a07aa9609eb19057f2fae1d0ed9770c58650f078915840168cc3e5f16",
+  "formal_config_hash": "17ee31b0e4cd12c225079da8cbc13d37652459df67176a9e8f7004ba434b9ed0",
+  "formal_parameter_freeze_hash": "37b5f962c061d29b6b72417007424907b9b1f756a4ad1943a3719048d46b93c0",
+  "execution_git_commit": "939fbad712b2f3c6d6066b471fe8e6282eb70df6",
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "solver_version": "13.0.1",
+  "python_version": "3.12.7",
+  "timestamp_utc": "2026-09-07T03:18:09.350942+00:00",
+  "hostname": "huxinxin-thinkbook",
+  "platform": "Windows-11-10.0.26200-SP0"
+}

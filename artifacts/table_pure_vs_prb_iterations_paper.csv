@@ -1,0 +1,5 @@
+﻿scale,paired_n,pure_median_iterations,pure_q1_iterations,pure_q3_iterations,prb_median_iterations,prb_q1_iterations,prb_q3_iterations,median_prb_over_pure_iteration_ratio,median_iteration_reduction_percent,prb_fewer_iterations_count,equal_iterations_count,prb_more_iterations_count
+L10,9,13.0,10.0,17.0,6.0,5.0,8.0,0.45454545454545453,54.54545454545454,9,0,0
+XL10,9,12.0,11.0,13.0,6.0,5.0,6.0,0.45454545454545453,54.54545454545454,9,0,0
+XXL10,9,14.0,13.0,16.0,6.0,6.0,7.0,0.42857142857142855,57.14285714285714,9,0,0
+pooled,27,13.0,11.5,16.0,6.0,5.0,7.0,0.4444444444444444,55.55555555555556,27,0,0

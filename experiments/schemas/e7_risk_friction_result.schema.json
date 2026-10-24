@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "E7 risk-friction interaction result",
+  "type": "object",
+  "required": [
+    "run_id", "experiment_id", "case", "beta", "Gamma_token", "Gamma",
+    "lambda_token", "lambda_R", "B", "B_ref", "dataset_id", "instance_hash",
+    "x0_hash", "calibration_hash", "mapping_hash", "model_identity_sha256",
+    "prb_identity_sha256", "solver_profile", "reused", "reuse_source_run",
+    "objective", "fixed_cost", "inventory_cost", "reconfiguration_cost",
+    "robust_recourse_cost", "budget_used", "budget_utilization", "budget_slack",
+    "canonical_total_adjustment", "RI", "RS", "changed_pair_count",
+    "top_adjustment_share", "material_reconfiguration", "active_depots",
+    "active_depot_ids", "positive_inventory_depot_ids", "opened_depots",
+    "closed_depots", "transportation_cost", "shortage_cost", "service_penalty",
+    "total_shortage", "average_fill_rate", "minimum_fill_rate", "iterations",
+    "cuts", "master_solves", "subproblem_evaluations", "lower_bound",
+    "upper_bound", "relative_gap", "status", "certification_status",
+    "exact_certification_pass", "global_coupling_pass", "timing"
+  ],
+  "properties": {
+    "run_id": {"type": "string", "pattern": "^E7-[0-9]{6}-G(0|2|4)-L(0025|0500|2000)$"},
+    "experiment_id": {"const": "E7_RISK_FRICTION_INTERACTION_V1"},
+    "beta": {"const": 1.0},
+    "Gamma_token": {"enum": ["G0", "G2", "G4"]},
+    "Gamma": {"enum": [0, 2, 4]},
+    "lambda_token": {"enum": ["L0025", "L0500", "L2000"]},
+    "lambda_R": {"enum": [0.0025, 0.05, 0.2]},
+    "status": {"const": "OPTIMAL"},
+    "certification_status": {"const": "CERTIFIED_PRB_EXACT"},
+    "exact_certification_pass": {"const": true},
+    "timing": {
+      "type": "object",
+      "required": [
+        "t_instance_load_seconds", "t_reuse_validation_seconds",
+        "t_core_prb_seconds", "t_exact_certification_seconds",
+        "t_post_evaluation_seconds", "t_reporting_seconds",
+        "t_artifact_write_seconds", "t_total_runner_wallclock_seconds"
+      ],
+      "properties": {
+        "t_instance_load_seconds": {"type": "number", "minimum": 0, "description": "Formal instance and x0 load/validation time."},
+        "t_reuse_validation_seconds": {"type": "number", "minimum": 0, "description": "Reuse discovery, provenance validation, overlap corroboration, and source-selection time."},
+        "t_core_prb_seconds": {"type": "number", "minimum": 0, "description": "PRB optimization time excluding separately recorded final exact certification."},
+        "t_exact_certification_seconds": {"type": "number", "minimum": 0, "description": "Final exact product-wise robust-recourse certification time."},
+        "t_post_evaluation_seconds": {"type": "number", "minimum": 0, "description": "Post-hoc reporting-only exact service evaluation time."},
+        "t_reporting_seconds": {"type": "number", "minimum": 0, "description": "Deterministic result-field construction time."},
+        "t_artifact_write_seconds": {"type": "number", "minimum": 0, "description": "First-stage and result artifact materialization through the final timing snapshot."},
+        "t_total_runner_wallclock_seconds": {"type": "number", "minimum": 0, "description": "Monotonic runner time through the final timing snapshot; final provenance serialization and atomic rename are excluded."}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}

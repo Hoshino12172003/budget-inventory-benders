@@ -1,0 +1,282 @@
+## tree_control; held out 210129
+
+|--- Gamma <= 1.50
+|   |--- Gamma <= 0.50
+|   |   |--- class: 0
+|   |--- Gamma >  0.50
+|   |   |--- class: 0
+|--- Gamma >  1.50
+|   |--- beta <= 0.95
+|   |   |--- class: 1
+|   |--- beta >  0.95
+|   |   |--- Gamma <= 3.50
+|   |   |   |--- class: 1
+|   |   |--- Gamma >  3.50
+|   |   |   |--- class: 1
+
+
+## tree_full; held out 210129
+
+|--- maximum_nominal_demand_to_mean_ratio <= 7.08
+|   |--- beta <= 0.95
+|   |   |--- class: 1
+|   |--- beta >  0.95
+|   |   |--- Gamma <= 3.50
+|   |   |   |--- class: 0
+|   |   |--- Gamma >  3.50
+|   |   |   |--- class: 0
+|--- maximum_nominal_demand_to_mean_ratio >  7.08
+|   |--- Gamma <= 1.50
+|   |   |--- class: 0
+|   |--- Gamma >  1.50
+|   |   |--- class: 1
+
+
+## tree_control; held out 210202
+
+|--- Gamma <= 1.50
+|   |--- Gamma <= 0.50
+|   |   |--- class: 0
+|   |--- Gamma >  0.50
+|   |   |--- class: 0
+|--- Gamma >  1.50
+|   |--- beta <= 0.95
+|   |   |--- class: 1
+|   |--- beta >  0.95
+|   |   |--- Gamma <= 3.50
+|   |   |   |--- class: 1
+|   |   |--- Gamma >  3.50
+|   |   |   |--- class: 1
+
+
+## tree_full; held out 210202
+
+|--- transport_cost_cv <= 0.68
+|   |--- Gamma <= 1.50
+|   |   |--- total_nominal_demand <= 3565.58
+|   |   |   |--- class: 0
+|   |   |--- total_nominal_demand >  3565.58
+|   |   |   |--- class: 0
+|   |--- Gamma >  1.50
+|   |   |--- incumbent_inventory_concentration_across_depots <= 0.62
+|   |   |   |--- class: 0
+|   |   |--- incumbent_inventory_concentration_across_depots >  0.62
+|   |   |   |--- class: 1
+|--- transport_cost_cv >  0.68
+|   |--- beta <= 0.95
+|   |   |--- class: 1
+|   |--- beta >  0.95
+|   |   |--- class: 0
+
+
+## tree_control; held out 210310
+
+|--- Gamma <= 1.50
+|   |--- Gamma <= 0.50
+|   |   |--- class: 0
+|   |--- Gamma >  0.50
+|   |   |--- class: 0
+|--- Gamma >  1.50
+|   |--- beta <= 0.95
+|   |   |--- class: 1
+|   |--- beta >  0.95
+|   |   |--- class: 1
+
+
+## tree_full; held out 210310
+
+|--- transport_cost_cv <= 0.68
+|   |--- Gamma <= 1.50
+|   |   |--- fixed_cost_cv <= 1.02
+|   |   |   |--- class: 0
+|   |   |--- fixed_cost_cv >  1.02
+|   |   |   |--- class: 0
+|   |--- Gamma >  1.50
+|   |   |--- class: 1
+|--- transport_cost_cv >  0.68
+|   |--- beta <= 0.95
+|   |   |--- class: 1
+|   |--- beta >  0.95
+|   |   |--- class: 0
+
+
+## tree_control; held out 210323
+
+|--- Gamma <= 0.50
+|   |--- class: 0
+|--- Gamma >  0.50
+|   |--- beta <= 0.95
+|   |   |--- class: 1
+|   |--- beta >  0.95
+|   |   |--- Gamma <= 3.50
+|   |   |   |--- class: 0
+|   |   |--- Gamma >  3.50
+|   |   |   |--- class: 1
+
+
+## tree_full; held out 210323
+
+|--- incumbent_inventory_concentration_across_depots <= 0.94
+|   |--- beta <= 0.95
+|   |   |--- class: 1
+|   |--- beta >  0.95
+|   |   |--- Gamma <= 3.50
+|   |   |   |--- class: 0
+|   |   |--- Gamma >  3.50
+|   |   |   |--- class: 0
+|--- incumbent_inventory_concentration_across_depots >  0.94
+|   |--- Gamma <= 0.50
+|   |   |--- class: 0
+|   |--- Gamma >  0.50
+|   |   |--- incumbent_capacity_utilization <= 0.06
+|   |   |   |--- class: 1
+|   |   |--- incumbent_capacity_utilization >  0.06
+|   |   |   |--- class: 1
+
+
+## tree_control; held out 210330
+
+|--- Gamma <= 0.50
+|   |--- class: 0
+|--- Gamma >  0.50
+|   |--- beta <= 0.95
+|   |   |--- class: 1
+|   |--- beta >  0.95
+|   |   |--- Gamma <= 3.50
+|   |   |   |--- class: 0
+|   |   |--- Gamma >  3.50
+|   |   |   |--- class: 1
+
+
+## tree_full; held out 210330
+
+|--- transport_cost_cv <= 0.68
+|   |--- Gamma <= 0.50
+|   |   |--- class: 0
+|   |--- Gamma >  0.50
+|   |   |--- fixed_cost_cv <= 0.94
+|   |   |   |--- class: 0
+|   |   |--- fixed_cost_cv >  0.94
+|   |   |   |--- class: 1
+|--- transport_cost_cv >  0.68
+|   |--- beta <= 0.95
+|   |   |--- class: 1
+|   |--- beta >  0.95
+|   |   |--- class: 0
+
+
+## tree_control; held out 210428
+
+|--- Gamma <= 1.50
+|   |--- Gamma <= 0.50
+|   |   |--- class: 0
+|   |--- Gamma >  0.50
+|   |   |--- class: 0
+|--- Gamma >  1.50
+|   |--- beta <= 0.95
+|   |   |--- class: 1
+|   |--- beta >  0.95
+|   |   |--- Gamma <= 3.50
+|   |   |   |--- class: 1
+|   |   |--- Gamma >  3.50
+|   |   |   |--- class: 1
+
+
+## tree_full; held out 210428
+
+|--- inventory_to_nominal_demand_ratio <= 0.15
+|   |--- Gamma <= 1.50
+|   |   |--- fixed_cost_cv <= 1.02
+|   |   |   |--- class: 0
+|   |   |--- fixed_cost_cv >  1.02
+|   |   |   |--- class: 0
+|   |--- Gamma >  1.50
+|   |   |--- class: 1
+|--- inventory_to_nominal_demand_ratio >  0.15
+|   |--- beta <= 0.95
+|   |   |--- class: 1
+|   |--- beta >  0.95
+|   |   |--- Gamma <= 3.50
+|   |   |   |--- class: 0
+|   |   |--- Gamma >  3.50
+|   |   |   |--- class: 0
+
+
+## tree_control; held out 210611
+
+|--- Gamma <= 1.50
+|   |--- Gamma <= 0.50
+|   |   |--- class: 0
+|   |--- Gamma >  0.50
+|   |   |--- class: 0
+|--- Gamma >  1.50
+|   |--- beta <= 0.95
+|   |   |--- class: 1
+|   |--- beta >  0.95
+|   |   |--- Gamma <= 3.50
+|   |   |   |--- class: 1
+|   |   |--- Gamma >  3.50
+|   |   |   |--- class: 1
+
+
+## tree_full; held out 210611
+
+|--- transport_cost_cv <= 0.68
+|   |--- Gamma <= 1.50
+|   |   |--- Gamma <= 0.50
+|   |   |   |--- class: 0
+|   |   |--- Gamma >  0.50
+|   |   |   |--- class: 0
+|   |--- Gamma >  1.50
+|   |   |--- incumbent_inventory_concentration_across_products <= 0.61
+|   |   |   |--- class: 1
+|   |   |--- incumbent_inventory_concentration_across_products >  0.61
+|   |   |   |--- class: 0
+|--- transport_cost_cv >  0.68
+|   |--- lambda_R <= 0.03
+|   |   |--- class: 0
+|   |--- lambda_R >  0.03
+|   |   |--- Gamma <= 1.50
+|   |   |   |--- class: 0
+|   |   |--- Gamma >  1.50
+|   |   |   |--- class: 0
+
+
+## tree_control; held out 210628
+
+|--- Gamma <= 1.50
+|   |--- Gamma <= 0.50
+|   |   |--- class: 0
+|   |--- Gamma >  0.50
+|   |   |--- class: 0
+|--- Gamma >  1.50
+|   |--- beta <= 0.95
+|   |   |--- class: 1
+|   |--- beta >  0.95
+|   |   |--- Gamma <= 3.50
+|   |   |   |--- class: 1
+|   |   |--- Gamma >  3.50
+|   |   |   |--- class: 1
+
+
+## tree_full; held out 210628
+
+|--- transport_cost_cv <= 0.68
+|   |--- Gamma <= 1.50
+|   |   |--- Gamma <= 0.50
+|   |   |   |--- class: 0
+|   |   |--- Gamma >  0.50
+|   |   |   |--- class: 0
+|   |--- Gamma >  1.50
+|   |   |--- incumbent_inventory_concentration_across_products <= 0.61
+|   |   |   |--- class: 1
+|   |   |--- incumbent_inventory_concentration_across_products >  0.61
+|   |   |   |--- class: 0
+|--- transport_cost_cv >  0.68
+|   |--- lambda_R <= 0.03
+|   |   |--- class: 0
+|   |--- lambda_R >  0.03
+|   |   |--- Gamma <= 1.50
+|   |   |   |--- class: 0
+|   |   |--- Gamma >  1.50
+|   |   |   |--- class: 0

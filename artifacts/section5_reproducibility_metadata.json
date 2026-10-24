@@ -1,0 +1,223 @@
+{
+  "schema": "section5_reproducibility_metadata_audit_v1",
+  "audit_scope": "paper Section 5 frozen metadata only; no optimization",
+  "audit_commit": "78bf8cddb165fcbfb49e3bafc4a8246d38a205b3",
+  "status_legend": [
+    "RECOVERED_FROM_FROZEN_ARTIFACT",
+    "SYSTEM_OBSERVED",
+    "DEFAULT_SOLVER_SETTING",
+    "NOT_RECOVERABLE"
+  ],
+  "machine": {
+    "cpu_exact_model": {
+      "value": "Intel(R) Core(TM) Ultra 5 225H",
+      "status": "SYSTEM_OBSERVED",
+      "note": "Current Windows CIM observation; frozen E1 artifacts retain only Intel64 Family 6 Model 197 Stepping 2, GenuineIntel."
+    },
+    "physical_cores": {"value": 14, "status": "SYSTEM_OBSERVED"},
+    "logical_processors": {
+      "value": 14,
+      "status": "RECOVERED_FROM_FROZEN_ARTIFACT",
+      "system_observed_value": 14
+    },
+    "installed_ram_bytes": {"value": 34359738368, "status": "SYSTEM_OBSERVED"},
+    "installed_ram_gib": {"value": 32.0, "status": "SYSTEM_OBSERVED"},
+    "os_usable_physical_ram_bytes": {"value": 33820106752, "status": "SYSTEM_OBSERVED"},
+    "os_usable_physical_ram_gib": {"value": 31.49742889404297, "status": "SYSTEM_OBSERVED"},
+    "formal_artifact_platform": {
+      "value": "Windows-11-10.0.26200-SP0",
+      "status": "RECOVERED_FROM_FROZEN_ARTIFACT"
+    },
+    "formal_artifact_processor_string": {
+      "value": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel",
+      "status": "RECOVERED_FROM_FROZEN_ARTIFACT"
+    }
+  },
+  "runtime": {
+    "python_version": {
+      "value": "3.12.7",
+      "status": "SYSTEM_OBSERVED",
+      "corroboration": "Frozen formal-acceptance provenance also records 3.12.7; E1-E7 result schema does not persist Python version."
+    },
+    "python_executable": {
+      "value": "C:\\Users\\Hu Jiaxin\\Documents\\Codex\\2026-07-07\\z\\work\\paper-code\\.venv\\Scripts\\python.exe",
+      "status": "SYSTEM_OBSERVED"
+    },
+    "gurobipy_version": {"value": "13.0.2", "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+    "native_gurobi_version": {"value": "13.0.2", "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+    "gurobipy_file": {
+      "value": "C:\\Users\\Hu Jiaxin\\Documents\\Codex\\2026-07-07\\z\\work\\paper-code\\.venv\\Lib\\site-packages\\gurobipy\\__init__.py",
+      "status": "SYSTEM_OBSERVED"
+    }
+  },
+  "formal_solver_profile": {
+    "profile_id": "gurobi-balanced-1e-8-v1",
+    "scope": "E1-E7 Direct/PRB formal solve paths",
+    "mixed_integer_parameters": {
+      "MIPGap": {"value": 0.0, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+      "FeasibilityTol": {"value": 1e-8, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+      "OptimalityTol": {"value": 1e-8, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+      "IntFeasTol": {"value": 1e-8, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+      "NumericFocus": {"value": 0, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+      "OutputFlag": {"value": 0, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"}
+    },
+    "continuous_subproblem_parameters": {
+      "FeasibilityTol": {"value": 1e-8, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+      "OptimalityTol": {"value": 1e-8, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+      "NumericFocus": {"value": 0, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+      "OutputFlag": {"value": 0, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"}
+    },
+    "not_explicitly_set": {
+      "Threads": {"value": "DEFAULT (automatic)", "status": "DEFAULT_SOLVER_SETTING"},
+      "TimeLimit": {"value": "DEFAULT", "status": "DEFAULT_SOLVER_SETTING"},
+      "MIPGapAbs": {"value": "DEFAULT", "status": "DEFAULT_SOLVER_SETTING"},
+      "Seed": {"value": "DEFAULT", "status": "DEFAULT_SOLVER_SETTING"},
+      "Presolve": {"value": "DEFAULT", "status": "DEFAULT_SOLVER_SETTING"},
+      "Method": {"value": "DEFAULT", "status": "DEFAULT_SOLVER_SETTING"},
+      "BarConvTol": {"value": "DEFAULT", "status": "DEFAULT_SOLVER_SETTING"},
+      "Cuts": {"value": "DEFAULT", "status": "DEFAULT_SOLVER_SETTING"},
+      "Heuristics": {"value": "DEFAULT", "status": "DEFAULT_SOLVER_SETTING"}
+    },
+    "non_numerical_parameters": {
+      "E1_Direct_LogFile": {"value": "per-run solver.log", "status": "RECOVERED_FROM_FROZEN_ARTIFACT"}
+    }
+  },
+  "benders_termination": {
+    "global_relative_tolerance": {"value": 1e-6, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+    "cut_tolerance": {"value": 1e-7, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+    "max_iterations": {"value": 500, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+    "master_feasibility_tolerance": {"value": 1e-8, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+    "master_optimality_tolerance": {"value": 1e-8, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+    "master_integrality_tolerance": {"value": 1e-8, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+    "subproblem_feasibility_tolerance": {"value": 1e-8, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+    "subproblem_optimality_tolerance": {"value": 1e-8, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+    "exact_objective_certification_tolerance": {"value": 1e-4, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+    "global_coupling_residual_tolerance": {"value": 1e-6, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+    "budget_feasibility_reporting_tolerance": {"value": 1e-6, "status": "RECOVERED_FROM_FROZEN_ARTIFACT"},
+    "termination_rule_prb": {
+      "value": "relative_gap <= 1e-6 AND violated_product_risk_states == 0, followed by full exact product-state recertification",
+      "status": "RECOVERED_FROM_FROZEN_ARTIFACT"
+    },
+    "termination_rule_aggregate": {
+      "value": "relative_gap <= 1e-6 AND no aggregate cut is added, followed by fixed-first-stage exact recertification",
+      "status": "RECOVERED_FROM_FROZEN_ARTIFACT"
+    }
+  },
+  "material_reconfiguration": {
+    "ri_definition": "sum_ij |x_ij-x0_ij| / sum_ij x0_ij",
+    "threshold": 1e-6,
+    "material_formula": "RI > 1e-6",
+    "nonmaterial_formula": "RI <= 1e-6",
+    "status": "RECOVERED_FROM_FROZEN_ARTIFACT",
+    "sources": [
+      "experiments/configs/formal/e6_budget_risk_interaction_authorization.json:60",
+      "experiments/configs/e7_risk_friction_interaction_v1.json:31",
+      "experiments/run_e6_budget_risk_local.py:550",
+      "experiments/run_e7_risk_friction_local.py:524",
+      "scripts/summarize_e4_gamma_results.py:294",
+      "scripts/summarize_e4_gamma_results.py:304-309"
+    ]
+  },
+  "controlled_scaling": {
+    "paper_final_namespace_note": {
+      "value": "The final controlled simulation names are L10 and XL10. The literal L and XL_low artifacts are development-only and are not paper-final observations.",
+      "status": "RECOVERED_FROM_FROZEN_ARTIFACT"
+    },
+    "paper_final_scales": [
+      {
+        "name": "L10", "I": 25, "R": 24, "J": 12, "uncertainty_components": 288,
+        "Gamma": 2, "global_cardinality_extreme_scenarios": 41617,
+        "product_local_modes_per_product": 301, "product_risk_blocks": 3612,
+        "seeds": "20260921-20260930", "status": "RECOVERED_FROM_FROZEN_ARTIFACT"
+      },
+      {
+        "name": "XL10", "I": 30, "R": 30, "J": 14, "uncertainty_components": 420,
+        "Gamma": 2, "global_cardinality_extreme_scenarios": 88411,
+        "product_local_modes_per_product": 466, "product_risk_blocks": 6524,
+        "seeds": "20260921-20260930", "status": "RECOVERED_FROM_FROZEN_ARTIFACT"
+      }
+    ],
+    "development_artifacts_requested_by_literal_name": [
+      {
+        "name": "L", "I": 25, "R": 24, "J": 12, "uncertainty_components": 288,
+        "Gamma": 2, "global_cardinality_extreme_scenarios": 41617,
+        "product_local_modes_per_product": 301, "product_risk_blocks": 3612,
+        "seed": 20260911, "paper_final_observation": false,
+        "status": "RECOVERED_FROM_FROZEN_ARTIFACT"
+      },
+      {
+        "name": "XL_low", "I": 30, "R": 30, "J": 14, "uncertainty_components": 420,
+        "Gamma": 2, "global_cardinality_extreme_scenarios": 88411,
+        "product_local_modes_per_product": 466, "product_risk_blocks": 6524,
+        "seed": 20260911, "paper_final_observation": false,
+        "status": "RECOVERED_FROM_FROZEN_ARTIFACT"
+      }
+    ],
+    "construction": {
+      "value": "deterministic_empirical_bootstrap_v1: seeded donor selection from the eight Renault formal cases; empirical product/region/depot attributes are copied and scale-dependent capacity, fixed cost, UB, and transport are rescaled by frozen demand/volume ratios",
+      "status": "RECOVERED_FROM_FROZEN_ARTIFACT"
+    }
+  },
+  "geography": {
+    "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
+    "mapping_sha256": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+    "raw_archive": {
+      "logical_path": "external://renault-raw/renault_data_pipeline.zip",
+      "sha256": "38fa3aa486d1974e3d037d9e1cfc2af3340b0d8d132a96cc4e409ce575c1ea33",
+      "status": "RECOVERED_FROM_FROZEN_ARTIFACT"
+    },
+    "customer_coordinate_source": "renault_data_pipeline/data/renault_processed/<case>/customers.csv",
+    "customer_id_field": "customer_code",
+    "depot_coordinate_source": "renault_data_pipeline/data/renault_processed/<case>/depots.csv",
+    "depot_id_field": "depot_code",
+    "latitude_field": "latitude",
+    "longitude_field": "longitude",
+    "distance_source": "renault_data_pipeline/data/renault_processed/<case>/distances.csv (with a corresponding raw distances.csv)",
+    "status": "RECOVERED_FROM_FROZEN_ARTIFACT",
+    "coordinate_csv": {
+      "path": "artifacts/paper_geographic_network_coordinates.csv",
+      "sha256": "520b3f0b6f9cebd880defa9b279e50a9b95e3de3fe682874ca41bbfc608ae36c",
+      "rows": 5045,
+      "customer_rows": 4923,
+      "depot_rows": 122,
+      "missing_coordinate_rows": 0,
+      "status": "RECOVERED_FROM_FROZEN_ARTIFACT"
+    },
+    "frozen_medoids": [
+      {"region_id": 1, "customer_id": "40771302", "latitude": 35.66, "longitude": -5.67},
+      {"region_id": 2, "customer_id": "1925732", "latitude": 41.89, "longitude": -5.06},
+      {"region_id": 3, "customer_id": "2571500", "latitude": 40.49, "longitude": -3.41},
+      {"region_id": 4, "customer_id": "28237800", "latitude": 54.53, "longitude": -1.36},
+      {"region_id": 5, "customer_id": "239414", "latitude": 48.37, "longitude": 0.56},
+      {"region_id": 6, "customer_id": "2814600", "latitude": 41.57, "longitude": 1.67},
+      {"region_id": 7, "customer_id": "7235904", "latitude": 48.82, "longitude": 4.98},
+      {"region_id": 8, "customer_id": "3043109", "latitude": 50.1, "longitude": 11.38},
+      {"region_id": 9, "customer_id": "26367200", "latitude": 47.86, "longitude": 17.78},
+      {"region_id": 10, "customer_id": "11509705", "latitude": 49.83, "longitude": 18.97},
+      {"region_id": 11, "customer_id": "23342502", "latitude": 44.97, "longitude": 24.93},
+      {"region_id": 12, "customer_id": "27752300", "latitude": 41.62, "longitude": 25.38}
+    ]
+  },
+  "not_recoverable": [
+    {
+      "item": "CPU exact marketing model from E1-E7 frozen result artifact alone",
+      "status": "NOT_RECOVERABLE",
+      "note": "The exact model was recovered only by current system observation."
+    },
+    {
+      "item": "Physical core count from E1-E7 frozen result artifact alone",
+      "status": "NOT_RECOVERABLE",
+      "note": "The value was recovered only by current system observation."
+    },
+    {
+      "item": "Installed RAM from E1-E7 frozen result artifact alone",
+      "status": "NOT_RECOVERABLE",
+      "note": "The value was recovered only by current system observation; development artifacts independently record 31.497 GiB usable physical memory."
+    }
+  ],
+  "optimization_solves_executed": 0,
+  "model_changed": false,
+  "data_changed": false,
+  "algorithm_changed": false,
+  "formal_results_changed": false
+}

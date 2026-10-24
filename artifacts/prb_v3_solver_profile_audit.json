@@ -1,0 +1,87 @@
+{
+  "status": "PASS",
+  "scope": "XL_low products 0, 7, 13; four deterministic RHS states each",
+  "unchanged_tolerances": true,
+  "selected_profile": "AUTO",
+  "selection_rule": "minimum total solve time; ties retain the existing profile",
+  "rows": [
+    {
+      "profile": "AUTO",
+      "method": null,
+      "presolve": null,
+      "build_sum_seconds": 5.67782670003362,
+      "build_max_seconds": 2.0201069000177085,
+      "solve_sum_seconds": 4.096915699832607,
+      "solve_median_seconds": 0.26413495000451803,
+      "extraction_sum_seconds": 0.009977000067010522,
+      "update_sum_seconds": 0.11529780004639179,
+      "value_checksum": 2532132.7006317237,
+      "absolute_checksum_difference": 0.0
+    },
+    {
+      "profile": "DUAL_P0",
+      "method": 1,
+      "presolve": 0,
+      "build_sum_seconds": 6.311927799950354,
+      "build_max_seconds": 2.1172838999773376,
+      "solve_sum_seconds": 14.17672530002892,
+      "solve_median_seconds": 0.6330399500147905,
+      "extraction_sum_seconds": 0.007555199961643666,
+      "update_sum_seconds": 0.14911609987029806,
+      "value_checksum": 2532132.7006317237,
+      "absolute_checksum_difference": 0.0
+    },
+    {
+      "profile": "DUAL_P1",
+      "method": 1,
+      "presolve": 1,
+      "build_sum_seconds": 6.587845700036269,
+      "build_max_seconds": 2.230032999999821,
+      "solve_sum_seconds": 4.673580000002403,
+      "solve_median_seconds": 0.31150509999133646,
+      "extraction_sum_seconds": 0.011368100007530302,
+      "update_sum_seconds": 0.1786050999071449,
+      "value_checksum": 2532132.7006317237,
+      "absolute_checksum_difference": 0.0
+    },
+    {
+      "profile": "DUAL_P2",
+      "method": 1,
+      "presolve": 2,
+      "build_sum_seconds": 6.683241999999154,
+      "build_max_seconds": 2.279391599993687,
+      "solve_sum_seconds": 4.799250399984885,
+      "solve_median_seconds": 0.3000188500445802,
+      "extraction_sum_seconds": 0.008726299914997071,
+      "update_sum_seconds": 0.19545500009553507,
+      "value_checksum": 2532132.7006317237,
+      "absolute_checksum_difference": 0.0
+    },
+    {
+      "profile": "PRIMAL_P0",
+      "method": 0,
+      "presolve": 0,
+      "build_sum_seconds": 6.91103259997908,
+      "build_max_seconds": 2.4991643999819644,
+      "solve_sum_seconds": 10.465084000024945,
+      "solve_median_seconds": 0.7220734999864362,
+      "extraction_sum_seconds": 0.012246799829881638,
+      "update_sum_seconds": 0.24874149984680116,
+      "value_checksum": 2532132.7006317237,
+      "absolute_checksum_difference": 0.0
+    },
+    {
+      "profile": "PRIMAL_P1",
+      "method": 0,
+      "presolve": 1,
+      "build_sum_seconds": 7.033911700011231,
+      "build_max_seconds": 2.458595099975355,
+      "solve_sum_seconds": 4.548139999969862,
+      "solve_median_seconds": 0.3364834999956656,
+      "extraction_sum_seconds": 0.00984219991369173,
+      "update_sum_seconds": 0.21841920004226267,
+      "value_checksum": 2532132.7006317237,
+      "absolute_checksum_difference": 0.0
+    }
+  ]
+}

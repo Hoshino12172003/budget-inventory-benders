@@ -1,0 +1,8 @@
+grid,scale,I,R,J,R_times_J,Gamma,first_stage_variables,pure_z_binary,pure_continuous,pure_total_variables,pure_constraints,prb_product_risk_blocks,prb_master_surrogates,prb_product_cut_dimension,aggregate_cut_dimension,direct_variables,direct_constraints,resource_risk,formal_grid_status
+candidate,S,15,12,8,96,2,375,96,416,512,2113,632,25,15,120,122376,18629,LOW,RECOMMENDED_AS_S
+candidate,M,25,24,12,288,2,925,288,1176,1464,9217,3612,37,25,300,2258462,184929,MODERATE_HIGH,RECOMMENDED_AS_L
+candidate,L,40,36,16,576,2,1960,576,2384,2960,27073,10672,49,40,640,15764553,833890,RESOURCE_RISK,EXCLUDED
+candidate,XL,60,48,24,1152,2,4380,1152,4920,6072,77185,28248,73,60,1440,82742845,3110546,RESOURCE_RISK,EXCLUDED
+recommended,S,15,12,8,96,2,375,96,416,512,2113,632,25,15,120,122376,18629,LOW,PROPOSED
+recommended,M,20,16,10,160,2,620,160,690,850,4321,1370,31,20,200,462341,52547,MODERATE,PROPOSED
+recommended,L,25,24,12,288,2,925,288,1176,1464,9217,3612,37,25,300,2258462,184929,MODERATE_HIGH,PROPOSED

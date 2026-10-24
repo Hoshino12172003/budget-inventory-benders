@@ -1,0 +1,14 @@
+{
+  "attempt": "experiments/results/e1_algorithm_benchmark/attempt_002",
+  "immutable_source_preserved": true,
+  "corrections": [
+    {
+      "run_id": "E1-210202-PRB",
+      "field": "global_coupling_runtime_seconds",
+      "stored_value": 0.1072406000457704,
+      "reporting_value": null,
+      "reason": "The reused acceptance result measured certification runtime, not a separate global-coupling runtime."
+    }
+  ],
+  "optimization_results_affected": false
+}

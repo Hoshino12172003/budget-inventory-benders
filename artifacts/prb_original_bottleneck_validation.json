@@ -1,0 +1,69 @@
+{
+  "schema": "prb_original_bottleneck_validation_v1",
+  "development_only": true,
+  "paper_final_observation": false,
+  "question_A_global_oracle_bottleneck": "EVIDENCE_INSUFFICIENT",
+  "question_B_product_level_master_benefit": "SUPPORTED",
+  "overall": "PRB_MASTER_BENEFIT_ONLY",
+  "original_motivation": {
+    "implementation_commit": "c6be0bcc4a19c7f05d6fec8ccb2ac2011aeb2764",
+    "contemporaneous_scope": "correctness implementation, not a performance experiment",
+    "facts": [
+      "product-wise recourse separability",
+      "exact global Gamma composition from local budgets",
+      "avoidance of explicit 4657-scenario construction"
+    ],
+    "unverified_at_introduction": [
+      "global adversarial oracle is computationally difficult",
+      "product-level cuts improve runtime or lower-bound convergence"
+    ]
+  },
+  "historical_evidence": {
+    "source_commit": "b78f6c976984ba22602902ed325eb1442d572ba4",
+    "audit_commit": "0dd11cc5ffe6230eb865d48a31bd68982062ecec",
+    "runtime_seconds": 1800.1849,
+    "cuts": 2154,
+    "master_share": 0.8453,
+    "oracle_share": 0.1415,
+    "certified": false,
+    "directly_comparable": false
+  },
+  "existing_exact_evidence": {
+    "comparison_points": 10,
+    "aggregate_over_pure_total_time_ratio_range": [3.27, 50.55],
+    "aggregate_over_pure_oracle_time_ratio_range": [3.82, 127.39],
+    "prb_over_aggregate_total_time_ratio_range": [0.73, 0.91],
+    "prb_faster_than_aggregate_count": 10,
+    "aggregate_iteration_range": [7, 10],
+    "prb_iteration_range": [4, 6]
+  },
+  "j_scaling": {
+    "fixed": {"I": 25, "R": 24, "Gamma": 2, "seed": 20260911},
+    "predeclared_J": [12, 24, 48, 96],
+    "patterns_per_product": 301,
+    "method_invocations": 9,
+    "exact_certified_three_method_points": [12],
+    "points": {
+      "12": {
+        "pure": {"status": "OPTIMAL", "certified": true, "T_core_seconds": 0.7853891999984626, "oracle_seconds": 0.2188324000017019, "iterations": 7, "cuts": 6, "peak_memory_gib": 0.05651092529296875},
+        "aggregate": {"status": "OPTIMAL", "certified": true, "T_core_seconds": 25.516722200001823, "oracle_seconds": 14.194715999998152, "iterations": 7, "cuts": 6, "peak_memory_gib": 1.8139572143554688},
+        "prb": {"status": "OPTIMAL", "certified": true, "T_core_seconds": 23.143569500010926, "oracle_seconds": 12.055477400004747, "iterations": 6, "cuts": 48, "peak_memory_gib": 1.8147048950195312},
+        "max_objective_difference": 4.656612873077393e-10
+      },
+      "24": {"pure": "UNCERTIFIED_ZERO_GAP", "aggregate": "TIME_LIMIT", "prb": "TIME_LIMIT"},
+      "48": {"pure": "MASTER_SUBOPTIMAL_STATUS_13", "aggregate": "TIME_LIMIT", "prb": "TIME_LIMIT"},
+      "96": {"status": "CANONICAL_X0_PREPARATION_NUMERICAL_FAILURE", "method_invocations": 0}
+    },
+    "resource_stops": 0,
+    "maximum_peak_process_tree_memory_gib": 6.497371673583984,
+    "timeout_seconds": 900,
+    "process_tree_hard_stop_gib": 14
+  },
+  "formal_optimization_runs": 0,
+  "development_method_runs": 9,
+  "development_preparation_attempts": 9,
+  "tables": [
+    "table_prb_bottleneck_existing_evidence.csv",
+    "table_prb_j_scaling_development.csv"
+  ]
+}

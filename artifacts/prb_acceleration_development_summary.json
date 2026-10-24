@@ -1,0 +1,57 @@
+{
+  "status": "ACCELERATION_SUCCESS",
+  "development_only": true,
+  "original_prb_unchanged": true,
+  "model_changed": false,
+  "tolerances_changed": false,
+  "selective_separation_implemented": false,
+  "full_exact_final_verification": true,
+  "parallel_workers": 8,
+  "product_subproblem_threads": 1,
+  "cases": {
+    "210202": {
+      "objective_difference": 0.0,
+      "recourse_difference": 1.1641532182693481e-10,
+      "maximum_x_difference": 0.0,
+      "same_y": true,
+      "feasible": true,
+      "maximum_feasibility_violation": 0.0,
+      "exact_certification": true,
+      "global_coupling_pass": true,
+      "original_core_seconds": 1.2333677001297474,
+      "accelerated_core_seconds": 1.781168500019703,
+      "original_oracle_seconds": 0.5004560998640954,
+      "accelerated_oracle_seconds": 0.09961559996008873
+    },
+    "L": {
+      "objective_difference": 0.0,
+      "recourse_difference": 0.0,
+      "maximum_x_difference": 0.0,
+      "same_y": true,
+      "feasible": true,
+      "maximum_feasibility_violation": 0.0,
+      "exact_certification": true,
+      "global_coupling_pass": true,
+      "original_core_seconds": 22.586865600000237,
+      "accelerated_core_seconds": 4.191853000025731,
+      "original_oracle_seconds": 11.59702709999965,
+      "accelerated_oracle_seconds": 1.4872165000997484
+    },
+    "XL_low": {
+      "objective_difference": 1.862645149230957e-09,
+      "recourse_difference": 1.862645149230957e-09,
+      "maximum_x_difference": 5.684341886080802e-14,
+      "same_y": true,
+      "feasible": true,
+      "maximum_feasibility_violation": 2.842170943040401e-14,
+      "exact_certification": true,
+      "global_coupling_pass": true,
+      "global_coupling_error": 9.685754776000977e-08,
+      "original_core_seconds": 65.09377610000001,
+      "accelerated_core_seconds": 9.50632799998857,
+      "original_oracle_seconds": 33.3956075000001,
+      "accelerated_oracle_seconds": 3.648146800114773
+    }
+  },
+  "management_experiments_rerun": false
+}

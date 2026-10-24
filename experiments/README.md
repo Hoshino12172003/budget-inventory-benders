@@ -1,6 +1,6 @@
 # Formal experiment protocol
 
-These files contain the frozen, protocol-ready E1–E7 design but cannot execute it. All `.yaml` files are JSON-compatible YAML and deliberately set `formal_run_authorized` to `false`.
+These files contain the frozen experiment design. E2–E7 remain unauthorized; the paper-final empirical E1 manifest separately authorizes exactly 16 Renault runs. The `.yaml` protocol files remain JSON-compatible YAML and fail closed.
 
 From the repository root:
 

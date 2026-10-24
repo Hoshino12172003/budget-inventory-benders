@@ -1,0 +1,224 @@
+{
+  "all_fold_case_overlaps_empty": true,
+  "classification_detail": {
+    "balanced_accuracy_margins": {
+      "gamma_threshold": 0.024810400866738913,
+      "gradient_boosting_control": 0.147887323943662,
+      "majority": 0.5374864572047671
+    },
+    "best_full_model": "gradient_boosting_full",
+    "false_negative_rate_delta_vs_control": 0.0,
+    "full_nonworse_than_control_fold_count": 6,
+    "matched_control_model": "gradient_boosting_control",
+    "rule": {
+      "NO_EVIDENCE": "otherwise",
+      "PROMISING": "best full BA >= each comparator by 0.05, nonworse in >=6/8 folds, FNR increase <=0.05",
+      "WEAK_SIGNAL": "not PROMISING, but a BA margin >=0.02 and FNR increase <=0.10"
+    }
+  },
+  "control_only_feature_columns": [
+    "Gamma",
+    "beta",
+    "lambda_R"
+  ],
+  "deduplication": {
+    "case_count": 8,
+    "duplicate_label_conflicts": 0,
+    "duplicates_removed": 64,
+    "negative_labels": 71,
+    "positive_labels": 65,
+    "source_row_count": 200,
+    "source_rows": {
+      "E2": 8,
+      "E3": 40,
+      "E4": 40,
+      "E5": 40,
+      "E7": 72
+    },
+    "source_sha256": {
+      "E2": "b2e006a7c79bda009612d01413bf7809542ed89623370b11b9a28144123066a1",
+      "E3": "f2202333db88b9caec0ef55d39df7182c7e4c26bfc78d710710a79e9bee19705",
+      "E4": "7a0474086a1097f1ecb17f5610d456e5a9296e8456047496648c124eaccb7e79",
+      "E5": "638f24cf70fd5bfa9a6562a7f1aaefb66d0f3bc297230e93d65b107cf71b6aff",
+      "E7": "780dc04284db8d7008217cf59e593b5982413a1e8370f65b8e538d5c4f15f6ad"
+    },
+    "states_per_case": {
+      "210129": 17,
+      "210202": 17,
+      "210310": 17,
+      "210323": 17,
+      "210330": 17,
+      "210428": 17,
+      "210611": 17,
+      "210628": 17
+    },
+    "unique_state_count": 136
+  },
+  "identifier_columns_used_as_features": [],
+  "label_only_post_solve_field": "RI/material_reconfiguration",
+  "loco_folds": [
+    {
+      "case_overlap": [],
+      "held_out_case": "210129",
+      "test_cases": [
+        "210129"
+      ],
+      "train_cases": [
+        "210202",
+        "210310",
+        "210323",
+        "210330",
+        "210428",
+        "210611",
+        "210628"
+      ]
+    },
+    {
+      "case_overlap": [],
+      "held_out_case": "210202",
+      "test_cases": [
+        "210202"
+      ],
+      "train_cases": [
+        "210129",
+        "210310",
+        "210323",
+        "210330",
+        "210428",
+        "210611",
+        "210628"
+      ]
+    },
+    {
+      "case_overlap": [],
+      "held_out_case": "210310",
+      "test_cases": [
+        "210310"
+      ],
+      "train_cases": [
+        "210129",
+        "210202",
+        "210323",
+        "210330",
+        "210428",
+        "210611",
+        "210628"
+      ]
+    },
+    {
+      "case_overlap": [],
+      "held_out_case": "210323",
+      "test_cases": [
+        "210323"
+      ],
+      "train_cases": [
+        "210129",
+        "210202",
+        "210310",
+        "210330",
+        "210428",
+        "210611",
+        "210628"
+      ]
+    },
+    {
+      "case_overlap": [],
+      "held_out_case": "210330",
+      "test_cases": [
+        "210330"
+      ],
+      "train_cases": [
+        "210129",
+        "210202",
+        "210310",
+        "210323",
+        "210428",
+        "210611",
+        "210628"
+      ]
+    },
+    {
+      "case_overlap": [],
+      "held_out_case": "210428",
+      "test_cases": [
+        "210428"
+      ],
+      "train_cases": [
+        "210129",
+        "210202",
+        "210310",
+        "210323",
+        "210330",
+        "210611",
+        "210628"
+      ]
+    },
+    {
+      "case_overlap": [],
+      "held_out_case": "210611",
+      "test_cases": [
+        "210611"
+      ],
+      "train_cases": [
+        "210129",
+        "210202",
+        "210310",
+        "210323",
+        "210330",
+        "210428",
+        "210628"
+      ]
+    },
+    {
+      "case_overlap": [],
+      "held_out_case": "210628",
+      "test_cases": [
+        "210628"
+      ],
+      "train_cases": [
+        "210129",
+        "210202",
+        "210310",
+        "210323",
+        "210330",
+        "210428",
+        "210611"
+      ]
+    }
+  ],
+  "model_feature_columns": [
+    "Gamma",
+    "beta",
+    "lambda_R",
+    "total_nominal_demand",
+    "total_deviation",
+    "deviation_to_nominal_ratio",
+    "nominal_demand_mean",
+    "nominal_demand_std",
+    "nominal_demand_cv",
+    "maximum_nominal_demand_to_mean_ratio",
+    "demand_density",
+    "regional_demand_concentration",
+    "product_demand_concentration",
+    "total_incumbent_inventory",
+    "inventory_to_nominal_demand_ratio",
+    "incumbent_inventory_concentration_across_depots",
+    "incumbent_inventory_concentration_across_products",
+    "total_capacity",
+    "incumbent_capacity_utilization",
+    "capacity_slack_ratio",
+    "mean_transport_cost",
+    "transport_cost_cv",
+    "mean_inventory_cost",
+    "inventory_cost_cv",
+    "mean_shortage_penalty",
+    "shortage_penalty_cv",
+    "mean_service_penalty",
+    "fixed_cost_cv"
+  ],
+  "optimization_runs": 0,
+  "post_solve_columns_used_as_features": [],
+  "prohibited_feature_intersection": [],
+  "solver_imported_or_called": false,
+  "status": "PASS"
+}
