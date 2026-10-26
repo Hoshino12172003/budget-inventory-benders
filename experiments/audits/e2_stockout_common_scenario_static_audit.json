@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "E2_STOCKOUT_COMMON_SCENARIO_V1",
+  "status": "PASS",
+  "checks": {
+    "identity_manifest_hash_valid": true,
+    "scenario_manifest_hash_valid": true,
+    "formal_run_authorized_is_false": true,
+    "identity_requires_human_confirmation": true,
+    "all_scenario_counts_are_4657": true,
+    "all_dimensions_are_12_by_8": true,
+    "no_first_stage_solver_call_path": true,
+    "only_existing_is_pilot_authorized": true,
+    "no_policy_is_formal_authorized": true
+  },
+  "source_audit": {
+    "source_path": "E:/paper-code/paper-code2/budget-inventory-benders-frozen-51aebd0/src/robust_inventory_reconfiguration/e2_stockout_common_scenario.py",
+    "source_sha256": "52a1048c0b3b95e8ceef062b2d4a405c11b0215a9f0b9fb54ac6b38c84e9af07",
+    "forbidden_first_stage_call_hits": [],
+    "pass": true
+  }
+}

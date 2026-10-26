@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "E2_STOCKOUT_COMMON_SCENARIO_V1",
+  "formal_run_authorized": false,
+  "pilot_authorized": true,
+  "pilot_case_id": "210202",
+  "pilot_policy_id": "EXISTING_CANONICAL_210202",
+  "pilot_scenario_ids": [
+    "S0000",
+    "S0001",
+    "S0097"
+  ],
+  "pilot_max_scenarios": 8,
+  "gamma": 2,
+  "scenario_definition": "canonical region-major binary shocks with cardinality <= Gamma",
+  "reporting_tie_break": "minimize sum of squared shortages within 1e-7 of each product-local economic optimum",
+  "reporting_tie_break_tolerance": 1e-07,
+  "solver_profile_id": "gurobi-balanced-1e-8-v1",
+  "solver_native_profile": {
+    "MIPGap": 0.0,
+    "FeasibilityTol": 1e-08,
+    "OptimalityTol": 1e-08,
+    "IntFeasTol": 1e-08,
+    "NumericFocus": 0,
+    "BarConvTol": null
+  },
+  "threads": 1,
+  "python_version": "3.12.7",
+  "solver_version": "13.0.1",
+  "identity_manifest_sha256": "220699ce960c3607ef4d805f7f4c6ca93ac70f07b6de71104948eff837a5c5e2",
+  "cases": [
+    {
+      "case_id": "210129",
+      "instance_path": "data/formal_instances_v2/210129.json",
+      "instance_sha256": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3",
+      "num_depots": 15,
+      "num_regions": 12,
+      "num_products": 8,
+      "uncertain_components": 96,
+      "scenario_count": 4657,
+      "scenario_order_sha256": "c3c69f893abdc93c1b7290758d34ccb48e7d77e2b20f70b2b61762a6e1a11656",
+      "policy_coordinate_hashes": {
+        "EXISTING_CANONICAL_210129": "7f1c1ec2c945cf3671f63d2d6084c28e1574c5422813b1f09f169ef7cf1e7cca",
+        "NOMINAL_CANONICAL_REDECLARED_210129": "7f1c1ec2c945cf3671f63d2d6084c28e1574c5422813b1f09f169ef7cf1e7cca",
+        "ROBUST_EQUIVALENT_SCAL_BASE_210129": "d0578e48d010904d1aff85a894f63197b9ab011b5c6de6d54600debedfcf2737"
+      }
+    },
+    {
+      "case_id": "210202",
+      "instance_path": "data/formal_instances_v2/210202.json",
+      "instance_sha256": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+      "num_depots": 15,
+      "num_regions": 12,
+      "num_products": 8,
+      "uncertain_components": 96,
+      "scenario_count": 4657,
+      "scenario_order_sha256": "c3c69f893abdc93c1b7290758d34ccb48e7d77e2b20f70b2b61762a6e1a11656",
+      "policy_coordinate_hashes": {
+        "EXISTING_CANONICAL_210202": "608c0e17ebdc96e2594050536131ac649c8487e54a5dc47c1a9eb02f3860963a",
+        "NOMINAL_CANONICAL_REDECLARED_210202": "608c0e17ebdc96e2594050536131ac649c8487e54a5dc47c1a9eb02f3860963a",
+        "ROBUST_EQUIVALENT_SCAL_BASE_210202": "12c4fb2c017cddc9355aae458af94c8a1c26902e5204464b2dcb6aae6db52458"
+      }
+    },
+    {
+      "case_id": "210310",
+      "instance_path": "data/formal_instances_v2/210310.json",
+      "instance_sha256": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+      "num_depots": 16,
+      "num_regions": 12,
+      "num_products": 8,
+      "uncertain_components": 96,
+      "scenario_count": 4657,
+      "scenario_order_sha256": "c3c69f893abdc93c1b7290758d34ccb48e7d77e2b20f70b2b61762a6e1a11656",
+      "policy_coordinate_hashes": {
+        "EXISTING_CANONICAL_210310": "a7040d6d8d5689c1929a35caeeadb91d95ac99c5421b376b1ca7d9e89ef14776",
+        "NOMINAL_CANONICAL_REDECLARED_210310": "a7040d6d8d5689c1929a35caeeadb91d95ac99c5421b376b1ca7d9e89ef14776",
+        "ROBUST_EQUIVALENT_SCAL_BASE_210310": "941f1507aeaa9c507ee8205ccebc238086e898ba0df44e7792b24bee99f4a67f"
+      }
+    },
+    {
+      "case_id": "210323",
+      "instance_path": "data/formal_instances_v2/210323.json",
+      "instance_sha256": "df5fcbaa54a73277948f676fae151d85ad621d9ef417b0906b04066b1ef1109c",
+      "num_depots": 13,
+      "num_regions": 12,
+      "num_products": 8,
+      "uncertain_components": 96,
+      "scenario_count": 4657,
+      "scenario_order_sha256": "c3c69f893abdc93c1b7290758d34ccb48e7d77e2b20f70b2b61762a6e1a11656",
+      "policy_coordinate_hashes": {
+        "EXISTING_CANONICAL_210323": "18f36ad865f2957c6134617a5e52635c3005c37509bc93c208bc549ff07ac496",
+        "NOMINAL_CANONICAL_REDECLARED_210323": "18f36ad865f2957c6134617a5e52635c3005c37509bc93c208bc549ff07ac496",
+        "ROBUST_EQUIVALENT_SCAL_BASE_210323": "4583b9eef023ffa2cc0eb96a34534180b1f178b1b56cc3ef1733ad723689f857"
+      }
+    },
+    {
+      "case_id": "210330",
+      "instance_path": "data/formal_instances_v2/210330.json",
+      "instance_sha256": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+      "num_depots": 11,
+      "num_regions": 12,
+      "num_products": 8,
+      "uncertain_components": 96,
+      "scenario_count": 4657,
+      "scenario_order_sha256": "c3c69f893abdc93c1b7290758d34ccb48e7d77e2b20f70b2b61762a6e1a11656",
+      "policy_coordinate_hashes": {
+        "EXISTING_CANONICAL_210330": "c39d687b4b63901f07e0ef84602a12de824baed53ca8fde1f7c520f316f84832",
+        "NOMINAL_CANONICAL_REDECLARED_210330": "c39d687b4b63901f07e0ef84602a12de824baed53ca8fde1f7c520f316f84832",
+        "ROBUST_EQUIVALENT_SCAL_BASE_210330": "127a10f2ff7af50765151bc1a65772780f74c2fa5f138e62f8af4737570d315e"
+      }
+    },
+    {
+      "case_id": "210428",
+      "instance_path": "data/formal_instances_v2/210428.json",
+      "instance_sha256": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+      "num_depots": 18,
+      "num_regions": 12,
+      "num_products": 8,
+      "uncertain_components": 96,
+      "scenario_count": 4657,
+      "scenario_order_sha256": "c3c69f893abdc93c1b7290758d34ccb48e7d77e2b20f70b2b61762a6e1a11656",
+      "policy_coordinate_hashes": {
+        "EXISTING_CANONICAL_210428": "bde8646c6c0db8ae661952596e1fe468f7912b7c53f57ab17c176f6dfd3325f8",
+        "NOMINAL_CANONICAL_REDECLARED_210428": "bde8646c6c0db8ae661952596e1fe468f7912b7c53f57ab17c176f6dfd3325f8",
+        "ROBUST_EQUIVALENT_SCAL_BASE_210428": "115dc218627882cd97d0ca4683880c244fb76ee9b6cbda61206f7c610957c3fe"
+      }
+    },
+    {
+      "case_id": "210611",
+      "instance_path": "data/formal_instances_v2/210611.json",
+      "instance_sha256": "f244641d602348af8b2ac31a2bb948b4b0ebca8e33ff446dd07298e3e578a9bf",
+      "num_depots": 19,
+      "num_regions": 12,
+      "num_products": 8,
+      "uncertain_components": 96,
+      "scenario_count": 4657,
+      "scenario_order_sha256": "c3c69f893abdc93c1b7290758d34ccb48e7d77e2b20f70b2b61762a6e1a11656",
+      "policy_coordinate_hashes": {
+        "EXISTING_CANONICAL_210611": "892812b40286d821ff107f48bc829d6653069ee2424d9fde65dbda4c7acecb17",
+        "NOMINAL_CANONICAL_REDECLARED_210611": "892812b40286d821ff107f48bc829d6653069ee2424d9fde65dbda4c7acecb17",
+        "ROBUST_EQUIVALENT_SCAL_BASE_210611": "02103fa83b872738ab4a57b9aa9824d591e20942f48c1867d08c3346a1785e24"
+      }
+    },
+    {
+      "case_id": "210628",
+      "instance_path": "data/formal_instances_v2/210628.json",
+      "instance_sha256": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677",
+      "num_depots": 15,
+      "num_regions": 12,
+      "num_products": 8,
+      "uncertain_components": 96,
+      "scenario_count": 4657,
+      "scenario_order_sha256": "c3c69f893abdc93c1b7290758d34ccb48e7d77e2b20f70b2b61762a6e1a11656",
+      "policy_coordinate_hashes": {
+        "EXISTING_CANONICAL_210628": "763ae4f6b1eade52c018765f6cc9ae1d6931a07ab2fc6a06e8f9eebb4c55749e",
+        "NOMINAL_CANONICAL_REDECLARED_210628": "763ae4f6b1eade52c018765f6cc9ae1d6931a07ab2fc6a06e8f9eebb4c55749e",
+        "ROBUST_EQUIVALENT_SCAL_BASE_210628": "207627c2c490231129c254805ca2c35a7bd26d1d5d3290204b0a3eedcdcffda2"
+      }
+    }
+  ],
+  "manifest_payload_sha256": "01b0887ef0863e991449cfcd94f5d431db87d335d72cab5c0c967e9f8754d10d"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "classification": "AUDIT_AND_PILOT_DELIVERABLES_NOT_FORMAL_RESULTS",
+  "files": {
+    "artifacts/e2_stockout_policy_identity_manifest.json": "d596e52fd74120529bbec75e884f5c9b54aec9deb2c662175989853019f295ce",
+    "docs/e2_stockout_policy_identity_audit.md": "26f459d556be1ebcbf7f6537572990b0a1a8e9401b42176bef41beec93333630",
+    "docs/e2_stockout_common_scenario_protocol.md": "892dd02edebc6a33f7585cb5a5589b5a861fe9be387b6d2c8b79c83386413252",
+    "docs/e2_stockout_pilot_report.md": "4739bf4452131e6228092b2bbcd7def3b7a3297b93f74857f77e39d5200909da",
+    "experiments/configs/e2_stockout_common_scenario_manifest.json": "7c7cfc772d9af08ceaf2a1f81b403c4456a4c42cc1dbfee8fcddc36a1b322568",
+    "experiments/audits/e2_stockout_common_scenario_static_audit.json": "3881f6fdf4b51bdb76829318374d22a34d6272ed1342f66f0333b89147b8f80a",
+    "experiments/run_e2_stockout_common_scenario.py": "5351a981e3217130491a13475e8d2d47514164cd6990faad4c81487ae7e124e6",
+    "experiments/schemas/e2_stockout_scenario_result.schema.json": "537444759eceba20655fa699cbcb3f7840b6a960bb87cd634c9a094dfc6f3df0",
+    "experiments/schemas/e2_stockout_checkpoint.schema.json": "a51c00ad8e8a0871980db8559f2e567f62fbf812d139dcedd246ee0130f2de52",
+    "src/robust_inventory_reconfiguration/e2_stockout_common_scenario.py": "52a1048c0b3b95e8ceef062b2d4a405c11b0215a9f0b9fb54ac6b38c84e9af07",
+    "tests/test_e2_stockout_common_scenario.py": "572d1f1901a7c4649494bce00b4716ac5ae8272e23d2c6c12521e9d12e464386",
+    "experiments/results/e2_stockout_common_scenario_pilot_v1/PILOT-210202-EXISTING_CANONICAL/checkpoint.json": "a0444a59d497c4f3dd2dc5a579597955cc71b1aad69e301788cb6d02143cc119",
+    "experiments/results/e2_stockout_common_scenario_pilot_v1/PILOT-210202-EXISTING_CANONICAL/checkpoint.json.sha256": "418f2a60bbb32242757bbb2459dea625d05fcbe991963f6ab22ece54d3fd8d5e",
+    "experiments/results/e2_stockout_common_scenario_pilot_v1/PILOT-210202-EXISTING_CANONICAL/hashes.json": "130883c273fcf739c3ead75ab92e1b78333a457ae061a60fa002e9e59a12a71d"
+  }
+}
