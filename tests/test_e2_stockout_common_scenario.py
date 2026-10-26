@@ -12,11 +12,13 @@ from robust_inventory_reconfiguration.e2_stockout_common_scenario import (
     coordinate_payload,
     coordinate_sha256,
     evaluate_fixed_policy_scenarios,
+    frozen_scenario_ids,
     improvement_percent,
     require_optimal_solver_status,
     scenario_manifest_sha256,
     static_source_audit,
-    summarize_policy_metrics,
+    summarize_complete_policy_metrics,
+    summarize_partial_policy_metrics,
     validate_checkpoint,
     write_checkpoint,
 )
@@ -137,33 +139,80 @@ def test_unsolved_infeasible_timeout_and_interrupted_statuses_raise(status) -> N
         require_optimal_solver_status(status, optimal_status=2, phase="test phase")
 
 
-def test_metric_summary_keeps_worst_concepts_separate() -> None:
-    rows = [
-        {
-            "scenario_id": "S0000",
-            "total_shortage": 5.0,
-            "total_service_violation": 1.0,
-            "shortage_penalty_cost": 10.0,
-            "service_penalty_cost": 3.0,
-            "transportation_cost": 4.0,
-            "recourse_cost": 17.0,
-            "economic_optimum_recourse_cost": 17.0,
-        },
-        {
-            "scenario_id": "S0001",
-            "total_shortage": 7.0,
-            "total_service_violation": 0.5,
-            "shortage_penalty_cost": 9.0,
-            "service_penalty_cost": 2.0,
-            "transportation_cost": 10.0,
-            "recourse_cost": 21.0,
-            "economic_optimum_recourse_cost": 21.0,
-        },
-    ]
-    summary = summarize_policy_metrics(rows)
-    assert summary["worst_over_frozen_set"]["total_shortage"]["representative_scenario_id"] == "S0001"
-    assert summary["worst_over_frozen_set"]["shortage_penalty_cost"]["representative_scenario_id"] == "S0000"
-    assert summary["worst_over_frozen_set"]["economic_optimum_recourse_cost"]["representative_scenario_id"] == "S0001"
+def metric_row(identifier: str) -> dict:
+    index = int(identifier[1:])
+    return {
+        "scenario_id": identifier,
+        "solver_status": "OPTIMAL",
+        "total_shortage": 7.0 if index == 1 else 5.0,
+        "total_service_violation": 2.0 if index == 2 else 1.0,
+        "shortage_penalty_cost": 11.0 if index == 3 else 10.0,
+        "service_penalty_cost": 3.0,
+        "transportation_cost": 20.0 if index == 4 else 4.0,
+        "recourse_cost": 33.0 if index == 4 else 17.0,
+        "economic_optimum_recourse_cost": 33.0 if index == 4 else 17.0,
+    }
+
+
+def complete_metric_rows() -> list[dict]:
+    return [metric_row(identifier) for identifier in frozen_scenario_ids(4657)]
+
+
+def test_pilot_subset_cannot_pass_complete_set_validation() -> None:
+    rows = [metric_row(identifier) for identifier in ("S0000", "S0001", "S0097")]
+    partial = summarize_partial_policy_metrics(rows)
+    assert partial["coverage_status"] == "PARTIAL_SCENARIO_DIAGNOSTIC"
+    assert "worst_over_observed_subset" in partial
+    assert "worst_over_frozen_set" not in partial
+    with pytest.raises(ValueError, match="incomplete frozen scenario set"):
+        summarize_complete_policy_metrics(rows, frozen_scenario_ids(4657))
+
+
+def test_complete_summary_rejects_one_missing_scenario() -> None:
+    with pytest.raises(ValueError, match="missing=.*S4656"):
+        summarize_complete_policy_metrics(
+            complete_metric_rows()[:-1], frozen_scenario_ids(4657)
+        )
+
+
+def test_complete_summary_rejects_duplicate_and_missing_id() -> None:
+    rows = complete_metric_rows()
+    rows[-1] = metric_row("S0000")
+    with pytest.raises(ValueError, match="duplicates=.*S0000.*missing=.*S4656"):
+        summarize_complete_policy_metrics(rows, frozen_scenario_ids(4657))
+
+
+def test_complete_summary_rejects_unknown_id() -> None:
+    rows = complete_metric_rows()
+    rows[-1] = metric_row("S9999")
+    with pytest.raises(ValueError, match="unknown=.*S9999"):
+        summarize_complete_policy_metrics(rows, frozen_scenario_ids(4657))
+
+
+def test_complete_summary_rejects_incomplete_solver_result() -> None:
+    rows = complete_metric_rows()
+    rows[1]["solver_status"] = "TIME_LIMIT"
+    with pytest.raises(ValueError, match="incomplete solver result"):
+        summarize_complete_policy_metrics(rows, frozen_scenario_ids(4657))
+
+
+def test_all_4657_exact_ids_pass_complete_validation() -> None:
+    summary = summarize_complete_policy_metrics(
+        complete_metric_rows(), frozen_scenario_ids(4657)
+    )
+    assert summary["coverage_status"] == "COMPLETE_FROZEN_SCENARIO_SET"
+    assert summary["scenario_count"] == 4657
+
+
+def test_complete_metric_summary_keeps_worst_concepts_separate() -> None:
+    summary = summarize_complete_policy_metrics(
+        complete_metric_rows(), frozen_scenario_ids(4657)
+    )
+    worst = summary["worst_over_frozen_set"]
+    assert worst["total_shortage"]["representative_scenario_id"] == "S0001"
+    assert worst["total_service_violation"]["representative_scenario_id"] == "S0002"
+    assert worst["shortage_penalty_cost"]["representative_scenario_id"] == "S0003"
+    assert worst["economic_optimum_recourse_cost"]["representative_scenario_id"] == "S0004"
 
 
 def test_corrupt_or_mismatched_checkpoint_is_rejected(tmp_path: Path) -> None:

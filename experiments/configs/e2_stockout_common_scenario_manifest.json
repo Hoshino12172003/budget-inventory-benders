@@ -27,7 +27,14 @@
   "threads": 1,
   "python_version": "3.12.7",
   "solver_version": "13.0.1",
-  "identity_manifest_sha256": "220699ce960c3607ef4d805f7f4c6ca93ac70f07b6de71104948eff837a5c5e2",
+  "identity_manifest_sha256": "a446801fd1bb65a100bf794031e16303525106c6f4904e5aaaf151cad7e2c593",
+  "comparison_definition": {
+    "independent_first_stage_configuration_count": 2,
+    "baseline": "EXISTING_CANONICAL",
+    "robust_candidate": "ROBUST_EQUIVALENT_SCAL_BASE_REQUIRES_HUMAN_CONFIRMATION",
+    "nominal_role": "VALIDATION_LABEL_SAME_COORDINATES_AS_BASELINE_NOT_SEPARATE_CONFIGURATION",
+    "original_e2_nominal_coordinates_recovered": false
+  },
   "cases": [
     {
       "case_id": "210129",
@@ -158,5 +165,5 @@
       }
     }
   ],
-  "manifest_payload_sha256": "01b0887ef0863e991449cfcd94f5d431db87d335d72cab5c0c967e9f8754d10d"
+  "manifest_payload_sha256": "2eb36da4f9de8e86d26a6889b00c830a4e205c81758e21523b92687075c1a301"
 }

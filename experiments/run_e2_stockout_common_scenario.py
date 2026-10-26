@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 from robust_inventory_reconfiguration.e2_stockout_common_scenario import (
@@ -19,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 IDENTITY_MANIFEST = ROOT / "artifacts/e2_stockout_policy_identity_manifest.json"
 SCENARIO_MANIFEST = ROOT / "experiments/configs/e2_stockout_common_scenario_manifest.json"
 STATIC_AUDIT = ROOT / "experiments/audits/e2_stockout_common_scenario_static_audit.json"
+HISTORICAL_RUNNER_AUDIT = ROOT / "experiments/audits/e2_historical_runner_hash_audit.json"
 PILOT_ROOT = ROOT / "experiments/results/e2_stockout_common_scenario_pilot_v1"
 DELIVERY_HASHES = ROOT / "experiments/audits/e2_stockout_delivery_hashes.json"
 
@@ -75,6 +78,58 @@ def audit() -> None:
     write_json(STATIC_AUDIT, audit_result)
     if audit_result["status"] != "PASS":
         raise RuntimeError("E2 stockout static audit failed")
+    write_historical_runner_audit()
+
+
+def _git_blob_sha256(revision: str, path: str) -> str:
+    content = subprocess.check_output(
+        ["git", "cat-file", "blob", f"{revision}:{path}"], cwd=ROOT
+    )
+    return hashlib.sha256(content).hexdigest()
+
+
+def write_historical_runner_audit() -> None:
+    runner_path = "experiments/run_e2_policy_local.py"
+    historical_commit = "4b1547296013c498cf4353c49c791cf1baf3566d"
+    freeze_commit = "0631111342bdf663dfef943bb20c6fe708df3359"
+    historical_manifest_path = (
+        ROOT / "experiments/configs/formal/e2_existing_nominal_robust_authorization.json"
+    )
+    historical_manifest = json.loads(historical_manifest_path.read_text(encoding="utf-8"))
+    manifest_hash = historical_manifest["runner_sha256"]
+    historical_hash = _git_blob_sha256(historical_commit, runner_path)
+    current_committed_hash = _git_blob_sha256("HEAD", runner_path)
+    current_worktree_hash = file_sha256(ROOT / runner_path)
+    write_json(
+        HISTORICAL_RUNNER_AUDIT,
+        {
+            "schema_version": "1.0",
+            "status": "HISTORICAL_IDENTITY_MISMATCH_CONFIRMED",
+            "historical_manifest_path": historical_manifest_path.relative_to(ROOT).as_posix(),
+            "historical_manifest_runner_sha256": manifest_hash,
+            "historical_runner_commit": historical_commit,
+            "historical_runner_blob_sha256": historical_hash,
+            "historical_blob_matches_manifest": historical_hash == manifest_hash,
+            "freeze_guard_commit": freeze_commit,
+            "current_committed_runner_blob_sha256": current_committed_hash,
+            "current_worktree_runner_file_sha256": current_worktree_hash,
+            "current_committed_runner_matches_manifest": current_committed_hash == manifest_hash,
+            "current_worktree_runner_matches_manifest": current_worktree_hash == manifest_hash,
+            "semantic_change": {
+                "changed": True,
+                "description": (
+                    "The current runner adds require_protocol_not_frozen before the historical "
+                    "authorization gate. This changes execution admissibility but not the E2 "
+                    "economic model, policy definitions, or recourse evaluator."
+                ),
+            },
+            "historical_e2_raw_results_present": False,
+            "closure_requirement": (
+                "Preserve or test the historical runner blob by pinned commit/hash and restore "
+                "the original E2 result/provenance archive if execution lineage must be certified."
+            ),
+        },
+    )
 
 
 def pilot(resume: bool) -> None:
@@ -107,13 +162,17 @@ def hashes() -> None:
         "docs/e2_stockout_policy_identity_audit.md",
         "docs/e2_stockout_common_scenario_protocol.md",
         "docs/e2_stockout_pilot_report.md",
+        "docs/e2_stockout_independent_review.md",
+        "docs/e2_historical_runner_hash_audit.md",
         "experiments/configs/e2_stockout_common_scenario_manifest.json",
         "experiments/audits/e2_stockout_common_scenario_static_audit.json",
+        "experiments/audits/e2_historical_runner_hash_audit.json",
         "experiments/run_e2_stockout_common_scenario.py",
         "experiments/schemas/e2_stockout_scenario_result.schema.json",
         "experiments/schemas/e2_stockout_checkpoint.schema.json",
         "src/robust_inventory_reconfiguration/e2_stockout_common_scenario.py",
         "tests/test_e2_stockout_common_scenario.py",
+        "tests/test_e2_stockout_historical_runner_audit.py",
         "experiments/results/e2_stockout_common_scenario_pilot_v1/PILOT-210202-EXISTING_CANONICAL/checkpoint.json",
         "experiments/results/e2_stockout_common_scenario_pilot_v1/PILOT-210202-EXISTING_CANONICAL/checkpoint.json.sha256",
         "experiments/results/e2_stockout_common_scenario_pilot_v1/PILOT-210202-EXISTING_CANONICAL/hashes.json",

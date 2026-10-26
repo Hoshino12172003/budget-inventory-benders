@@ -41,6 +41,20 @@ static AST audit rejects calls named `solve_prb_benders`,
 `solve_exact_reconfiguration`, `build_exact_reconfiguration_model`, or
 `optimize_first_stage`.
 
+## Policy comparison definition
+
+The supplemental analysis contains two independent first-stage configurations:
+
+1. **Baseline:** `EXISTING_CANONICAL_<case>`, the canonical `x0/y0` policy.
+2. **Robust candidate:** `ROBUST_EQUIVALENT_SCAL_BASE_<case>`, subject to human
+   approval and retaining its later SCAL_BASE lineage.
+
+`NOMINAL_CANONICAL_REDECLARED_<case>` has exactly the same coordinate hash as
+Baseline in all eight cases. It remains visible as a policy-validation label,
+but it is not counted or plotted as a third independent configuration. The
+original E2 Nominal coordinates remain unrecovered. Likewise, the Robust
+candidates are not relabeled as original E1/E2 coordinates.
+
 ## Second-stage model
 
 For fixed inventory and scenario `omega`, the evaluator solves only:
@@ -143,6 +157,23 @@ For baseline value `M_B > 1e-9`, improvement is
 Otherwise the output is JSON `null`, interpreted as `NA`, not zero. Scenario
 averages are not labeled as expectations because no probability distribution is
 defined.
+
+### Scenario-coverage gate
+
+Formal worst-value reporting uses `summarize_complete_policy_metrics`. The
+caller must supply the complete frozen ID set `S0000` through `S4656`; the
+function verifies exact set equality and independently rejects duplicates,
+missing IDs, unknown IDs, and count mismatches. Merely receiving 4,657 rows is
+not sufficient.
+
+Pilot and diagnostic subsets use `summarize_partial_policy_metrics`. Their
+output is marked `PARTIAL_SCENARIO_DIAGNOSTIC` and may contain only:
+
+- an independent `S0000` nominal-scenario summary when `S0000` is present; and
+- `worst_over_observed_subset`, which has no complete uncertainty-set meaning.
+
+Partial output never contains `worst_over_frozen_set`. There is no silent
+fallback from the complete interface to the partial interface.
 
 ## Checkpoint and resource protocol
 

@@ -103,6 +103,18 @@
         "rs_delta": 0.0,
         "active_depot_count": 2,
         "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210129/result.json",
+        "result_sha256": "131632ec86953300accfed96c960871366d390a324d811ea088357e7a2ee7b29",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210129/provenance.json",
+        "provenance_sha256": "e302e7356f84f70c18cd1cf8e820c73d8cc7999bc0a8f3f1fa0707107824e1d5",
+        "provenance_recorded_result_sha256": "131632ec86953300accfed96c960871366d390a324d811ea088357e7a2ee7b29",
+        "provenance_recorded_first_stage_solution_sha256": "f5918ffca080b91e680362f7b1c5c252d54314d10ceb826569a2cbb310e1f2bc",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
       }
     },
     {
@@ -192,6 +204,18 @@
         "rs_delta": 0.0,
         "active_depot_count": 2,
         "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210202/result.json",
+        "result_sha256": "4f5d13174b9d1d4b743c36c22f51bd14d2e006409375ac719e86f7a15b36e674",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210202/provenance.json",
+        "provenance_sha256": "cbf689e601f55166b4cf7a9c1fa2a8a6974728d65788a5de670703cb1e0e208e",
+        "provenance_recorded_result_sha256": "4f5d13174b9d1d4b743c36c22f51bd14d2e006409375ac719e86f7a15b36e674",
+        "provenance_recorded_first_stage_solution_sha256": "b2dc3b97a866d95c36b0bb9f285a71b332269212587c7e4ef97b89e8c886c1b0",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
       }
     },
     {
@@ -281,6 +305,18 @@
         "rs_delta": 0.0,
         "active_depot_count": 4,
         "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210310/result.json",
+        "result_sha256": "1a563e44427ea5240c1c10b8cb7e19c3f926dbc42ef5ceee47e005f6574459a3",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210310/provenance.json",
+        "provenance_sha256": "0995f48f9d8b42fbf73479d28a5bd04a93fb56fe078af68fdb78954aef2c73c6",
+        "provenance_recorded_result_sha256": "1a563e44427ea5240c1c10b8cb7e19c3f926dbc42ef5ceee47e005f6574459a3",
+        "provenance_recorded_first_stage_solution_sha256": "82834730a17d2aa046389f198da47b53aa91167ade2a796d5542df74cdd67dce",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
       }
     },
     {
@@ -370,6 +406,18 @@
         "rs_delta": 0.0,
         "active_depot_count": 2,
         "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210323/result.json",
+        "result_sha256": "8baeada5a736cfefcade9996e137be008cd127027127f2aa4c752b056fccb7b0",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210323/provenance.json",
+        "provenance_sha256": "cec08bc05071926a654754be455634fa4b2da67972f717122bbd79dcf541d728",
+        "provenance_recorded_result_sha256": "8baeada5a736cfefcade9996e137be008cd127027127f2aa4c752b056fccb7b0",
+        "provenance_recorded_first_stage_solution_sha256": "851b3d881d152eb443f20dbe5b3eae176866f5f6ad402ad7c282648e6b19d0bb",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
       }
     },
     {
@@ -459,6 +507,18 @@
         "rs_delta": 0.0,
         "active_depot_count": 2,
         "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210330/result.json",
+        "result_sha256": "3865c2b08df77ad294293df09ce9660d3f9ecd5cd7c77c24ffc4297918300e19",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210330/provenance.json",
+        "provenance_sha256": "02d17956fa7b4273248251b933727d3af828687287030167af416ed4fc69903e",
+        "provenance_recorded_result_sha256": "3865c2b08df77ad294293df09ce9660d3f9ecd5cd7c77c24ffc4297918300e19",
+        "provenance_recorded_first_stage_solution_sha256": "2eb9e44f9d879b9924ae9a844deddb2c711e2995f48ecd750e6b8e1bb7483637",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
       }
     },
     {
@@ -548,6 +608,18 @@
         "rs_delta": 0.0,
         "active_depot_count": 2,
         "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210428/result.json",
+        "result_sha256": "f181b1cafca87ed928bcbd749084dbe976637e261cc8cb702f1283f0b8d9dfb2",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210428/provenance.json",
+        "provenance_sha256": "264b0c674694b519a0dc5fd72ee6198d54b9fcbafbc86fee9bd0303b77b53c7e",
+        "provenance_recorded_result_sha256": "f181b1cafca87ed928bcbd749084dbe976637e261cc8cb702f1283f0b8d9dfb2",
+        "provenance_recorded_first_stage_solution_sha256": "5cf1b31281d1a1ffb6df6f867d008504aec209fba3842850d522520034ec61f7",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
       }
     },
     {
@@ -637,6 +709,18 @@
         "rs_delta": 0.0,
         "active_depot_count": 5,
         "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210611/result.json",
+        "result_sha256": "d78aaf3026e7142212acb5a80441027fb24f8c3215b6fb41668147ab28aa606b",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210611/provenance.json",
+        "provenance_sha256": "da7325d6e99377c48e9c0a56b1c0fec46ac083aae609bcb686a5c88ccfd74300",
+        "provenance_recorded_result_sha256": "d78aaf3026e7142212acb5a80441027fb24f8c3215b6fb41668147ab28aa606b",
+        "provenance_recorded_first_stage_solution_sha256": "e16fdd8b1b133cce1804e18723291e92c61c7e5c0ab5bcb93711f60e8f0bb349",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
       }
     },
     {
@@ -726,8 +810,20 @@
         "rs_delta": 0.0,
         "active_depot_count": 2,
         "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210628/result.json",
+        "result_sha256": "67b1cd6ae40eb2da9932d5c012834f0171cbd42ebb63ef7152f1bb7c6ae293b4",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210628/provenance.json",
+        "provenance_sha256": "e472372cbfde7ffe3ab022c0a97be22159f7ab864e12c01f62912a7440252747",
+        "provenance_recorded_result_sha256": "67b1cd6ae40eb2da9932d5c012834f0171cbd42ebb63ef7152f1bb7c6ae293b4",
+        "provenance_recorded_first_stage_solution_sha256": "d120d26eda9438b1530668ba17ceb0b0cdbededc7a033d17c5d23a23d6d4fc0e",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
       }
     }
   ],
-  "manifest_payload_sha256": "220699ce960c3607ef4d805f7f4c6ca93ac70f07b6de71104948eff837a5c5e2"
+  "manifest_payload_sha256": "a446801fd1bb65a100bf794031e16303525106c6f4904e5aaaf151cad7e2c593"
 }

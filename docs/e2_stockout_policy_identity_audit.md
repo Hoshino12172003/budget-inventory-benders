@@ -67,7 +67,8 @@ Human decision required:
 
 The audit recommends option 1 because `x0` is formally defined as the canonical
 Gamma=0 nominal optimum. This is a new policy declaration, not recovery of the
-lost E2 solver incumbent.
+lost E2 solver incumbent. Under that declaration, Nominal is a validation label
+for the Baseline coordinates and is not counted as a separate configuration.
 
 ## Robust policy
 
@@ -86,6 +87,12 @@ The candidate lineage is explicitly frozen as:
 The candidates match the frozen instance hashes and the retained E2 Robust
 objective, RI, and RS aggregates within `1e-6`. This supports numerical
 equivalence but does not change their lineage into original E1/E2 artifacts.
+
+For every candidate the manifest additionally verifies the SHA-256 link from
+`provenance.json` to both `result.json` and `first_stage_solution.json`, checks
+the instance hash, and requires `solver_status=OPTIMAL` plus
+`optimality_certification=CERTIFIED_PRB_EXACT`. These facts certify the later
+SCAL_BASE solution. They do not certify recovery of the historical E2 file.
 
 Human decision required: approve these later, certified solutions as the fixed
 Robust policies for a new supplemental evaluation, or provide the original E1/E2

@@ -7,13 +7,13 @@
   "instance_sha256": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
   "policy_sha256": "608c0e17ebdc96e2594050536131ac649c8487e54a5dc47c1a9eb02f3860963a",
   "scenario_manifest_sha256": "c3c69f893abdc93c1b7290758d34ccb48e7d77e2b20f70b2b61762a6e1a11656",
-  "code_sha256": "52a1048c0b3b95e8ceef062b2d4a405c11b0215a9f0b9fb54ac6b38c84e9af07",
-  "config_sha256": "01b0887ef0863e991449cfcd94f5d431db87d335d72cab5c0c967e9f8754d10d",
+  "code_sha256": "b558fed53950875425be60a901cf8c75648a86f396d76fa61cc2719813df7b24",
+  "config_sha256": "2eb36da4f9de8e86d26a6889b00c830a4e205c81758e21523b92687075c1a301",
   "solver_profile_id": "gurobi-balanced-1e-8-v1",
   "solver_version": "13.0.1",
   "threads": 1,
-  "runtime_seconds": 0.09604909992776811,
-  "peak_process_rss_bytes": 29437952,
+  "runtime_seconds": 0.09089199989102781,
+  "peak_process_rss_bytes": 30478336,
   "evaluation": {
     "policy_coordinates_before_sha256": "608c0e17ebdc96e2594050536131ac649c8487e54a5dc47c1a9eb02f3860963a",
     "policy_coordinates_after_sha256": "608c0e17ebdc96e2594050536131ac649c8487e54a5dc47c1a9eb02f3860963a",
@@ -147,6 +147,13 @@
     ]
   },
   "pilot_metric_summary": {
+    "coverage_status": "PARTIAL_SCENARIO_DIAGNOSTIC",
+    "scenario_count": 3,
+    "scenario_ids": [
+      "S0000",
+      "S0001",
+      "S0097"
+    ],
     "nominal_common_scenario": {
       "scenario_id": "S0000",
       "total_shortage": 5322.607142857142,
@@ -157,7 +164,7 @@
       "recourse_cost": 928163.082824789,
       "economic_optimum_recourse_cost": 928163.0828249606
     },
-    "worst_over_frozen_set": {
+    "worst_over_observed_subset": {
       "total_shortage": {
         "value": 5327.307142877661,
         "representative_scenario_id": "S0097",
@@ -193,23 +200,6 @@
     },
     "tie_rule": "canonical first scenario within absolute tolerance",
     "tie_tolerance": 1e-09,
-    "improvement_denominator_tolerance": 1e-09,
-    "improvement_percent_vs_baseline": {
-      "nominal_common_scenario": {
-        "total_shortage": 0.0,
-        "total_service_violation": 0.0,
-        "shortage_penalty_cost": 0.0,
-        "service_penalty_cost": 0.0,
-        "transportation_cost": 0.0,
-        "recourse_cost": 0.0,
-        "economic_optimum_recourse_cost": 0.0
-      },
-      "worst_over_frozen_set": {
-        "total_shortage": 0.0,
-        "total_service_violation": 0.0,
-        "shortage_penalty_cost": 0.0,
-        "economic_optimum_recourse_cost": 0.0
-      }
-    }
+    "improvement_denominator_tolerance": 1e-09
   }
 }

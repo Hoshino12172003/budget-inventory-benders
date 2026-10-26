@@ -35,8 +35,8 @@ The pilot result and restart checkpoint are stored under
 
 ## Resource observation
 
-- Wall-clock runtime: approximately 0.10 seconds
-- Peak process RSS: 29,437,952 bytes, approximately 28.1 MiB
+- Wall-clock runtime: approximately 0.09 seconds
+- Peak process RSS: 30,478,336 bytes, approximately 29.1 MiB
 - Scenarios materialized: 3
 - Unique product-local blocks: 11
 - Checkpoint size: approximately 8 KiB
@@ -44,6 +44,9 @@ The pilot result and restart checkpoint are stored under
 This small pilot does not estimate full-run wall time linearly, but it confirms
 that the serial block representation is far below the 32 GB memory limit. The
 formal resource plan remains one case-policy task at a time.
+
+The pilot summary is explicitly marked `PARTIAL_SCENARIO_DIAGNOSTIC`. It reports
+`worst_over_observed_subset` and does not contain `worst_over_frozen_set`.
 
 ## Test evidence
 
@@ -65,9 +68,10 @@ and E2 summary regression tests are also required before handoff.
 
 ## Manual confirmations required before formal authorization
 
-1. Approve canonical `x0/y0` as a newly declared Nominal policy, acknowledging
-   that it is the same first-stage configuration as Existing and not recovered
-   E2 coordinates; or provide the original Nominal artifact.
+1. Approve canonical Existing as the Baseline and retain Nominal only as a
+   validation label for the same first-stage configuration, acknowledging that
+   the original E2 Nominal coordinates were not recovered; or provide the
+   original Nominal artifact.
 2. Approve the later SCAL_BASE certified Robust solutions with their preserved
    lineage; or provide the original E1/E2 artifacts.
 3. Decide whether the paper presents two unique configurations while retaining
@@ -78,5 +82,5 @@ and E2 summary regression tests are also required before handoff.
 
 ## Decision
 
-**B. Only after human confirmation of the Nominal definition and Robust recovery
-source may formal evaluation proceed.**
+**B. Only after human confirmation of the two-configuration comparison and the
+later SCAL_BASE Robust-candidate lineage may formal evaluation proceed.**

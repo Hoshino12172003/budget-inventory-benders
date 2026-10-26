@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "status": "HISTORICAL_IDENTITY_MISMATCH_CONFIRMED",
+  "historical_manifest_path": "experiments/configs/formal/e2_existing_nominal_robust_authorization.json",
+  "historical_manifest_runner_sha256": "0ba3e0069db8ab8d37f9fe693511ac6c780a44c61a60776ff18659560cd0e2c9",
+  "historical_runner_commit": "4b1547296013c498cf4353c49c791cf1baf3566d",
+  "historical_runner_blob_sha256": "0ba3e0069db8ab8d37f9fe693511ac6c780a44c61a60776ff18659560cd0e2c9",
+  "historical_blob_matches_manifest": true,
+  "freeze_guard_commit": "0631111342bdf663dfef943bb20c6fe708df3359",
+  "current_committed_runner_blob_sha256": "23db440e4ff03765440c5e2ab231bf2ad5da4b6be9c8d3f4d91ee6d16365f41d",
+  "current_worktree_runner_file_sha256": "dd296522c954ad4876279a6ca5045feb99187e434a162809d53b39cd103d2ad6",
+  "current_committed_runner_matches_manifest": false,
+  "current_worktree_runner_matches_manifest": false,
+  "semantic_change": {
+    "changed": true,
+    "description": "The current runner adds require_protocol_not_frozen before the historical authorization gate. This changes execution admissibility but not the E2 economic model, policy definitions, or recourse evaluator."
+  },
+  "historical_e2_raw_results_present": false,
+  "closure_requirement": "Preserve or test the historical runner blob by pinned commit/hash and restore the original E2 result/provenance archive if execution lineage must be certified."
+}

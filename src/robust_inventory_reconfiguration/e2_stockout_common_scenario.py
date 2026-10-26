@@ -9,6 +9,7 @@ import os
 import platform
 import threading
 import time
+from collections import Counter
 from dataclasses import dataclass
 from itertools import combinations
 from pathlib import Path
@@ -173,14 +174,23 @@ def _load_robust_candidate(root: Path, case_id: str) -> FrozenPolicy:
     source_path = source_dir / "first_stage_solution.json"
     instance = load_instance(instance_path)
     artifact = load_first_stage_solution_artifact(source_path, instance)
-    result = json.loads((source_dir / "result.json").read_text(encoding="utf-8"))
+    result_path = source_dir / "result.json"
+    provenance_path = source_dir / "provenance.json"
+    result = json.loads(result_path.read_text(encoding="utf-8"))
     provenance = json.loads(
-        (source_dir / "provenance.json").read_text(encoding="utf-8")
+        provenance_path.read_text(encoding="utf-8")
     )
     if provenance["first_stage_solution_sha256"] != file_sha256(source_path):
         raise ValueError(f"{case_id} robust candidate provenance hash mismatch")
+    if provenance["result_sha256"] != file_sha256(result_path):
+        raise ValueError(f"{case_id} robust result provenance hash mismatch")
     if result["instance_hash"] != file_sha256(instance_path):
         raise ValueError(f"{case_id} robust candidate instance hash mismatch")
+    if (
+        result.get("solver_status") != "OPTIMAL"
+        or result.get("optimality_certification") != "CERTIFIED_PRB_EXACT"
+    ):
+        raise ValueError(f"{case_id} robust candidate is not exactly certified")
     y = [int(entry["value"]) for entry in artifact["y"]]
     x = matrix_from_artifact(artifact, instance, "x")
     a_plus = matrix_from_artifact(artifact, instance, "a_plus")
@@ -191,8 +201,8 @@ def _load_robust_candidate(root: Path, case_id: str) -> FrozenPolicy:
         lineage="SUBSEQUENT_NUMERICALLY_EQUIVALENT_SOLUTION_NOT_ORIGINAL_E1_E2",
         source_path=source_path,
         source_run_id=f"SCAL_BASE_{case_id}",
-        certification_source_path=source_dir / "result.json",
-        certification_source_sha256=file_sha256(source_dir / "result.json"),
+        certification_source_path=result_path,
+        certification_source_sha256=file_sha256(result_path),
         instance_sha256=file_sha256(instance_path),
         source_file_sha256=file_sha256(source_path),
         coordinates_sha256=coordinate_sha256(y, x, a_plus, a_minus),
@@ -282,8 +292,7 @@ def build_policy_identity_manifest(root: Path) -> dict[str, Any]:
     entries = []
     for case_id in cases:
         for policy in recover_policy_candidates(root, case_id):
-            entries.append(
-                {
+            entry = {
                     "case_id": policy.case_id,
                     "policy_id": policy.policy_id,
                     "lineage": policy.lineage,
@@ -309,7 +318,31 @@ def build_policy_identity_manifest(root: Path) -> dict[str, Any]:
                     else None,
                     "e2_aggregate_consistency": _e2_consistency(root, policy),
                 }
-            )
+            if policy.policy_id.startswith("ROBUST"):
+                source_dir = policy.source_path.parent
+                result_path = source_dir / "result.json"
+                provenance_path = source_dir / "provenance.json"
+                provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+                entry["robust_source_evidence"] = {
+                    "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+                    "result_path": result_path.relative_to(root).as_posix(),
+                    "result_sha256": file_sha256(result_path),
+                    "provenance_path": provenance_path.relative_to(root).as_posix(),
+                    "provenance_sha256": file_sha256(provenance_path),
+                    "provenance_recorded_result_sha256": provenance["result_sha256"],
+                    "provenance_recorded_first_stage_solution_sha256": provenance[
+                        "first_stage_solution_sha256"
+                    ],
+                    "result_hash_link_verified": (
+                        provenance["result_sha256"] == file_sha256(result_path)
+                    ),
+                    "solution_hash_link_verified": (
+                        provenance["first_stage_solution_sha256"]
+                        == policy.source_file_sha256
+                    ),
+                    "historical_e1_e2_coordinates_recovered": False,
+                }
+            entries.append(entry)
     payload = {
         "schema_version": "1.0",
         "experiment_id": "E2_STOCKOUT_COMMON_SCENARIO_V1",
@@ -378,6 +411,13 @@ def build_common_scenario_manifest(
         "python_version": platform.python_version(),
         "solver_version": solver_version,
         "identity_manifest_sha256": identity_manifest["manifest_payload_sha256"],
+        "comparison_definition": {
+            "independent_first_stage_configuration_count": 2,
+            "baseline": "EXISTING_CANONICAL",
+            "robust_candidate": "ROBUST_EQUIVALENT_SCAL_BASE_REQUIRES_HUMAN_CONFIRMATION",
+            "nominal_role": "VALIDATION_LABEL_SAME_COORDINATES_AS_BASELINE_NOT_SEPARATE_CONFIGURATION",
+            "original_e2_nominal_coordinates_recovered": False,
+        },
         "cases": cases,
     }
     return {**payload, "manifest_payload_sha256": canonical_sha256(payload)}
@@ -656,6 +696,66 @@ def evaluate_fixed_policy_scenarios(
     }
 
 
+def frozen_scenario_ids(expected_scenario_count: int) -> tuple[str, ...]:
+    if expected_scenario_count <= 0:
+        raise ValueError("expected scenario count must be positive")
+    return tuple(scenario_id(index) for index in range(expected_scenario_count))
+
+
+def _validate_solved_metric_rows(rows: list[dict[str, Any]]) -> None:
+    required_fields = (
+        "total_shortage",
+        "total_service_violation",
+        "shortage_penalty_cost",
+        "service_penalty_cost",
+        "transportation_cost",
+        "recourse_cost",
+        "economic_optimum_recourse_cost",
+    )
+    for row in rows:
+        identifier = row.get("scenario_id")
+        if row.get("solver_status") != "OPTIMAL":
+            raise ValueError(f"scenario {identifier} has an incomplete solver result")
+        missing = [field for field in required_fields if row.get(field) is None]
+        if missing:
+            raise ValueError(f"scenario {identifier} has incomplete metrics: {missing}")
+
+
+def validate_complete_scenario_rows(
+    rows: list[dict[str, Any]], expected_scenario_ids: Iterable[str]
+) -> tuple[str, ...]:
+    expected = tuple(expected_scenario_ids)
+    expected_set = set(expected)
+    if len(expected_set) != len(expected):
+        raise ValueError("frozen expected scenario IDs contain duplicates")
+    actual = [row.get("scenario_id") for row in rows]
+    if any(not isinstance(identifier, str) for identifier in actual):
+        raise ValueError("incomplete frozen scenario set: missing or invalid scenario ID")
+    actual_set = set(actual)
+    duplicates = sorted(identifier for identifier, count in Counter(actual).items() if count > 1)
+    missing = sorted(expected_set - actual_set)
+    unknown = sorted(actual_set - expected_set, key=str)
+    if duplicates or missing or unknown or len(actual) != len(expected):
+        raise ValueError(
+            "incomplete frozen scenario set: "
+            f"duplicates={duplicates}, missing={missing}, unknown={unknown}, "
+            f"actual_count={len(actual)}, expected_count={len(expected)}"
+        )
+    _validate_solved_metric_rows(rows)
+    return expected
+
+
+def _validate_partial_rows(rows: list[dict[str, Any]]) -> None:
+    if not rows:
+        raise ValueError("partial scenario diagnostic contains no rows")
+    identifiers = [row.get("scenario_id") for row in rows]
+    if any(not isinstance(identifier, str) for identifier in identifiers):
+        raise ValueError("partial scenario diagnostic has a missing scenario ID")
+    if len(set(identifiers)) != len(identifiers):
+        raise ValueError("partial scenario diagnostic contains duplicate scenario IDs")
+    _validate_solved_metric_rows(rows)
+
+
 def _worst_metric(
     rows: list[dict[str, Any]], key: str, tolerance: float
 ) -> dict[str, Any]:
@@ -681,16 +781,25 @@ def improvement_percent(
     return 100.0 * (baseline - policy) / baseline
 
 
-def summarize_policy_metrics(
+def _summarize_nominal_common_scenario(
+    rows: list[dict[str, Any]], nominal_keys: tuple[str, ...]
+) -> dict[str, Any] | None:
+    by_id = {row["scenario_id"]: row for row in rows}
+    if "S0000" not in by_id:
+        return None
+    return {
+        "scenario_id": "S0000",
+        **{key: float(by_id["S0000"][key]) for key in nominal_keys},
+    }
+
+
+def _metric_summary(
     rows: list[dict[str, Any]],
     *,
     tie_tolerance: float = 1e-9,
     baseline_rows: list[dict[str, Any]] | None = None,
     denominator_tolerance: float = 1e-9,
 ) -> dict[str, Any]:
-    by_id = {row["scenario_id"]: row for row in rows}
-    if "S0000" not in by_id:
-        raise ValueError("nominal common scenario S0000 is missing")
     nominal_keys = (
         "total_shortage",
         "total_service_violation",
@@ -700,7 +809,7 @@ def summarize_policy_metrics(
         "recourse_cost",
         "economic_optimum_recourse_cost",
     )
-    nominal = {key: float(by_id["S0000"][key]) for key in nominal_keys}
+    nominal = _summarize_nominal_common_scenario(rows, nominal_keys)
     worst = {
         key: _worst_metric(rows, key, tie_tolerance)
         for key in (
@@ -711,14 +820,14 @@ def summarize_policy_metrics(
         )
     }
     summary: dict[str, Any] = {
-        "nominal_common_scenario": {"scenario_id": "S0000", **nominal},
-        "worst_over_frozen_set": worst,
+        "nominal_common_scenario": nominal,
+        "worst_metrics": worst,
         "tie_rule": "canonical first scenario within absolute tolerance",
         "tie_tolerance": tie_tolerance,
         "improvement_denominator_tolerance": denominator_tolerance,
     }
     if baseline_rows is not None:
-        baseline = summarize_policy_metrics(
+        baseline = _metric_summary(
             baseline_rows,
             tie_tolerance=tie_tolerance,
             denominator_tolerance=denominator_tolerance,
@@ -732,9 +841,9 @@ def summarize_policy_metrics(
                 )
                 for key in nominal_keys
             },
-            "worst_over_frozen_set": {
+            "worst_metrics": {
                 key: improvement_percent(
-                    baseline["worst_over_frozen_set"][key]["value"],
+                    baseline["worst_metrics"][key]["value"],
                     worst[key]["value"],
                     denominator_tolerance=denominator_tolerance,
                 )
@@ -742,6 +851,66 @@ def summarize_policy_metrics(
             },
         }
     return summary
+
+
+def summarize_partial_policy_metrics(
+    rows: list[dict[str, Any]],
+    *,
+    tie_tolerance: float = 1e-9,
+    denominator_tolerance: float = 1e-9,
+) -> dict[str, Any]:
+    _validate_partial_rows(rows)
+    summary = _metric_summary(
+        rows,
+        tie_tolerance=tie_tolerance,
+        denominator_tolerance=denominator_tolerance,
+    )
+    return {
+        "coverage_status": "PARTIAL_SCENARIO_DIAGNOSTIC",
+        "scenario_count": len(rows),
+        "scenario_ids": [row["scenario_id"] for row in rows],
+        "nominal_common_scenario": summary["nominal_common_scenario"],
+        "worst_over_observed_subset": summary["worst_metrics"],
+        "tie_rule": summary["tie_rule"],
+        "tie_tolerance": tie_tolerance,
+        "improvement_denominator_tolerance": denominator_tolerance,
+    }
+
+
+def summarize_complete_policy_metrics(
+    rows: list[dict[str, Any]],
+    expected_scenario_ids: Iterable[str],
+    *,
+    tie_tolerance: float = 1e-9,
+    baseline_rows: list[dict[str, Any]] | None = None,
+    denominator_tolerance: float = 1e-9,
+) -> dict[str, Any]:
+    expected = validate_complete_scenario_rows(rows, expected_scenario_ids)
+    if baseline_rows is not None:
+        validate_complete_scenario_rows(baseline_rows, expected)
+    summary = _metric_summary(
+        rows,
+        tie_tolerance=tie_tolerance,
+        baseline_rows=baseline_rows,
+        denominator_tolerance=denominator_tolerance,
+    )
+    result = {
+        "coverage_status": "COMPLETE_FROZEN_SCENARIO_SET",
+        "scenario_count": len(rows),
+        "scenario_id_set_sha256": canonical_sha256(sorted(expected)),
+        "nominal_common_scenario": summary["nominal_common_scenario"],
+        "worst_over_frozen_set": summary["worst_metrics"],
+        "tie_rule": summary["tie_rule"],
+        "tie_tolerance": tie_tolerance,
+        "improvement_denominator_tolerance": denominator_tolerance,
+    }
+    if "improvement_percent_vs_baseline" in summary:
+        improvement = summary["improvement_percent_vs_baseline"]
+        result["improvement_percent_vs_baseline"] = {
+            "nominal_common_scenario": improvement["nominal_common_scenario"],
+            "worst_over_frozen_set": improvement["worst_metrics"],
+        }
+    return result
 
 
 def validate_checkpoint(
@@ -850,8 +1019,8 @@ def run_pilot(
         "runtime_seconds": runtime,
         "peak_process_rss_bytes": monitor.peak_bytes,
         "evaluation": evaluation,
-        "pilot_metric_summary": summarize_policy_metrics(
-            evaluation["scenarios"], baseline_rows=evaluation["scenarios"]
+        "pilot_metric_summary": summarize_partial_policy_metrics(
+            evaluation["scenarios"]
         ),
     }
     write_checkpoint(checkpoint_path, checkpoint)
