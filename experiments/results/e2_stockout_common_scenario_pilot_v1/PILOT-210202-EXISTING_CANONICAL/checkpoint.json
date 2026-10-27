@@ -1,0 +1,205 @@
+{
+  "schema_version": "1.0",
+  "classification": "PILOT_NON_PUBLISHABLE",
+  "experiment_id": "E2_STOCKOUT_COMMON_SCENARIO_V1",
+  "case_id": "210202",
+  "policy_id": "EXISTING_CANONICAL_210202",
+  "instance_sha256": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+  "policy_sha256": "608c0e17ebdc96e2594050536131ac649c8487e54a5dc47c1a9eb02f3860963a",
+  "scenario_manifest_sha256": "c3c69f893abdc93c1b7290758d34ccb48e7d77e2b20f70b2b61762a6e1a11656",
+  "code_sha256": "f9a51777c8bd52d73b33fb4fc64f92f2a9f175f59f673b579bceb0175c6f85f1",
+  "config_sha256": "62ab809fba75b60d72ae7e5410063c6c458d301f628b268aed83f932bcae4be2",
+  "solver_profile_id": "gurobi-balanced-1e-8-v1",
+  "solver_version": "13.0.1",
+  "threads": 1,
+  "runtime_seconds": 0.0899948999285698,
+  "peak_process_rss_bytes": 31543296,
+  "evaluation": {
+    "policy_coordinates_before_sha256": "608c0e17ebdc96e2594050536131ac649c8487e54a5dc47c1a9eb02f3860963a",
+    "policy_coordinates_after_sha256": "608c0e17ebdc96e2594050536131ac649c8487e54a5dc47c1a9eb02f3860963a",
+    "unique_product_local_blocks": 10,
+    "scenarios": [
+      {
+        "scenario_id": "S0000",
+        "shock_set": [],
+        "policy_id": "EXISTING_CANONICAL_210202",
+        "policy_hash": "608c0e17ebdc96e2594050536131ac649c8487e54a5dc47c1a9eb02f3860963a",
+        "instance_hash": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+        "solver_status": "OPTIMAL",
+        "total_shipment": 815.4642858029899,
+        "total_shortage": 5322.607142857142,
+        "shortage_by_product": {
+          "BAC---1041": 446.92857142857144,
+          "BAC-O-4312": 27.871428571428414,
+          "BAC-O-4325": 569.8571428571429,
+          "BAC-O-6423": 984.8571428571429,
+          "BAC-O-6433": 1994.642857142857,
+          "CON-S-0130": 62.73571428571411,
+          "SLI---0770": 823.9285714285714,
+          "SLI---1200": 411.7857142857143
+        },
+        "service_violation_by_product": {
+          "BAC---1041": 402.23571428571427,
+          "BAC-O-4312": 4.664890160368044e-15,
+          "BAC-O-4325": 512.8714285714286,
+          "BAC-O-6423": 886.3714285714285,
+          "BAC-O-6433": 1795.1785714285716,
+          "CON-S-0130": 3.2281850588853437e-15,
+          "SLI---0770": 741.5357142857143,
+          "SLI---1200": 370.6071428571429
+        },
+        "total_service_violation": 4708.8,
+        "transportation_cost": 3099.4167533603604,
+        "shortage_penalty_cost": 351522.9,
+        "service_penalty_cost": 573540.7660714287,
+        "recourse_cost": 928163.082824789,
+        "economic_optimum_recourse_cost": 928163.0828249606,
+        "reporting_tie_break_cost_delta": -1.7159618437290192e-07
+      },
+      {
+        "scenario_id": "S0001",
+        "shock_set": [
+          [
+            "1",
+            "BAC---1041"
+          ]
+        ],
+        "policy_id": "EXISTING_CANONICAL_210202",
+        "policy_hash": "608c0e17ebdc96e2594050536131ac649c8487e54a5dc47c1a9eb02f3860963a",
+        "instance_hash": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+        "solver_status": "OPTIMAL",
+        "total_shipment": 815.4642858029899,
+        "total_shortage": 5322.607142857142,
+        "shortage_by_product": {
+          "BAC---1041": 446.92857142857144,
+          "BAC-O-4312": 27.871428571428414,
+          "BAC-O-4325": 569.8571428571429,
+          "BAC-O-6423": 984.8571428571429,
+          "BAC-O-6433": 1994.642857142857,
+          "CON-S-0130": 62.73571428571411,
+          "SLI---0770": 823.9285714285714,
+          "SLI---1200": 411.7857142857143
+        },
+        "service_violation_by_product": {
+          "BAC---1041": 402.23571428571427,
+          "BAC-O-4312": 4.664890160368044e-15,
+          "BAC-O-4325": 512.8714285714286,
+          "BAC-O-6423": 886.3714285714285,
+          "BAC-O-6433": 1795.1785714285716,
+          "CON-S-0130": 3.2281850588853437e-15,
+          "SLI---0770": 741.5357142857143,
+          "SLI---1200": 370.6071428571429
+        },
+        "total_service_violation": 4708.8,
+        "transportation_cost": 3099.4167533603604,
+        "shortage_penalty_cost": 351522.9,
+        "service_penalty_cost": 573540.7660714287,
+        "recourse_cost": 928163.082824789,
+        "economic_optimum_recourse_cost": 928163.0828249606,
+        "reporting_tie_break_cost_delta": -1.7159618437290192e-07
+      },
+      {
+        "scenario_id": "S0097",
+        "shock_set": [
+          [
+            "1",
+            "BAC---1041"
+          ],
+          [
+            "1",
+            "BAC-O-4312"
+          ]
+        ],
+        "policy_id": "EXISTING_CANONICAL_210202",
+        "policy_hash": "608c0e17ebdc96e2594050536131ac649c8487e54a5dc47c1a9eb02f3860963a",
+        "instance_hash": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+        "solver_status": "OPTIMAL",
+        "total_shipment": 815.4642857129259,
+        "total_shortage": 5327.307142877661,
+        "shortage_by_product": {
+          "BAC---1041": 446.92857142857144,
+          "BAC-O-4312": 32.57142859194699,
+          "BAC-O-4325": 569.8571428571429,
+          "BAC-O-6423": 984.8571428571429,
+          "BAC-O-6433": 1994.642857142857,
+          "CON-S-0130": 62.73571428571411,
+          "SLI---0770": 823.9285714285714,
+          "SLI---1200": 411.7857142857143
+        },
+        "service_violation_by_product": {
+          "BAC---1041": 402.23571428571427,
+          "BAC-O-4312": 4.230000020517974,
+          "BAC-O-4325": 512.8714285714286,
+          "BAC-O-6423": 886.3714285714285,
+          "BAC-O-6433": 1795.1785714285716,
+          "CON-S-0130": 3.2281850588853437e-15,
+          "SLI---0770": 741.5357142857143,
+          "SLI---1200": 370.6071428571429
+        },
+        "total_service_violation": 4713.030000020518,
+        "transportation_cost": 3090.396393530788,
+        "shortage_penalty_cost": 351654.5000005745,
+        "service_penalty_cost": 573759.8800724915,
+        "recourse_cost": 928504.7764665968,
+        "economic_optimum_recourse_cost": 928504.7764663927,
+        "reporting_tie_break_cost_delta": 2.0407605916261673e-07
+      }
+    ]
+  },
+  "pilot_metric_summary": {
+    "coverage_status": "PARTIAL_SCENARIO_DIAGNOSTIC",
+    "scenario_count": 3,
+    "scenario_ids": [
+      "S0000",
+      "S0001",
+      "S0097"
+    ],
+    "nominal_common_scenario": {
+      "scenario_id": "S0000",
+      "total_shortage": 5322.607142857142,
+      "total_service_violation": 4708.8,
+      "shortage_penalty_cost": 351522.9,
+      "service_penalty_cost": 573540.7660714287,
+      "transportation_cost": 3099.4167533603604,
+      "recourse_cost": 928163.082824789,
+      "economic_optimum_recourse_cost": 928163.0828249606
+    },
+    "worst_over_observed_subset": {
+      "total_shortage": {
+        "value": 5327.307142877661,
+        "representative_scenario_id": "S0097",
+        "tied_scenario_ids": [
+          "S0097"
+        ],
+        "tie_count": 1
+      },
+      "total_service_violation": {
+        "value": 4713.030000020518,
+        "representative_scenario_id": "S0097",
+        "tied_scenario_ids": [
+          "S0097"
+        ],
+        "tie_count": 1
+      },
+      "shortage_penalty_cost": {
+        "value": 351654.5000005745,
+        "representative_scenario_id": "S0097",
+        "tied_scenario_ids": [
+          "S0097"
+        ],
+        "tie_count": 1
+      },
+      "economic_optimum_recourse_cost": {
+        "value": 928504.7764663927,
+        "representative_scenario_id": "S0097",
+        "tied_scenario_ids": [
+          "S0097"
+        ],
+        "tie_count": 1
+      }
+    },
+    "tie_rule": "canonical first scenario within absolute tolerance",
+    "tie_tolerance": 1e-09,
+    "improvement_denominator_tolerance": 1e-09
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "E2 stockout fixed-policy evaluation checkpoint",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "classification",
+    "experiment_id",
+    "case_id",
+    "policy_id",
+    "instance_sha256",
+    "policy_sha256",
+    "scenario_manifest_sha256",
+    "code_sha256",
+    "config_sha256",
+    "solver_profile_id",
+    "solver_version",
+    "threads",
+    "runtime_seconds",
+    "peak_process_rss_bytes",
+    "evaluation"
+  ],
+  "properties": {
+    "classification": {"const": "PILOT_NON_PUBLISHABLE"},
+    "instance_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "policy_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "scenario_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "code_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "config_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "threads": {"const": 1},
+    "runtime_seconds": {"type": "number", "minimum": 0},
+    "peak_process_rss_bytes": {"type": "integer"}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "classification": "PREFLIGHT_NON_PUBLISHABLE_DELIVERY_HASHES",
+  "formal_run_authorized": false,
+  "files": {
+    "docs/e2_stockout_scientific_policy_confirmation.md": "6bbcd284a84d11946b4b81bd77b44c2c1b588add2cbd1261bee871f9610de061",
+    "docs/e2_stockout_common_scenario_protocol.md": "d63591a0cac35132abf1c257f808b901084565dac3a3843a97bf76e6b00f492c",
+    "docs/e2_stockout_resource_preflight_report.md": "42b44adfd94816bc616f7dd94ed1d3fc04a1f16653afd43c1dd9c4cee5bee0ea",
+    "docs/e2_stockout_blocker_remediation_review.md": "446215f2bdf73dc4c429fd255c906fa7aaf55bb0fdafa6fa3ef0d66d654a04ab",
+    "artifacts/e2_stockout_policy_identity_manifest.json": "09234e7ff817ab94c17c783183d0e0d33f2dd6d9aa55d1ae417f12bcbaa0f24c",
+    "experiments/configs/e2_stockout_common_scenario_manifest.json": "6138bab5c0ea641c061039427aec7831a0cf1abad677412e6c844f62df28c54f",
+    "experiments/configs/e2_stockout_formal_authorization.json": "af9bbdfe9aa03cb1ba16b290e5a90c4ad373141bf0ae9207ca9917bd389e1d09",
+    "experiments/configs/e2_stockout_resource_preflight_authorization.json": "bc92da739b66fe560f42e0561a341f7f70e3b6f04ec188673141975f1f9152c9",
+    "experiments/configs/e2_stockout_scoped_regression_gate.json": "c89a60332d9047adf28717c4b3e5cd0bb48bb21a44f611c862e3bd6ae1f3e3ac",
+    "experiments/run_e2_stockout_common_scenario.py": "f37e469a2697fc6ce04b1047ba95170cdf22bce5e31c442728927bbf1d933fc4",
+    "src/robust_inventory_reconfiguration/e2_stockout_common_scenario.py": "54f2fd55ab0d3463c52ea5312f5eb4fbd3ee116e1a6558c79ae798545413e556",
+    "experiments/schemas/e2_stockout_resource_preflight_checkpoint.schema.json": "d9ddef0745ca42cf8aa0435d0fba805b4d1a0ab0bcc28bdbefb25c043049603e",
+    "experiments/audits/e2_stockout_common_scenario_static_audit.json": "29d5cec7379704b012b58fa79c724eb2db108a573d4c46608257d88ac149c804",
+    "experiments/audits/e2_stockout_resource_preflight.json": "7457558d9130a000dff1426d863d4a100d173cae3269436e242401e6752218b6",
+    "experiments/audits/e2_stockout_preflight_failed_attempt.json": "456ccc0b3af040b2964ea904007a454e48f0f5378704f37c70e235a6687b12c4",
+    "experiments/audits/e2_stockout_scoped_regression_gate.json": "632d6c22dddb1072d4e98b7d9ae456ace25f9ae4af25e24a306ea7e3a18b6fb0",
+    "experiments/audits/e2_stockout_delivery_hashes.json": "f06a9aea2749d77ee388aed670756a2fff4441eab8e18464cd089d6e2d4b77d7",
+    "experiments/results/e2_stockout_resource_preflight_v1/PREFLIGHT-210202-EXISTING/checkpoint.json": "67c064a0b7d6c3a6fbdb0831a942331d4f0f7214cef37f009143c5b69c6d097b",
+    "experiments/results/e2_stockout_resource_preflight_v1/PREFLIGHT-210202-EXISTING/checkpoint.json.sha256": "960e2907d60ddba47cc46b32b621499e39185ef5dffc9dea172822ad9896e7bf",
+    "experiments/results/e2_stockout_resource_preflight_v1/PREFLIGHT-210202-EXISTING/result_manifest.json": "1a18f43f2c7b91d0825d312edfb38db2a614fd5a45f58962659882b4befd7a20",
+    "tests/test_e2_stockout_common_scenario.py": "2ac2c23dc82f8a1bdb5295ea50d4b813a3bc844eaf3a5f18336e2940d9aca40c",
+    "tests/test_e2_stockout_formal_gate.py": "24a74a79306d8ed5af365ff390cbefe36acd6fd82635b86067c4071ce53707b8",
+    "tests/test_e2_stockout_resource_preflight.py": "f80746835b7a30a7fe1ccc68c59c5875d8cfb3e9702c0db2ea68822923fe4b67"
+  }
+}

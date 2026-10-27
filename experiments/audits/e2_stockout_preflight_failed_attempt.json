@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "classification": "FAILED_PREFLIGHT_DIAGNOSTIC_NOT_A_VALID_CHECKPOINT",
+  "task_id": "PREFLIGHT-210202-EXISTING",
+  "attempts": [
+    {
+      "failure_phase": "resume_segment_block_80",
+      "last_persisted_completed_blocks": 79,
+      "failed_block": {
+        "product_index": 1,
+        "shocked_region_indices": []
+      },
+      "observed_raw_reporting_minus_initial_lp_cost": -1.1880106285389047e-06,
+      "diagnosis": "The reporting solution was feasible and economically lower than the first LP objective by numerical tolerance. A newly added absolute-delta guard incorrectly rejected that improvement as an upper-band violation.",
+      "remediation": "Both combined and per-block evaluators now record the lower of the two feasible economic costs and continue to reject only a positive tie-break upper-band violation.",
+      "discarded_checkpoint_sha256": "0fa459b72480356bd38d673880aa77002691d2c93a335f6f6165d58c3b6ab132",
+      "discarded_checkpoint_bytes": 52836
+    },
+    {
+      "failure_phase": "resume_segment_incremental_checkpoint_write",
+      "last_persisted_completed_blocks": 109,
+      "exception": "OSError 22 Invalid argument",
+      "diagnosis": "Direct in-place checkpoint replacement remained valid at block 109 but exposed a Windows write failure that could have truncated a checkpoint on a different failure timing.",
+      "remediation": "Checkpoint and digest writes now use same-directory temporary files, atomic os.replace, and bounded retry. The prior valid checkpoint is never opened for truncating overwrite.",
+      "discarded_checkpoint_sha256": "38f306a437a918aea5bf11419912f59a1db4d7eb908747600df71462213ca8a5",
+      "discarded_checkpoint_bytes": 72863,
+      "discarded_checkpoint_digest_matched": true
+    },
+    {
+      "disposition": "SUPERSEDED_COMPLETE_RUN_NOT_ADMISSION_EVIDENCE",
+      "completed_blocks": 632,
+      "scenario_count": 4657,
+      "runtime_seconds": 18.269291299860924,
+      "peak_process_rss_bytes": 39399424,
+      "checkpoint_sha256": "5faefd0be7b6df70c9fcef5ebc065af2bef4c982b828dbb7ff4fd665d804759f",
+      "result_manifest_sha256": "66ac3013db43e6b6a164696f4f959477885267b3c8cbb7ecb3f0d49509c1cc86",
+      "reason": "A fail-closed verifier for completed resource evidence was added afterward, changing the frozen runner identity. The numerically complete output was therefore discarded and rerun under the final identity chain."
+    },
+    {
+      "disposition": "SUPERSEDED_COMPLETE_RUN_NOT_ADMISSION_EVIDENCE",
+      "completed_blocks": 632,
+      "scenario_count": 4657,
+      "runtime_seconds": 16.653096499852836,
+      "peak_process_rss_bytes": 40095744,
+      "checkpoint_sha256": "e9db73cbac1d4d54581ff96ad86cbafda7bd60d1f6365208e612a5853f573331",
+      "result_manifest_sha256": "d3cb60a7fad2885c4194e542e4252349bcbc643360fc8c77f004d4b3bceee155",
+      "reason": "The formal authorization identity list was extended to bind the reviewed scoped-regression gate. That intentional runner identity change required one final preflight rerun; this output was not reused."
+    }
+  ],
+  "discarded_checkpoint_formal_run_authorized": false,
+  "paper_eligible": false,
+  "valid_resume_checkpoint": false
+}

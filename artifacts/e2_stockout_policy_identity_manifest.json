@@ -1,0 +1,829 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "E2_STOCKOUT_COMMON_SCENARIO_V1",
+  "identity_freeze_status": "FROZEN_TWO_POLICY_SCIENTIFIC_DEFINITION_CONFIRMED",
+  "formal_run_authorized": false,
+  "policy_decision": "A_POLICY_DEFINITION_CONFIRMED_FORMAL_RUN_LOCKED",
+  "policy_decision_reason": "User confirmed Existing as Baseline and later exactly certified SCAL_BASE as the Robust candidate. Nominal is the same canonical configuration as Baseline and is not independently scheduled. Original E2 Nominal and E1/E2 Robust coordinates remain unrecovered, and formal evaluation remains separately locked.",
+  "cases": [
+    "210129",
+    "210202",
+    "210310",
+    "210323",
+    "210330",
+    "210428",
+    "210611",
+    "210628"
+  ],
+  "policies": [
+    {
+      "case_id": "210129",
+      "policy_id": "EXISTING_CANONICAL_210129",
+      "lineage": "ORIGINAL_CANONICAL_EXISTING_POLICY",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210129.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210129",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210129.json",
+      "certification_source_sha256": "560ced4bcfa8fab590382be06ea71be04aae5a55cfe3f21d3806abe961b3e279",
+      "instance_sha256": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3",
+      "source_file_sha256": "ebd9b18371804f725a775db4eb4cacad84398b0c4c48e945aa039d425ea71288",
+      "coordinates_sha256": "7f1c1ec2c945cf3671f63d2d6084c28e1574c5422813b1f09f169ef7cf1e7cca",
+      "coordinate_component_sha256": {
+        "y": "396e7e47c7d54f600c2a79e011e93800c5fa6e54e132af5428d5bbb867151123",
+        "x": "d3dd96b724556be2f39150c5417f0c31cdd1fda21077eac8814a9472d5a90254",
+        "a_plus": "51ee72e7e10235756346ef8039b3e86f6740e9a9d7cf6af063d03f0e301d7f79",
+        "a_minus": "51ee72e7e10235756346ef8039b3e86f6740e9a9d7cf6af063d03f0e301d7f79"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": true,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210129",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 852391.2100067992,
+        "objective_delta": null,
+        "ri_delta": 0.0,
+        "consistency_status": "AGGREGATE_ONLY_NO_COORDINATE_SOURCE"
+      }
+    },
+    {
+      "case_id": "210129",
+      "policy_id": "NOMINAL_CANONICAL_REDECLARED_210129",
+      "lineage": "REDECLARED_CANONICAL_POLICY_NOT_RECOVERED_E2_COORDINATES",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210129.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210129",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210129.json",
+      "certification_source_sha256": "560ced4bcfa8fab590382be06ea71be04aae5a55cfe3f21d3806abe961b3e279",
+      "instance_sha256": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3",
+      "source_file_sha256": "ebd9b18371804f725a775db4eb4cacad84398b0c4c48e945aa039d425ea71288",
+      "coordinates_sha256": "7f1c1ec2c945cf3671f63d2d6084c28e1574c5422813b1f09f169ef7cf1e7cca",
+      "coordinate_component_sha256": {
+        "y": "396e7e47c7d54f600c2a79e011e93800c5fa6e54e132af5428d5bbb867151123",
+        "x": "d3dd96b724556be2f39150c5417f0c31cdd1fda21077eac8814a9472d5a90254",
+        "a_plus": "51ee72e7e10235756346ef8039b3e86f6740e9a9d7cf6af063d03f0e301d7f79",
+        "a_minus": "51ee72e7e10235756346ef8039b3e86f6740e9a9d7cf6af063d03f0e301d7f79"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210129",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 852391.2100068971,
+        "objective_delta_vs_existing": 9.790528565645218e-08,
+        "consistency_status": "MATERIAL_POLICY_MATCH_ONLY_NOT_COORDINATE_RECOVERY"
+      }
+    },
+    {
+      "case_id": "210129",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210129",
+      "lineage": "SUBSEQUENT_NUMERICALLY_EQUIVALENT_SOLUTION_NOT_ORIGINAL_E1_E2",
+      "source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210129/first_stage_solution.json",
+      "source_run_id": "SCAL_BASE_210129",
+      "certification_source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210129/result.json",
+      "certification_source_sha256": "131632ec86953300accfed96c960871366d390a324d811ea088357e7a2ee7b29",
+      "instance_sha256": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3",
+      "source_file_sha256": "f5918ffca080b91e680362f7b1c5c252d54314d10ceb826569a2cbb310e1f2bc",
+      "coordinates_sha256": "d0578e48d010904d1aff85a894f63197b9ab011b5c6de6d54600debedfcf2737",
+      "coordinate_component_sha256": {
+        "y": "396e7e47c7d54f600c2a79e011e93800c5fa6e54e132af5428d5bbb867151123",
+        "x": "b20d46d14886a07b93ec59e8b9336ad81c74904fff708041d0e8ed4a86d45f15",
+        "a_plus": "727e07a715582a94da8c3f11614849355e91a38f658c56258306cda48d8d44ed",
+        "a_minus": "f3f7c80fbc22e0f797023021317a8c2bef7a3de009776d09445fa197fe66188b"
+      },
+      "solver_status": "OPTIMAL",
+      "exact_certification": "CERTIFIED_PRB_EXACT",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": null,
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 851260.2478325499,
+        "candidate_objective": 851260.2478325499,
+        "objective_delta": 0.0,
+        "ri_delta": 0.0,
+        "rs_delta": 0.0,
+        "active_depot_count": 2,
+        "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210129/result.json",
+        "result_sha256": "131632ec86953300accfed96c960871366d390a324d811ea088357e7a2ee7b29",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210129/provenance.json",
+        "provenance_sha256": "e302e7356f84f70c18cd1cf8e820c73d8cc7999bc0a8f3f1fa0707107824e1d5",
+        "provenance_recorded_result_sha256": "131632ec86953300accfed96c960871366d390a324d811ea088357e7a2ee7b29",
+        "provenance_recorded_first_stage_solution_sha256": "f5918ffca080b91e680362f7b1c5c252d54314d10ceb826569a2cbb310e1f2bc",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
+      }
+    },
+    {
+      "case_id": "210202",
+      "policy_id": "EXISTING_CANONICAL_210202",
+      "lineage": "ORIGINAL_CANONICAL_EXISTING_POLICY",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210202.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210202",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210202.json",
+      "certification_source_sha256": "0125aef7213fa4139bef0280406d2f8e5ed6d164498bc1b4363fbe962e78e1e8",
+      "instance_sha256": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+      "source_file_sha256": "5fe095e76dd1372735ec7a6cb6fead9d6bc42f044b6006c13ed1aeb16dfbc368",
+      "coordinates_sha256": "608c0e17ebdc96e2594050536131ac649c8487e54a5dc47c1a9eb02f3860963a",
+      "coordinate_component_sha256": {
+        "y": "396e7e47c7d54f600c2a79e011e93800c5fa6e54e132af5428d5bbb867151123",
+        "x": "5e5b7ea41b5eaf3372cca230712cbe3cd45dcf80043408d79e2367af11a24377",
+        "a_plus": "51ee72e7e10235756346ef8039b3e86f6740e9a9d7cf6af063d03f0e301d7f79",
+        "a_minus": "51ee72e7e10235756346ef8039b3e86f6740e9a9d7cf6af063d03f0e301d7f79"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": true,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210202",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 1061031.1644750044,
+        "objective_delta": null,
+        "ri_delta": 0.0,
+        "consistency_status": "AGGREGATE_ONLY_NO_COORDINATE_SOURCE"
+      }
+    },
+    {
+      "case_id": "210202",
+      "policy_id": "NOMINAL_CANONICAL_REDECLARED_210202",
+      "lineage": "REDECLARED_CANONICAL_POLICY_NOT_RECOVERED_E2_COORDINATES",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210202.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210202",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210202.json",
+      "certification_source_sha256": "0125aef7213fa4139bef0280406d2f8e5ed6d164498bc1b4363fbe962e78e1e8",
+      "instance_sha256": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+      "source_file_sha256": "5fe095e76dd1372735ec7a6cb6fead9d6bc42f044b6006c13ed1aeb16dfbc368",
+      "coordinates_sha256": "608c0e17ebdc96e2594050536131ac649c8487e54a5dc47c1a9eb02f3860963a",
+      "coordinate_component_sha256": {
+        "y": "396e7e47c7d54f600c2a79e011e93800c5fa6e54e132af5428d5bbb867151123",
+        "x": "5e5b7ea41b5eaf3372cca230712cbe3cd45dcf80043408d79e2367af11a24377",
+        "a_plus": "51ee72e7e10235756346ef8039b3e86f6740e9a9d7cf6af063d03f0e301d7f79",
+        "a_minus": "51ee72e7e10235756346ef8039b3e86f6740e9a9d7cf6af063d03f0e301d7f79"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210202",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 1061031.1644751027,
+        "objective_delta_vs_existing": 9.825453162193298e-08,
+        "consistency_status": "MATERIAL_POLICY_MATCH_ONLY_NOT_COORDINATE_RECOVERY"
+      }
+    },
+    {
+      "case_id": "210202",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210202",
+      "lineage": "SUBSEQUENT_NUMERICALLY_EQUIVALENT_SOLUTION_NOT_ORIGINAL_E1_E2",
+      "source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210202/first_stage_solution.json",
+      "source_run_id": "SCAL_BASE_210202",
+      "certification_source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210202/result.json",
+      "certification_source_sha256": "4f5d13174b9d1d4b743c36c22f51bd14d2e006409375ac719e86f7a15b36e674",
+      "instance_sha256": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+      "source_file_sha256": "b2dc3b97a866d95c36b0bb9f285a71b332269212587c7e4ef97b89e8c886c1b0",
+      "coordinates_sha256": "12c4fb2c017cddc9355aae458af94c8a1c26902e5204464b2dcb6aae6db52458",
+      "coordinate_component_sha256": {
+        "y": "396e7e47c7d54f600c2a79e011e93800c5fa6e54e132af5428d5bbb867151123",
+        "x": "e3718b3b58c41384d3788f791f925503dab3c4fa1529ad2c215a7e5f32b9da9a",
+        "a_plus": "3ba02222258c7fa78e79fdb803f3fbd209a1e498bdebad3c33cde100ac85a30d",
+        "a_minus": "2fd2996a50c31e0e5baae6b27aaf952420011dc4f9c31141e4f45e5afca573f6"
+      },
+      "solver_status": "OPTIMAL",
+      "exact_certification": "CERTIFIED_PRB_EXACT",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": null,
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 1058780.7942496866,
+        "candidate_objective": 1058780.7942496866,
+        "objective_delta": 0.0,
+        "ri_delta": 0.0,
+        "rs_delta": 0.0,
+        "active_depot_count": 2,
+        "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210202/result.json",
+        "result_sha256": "4f5d13174b9d1d4b743c36c22f51bd14d2e006409375ac719e86f7a15b36e674",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210202/provenance.json",
+        "provenance_sha256": "cbf689e601f55166b4cf7a9c1fa2a8a6974728d65788a5de670703cb1e0e208e",
+        "provenance_recorded_result_sha256": "4f5d13174b9d1d4b743c36c22f51bd14d2e006409375ac719e86f7a15b36e674",
+        "provenance_recorded_first_stage_solution_sha256": "b2dc3b97a866d95c36b0bb9f285a71b332269212587c7e4ef97b89e8c886c1b0",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
+      }
+    },
+    {
+      "case_id": "210310",
+      "policy_id": "EXISTING_CANONICAL_210310",
+      "lineage": "ORIGINAL_CANONICAL_EXISTING_POLICY",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210310.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210310",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210310.json",
+      "certification_source_sha256": "6c6cccee6f0532cffc26e234c4f053e080a80144c79cd55fd14a393bbba59745",
+      "instance_sha256": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+      "source_file_sha256": "66a15c21d4e760c0d31bbe9a15f21216b3fdd37e6b7bf14836025d544b0d117b",
+      "coordinates_sha256": "a7040d6d8d5689c1929a35caeeadb91d95ac99c5421b376b1ca7d9e89ef14776",
+      "coordinate_component_sha256": {
+        "y": "e6453ac1cccf93805c63eaf8eaad79a9fb4da1fb09d70e60a2002fa49ec82b75",
+        "x": "015da4f60111497f6c473c8ca0dbf58858245401496dd2360ce64198a13731f5",
+        "a_plus": "e1ca85d7adf5b54c8fc489528c8a1033b3fc36cda141b4e86a721699574764c2",
+        "a_minus": "e1ca85d7adf5b54c8fc489528c8a1033b3fc36cda141b4e86a721699574764c2"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": true,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210310",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 714814.5477076541,
+        "objective_delta": null,
+        "ri_delta": 0.0,
+        "consistency_status": "AGGREGATE_ONLY_NO_COORDINATE_SOURCE"
+      }
+    },
+    {
+      "case_id": "210310",
+      "policy_id": "NOMINAL_CANONICAL_REDECLARED_210310",
+      "lineage": "REDECLARED_CANONICAL_POLICY_NOT_RECOVERED_E2_COORDINATES",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210310.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210310",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210310.json",
+      "certification_source_sha256": "6c6cccee6f0532cffc26e234c4f053e080a80144c79cd55fd14a393bbba59745",
+      "instance_sha256": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+      "source_file_sha256": "66a15c21d4e760c0d31bbe9a15f21216b3fdd37e6b7bf14836025d544b0d117b",
+      "coordinates_sha256": "a7040d6d8d5689c1929a35caeeadb91d95ac99c5421b376b1ca7d9e89ef14776",
+      "coordinate_component_sha256": {
+        "y": "e6453ac1cccf93805c63eaf8eaad79a9fb4da1fb09d70e60a2002fa49ec82b75",
+        "x": "015da4f60111497f6c473c8ca0dbf58858245401496dd2360ce64198a13731f5",
+        "a_plus": "e1ca85d7adf5b54c8fc489528c8a1033b3fc36cda141b4e86a721699574764c2",
+        "a_minus": "e1ca85d7adf5b54c8fc489528c8a1033b3fc36cda141b4e86a721699574764c2"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210310",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 714814.5477077012,
+        "objective_delta_vs_existing": 4.71482053399086e-08,
+        "consistency_status": "MATERIAL_POLICY_MATCH_ONLY_NOT_COORDINATE_RECOVERY"
+      }
+    },
+    {
+      "case_id": "210310",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210310",
+      "lineage": "SUBSEQUENT_NUMERICALLY_EQUIVALENT_SOLUTION_NOT_ORIGINAL_E1_E2",
+      "source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210310/first_stage_solution.json",
+      "source_run_id": "SCAL_BASE_210310",
+      "certification_source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210310/result.json",
+      "certification_source_sha256": "1a563e44427ea5240c1c10b8cb7e19c3f926dbc42ef5ceee47e005f6574459a3",
+      "instance_sha256": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+      "source_file_sha256": "82834730a17d2aa046389f198da47b53aa91167ade2a796d5542df74cdd67dce",
+      "coordinates_sha256": "941f1507aeaa9c507ee8205ccebc238086e898ba0df44e7792b24bee99f4a67f",
+      "coordinate_component_sha256": {
+        "y": "e6453ac1cccf93805c63eaf8eaad79a9fb4da1fb09d70e60a2002fa49ec82b75",
+        "x": "8ee731bb4e5cacc0bbfd3fa8fdf2a362785366eec07279db998b2f01321f72e3",
+        "a_plus": "e1ca85d7adf5b54c8fc489528c8a1033b3fc36cda141b4e86a721699574764c2",
+        "a_minus": "e1ca85d7adf5b54c8fc489528c8a1033b3fc36cda141b4e86a721699574764c2"
+      },
+      "solver_status": "OPTIMAL",
+      "exact_certification": "CERTIFIED_PRB_EXACT",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": null,
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 714814.5477077012,
+        "candidate_objective": 714814.5477077012,
+        "objective_delta": 0.0,
+        "ri_delta": 3.4895458674603015e-12,
+        "rs_delta": 0.0,
+        "active_depot_count": 4,
+        "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210310/result.json",
+        "result_sha256": "1a563e44427ea5240c1c10b8cb7e19c3f926dbc42ef5ceee47e005f6574459a3",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210310/provenance.json",
+        "provenance_sha256": "0995f48f9d8b42fbf73479d28a5bd04a93fb56fe078af68fdb78954aef2c73c6",
+        "provenance_recorded_result_sha256": "1a563e44427ea5240c1c10b8cb7e19c3f926dbc42ef5ceee47e005f6574459a3",
+        "provenance_recorded_first_stage_solution_sha256": "82834730a17d2aa046389f198da47b53aa91167ade2a796d5542df74cdd67dce",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
+      }
+    },
+    {
+      "case_id": "210323",
+      "policy_id": "EXISTING_CANONICAL_210323",
+      "lineage": "ORIGINAL_CANONICAL_EXISTING_POLICY",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210323.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210323",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210323.json",
+      "certification_source_sha256": "839bbdd8fdf83291e8a02664c226c998dcdf3daa99a3ee5f8255a842dcea384f",
+      "instance_sha256": "df5fcbaa54a73277948f676fae151d85ad621d9ef417b0906b04066b1ef1109c",
+      "source_file_sha256": "04c9e1219c4e323ab77f8c8fb70854ecf4eb1c710584f21418b5a0005afaeb60",
+      "coordinates_sha256": "18f36ad865f2957c6134617a5e52635c3005c37509bc93c208bc549ff07ac496",
+      "coordinate_component_sha256": {
+        "y": "fa0bc8c89d89c251bdaf0a78e2d926d06ce0a2176153c2af0dc757c74f32c971",
+        "x": "ea5d48e13098152c275e602264623135dd3966acc7b43fd1054ee3f2772a62dc",
+        "a_plus": "398e856ad600adfc4061e6e4122fdbea82965d031d653b9e64cbc8105ef28e95",
+        "a_minus": "398e856ad600adfc4061e6e4122fdbea82965d031d653b9e64cbc8105ef28e95"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": true,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210323",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 627611.3567129218,
+        "objective_delta": null,
+        "ri_delta": 0.0,
+        "consistency_status": "AGGREGATE_ONLY_NO_COORDINATE_SOURCE"
+      }
+    },
+    {
+      "case_id": "210323",
+      "policy_id": "NOMINAL_CANONICAL_REDECLARED_210323",
+      "lineage": "REDECLARED_CANONICAL_POLICY_NOT_RECOVERED_E2_COORDINATES",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210323.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210323",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210323.json",
+      "certification_source_sha256": "839bbdd8fdf83291e8a02664c226c998dcdf3daa99a3ee5f8255a842dcea384f",
+      "instance_sha256": "df5fcbaa54a73277948f676fae151d85ad621d9ef417b0906b04066b1ef1109c",
+      "source_file_sha256": "04c9e1219c4e323ab77f8c8fb70854ecf4eb1c710584f21418b5a0005afaeb60",
+      "coordinates_sha256": "18f36ad865f2957c6134617a5e52635c3005c37509bc93c208bc549ff07ac496",
+      "coordinate_component_sha256": {
+        "y": "fa0bc8c89d89c251bdaf0a78e2d926d06ce0a2176153c2af0dc757c74f32c971",
+        "x": "ea5d48e13098152c275e602264623135dd3966acc7b43fd1054ee3f2772a62dc",
+        "a_plus": "398e856ad600adfc4061e6e4122fdbea82965d031d653b9e64cbc8105ef28e95",
+        "a_minus": "398e856ad600adfc4061e6e4122fdbea82965d031d653b9e64cbc8105ef28e95"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210323",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 627611.3567129218,
+        "objective_delta_vs_existing": 0.0,
+        "consistency_status": "MATERIAL_POLICY_MATCH_ONLY_NOT_COORDINATE_RECOVERY"
+      }
+    },
+    {
+      "case_id": "210323",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210323",
+      "lineage": "SUBSEQUENT_NUMERICALLY_EQUIVALENT_SOLUTION_NOT_ORIGINAL_E1_E2",
+      "source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210323/first_stage_solution.json",
+      "source_run_id": "SCAL_BASE_210323",
+      "certification_source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210323/result.json",
+      "certification_source_sha256": "8baeada5a736cfefcade9996e137be008cd127027127f2aa4c752b056fccb7b0",
+      "instance_sha256": "df5fcbaa54a73277948f676fae151d85ad621d9ef417b0906b04066b1ef1109c",
+      "source_file_sha256": "851b3d881d152eb443f20dbe5b3eae176866f5f6ad402ad7c282648e6b19d0bb",
+      "coordinates_sha256": "4583b9eef023ffa2cc0eb96a34534180b1f178b1b56cc3ef1733ad723689f857",
+      "coordinate_component_sha256": {
+        "y": "fa0bc8c89d89c251bdaf0a78e2d926d06ce0a2176153c2af0dc757c74f32c971",
+        "x": "e2b1bae54ee2a3948bfda8a04d987f848a3bf6a4a61f7defdbd5a196b52c66fa",
+        "a_plus": "6efea8676590de4e260c92c4b8368e6b39c64cd8f329cecaee63ae103eda2fa4",
+        "a_minus": "ad921af7ef5bc394ca506e0b7a5ba41fb97a658e81ea9465a29444696a8c4f00"
+      },
+      "solver_status": "OPTIMAL",
+      "exact_certification": "CERTIFIED_PRB_EXACT",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": null,
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 627147.2289325014,
+        "candidate_objective": 627147.2289325014,
+        "objective_delta": 0.0,
+        "ri_delta": 3.158729527941162e-11,
+        "rs_delta": 0.0,
+        "active_depot_count": 2,
+        "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210323/result.json",
+        "result_sha256": "8baeada5a736cfefcade9996e137be008cd127027127f2aa4c752b056fccb7b0",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210323/provenance.json",
+        "provenance_sha256": "cec08bc05071926a654754be455634fa4b2da67972f717122bbd79dcf541d728",
+        "provenance_recorded_result_sha256": "8baeada5a736cfefcade9996e137be008cd127027127f2aa4c752b056fccb7b0",
+        "provenance_recorded_first_stage_solution_sha256": "851b3d881d152eb443f20dbe5b3eae176866f5f6ad402ad7c282648e6b19d0bb",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
+      }
+    },
+    {
+      "case_id": "210330",
+      "policy_id": "EXISTING_CANONICAL_210330",
+      "lineage": "ORIGINAL_CANONICAL_EXISTING_POLICY",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210330.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210330",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210330.json",
+      "certification_source_sha256": "fedfc599697ad5396f3bae9ef7e7ae783053a5527e03ee822fd22ff719effc99",
+      "instance_sha256": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+      "source_file_sha256": "11cd91349ff218d7f951a38a65123de8c5e304d36a370c97a39a1ce9b3c3961a",
+      "coordinates_sha256": "c39d687b4b63901f07e0ef84602a12de824baed53ca8fde1f7c520f316f84832",
+      "coordinate_component_sha256": {
+        "y": "400e6b0071bc915bb14915e471a753e35e7f93d6c795d4428c4cd8cdf7612997",
+        "x": "1b13c188f58c136a27a5aa913bbd782fdc1e941fb1318bf545e6a5cca1461ec2",
+        "a_plus": "46d64badf8996d9bbcf404058d7eb7574704a7ad61fadb59ff05737c232d45cd",
+        "a_minus": "46d64badf8996d9bbcf404058d7eb7574704a7ad61fadb59ff05737c232d45cd"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": true,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210330",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 658377.0819420859,
+        "objective_delta": null,
+        "ri_delta": 0.0,
+        "consistency_status": "AGGREGATE_ONLY_NO_COORDINATE_SOURCE"
+      }
+    },
+    {
+      "case_id": "210330",
+      "policy_id": "NOMINAL_CANONICAL_REDECLARED_210330",
+      "lineage": "REDECLARED_CANONICAL_POLICY_NOT_RECOVERED_E2_COORDINATES",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210330.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210330",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210330.json",
+      "certification_source_sha256": "fedfc599697ad5396f3bae9ef7e7ae783053a5527e03ee822fd22ff719effc99",
+      "instance_sha256": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+      "source_file_sha256": "11cd91349ff218d7f951a38a65123de8c5e304d36a370c97a39a1ce9b3c3961a",
+      "coordinates_sha256": "c39d687b4b63901f07e0ef84602a12de824baed53ca8fde1f7c520f316f84832",
+      "coordinate_component_sha256": {
+        "y": "400e6b0071bc915bb14915e471a753e35e7f93d6c795d4428c4cd8cdf7612997",
+        "x": "1b13c188f58c136a27a5aa913bbd782fdc1e941fb1318bf545e6a5cca1461ec2",
+        "a_plus": "46d64badf8996d9bbcf404058d7eb7574704a7ad61fadb59ff05737c232d45cd",
+        "a_minus": "46d64badf8996d9bbcf404058d7eb7574704a7ad61fadb59ff05737c232d45cd"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210330",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 658377.0819422521,
+        "objective_delta_vs_existing": 1.6624107956886292e-07,
+        "consistency_status": "MATERIAL_POLICY_MATCH_ONLY_NOT_COORDINATE_RECOVERY"
+      }
+    },
+    {
+      "case_id": "210330",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210330",
+      "lineage": "SUBSEQUENT_NUMERICALLY_EQUIVALENT_SOLUTION_NOT_ORIGINAL_E1_E2",
+      "source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210330/first_stage_solution.json",
+      "source_run_id": "SCAL_BASE_210330",
+      "certification_source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210330/result.json",
+      "certification_source_sha256": "3865c2b08df77ad294293df09ce9660d3f9ecd5cd7c77c24ffc4297918300e19",
+      "instance_sha256": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+      "source_file_sha256": "2eb9e44f9d879b9924ae9a844deddb2c711e2995f48ecd750e6b8e1bb7483637",
+      "coordinates_sha256": "127a10f2ff7af50765151bc1a65772780f74c2fa5f138e62f8af4737570d315e",
+      "coordinate_component_sha256": {
+        "y": "400e6b0071bc915bb14915e471a753e35e7f93d6c795d4428c4cd8cdf7612997",
+        "x": "1f13a199b5b813cafcc2a301c8abea7fe5556b7cd45d2956c9d2e266d4282c65",
+        "a_plus": "a187efe01372c1c3befe1f72a53a19214461a105e9f16dc532f3e9ed40ba27af",
+        "a_minus": "ab3d398fc4ccc7630a004eef3a8239bad04ee4ea95d5246a2ee36a11518a1f6f"
+      },
+      "solver_status": "OPTIMAL",
+      "exact_certification": "CERTIFIED_PRB_EXACT",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": null,
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 657659.5492546142,
+        "candidate_objective": 657659.5492546142,
+        "objective_delta": 0.0,
+        "ri_delta": 0.0,
+        "rs_delta": 0.0,
+        "active_depot_count": 2,
+        "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210330/result.json",
+        "result_sha256": "3865c2b08df77ad294293df09ce9660d3f9ecd5cd7c77c24ffc4297918300e19",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210330/provenance.json",
+        "provenance_sha256": "02d17956fa7b4273248251b933727d3af828687287030167af416ed4fc69903e",
+        "provenance_recorded_result_sha256": "3865c2b08df77ad294293df09ce9660d3f9ecd5cd7c77c24ffc4297918300e19",
+        "provenance_recorded_first_stage_solution_sha256": "2eb9e44f9d879b9924ae9a844deddb2c711e2995f48ecd750e6b8e1bb7483637",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
+      }
+    },
+    {
+      "case_id": "210428",
+      "policy_id": "EXISTING_CANONICAL_210428",
+      "lineage": "ORIGINAL_CANONICAL_EXISTING_POLICY",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210428.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210428",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210428.json",
+      "certification_source_sha256": "ec28f3e96a26f2bd060f9162e7c75e143cec0ff3c3d1662866ee784518d3b019",
+      "instance_sha256": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+      "source_file_sha256": "cc08b6627d2f100652172e56ae78f3e35a97b8c89385b99da534fc20917a8014",
+      "coordinates_sha256": "bde8646c6c0db8ae661952596e1fe468f7912b7c53f57ab17c176f6dfd3325f8",
+      "coordinate_component_sha256": {
+        "y": "32bd17996789c9380b2856407a823c05a3a0bacffae3d56b30bef1d3332c1c67",
+        "x": "4032b1e34d7ed372849ebff4c419f3d671078aac180ca0c210a8ab8a3da24077",
+        "a_plus": "245aea18afebc6db2b0b946260f0a991fac129758ce0d39fb4a847cbf8ee2e4b",
+        "a_minus": "245aea18afebc6db2b0b946260f0a991fac129758ce0d39fb4a847cbf8ee2e4b"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": true,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210428",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 793717.3880817087,
+        "objective_delta": null,
+        "ri_delta": 0.0,
+        "consistency_status": "AGGREGATE_ONLY_NO_COORDINATE_SOURCE"
+      }
+    },
+    {
+      "case_id": "210428",
+      "policy_id": "NOMINAL_CANONICAL_REDECLARED_210428",
+      "lineage": "REDECLARED_CANONICAL_POLICY_NOT_RECOVERED_E2_COORDINATES",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210428.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210428",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210428.json",
+      "certification_source_sha256": "ec28f3e96a26f2bd060f9162e7c75e143cec0ff3c3d1662866ee784518d3b019",
+      "instance_sha256": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+      "source_file_sha256": "cc08b6627d2f100652172e56ae78f3e35a97b8c89385b99da534fc20917a8014",
+      "coordinates_sha256": "bde8646c6c0db8ae661952596e1fe468f7912b7c53f57ab17c176f6dfd3325f8",
+      "coordinate_component_sha256": {
+        "y": "32bd17996789c9380b2856407a823c05a3a0bacffae3d56b30bef1d3332c1c67",
+        "x": "4032b1e34d7ed372849ebff4c419f3d671078aac180ca0c210a8ab8a3da24077",
+        "a_plus": "245aea18afebc6db2b0b946260f0a991fac129758ce0d39fb4a847cbf8ee2e4b",
+        "a_minus": "245aea18afebc6db2b0b946260f0a991fac129758ce0d39fb4a847cbf8ee2e4b"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210428",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 793717.388081666,
+        "objective_delta_vs_existing": 4.272442311048508e-08,
+        "consistency_status": "MATERIAL_POLICY_MATCH_ONLY_NOT_COORDINATE_RECOVERY"
+      }
+    },
+    {
+      "case_id": "210428",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210428",
+      "lineage": "SUBSEQUENT_NUMERICALLY_EQUIVALENT_SOLUTION_NOT_ORIGINAL_E1_E2",
+      "source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210428/first_stage_solution.json",
+      "source_run_id": "SCAL_BASE_210428",
+      "certification_source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210428/result.json",
+      "certification_source_sha256": "f181b1cafca87ed928bcbd749084dbe976637e261cc8cb702f1283f0b8d9dfb2",
+      "instance_sha256": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+      "source_file_sha256": "5cf1b31281d1a1ffb6df6f867d008504aec209fba3842850d522520034ec61f7",
+      "coordinates_sha256": "115dc218627882cd97d0ca4683880c244fb76ee9b6cbda61206f7c610957c3fe",
+      "coordinate_component_sha256": {
+        "y": "32bd17996789c9380b2856407a823c05a3a0bacffae3d56b30bef1d3332c1c67",
+        "x": "ebc76d62cdce358a0ac229057ba982a8b17996682f6ea7f3802cb60cbdd86686",
+        "a_plus": "6e4bc5e7a2baa1b9db59e312bfeadec3026ba36d9ff05bf0dc61314d92e8df61",
+        "a_minus": "c3b8be736e7bdde5dc4fd92d68b591302253976b7f6868cf324ec72940dc6b38"
+      },
+      "solver_status": "OPTIMAL",
+      "exact_certification": "CERTIFIED_PRB_EXACT",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": null,
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 793717.3880816748,
+        "candidate_objective": 793717.3880816748,
+        "objective_delta": 0.0,
+        "ri_delta": 0.0,
+        "rs_delta": 0.0,
+        "active_depot_count": 2,
+        "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210428/result.json",
+        "result_sha256": "f181b1cafca87ed928bcbd749084dbe976637e261cc8cb702f1283f0b8d9dfb2",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210428/provenance.json",
+        "provenance_sha256": "264b0c674694b519a0dc5fd72ee6198d54b9fcbafbc86fee9bd0303b77b53c7e",
+        "provenance_recorded_result_sha256": "f181b1cafca87ed928bcbd749084dbe976637e261cc8cb702f1283f0b8d9dfb2",
+        "provenance_recorded_first_stage_solution_sha256": "5cf1b31281d1a1ffb6df6f867d008504aec209fba3842850d522520034ec61f7",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
+      }
+    },
+    {
+      "case_id": "210611",
+      "policy_id": "EXISTING_CANONICAL_210611",
+      "lineage": "ORIGINAL_CANONICAL_EXISTING_POLICY",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210611.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210611",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210611.json",
+      "certification_source_sha256": "46fa1d5fabe02eb68e904b39cecce30ca0f74424943da4a0dcbe265cd8ec89b8",
+      "instance_sha256": "f244641d602348af8b2ac31a2bb948b4b0ebca8e33ff446dd07298e3e578a9bf",
+      "source_file_sha256": "deca1c7decbb01c5500ede566cd790a44cfa86e99c1b761b9f30cd30eb63ef81",
+      "coordinates_sha256": "892812b40286d821ff107f48bc829d6653069ee2424d9fde65dbda4c7acecb17",
+      "coordinate_component_sha256": {
+        "y": "b44548ff9f6b244defc8be936385bd4cfc2599bed492e47109c9caaeea069a68",
+        "x": "919d6e6a7bdd49cea9c67227f28e60227339f962dcb148c727e30bb5f673a702",
+        "a_plus": "869266d6523daa9adc9b475746820ac42744a53e5efd2f23513eb552686d245b",
+        "a_minus": "869266d6523daa9adc9b475746820ac42744a53e5efd2f23513eb552686d245b"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": true,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210611",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 617415.6681418419,
+        "objective_delta": null,
+        "ri_delta": 0.0,
+        "consistency_status": "AGGREGATE_ONLY_NO_COORDINATE_SOURCE"
+      }
+    },
+    {
+      "case_id": "210611",
+      "policy_id": "NOMINAL_CANONICAL_REDECLARED_210611",
+      "lineage": "REDECLARED_CANONICAL_POLICY_NOT_RECOVERED_E2_COORDINATES",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210611.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210611",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210611.json",
+      "certification_source_sha256": "46fa1d5fabe02eb68e904b39cecce30ca0f74424943da4a0dcbe265cd8ec89b8",
+      "instance_sha256": "f244641d602348af8b2ac31a2bb948b4b0ebca8e33ff446dd07298e3e578a9bf",
+      "source_file_sha256": "deca1c7decbb01c5500ede566cd790a44cfa86e99c1b761b9f30cd30eb63ef81",
+      "coordinates_sha256": "892812b40286d821ff107f48bc829d6653069ee2424d9fde65dbda4c7acecb17",
+      "coordinate_component_sha256": {
+        "y": "b44548ff9f6b244defc8be936385bd4cfc2599bed492e47109c9caaeea069a68",
+        "x": "919d6e6a7bdd49cea9c67227f28e60227339f962dcb148c727e30bb5f673a702",
+        "a_plus": "869266d6523daa9adc9b475746820ac42744a53e5efd2f23513eb552686d245b",
+        "a_minus": "869266d6523daa9adc9b475746820ac42744a53e5efd2f23513eb552686d245b"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210611",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 617415.668142111,
+        "objective_delta_vs_existing": 2.691522240638733e-07,
+        "consistency_status": "MATERIAL_POLICY_MATCH_ONLY_NOT_COORDINATE_RECOVERY"
+      }
+    },
+    {
+      "case_id": "210611",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210611",
+      "lineage": "SUBSEQUENT_NUMERICALLY_EQUIVALENT_SOLUTION_NOT_ORIGINAL_E1_E2",
+      "source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210611/first_stage_solution.json",
+      "source_run_id": "SCAL_BASE_210611",
+      "certification_source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210611/result.json",
+      "certification_source_sha256": "d78aaf3026e7142212acb5a80441027fb24f8c3215b6fb41668147ab28aa606b",
+      "instance_sha256": "f244641d602348af8b2ac31a2bb948b4b0ebca8e33ff446dd07298e3e578a9bf",
+      "source_file_sha256": "e16fdd8b1b133cce1804e18723291e92c61c7e5c0ab5bcb93711f60e8f0bb349",
+      "coordinates_sha256": "02103fa83b872738ab4a57b9aa9824d591e20942f48c1867d08c3346a1785e24",
+      "coordinate_component_sha256": {
+        "y": "b44548ff9f6b244defc8be936385bd4cfc2599bed492e47109c9caaeea069a68",
+        "x": "07aebe37c2280535fff5e872b20f91e6e93fddc2e872ce82092c1294e83dff27",
+        "a_plus": "722aee4537afbfdf44d28f57e8ff47130c4ad39eb1f5340467238dc2dd8316c9",
+        "a_minus": "c7db248a2829d34b3527bc8a27ccde2a49db5c6b2575b6b7da1513926534c0e5"
+      },
+      "solver_status": "OPTIMAL",
+      "exact_certification": "CERTIFIED_PRB_EXACT",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": null,
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 617415.6681423202,
+        "candidate_objective": 617415.6681421592,
+        "objective_delta": -1.6100239008665085e-07,
+        "ri_delta": 3.412401134499442e-11,
+        "rs_delta": 0.0,
+        "active_depot_count": 5,
+        "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210611/result.json",
+        "result_sha256": "d78aaf3026e7142212acb5a80441027fb24f8c3215b6fb41668147ab28aa606b",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210611/provenance.json",
+        "provenance_sha256": "da7325d6e99377c48e9c0a56b1c0fec46ac083aae609bcb686a5c88ccfd74300",
+        "provenance_recorded_result_sha256": "d78aaf3026e7142212acb5a80441027fb24f8c3215b6fb41668147ab28aa606b",
+        "provenance_recorded_first_stage_solution_sha256": "e16fdd8b1b133cce1804e18723291e92c61c7e5c0ab5bcb93711f60e8f0bb349",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
+      }
+    },
+    {
+      "case_id": "210628",
+      "policy_id": "EXISTING_CANONICAL_210628",
+      "lineage": "ORIGINAL_CANONICAL_EXISTING_POLICY",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210628.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210628",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210628.json",
+      "certification_source_sha256": "672be620fd225a645f5629e3fe96ff57eae0f1004e043df4596087648f74b1bf",
+      "instance_sha256": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677",
+      "source_file_sha256": "7514da694ef80b8a5053329b2a2c9619090e768884c0555d19a67f9e284b589e",
+      "coordinates_sha256": "763ae4f6b1eade52c018765f6cc9ae1d6931a07ab2fc6a06e8f9eebb4c55749e",
+      "coordinate_component_sha256": {
+        "y": "364360e5c143c30f9cdef02a78f1ab6f8ed6a6e4f2c184819e69215b63622a64",
+        "x": "cef8da95bc0fb5211f9cb64539fe13396af88f11cc3176a6d7744efa441aeff6",
+        "a_plus": "51ee72e7e10235756346ef8039b3e86f6740e9a9d7cf6af063d03f0e301d7f79",
+        "a_minus": "51ee72e7e10235756346ef8039b3e86f6740e9a9d7cf6af063d03f0e301d7f79"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": true,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210628",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 676700.837302961,
+        "objective_delta": null,
+        "ri_delta": 0.0,
+        "consistency_status": "AGGREGATE_ONLY_NO_COORDINATE_SOURCE"
+      }
+    },
+    {
+      "case_id": "210628",
+      "policy_id": "NOMINAL_CANONICAL_REDECLARED_210628",
+      "lineage": "REDECLARED_CANONICAL_POLICY_NOT_RECOVERED_E2_COORDINATES",
+      "source_path": "artifacts/renault_empirical_8case_v1/x0/210628.json",
+      "source_run_id": "RENAULT_EMPIRICAL_8CASE_V1-X0-210628",
+      "certification_source_path": "artifacts/renault_empirical_8case_v1/stability/210628.json",
+      "certification_source_sha256": "672be620fd225a645f5629e3fe96ff57eae0f1004e043df4596087648f74b1bf",
+      "instance_sha256": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677",
+      "source_file_sha256": "7514da694ef80b8a5053329b2a2c9619090e768884c0555d19a67f9e284b589e",
+      "coordinates_sha256": "763ae4f6b1eade52c018765f6cc9ae1d6931a07ab2fc6a06e8f9eebb4c55749e",
+      "coordinate_component_sha256": {
+        "y": "364360e5c143c30f9cdef02a78f1ab6f8ed6a6e4f2c184819e69215b63622a64",
+        "x": "cef8da95bc0fb5211f9cb64539fe13396af88f11cc3176a6d7744efa441aeff6",
+        "a_plus": "51ee72e7e10235756346ef8039b3e86f6740e9a9d7cf6af063d03f0e301d7f79",
+        "a_minus": "51ee72e7e10235756346ef8039b3e86f6740e9a9d7cf6af063d03f0e301d7f79"
+      },
+      "solver_status": "NOT_RECORDED_IN_X0_ARTIFACT",
+      "exact_certification": "CANONICAL_INCUMBENT_STABILITY_PASS_NOT_E2_SOLVER_CERTIFICATE",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": "CANONICAL_X0_210628",
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 676700.8373030788,
+        "objective_delta_vs_existing": 1.1781230568885803e-07,
+        "consistency_status": "MATERIAL_POLICY_MATCH_ONLY_NOT_COORDINATE_RECOVERY"
+      }
+    },
+    {
+      "case_id": "210628",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210628",
+      "lineage": "SUBSEQUENT_NUMERICALLY_EQUIVALENT_SOLUTION_NOT_ORIGINAL_E1_E2",
+      "source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210628/first_stage_solution.json",
+      "source_run_id": "SCAL_BASE_210628",
+      "certification_source_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210628/result.json",
+      "certification_source_sha256": "67b1cd6ae40eb2da9932d5c012834f0171cbd42ebb63ef7152f1bb7c6ae293b4",
+      "instance_sha256": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677",
+      "source_file_sha256": "d120d26eda9438b1530668ba17ceb0b0cdbededc7a033d17c5d23a23d6d4fc0e",
+      "coordinates_sha256": "207627c2c490231129c254805ca2c35a7bd26d1d5d3290204b0a3eedcdcffda2",
+      "coordinate_component_sha256": {
+        "y": "364360e5c143c30f9cdef02a78f1ab6f8ed6a6e4f2c184819e69215b63622a64",
+        "x": "eb9bc3d301e63bb1ee610fe7a8a17bad34d124dc0e3ad0c767beb2190547ce3c",
+        "a_plus": "51ee72e7e10235756346ef8039b3e86f6740e9a9d7cf6af063d03f0e301d7f79",
+        "a_minus": "3c39743e1fbeae91fbd901a2afe70ac4ca294188bfc401af3722a8d9b239b1f1"
+      },
+      "solver_status": "OPTIMAL",
+      "exact_certification": "CERTIFIED_PRB_EXACT",
+      "pilot_authorized": false,
+      "formal_authorized": false,
+      "same_configuration_group": null,
+      "e2_aggregate_consistency": {
+        "e2_derived_objective": 676700.8373031134,
+        "candidate_objective": 676700.8373031134,
+        "objective_delta": 0.0,
+        "ri_delta": 1.2089755219256892e-11,
+        "rs_delta": 0.0,
+        "active_depot_count": 2,
+        "consistency_status": "NUMERICALLY_EQUIVALENT_WITHIN_1E_6"
+      },
+      "robust_source_evidence": {
+        "classification": "SUBSEQUENT_CERTIFIED_NUMERICALLY_EQUIVALENT_CANDIDATE",
+        "result_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210628/result.json",
+        "result_sha256": "67b1cd6ae40eb2da9932d5c012834f0171cbd42ebb63ef7152f1bb7c6ae293b4",
+        "provenance_path": "experiments/results/service_calibration_robustness_v2_fixed_recourse/physical_results/SCAL_BASE_210628/provenance.json",
+        "provenance_sha256": "e472372cbfde7ffe3ab022c0a97be22159f7ab864e12c01f62912a7440252747",
+        "provenance_recorded_result_sha256": "67b1cd6ae40eb2da9932d5c012834f0171cbd42ebb63ef7152f1bb7c6ae293b4",
+        "provenance_recorded_first_stage_solution_sha256": "d120d26eda9438b1530668ba17ceb0b0cdbededc7a033d17c5d23a23d6d4fc0e",
+        "result_hash_link_verified": true,
+        "solution_hash_link_verified": true,
+        "historical_e1_e2_coordinates_recovered": false
+      }
+    }
+  ],
+  "manifest_payload_sha256": "16621098ec520f39e68e1eee4ef0ac2867defc6eff8e1c32770e22513c710a28"
+}

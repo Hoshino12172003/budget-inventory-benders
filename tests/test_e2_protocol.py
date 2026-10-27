@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -22,7 +23,24 @@ def test_e2_policy_and_gamma_contract() -> None:
 
 def test_e2_identity_and_reuse_contract() -> None:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    assert hashlib.sha256((ROOT / "experiments/run_e2_policy_local.py").read_bytes()).hexdigest() == manifest["runner_sha256"]
+    historical = json.loads(
+        (ROOT / "experiments/audits/e2_historical_runner_hash_audit.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    runner_path = "experiments/run_e2_policy_local.py"
+    historical_blob = subprocess.check_output(
+        [
+            "git",
+            "cat-file",
+            "blob",
+            f"{historical['historical_runner_commit']}:{runner_path}",
+        ],
+        cwd=ROOT,
+    )
+    assert hashlib.sha256(historical_blob).hexdigest() == manifest["runner_sha256"]
+    assert historical["historical_blob_matches_manifest"] is True
+    assert historical["current_committed_runner_matches_manifest"] is False
     audit = json.loads((ROOT / "artifacts/e2_protocol_static_audit.json").read_text(encoding="utf-8"))
     assert all(all(checks.values()) for checks in audit["identity_checks"].values())
     assert audit["e1_robust_reuse_count"] == 8

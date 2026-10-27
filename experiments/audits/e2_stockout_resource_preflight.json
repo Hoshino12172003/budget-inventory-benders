@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "classification": "VERIFIED_FULL_CASE_RESOURCE_AND_RECOVERY_PREFLIGHT",
+  "formal_run_authorized": false,
+  "independent_policy_count": 2,
+  "case_policy_task_count": 16,
+  "blocks_per_task": 632,
+  "logical_scenario_rows_total": 74512,
+  "threads": 1,
+  "cases": [
+    {
+      "case_id": "210129",
+      "depots": 15,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 121976,
+      "estimated_model_constraints": 17696,
+      "logical_scenario_rows": 4657
+    },
+    {
+      "case_id": "210202",
+      "depots": 15,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 121976,
+      "estimated_model_constraints": 17696,
+      "logical_scenario_rows": 4657
+    },
+    {
+      "case_id": "210310",
+      "depots": 16,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 129560,
+      "estimated_model_constraints": 18328,
+      "logical_scenario_rows": 4657
+    },
+    {
+      "case_id": "210323",
+      "depots": 13,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 106808,
+      "estimated_model_constraints": 16432,
+      "logical_scenario_rows": 4657
+    },
+    {
+      "case_id": "210330",
+      "depots": 11,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 91640,
+      "estimated_model_constraints": 15168,
+      "logical_scenario_rows": 4657
+    },
+    {
+      "case_id": "210428",
+      "depots": 18,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 144728,
+      "estimated_model_constraints": 19592,
+      "logical_scenario_rows": 4657
+    },
+    {
+      "case_id": "210611",
+      "depots": 19,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 152312,
+      "estimated_model_constraints": 20224,
+      "logical_scenario_rows": 4657
+    },
+    {
+      "case_id": "210628",
+      "depots": 15,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 121976,
+      "estimated_model_constraints": 17696,
+      "logical_scenario_rows": 4657
+    }
+  ],
+  "maximum_estimated_model_variables": 152312,
+  "maximum_estimated_model_constraints": 20224,
+  "pilot_observation": {
+    "scenario_count": 3,
+    "unique_product_local_blocks": 10,
+    "runtime_seconds": 0.0899948999285698,
+    "peak_process_rss_bytes": 31543296
+  },
+  "admission_status": "PASS_FULL_CASE_PREFLIGHT_ON_32GB_TARGET",
+  "preflight_result_manifest_path": "experiments/results/e2_stockout_resource_preflight_v1/PREFLIGHT-210202-EXISTING/result_manifest.json",
+  "preflight_result_manifest_sha256": "1a18f43f2c7b91d0825d312edfb38db2a614fd5a45f58962659882b4befd7a20",
+  "preflight_checkpoint_sha256": "67c064a0b7d6c3a6fbdb0831a942331d4f0f7214cef37f009143c5b69c6d097b",
+  "preflight_case_id": "210202",
+  "preflight_policy_id": "EXISTING_CANONICAL_210202",
+  "completed_blocks": 632,
+  "scenario_count": 4657,
+  "runtime_seconds": 18.687718599569052,
+  "peak_process_rss_bytes": 40067072,
+  "output_bundle_bytes": 8734061,
+  "protocol_interrupt_exercised": true
+}

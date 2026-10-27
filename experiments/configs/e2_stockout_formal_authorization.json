@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "E2_STOCKOUT_COMMON_SCENARIO_V1",
+  "formal_run_authorized": false,
+  "authorization_transition": [
+    false
+  ],
+  "human_policy_approval": true,
+  "human_scientific_scope_approval": true,
+  "resource_preflight_approval": true,
+  "scoped_regression_approval": true,
+  "authorized_task_ids": [],
+  "planned_tasks": [
+    {
+      "task_id": "E2S-210129-EXISTING",
+      "case_id": "210129",
+      "policy_id": "EXISTING_CANONICAL_210129",
+      "policy_sha256": "7f1c1ec2c945cf3671f63d2d6084c28e1574c5422813b1f09f169ef7cf1e7cca"
+    },
+    {
+      "task_id": "E2S-210129-ROBUST",
+      "case_id": "210129",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210129",
+      "policy_sha256": "d0578e48d010904d1aff85a894f63197b9ab011b5c6de6d54600debedfcf2737"
+    },
+    {
+      "task_id": "E2S-210202-EXISTING",
+      "case_id": "210202",
+      "policy_id": "EXISTING_CANONICAL_210202",
+      "policy_sha256": "608c0e17ebdc96e2594050536131ac649c8487e54a5dc47c1a9eb02f3860963a"
+    },
+    {
+      "task_id": "E2S-210202-ROBUST",
+      "case_id": "210202",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210202",
+      "policy_sha256": "12c4fb2c017cddc9355aae458af94c8a1c26902e5204464b2dcb6aae6db52458"
+    },
+    {
+      "task_id": "E2S-210310-EXISTING",
+      "case_id": "210310",
+      "policy_id": "EXISTING_CANONICAL_210310",
+      "policy_sha256": "a7040d6d8d5689c1929a35caeeadb91d95ac99c5421b376b1ca7d9e89ef14776"
+    },
+    {
+      "task_id": "E2S-210310-ROBUST",
+      "case_id": "210310",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210310",
+      "policy_sha256": "941f1507aeaa9c507ee8205ccebc238086e898ba0df44e7792b24bee99f4a67f"
+    },
+    {
+      "task_id": "E2S-210323-EXISTING",
+      "case_id": "210323",
+      "policy_id": "EXISTING_CANONICAL_210323",
+      "policy_sha256": "18f36ad865f2957c6134617a5e52635c3005c37509bc93c208bc549ff07ac496"
+    },
+    {
+      "task_id": "E2S-210323-ROBUST",
+      "case_id": "210323",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210323",
+      "policy_sha256": "4583b9eef023ffa2cc0eb96a34534180b1f178b1b56cc3ef1733ad723689f857"
+    },
+    {
+      "task_id": "E2S-210330-EXISTING",
+      "case_id": "210330",
+      "policy_id": "EXISTING_CANONICAL_210330",
+      "policy_sha256": "c39d687b4b63901f07e0ef84602a12de824baed53ca8fde1f7c520f316f84832"
+    },
+    {
+      "task_id": "E2S-210330-ROBUST",
+      "case_id": "210330",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210330",
+      "policy_sha256": "127a10f2ff7af50765151bc1a65772780f74c2fa5f138e62f8af4737570d315e"
+    },
+    {
+      "task_id": "E2S-210428-EXISTING",
+      "case_id": "210428",
+      "policy_id": "EXISTING_CANONICAL_210428",
+      "policy_sha256": "bde8646c6c0db8ae661952596e1fe468f7912b7c53f57ab17c176f6dfd3325f8"
+    },
+    {
+      "task_id": "E2S-210428-ROBUST",
+      "case_id": "210428",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210428",
+      "policy_sha256": "115dc218627882cd97d0ca4683880c244fb76ee9b6cbda61206f7c610957c3fe"
+    },
+    {
+      "task_id": "E2S-210611-EXISTING",
+      "case_id": "210611",
+      "policy_id": "EXISTING_CANONICAL_210611",
+      "policy_sha256": "892812b40286d821ff107f48bc829d6653069ee2424d9fde65dbda4c7acecb17"
+    },
+    {
+      "task_id": "E2S-210611-ROBUST",
+      "case_id": "210611",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210611",
+      "policy_sha256": "02103fa83b872738ab4a57b9aa9824d591e20942f48c1867d08c3346a1785e24"
+    },
+    {
+      "task_id": "E2S-210628-EXISTING",
+      "case_id": "210628",
+      "policy_id": "EXISTING_CANONICAL_210628",
+      "policy_sha256": "763ae4f6b1eade52c018765f6cc9ae1d6931a07ab2fc6a06e8f9eebb4c55749e"
+    },
+    {
+      "task_id": "E2S-210628-ROBUST",
+      "case_id": "210628",
+      "policy_id": "ROBUST_EQUIVALENT_SCAL_BASE_210628",
+      "policy_sha256": "207627c2c490231129c254805ca2c35a7bd26d1d5d3290204b0a3eedcdcffda2"
+    }
+  ],
+  "independent_policy_count": 2,
+  "excluded_policy_role": "NOMINAL_VALIDATION_LABEL_SAME_AS_EXISTING",
+  "identity_manifest_payload_sha256": "16621098ec520f39e68e1eee4ef0ac2867defc6eff8e1c32770e22513c710a28",
+  "scenario_manifest_payload_sha256": "cd9f4f6e5f3aae664d0701438587119f25996860df3bad268cf54db6ea8e0cf6",
+  "identity_file_sha256": {
+    "experiments/run_e2_stockout_common_scenario.py": "f37e469a2697fc6ce04b1047ba95170cdf22bce5e31c442728927bbf1d933fc4",
+    "src/robust_inventory_reconfiguration/e2_stockout_common_scenario.py": "54f2fd55ab0d3463c52ea5312f5eb4fbd3ee116e1a6558c79ae798545413e556",
+    "src/robust_inventory_reconfiguration/first_stage_solution.py": "ef0beb031585cc769a2028044c65454304b4e25088bdd5731121333f5bc225c8",
+    "src/robust_inventory_reconfiguration/instance.py": "495954eb8cb9b19bcf122612e9b8e13d37c2d110390cb5bccb85def7099072d0",
+    "src/robust_inventory_reconfiguration/robust_service.py": "053c29c2701a254239e7a5284e7b00ffefef0ad7a84a7c84a98056fa58a7066a",
+    "src/robust_inventory_reconfiguration/scenarios.py": "cf2d0e54b1c93cc6ae6cae481022f40b7afbd10f66a54eb84e9b43a039833d50",
+    "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19",
+    "docs/e2_stockout_common_scenario_protocol.md": "d63591a0cac35132abf1c257f808b901084565dac3a3843a97bf76e6b00f492c",
+    "docs/e2_stockout_scientific_policy_confirmation.md": "6bbcd284a84d11946b4b81bd77b44c2c1b588add2cbd1261bee871f9610de061",
+    "experiments/schemas/e2_stockout_scenario_result.schema.json": "537444759eceba20655fa699cbcb3f7840b6a960bb87cd634c9a094dfc6f3df0",
+    "experiments/schemas/e2_stockout_formal_checkpoint.schema.json": "dcfd27bcdf8e6f1750017cf985eec9e008e266eecee25cd46c218e018808bec8",
+    "experiments/configs/e2_stockout_scoped_regression_gate.json": "c89a60332d9047adf28717c4b3e5cd0bb48bb21a44f611c862e3bd6ae1f3e3ac",
+    "experiments/audits/e2_stockout_resource_preflight.json": "7457558d9130a000dff1426d863d4a100d173cae3269436e242401e6752218b6"
+  },
+  "authorization_payload_sha256": "97fe89c318b33e13c58694ed2986123858a4107b57ab1a2f0ad6f269b0a0f49c"
+}
