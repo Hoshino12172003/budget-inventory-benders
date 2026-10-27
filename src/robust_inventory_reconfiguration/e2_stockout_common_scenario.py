@@ -626,6 +626,25 @@ def evaluate_fixed_policy_scenarios(
         model.Status, optimal_status=GRB.OPTIMAL, phase="fixed-policy economic recourse solve"
     )
     economic_optimum = {key: float(cost.getValue()) for key, cost in costs.items()}
+
+    # Preserve certified economic-stage reporting quantities before tie-break.
+    economic_stage_blocks = {}
+    fallback_events = []
+    for key in block_keys:
+        transportation, shortage, service = components[key]
+        economic_stage_blocks[key] = {
+            "total_shipment": float(sum(
+                q_vars[key][i, r].X for i in depots for r in regions
+            )),
+            "total_shortage": float(sum(
+                u_vars[key][r].X for r in regions
+            )),
+            "service_violation": float(e_vars[key].X),
+            "transportation_cost": float(transportation.getValue()),
+            "shortage_penalty_cost": float(shortage.getValue()),
+            "service_penalty_cost": float(service.getValue()),
+        }
+
     for key, cost in costs.items():
         model.addConstr(cost <= economic_optimum[key] + REPORTING_TIE_BREAK_TOLERANCE)
     model.setObjective(
@@ -647,14 +666,61 @@ def evaluate_fixed_policy_scenarios(
             + float(shortage.getValue())
             + float(service.getValue())
         )
+        block_delta = component_sum - economic_optimum[key]
+
+        if not math.isfinite(block_delta):
+            raise RuntimeError(
+                f"non-finite tie-break cost delta for block {key}"
+            )
+
+        if block_delta > REPORTING_TIE_BREAK_TOLERANCE + 1e-6:
+            if block_delta > 1e-5:
+                raise RuntimeError(
+                    f"large tie-break deviation requires audit: "
+                    f"key={key}, delta={block_delta:.17g}"
+                )
+
+            # The reporting-stage solution missed the frozen numerical
+            # band. Restore the already solved economic-stage block.
+            reported = dict(economic_stage_blocks[key])
+            fallback_events.append({
+                "case_id": policy.case_id,
+                "policy_id": policy.policy_id,
+                "product_index": key[0],
+                "shocked_region_indices": list(key[1]),
+                "original_tie_break_delta": float(block_delta),
+                "reported_solution_source": "ECONOMIC_STAGE",
+            })
+            print(
+                f"ECONOMIC_OPTIMUM_FALLBACK "
+                f"case={policy.case_id} policy={policy.policy_id} "
+                f"key={key} delta={block_delta:.17g}",
+                flush=True,
+            )
+        else:
+            reported = {
+                "total_shipment": float(shipment),
+                "total_shortage": float(sum(shortage_values)),
+                "service_violation": float(e_vars[key].X),
+                "transportation_cost": float(transportation.getValue()),
+                "shortage_penalty_cost": float(shortage.getValue()),
+                "service_penalty_cost": float(service.getValue()),
+            }
+
+        reported_cost = (
+            reported["transportation_cost"]
+            + reported["shortage_penalty_cost"]
+            + reported["service_penalty_cost"]
+        )
+
+        if not all(math.isfinite(v) for v in reported.values()):
+            raise RuntimeError(f"non-finite reported block {key}")
+
         block_results[key] = {
-            "total_shipment": float(shipment),
-            "total_shortage": float(sum(shortage_values)),
-            "service_violation": float(e_vars[key].X),
-            "transportation_cost": float(transportation.getValue()),
-            "shortage_penalty_cost": float(shortage.getValue()),
-            "service_penalty_cost": float(service.getValue()),
-            "economic_optimum_cost": min(economic_optimum[key], component_sum),
+            **reported,
+            "economic_optimum_cost": min(
+                economic_optimum[key], reported_cost
+            ),
         }
 
     scenario_results = assemble_fixed_policy_scenario_rows(
@@ -671,6 +737,8 @@ def evaluate_fixed_policy_scenarios(
         "policy_coordinates_before_sha256": before_hash,
         "policy_coordinates_after_sha256": after_hash,
         "unique_product_local_blocks": len(block_keys),
+        "fallback_count": len(fallback_events),
+        "fallback_events": fallback_events,
         "scenarios": scenario_results,
     }
 
