@@ -13,6 +13,7 @@ from robust_inventory_reconfiguration.e2_stockout_common_scenario import (
     coordinate_sha256,
     evaluate_fixed_policy_scenarios,
     frozen_scenario_ids,
+    frozen_scenario_ids_from_manifest,
     improvement_percent,
     require_optimal_solver_status,
     scenario_manifest_sha256,
@@ -28,6 +29,16 @@ from robust_inventory_reconfiguration.robust_service import (
 
 
 pytest.importorskip("gurobipy")
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def common_scenario_manifest() -> dict:
+    return json.loads(
+        (ROOT / "experiments/configs/e2_stockout_common_scenario_manifest.json").read_text(
+            encoding="utf-8"
+        )
+    )
 
 
 def frozen_policy(tiny_instance, tmp_path: Path) -> FrozenPolicy:
@@ -165,13 +176,13 @@ def test_pilot_subset_cannot_pass_complete_set_validation() -> None:
     assert "worst_over_observed_subset" in partial
     assert "worst_over_frozen_set" not in partial
     with pytest.raises(ValueError, match="incomplete frozen scenario set"):
-        summarize_complete_policy_metrics(rows, frozen_scenario_ids(4657))
+        summarize_complete_policy_metrics(rows, common_scenario_manifest(), "210129")
 
 
 def test_complete_summary_rejects_one_missing_scenario() -> None:
     with pytest.raises(ValueError, match="missing=.*S4656"):
         summarize_complete_policy_metrics(
-            complete_metric_rows()[:-1], frozen_scenario_ids(4657)
+            complete_metric_rows()[:-1], common_scenario_manifest(), "210129"
         )
 
 
@@ -179,26 +190,42 @@ def test_complete_summary_rejects_duplicate_and_missing_id() -> None:
     rows = complete_metric_rows()
     rows[-1] = metric_row("S0000")
     with pytest.raises(ValueError, match="duplicates=.*S0000.*missing=.*S4656"):
-        summarize_complete_policy_metrics(rows, frozen_scenario_ids(4657))
+        summarize_complete_policy_metrics(rows, common_scenario_manifest(), "210129")
 
 
 def test_complete_summary_rejects_unknown_id() -> None:
     rows = complete_metric_rows()
     rows[-1] = metric_row("S9999")
     with pytest.raises(ValueError, match="unknown=.*S9999"):
-        summarize_complete_policy_metrics(rows, frozen_scenario_ids(4657))
+        summarize_complete_policy_metrics(rows, common_scenario_manifest(), "210129")
 
 
 def test_complete_summary_rejects_incomplete_solver_result() -> None:
     rows = complete_metric_rows()
     rows[1]["solver_status"] = "TIME_LIMIT"
     with pytest.raises(ValueError, match="incomplete solver result"):
-        summarize_complete_policy_metrics(rows, frozen_scenario_ids(4657))
+        summarize_complete_policy_metrics(rows, common_scenario_manifest(), "210129")
+
+
+def test_complete_summary_rejects_missing_metric() -> None:
+    rows = complete_metric_rows()
+    del rows[1]["total_shortage"]
+    with pytest.raises(ValueError, match="incomplete metrics"):
+        summarize_complete_policy_metrics(rows, common_scenario_manifest(), "210129")
+
+
+def test_complete_summary_rejects_tampered_frozen_id_identity() -> None:
+    manifest = common_scenario_manifest()
+    manifest["cases"][0]["scenario_id_order_sha256"] = "0" * 64
+    payload = {key: value for key, value in manifest.items() if key != "manifest_payload_sha256"}
+    manifest["manifest_payload_sha256"] = canonical_sha256(payload)
+    with pytest.raises(ValueError, match="scenario ID order hash mismatch"):
+        frozen_scenario_ids_from_manifest(manifest, "210129")
 
 
 def test_all_4657_exact_ids_pass_complete_validation() -> None:
     summary = summarize_complete_policy_metrics(
-        complete_metric_rows(), frozen_scenario_ids(4657)
+        complete_metric_rows(), common_scenario_manifest(), "210129"
     )
     assert summary["coverage_status"] == "COMPLETE_FROZEN_SCENARIO_SET"
     assert summary["scenario_count"] == 4657
@@ -206,7 +233,7 @@ def test_all_4657_exact_ids_pass_complete_validation() -> None:
 
 def test_complete_metric_summary_keeps_worst_concepts_separate() -> None:
     summary = summarize_complete_policy_metrics(
-        complete_metric_rows(), frozen_scenario_ids(4657)
+        complete_metric_rows(), common_scenario_manifest(), "210129"
     )
     worst = summary["worst_over_frozen_set"]
     assert worst["total_shortage"]["representative_scenario_id"] == "S0001"

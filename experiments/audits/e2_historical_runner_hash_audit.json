@@ -16,5 +16,5 @@
     "description": "The current runner adds require_protocol_not_frozen before the historical authorization gate. This changes execution admissibility but not the E2 economic model, policy definitions, or recourse evaluator."
   },
   "historical_e2_raw_results_present": false,
-  "closure_requirement": "Preserve or test the historical runner blob by pinned commit/hash and restore the original E2 result/provenance archive if execution lineage must be certified."
+  "closure_requirement": "The historical runner blob is tested by pinned commit/hash. Restore the original E2 result/provenance archive only if complete historical execution lineage must be certified."
 }

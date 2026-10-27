@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "classification": "STRUCTURAL_PREFLIGHT_ONLY_NO_FULL_SCENARIO_SOLVE",
+  "formal_run_authorized": false,
+  "independent_policy_count": 2,
+  "case_policy_task_count": 16,
+  "blocks_per_task": 632,
+  "logical_scenario_rows_total": 74512,
+  "threads": 1,
+  "cases": [
+    {
+      "case_id": "210129",
+      "depots": 15,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 121976,
+      "estimated_model_constraints": 17696,
+      "logical_scenario_rows": 4657
+    },
+    {
+      "case_id": "210202",
+      "depots": 15,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 121976,
+      "estimated_model_constraints": 17696,
+      "logical_scenario_rows": 4657
+    },
+    {
+      "case_id": "210310",
+      "depots": 16,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 129560,
+      "estimated_model_constraints": 18328,
+      "logical_scenario_rows": 4657
+    },
+    {
+      "case_id": "210323",
+      "depots": 13,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 106808,
+      "estimated_model_constraints": 16432,
+      "logical_scenario_rows": 4657
+    },
+    {
+      "case_id": "210330",
+      "depots": 11,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 91640,
+      "estimated_model_constraints": 15168,
+      "logical_scenario_rows": 4657
+    },
+    {
+      "case_id": "210428",
+      "depots": 18,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 144728,
+      "estimated_model_constraints": 19592,
+      "logical_scenario_rows": 4657
+    },
+    {
+      "case_id": "210611",
+      "depots": 19,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 152312,
+      "estimated_model_constraints": 20224,
+      "logical_scenario_rows": 4657
+    },
+    {
+      "case_id": "210628",
+      "depots": 15,
+      "product_local_blocks": 632,
+      "estimated_model_variables": 121976,
+      "estimated_model_constraints": 17696,
+      "logical_scenario_rows": 4657
+    }
+  ],
+  "maximum_estimated_model_variables": 152312,
+  "maximum_estimated_model_constraints": 20224,
+  "pilot_observation": {
+    "scenario_count": 3,
+    "unique_product_local_blocks": 10,
+    "runtime_seconds": 0.0899948999285698,
+    "peak_process_rss_bytes": 31543296
+  },
+  "admission_status": "FULL_CASE_RESOURCE_PREFLIGHT_STILL_REQUIRED"
+}

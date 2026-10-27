@@ -30,6 +30,7 @@ from .solver_profile import (
 
 
 GAMMA = 2
+FORMAL_SCENARIO_COUNT = 4657
 REPORTING_TIE_BREAK_TOLERANCE = 1e-7
 PILOT_MAX_SCENARIOS = 8
 FORBIDDEN_FIRST_STAGE_CALLS = (
@@ -85,6 +86,10 @@ def scenario_manifest_sha256(instance: InventoryInstance, gamma: int = GAMMA) ->
 
 def scenario_id(index: int) -> str:
     return f"S{index:04d}"
+
+
+def scenario_id_order_sha256(count: int = FORMAL_SCENARIO_COUNT) -> str:
+    return canonical_sha256([scenario_id(index) for index in range(count)])
 
 
 @dataclass(frozen=True)
@@ -379,6 +384,7 @@ def build_common_scenario_manifest(
                 "uncertain_components": instance.num_regions * instance.num_products,
                 "scenario_count": scenario_count(instance, GAMMA),
                 "scenario_order_sha256": scenario_manifest_sha256(instance, GAMMA),
+                "scenario_id_order_sha256": scenario_id_order_sha256(),
                 "policy_coordinate_hashes": {
                     row["policy_id"]: row["coordinates_sha256"]
                     for row in identity_manifest["policies"]
@@ -702,6 +708,26 @@ def frozen_scenario_ids(expected_scenario_count: int) -> tuple[str, ...]:
     return tuple(scenario_id(index) for index in range(expected_scenario_count))
 
 
+def frozen_scenario_ids_from_manifest(
+    scenario_manifest: dict[str, Any], case_id: str
+) -> tuple[str, ...]:
+    validate_manifest_hash(scenario_manifest)
+    if scenario_manifest.get("experiment_id") != "E2_STOCKOUT_COMMON_SCENARIO_V1":
+        raise ValueError("unexpected common-scenario experiment identity")
+    if scenario_manifest.get("gamma") != GAMMA:
+        raise ValueError("frozen Gamma identity mismatch")
+    try:
+        case = next(row for row in scenario_manifest["cases"] if row["case_id"] == case_id)
+    except (KeyError, StopIteration) as exc:
+        raise ValueError(f"case {case_id} is absent from the frozen scenario manifest") from exc
+    if case.get("scenario_count") != FORMAL_SCENARIO_COUNT:
+        raise ValueError("frozen scenario count is not 4657")
+    expected = frozen_scenario_ids(FORMAL_SCENARIO_COUNT)
+    if case.get("scenario_id_order_sha256") != canonical_sha256(list(expected)):
+        raise ValueError("frozen scenario ID order hash mismatch")
+    return expected
+
+
 def _validate_solved_metric_rows(rows: list[dict[str, Any]]) -> None:
     required_fields = (
         "total_shortage",
@@ -879,15 +905,21 @@ def summarize_partial_policy_metrics(
 
 def summarize_complete_policy_metrics(
     rows: list[dict[str, Any]],
-    expected_scenario_ids: Iterable[str],
+    scenario_manifest: dict[str, Any],
+    case_id: str,
     *,
     tie_tolerance: float = 1e-9,
     baseline_rows: list[dict[str, Any]] | None = None,
     denominator_tolerance: float = 1e-9,
 ) -> dict[str, Any]:
-    expected = validate_complete_scenario_rows(rows, expected_scenario_ids)
+    expected = frozen_scenario_ids_from_manifest(scenario_manifest, case_id)
+    validate_complete_scenario_rows(rows, expected)
+    rows_by_id = {row["scenario_id"]: row for row in rows}
+    rows = [rows_by_id[identifier] for identifier in expected]
     if baseline_rows is not None:
         validate_complete_scenario_rows(baseline_rows, expected)
+        baseline_by_id = {row["scenario_id"]: row for row in baseline_rows}
+        baseline_rows = [baseline_by_id[identifier] for identifier in expected]
     summary = _metric_summary(
         rows,
         tie_tolerance=tie_tolerance,
@@ -898,6 +930,7 @@ def summarize_complete_policy_metrics(
         "coverage_status": "COMPLETE_FROZEN_SCENARIO_SET",
         "scenario_count": len(rows),
         "scenario_id_set_sha256": canonical_sha256(sorted(expected)),
+        "scenario_id_order_sha256": canonical_sha256(list(expected)),
         "nominal_common_scenario": summary["nominal_common_scenario"],
         "worst_over_frozen_set": summary["worst_metrics"],
         "tie_rule": summary["tie_rule"],
@@ -911,6 +944,209 @@ def summarize_complete_policy_metrics(
             "worst_over_frozen_set": improvement["worst_metrics"],
         }
     return result
+
+
+def validate_complete_evaluation(
+    evaluation: dict[str, Any],
+    *,
+    instance: InventoryInstance,
+    policy: FrozenPolicy,
+    scenario_manifest: dict[str, Any],
+) -> list[dict[str, Any]]:
+    expected_ids = frozen_scenario_ids_from_manifest(scenario_manifest, policy.case_id)
+    rows = evaluation.get("scenarios")
+    if not isinstance(rows, list):
+        raise ValueError("formal evaluation has no scenario rows")
+    validate_complete_scenario_rows(rows, expected_ids)
+    if evaluation.get("policy_coordinates_before_sha256") != policy.coordinates_sha256:
+        raise ValueError("formal evaluation pre-solve policy identity mismatch")
+    if evaluation.get("policy_coordinates_after_sha256") != policy.coordinates_sha256:
+        raise ValueError("formal evaluation post-solve policy identity mismatch")
+
+    expected_shocks = scenario_payload(instance, GAMMA)
+    rows_by_id = {row["scenario_id"]: row for row in rows}
+    product_ids = set(instance.product_ids)
+    for index, identifier in enumerate(expected_ids):
+        row = rows_by_id[identifier]
+        if row.get("shock_set") != expected_shocks[index]:
+            raise ValueError(f"scenario shock identity mismatch: {identifier}")
+        if row.get("policy_id") != policy.policy_id:
+            raise ValueError(f"scenario policy ID mismatch: {identifier}")
+        if row.get("policy_hash") != policy.coordinates_sha256:
+            raise ValueError(f"scenario policy hash mismatch: {identifier}")
+        if row.get("instance_hash") != policy.instance_sha256:
+            raise ValueError(f"scenario instance hash mismatch: {identifier}")
+        shortage = row.get("shortage_by_product")
+        violation = row.get("service_violation_by_product")
+        if not isinstance(shortage, dict) or set(shortage) != product_ids:
+            raise ValueError(f"scenario shortage product identities mismatch: {identifier}")
+        if not isinstance(violation, dict) or set(violation) != product_ids:
+            raise ValueError(f"scenario service product identities mismatch: {identifier}")
+        numeric = (
+            row.get("total_shipment"),
+            row.get("total_shortage"),
+            row.get("total_service_violation"),
+            row.get("transportation_cost"),
+            row.get("shortage_penalty_cost"),
+            row.get("service_penalty_cost"),
+            row.get("recourse_cost"),
+            row.get("economic_optimum_recourse_cost"),
+            row.get("reporting_tie_break_cost_delta"),
+            *shortage.values(),
+            *violation.values(),
+        )
+        if any(not isinstance(value, (int, float)) or not math.isfinite(float(value)) for value in numeric):
+            raise ValueError(f"scenario has missing or non-finite metrics: {identifier}")
+        nonnegative = (
+            row["total_shipment"],
+            row["total_shortage"],
+            row["total_service_violation"],
+            row["transportation_cost"],
+            row["shortage_penalty_cost"],
+            row["service_penalty_cost"],
+            row["recourse_cost"],
+            row["economic_optimum_recourse_cost"],
+            *shortage.values(),
+            *violation.values(),
+        )
+        if any(float(value) < -1e-7 for value in nonnegative):
+            raise ValueError(f"scenario has a materially negative metric: {identifier}")
+        if not math.isclose(
+            float(row["total_shortage"]),
+            sum(map(float, shortage.values())),
+            abs_tol=1e-6,
+        ):
+            raise ValueError(f"scenario shortage total mismatch: {identifier}")
+        if not math.isclose(
+            float(row["total_service_violation"]),
+            sum(map(float, violation.values())),
+            abs_tol=1e-6,
+        ):
+            raise ValueError(f"scenario service total mismatch: {identifier}")
+        component_sum = sum(
+            float(row[key])
+            for key in (
+                "transportation_cost",
+                "shortage_penalty_cost",
+                "service_penalty_cost",
+            )
+        )
+        if not math.isclose(float(row["recourse_cost"]), component_sum, abs_tol=1e-6):
+            raise ValueError(f"scenario recourse component mismatch: {identifier}")
+        delta = component_sum - float(row["economic_optimum_recourse_cost"])
+        if not math.isclose(
+            float(row["reporting_tie_break_cost_delta"]), delta, abs_tol=1e-6
+        ):
+            raise ValueError(f"scenario tie-break delta mismatch: {identifier}")
+        if abs(delta) > instance.num_products * REPORTING_TIE_BREAK_TOLERANCE + 1e-6:
+            raise ValueError(f"scenario exceeds the frozen tie-break band: {identifier}")
+    return rows
+
+
+def validate_formal_checkpoint(
+    checkpoint_path: Path,
+    *,
+    expected_identity: dict[str, Any],
+    instance: InventoryInstance,
+    policy: FrozenPolicy,
+    scenario_manifest: dict[str, Any],
+    baseline_rows: list[dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    digest_path = checkpoint_path.with_suffix(checkpoint_path.suffix + ".sha256")
+    if not checkpoint_path.exists() or not digest_path.exists():
+        raise FileNotFoundError("formal checkpoint or digest is missing")
+    if file_sha256(checkpoint_path) != digest_path.read_text(encoding="utf-8").strip():
+        raise ValueError("formal checkpoint content hash mismatch")
+    checkpoint = json.loads(checkpoint_path.read_text(encoding="utf-8"))
+    if checkpoint.get("classification") != "FORMAL_COMMON_SCENARIO_RESULT":
+        raise ValueError("checkpoint is not a formal common-scenario result")
+    if checkpoint.get("schema_version") != "1.0":
+        raise ValueError("formal checkpoint schema version mismatch")
+    if checkpoint.get("experiment_id") != "E2_STOCKOUT_COMMON_SCENARIO_V1":
+        raise ValueError("formal checkpoint experiment identity mismatch")
+    if checkpoint.get("case_id") != policy.case_id or checkpoint.get("policy_id") != policy.policy_id:
+        raise ValueError("formal checkpoint task identity mismatch")
+    expected_task_id = (
+        f"E2S-{policy.case_id}-"
+        f"{'EXISTING' if policy.policy_id.startswith('EXISTING') else 'ROBUST'}"
+    )
+    if checkpoint.get("task_id") != expected_task_id:
+        raise ValueError("formal checkpoint task ID mismatch")
+    if checkpoint.get("scenario_count") != FORMAL_SCENARIO_COUNT:
+        raise ValueError("formal checkpoint scenario count mismatch")
+    runtime = checkpoint.get("runtime_seconds")
+    if not isinstance(runtime, (int, float)) or not math.isfinite(runtime) or runtime < 0:
+        raise ValueError("formal checkpoint runtime is invalid")
+    for key, value in expected_identity.items():
+        if checkpoint.get(key) != value:
+            raise ValueError(f"formal checkpoint identity mismatch: {key}")
+    rows = validate_complete_evaluation(
+        checkpoint.get("evaluation", {}),
+        instance=instance,
+        policy=policy,
+        scenario_manifest=scenario_manifest,
+    )
+    recomputed = summarize_complete_policy_metrics(
+        rows,
+        scenario_manifest,
+        policy.case_id,
+        baseline_rows=baseline_rows,
+    )
+    recorded = checkpoint.get("metric_summary")
+    if not isinstance(recorded, dict):
+        raise ValueError("formal checkpoint metric summary is missing")
+    for key in (
+        "coverage_status",
+        "scenario_count",
+        "scenario_id_set_sha256",
+        "scenario_id_order_sha256",
+        "nominal_common_scenario",
+        "worst_over_frozen_set",
+    ):
+        if recorded.get(key) != recomputed.get(key):
+            raise ValueError(f"formal checkpoint metric summary mismatch: {key}")
+    return checkpoint
+
+
+def build_structural_resource_preflight(
+    scenario_manifest: dict[str, Any], pilot_checkpoint: dict[str, Any]
+) -> dict[str, Any]:
+    validate_manifest_hash(scenario_manifest)
+    blocks_per_product = 1 + 12 + len(list(combinations(range(12), 2)))
+    blocks_per_task = 8 * blocks_per_product
+    cases = []
+    for case in scenario_manifest["cases"]:
+        depots = int(case["num_depots"])
+        cases.append(
+            {
+                "case_id": case["case_id"],
+                "depots": depots,
+                "product_local_blocks": blocks_per_task,
+                "estimated_model_variables": blocks_per_task * (depots * 12 + 12 + 1),
+                "estimated_model_constraints": blocks_per_task * (12 + depots + 1),
+                "logical_scenario_rows": FORMAL_SCENARIO_COUNT,
+            }
+        )
+    return {
+        "schema_version": "1.0",
+        "classification": "STRUCTURAL_PREFLIGHT_ONLY_NO_FULL_SCENARIO_SOLVE",
+        "formal_run_authorized": False,
+        "independent_policy_count": 2,
+        "case_policy_task_count": 16,
+        "blocks_per_task": blocks_per_task,
+        "logical_scenario_rows_total": 16 * FORMAL_SCENARIO_COUNT,
+        "threads": 1,
+        "cases": cases,
+        "maximum_estimated_model_variables": max(row["estimated_model_variables"] for row in cases),
+        "maximum_estimated_model_constraints": max(row["estimated_model_constraints"] for row in cases),
+        "pilot_observation": {
+            "scenario_count": len(pilot_checkpoint["evaluation"]["scenarios"]),
+            "unique_product_local_blocks": pilot_checkpoint["evaluation"]["unique_product_local_blocks"],
+            "runtime_seconds": pilot_checkpoint["runtime_seconds"],
+            "peak_process_rss_bytes": pilot_checkpoint["peak_process_rss_bytes"],
+        },
+        "admission_status": "FULL_CASE_RESOURCE_PREFLIGHT_STILL_REQUIRED",
+    }
 
 
 def validate_checkpoint(

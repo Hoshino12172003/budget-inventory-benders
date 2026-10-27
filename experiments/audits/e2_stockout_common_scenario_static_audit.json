@@ -11,11 +11,14 @@
     "all_dimensions_are_12_by_8": true,
     "no_first_stage_solver_call_path": true,
     "only_existing_is_pilot_authorized": true,
-    "no_policy_is_formal_authorized": true
+    "no_policy_is_formal_authorized": true,
+    "supplemental_authorization_is_false": true,
+    "formal_task_plan_has_16_unique_non_nominal_tasks": true,
+    "all_scenario_id_order_hashes_are_frozen": true
   },
   "source_audit": {
     "source_path": "E:/paper-code/paper-code2/budget-inventory-benders-frozen-51aebd0/src/robust_inventory_reconfiguration/e2_stockout_common_scenario.py",
-    "source_sha256": "b558fed53950875425be60a901cf8c75648a86f396d76fa61cc2719813df7b24",
+    "source_sha256": "f9a51777c8bd52d73b33fb4fc64f92f2a9f175f59f673b579bceb0175c6f85f1",
     "forbidden_first_stage_call_hits": [],
     "pass": true
   }

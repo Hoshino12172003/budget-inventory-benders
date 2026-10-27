@@ -161,10 +161,12 @@ defined.
 ### Scenario-coverage gate
 
 Formal worst-value reporting uses `summarize_complete_policy_metrics`. The
-caller must supply the complete frozen ID set `S0000` through `S4656`; the
-function verifies exact set equality and independently rejects duplicates,
-missing IDs, unknown IDs, and count mismatches. Merely receiving 4,657 rows is
-not sufficient.
+function accepts the authenticated common-scenario manifest and case ID, derives
+`S0000` through `S4656` internally, verifies the manifest payload and frozen ID
+order hash, and then checks exact set equality. The caller cannot substitute an
+arbitrary expected set. Duplicates, missing IDs, unknown IDs, non-optimal rows,
+missing metrics, and count mismatches are rejected. Merely receiving 4,657 rows
+is not sufficient.
 
 Pilot and diagnostic subsets use `summarize_partial_policy_metrics`. Their
 output is marked `PARTIAL_SCENARIO_DIAGNOSTIC` and may contain only:
@@ -186,9 +188,36 @@ For a future full run, process one case-policy task at a time, write its 632
 block results and scenario aggregates, dispose the model, and only then continue.
 Do not load multiple complete scenario datasets concurrently.
 
-The conservative future workload is 24 case-policy tasks, 15,168 unique local
-blocks, and 111,768 logical policy-scenario rows. No part of that workload is
-authorized by the present manifest.
+The frozen comparison contains 16 case-policy tasks: eight Existing Baselines
+and eight later SCAL_BASE Robust candidates. Nominal is a validation label and
+is never scheduled. The workload is 10,112 unique local blocks and 74,512
+logical policy-scenario rows. No part of that workload is authorized by the
+present manifest.
+
+## Formal runner and authorization chain
+
+The independent formal entry point is the `formal-run` command in
+`experiments/run_e2_stockout_common_scenario.py`. Before creating an output
+directory or invoking the evaluator it validates:
+
+- the supplemental authorization payload hash and an explicit `[false, true]`
+  authorization transition;
+- four separate human approvals and the exact list of 16 task IDs;
+- formal authorization in both identity and scenario manifests;
+- per-policy formal authorization for Existing and SCAL_BASE only;
+- the runner, evaluator dependencies, protocol, schemas, policy manifest,
+  scenario manifest, instance, policy, scenario order, and scenario-ID hashes.
+
+The committed supplemental authorization remains false. `formal-run` and
+`resume-formal` therefore fail before solving. The historical E2 authorization
+is not accepted by this runner.
+
+Completed formal tasks use the separate
+`e2_stockout_formal_checkpoint.schema.json` contract. Resume revalidates the
+sidecar digest, all identities, every scenario/shock/policy/instance identity,
+solver status, required metrics, product totals, cost decomposition, tie-break
+band, exact 4,657-row coverage, and recomputed worst metrics. Pilot checkpoints
+cannot be resumed as formal checkpoints.
 
 ## Pilot declaration
 

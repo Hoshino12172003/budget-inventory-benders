@@ -45,17 +45,16 @@ The retained E2 summaries remain aggregate evidence only.
 
 ## Test disposition
 
-The existing test compares the current working-tree runner bytes to a historical
-manifest hash. It therefore continues to fail and is reported as a known
-historical identity mismatch. It is not skipped, marked xfail, or made to pass by
-editing historical records.
+The historical test now hashes the runner blob pinned at commit `4b154729...`
+and compares that blob to the unchanged historical authorization manifest. A
+separate assertion requires the current committed runner to remain different.
+This closes the false live-file comparison without skipping the test, weakening
+identity checks, or editing the historical authorization or result record.
 
-To close the issue without destroying evidence, a future change must either:
-
-1. change the historical test contract to hash the runner blob pinned by its
-   historical commit and authorization manifest; or
-2. restore a separately archived historical runner and original E2
-   result/provenance package and verify both.
+The original E2 result/provenance package remains absent. Consequently the
+test proves historical code identity, not complete historical execution
+lineage. Restoring a separately archived original package is still required if
+that stronger historical claim is needed.
 
 The machine-readable audit is
 `experiments/audits/e2_historical_runner_hash_audit.json`.
