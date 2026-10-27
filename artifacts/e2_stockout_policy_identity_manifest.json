@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
   "experiment_id": "E2_STOCKOUT_COMMON_SCENARIO_V1",
-  "identity_freeze_status": "PARTIAL_REQUIRES_HUMAN_CONFIRMATION",
+  "identity_freeze_status": "FROZEN_TWO_POLICY_SCIENTIFIC_DEFINITION_CONFIRMED",
   "formal_run_authorized": false,
-  "policy_decision": "B",
-  "policy_decision_reason": "Original E2 Nominal coordinates and original E1/E2 Robust artifacts were not found. Canonical Nominal redeclaration and SCAL_BASE Robust lineage require review.",
+  "policy_decision": "A_POLICY_DEFINITION_CONFIRMED_FORMAL_RUN_LOCKED",
+  "policy_decision_reason": "User confirmed Existing as Baseline and later exactly certified SCAL_BASE as the Robust candidate. Nominal is the same canonical configuration as Baseline and is not independently scheduled. Original E2 Nominal and E1/E2 Robust coordinates remain unrecovered, and formal evaluation remains separately locked.",
   "cases": [
     "210129",
     "210202",
@@ -825,5 +825,5 @@
       }
     }
   ],
-  "manifest_payload_sha256": "a446801fd1bb65a100bf794031e16303525106c6f4904e5aaaf151cad7e2c593"
+  "manifest_payload_sha256": "16621098ec520f39e68e1eee4ef0ac2867defc6eff8e1c32770e22513c710a28"
 }

@@ -351,12 +351,14 @@ def build_policy_identity_manifest(root: Path) -> dict[str, Any]:
     payload = {
         "schema_version": "1.0",
         "experiment_id": "E2_STOCKOUT_COMMON_SCENARIO_V1",
-        "identity_freeze_status": "PARTIAL_REQUIRES_HUMAN_CONFIRMATION",
+        "identity_freeze_status": "FROZEN_TWO_POLICY_SCIENTIFIC_DEFINITION_CONFIRMED",
         "formal_run_authorized": False,
-        "policy_decision": "B",
+        "policy_decision": "A_POLICY_DEFINITION_CONFIRMED_FORMAL_RUN_LOCKED",
         "policy_decision_reason": (
-            "Original E2 Nominal coordinates and original E1/E2 Robust artifacts were not "
-            "found. Canonical Nominal redeclaration and SCAL_BASE Robust lineage require review."
+            "User confirmed Existing as Baseline and later exactly certified SCAL_BASE as the "
+            "Robust candidate. Nominal is the same canonical configuration as Baseline and is "
+            "not independently scheduled. Original E2 Nominal and E1/E2 Robust coordinates "
+            "remain unrecovered, and formal evaluation remains separately locked."
         ),
         "cases": list(cases),
         "policies": entries,
@@ -498,7 +500,36 @@ def require_optimal_solver_status(
         raise RuntimeError(f"{phase} failed or was incomplete: solver status={status}")
 
 
-class _PeakMemoryMonitor:
+def fixed_policy_block_keys(
+    instance: InventoryInstance, selected_ids: Iterable[str]
+) -> tuple[tuple[int, tuple[int, ...]], ...]:
+    selected = _selected_scenarios(instance, selected_ids)
+    return tuple(
+        sorted(
+            {
+                (j, tuple(r for r, product in scenario if product == j))
+                for _, scenario in selected
+                for j in range(instance.num_products)
+            }
+        )
+    )
+
+
+def block_key_payload(key: tuple[int, tuple[int, ...]]) -> dict[str, Any]:
+    product, shocked_regions = key
+    return {
+        "product_index": product,
+        "shocked_region_indices": list(shocked_regions),
+    }
+
+
+def block_key_from_payload(value: dict[str, Any]) -> tuple[int, tuple[int, ...]]:
+    return int(value["product_index"]), tuple(
+        int(region) for region in value["shocked_region_indices"]
+    )
+
+
+class PeakMemoryMonitor:
     def __init__(self) -> None:
         self.peak_bytes = 0
         self._stop = threading.Event()
@@ -514,7 +545,7 @@ class _PeakMemoryMonitor:
         except ImportError:
             self.peak_bytes = -1
 
-    def __enter__(self) -> "_PeakMemoryMonitor":
+    def __enter__(self) -> "PeakMemoryMonitor":
         self._thread = threading.Thread(target=self._sample, daemon=True)
         self._thread.start()
         return self
@@ -545,13 +576,7 @@ def evaluate_fixed_policy_scenarios(
     depots = range(instance.num_depots)
     regions = range(instance.num_regions)
 
-    block_keys = sorted(
-        {
-            (j, tuple(r for r, product in scenario if product == j))
-            for _, scenario in selected
-            for j in range(instance.num_products)
-        }
-    )
+    block_keys = fixed_policy_block_keys(instance, selected_ids)
     model = gp.Model(f"e2_stockout_fixed_{policy.case_id}_{policy.policy_id}")
     model.Params.OutputFlag = 0
     apply_formal_solver_profile(model, mixed_integer=False)
@@ -617,6 +642,11 @@ def evaluate_fixed_policy_scenarios(
         transportation, shortage, service = components[key]
         shipment = sum(q_vars[key][i, r].X for i in depots for r in regions)
         shortage_values = [float(u_vars[key][r].X) for r in regions]
+        component_sum = (
+            float(transportation.getValue())
+            + float(shortage.getValue())
+            + float(service.getValue())
+        )
         block_results[key] = {
             "total_shipment": float(shipment),
             "total_shortage": float(sum(shortage_values)),
@@ -624,9 +654,37 @@ def evaluate_fixed_policy_scenarios(
             "transportation_cost": float(transportation.getValue()),
             "shortage_penalty_cost": float(shortage.getValue()),
             "service_penalty_cost": float(service.getValue()),
-            "economic_optimum_cost": economic_optimum[key],
+            "economic_optimum_cost": min(economic_optimum[key], component_sum),
         }
 
+    scenario_results = assemble_fixed_policy_scenario_rows(
+        instance, policy, selected_ids, block_results
+    )
+
+    after_hash = canonical_sha256(
+        coordinate_payload(policy.y, policy.x, policy.a_plus, policy.a_minus)
+    )
+    if before_hash != after_hash or before_hash != policy.coordinates_sha256:
+        raise RuntimeError("first-stage coordinates changed during recourse evaluation")
+    model.dispose()
+    return {
+        "policy_coordinates_before_sha256": before_hash,
+        "policy_coordinates_after_sha256": after_hash,
+        "unique_product_local_blocks": len(block_keys),
+        "scenarios": scenario_results,
+    }
+
+
+def assemble_fixed_policy_scenario_rows(
+    instance: InventoryInstance,
+    policy: FrozenPolicy,
+    selected_ids: list[str],
+    block_results: dict[tuple[int, tuple[int, ...]], dict[str, Any]],
+) -> list[dict[str, Any]]:
+    selected = _selected_scenarios(instance, selected_ids)
+    expected_keys = set(fixed_policy_block_keys(instance, selected_ids))
+    if set(block_results) != expected_keys:
+        raise ValueError("fixed-policy block results do not exactly cover the frozen blocks")
     scenario_results = []
     for identifier, scenario in selected:
         keys = [
@@ -687,19 +745,128 @@ def evaluate_fixed_policy_scenarios(
                 "reporting_tie_break_cost_delta": tie_break_delta,
             }
         )
+    return scenario_results
 
-    after_hash = canonical_sha256(
-        coordinate_payload(policy.y, policy.x, policy.a_plus, policy.a_minus)
-    )
-    if before_hash != after_hash or before_hash != policy.coordinates_sha256:
-        raise RuntimeError("first-stage coordinates changed during recourse evaluation")
-    model.dispose()
-    return {
-        "policy_coordinates_before_sha256": before_hash,
-        "policy_coordinates_after_sha256": after_hash,
-        "unique_product_local_blocks": len(block_keys),
-        "scenarios": scenario_results,
-    }
+
+def solve_fixed_policy_block(
+    instance: InventoryInstance,
+    policy: FrozenPolicy,
+    key: tuple[int, tuple[int, ...]],
+    *,
+    threads: int = 1,
+) -> dict[str, Any]:
+    """Solve one separable fixed-inventory recourse block with the frozen tie-break."""
+    import gurobipy as gp
+    from gurobipy import GRB
+
+    if threads != 1:
+        raise ValueError("the frozen resource protocol requires Threads=1")
+    j, shocked_regions = key
+    if j < 0 or j >= instance.num_products:
+        raise ValueError("block product index is outside the frozen instance")
+    if tuple(sorted(set(shocked_regions))) != shocked_regions or any(
+        region < 0 or region >= instance.num_regions for region in shocked_regions
+    ):
+        raise ValueError("block shocked-region identity is invalid")
+
+    fixed_x = canonical_fixed_inventory(instance, policy.x)
+    depots = range(instance.num_depots)
+    regions = range(instance.num_regions)
+    suffix = "none" if not shocked_regions else "-".join(map(str, shocked_regions))
+    model = gp.Model(f"e2_stockout_preflight_{policy.case_id}_p{j}_s{suffix}")
+    try:
+        model.Params.OutputFlag = 0
+        apply_formal_solver_profile(model, mixed_integer=False)
+        model.Params.Threads = threads
+        q = model.addVars(depots, regions, lb=0, name="q")
+        u = model.addVars(regions, lb=0, name="u")
+        e = model.addVar(lb=0, name="e")
+        shocked = set(shocked_regions)
+        demand = [
+            instance.base_demand[r][j]
+            + (instance.demand_deviation[r][j] if r in shocked else 0.0)
+            for r in regions
+        ]
+        for r in regions:
+            model.addConstr(gp.quicksum(q[i, r] for i in depots) + u[r] >= demand[r])
+        for i in depots:
+            model.addConstr(gp.quicksum(q[i, r] for r in regions) <= fixed_x[i][j])
+        model.addConstr(
+            gp.quicksum(u[r] for r in regions) - e
+            <= (1.0 - instance.service_level[j]) * sum(demand)
+        )
+        transportation = gp.quicksum(
+            instance.transport_cost[i][r][j] * q[i, r]
+            for i in depots
+            for r in regions
+        )
+        shortage = gp.quicksum(
+            instance.shortage_penalty[r][j] * u[r] for r in regions
+        )
+        service = instance.service_penalty[j] * e
+        cost = transportation + shortage + service
+        model.setObjective(cost, GRB.MINIMIZE)
+        model.optimize()
+        economic_status = int(model.Status)
+        require_optimal_solver_status(
+            economic_status,
+            optimal_status=GRB.OPTIMAL,
+            phase="preflight fixed-policy economic recourse solve",
+        )
+        economic_optimum = float(cost.getValue())
+        model.addConstr(cost <= economic_optimum + REPORTING_TIE_BREAK_TOLERANCE)
+        model.setObjective(
+            gp.quicksum(u[r] * u[r] for r in regions), GRB.MINIMIZE
+        )
+        model.optimize()
+        reporting_status = int(model.Status)
+        require_optimal_solver_status(
+            reporting_status,
+            optimal_status=GRB.OPTIMAL,
+            phase="preflight fixed-policy reporting tie-break",
+        )
+        shortage_values = [float(u[r].X) for r in regions]
+        component_sum = (
+            float(transportation.getValue())
+            + float(shortage.getValue())
+            + float(service.getValue())
+        )
+        reconciled_optimum = min(economic_optimum, component_sum)
+        result = {
+            **block_key_payload(key),
+            "economic_solver_status": "OPTIMAL",
+            "economic_solver_status_code": economic_status,
+            "reporting_solver_status": "OPTIMAL",
+            "reporting_solver_status_code": reporting_status,
+            "total_shipment": float(sum(q[i, r].X for i in depots for r in regions)),
+            "total_shortage": float(sum(shortage_values)),
+            "service_violation": float(e.X),
+            "transportation_cost": float(transportation.getValue()),
+            "shortage_penalty_cost": float(shortage.getValue()),
+            "service_penalty_cost": float(service.getValue()),
+            "economic_optimum_cost": reconciled_optimum,
+            "reporting_tie_break_cost_delta": component_sum - reconciled_optimum,
+        }
+        numeric = [
+            value
+            for field, value in result.items()
+            if field
+            not in {
+                "shocked_region_indices",
+                "economic_solver_status",
+                "reporting_solver_status",
+            }
+        ]
+        if any(not isinstance(value, (int, float)) or not math.isfinite(float(value)) for value in numeric):
+            raise RuntimeError("preflight block contains a missing or non-finite metric")
+        if result["reporting_tie_break_cost_delta"] > REPORTING_TIE_BREAK_TOLERANCE + 1e-6:
+            raise RuntimeError(
+                "preflight block exceeds the frozen tie-break band: "
+                f"key={key}, delta={result['reporting_tie_break_cost_delta']:.17g}"
+            )
+        return result
+    finally:
+        model.dispose()
 
 
 def frozen_scenario_ids(expected_scenario_count: int) -> tuple[str, ...]:
@@ -1181,10 +1348,22 @@ def validate_checkpoint(
 
 
 def write_checkpoint(path: Path, checkpoint: dict[str, Any]) -> None:
-    write_json(path, checkpoint)
-    path.with_suffix(path.suffix + ".sha256").write_text(
-        file_sha256(path) + "\n", encoding="utf-8"
-    )
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    digest_path = path.with_suffix(path.suffix + ".sha256")
+    digest_temporary = digest_path.with_suffix(digest_path.suffix + ".tmp")
+    payload = json.dumps(checkpoint, indent=2, allow_nan=False) + "\n"
+    for attempt in range(3):
+        try:
+            temporary.write_text(payload, encoding="utf-8")
+            os.replace(temporary, path)
+            digest_temporary.write_text(file_sha256(path) + "\n", encoding="utf-8")
+            os.replace(digest_temporary, digest_path)
+            return
+        except OSError:
+            if attempt == 2:
+                raise
+            time.sleep(0.05)
 
 
 def run_pilot(
@@ -1233,7 +1412,7 @@ def run_pilot(
             config_sha256=config_hash,
         )
     start = time.perf_counter()
-    with _PeakMemoryMonitor() as monitor:
+    with PeakMemoryMonitor() as monitor:
         evaluation = evaluate_fixed_policy_scenarios(
             instance, policy, selected_ids, threads=scenario_manifest["threads"]
         )

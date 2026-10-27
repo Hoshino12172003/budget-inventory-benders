@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "classification": "PREFLIGHT_NON_PUBLISHABLE",
+  "admission_status": "PASS_FULL_CASE_PREFLIGHT_ON_32GB_TARGET",
+  "checkpoint_sha256": "67c064a0b7d6c3a6fbdb0831a942331d4f0f7214cef37f009143c5b69c6d097b",
+  "checkpoint_digest_file_sha256": "960e2907d60ddba47cc46b32b621499e39185ef5dffc9dea172822ad9896e7bf",
+  "checkpoint_bytes": 8733995,
+  "checkpoint_digest_bytes": 66,
+  "checkpoint_bundle_bytes": 8734061,
+  "runtime_seconds": 18.687718599569052,
+  "peak_process_rss_bytes": 40067072,
+  "completed_blocks": 632,
+  "scenario_count": 4657,
+  "protocol_interrupt_exercised": true,
+  "resume_validation": {
+    "validated_completed_prefix_blocks": 16,
+    "checkpoint_digest_verified": true,
+    "identity_chain_verified": true
+  }
+}

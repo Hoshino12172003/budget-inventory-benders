@@ -1,5 +1,9 @@
 # E2 Stockout Supplement Blocker Remediation Review
 
+> Historical admission snapshot: this report records the state before the
+> authorized full-case resource preflight. The current admission decision is in
+> `docs/e2_stockout_resource_preflight_report.md`.
+
 ## Scope and decision
 
 This review applies only to the E2 stockout supplement in Draft PR #16. It does

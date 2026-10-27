@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "gate_id": "E2_STOCKOUT_SCOPED_REGRESSION_GATE_V1",
+  "status": "PASS",
+  "formal_run_authorized": false,
+  "scoped_test_result": {
+    "passed": 73,
+    "failed": 0,
+    "errors": 0
+  },
+  "current_full_suite": {
+    "passed": 416,
+    "failed": 32,
+    "errors": 11,
+    "failed_or_error_node_count": 43,
+    "failed_or_error_nodes_sha256": "a58ad07b82018019017079784b23711d384347d09b9a4e4f1bd55cf704efd483"
+  },
+  "exact_pr_base": {
+    "commit": "ed2408269447bc20ea046d3e84a758805e2aab01",
+    "passed": 377,
+    "failed": 33,
+    "errors": 11,
+    "failed_or_error_node_count": 44,
+    "failed_or_error_nodes_sha256": "8d30726497ddc4fea5e3b90bad6666ec0f1f22ca7f650964f88e17fa2ce1885a"
+  },
+  "node_set_comparison": {
+    "current_only": [],
+    "base_only": [
+      "tests/test_e2_protocol.py::test_e2_identity_and_reuse_contract"
+    ]
+  },
+  "historical_failure_categories": {
+    "identity_or_freeze": {
+      "failures": 11,
+      "errors": 11
+    },
+    "missing_archived_or_development_inputs": {
+      "failures": 19,
+      "errors": 0
+    },
+    "missing_temporary_provenance_fixture": {
+      "failures": 1,
+      "errors": 0
+    },
+    "pre_existing_nonportable_provenance": {
+      "failures": 1,
+      "errors": 0
+    }
+  },
+  "historical_results_modified": false,
+  "acceptance_basis": "All scoped tests passed and the exact current failed/error node set is a strict subset of the frozen PR-base set with no current-only node. The repository-wide suite is not represented as passing."
+}

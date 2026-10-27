@@ -6,7 +6,7 @@
     "identity_manifest_hash_valid": true,
     "scenario_manifest_hash_valid": true,
     "formal_run_authorized_is_false": true,
-    "identity_requires_human_confirmation": true,
+    "scientific_policy_definition_is_confirmed": true,
     "all_scenario_counts_are_4657": true,
     "all_dimensions_are_12_by_8": true,
     "no_first_stage_solver_call_path": true,
@@ -18,7 +18,7 @@
   },
   "source_audit": {
     "source_path": "E:/paper-code/paper-code2/budget-inventory-benders-frozen-51aebd0/src/robust_inventory_reconfiguration/e2_stockout_common_scenario.py",
-    "source_sha256": "f9a51777c8bd52d73b33fb4fc64f92f2a9f175f59f673b579bceb0175c6f85f1",
+    "source_sha256": "54f2fd55ab0d3463c52ea5312f5eb4fbd3ee116e1a6558c79ae798545413e556",
     "forbidden_first_stage_call_hits": [],
     "pass": true
   }

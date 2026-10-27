@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "gate_id": "E2_STOCKOUT_SCOPED_REGRESSION_GATE_V1",
+  "formal_run_authorized": false,
+  "required_test_files": [
+    "tests/test_e2_stockout_common_scenario.py",
+    "tests/test_e2_stockout_formal_gate.py",
+    "tests/test_e2_stockout_historical_runner_audit.py",
+    "tests/test_e2_stockout_resource_preflight.py",
+    "tests/test_e2_protocol.py",
+    "tests/test_e2_summary.py",
+    "tests/test_first_stage_solution.py",
+    "tests/test_scenarios.py",
+    "tests/test_robust_service_fixed_inventory.py",
+    "tests/test_renault_x0_compatibility_artifacts.py",
+    "tests/test_renault_empirical_8case_v1.py",
+    "tests/test_renault_empirical_8case_artifacts.py",
+    "tests/test_renault_case_inventory_audit.py",
+    "tests/test_recourse.py"
+  ],
+  "acceptance_rule": "Every scoped test must pass. Full-suite failures must be reported by exact node and compared with the frozen PR base; no current-only failure or error node is allowed.",
+  "frozen_pr_base": "ed2408269447bc20ea046d3e84a758805e2aab01",
+  "frozen_pr_base_full_suite": {
+    "passed": 377,
+    "failed": 33,
+    "errors": 11
+  },
+  "last_reviewed_current_full_suite_before_resource_preflight": {
+    "passed": 407,
+    "failed": 32,
+    "errors": 11,
+    "current_only_failed_or_error_nodes": 0
+  }
+}

@@ -27,7 +27,7 @@
   "threads": 1,
   "python_version": "3.12.7",
   "solver_version": "13.0.1",
-  "identity_manifest_sha256": "a446801fd1bb65a100bf794031e16303525106c6f4904e5aaaf151cad7e2c593",
+  "identity_manifest_sha256": "16621098ec520f39e68e1eee4ef0ac2867defc6eff8e1c32770e22513c710a28",
   "comparison_definition": {
     "independent_first_stage_configuration_count": 2,
     "baseline": "EXISTING_CANONICAL",
@@ -173,5 +173,5 @@
       }
     }
   ],
-  "manifest_payload_sha256": "62ab809fba75b60d72ae7e5410063c6c458d301f628b268aed83f932bcae4be2"
+  "manifest_payload_sha256": "cd9f4f6e5f3aae664d0701438587119f25996860df3bad268cf54db6ea8e0cf6"
 }

@@ -6,9 +6,10 @@ This is a new supplemental protocol, `E2_STOCKOUT_COMMON_SCENARIO_V1`. It does
 not replace or overwrite the historical E2 protocol. Its manifest is
 `experiments/configs/e2_stockout_common_scenario_manifest.json`.
 
-The manifest freezes `formal_run_authorized=false`. The current authorization is
-limited to a three-scenario, one-case, Existing-policy pilot. A full 8-case run
-must be a separate, explicit authorization change after human policy review.
+The manifest freezes `formal_run_authorized=false`. In addition to the original
+three-scenario Pilot, a separate non-publishable authorization permits exactly
+one complete resource and recovery preflight for case `210202` under the
+Existing Baseline. A full 16-task run requires a later explicit authorization.
 
 ## Frozen inputs
 
@@ -46,14 +47,17 @@ static AST audit rejects calls named `solve_prb_benders`,
 The supplemental analysis contains two independent first-stage configurations:
 
 1. **Baseline:** `EXISTING_CANONICAL_<case>`, the canonical `x0/y0` policy.
-2. **Robust candidate:** `ROBUST_EQUIVALENT_SCAL_BASE_<case>`, subject to human
-   approval and retaining its later SCAL_BASE lineage.
+2. **Robust candidate:** `ROBUST_EQUIVALENT_SCAL_BASE_<case>`, accepted by the
+   user as a later exactly certified policy while retaining its SCAL_BASE
+   lineage.
 
 `NOMINAL_CANONICAL_REDECLARED_<case>` has exactly the same coordinate hash as
 Baseline in all eight cases. It remains visible as a policy-validation label,
 but it is not counted or plotted as a third independent configuration. The
 original E2 Nominal coordinates remain unrecovered. Likewise, the Robust
 candidates are not relabeled as original E1/E2 coordinates.
+The scientific decision and all eight identity hashes are recorded in
+`docs/e2_stockout_scientific_policy_confirmation.md`.
 
 ## Second-stage model
 
@@ -192,7 +196,26 @@ The frozen comparison contains 16 case-policy tasks: eight Existing Baselines
 and eight later SCAL_BASE Robust candidates. Nominal is a validation label and
 is never scheduled. The workload is 10,112 unique local blocks and 74,512
 logical policy-scenario rows. No part of that workload is authorized by the
-present manifest.
+present formal manifest.
+
+### Authorized non-publishable full-case preflight
+
+`experiments/configs/e2_stockout_resource_preflight_authorization.json`
+authorizes only `210202` and `EXISTING_CANONICAL_210202`. It freezes all 4,657
+scenario IDs, the 632-block order, `Threads=1`, code/protocol/schema hashes, and
+an intentional interruption after block 16. `preflight-interrupt` writes a
+digest-protected incomplete checkpoint; `preflight-resume` validates the exact
+completed prefix and every identity before solving block 17 onward.
+
+Each block uses the unchanged economic recourse objective and unchanged
+reporting tie-break. The product-local separation proof above makes independent
+block solution strictly equivalent to the combined separable model. The final
+checkpoint is marked `PREFLIGHT_NON_PUBLISHABLE`, must cover exactly 632 blocks
+and 4,657 scenario rows, and must pass the same row, cost, tie-break, scenario,
+policy, and instance validation as a formal task. It records per-segment elapsed
+time and peak RSS, both Gurobi statuses for every block, output size, digests,
+and explicit interrupted-checkpoint recovery evidence. It is never a paper
+result and cannot be resumed as a formal checkpoint.
 
 ## Formal runner and authorization chain
 

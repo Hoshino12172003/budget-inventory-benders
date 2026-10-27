@@ -8,21 +8,27 @@ import pytest
 
 from robust_inventory_reconfiguration.e2_stockout_common_scenario import (
     FrozenPolicy,
+    assemble_fixed_policy_scenario_rows,
+    block_key_from_payload,
     canonical_sha256,
     coordinate_payload,
     coordinate_sha256,
     evaluate_fixed_policy_scenarios,
+    fixed_policy_block_keys,
     frozen_scenario_ids,
     frozen_scenario_ids_from_manifest,
     improvement_percent,
+    policy_from_manifest,
     require_optimal_solver_status,
     scenario_manifest_sha256,
+    solve_fixed_policy_block,
     static_source_audit,
     summarize_complete_policy_metrics,
     summarize_partial_policy_metrics,
     validate_checkpoint,
     write_checkpoint,
 )
+from robust_inventory_reconfiguration.instance import load_instance
 from robust_inventory_reconfiguration.robust_service import (
     evaluate_robust_service_detailed,
 )
@@ -86,6 +92,56 @@ def test_product_local_blocks_match_existing_full_scenario_evaluator(
         assert row["shortage_penalty_cost"] == pytest.approx(expected.shortage_cost, abs=1e-6)
         assert row["service_penalty_cost"] == pytest.approx(expected.service_penalty_cost, abs=1e-6)
         assert row["economic_optimum_recourse_cost"] == pytest.approx(expected.recourse_cost, abs=1e-6)
+
+
+def test_individually_solved_blocks_match_combined_block_model(
+    tiny_instance, tmp_path: Path
+) -> None:
+    policy = frozen_policy(tiny_instance, tmp_path)
+    selected = ["S0000", "S0001", "S0005"]
+    combined = evaluate_fixed_policy_scenarios(tiny_instance, policy, selected)
+    block_rows = [
+        solve_fixed_policy_block(tiny_instance, policy, key)
+        for key in fixed_policy_block_keys(tiny_instance, selected)
+    ]
+    separated = assemble_fixed_policy_scenario_rows(
+        tiny_instance,
+        policy,
+        selected,
+        {block_key_from_payload(row): row for row in block_rows},
+    )
+    for left, right in zip(combined["scenarios"], separated, strict=True):
+        for key in (
+            "total_shipment",
+            "total_shortage",
+            "total_service_violation",
+            "transportation_cost",
+            "shortage_penalty_cost",
+            "service_penalty_cost",
+            "recourse_cost",
+            "economic_optimum_recourse_cost",
+        ):
+            assert left[key] == pytest.approx(right[key], abs=1e-6)
+
+
+def test_reporting_solution_below_initial_lp_value_is_reconciled() -> None:
+    identity = json.loads(
+        (ROOT / "artifacts/e2_stockout_policy_identity_manifest.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    manifest = common_scenario_manifest()
+    policy_row = next(
+        row
+        for row in identity["policies"]
+        if row["policy_id"] == "EXISTING_CANONICAL_210202"
+    )
+    case_row = next(row for row in manifest["cases"] if row["case_id"] == "210202")
+    instance = load_instance(ROOT / case_row["instance_path"])
+    policy = policy_from_manifest(ROOT, policy_row)
+    result = solve_fixed_policy_block(instance, policy, (1, ()))
+    assert result["reporting_tie_break_cost_delta"] >= -1e-9
+    assert result["reporting_tie_break_cost_delta"] <= 1.1e-6
 
 
 def test_first_stage_coordinates_are_unchanged_and_repeatable(

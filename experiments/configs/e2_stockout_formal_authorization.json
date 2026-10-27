@@ -5,10 +5,10 @@
   "authorization_transition": [
     false
   ],
-  "human_policy_approval": false,
-  "human_scientific_scope_approval": false,
-  "resource_preflight_approval": false,
-  "scoped_regression_approval": false,
+  "human_policy_approval": true,
+  "human_scientific_scope_approval": true,
+  "resource_preflight_approval": true,
+  "scoped_regression_approval": true,
   "authorized_task_ids": [],
   "planned_tasks": [
     {
@@ -110,20 +110,22 @@
   ],
   "independent_policy_count": 2,
   "excluded_policy_role": "NOMINAL_VALIDATION_LABEL_SAME_AS_EXISTING",
-  "identity_manifest_payload_sha256": "a446801fd1bb65a100bf794031e16303525106c6f4904e5aaaf151cad7e2c593",
-  "scenario_manifest_payload_sha256": "62ab809fba75b60d72ae7e5410063c6c458d301f628b268aed83f932bcae4be2",
+  "identity_manifest_payload_sha256": "16621098ec520f39e68e1eee4ef0ac2867defc6eff8e1c32770e22513c710a28",
+  "scenario_manifest_payload_sha256": "cd9f4f6e5f3aae664d0701438587119f25996860df3bad268cf54db6ea8e0cf6",
   "identity_file_sha256": {
-    "experiments/run_e2_stockout_common_scenario.py": "aacd4a27b943bc4b1d1785877dccee03d0492df742a2cab758f3f23cb6b942c1",
-    "src/robust_inventory_reconfiguration/e2_stockout_common_scenario.py": "f9a51777c8bd52d73b33fb4fc64f92f2a9f175f59f673b579bceb0175c6f85f1",
+    "experiments/run_e2_stockout_common_scenario.py": "f37e469a2697fc6ce04b1047ba95170cdf22bce5e31c442728927bbf1d933fc4",
+    "src/robust_inventory_reconfiguration/e2_stockout_common_scenario.py": "54f2fd55ab0d3463c52ea5312f5eb4fbd3ee116e1a6558c79ae798545413e556",
     "src/robust_inventory_reconfiguration/first_stage_solution.py": "ef0beb031585cc769a2028044c65454304b4e25088bdd5731121333f5bc225c8",
     "src/robust_inventory_reconfiguration/instance.py": "495954eb8cb9b19bcf122612e9b8e13d37c2d110390cb5bccb85def7099072d0",
     "src/robust_inventory_reconfiguration/robust_service.py": "053c29c2701a254239e7a5284e7b00ffefef0ad7a84a7c84a98056fa58a7066a",
     "src/robust_inventory_reconfiguration/scenarios.py": "cf2d0e54b1c93cc6ae6cae481022f40b7afbd10f66a54eb84e9b43a039833d50",
     "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19",
-    "docs/e2_stockout_common_scenario_protocol.md": "ab50070aceee21e7c6401ec1fb9eac9d8acde569705a1f9442f33613e526e534",
+    "docs/e2_stockout_common_scenario_protocol.md": "d63591a0cac35132abf1c257f808b901084565dac3a3843a97bf76e6b00f492c",
+    "docs/e2_stockout_scientific_policy_confirmation.md": "6bbcd284a84d11946b4b81bd77b44c2c1b588add2cbd1261bee871f9610de061",
     "experiments/schemas/e2_stockout_scenario_result.schema.json": "537444759eceba20655fa699cbcb3f7840b6a960bb87cd634c9a094dfc6f3df0",
     "experiments/schemas/e2_stockout_formal_checkpoint.schema.json": "dcfd27bcdf8e6f1750017cf985eec9e008e266eecee25cd46c218e018808bec8",
-    "experiments/audits/e2_stockout_resource_preflight.json": "f183cf29f27332e567760e9abcf322124a627edbb61c732ea090753d63d6da77"
+    "experiments/configs/e2_stockout_scoped_regression_gate.json": "c89a60332d9047adf28717c4b3e5cd0bb48bb21a44f611c862e3bd6ae1f3e3ac",
+    "experiments/audits/e2_stockout_resource_preflight.json": "7457558d9130a000dff1426d863d4a100d173cae3269436e242401e6752218b6"
   },
-  "authorization_payload_sha256": "6f88bf7768057e2bde67cd9cd709d92e614ff71967a66b0793148d027e56953d"
+  "authorization_payload_sha256": "97fe89c318b33e13c58694ed2986123858a4107b57ab1a2f0ad6f269b0a0f49c"
 }

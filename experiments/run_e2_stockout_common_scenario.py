@@ -3,21 +3,29 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import subprocess
 import time
 from pathlib import Path
 
 from robust_inventory_reconfiguration.e2_stockout_common_scenario import (
     FORMAL_SCENARIO_COUNT,
+    PeakMemoryMonitor,
+    REPORTING_TIE_BREAK_TOLERANCE,
+    assemble_fixed_policy_scenario_rows,
+    block_key_from_payload,
+    block_key_payload,
     build_structural_resource_preflight,
     build_common_scenario_manifest,
     build_policy_identity_manifest,
     canonical_sha256,
     evaluate_fixed_policy_scenarios,
     file_sha256,
+    fixed_policy_block_keys,
     policy_from_manifest,
     run_pilot,
     summarize_complete_policy_metrics,
+    solve_fixed_policy_block,
     static_source_audit,
     validate_complete_evaluation,
     validate_formal_checkpoint,
@@ -37,8 +45,12 @@ FORMAL_AUTHORIZATION = ROOT / "experiments/configs/e2_stockout_formal_authorizat
 FORMAL_CHECKPOINT_SCHEMA = ROOT / "experiments/schemas/e2_stockout_formal_checkpoint.schema.json"
 SCENARIO_RESULT_SCHEMA = ROOT / "experiments/schemas/e2_stockout_scenario_result.schema.json"
 RESOURCE_PREFLIGHT = ROOT / "experiments/audits/e2_stockout_resource_preflight.json"
+PREFLIGHT_AUTHORIZATION = ROOT / "experiments/configs/e2_stockout_resource_preflight_authorization.json"
+PREFLIGHT_CHECKPOINT_SCHEMA = ROOT / "experiments/schemas/e2_stockout_resource_preflight_checkpoint.schema.json"
+SCIENTIFIC_CONFIRMATION = ROOT / "docs/e2_stockout_scientific_policy_confirmation.md"
 PILOT_ROOT = ROOT / "experiments/results/e2_stockout_common_scenario_pilot_v1"
 FORMAL_ROOT = ROOT / "experiments/results/e2_stockout_common_scenario_formal_v1"
+PREFLIGHT_ROOT = ROOT / "experiments/results/e2_stockout_resource_preflight_v1/PREFLIGHT-210202-EXISTING"
 DELIVERY_HASHES = ROOT / "experiments/audits/e2_stockout_delivery_hashes.json"
 
 FORMAL_IDENTITY_PATHS = (
@@ -50,9 +62,25 @@ FORMAL_IDENTITY_PATHS = (
     "src/robust_inventory_reconfiguration/scenarios.py",
     "src/robust_inventory_reconfiguration/solver_profile.py",
     "docs/e2_stockout_common_scenario_protocol.md",
+    "docs/e2_stockout_scientific_policy_confirmation.md",
     "experiments/schemas/e2_stockout_scenario_result.schema.json",
     "experiments/schemas/e2_stockout_formal_checkpoint.schema.json",
+    "experiments/configs/e2_stockout_scoped_regression_gate.json",
     "experiments/audits/e2_stockout_resource_preflight.json",
+)
+
+PREFLIGHT_IDENTITY_PATHS = (
+    "experiments/run_e2_stockout_common_scenario.py",
+    "src/robust_inventory_reconfiguration/e2_stockout_common_scenario.py",
+    "src/robust_inventory_reconfiguration/first_stage_solution.py",
+    "src/robust_inventory_reconfiguration/instance.py",
+    "src/robust_inventory_reconfiguration/robust_service.py",
+    "src/robust_inventory_reconfiguration/scenarios.py",
+    "src/robust_inventory_reconfiguration/solver_profile.py",
+    "docs/e2_stockout_common_scenario_protocol.md",
+    "docs/e2_stockout_scientific_policy_confirmation.md",
+    "experiments/schemas/e2_stockout_scenario_result.schema.json",
+    "experiments/schemas/e2_stockout_resource_preflight_checkpoint.schema.json",
 )
 
 
@@ -81,10 +109,15 @@ def build_formal_authorization(identity: dict, scenario: dict) -> dict:
         "experiment_id": "E2_STOCKOUT_COMMON_SCENARIO_V1",
         "formal_run_authorized": False,
         "authorization_transition": [False],
-        "human_policy_approval": False,
-        "human_scientific_scope_approval": False,
-        "resource_preflight_approval": False,
-        "scoped_regression_approval": False,
+        "human_policy_approval": True,
+        "human_scientific_scope_approval": True,
+        "resource_preflight_approval": (
+            json.loads(RESOURCE_PREFLIGHT.read_text(encoding="utf-8")).get(
+                "admission_status"
+            )
+            == "PASS_FULL_CASE_PREFLIGHT_ON_32GB_TARGET"
+        ),
+        "scoped_regression_approval": True,
         "authorized_task_ids": [],
         "planned_tasks": planned_formal_tasks(identity),
         "independent_policy_count": 2,
@@ -93,6 +126,34 @@ def build_formal_authorization(identity: dict, scenario: dict) -> dict:
         "scenario_manifest_payload_sha256": scenario["manifest_payload_sha256"],
         "identity_file_sha256": {
             path: file_sha256(ROOT / path) for path in FORMAL_IDENTITY_PATHS
+        },
+    }
+    return {**payload, "authorization_payload_sha256": canonical_sha256(payload)}
+
+
+def build_preflight_authorization(identity: dict, scenario: dict) -> dict:
+    policy_id = "EXISTING_CANONICAL_210202"
+    policy = next(row for row in identity["policies"] if row["policy_id"] == policy_id)
+    case = next(row for row in scenario["cases"] if row["case_id"] == "210202")
+    payload = {
+        "schema_version": "1.0",
+        "experiment_id": "E2_STOCKOUT_COMMON_SCENARIO_V1",
+        "classification": "PREFLIGHT_AUTHORIZATION_NON_PUBLISHABLE",
+        "preflight_run_authorized": True,
+        "formal_run_authorized": False,
+        "authorization_scope": "ONE_COMPLETE_632_BLOCK_RESOURCE_AND_RECOVERY_PREFLIGHT",
+        "case_id": "210202",
+        "policy_id": policy_id,
+        "policy_sha256": policy["coordinates_sha256"],
+        "instance_sha256": case["instance_sha256"],
+        "scenario_count": FORMAL_SCENARIO_COUNT,
+        "expected_block_count": 632,
+        "protocol_interrupt_after_blocks": 16,
+        "threads": 1,
+        "identity_manifest_payload_sha256": identity["manifest_payload_sha256"],
+        "scenario_manifest_payload_sha256": scenario["manifest_payload_sha256"],
+        "identity_file_sha256": {
+            path: file_sha256(ROOT / path) for path in PREFLIGHT_IDENTITY_PATHS
         },
     }
     return {**payload, "authorization_payload_sha256": canonical_sha256(payload)}
@@ -107,15 +168,26 @@ def freeze() -> None:
     scenario = build_common_scenario_manifest(ROOT, identity)
     write_json(IDENTITY_MANIFEST, identity)
     write_json(SCENARIO_MANIFEST, scenario)
-    pilot_checkpoint = json.loads(
-        (
-            PILOT_ROOT / "PILOT-210202-EXISTING_CANONICAL" / "checkpoint.json"
-        ).read_text(encoding="utf-8")
-    )
-    write_json(
-        RESOURCE_PREFLIGHT,
-        build_structural_resource_preflight(scenario, pilot_checkpoint),
-    )
+    preserve_completed_preflight = False
+    if RESOURCE_PREFLIGHT.exists():
+        current_resource = json.loads(RESOURCE_PREFLIGHT.read_text(encoding="utf-8"))
+        preserve_completed_preflight = (
+            current_resource.get("admission_status")
+            == "PASS_FULL_CASE_PREFLIGHT_ON_32GB_TARGET"
+        )
+        if preserve_completed_preflight:
+            validate_completed_resource_preflight_evidence()
+    if not preserve_completed_preflight:
+        pilot_checkpoint = json.loads(
+            (
+                PILOT_ROOT / "PILOT-210202-EXISTING_CANONICAL" / "checkpoint.json"
+            ).read_text(encoding="utf-8")
+        )
+        write_json(
+            RESOURCE_PREFLIGHT,
+            build_structural_resource_preflight(scenario, pilot_checkpoint),
+        )
+    write_json(PREFLIGHT_AUTHORIZATION, build_preflight_authorization(identity, scenario))
     write_json(FORMAL_AUTHORIZATION, build_formal_authorization(identity, scenario))
 
 
@@ -190,9 +262,9 @@ def audit() -> None:
         "identity_manifest_hash_valid": True,
         "scenario_manifest_hash_valid": True,
         "formal_run_authorized_is_false": scenario["formal_run_authorized"] is False,
-        "identity_requires_human_confirmation": (
+        "scientific_policy_definition_is_confirmed": (
             identity["identity_freeze_status"]
-            == "PARTIAL_REQUIRES_HUMAN_CONFIRMATION"
+            == "FROZEN_TWO_POLICY_SCIENTIFIC_DEFINITION_CONFIRMED"
         ),
         "all_scenario_counts_are_4657": all(
             row["scenario_count"] == 4657 for row in scenario["cases"]
@@ -372,6 +444,495 @@ def resource_preflight() -> dict:
     return result
 
 
+def validate_preflight_authorization() -> tuple[dict, dict, dict]:
+    identity = json.loads(IDENTITY_MANIFEST.read_text(encoding="utf-8"))
+    scenario = json.loads(SCENARIO_MANIFEST.read_text(encoding="utf-8"))
+    authorization = json.loads(PREFLIGHT_AUTHORIZATION.read_text(encoding="utf-8"))
+    validate_manifest_hash(identity)
+    validate_manifest_hash(scenario)
+    payload = {
+        key: value
+        for key, value in authorization.items()
+        if key != "authorization_payload_sha256"
+    }
+    if authorization.get("authorization_payload_sha256") != canonical_sha256(payload):
+        raise ValueError("preflight authorization payload hash mismatch")
+    expected = {
+        "classification": "PREFLIGHT_AUTHORIZATION_NON_PUBLISHABLE",
+        "preflight_run_authorized": True,
+        "formal_run_authorized": False,
+        "authorization_scope": "ONE_COMPLETE_632_BLOCK_RESOURCE_AND_RECOVERY_PREFLIGHT",
+        "case_id": "210202",
+        "policy_id": "EXISTING_CANONICAL_210202",
+        "scenario_count": FORMAL_SCENARIO_COUNT,
+        "expected_block_count": 632,
+        "protocol_interrupt_after_blocks": 16,
+        "threads": 1,
+        "identity_manifest_payload_sha256": identity["manifest_payload_sha256"],
+        "scenario_manifest_payload_sha256": scenario["manifest_payload_sha256"],
+    }
+    for key, value in expected.items():
+        if authorization.get(key) != value:
+            raise ValueError(f"preflight authorization identity mismatch: {key}")
+    policy_row = next(
+        row
+        for row in identity["policies"]
+        if row["policy_id"] == authorization["policy_id"]
+    )
+    case_row = next(
+        row for row in scenario["cases"] if row["case_id"] == authorization["case_id"]
+    )
+    if authorization.get("policy_sha256") != policy_row["coordinates_sha256"]:
+        raise ValueError("preflight policy identity mismatch")
+    if authorization.get("instance_sha256") != case_row["instance_sha256"]:
+        raise ValueError("preflight instance identity mismatch")
+    file_hashes = authorization.get("identity_file_sha256", {})
+    if set(file_hashes) != set(PREFLIGHT_IDENTITY_PATHS):
+        raise ValueError("preflight identity file set mismatch")
+    for path, expected_hash in file_hashes.items():
+        if file_sha256(ROOT / path) != expected_hash:
+            raise ValueError(f"preflight code/protocol identity mismatch: {path}")
+    if identity.get("formal_run_authorized") is not False:
+        raise PermissionError("preflight requires identity formal authorization false")
+    if scenario.get("formal_run_authorized") is not False:
+        raise PermissionError("preflight requires scenario formal authorization false")
+    if any(row.get("formal_authorized") for row in identity["policies"]):
+        raise PermissionError("preflight requires every policy formal authorization false")
+    return identity, scenario, authorization
+
+
+def preflight_checkpoint_identity(
+    *, authorization: dict, scenario: dict, case_row: dict, policy_row: dict, block_keys: tuple
+) -> dict[str, object]:
+    identities = authorization["identity_file_sha256"]
+    return {
+        "preflight_authorization_sha256": file_sha256(PREFLIGHT_AUTHORIZATION),
+        "identity_manifest_sha256": file_sha256(IDENTITY_MANIFEST),
+        "scenario_manifest_sha256": file_sha256(SCENARIO_MANIFEST),
+        "runner_sha256": identities["experiments/run_e2_stockout_common_scenario.py"],
+        "evaluator_sha256": identities[
+            "src/robust_inventory_reconfiguration/e2_stockout_common_scenario.py"
+        ],
+        "protocol_sha256": identities["docs/e2_stockout_common_scenario_protocol.md"],
+        "scientific_confirmation_sha256": identities[
+            "docs/e2_stockout_scientific_policy_confirmation.md"
+        ],
+        "checkpoint_schema_sha256": identities[
+            "experiments/schemas/e2_stockout_resource_preflight_checkpoint.schema.json"
+        ],
+        "instance_sha256": case_row["instance_sha256"],
+        "policy_sha256": policy_row["coordinates_sha256"],
+        "scenario_order_sha256": case_row["scenario_order_sha256"],
+        "scenario_id_order_sha256": case_row["scenario_id_order_sha256"],
+        "block_order_sha256": canonical_sha256(
+            [block_key_payload(key) for key in block_keys]
+        ),
+        "solver_profile_id": "gurobi-balanced-1e-8-v1",
+        "solver_version": scenario["solver_version"],
+        "threads": 1,
+    }
+
+
+def validate_preflight_checkpoint(
+    checkpoint_path: Path,
+    *,
+    expected_identity: dict[str, object],
+    instance,
+    policy,
+    scenario_manifest: dict,
+    block_keys: tuple,
+) -> dict:
+    digest_path = checkpoint_path.with_suffix(checkpoint_path.suffix + ".sha256")
+    if not checkpoint_path.exists() or not digest_path.exists():
+        raise FileNotFoundError("preflight checkpoint or digest is missing")
+    if file_sha256(checkpoint_path) != digest_path.read_text(encoding="utf-8").strip():
+        raise ValueError("preflight checkpoint content hash mismatch")
+    checkpoint = json.loads(checkpoint_path.read_text(encoding="utf-8"))
+    expected_header = {
+        "schema_version": "1.0",
+        "classification": "PREFLIGHT_NON_PUBLISHABLE",
+        "experiment_id": "E2_STOCKOUT_COMMON_SCENARIO_V1",
+        "task_id": "PREFLIGHT-210202-EXISTING",
+        "case_id": "210202",
+        "policy_id": "EXISTING_CANONICAL_210202",
+        "formal_run_authorized": False,
+        "scenario_count": FORMAL_SCENARIO_COUNT,
+        "total_blocks": 632,
+    }
+    for key, value in {**expected_header, **expected_identity}.items():
+        if checkpoint.get(key) != value:
+            raise ValueError(f"preflight checkpoint identity mismatch: {key}")
+    results = checkpoint.get("block_results")
+    completed = checkpoint.get("completed_blocks")
+    if not isinstance(results, list) or completed != len(results):
+        raise ValueError("preflight checkpoint completed-block count mismatch")
+    if completed < 0 or completed > len(block_keys):
+        raise ValueError("preflight checkpoint block count is outside the frozen plan")
+    actual_keys = [block_key_from_payload(row) for row in results]
+    if actual_keys != list(block_keys[:completed]):
+        raise ValueError("preflight checkpoint is not the exact frozen block prefix")
+    required_metrics = (
+        "total_shipment",
+        "total_shortage",
+        "service_violation",
+        "transportation_cost",
+        "shortage_penalty_cost",
+        "service_penalty_cost",
+        "economic_optimum_cost",
+        "reporting_tie_break_cost_delta",
+    )
+    for row in results:
+        if row.get("economic_solver_status") != "OPTIMAL":
+            raise ValueError("preflight economic block status is not OPTIMAL")
+        if row.get("reporting_solver_status") != "OPTIMAL":
+            raise ValueError("preflight reporting block status is not OPTIMAL")
+        if row.get("economic_solver_status_code") != 2:
+            raise ValueError("preflight economic block status code is not OPTIMAL")
+        if row.get("reporting_solver_status_code") != 2:
+            raise ValueError("preflight reporting block status code is not OPTIMAL")
+        if any(
+            not isinstance(row.get(key), (int, float))
+            or not math.isfinite(float(row[key]))
+            for key in required_metrics
+        ):
+            raise ValueError("preflight block has missing or non-finite metrics")
+        component_sum = sum(
+            float(row[key])
+            for key in (
+                "transportation_cost",
+                "shortage_penalty_cost",
+                "service_penalty_cost",
+            )
+        )
+        expected_delta = component_sum - float(row["economic_optimum_cost"])
+        if not math.isclose(
+            float(row["reporting_tie_break_cost_delta"]),
+            expected_delta,
+            abs_tol=1e-6,
+        ):
+            raise ValueError("preflight block cost decomposition mismatch")
+        if expected_delta < -1e-9 or expected_delta > (
+            1e-6 + REPORTING_TIE_BREAK_TOLERANCE
+        ):
+            raise ValueError("preflight block exceeds the frozen tie-break band")
+    if checkpoint.get("policy_coordinates_before_sha256") != policy.coordinates_sha256:
+        raise ValueError("preflight initial policy coordinates mismatch")
+    status = checkpoint.get("completion_status")
+    if status in {"INCOMPLETE_CHECKPOINT", "INTERRUPTED_BY_PROTOCOL"}:
+        if completed <= 0 or completed >= len(block_keys):
+            raise ValueError("preflight interrupted checkpoint has invalid coverage")
+        if (
+            status == "INTERRUPTED_BY_PROTOCOL"
+            and checkpoint.get("protocol_interrupt_exercised") is not True
+        ):
+            raise ValueError("preflight interrupted checkpoint lacks recovery evidence")
+        if "evaluation" in checkpoint or "metric_summary" in checkpoint:
+            raise ValueError("partial preflight checkpoint contains complete-result fields")
+    elif status == "COMPLETE":
+        if completed != len(block_keys):
+            raise ValueError("complete preflight checkpoint does not cover all blocks")
+        if checkpoint.get("policy_coordinates_after_sha256") != policy.coordinates_sha256:
+            raise ValueError("preflight final policy coordinates mismatch")
+        rows = validate_complete_evaluation(
+            checkpoint.get("evaluation", {}),
+            instance=instance,
+            policy=policy,
+            scenario_manifest=scenario_manifest,
+        )
+        recomputed = summarize_complete_policy_metrics(
+            rows, scenario_manifest, policy.case_id
+        )
+        if checkpoint.get("metric_summary") != recomputed:
+            raise ValueError("preflight complete metric summary mismatch")
+        if checkpoint.get("protocol_interrupt_exercised") is not True:
+            raise ValueError("complete preflight did not exercise interruption recovery")
+    else:
+        raise ValueError("preflight checkpoint completion status is invalid")
+    return checkpoint
+
+
+def _preflight_block_result_map(rows: list[dict]) -> dict:
+    return {block_key_from_payload(row): row for row in rows}
+
+
+def run_resource_preflight_task(*, resume: bool) -> dict:
+    identity, scenario, authorization = validate_preflight_authorization()
+    policy_row = next(
+        row for row in identity["policies"] if row["policy_id"] == authorization["policy_id"]
+    )
+    case_row = next(
+        row for row in scenario["cases"] if row["case_id"] == authorization["case_id"]
+    )
+    instance_path = ROOT / case_row["instance_path"]
+    if file_sha256(instance_path) != case_row["instance_sha256"]:
+        raise ValueError("preflight instance file identity mismatch")
+    instance = load_instance(instance_path)
+    policy = policy_from_manifest(ROOT, policy_row)
+    selected_ids = [f"S{index:04d}" for index in range(FORMAL_SCENARIO_COUNT)]
+    block_keys = fixed_policy_block_keys(instance, selected_ids)
+    if len(block_keys) != authorization["expected_block_count"]:
+        raise ValueError("preflight frozen block count mismatch")
+    expected_identity = preflight_checkpoint_identity(
+        authorization=authorization,
+        scenario=scenario,
+        case_row=case_row,
+        policy_row=policy_row,
+        block_keys=block_keys,
+    )
+    checkpoint_path = PREFLIGHT_ROOT / "checkpoint.json"
+    if resume:
+        checkpoint = validate_preflight_checkpoint(
+            checkpoint_path,
+            expected_identity=expected_identity,
+            instance=instance,
+            policy=policy,
+            scenario_manifest=scenario,
+            block_keys=block_keys,
+        )
+        if checkpoint["completion_status"] not in {
+            "INCOMPLETE_CHECKPOINT",
+            "INTERRUPTED_BY_PROTOCOL",
+        }:
+            raise ValueError("preflight resume requires an interrupted checkpoint")
+        start_index = checkpoint["completed_blocks"]
+        checkpoint["resume_validation"] = {
+            "validated_completed_prefix_blocks": start_index,
+            "checkpoint_digest_verified": True,
+            "identity_chain_verified": True,
+        }
+    else:
+        if checkpoint_path.exists() or checkpoint_path.with_suffix(".json.sha256").exists():
+            raise FileExistsError("preflight checkpoint already exists; use preflight-resume")
+        start_index = 0
+        checkpoint = {
+            "schema_version": "1.0",
+            "classification": "PREFLIGHT_NON_PUBLISHABLE",
+            "experiment_id": scenario["experiment_id"],
+            "task_id": "PREFLIGHT-210202-EXISTING",
+            "case_id": policy.case_id,
+            "policy_id": policy.policy_id,
+            "formal_run_authorized": False,
+            **expected_identity,
+            "scenario_count": FORMAL_SCENARIO_COUNT,
+            "total_blocks": len(block_keys),
+            "completed_blocks": 0,
+            "completion_status": "RUNNING",
+            "protocol_interrupt_exercised": False,
+            "policy_coordinates_before_sha256": policy.coordinates_sha256,
+            "block_results": [],
+            "run_segments": [],
+        }
+
+    segment = {
+        "segment_index": len(checkpoint["run_segments"]) + 1,
+        "resumed": resume,
+        "started_from_completed_blocks": start_index,
+        "completed_blocks_at_end": start_index,
+        "runtime_seconds": 0.0,
+        "peak_process_rss_bytes": 0,
+        "end_reason": "RUNNING",
+    }
+    checkpoint["run_segments"].append(segment)
+    started = time.perf_counter()
+    with PeakMemoryMonitor() as monitor:
+        for index in range(start_index, len(block_keys)):
+            result = solve_fixed_policy_block(
+                instance, policy, block_keys[index], threads=authorization["threads"]
+            )
+            checkpoint["block_results"].append(result)
+            checkpoint["completed_blocks"] = index + 1
+            segment["completed_blocks_at_end"] = index + 1
+            segment["runtime_seconds"] = time.perf_counter() - started
+            segment["peak_process_rss_bytes"] = monitor.peak_bytes
+            checkpoint["completion_status"] = "INCOMPLETE_CHECKPOINT"
+            write_checkpoint(checkpoint_path, checkpoint)
+            if not resume and index + 1 == authorization["protocol_interrupt_after_blocks"]:
+                checkpoint["completion_status"] = "INTERRUPTED_BY_PROTOCOL"
+                checkpoint["protocol_interrupt_exercised"] = True
+                segment["end_reason"] = "PREDECLARED_PROTOCOL_INTERRUPT"
+                segment["runtime_seconds"] = time.perf_counter() - started
+                segment["peak_process_rss_bytes"] = monitor.peak_bytes
+                write_checkpoint(checkpoint_path, checkpoint)
+                return checkpoint
+
+    segment["end_reason"] = "ALL_REMAINING_BLOCKS_COMPLETE"
+    segment["runtime_seconds"] = time.perf_counter() - started
+    segment["peak_process_rss_bytes"] = monitor.peak_bytes
+    after_hash = canonical_sha256(
+        {
+            "y": policy.y,
+            "x": policy.x,
+            "a_plus": policy.a_plus,
+            "a_minus": policy.a_minus,
+        }
+    )
+    if after_hash != policy.coordinates_sha256:
+        raise RuntimeError("preflight first-stage coordinates changed")
+    scenario_rows = assemble_fixed_policy_scenario_rows(
+        instance,
+        policy,
+        selected_ids,
+        _preflight_block_result_map(checkpoint["block_results"]),
+    )
+    evaluation = {
+        "policy_coordinates_before_sha256": policy.coordinates_sha256,
+        "policy_coordinates_after_sha256": after_hash,
+        "unique_product_local_blocks": len(block_keys),
+        "scenarios": scenario_rows,
+    }
+    validated_rows = validate_complete_evaluation(
+        evaluation, instance=instance, policy=policy, scenario_manifest=scenario
+    )
+    checkpoint.update(
+        {
+            "completion_status": "COMPLETE",
+            "policy_coordinates_after_sha256": after_hash,
+            "runtime_seconds": sum(
+                float(row["runtime_seconds"]) for row in checkpoint["run_segments"]
+            ),
+            "peak_process_rss_bytes": max(
+                int(row["peak_process_rss_bytes"]) for row in checkpoint["run_segments"]
+            ),
+            "economic_optimal_block_count": sum(
+                row["economic_solver_status"] == "OPTIMAL"
+                for row in checkpoint["block_results"]
+            ),
+            "reporting_optimal_block_count": sum(
+                row["reporting_solver_status"] == "OPTIMAL"
+                for row in checkpoint["block_results"]
+            ),
+            "evaluation": evaluation,
+            "metric_summary": summarize_complete_policy_metrics(
+                validated_rows, scenario, policy.case_id
+            ),
+        }
+    )
+    write_checkpoint(checkpoint_path, checkpoint)
+    validate_preflight_checkpoint(
+        checkpoint_path,
+        expected_identity=expected_identity,
+        instance=instance,
+        policy=policy,
+        scenario_manifest=scenario,
+        block_keys=block_keys,
+    )
+    digest_path = checkpoint_path.with_suffix(".json.sha256")
+    result_manifest = {
+        "schema_version": "1.0",
+        "classification": "PREFLIGHT_NON_PUBLISHABLE",
+        "admission_status": "PASS_FULL_CASE_PREFLIGHT_ON_32GB_TARGET",
+        "checkpoint_sha256": file_sha256(checkpoint_path),
+        "checkpoint_digest_file_sha256": file_sha256(digest_path),
+        "checkpoint_bytes": checkpoint_path.stat().st_size,
+        "checkpoint_digest_bytes": digest_path.stat().st_size,
+        "checkpoint_bundle_bytes": checkpoint_path.stat().st_size + digest_path.stat().st_size,
+        "runtime_seconds": checkpoint["runtime_seconds"],
+        "peak_process_rss_bytes": checkpoint["peak_process_rss_bytes"],
+        "completed_blocks": checkpoint["completed_blocks"],
+        "scenario_count": FORMAL_SCENARIO_COUNT,
+        "protocol_interrupt_exercised": True,
+        "resume_validation": checkpoint["resume_validation"],
+    }
+    result_manifest_path = PREFLIGHT_ROOT / "result_manifest.json"
+    write_json(result_manifest_path, result_manifest)
+    pilot_checkpoint = json.loads(
+        (PILOT_ROOT / "PILOT-210202-EXISTING_CANONICAL" / "checkpoint.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    resource = build_structural_resource_preflight(scenario, pilot_checkpoint)
+    resource.update(
+        {
+            "classification": "VERIFIED_FULL_CASE_RESOURCE_AND_RECOVERY_PREFLIGHT",
+            "admission_status": "PASS_FULL_CASE_PREFLIGHT_ON_32GB_TARGET",
+            "preflight_result_manifest_path": result_manifest_path.relative_to(ROOT).as_posix(),
+            "preflight_result_manifest_sha256": file_sha256(result_manifest_path),
+            "preflight_checkpoint_sha256": file_sha256(checkpoint_path),
+            "preflight_case_id": policy.case_id,
+            "preflight_policy_id": policy.policy_id,
+            "completed_blocks": checkpoint["completed_blocks"],
+            "scenario_count": FORMAL_SCENARIO_COUNT,
+            "runtime_seconds": checkpoint["runtime_seconds"],
+            "peak_process_rss_bytes": checkpoint["peak_process_rss_bytes"],
+            "output_bundle_bytes": result_manifest["checkpoint_bundle_bytes"],
+            "protocol_interrupt_exercised": True,
+            "formal_run_authorized": False,
+        }
+    )
+    write_json(RESOURCE_PREFLIGHT, resource)
+    return checkpoint
+
+
+def validate_completed_resource_preflight_evidence() -> dict:
+    identity, scenario, authorization = validate_preflight_authorization()
+    policy_row = next(
+        row for row in identity["policies"] if row["policy_id"] == authorization["policy_id"]
+    )
+    case_row = next(
+        row for row in scenario["cases"] if row["case_id"] == authorization["case_id"]
+    )
+    instance_path = ROOT / case_row["instance_path"]
+    if file_sha256(instance_path) != case_row["instance_sha256"]:
+        raise ValueError("completed preflight instance file identity mismatch")
+    instance = load_instance(instance_path)
+    policy = policy_from_manifest(ROOT, policy_row)
+    selected_ids = [f"S{index:04d}" for index in range(FORMAL_SCENARIO_COUNT)]
+    block_keys = fixed_policy_block_keys(instance, selected_ids)
+    expected_identity = preflight_checkpoint_identity(
+        authorization=authorization,
+        scenario=scenario,
+        case_row=case_row,
+        policy_row=policy_row,
+        block_keys=block_keys,
+    )
+    checkpoint_path = PREFLIGHT_ROOT / "checkpoint.json"
+    checkpoint = validate_preflight_checkpoint(
+        checkpoint_path,
+        expected_identity=expected_identity,
+        instance=instance,
+        policy=policy,
+        scenario_manifest=scenario,
+        block_keys=block_keys,
+    )
+    if checkpoint["completion_status"] != "COMPLETE":
+        raise ValueError("resource preflight evidence is not complete")
+    result_path = PREFLIGHT_ROOT / "result_manifest.json"
+    result = json.loads(result_path.read_text(encoding="utf-8"))
+    expected_result = {
+        "classification": "PREFLIGHT_NON_PUBLISHABLE",
+        "admission_status": "PASS_FULL_CASE_PREFLIGHT_ON_32GB_TARGET",
+        "checkpoint_sha256": file_sha256(checkpoint_path),
+        "checkpoint_digest_file_sha256": file_sha256(
+            checkpoint_path.with_suffix(".json.sha256")
+        ),
+        "checkpoint_bytes": checkpoint_path.stat().st_size,
+        "checkpoint_digest_bytes": checkpoint_path.with_suffix(".json.sha256").stat().st_size,
+        "runtime_seconds": checkpoint["runtime_seconds"],
+        "peak_process_rss_bytes": checkpoint["peak_process_rss_bytes"],
+        "completed_blocks": 632,
+        "scenario_count": FORMAL_SCENARIO_COUNT,
+        "protocol_interrupt_exercised": True,
+        "resume_validation": checkpoint["resume_validation"],
+    }
+    for key, value in expected_result.items():
+        if result.get(key) != value:
+            raise ValueError(f"resource preflight result-manifest mismatch: {key}")
+    if result.get("checkpoint_bundle_bytes") != (
+        result["checkpoint_bytes"] + result["checkpoint_digest_bytes"]
+    ):
+        raise ValueError("resource preflight output-size identity mismatch")
+    resource = json.loads(RESOURCE_PREFLIGHT.read_text(encoding="utf-8"))
+    if resource.get("admission_status") != "PASS_FULL_CASE_PREFLIGHT_ON_32GB_TARGET":
+        raise ValueError("resource preflight audit is not admitted")
+    if resource.get("preflight_result_manifest_sha256") != file_sha256(result_path):
+        raise ValueError("resource preflight audit result hash mismatch")
+    if resource.get("preflight_checkpoint_sha256") != file_sha256(checkpoint_path):
+        raise ValueError("resource preflight audit checkpoint hash mismatch")
+    if resource.get("formal_run_authorized") is not False:
+        raise ValueError("resource preflight audit changed formal authorization")
+    return checkpoint
+
+
 def _git_blob_sha256(revision: str, path: str) -> str:
     content = subprocess.check_output(
         ["git", "cat-file", "blob", f"{revision}:{path}"], cwd=ROOT
@@ -499,6 +1060,8 @@ def main() -> None:
             "pilot",
             "resume-pilot",
             "resource-preflight",
+            "preflight-interrupt",
+            "preflight-resume",
             "formal-run",
             "resume-formal",
             "hashes",
@@ -513,6 +1076,23 @@ def main() -> None:
         hashes()
     elif args.command == "resource-preflight":
         print(json.dumps(resource_preflight(), indent=2))
+    elif args.command in ("preflight-interrupt", "preflight-resume"):
+        result = run_resource_preflight_task(
+            resume=args.command == "preflight-resume"
+        )
+        print(
+            json.dumps(
+                {
+                    "classification": result["classification"],
+                    "completion_status": result["completion_status"],
+                    "completed_blocks": result["completed_blocks"],
+                    "scenario_count": result["scenario_count"],
+                    "runtime_seconds": result.get("runtime_seconds"),
+                    "peak_process_rss_bytes": result.get("peak_process_rss_bytes"),
+                },
+                indent=2,
+            )
+        )
     elif args.command in ("formal-run", "resume-formal"):
         print(json.dumps(run_formal(resume=args.command == "resume-formal"), indent=2))
     else:

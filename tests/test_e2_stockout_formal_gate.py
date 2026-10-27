@@ -22,18 +22,44 @@ def test_formal_authorization_is_locked_and_plan_has_16_unique_tasks() -> None:
     )
     tasks = authorization["planned_tasks"]
     assert authorization["formal_run_authorized"] is False
+    assert authorization["human_policy_approval"] is True
     assert authorization["authorization_transition"] == [False]
     assert scenario["formal_run_authorized"] is False
     assert identity["formal_run_authorized"] is False
     assert len(tasks) == len({task["task_id"] for task in tasks}) == 16
     assert all("NOMINAL" not in task["policy_id"] for task in tasks)
     assert not any(row["formal_authorized"] for row in identity["policies"])
+    assert (
+        identity["identity_freeze_status"]
+        == "FROZEN_TWO_POLICY_SCIENTIFIC_DEFINITION_CONFIRMED"
+    )
 
 
 def test_formal_checkpoint_schema_defines_every_required_property() -> None:
     schema = json.loads(runner.FORMAL_CHECKPOINT_SCHEMA.read_text(encoding="utf-8"))
     assert set(schema["required"]) <= set(schema["properties"])
     assert schema["properties"]["solver_version"]["type"] == "string"
+
+
+def test_preflight_authorization_is_exactly_scoped_and_non_formal() -> None:
+    identity, scenario, authorization = runner.validate_preflight_authorization()
+    assert authorization["preflight_run_authorized"] is True
+    assert authorization["formal_run_authorized"] is False
+    assert authorization["case_id"] == "210202"
+    assert authorization["policy_id"] == "EXISTING_CANONICAL_210202"
+    assert authorization["scenario_count"] == 4657
+    assert authorization["expected_block_count"] == 632
+    assert authorization["protocol_interrupt_after_blocks"] == 16
+    assert authorization["threads"] == 1
+    assert identity["formal_run_authorized"] is False
+    assert scenario["formal_run_authorized"] is False
+
+
+def test_preflight_checkpoint_schema_defines_every_required_property() -> None:
+    schema = json.loads(runner.PREFLIGHT_CHECKPOINT_SCHEMA.read_text(encoding="utf-8"))
+    assert set(schema["required"]) <= set(schema["properties"])
+    assert schema["properties"]["classification"]["const"] == "PREFLIGHT_NON_PUBLISHABLE"
+    assert schema["properties"]["formal_run_authorized"]["const"] is False
 
 
 def test_unauthorized_formal_runner_refuses_before_optimizer(monkeypatch) -> None:
