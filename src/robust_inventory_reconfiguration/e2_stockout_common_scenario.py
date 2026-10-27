@@ -556,6 +556,47 @@ class PeakMemoryMonitor:
             self._thread.join()
 
 
+def validate_economic_stage_fallback(
+    *,
+    shipment: list[list[float]],
+    shortages: list[float],
+    excess: float,
+    demand: list[float],
+    stock: list[float],
+    service_level: float,
+    tolerance: float,
+) -> float:
+    """Independently check original fixed-stock recourse constraints."""
+    if not math.isfinite(tolerance) or tolerance <= 0:
+        raise ValueError("invalid frozen feasibility tolerance")
+    if len(shipment) != len(stock) or len(shortages) != len(demand):
+        raise ValueError("fallback dimension mismatch")
+    if any(len(row) != len(demand) for row in shipment):
+        raise ValueError("fallback shipment matrix dimension mismatch")
+    values = [excess, service_level, *shortages, *demand, *stock]
+    values.extend(v for row in shipment for v in row)
+    if not all(math.isfinite(float(v)) for v in values):
+        raise ValueError("non-finite fallback decision or input")
+    if not 0 <= service_level <= 1:
+        raise ValueError("invalid service-level value")
+    violation = max([0.0, -excess, *(-v for v in shortages),
+                     *(-v for row in shipment for v in row)])
+    for r, d in enumerate(demand):
+        violation = max(violation, d - shortages[r] - sum(row[r] for row in shipment))
+    for i, x in enumerate(stock):
+        violation = max(violation, sum(shipment[i]) - x)
+    violation = max(
+        violation,
+        sum(shortages) - excess - (1.0 - service_level) * sum(demand),
+    )
+    if violation > tolerance:
+        raise RuntimeError(
+            f"economic fallback primal infeasible: max_violation={violation:.17g}, "
+            f"feasibility_tolerance={tolerance:.17g}"
+        )
+    return float(violation)
+
+
 def evaluate_fixed_policy_scenarios(
     instance: InventoryInstance,
     policy: FrozenPolicy,
@@ -629,9 +670,25 @@ def evaluate_fixed_policy_scenarios(
 
     # Preserve certified economic-stage reporting quantities before tie-break.
     economic_stage_blocks = {}
+    economic_stage_decisions = {}
     fallback_events = []
     for key in block_keys:
         transportation, shortage, service = components[key]
+        j, shocked_regions = key
+        shock = set(shocked_regions)
+        demand_vector = [
+            instance.base_demand[r][j]
+            + (instance.demand_deviation[r][j] if r in shock else 0.0)
+            for r in regions
+        ]
+        economic_stage_decisions[key] = {
+            "shipment": [[float(q_vars[key][i, r].X) for r in regions] for i in depots],
+            "shortages": [float(u_vars[key][r].X) for r in regions],
+            "excess": float(e_vars[key].X),
+            "demand": demand_vector,
+            "stock": [float(fixed_x[i][j]) for i in depots],
+            "service_level": float(instance.service_level[j]),
+        }
         economic_stage_blocks[key] = {
             "total_shipment": float(sum(
                 q_vars[key][i, r].X for i in depots for r in regions
@@ -682,6 +739,10 @@ def evaluate_fixed_policy_scenarios(
 
             # The reporting-stage solution missed the frozen numerical
             # band. Restore the already solved economic-stage block.
+            fallback_max_violation = validate_economic_stage_fallback(
+                **economic_stage_decisions[key],
+                tolerance=float(model.Params.FeasibilityTol),
+            )
             reported = dict(economic_stage_blocks[key])
             fallback_events.append({
                 "case_id": policy.case_id,
@@ -689,6 +750,8 @@ def evaluate_fixed_policy_scenarios(
                 "product_index": key[0],
                 "shocked_region_indices": list(key[1]),
                 "original_tie_break_delta": float(block_delta),
+                "economic_stage_max_primal_violation": fallback_max_violation,
+                "frozen_feasibility_tolerance": float(model.Params.FeasibilityTol),
                 "reported_solution_source": "ECONOMIC_STAGE",
             })
             print(
