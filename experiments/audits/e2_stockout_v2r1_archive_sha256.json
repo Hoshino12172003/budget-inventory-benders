@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "classification": "E2_V2R1_ARCHIVE_DELIVERY_SHA256",
+  "files": [
+    {
+      "path": "artifacts/e2_stockout_common_scenario_formal_v2r1_results.zip",
+      "size_bytes": 6369718,
+      "sha256": "739b895b3c4aa78ae9cfa6bf2ffc47769502da61b63ee2e6f06471c78ce6ddce"
+    },
+    {
+      "path": "artifacts/e2_stockout_resource_preflight_v2r1.zip",
+      "size_bytes": 432939,
+      "sha256": "99ca844845e09c7bf33ec3f61ee9dd49995aa29d4706cc27182f7cdde8660771"
+    },
+    {
+      "path": "artifacts/e2_stockout_policy_identity_manifest.json",
+      "size_bytes": 50914,
+      "sha256": "f71b40b908a67c63605b3af9bc6f487a4b630dd2515a16c9ce2462eea52fe7a4"
+    },
+    {
+      "path": "docs/e2_stockout_common_scenario_protocol.md",
+      "size_bytes": 11090,
+      "sha256": "d63591a0cac35132abf1c257f808b901084565dac3a3843a97bf76e6b00f492c"
+    },
+    {
+      "path": "docs/e2_stockout_scientific_policy_confirmation.md",
+      "size_bytes": 4560,
+      "sha256": "6bbcd284a84d11946b4b81bd77b44c2c1b588add2cbd1261bee871f9610de061"
+    },
+    {
+      "path": "docs/e2_stockout_v2r1_formal_audit.md",
+      "size_bytes": 7700,
+      "sha256": "d3cc766b73fe7aba3b5a92a2a334964ba486558e26f3d744987ba22badf8a539"
+    },
+    {
+      "path": "docs/section5_sensitivity_evidence_inventory.md",
+      "size_bytes": 7693,
+      "sha256": "1a8b38422ad511ef813124e119a196d236cc3ac0f3f7405e4dbebeab14c27d3b"
+    },
+    {
+      "path": "docs/section5_2_to_5_3_narrative_bridge.md",
+      "size_bytes": 3886,
+      "sha256": "6448f912f8c73cfec37d1e65069704c7e7be001184233f6dc11d3221c086edc0"
+    },
+    {
+      "path": "docs/section5_2_5_3_chinese_draft.md",
+      "size_bytes": 7592,
+      "sha256": "7068f8a23f4d2f39cd5fa5b7ac3521bdf9fde91b00ebb9ada44688b0afba1132"
+    },
+    {
+      "path": "experiments/analysis/e2_stockout_v2r1_policy_comparison.csv",
+      "size_bytes": 27839,
+      "sha256": "ad3ff3baf306a0e66a66bb39a899068e1a361cb46f7394262bf7764895f93c2b"
+    },
+    {
+      "path": "experiments/audits/e2_stockout_resource_preflight_v2r1.json",
+      "size_bytes": 3119,
+      "sha256": "d23e26cb3a10534b1ae76b04ad3b26b88c789a59b90b78c371fd78bdf562774c"
+    },
+    {
+      "path": "experiments/audits/e2_stockout_v2r1_acceptance.json",
+      "size_bytes": 10809,
+      "sha256": "aad90f82aa5621ffd79b059fbbc6ba158f5ce040b91757d7ae9259588ff5321e"
+    },
+    {
+      "path": "experiments/configs/e2_stockout_common_scenario_manifest.json",
+      "size_bytes": 8932,
+      "sha256": "1cfb59d815ef4e1c42544a8fe182bb328fa48a30ab1175a8f97d2f660ab6a4a6"
+    },
+    {
+      "path": "experiments/configs/e2_stockout_formal_authorization_v2r1.json",
+      "size_bytes": 6639,
+      "sha256": "ae8efd8d5796e0cb63133ea123282dd83d70489e0b22d380dd3e1c222c4b7a76"
+    },
+    {
+      "path": "experiments/configs/e2_stockout_resource_preflight_authorization_v2r1.json",
+      "size_bytes": 2474,
+      "sha256": "9311f273d56aa67698f12e710e129df7ca158f291bf3dc5a5f189ec2fc8453d4"
+    },
+    {
+      "path": "experiments/run_e2_stockout_common_scenario.py",
+      "size_bytes": 51332,
+      "sha256": "18167e22d1f6fa8f83616b53c1854a021973630c274111c4a867fc94cbed2251"
+    },
+    {
+      "path": "experiments/schemas/e2_stockout_formal_checkpoint.schema.json",
+      "size_bytes": 2896,
+      "sha256": "dcfd27bcdf8e6f1750017cf985eec9e008e266eecee25cd46c218e018808bec8"
+    },
+    {
+      "path": "experiments/schemas/e2_stockout_scenario_result.schema.json",
+      "size_bytes": 1934,
+      "sha256": "537444759eceba20655fa699cbcb3f7840b6a960bb87cd634c9a094dfc6f3df0"
+    },
+    {
+      "path": "scripts/audit_e2_stockout_v2r1_archive.py",
+      "size_bytes": 23103,
+      "sha256": "fbad5b088c82976ada8a39c008a10b11d04eb6a534b7a7e0dc6019cdd925b058"
+    },
+    {
+      "path": "src/robust_inventory_reconfiguration/e2_stockout_common_scenario.py",
+      "size_bytes": 67797,
+      "sha256": "15f673060953efc6953967b0c233dd0e1135267a10fa0697e99ed9f5e56f44bb"
+    }
+  ]
+}
