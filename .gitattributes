@@ -1,2 +1,13 @@
 experiments/results/formal_acceptance_batch_1/** -text whitespace=cr-at-eol
 experiments/results/e1_algorithm_benchmark/** -text whitespace=cr-at-eol
+experiments/run_e6_budget_risk_5x5_local.py text eol=lf
+experiments/schemas/e6_budget_risk_5x5_result.schema.json text eol=lf
+scripts/prepare_e6_budget_risk_5x5_extension.py text eol=lf
+scripts/summarize_e6_budget_risk_5x5_results.py text eol=lf
+scripts/audit_e6_5x5_historical_sources.py text eol=lf
+scripts/audit_e6_5x5_frozen_execution_identity.py text eol=lf
+tests/test_e6_budget_risk_5x5_extension.py text eol=lf
+docs/e6_budget_risk_5x5_extension_audit.md text eol=lf
+docs/e6_budget_risk_5x5_frozen_execution_audit.md text eol=lf
+artifacts/e6_budget_risk_5x5_* text eol=lf
+artifacts/e4_per_file_hashes_for_e6_reuse_audit.csv text eol=lf

@@ -26,6 +26,15 @@ e4_gamma_sensitivity_v1.zip
 e5_reconfiguration_friction_v1.zip
 artifacts/*
 !artifacts/.gitkeep
+!artifacts/e6_budget_risk_5x5_authorization.json
+!artifacts/e6_budget_risk_5x5_reuse_map.csv
+!artifacts/e6_budget_risk_5x5_missing_cells.json
+!artifacts/e6_budget_risk_5x5_delivery_sha256.csv
+!artifacts/e6_budget_risk_5x5_historical_source_audit.csv
+!artifacts/e6_budget_risk_5x5_historical_source_audit.json
+!artifacts/e4_per_file_hashes_for_e6_reuse_audit.csv
+!artifacts/e6_budget_risk_5x5_regression_classification.csv
+!artifacts/e6_budget_risk_5x5_frozen_execution_identity.json
 !artifacts/x0_audit/
 !artifacts/x0_audit/**
 !artifacts/renault_x0_210202.csv
