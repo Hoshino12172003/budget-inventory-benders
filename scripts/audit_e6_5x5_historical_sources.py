@@ -236,17 +236,21 @@ def write_outputs(rows: list[dict], e4_manifest: list[dict], summary: dict) -> N
     with (ARTIFACTS / "e6_budget_risk_5x5_historical_source_audit.csv").open(
         "w", encoding="utf-8", newline=""
     ) as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(stream, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
     with (ARTIFACTS / "e4_per_file_hashes_for_e6_reuse_audit.csv").open(
         "w", encoding="utf-8", newline=""
     ) as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(e4_manifest[0]))
+        writer = csv.DictWriter(
+            stream, fieldnames=list(e4_manifest[0]), lineterminator="\n"
+        )
         writer.writeheader()
         writer.writerows(e4_manifest)
     (ARTIFACTS / "e6_budget_risk_5x5_historical_source_audit.json").write_text(
-        json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        json.dumps(summary, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
 
 

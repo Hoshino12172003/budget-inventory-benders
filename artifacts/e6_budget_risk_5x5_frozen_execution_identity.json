@@ -1,7 +1,7 @@
 {
   "BASE_MODEL_IDENTITY": "HISTORICAL_E6_FROZEN",
   "EXPERIMENT_LAYER": "E6_5X5_EXTENSION",
-  "authorization_manifest_sha256": "d9ebad3145c840726b2d62145dc429260166d1dbec3ee95974c3c0e1358034e2",
+  "authorization_manifest_sha256": "e5d2e6d02fa768e239678465a1e008d39749fb0d3d6a9516c75abf4657119b91",
   "base_historical_commit": "cc87b68363fa9cc444046f7823a6807412bb7ca8",
   "checks": {
     "authorization_false": true,
@@ -15,7 +15,7 @@
   "dataset_bundle_sha256": "e695f020bb9b9e7b7e6f14bcd9550872bfff197963f32c1161fbf0061e0b2044",
   "expected_frozen_model_sha256": "c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173",
   "expected_frozen_prb_sha256": "eab5ea31c6dbbc6446799f28bb6b54673eb7b57690cd4540f8a49b4a53757b6f",
-  "experiment_layer_parent_commit": "cc87b68363fa9cc444046f7823a6807412bb7ca8",
+  "experiment_layer_parent_commit": "94794269fde12f30c58190d96e51f0267eedb261",
   "formal_run_authorized": false,
   "frozen_execution_checkout": "E:/paper-code/formal-history/e6-frozen-code-cc87b683",
   "frozen_model_sha256": "c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173",
@@ -40,11 +40,11 @@
     "210628": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677"
   },
   "mapping_sha256": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
-  "missing_cells_manifest_sha256": "c326e9f462c4df719412c16e3b42cec34af30878e5e4a88961ee07f953b73d1c",
+  "missing_cells_manifest_sha256": "1b97b808dc6efb4d3207c6cb17cda130fc4deab83061da8289afe7813766333d",
   "missing_solve_cells": 96,
-  "new_e6_5x5_runner_sha256": "41c3c4fb3eb7ce7fa330d3c4c967a314838b250502d1c3e41ff10a88c3c94e4b",
+  "new_e6_5x5_runner_sha256": "41b921c9baa2f8005f13c773c58fd3a0514c7abcd5e4212c2297a4238da97976",
   "optimization_calls": 0,
-  "reuse_map_sha256": "bb7c400adf58eced5c02862cb334191820d311c1294e3a625ad29b45b61b71a7",
+  "reuse_map_sha256": "3291d505730d9892fecd8b13ee28d8f4bfae328681fa128abd40df7ac16cf355",
   "schema": "e6_budget_risk_5x5_frozen_execution_identity_v1",
   "solver_profile": "gurobi-balanced-1e-8-v1",
   "solver_tolerance_contract": {

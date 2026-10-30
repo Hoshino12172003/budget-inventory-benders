@@ -275,7 +275,7 @@ def write_outputs() -> dict:
     rows = reuse_rows()
     fields = list(rows[0])
     with REUSE_MAP.open("w", encoding="utf-8", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=fields)
+        writer = csv.DictWriter(stream, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
     missing = [
@@ -301,9 +301,12 @@ def write_outputs() -> dict:
         )
         + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     manifest = build_manifest(rows)
-    AUTHORIZATION.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    AUTHORIZATION.write_text(
+        json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n"
+    )
     passed = sum(row["reuse_pass"] == "true" for row in rows)
     source_decision = (
         f"All {len(rows)} planned reuse cells pass the live source-file and overlap identity audit."
@@ -440,7 +443,7 @@ manifest changes authorization to true:
 python experiments/run_e6_budget_risk_5x5_local.py --run-all
 ```
 """
-    AUDIT_DOC.write_text(document, encoding="utf-8")
+    AUDIT_DOC.write_text(document, encoding="utf-8", newline="\n")
     delivered = (
         ROOT / ".gitignore",
         ROOT / ".gitattributes",
@@ -463,7 +466,9 @@ python experiments/run_e6_budget_risk_5x5_local.py --run-all
         ROOT / "tests/test_e6_budget_risk_5x5_extension.py",
     )
     with DELIVERY_HASHES.open("w", encoding="utf-8", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=("path", "sha256"))
+        writer = csv.DictWriter(
+            stream, fieldnames=("path", "sha256"), lineterminator="\n"
+        )
         writer.writeheader()
         writer.writerows(
             {"path": path.relative_to(ROOT).as_posix(), "sha256": sha256(path)} for path in delivered

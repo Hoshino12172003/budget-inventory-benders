@@ -80,7 +80,7 @@ def matrices(results: dict[str, dict]) -> tuple[list[dict], list[dict]]:
 def write_matrix(path: Path, rows: list[dict]) -> None:
     fields = ["beta_token", "beta", *GAMMA_BY_TOKEN]
     with path.open("w", encoding="utf-8", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=fields)
+        writer = csv.DictWriter(stream, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 

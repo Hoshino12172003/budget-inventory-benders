@@ -99,7 +99,11 @@ def main() -> None:
     }
     identity["checks"] = checks
     identity["status"] = "PASS" if all(checks.values()) else "FAIL"
-    OUTPUT.write_text(json.dumps(identity, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    OUTPUT.write_text(
+        json.dumps(identity, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
     print(json.dumps(identity, indent=2, sort_keys=True))
 
 

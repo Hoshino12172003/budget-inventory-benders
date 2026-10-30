@@ -534,13 +534,13 @@
   "model_identity_sha256": "c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173",
   "prb_identity_sha256": "eab5ea31c6dbbc6446799f28bb6b54673eb7b57690cd4540f8a49b4a53757b6f",
   "runner": "experiments/run_e6_budget_risk_5x5_local.py",
-  "runner_sha256": "41c3c4fb3eb7ce7fa330d3c4c967a314838b250502d1c3e41ff10a88c3c94e4b",
+  "runner_sha256": "41b921c9baa2f8005f13c773c58fd3a0514c7abcd5e4212c2297a4238da97976",
   "result_schema": "experiments/schemas/e6_budget_risk_5x5_result.schema.json",
   "result_schema_sha256": "e28b64e568180ba68337fe7cc82d019f0c5742f10eaef8055b7a2f7d696db952",
   "aggregation_script": "scripts/summarize_e6_budget_risk_5x5_results.py",
-  "aggregation_script_sha256": "929e183583d0ddc8c1cf764400bc41c1edd5dc1ae297818e75ad963c57e4a6b8",
+  "aggregation_script_sha256": "38a7228b34a126c3f77d666bd0f7966ac3782ce18a74598e4029c32dd009834d",
   "reuse_map": "artifacts/e6_budget_risk_5x5_reuse_map.csv",
-  "reuse_map_sha256": "bb7c400adf58eced5c02862cb334191820d311c1294e3a625ad29b45b61b71a7",
+  "reuse_map_sha256": "3291d505730d9892fecd8b13ee28d8f4bfae328681fa128abd40df7ac16cf355",
   "missing_cells": "artifacts/e6_budget_risk_5x5_missing_cells.json",
   "source_contracts": {
     "E3_manifest_sha256": "500ee2d9b869a8c118a4ca1abe28ca6a5df1e93bf4b0034bf97dc64fd3a3b846",
@@ -549,13 +549,13 @@
     "E3_final_audit_sha256": "02fe55ba338af06c8f4223befa18005b6cc46da77e23e955f444db47b5a9b08d",
     "E4_final_audit_sha256": "53e324ba64c34e24c85a90f2b42b756a33c44eb0470072a39b86a43ecc766ed9",
     "E6_final_audit_sha256": "9a6aa4de5f4f696420913df5e854901593cacb63269149483beed4640f57a8db",
-    "historical_source_audit_sha256": "444afd89e3d66d488415154382ce70e689b3f51ece5a3ea8c8d9ea5bba0827ae",
-    "historical_source_table_sha256": "60ca0e3b501b9f6eed819cb6781e4c3c817da8e4da86986306b922c8aa013d78",
-    "E4_derived_per_file_hashes_sha256": "850a88e33d1c45eabce3368cd5b9a43851c91318b75dfde1a268d3a5fa07d358"
+    "historical_source_audit_sha256": "31fea0237a5eb4c135ebff777bd41f3272f7cbf9d92f38fa1411d63a7b8e0e97",
+    "historical_source_table_sha256": "46633ef3c57e635ba8e23f5aaf901110fc2925f32859e34b0d508400bb9dd421",
+    "E4_derived_per_file_hashes_sha256": "dc09371ded4f76789be98a48f6d2b7c9c6330ef8b4a9d749548f06dd2b1fe203"
   },
   "observed_preparation_identity": {
     "git_branch": "codex/e6-5x5-frozen-execution",
-    "git_head": "cc87b68363fa9cc444046f7823a6807412bb7ca8",
+    "git_head": "94794269fde12f30c58190d96e51f0267eedb261",
     "model_identity_sha256": "c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173",
     "prb_identity_sha256": "eab5ea31c6dbbc6446799f28bb6b54673eb7b57690cd4540f8a49b4a53757b6f",
     "historical_e6_runner_current_sha256": "87c42bdfc8b1dcc8b8e7fba646d30fd4ad315bbf3d94b61b64a33c03bd5a8d42"

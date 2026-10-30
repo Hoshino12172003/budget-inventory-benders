@@ -16,7 +16,7 @@ executed during preparation or audit.
 - `EXPERIMENT_LAYER`: `E6_5X5_EXTENSION`
 - Frozen model SHA-256: `c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173`
 - Frozen PRB working-tree SHA-256: `eab5ea31c6dbbc6446799f28bb6b54673eb7b57690cd4540f8a49b4a53757b6f`
-- New E6-5X5 runner SHA-256: `41c3c4fb3eb7ce7fa330d3c4c967a314838b250502d1c3e41ff10a88c3c94e4b`
+- New E6-5X5 runner SHA-256: `41b921c9baa2f8005f13c773c58fd3a0514c7abcd5e4212c2297a4238da97976`
 - Dataset bundle SHA-256: `e695f020bb9b9e7b7e6f14bcd9550872bfff197963f32c1161fbf0061e0b2044`
 - Instance-generation identity SHA-256: `9bd9bac81e98ea61e983d73a1da3fc8e9c8ef776461916a97abc70fbe4805a64`
 - Solver profile: `gurobi-balanced-1e-8-v1`

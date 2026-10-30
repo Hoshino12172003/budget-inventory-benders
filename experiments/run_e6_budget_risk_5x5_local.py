@@ -413,7 +413,11 @@ def write_run(result: dict, first_stage, manifest: dict) -> None:
     try:
         result_path = temporary / "result.json"
         solution_path = temporary / "first_stage_solution.json"
-        result_path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        result_path.write_text(
+            json.dumps(result, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
         if isinstance(first_stage, Path):
             shutil.copy2(first_stage, solution_path)
         else:
@@ -432,7 +436,9 @@ def write_run(result: dict, first_stage, manifest: dict) -> None:
             "reuse_source_result_sha256": result["reuse_source_result_sha256"],
         }
         (temporary / "provenance.json").write_text(
-            json.dumps(provenance, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+            json.dumps(provenance, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+            newline="\n",
         )
         if target.exists():
             raise FileExistsError(f"refusing to overwrite {result['run_id']}")

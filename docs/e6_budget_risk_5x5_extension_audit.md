@@ -68,7 +68,7 @@ The runner is safe for preparation/audit. Formal authorization remains false, so
 still prohibited even when all identity checks pass.
 
 Preparation checkout: `codex/e6-5x5-frozen-execution` at
-`cc87b68363fa9cc444046f7823a6807412bb7ca8`. The branch label is not itself a scientific
+`94794269fde12f30c58190d96e51f0267eedb261`. The branch label is not itself a scientific
 blocker; commit, model, data, and experiment identities control admission. The observed model identity is
 `c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173` versus the frozen E6 identity
 `c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173`. The observed PRB file is
