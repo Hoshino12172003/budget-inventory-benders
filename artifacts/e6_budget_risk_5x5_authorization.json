@@ -4,12 +4,16 @@
   "BASE_MODEL_IDENTITY": "HISTORICAL_E6_FROZEN",
   "EXPERIMENT_LAYER": "E6_5X5_EXTENSION",
   "base_historical_commit": "cc87b68363fa9cc444046f7823a6807412bb7ca8",
-  "protocol_status": "PREPARED_NOT_AUTHORIZED",
-  "formal_run_authorized": false,
+  "protocol_status": "E6_5X5_FORMAL_RUN_AUTHORIZED",
+  "formal_run_authorized": true,
   "authorization_transition": [
-    false
+    false,
+    true
   ],
-  "authorization_scope": [],
+  "authorization_scope": [
+    "E6_BUDGET_RISK_5X5_V1"
+  ],
+  "authorization_provenance": "MANUAL_FORMAL_RUN_AUTHORIZATION",
   "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
   "cases": [
     "210202",

@@ -64,8 +64,8 @@ interpolation, smoothing, or synthetic completion.
 
 ## Current safety conclusion and commands
 
-The runner is safe for preparation/audit. Formal authorization remains false, so optimization is
-still prohibited even when all identity checks pass.
+This preparation snapshot was produced while formal authorization was false. The later manual
+authorization is recorded separately in the authorization manifest and frozen execution audit.
 
 Preparation checkout: `codex/e6-5x5-frozen-execution` at
 `94794269fde12f30c58190d96e51f0267eedb261`. The branch label is not itself a scientific
@@ -92,9 +92,12 @@ to a pass by editing a historical authorization or result.
 
 ## Admission recommendation
 
-`READY_FOR_MANUAL_AUTHORIZATION`:
+Preparation decision at the time of this snapshot: `READY_FOR_MANUAL_AUTHORIZATION`.
+
+Current execution admission is governed by the later frozen execution audit and authorization manifest:
 104/104 reuse cells are verified, the 96-cell missing set is unchanged, and the execution checkout
-uses the frozen E6 model bundle. Authorization must still be a separate manual change.
+uses the frozen E6 model bundle. The separate manual authorization has now been recorded; current readiness is stated only by the
+frozen execution audit.
 
 PyCharm: run `experiments/run_e6_budget_risk_5x5_local.py` with parameter `--audit-only` and the
 repository root as working directory.

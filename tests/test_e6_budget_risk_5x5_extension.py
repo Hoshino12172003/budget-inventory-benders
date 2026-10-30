@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import json
 import hashlib
 from pathlib import Path
@@ -34,11 +35,41 @@ def test_reuse_selection_is_deterministic() -> None:
 
 
 def test_authorization_false_blocks_before_source_or_solver(monkeypatch) -> None:
-    manifest = runner.load_manifest()
-    assert manifest["formal_run_authorized"] is False
+    manifest = copy.deepcopy(runner.load_manifest())
+    manifest["protocol_status"] = "PREPARED_NOT_AUTHORIZED"
+    manifest["formal_run_authorized"] = False
+    manifest["authorization_transition"] = [False]
+    manifest["authorization_scope"] = []
     monkeypatch.setattr(runner, "validate_source", lambda *_: pytest.fail("source audit reached"))
     with pytest.raises(PermissionError, match="NOT_AUTHORIZED"):
         runner.validate_execution_gate(manifest)
+
+
+def test_authorized_manifest_passes_execution_gate_without_solver(monkeypatch) -> None:
+    manifest = runner.load_manifest()
+    monkeypatch.setattr(runner, "validate_source", lambda *_: {"checks": {}})
+    monkeypatch.setattr(runner.subprocess, "check_output", lambda *_args, **_kwargs: b"")
+    monkeypatch.setattr(
+        runner.e6_v1,
+        "solve_prb_benders",
+        lambda *_args, **_kwargs: pytest.fail("solver reached"),
+    )
+    runner.validate_execution_gate(manifest)
+
+
+def test_tampered_authorization_state_is_rejected() -> None:
+    manifest = copy.deepcopy(runner.load_manifest())
+    manifest["authorization_transition"] = [False]
+    with pytest.raises(RuntimeError, match="authorization_state"):
+        runner.validate_manifest(manifest)
+
+
+def test_utf8_bom_manifest_is_rejected(tmp_path: Path, monkeypatch) -> None:
+    bom_manifest = tmp_path / "authorization.json"
+    bom_manifest.write_bytes(b"\xef\xbb\xbf" + runner.MANIFEST.read_bytes())
+    monkeypatch.setattr(runner, "MANIFEST", bom_manifest)
+    with pytest.raises(json.JSONDecodeError, match="UTF-8 BOM"):
+        runner.load_manifest()
 
 
 def test_partial_checkpoint_is_rejected(tmp_path: Path) -> None:
@@ -79,7 +110,11 @@ def test_manifest_preserves_scientific_contract_and_separate_namespace() -> None
     assert manifest["lambda_R"] == 0.05
     assert manifest["interpolation_allowed"] is False
     assert manifest["result_root"] != "experiments/results/e6_budget_risk_interaction_v1"
-    assert manifest["formal_run_authorized"] is False
+    assert manifest["formal_run_authorized"] is True
+    assert manifest["authorization_transition"] == [False, True]
+    assert manifest["authorization_scope"] == [runner.EXPERIMENT_ID]
+    assert manifest["authorization_provenance"] == "MANUAL_FORMAL_RUN_AUTHORIZATION"
+    assert manifest["runner_sha256"] == runner.sha256(Path(runner.__file__))
 
 
 def test_frozen_model_dataset_and_solver_contract() -> None:

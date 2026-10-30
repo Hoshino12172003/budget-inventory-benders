@@ -2,10 +2,10 @@
 
 ## Decision
 
-`READY_FOR_MANUAL_AUTHORIZATION`
+`READY_TO_RUN_LOCALLY`
 
-This decision authorizes no run. `formal_run_authorized` remains `false`, and no optimization was
-executed during preparation or audit.
+Manual authorization is recorded as `MANUAL_FORMAL_RUN_AUTHORIZATION` and
+`formal_run_authorized=true`. No optimization was executed during authorization or gate validation.
 
 ## Execution identity
 
@@ -56,8 +56,8 @@ and contains no interpolation or synthetic completion path.
 
 ## Regression status
 
-- E6-5X5 extension-specific tests: 11 passed.
-- Extension plus available historical E6 protocol tests: 26 passed, 4 failed.
+- E6-5X5 extension-specific tests: 14 passed.
+- Extension plus available historical E6 protocol tests: 29 passed, 4 failed.
 - Historical E3/E4 protocol tests: 37 passed, 6 failed.
 
 All ten failures are classified in
@@ -66,7 +66,7 @@ line-ending gates, deliberately read-only fixture behavior, or absent E1/E2 fixt
 the independently frozen E6-5X5 execution path. No frozen test, model, authorization, or artifact was
 weakened to make a failure pass.
 
-## Formal command after separate authorization
+## Authorized local command
 
 From the frozen execution checkout:
 
@@ -74,5 +74,5 @@ From the frozen execution checkout:
 python experiments/run_e6_budget_risk_5x5_local.py --run-all
 ```
 
-This command has **not** been executed. Before using it, a human must separately change and review the
-E6-5X5 authorization manifest, confirm a clean committed worktree, and rerun the audit-only gate.
+This command has **not** been executed. The authorization manifest and zero-solve execution gate were
+validated independently before this command was released for local use.

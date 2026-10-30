@@ -79,6 +79,10 @@ def main() -> None:
             )
         },
         "formal_run_authorized": manifest["formal_run_authorized"],
+        "authorization_state": "AUTHORIZED",
+        "authorization_transition": manifest["authorization_transition"],
+        "authorization_scope": manifest["authorization_scope"],
+        "authorization_provenance": manifest.get("authorization_provenance"),
         "source_inventory_ready": manifest["source_inventory_ready"],
         "verified_reuse_cells": len(extension.planned_reuse_conditions()),
         "missing_solve_cells": len(extension.planned_new_solve_conditions()),
@@ -92,7 +96,11 @@ def main() -> None:
         "model": identity["frozen_model_sha256"] == identity["expected_frozen_model_sha256"],
         "prb": identity["frozen_prb_sha256"] == identity["expected_frozen_prb_sha256"],
         "instances": instance_hashes == manifest["instance_hashes"],
-        "authorization_false": manifest["formal_run_authorized"] is False,
+        "manual_authorization": manifest["formal_run_authorized"] is True
+        and manifest["authorization_transition"] == [False, True]
+        and manifest["authorization_scope"] == [extension.EXPERIMENT_ID]
+        and manifest.get("authorization_provenance")
+        == "MANUAL_FORMAL_RUN_AUTHORIZATION",
         "reuse_ready": manifest["source_inventory_ready"] is True,
         "counts": identity["verified_reuse_cells"] == 104
         and identity["missing_solve_cells"] == 96,
