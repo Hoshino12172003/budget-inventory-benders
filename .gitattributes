@@ -1,2 +1,7 @@
 experiments/results/formal_acceptance_batch_1/** -text whitespace=cr-at-eol
 experiments/results/e1_algorithm_benchmark/** -text whitespace=cr-at-eol
+artifacts/e4_per_file_hashes_for_e6_reuse_audit.csv text eol=lf
+artifacts/e6_budget_risk_5x5_* text eol=lf
+docs/e6_budget_risk_5x5_* text eol=lf
+scripts/archive_e6_budget_risk_5x5_results.py text eol=lf
+scripts/summarize_e6_budget_risk_5x5_results.py text eol=lf
