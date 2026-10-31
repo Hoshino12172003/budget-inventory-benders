@@ -1,0 +1,13 @@
+{
+  "authorization_record_sha256": "2eb4eb5a6cbc3a84e1d703bb296b734c2abc02d9f0e008fd1475bd356664b1d1",
+  "completion_status": "COMPLETED",
+  "first_stage_solution_sha256": "ff31d995b888c4c5c9994d1c8ff82af4eb9de721582d55d4a70e4369437676a1",
+  "git_commit": "4717963545ba7b1b7edb7a4d0f055c84e27bcd26",
+  "manifest_sha256": "422f360a07172ee36b461b2954311336620bdfce0054168d9e441344a33dfbdd",
+  "result_sha256": "ce0cd3eb277a35873c6d28bc8d04d92adee34f681a3985e8594d321174eecc21",
+  "reuse_source_run": null,
+  "reused": false,
+  "run_id": "E7-210628-G4-L2000",
+  "runner_sha256": "a1ca62ef23bf0bf32c712fd1917789318f605e161d0478277f7f2349e5b03d14",
+  "timing_semantics": "monotonic stage timers; final provenance serialization and atomic rename excluded"
+}

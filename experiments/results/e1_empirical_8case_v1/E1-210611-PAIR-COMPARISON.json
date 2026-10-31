@@ -1,0 +1,8 @@
+{
+  "absolute_objective_difference": 7.532071322202682e-08,
+  "case": "210611",
+  "objective_direct": 617415.6681422364,
+  "objective_prb": 617415.6681421611,
+  "status": "PASS",
+  "tolerance": 0.0001
+}
