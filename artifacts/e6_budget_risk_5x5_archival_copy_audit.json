@@ -1,0 +1,14 @@
+{
+  "copy_action": "COPIED_BYTE_IDENTICAL",
+  "destination_files": 600,
+  "destination_path": "E:/paper-code/paper-code2/budget-inventory-benders-frozen-51aebd0/experiments/results/e6_budget_risk_5x5_v1",
+  "extra_destination": 0,
+  "hash_mismatch": 0,
+  "identical_files": 600,
+  "missing_destination": 0,
+  "optimization_calls": 0,
+  "schema": "e6_budget_risk_5x5_archival_copy_audit_v1",
+  "source_files": 600,
+  "source_path": "E:/paper-code/formal-history/e6-frozen-code-cc87b683/experiments/results/e6_budget_risk_5x5_v1",
+  "status": "PASS"
+}

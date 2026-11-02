@@ -1,0 +1,32 @@
+{
+  "authorization_payload_sha256": "89341b8b86dd4dd6ba041931ac156e7d559e63b22ea344aab4e10dad9094a35b",
+  "authorization_scope": "ONE_COMPLETE_632_BLOCK_RESOURCE_AND_RECOVERY_PREFLIGHT",
+  "case_id": "210202",
+  "classification": "PREFLIGHT_AUTHORIZATION_NON_PUBLISHABLE",
+  "expected_block_count": 632,
+  "experiment_id": "E2_STOCKOUT_COMMON_SCENARIO_V1",
+  "formal_run_authorized": false,
+  "identity_file_sha256": {
+    "docs/e2_stockout_common_scenario_protocol.md": "d63591a0cac35132abf1c257f808b901084565dac3a3843a97bf76e6b00f492c",
+    "docs/e2_stockout_scientific_policy_confirmation.md": "6bbcd284a84d11946b4b81bd77b44c2c1b588add2cbd1261bee871f9610de061",
+    "experiments/run_e2_stockout_common_scenario.py": "18167e22d1f6fa8f83616b53c1854a021973630c274111c4a867fc94cbed2251",
+    "experiments/schemas/e2_stockout_resource_preflight_checkpoint.schema.json": "d9ddef0745ca42cf8aa0435d0fba805b4d1a0ab0bcc28bdbefb25c043049603e",
+    "experiments/schemas/e2_stockout_scenario_result.schema.json": "537444759eceba20655fa699cbcb3f7840b6a960bb87cd634c9a094dfc6f3df0",
+    "src/robust_inventory_reconfiguration/e2_stockout_common_scenario.py": "15f673060953efc6953967b0c233dd0e1135267a10fa0697e99ed9f5e56f44bb",
+    "src/robust_inventory_reconfiguration/first_stage_solution.py": "ef0beb031585cc769a2028044c65454304b4e25088bdd5731121333f5bc225c8",
+    "src/robust_inventory_reconfiguration/instance.py": "495954eb8cb9b19bcf122612e9b8e13d37c2d110390cb5bccb85def7099072d0",
+    "src/robust_inventory_reconfiguration/robust_service.py": "053c29c2701a254239e7a5284e7b00ffefef0ad7a84a7c84a98056fa58a7066a",
+    "src/robust_inventory_reconfiguration/scenarios.py": "cf2d0e54b1c93cc6ae6cae481022f40b7afbd10f66a54eb84e9b43a039833d50",
+    "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+  },
+  "identity_manifest_payload_sha256": "16621098ec520f39e68e1eee4ef0ac2867defc6eff8e1c32770e22513c710a28",
+  "instance_sha256": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+  "policy_id": "EXISTING_CANONICAL_210202",
+  "policy_sha256": "608c0e17ebdc96e2594050536131ac649c8487e54a5dc47c1a9eb02f3860963a",
+  "preflight_run_authorized": true,
+  "protocol_interrupt_after_blocks": 16,
+  "scenario_count": 4657,
+  "scenario_manifest_payload_sha256": "cd9f4f6e5f3aae664d0701438587119f25996860df3bad268cf54db6ea8e0cf6",
+  "schema_version": "1.0",
+  "threads": 1
+}

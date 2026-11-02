@@ -1,0 +1,69 @@
+{
+  "BASE_MODEL_IDENTITY": "HISTORICAL_E6_FROZEN",
+  "EXPERIMENT_LAYER": "E6_5X5_EXTENSION",
+  "authorization_manifest_sha256": "ce654317eaa73d07d97dee9ebd1d481408b878d3713a42ba53ddcb5e9f78abad",
+  "authorization_provenance": "MANUAL_FORMAL_RUN_AUTHORIZATION",
+  "authorization_scope": [
+    "E6_BUDGET_RISK_5X5_V1"
+  ],
+  "authorization_state": "AUTHORIZED",
+  "authorization_transition": [
+    false,
+    true
+  ],
+  "base_historical_commit": "cc87b68363fa9cc444046f7823a6807412bb7ca8",
+  "checks": {
+    "base_commit_exists": true,
+    "counts": true,
+    "instances": true,
+    "manual_authorization": true,
+    "model": true,
+    "prb": true,
+    "reuse_ready": true
+  },
+  "dataset_bundle_sha256": "e695f020bb9b9e7b7e6f14bcd9550872bfff197963f32c1161fbf0061e0b2044",
+  "expected_frozen_model_sha256": "c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173",
+  "expected_frozen_prb_sha256": "eab5ea31c6dbbc6446799f28bb6b54673eb7b57690cd4540f8a49b4a53757b6f",
+  "experiment_layer_parent_commit": "dc7a06fee561d6046e9cd22a58af6dc404f914c6",
+  "formal_run_authorized": true,
+  "frozen_execution_checkout": "E:/paper-code/formal-history/e6-frozen-code-cc87b683",
+  "frozen_model_sha256": "c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173",
+  "frozen_prb_sha256": "eab5ea31c6dbbc6446799f28bb6b54673eb7b57690cd4540f8a49b4a53757b6f",
+  "identity_table_sha256": "f3a24b3dba51abde335fd0f2be5efdd1b76384cb9595101f599adbbb4fc27170",
+  "instance_generation_file_hashes": {
+    "scripts/build_renault_empirical_8case_v1.py": "1ae5a40132ab772f1688a8dc2be1caf4f2cc632c009c39ea572da7a2f96d54a2",
+    "scripts/build_renault_instances.py": "0a2814af031a90591484bd947e51dc5fa88ebbd76b75289d43b09c492c6e226d",
+    "scripts/freeze_e1_empirical_cases.py": "4211bff20f3409009cec41d30b1d430b307bd9f1c861849d64dae273e12fbe44",
+    "src/robust_inventory_reconfiguration/instance.py": "495954eb8cb9b19bcf122612e9b8e13d37c2d110390cb5bccb85def7099072d0",
+    "src/robust_inventory_reconfiguration/renault_empirical.py": "93e8c413118271069123965248652d7b2cd3156d9ed0737484a908ce98f33f62"
+  },
+  "instance_generation_identity_sha256": "9bd9bac81e98ea61e983d73a1da3fc8e9c8ef776461916a97abc70fbe4805a64",
+  "instance_hashes": {
+    "210129": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3",
+    "210202": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+    "210310": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+    "210323": "df5fcbaa54a73277948f676fae151d85ad621d9ef417b0906b04066b1ef1109c",
+    "210330": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+    "210428": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+    "210611": "f244641d602348af8b2ac31a2bb948b4b0ebca8e33ff446dd07298e3e578a9bf",
+    "210628": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677"
+  },
+  "mapping_sha256": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+  "missing_cells_manifest_sha256": "1b97b808dc6efb4d3207c6cb17cda130fc4deab83061da8289afe7813766333d",
+  "missing_solve_cells": 96,
+  "new_e6_5x5_runner_sha256": "41b921c9baa2f8005f13c773c58fd3a0514c7abcd5e4212c2297a4238da97976",
+  "optimization_calls": 0,
+  "reuse_map_sha256": "3291d505730d9892fecd8b13ee28d8f4bfae328681fa128abd40df7ac16cf355",
+  "schema": "e6_budget_risk_5x5_frozen_execution_identity_v1",
+  "solver_profile": "gurobi-balanced-1e-8-v1",
+  "solver_tolerance_contract": {
+    "budget_binding_tolerance": 1e-06,
+    "budget_feasibility_tolerance": 1e-06,
+    "materiality_tolerance": 1e-06,
+    "objective_certification_tolerance": 0.0001,
+    "reporting_tolerance": 1e-06
+  },
+  "source_inventory_ready": true,
+  "status": "PASS",
+  "verified_reuse_cells": 104
+}

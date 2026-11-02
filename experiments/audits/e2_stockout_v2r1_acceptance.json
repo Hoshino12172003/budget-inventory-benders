@@ -1,0 +1,246 @@
+{
+  "schema_version": "1.0",
+  "classification": "READ_ONLY_ACCEPTANCE_AUDIT_NO_OPTIMIZATION",
+  "experiment_version": "V2R1",
+  "status": "PASS",
+  "task_count": 16,
+  "scenario_count_per_task": 4657,
+  "total_scenario_rows": 74512,
+  "gamma": 2,
+  "solver_versions": [
+    "13.0.1"
+  ],
+  "threads": 1,
+  "authorization_manifest": {
+    "path": "experiments/configs/e2_stockout_formal_authorization_v2r1.json",
+    "sha256": "ae8efd8d5796e0cb63133ea123282dd83d70489e0b22d380dd3e1c222c4b7a76",
+    "formal_run_authorized_recorded": true
+  },
+  "identity_manifest": {
+    "path": "artifacts/e2_stockout_policy_identity_manifest.json",
+    "sha256": "f71b40b908a67c63605b3af9bc6f487a4b630dd2515a16c9ce2462eea52fe7a4"
+  },
+  "scenario_manifest": {
+    "path": "experiments/configs/e2_stockout_common_scenario_manifest.json",
+    "sha256": "1cfb59d815ef4e1c42544a8fe182bb328fa48a30ab1175a8f97d2f660ab6a4a6"
+  },
+  "checks": {
+    "all_16_authorized_tasks_present": true,
+    "checkpoint_sidecars_match": true,
+    "all_tasks_have_exact_frozen_4657_id_set_and_order": true,
+    "all_scenario_solver_statuses_optimal": true,
+    "all_required_metrics_finite": true,
+    "recourse_cost_components_reconcile": true,
+    "first_stage_policy_hash_unchanged_before_after": true,
+    "all_tasks_have_632_unique_product_local_blocks": true,
+    "fallback_events_complete_and_feasible": true,
+    "stored_nominal_and_four_formal_worst_summaries_recomputed": true,
+    "formal_archive_32_entries_byte_identical_to_result_root": true,
+    "resource_preflight_archive_3_entries_byte_identical_to_result_root": true,
+    "resource_preflight_checkpoint_sidecar_and_result_manifest_match": true,
+    "resource_preflight_complete_632_blocks_with_interrupt_resume": true,
+    "resource_preflight_historical_authorization_snapshot_matches": true
+  },
+  "fallback_event_total": 17,
+  "maximum_fallback_original_constraint_violation": 7.860861295228005e-09,
+  "task_records": [
+    {
+      "task_id": "E2S-210129-EXISTING",
+      "case_id": "210129",
+      "policy_role": "EXISTING",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210129-EXISTING/checkpoint.json",
+      "checkpoint_sha256": "dc379ac7396bfba6bf04642be9207d43471ee5357015d42c14213233f100bc6b",
+      "runtime_seconds": 1.761685499921441,
+      "fallback_count": 0,
+      "fallback_max_primal_violation": 0.0,
+      "frozen_feasibility_tolerance": null,
+      "status": "PASS"
+    },
+    {
+      "task_id": "E2S-210129-ROBUST",
+      "case_id": "210129",
+      "policy_role": "ROBUST",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210129-ROBUST/checkpoint.json",
+      "checkpoint_sha256": "a6bd7b0a3cccd38fcf2dcf0d29974958aecf32f4519321335324169bd3502374",
+      "runtime_seconds": 1.6621115002781153,
+      "fallback_count": 0,
+      "fallback_max_primal_violation": 0.0,
+      "frozen_feasibility_tolerance": null,
+      "status": "PASS"
+    },
+    {
+      "task_id": "E2S-210202-EXISTING",
+      "case_id": "210202",
+      "policy_role": "EXISTING",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210202-EXISTING/checkpoint.json",
+      "checkpoint_sha256": "60053940a88881420bea9fccb0ca2ff75f17f2ecc0ac815807e6341383dbc1a9",
+      "runtime_seconds": 1.9447301998734474,
+      "fallback_count": 0,
+      "fallback_max_primal_violation": 0.0,
+      "frozen_feasibility_tolerance": null,
+      "status": "PASS"
+    },
+    {
+      "task_id": "E2S-210202-ROBUST",
+      "case_id": "210202",
+      "policy_role": "ROBUST",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210202-ROBUST/checkpoint.json",
+      "checkpoint_sha256": "daa772d7bcc41a025ba89527b8fc23db12e6a088bb7cc3fc2635d3dd560faf20",
+      "runtime_seconds": 1.356720000039786,
+      "fallback_count": 1,
+      "fallback_max_primal_violation": 1.7763568394002505e-15,
+      "frozen_feasibility_tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "task_id": "E2S-210310-EXISTING",
+      "case_id": "210310",
+      "policy_role": "EXISTING",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210310-EXISTING/checkpoint.json",
+      "checkpoint_sha256": "a625e03caebffa75b65df412f0b106714162475fdda047e019f0f45d71dd076c",
+      "runtime_seconds": 1.5027461000718176,
+      "fallback_count": 7,
+      "fallback_max_primal_violation": 2.842170943040401e-14,
+      "frozen_feasibility_tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "task_id": "E2S-210310-ROBUST",
+      "case_id": "210310",
+      "policy_role": "ROBUST",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210310-ROBUST/checkpoint.json",
+      "checkpoint_sha256": "18a7d75dd30b03de4d5eb7f0f37e26f8d3be06f38ec3d71b8ccb5953c66005a3",
+      "runtime_seconds": 1.4046224998310208,
+      "fallback_count": 4,
+      "fallback_max_primal_violation": 2.842170943040401e-14,
+      "frozen_feasibility_tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "task_id": "E2S-210323-EXISTING",
+      "case_id": "210323",
+      "policy_role": "EXISTING",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210323-EXISTING/checkpoint.json",
+      "checkpoint_sha256": "2cc4f5d910cc339889d339325a8666ae6cd60fe8deda5ac61401d5ac64727b48",
+      "runtime_seconds": 1.1873258003033698,
+      "fallback_count": 0,
+      "fallback_max_primal_violation": 0.0,
+      "frozen_feasibility_tolerance": null,
+      "status": "PASS"
+    },
+    {
+      "task_id": "E2S-210323-ROBUST",
+      "case_id": "210323",
+      "policy_role": "ROBUST",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210323-ROBUST/checkpoint.json",
+      "checkpoint_sha256": "8c421f761376993c58dac05793e14bf4a39378b48753e526b03034aae88b00e7",
+      "runtime_seconds": 1.2106174998916686,
+      "fallback_count": 0,
+      "fallback_max_primal_violation": 0.0,
+      "frozen_feasibility_tolerance": null,
+      "status": "PASS"
+    },
+    {
+      "task_id": "E2S-210330-EXISTING",
+      "case_id": "210330",
+      "policy_role": "EXISTING",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210330-EXISTING/checkpoint.json",
+      "checkpoint_sha256": "d4718e17050667667403ca52106dfd66265b8a8a44ca293808947d77332b5043",
+      "runtime_seconds": 1.0879063997417688,
+      "fallback_count": 0,
+      "fallback_max_primal_violation": 0.0,
+      "frozen_feasibility_tolerance": null,
+      "status": "PASS"
+    },
+    {
+      "task_id": "E2S-210330-ROBUST",
+      "case_id": "210330",
+      "policy_role": "ROBUST",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210330-ROBUST/checkpoint.json",
+      "checkpoint_sha256": "440a0f1f3ee2142177c316e534144405b925ff8f8c45ad6ce5d4acecdaa3ff0c",
+      "runtime_seconds": 1.0874001998454332,
+      "fallback_count": 0,
+      "fallback_max_primal_violation": 0.0,
+      "frozen_feasibility_tolerance": null,
+      "status": "PASS"
+    },
+    {
+      "task_id": "E2S-210428-EXISTING",
+      "case_id": "210428",
+      "policy_role": "EXISTING",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210428-EXISTING/checkpoint.json",
+      "checkpoint_sha256": "063ee65ce916dad9411ba3745130df5f611e66135f5b4723508d4a07250608de",
+      "runtime_seconds": 1.556317999958992,
+      "fallback_count": 0,
+      "fallback_max_primal_violation": 0.0,
+      "frozen_feasibility_tolerance": null,
+      "status": "PASS"
+    },
+    {
+      "task_id": "E2S-210428-ROBUST",
+      "case_id": "210428",
+      "policy_role": "ROBUST",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210428-ROBUST/checkpoint.json",
+      "checkpoint_sha256": "fc6a6986473debe8399737332892475f056b172dc1661e8d224b7d5abbb9da6d",
+      "runtime_seconds": 1.5873467000201344,
+      "fallback_count": 0,
+      "fallback_max_primal_violation": 0.0,
+      "frozen_feasibility_tolerance": null,
+      "status": "PASS"
+    },
+    {
+      "task_id": "E2S-210611-EXISTING",
+      "case_id": "210611",
+      "policy_role": "EXISTING",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210611-EXISTING/checkpoint.json",
+      "checkpoint_sha256": "5b457c551fbff17dbb6e943d9e0a5eaa2a1fd9a6e4e3a891cb73c3ac789e96b8",
+      "runtime_seconds": 1.6160267000086606,
+      "fallback_count": 4,
+      "fallback_max_primal_violation": 7.860861295228005e-09,
+      "frozen_feasibility_tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "task_id": "E2S-210611-ROBUST",
+      "case_id": "210611",
+      "policy_role": "ROBUST",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210611-ROBUST/checkpoint.json",
+      "checkpoint_sha256": "62035d315ec587b299b867dfe6db09c8dee64b0b4ef567307c358a02cf62af3b",
+      "runtime_seconds": 1.639922000002116,
+      "fallback_count": 0,
+      "fallback_max_primal_violation": 0.0,
+      "frozen_feasibility_tolerance": null,
+      "status": "PASS"
+    },
+    {
+      "task_id": "E2S-210628-EXISTING",
+      "case_id": "210628",
+      "policy_role": "EXISTING",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210628-EXISTING/checkpoint.json",
+      "checkpoint_sha256": "f0fc37a2b6fad24f0b7f0fadac4b9b5fe0688373c515e82657be96f4a47ea7e0",
+      "runtime_seconds": 1.4619750999845564,
+      "fallback_count": 1,
+      "fallback_max_primal_violation": 3.552713678800501e-15,
+      "frozen_feasibility_tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "task_id": "E2S-210628-ROBUST",
+      "case_id": "210628",
+      "policy_role": "ROBUST",
+      "checkpoint_path": "experiments/results/e2_stockout_common_scenario_formal_v2r1/E2S-210628-ROBUST/checkpoint.json",
+      "checkpoint_sha256": "76c873dae70361b1614dfc0e0e2867fbe097941d159268e44afbdffbef918bef",
+      "runtime_seconds": 1.357789700385183,
+      "fallback_count": 0,
+      "fallback_max_primal_violation": 0.0,
+      "frozen_feasibility_tolerance": null,
+      "status": "PASS"
+    }
+  ],
+  "derived_policy_comparison": {
+    "path": "experiments/analysis/e2_stockout_v2r1_policy_comparison.csv",
+    "sha256": "ad3ff3baf306a0e66a66bb39a899068e1a361cb46f7394262bf7764895f93c2b",
+    "row_count": 152,
+    "mean_semantics": "arithmetic mean over the 4,657 equally enumerated scenarios; not an expectation"
+  }
+}

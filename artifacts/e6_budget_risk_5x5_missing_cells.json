@@ -1,0 +1,775 @@
+{
+  "schema": "e6_budget_risk_5x5_missing_cells_v1",
+  "classification_rule": "no exact parameter cell in the formal E3/E4/E6 source union",
+  "cell_count": 96,
+  "cells": [
+    {
+      "run_id": "E6-5X5-210202-B080-G1",
+      "case": "210202",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210202-B080-G3",
+      "case": "210202",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210202-B090-G0",
+      "case": "210202",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210202-B090-G1",
+      "case": "210202",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210202-B090-G3",
+      "case": "210202",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210202-B090-G4",
+      "case": "210202",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210202-B110-G0",
+      "case": "210202",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210202-B110-G1",
+      "case": "210202",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210202-B110-G3",
+      "case": "210202",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210202-B110-G4",
+      "case": "210202",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210202-B120-G1",
+      "case": "210202",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210202-B120-G3",
+      "case": "210202",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210628-B080-G1",
+      "case": "210628",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210628-B080-G3",
+      "case": "210628",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210628-B090-G0",
+      "case": "210628",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210628-B090-G1",
+      "case": "210628",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210628-B090-G3",
+      "case": "210628",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210628-B090-G4",
+      "case": "210628",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210628-B110-G0",
+      "case": "210628",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210628-B110-G1",
+      "case": "210628",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210628-B110-G3",
+      "case": "210628",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210628-B110-G4",
+      "case": "210628",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210628-B120-G1",
+      "case": "210628",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210628-B120-G3",
+      "case": "210628",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210129-B080-G1",
+      "case": "210129",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210129-B080-G3",
+      "case": "210129",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210129-B090-G0",
+      "case": "210129",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210129-B090-G1",
+      "case": "210129",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210129-B090-G3",
+      "case": "210129",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210129-B090-G4",
+      "case": "210129",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210129-B110-G0",
+      "case": "210129",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210129-B110-G1",
+      "case": "210129",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210129-B110-G3",
+      "case": "210129",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210129-B110-G4",
+      "case": "210129",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210129-B120-G1",
+      "case": "210129",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210129-B120-G3",
+      "case": "210129",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210310-B080-G1",
+      "case": "210310",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210310-B080-G3",
+      "case": "210310",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210310-B090-G0",
+      "case": "210310",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210310-B090-G1",
+      "case": "210310",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210310-B090-G3",
+      "case": "210310",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210310-B090-G4",
+      "case": "210310",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210310-B110-G0",
+      "case": "210310",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210310-B110-G1",
+      "case": "210310",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210310-B110-G3",
+      "case": "210310",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210310-B110-G4",
+      "case": "210310",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210310-B120-G1",
+      "case": "210310",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210310-B120-G3",
+      "case": "210310",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210330-B080-G1",
+      "case": "210330",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210330-B080-G3",
+      "case": "210330",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210330-B090-G0",
+      "case": "210330",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210330-B090-G1",
+      "case": "210330",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210330-B090-G3",
+      "case": "210330",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210330-B090-G4",
+      "case": "210330",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210330-B110-G0",
+      "case": "210330",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210330-B110-G1",
+      "case": "210330",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210330-B110-G3",
+      "case": "210330",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210330-B110-G4",
+      "case": "210330",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210330-B120-G1",
+      "case": "210330",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210330-B120-G3",
+      "case": "210330",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210323-B080-G1",
+      "case": "210323",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210323-B080-G3",
+      "case": "210323",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210323-B090-G0",
+      "case": "210323",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210323-B090-G1",
+      "case": "210323",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210323-B090-G3",
+      "case": "210323",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210323-B090-G4",
+      "case": "210323",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210323-B110-G0",
+      "case": "210323",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210323-B110-G1",
+      "case": "210323",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210323-B110-G3",
+      "case": "210323",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210323-B110-G4",
+      "case": "210323",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210323-B120-G1",
+      "case": "210323",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210323-B120-G3",
+      "case": "210323",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210428-B080-G1",
+      "case": "210428",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210428-B080-G3",
+      "case": "210428",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210428-B090-G0",
+      "case": "210428",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210428-B090-G1",
+      "case": "210428",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210428-B090-G3",
+      "case": "210428",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210428-B090-G4",
+      "case": "210428",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210428-B110-G0",
+      "case": "210428",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210428-B110-G1",
+      "case": "210428",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210428-B110-G3",
+      "case": "210428",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210428-B110-G4",
+      "case": "210428",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210428-B120-G1",
+      "case": "210428",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210428-B120-G3",
+      "case": "210428",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210611-B080-G1",
+      "case": "210611",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210611-B080-G3",
+      "case": "210611",
+      "beta_token": "B080",
+      "beta": "0.80",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210611-B090-G0",
+      "case": "210611",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210611-B090-G1",
+      "case": "210611",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210611-B090-G3",
+      "case": "210611",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210611-B090-G4",
+      "case": "210611",
+      "beta_token": "B090",
+      "beta": "0.90",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210611-B110-G0",
+      "case": "210611",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G0",
+      "Gamma": 0
+    },
+    {
+      "run_id": "E6-5X5-210611-B110-G1",
+      "case": "210611",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210611-B110-G3",
+      "case": "210611",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    },
+    {
+      "run_id": "E6-5X5-210611-B110-G4",
+      "case": "210611",
+      "beta_token": "B110",
+      "beta": "1.10",
+      "Gamma_token": "G4",
+      "Gamma": 4
+    },
+    {
+      "run_id": "E6-5X5-210611-B120-G1",
+      "case": "210611",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G1",
+      "Gamma": 1
+    },
+    {
+      "run_id": "E6-5X5-210611-B120-G3",
+      "case": "210611",
+      "beta_token": "B120",
+      "beta": "1.20",
+      "Gamma_token": "G3",
+      "Gamma": 3
+    }
+  ]
+}

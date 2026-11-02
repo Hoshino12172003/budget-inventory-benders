@@ -1,0 +1,14 @@
+{
+  "created_at_utc": "2026-09-08T14:08:10.927702+00:00",
+  "first_stage_solution_sha256": "9da9e43a90643933431eda5d365163fdad7c52b8d82009c50908cea8905aaf34",
+  "git_commit": "045663bbecd912cb36f39002bdf8061cb513630d",
+  "manifest_sha256": "83a4e4e60998a0a39f740a5dd7e7eb6b955ad91e13fed47614e0a43af0fecf71",
+  "result_sha256": "76e73726f8f6436ac3ac36fb4a9ff44aca0007051e014f5cf921dd800eabe025",
+  "reuse_source_runs": [
+    "E1-210428-PRB",
+    "E2-210428-ROBUST"
+  ],
+  "reused_from_E1_or_E2": true,
+  "run_id": "E3-210428-B100",
+  "runner_sha256": "1ddc78804ccaf8713e1b9de594ae054cf1e0f890d9fb1dca7f79e7487b39d374"
+}

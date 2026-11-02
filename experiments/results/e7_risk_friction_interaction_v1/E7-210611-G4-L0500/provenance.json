@@ -1,0 +1,13 @@
+{
+  "authorization_record_sha256": "2eb4eb5a6cbc3a84e1d703bb296b734c2abc02d9f0e008fd1475bd356664b1d1",
+  "completion_status": "COMPLETED",
+  "first_stage_solution_sha256": "08f64cd084c6094af51c2f1979ffa1a07e05293e6ae820d1265ad8feb1987ea8",
+  "git_commit": "4717963545ba7b1b7edb7a4d0f055c84e27bcd26",
+  "manifest_sha256": "422f360a07172ee36b461b2954311336620bdfce0054168d9e441344a33dfbdd",
+  "result_sha256": "0a08876a194d6a4180319d4175adb15fd33cf1a9f58e128339a8ba62d7da6848",
+  "reuse_source_run": "E4-210611-G4",
+  "reused": true,
+  "run_id": "E7-210611-G4-L0500",
+  "runner_sha256": "a1ca62ef23bf0bf32c712fd1917789318f605e161d0478277f7f2349e5b03d14",
+  "timing_semantics": "monotonic stage timers; final provenance serialization and atomic rename excluded"
+}

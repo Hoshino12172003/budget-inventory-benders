@@ -1,0 +1,29 @@
+{
+  "aggregate_hash_algorithm": "SHA256 over sorted UTF-8 records: relative_path\\0size_bytes\\0sha256\\0artifact_type\\0case_id\\0beta\\0Gamma\\0source_type\\n",
+  "authorization_commit": "2fb30d2dd63c7a9d6e0135c422af09c498573169",
+  "completion_status": "COMPLETE",
+  "deterministic_result_tree_sha256": "6259bffb978472bebe1743c4df87ccf067d0289de78a4eae21125852d7b3eb6e",
+  "expected_cells": 200,
+  "failed_cells": 0,
+  "first_stage_solution_json_count": 200,
+  "historical_base_commit": "cc87b68363fa9cc444046f7823a6807412bb7ca8",
+  "interpolation_cells": 0,
+  "materialized_cells": 200,
+  "missing_cells": 0,
+  "new_solved_cells": 96,
+  "optimization_calls": 0,
+  "provenance_json_count": 200,
+  "result_json_count": 200,
+  "reused_cells": 104,
+  "schema": "e6_budget_risk_5x5_final_source_identity_v1",
+  "source_git_commit": "2fb30d2dd63c7a9d6e0135c422af09c498573169",
+  "source_path": "E:/paper-code/formal-history/e6-frozen-code-cc87b683",
+  "source_result_root": "E:/paper-code/formal-history/e6-frozen-code-cc87b683/experiments/results/e6_budget_risk_5x5_v1",
+  "source_type_counts": {
+    "NEW_E6_5X5_SOLVE": 96,
+    "REUSED_E3": 16,
+    "REUSED_E4": 16,
+    "REUSED_E6": 72
+  },
+  "total_file_count": 600
+}

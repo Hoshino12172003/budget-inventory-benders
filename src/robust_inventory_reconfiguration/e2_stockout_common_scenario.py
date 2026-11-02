@@ -556,6 +556,47 @@ class PeakMemoryMonitor:
             self._thread.join()
 
 
+def validate_economic_stage_fallback(
+    *,
+    shipment: list[list[float]],
+    shortages: list[float],
+    excess: float,
+    demand: list[float],
+    stock: list[float],
+    service_level: float,
+    tolerance: float,
+) -> float:
+    """Independently check original fixed-stock recourse constraints."""
+    if not math.isfinite(tolerance) or tolerance <= 0:
+        raise ValueError("invalid frozen feasibility tolerance")
+    if len(shipment) != len(stock) or len(shortages) != len(demand):
+        raise ValueError("fallback dimension mismatch")
+    if any(len(row) != len(demand) for row in shipment):
+        raise ValueError("fallback shipment matrix dimension mismatch")
+    values = [excess, service_level, *shortages, *demand, *stock]
+    values.extend(v for row in shipment for v in row)
+    if not all(math.isfinite(float(v)) for v in values):
+        raise ValueError("non-finite fallback decision or input")
+    if not 0 <= service_level <= 1:
+        raise ValueError("invalid service-level value")
+    violation = max([0.0, -excess, *(-v for v in shortages),
+                     *(-v for row in shipment for v in row)])
+    for r, d in enumerate(demand):
+        violation = max(violation, d - shortages[r] - sum(row[r] for row in shipment))
+    for i, x in enumerate(stock):
+        violation = max(violation, sum(shipment[i]) - x)
+    violation = max(
+        violation,
+        sum(shortages) - excess - (1.0 - service_level) * sum(demand),
+    )
+    if violation > tolerance:
+        raise RuntimeError(
+            f"economic fallback primal infeasible: max_violation={violation:.17g}, "
+            f"feasibility_tolerance={tolerance:.17g}"
+        )
+    return float(violation)
+
+
 def evaluate_fixed_policy_scenarios(
     instance: InventoryInstance,
     policy: FrozenPolicy,
@@ -626,6 +667,41 @@ def evaluate_fixed_policy_scenarios(
         model.Status, optimal_status=GRB.OPTIMAL, phase="fixed-policy economic recourse solve"
     )
     economic_optimum = {key: float(cost.getValue()) for key, cost in costs.items()}
+
+    # Preserve certified economic-stage reporting quantities before tie-break.
+    economic_stage_blocks = {}
+    economic_stage_decisions = {}
+    fallback_events = []
+    for key in block_keys:
+        transportation, shortage, service = components[key]
+        j, shocked_regions = key
+        shock = set(shocked_regions)
+        demand_vector = [
+            instance.base_demand[r][j]
+            + (instance.demand_deviation[r][j] if r in shock else 0.0)
+            for r in regions
+        ]
+        economic_stage_decisions[key] = {
+            "shipment": [[float(q_vars[key][i, r].X) for r in regions] for i in depots],
+            "shortages": [float(u_vars[key][r].X) for r in regions],
+            "excess": float(e_vars[key].X),
+            "demand": demand_vector,
+            "stock": [float(fixed_x[i][j]) for i in depots],
+            "service_level": float(instance.service_level[j]),
+        }
+        economic_stage_blocks[key] = {
+            "total_shipment": float(sum(
+                q_vars[key][i, r].X for i in depots for r in regions
+            )),
+            "total_shortage": float(sum(
+                u_vars[key][r].X for r in regions
+            )),
+            "service_violation": float(e_vars[key].X),
+            "transportation_cost": float(transportation.getValue()),
+            "shortage_penalty_cost": float(shortage.getValue()),
+            "service_penalty_cost": float(service.getValue()),
+        }
+
     for key, cost in costs.items():
         model.addConstr(cost <= economic_optimum[key] + REPORTING_TIE_BREAK_TOLERANCE)
     model.setObjective(
@@ -647,14 +723,64 @@ def evaluate_fixed_policy_scenarios(
             + float(shortage.getValue())
             + float(service.getValue())
         )
+        block_delta = component_sum - economic_optimum[key]
+
+        if not math.isfinite(block_delta):
+            raise RuntimeError(
+                f"non-finite tie-break cost delta for block {key}"
+            )
+
+        if block_delta > REPORTING_TIE_BREAK_TOLERANCE + 1e-6:
+            # The reporting-stage solution missed the frozen economic
+            # band. Independently validate and restore the already solved
+            # economic-stage block. The magnitude of the discarded
+            # reporting-stage deviation is retained for audit rather than
+            # used as an arbitrary hard-stop threshold.
+            fallback_max_violation = validate_economic_stage_fallback(
+                **economic_stage_decisions[key],
+                tolerance=float(model.Params.FeasibilityTol),
+            )
+            reported = dict(economic_stage_blocks[key])
+            fallback_events.append({
+                "case_id": policy.case_id,
+                "policy_id": policy.policy_id,
+                "product_index": key[0],
+                "shocked_region_indices": list(key[1]),
+                "original_tie_break_delta": float(block_delta),
+                "economic_stage_max_primal_violation": fallback_max_violation,
+                "frozen_feasibility_tolerance": float(model.Params.FeasibilityTol),
+                "reported_solution_source": "ECONOMIC_STAGE",
+            })
+            print(
+                f"ECONOMIC_OPTIMUM_FALLBACK "
+                f"case={policy.case_id} policy={policy.policy_id} "
+                f"key={key} delta={block_delta:.17g}",
+                flush=True,
+            )
+        else:
+            reported = {
+                "total_shipment": float(shipment),
+                "total_shortage": float(sum(shortage_values)),
+                "service_violation": float(e_vars[key].X),
+                "transportation_cost": float(transportation.getValue()),
+                "shortage_penalty_cost": float(shortage.getValue()),
+                "service_penalty_cost": float(service.getValue()),
+            }
+
+        reported_cost = (
+            reported["transportation_cost"]
+            + reported["shortage_penalty_cost"]
+            + reported["service_penalty_cost"]
+        )
+
+        if not all(math.isfinite(v) for v in reported.values()):
+            raise RuntimeError(f"non-finite reported block {key}")
+
         block_results[key] = {
-            "total_shipment": float(shipment),
-            "total_shortage": float(sum(shortage_values)),
-            "service_violation": float(e_vars[key].X),
-            "transportation_cost": float(transportation.getValue()),
-            "shortage_penalty_cost": float(shortage.getValue()),
-            "service_penalty_cost": float(service.getValue()),
-            "economic_optimum_cost": min(economic_optimum[key], component_sum),
+            **reported,
+            "economic_optimum_cost": min(
+                economic_optimum[key], reported_cost
+            ),
         }
 
     scenario_results = assemble_fixed_policy_scenario_rows(
@@ -671,6 +797,8 @@ def evaluate_fixed_policy_scenarios(
         "policy_coordinates_before_sha256": before_hash,
         "policy_coordinates_after_sha256": after_hash,
         "unique_product_local_blocks": len(block_keys),
+        "fallback_count": len(fallback_events),
+        "fallback_events": fallback_events,
         "scenarios": scenario_results,
     }
 

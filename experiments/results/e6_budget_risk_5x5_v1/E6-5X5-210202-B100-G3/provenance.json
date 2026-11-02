@@ -1,0 +1,11 @@
+{
+  "first_stage_solution_sha256": "7df27fbe2bc20159a1a6723293bdbbb5179d853d43afa35ec39a9aaa97fdf642",
+  "git_commit": "2fb30d2dd63c7a9d6e0135c422af09c498573169",
+  "manifest_sha256": "ce654317eaa73d07d97dee9ebd1d481408b878d3713a42ba53ddcb5e9f78abad",
+  "result_sha256": "26cf69089a605f1c527063dfdc4ed078376c0c01453f568794cca5a86d11c9d5",
+  "reuse_source_result_sha256": "fb3198781a51550a8e07e4c691e72524d3190e6ccfb1bf0bc438e17d9b656873",
+  "reuse_source_run": "E4-210202-G3",
+  "reused": true,
+  "run_id": "E6-5X5-210202-B100-G3",
+  "runner_sha256": "41b921c9baa2f8005f13c773c58fd3a0514c7abcd5e4212c2297a4238da97976"
+}

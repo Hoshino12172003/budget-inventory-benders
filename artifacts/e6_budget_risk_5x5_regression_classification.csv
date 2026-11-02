@@ -1,0 +1,11 @@
+test_name,classification,evidence,blocks_e6_5x5_execution
+tests/test_e6_budget_risk_protocol.py::test_manifest_freezes_identity_and_authorizes_only_e6,HISTORICAL_FREEZE_MISMATCH,"Legacy E6 gate hashes physical checkout bytes for runner/reporting files; Windows line-ending materialization differs from the provenance-authenticated Git blobs while frozen model and PRB identities pass",false
+tests/test_e6_budget_risk_protocol.py::test_source_provenance_tampering_is_rejected,IRRELEVANT_TO_E6_5X5_EXECUTION,"The audit source is deliberately read-only; shutil preserves that attribute in the temporary tampering fixture, so the fixture cannot be edited",false
+tests/test_e6_budget_risk_protocol.py::test_dry_run_never_invokes_optimizer,HISTORICAL_FREEZE_MISMATCH,"Legacy dry-run invokes the historical physical-file hash gate before its zero-solve assertion",false
+tests/test_e6_budget_risk_protocol.py::test_static_audit_passes_and_reports_zero_solves,HISTORICAL_FREEZE_MISMATCH,"Legacy static audit invokes the historical physical-file hash gate; the E6-5X5 audit uses independently frozen extension identities",false
+tests/test_e3_budget_protocol.py::test_clean_worktree_gate_and_overwrite,HISTORICAL_FREEZE_MISMATCH,"Legacy E3 runner physical hash differs after Windows checkout materialization and fails before the mocked clean-tree assertion",false
+tests/test_e3_budget_protocol.py::test_B100_reuse_accepts_exact_identity_and_rejects_mismatch,MISSING_FIXTURE,"Historical E1 result fixture is not required by the E6-5X5 source chain",false
+tests/test_e4_gamma_protocol.py::test_G0_reuse_is_not_identity_safe,MISSING_FIXTURE,"Historical E2 nominal fixture is not required because E6-5X5 reuses the certified E4 artifact directly",false
+tests/test_e4_gamma_protocol.py::test_no_overwrite_behavior,HISTORICAL_FREEZE_MISMATCH,"Legacy E4 runner physical hash differs after Windows checkout materialization and fails before overwrite testing",false
+tests/test_e4_gamma_protocol.py::test_static_audit_passes_without_outputs_or_solves,MISSING_FIXTURE,"Historical E2 nominal fixture is absent from this minimal execution checkout",false
+tests/test_e4_gamma_protocol.py::test_Gamma2_reuse_reporting_schema_is_unchanged,MISSING_FIXTURE,"Historical E1 result fixture is absent from this minimal execution checkout",false

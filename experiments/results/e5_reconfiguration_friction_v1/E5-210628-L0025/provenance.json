@@ -1,0 +1,12 @@
+{
+  "created_at_utc": "2026-09-10T12:04:32.656723+00:00",
+  "first_stage_solution_sha256": "b6d898c1519543a698720a8d07ef19784670b74db3a9753b66224d6527b9c3a7",
+  "git_commit": "00861829e377022ccac79d9b5af01c301aadabfa",
+  "manifest_sha256": "0ac0c405aa70efc60ee44e580d7ad9320f187a767ca03bc8bfc4fa9a610b3daa",
+  "reporting_contract_sha256": "e97e67ee58e31eeea296eaad2a31df69da5d18563966729fdcc447ac3c6884ec",
+  "result_sha256": "abaf3a27f6f509d5c1e5de98d54174f9e5e6ca5a0d5d0cd4bf8d7357adb4dedc",
+  "reuse_source_run": null,
+  "reused": false,
+  "run_id": "E5-210628-L0025",
+  "runner_sha256": "72dc482c9d1c5ae7db5d97ae60bdde4118209107ec9a97ea2a51932e48d0fdf3"
+}

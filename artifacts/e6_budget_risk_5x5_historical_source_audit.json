@@ -1,0 +1,28 @@
+{
+  "E3_frozen_archive_sha256": "4c17959f50f4dcb3690058736cec73cd44a6f7ac28eea103b0ed391d52d20e09",
+  "E3_source_path": "C:/Users/Hu Jiaxin/Documents/Codex/2026-09-06/github-hoshino12172003-robust-inventory-benders-v1/work/new_repo/experiments/results/e3_budget_sensitivity_v1",
+  "E4_frozen_archive_sha256": "aa169bdd5706fda57dbfc04cecd9417bf4e643152a2fc09601ea39a586c65d9e",
+  "E4_source_path": "C:/Users/Hu Jiaxin/Documents/Codex/2026-09-06/github-hoshino12172003-robust-inventory-benders-v1/work/new_repo/experiments/results/e4_gamma_sensitivity_v1",
+  "E6_review_package_sha256": "629de50e0d19827ca47b1e26f448e52b21676e977b6eb577e5a3c77b6aaab32f",
+  "E6_source_path": "C:/Users/Hu Jiaxin/Documents/Codex/2026-09-06/github-hoshino12172003-robust-inventory-benders-v1/work/new_repo/experiments/results/e6_budget_risk_interaction_v1",
+  "candidate_count": 152,
+  "eligible_count": 152,
+  "historical_commits": [
+    "045663bbecd912cb36f39002bdf8061cb513630d",
+    "0826e10c51f973397d8a16c6c9713471ccb53a93",
+    "183b4a07fae28fb7d3235b5ec113276ef5bc35b8",
+    "47f4010becae0d05223251571a465b63b66cd1c2",
+    "cc87b68363fa9cc444046f7823a6807412bb7ca8"
+  ],
+  "model_identity_by_commit": {
+    "045663bbecd912cb36f39002bdf8061cb513630d": "c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173",
+    "0826e10c51f973397d8a16c6c9713471ccb53a93": "c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173",
+    "183b4a07fae28fb7d3235b5ec113276ef5bc35b8": "c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173",
+    "47f4010becae0d05223251571a465b63b66cd1c2": "c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173",
+    "cc87b68363fa9cc444046f7823a6807412bb7ca8": "c4f718f6a12deb22772cdce20464ca617fa6e19c750a90be06cd2ddc8c245173"
+  },
+  "optimization_calls": 0,
+  "schema": "e6_5x5_historical_source_audit_v1",
+  "source_repo": "C:/Users/Hu Jiaxin/Documents/Codex/2026-09-06/github-hoshino12172003-robust-inventory-benders-v1/work/new_repo",
+  "status": "PASS"
+}

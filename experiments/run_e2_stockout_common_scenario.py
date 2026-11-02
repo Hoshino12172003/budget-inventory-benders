@@ -39,19 +39,19 @@ from robust_inventory_reconfiguration.instance import load_instance
 ROOT = Path(__file__).resolve().parents[1]
 IDENTITY_MANIFEST = ROOT / "artifacts/e2_stockout_policy_identity_manifest.json"
 SCENARIO_MANIFEST = ROOT / "experiments/configs/e2_stockout_common_scenario_manifest.json"
-STATIC_AUDIT = ROOT / "experiments/audits/e2_stockout_common_scenario_static_audit.json"
+STATIC_AUDIT = ROOT / "experiments/audits/e2_stockout_common_scenario_static_audit_v2r1.json"
 HISTORICAL_RUNNER_AUDIT = ROOT / "experiments/audits/e2_historical_runner_hash_audit.json"
-FORMAL_AUTHORIZATION = ROOT / "experiments/configs/e2_stockout_formal_authorization.json"
+FORMAL_AUTHORIZATION = ROOT / "experiments/configs/e2_stockout_formal_authorization_v2r1.json"
 FORMAL_CHECKPOINT_SCHEMA = ROOT / "experiments/schemas/e2_stockout_formal_checkpoint.schema.json"
 SCENARIO_RESULT_SCHEMA = ROOT / "experiments/schemas/e2_stockout_scenario_result.schema.json"
-RESOURCE_PREFLIGHT = ROOT / "experiments/audits/e2_stockout_resource_preflight.json"
-PREFLIGHT_AUTHORIZATION = ROOT / "experiments/configs/e2_stockout_resource_preflight_authorization.json"
+RESOURCE_PREFLIGHT = ROOT / "experiments/audits/e2_stockout_resource_preflight_v2r1.json"
+PREFLIGHT_AUTHORIZATION = ROOT / "experiments/configs/e2_stockout_resource_preflight_authorization_v2r1.json"
 PREFLIGHT_CHECKPOINT_SCHEMA = ROOT / "experiments/schemas/e2_stockout_resource_preflight_checkpoint.schema.json"
 SCIENTIFIC_CONFIRMATION = ROOT / "docs/e2_stockout_scientific_policy_confirmation.md"
 PILOT_ROOT = ROOT / "experiments/results/e2_stockout_common_scenario_pilot_v1"
-FORMAL_ROOT = ROOT / "experiments/results/e2_stockout_common_scenario_formal_v1"
-PREFLIGHT_ROOT = ROOT / "experiments/results/e2_stockout_resource_preflight_v1/PREFLIGHT-210202-EXISTING"
-DELIVERY_HASHES = ROOT / "experiments/audits/e2_stockout_delivery_hashes.json"
+FORMAL_ROOT = ROOT / "experiments/results/e2_stockout_common_scenario_formal_v2r1"
+PREFLIGHT_ROOT = ROOT / "experiments/results/e2_stockout_resource_preflight_v2r1/PREFLIGHT-210202-EXISTING"
+DELIVERY_HASHES = ROOT / "experiments/audits/e2_stockout_delivery_hashes_v2r1.json"
 
 FORMAL_IDENTITY_PATHS = (
     "experiments/run_e2_stockout_common_scenario.py",
@@ -66,7 +66,7 @@ FORMAL_IDENTITY_PATHS = (
     "experiments/schemas/e2_stockout_scenario_result.schema.json",
     "experiments/schemas/e2_stockout_formal_checkpoint.schema.json",
     "experiments/configs/e2_stockout_scoped_regression_gate.json",
-    "experiments/audits/e2_stockout_resource_preflight.json",
+    "experiments/audits/e2_stockout_resource_preflight_v2r1.json",
 )
 
 PREFLIGHT_IDENTITY_PATHS = (
