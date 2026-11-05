@@ -1,0 +1,4 @@
+v2_certificate_class,pair_count,maximum_objective_absolute_difference,mean_objective_absolute_difference,strict_original_count,independent_numeric_validation_count,qualification
+legacy_strict_exact,5,3.9348378777503967e-07,9.592622518539429e-08,5,0,Original strict certificate preserved from the same-environment archive.
+strict_original,24,4.079192876815796e-07,4.7720580672224365e-08,24,0,Strict original protocol passed in the numeric-guard continuation.
+independently_numerically_validated,1,6.780028343200684e-07,6.780028343200684e-07,0,1,L10/20260925 only: original global risk-coupling check failed; independent final-inventory recourse and returned-cut numerical audits passed. This is not an exact-arithmetic proof.

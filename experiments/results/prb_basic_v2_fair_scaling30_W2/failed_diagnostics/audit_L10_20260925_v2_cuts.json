@@ -1,0 +1,22 @@
+{
+  "cut_count": 54,
+  "cut_violations_at_final_x_over_1e_6": [],
+  "dual_infeasible_cut_indices": [],
+  "exact_certification_pass": true,
+  "final_objective": 2110693.728430083,
+  "global_risk_budget_coupling_error": 4.071509465575218e-06,
+  "global_risk_budget_coupling_pass": false,
+  "last_iteration_new_cuts": 0,
+  "max_cut_generation_value_mismatch": 5.820766091346741e-11,
+  "max_cut_over_independent_recourse_at_final_x": 6.785867299186066e-07,
+  "max_cut_strong_duality_error": 5.820766091346741e-11,
+  "reference_basic_objective_difference": 6.780028343200684e-07,
+  "reported_final_relative_gap": 0.0,
+  "scope_note": "Checks all returned V2 cuts for reported dual feasibility and strong duality, and independently checks them at final inventory. Does not establish whole-domain cut validity or certify final master bound.",
+  "seed": 20260925,
+  "signed_lower_minus_upper": 4.071276634931564e-06,
+  "signed_lower_minus_upper_div_scale": 1.9288808130168152e-12,
+  "size": "L10",
+  "status": "OPTIMAL",
+  "workers": 2
+}
