@@ -1,0 +1,47 @@
+{
+  "identity": {
+    "Gamma": 2,
+    "beta": 1.0,
+    "cpu_count": 14,
+    "cut_tolerance": 1e-07,
+    "experiment": "PRB_BASIC_V2_SAME_ENV_SCALING30",
+    "frozen_loader_sha256": "bd2050d3844a381e4387b42142747b8a0fb944365986da04cd1ede7931957562",
+    "git_commit": "d9bd2392512d922b731d2e6f5aa015fc731f52a7",
+    "gurobi": [
+      13,
+      0,
+      1
+    ],
+    "gurobi_threads_per_model": 1,
+    "input_hashes": {
+      "basic_prb": "a00687275920b9e13d85f099a99f0a88fa62af58390a257fec87710c610d6116",
+      "instance": "acabbdba1d68be5d562fa604d6c3110de0d42ed49364be72a2db9f52cffaa9b4",
+      "preparation": "8d7e5d14bf41606dfd4cc0c16795f7c5a0edf0a1501ab726cc40bc8501164dc6"
+    },
+    "lambda_R": 0.05,
+    "max_iterations": 500,
+    "method": "basic",
+    "model_hashes": {
+      "experiments/run_accelerated_prb_v2_scaling30.py": "bd2050d3844a381e4387b42142747b8a0fb944365986da04cd1ede7931957562",
+      "src/robust_inventory_reconfiguration/accelerated_product_risk_budget_benders.py": "56235ff802c169f0ba84d104ca507c99c22d788c96c2278efae384d16258c04e",
+      "src/robust_inventory_reconfiguration/accelerated_product_risk_subproblem.py": "d8b667c8c2d1bf76f4d7f42181b6279cdac3c2d716561d710ae2e76cf70c841b",
+      "src/robust_inventory_reconfiguration/algorithm_scaling.py": "c2ddb046171465aebe250de9a3b57c06ada49c63c2df4ed3f0105923fe9a46cd",
+      "src/robust_inventory_reconfiguration/instance.py": "495954eb8cb9b19bcf122612e9b8e13d37c2d110390cb5bccb85def7099072d0",
+      "src/robust_inventory_reconfiguration/product_risk_budget_benders.py": "089d05860baf428a7c49ec851a9f9e5cfcfe6d663adcd303ea1a3c26ed702c78",
+      "src/robust_inventory_reconfiguration/product_risk_subproblem.py": "1c68e8031a5bece2ae863fb0f3df2ed47ba9f5d7cf82d4cd6c20e9ba5bee012f",
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+      "src/robust_inventory_reconfiguration/risk_budget_composition.py": "d5b79b3fd576ae1398bf2bd9931c658686a2a520d3b9fac7380c903c8e7aa47f",
+      "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+    },
+    "objective_tolerance": 0.0001,
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.7",
+    "relative_gap": 1e-06,
+    "runner_sha256": "990cf8617e894b346f507cea87bbb1643791799b764849479fdc71d7348d1e18",
+    "seed": 20260922,
+    "size": "XXL10",
+    "v2_workers": 2
+  },
+  "result_sha256": "a94f68ba33ef1cc81c2d21bd218cc5ff3c6b8aaf2adf5cfcb751fb5345c7f4cf",
+  "saved_at_utc": "2026-11-05T14:14:17.052694+00:00"
+}

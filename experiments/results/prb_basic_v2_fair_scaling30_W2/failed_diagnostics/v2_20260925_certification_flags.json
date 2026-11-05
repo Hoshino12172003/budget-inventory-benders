@@ -1,0 +1,14 @@
+{
+  "certified_objective": 2110693.728430083,
+  "core_seconds": 7.386562200030312,
+  "exact_certification_pass": true,
+  "final_lower_bound": 2110693.7284341543,
+  "final_relative_gap": 0.0,
+  "final_upper_bound": 2110693.728430083,
+  "global_risk_budget_coupling_error": 4.071509465575218e-06,
+  "global_risk_budget_coupling_pass": false,
+  "iterations": 7,
+  "objective_difference_from_frozen": 6.780028343200684e-07,
+  "status": "OPTIMAL",
+  "upper_bound_minus_certified_objective": 0.0
+}

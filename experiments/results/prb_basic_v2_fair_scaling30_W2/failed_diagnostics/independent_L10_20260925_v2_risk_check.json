@@ -1,0 +1,30 @@
+{
+  "failed_result": "experiments\\results\\prb_basic_v2_fair_scaling30_W2\\failed_diagnostics\\L10_20260925_v2_63e5117a4afc466ca467f74a7fed4cdc.json",
+  "independent_objective_at_v2_inventory": 2110693.728430083,
+  "independent_risk_allocation": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0
+  ],
+  "independent_robust_recourse_cost": 1814731.6433552853,
+  "maximum_strong_duality_error": 5.820766091346741e-11,
+  "objective_difference_independent_vs_frozen_basic": 6.780028343200684e-07,
+  "objective_difference_independent_vs_v2": 0.0,
+  "recourse_difference_independent_vs_v2": 2.3283064365386963e-10,
+  "reference_basic_objective": 2110693.728429405,
+  "scope_note": "Independent candidate-recourse check only. Does not validate V2 lower bound or all historical cuts.",
+  "seed": 20260925,
+  "size": "L10",
+  "v2_reported_objective": 2110693.728430083,
+  "v2_reported_robust_recourse_cost": 1814731.643355285,
+  "worst_case_dual_feasibility_failures": []
+}

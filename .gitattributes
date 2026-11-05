@@ -37,3 +37,13 @@ experiments/results/ef_benders_scaling_xxl10_paired_pilot_v1/**/stdout.log -text
 experiments/results/ef_benders_scaling_xxl10_remaining9_v1/** -text whitespace=-blank-at-eof,cr-at-eol
 experiments/results/ef_benders_scaling_xxl10_remaining9_v1/**/solver.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 experiments/results/ef_benders_scaling_xxl10_remaining9_v1/**/stdout.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+experiments/analysis/prb_v2_scaling30_final/** -text whitespace=cr-at-eol
+experiments/results/prb_basic_v2_fair_scaling30_W2/** -text whitespace=cr-at-eol
+experiments/results/prb_basic_v2_fair_scaling30_W2_numeric_guard_v1/** -text whitespace=cr-at-eol
+experiments/run_accelerated_prb_v2_scaling30.py -text whitespace=cr-at-eol
+experiments/run_prb_basic_v2_fair_scaling30.py -text whitespace=cr-at-eol
+experiments/run_prb_basic_v2_fair_scaling30_numeric_guard_v1.py -text whitespace=cr-at-eol
+experiments/audit_v2_failed_cut_validity.py -text whitespace=cr-at-eol
+experiments/audit_v2_failed_risk_value.py -text whitespace=cr-at-eol
+experiments/diagnose_v2_certification.py -text whitespace=cr-at-eol
+tests/test_prb_v2_scaling30_final_archive.py -text whitespace=cr-at-eol
