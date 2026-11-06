@@ -1,0 +1,2 @@
+pair_count,basic_arithmetic_mean_core_seconds,v2_arithmetic_mean_core_seconds,ratio_of_arithmetic_mean_times,paired_geometric_mean_speedup,arithmetic_mean_time_reduction_percent,v2_win_count,basic_win_count,tie_count,minimum_paired_speedup,maximum_paired_speedup
+8,2.093185812511365,1.8718110750196502,1.1182676715861353,1.099049380406545,10.575971620317526,6,2,0,0.8519530157879937,1.290862419096835

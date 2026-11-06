@@ -1,0 +1,14 @@
+{
+  "available_memory_before_gib": 15.956501007080078,
+  "condition_id": "RENAULT_210129_V2",
+  "monitored_wall_seconds": 3.352244299952872,
+  "peak_process_tree_rss_gib": 0.20548629760742188,
+  "poll_interval_seconds": 0.25,
+  "privacy_note": "Local executable and checkout paths are intentionally omitted.",
+  "process_memory_cap_gib": 4.0,
+  "record_type": "DERIVED_SANITIZED_RESOURCE_MONITOR",
+  "return_code": 0,
+  "source_monitor_sha256": "e643573039cd617dbed5f439bcad14c53c8896017ae22bafe9797542513a43bf",
+  "stop_reason": null,
+  "system_memory_floor_gib": 3.0
+}

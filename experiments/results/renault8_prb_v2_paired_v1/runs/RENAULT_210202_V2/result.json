@@ -1,0 +1,687 @@
+{
+  "Gamma": 2,
+  "absolute_lower_upper_difference": 0.0,
+  "benders_cut_count": 31,
+  "beta": 1.0,
+  "budget": 106510.9559990062,
+  "cache_hits": 26,
+  "cache_misses": 14,
+  "case": "210202",
+  "certification_class": "strict_original",
+  "certification_time_seconds": 8.489994797855616e-05,
+  "child_solve_wall_seconds": 1.920622899895534,
+  "condition_completed": true,
+  "condition_id": "RENAULT_210202_V2",
+  "core_solve_time_seconds": 1.8392121000215411,
+  "experiment": "RENAULT8_PRB_V2_PAIRED_V1",
+  "final_lower_bound": 1058780.7942496866,
+  "final_upper_bound": 1058780.7942496866,
+  "first_stage_solution": {
+    "a_minus": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        83.79411390001655,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        5.973112697787997e-07,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "a_plus": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        28.430144065407262,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.9247575835379394e-06,
+        0.0,
+        0.0
+      ]
+    ],
+    "first_stage_expenditure": 106510.95599900621,
+    "objective": 1058780.7942496866,
+    "reconfiguration_cost": 478.82351141330224,
+    "robust_recourse_cost": 952269.8382506804,
+    "x": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        162.8533140552158,
+        0.0,
+        0.0,
+        0.0,
+        575.8372888481634,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        4.19542857142319,
+        0.0,
+        0.0,
+        0.0,
+        17.21428571430253,
+        0.0,
+        0.0
+      ]
+    ],
+    "y": [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ]
+  },
+  "gurobi_threads_per_model": 1,
+  "gurobi_version": "13.0.1",
+  "historical_direct_objective": 1058780.7942496864,
+  "independent_audit_pass": null,
+  "independent_numerical_audit": null,
+  "independent_positive_optimality_gap": 0.0,
+  "independently_numerically_validated": false,
+  "input_sha256": {
+    "calibration_hash": "7fe326584320b19636d95424cf806f0ab4c89951c3e2a1a84a4a5cc656e40624",
+    "instance_hash": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+    "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+    "x0_hash": "5fe095e76dd1372735ec7a6cb6fead9d6bc42f044b6006c13ed1aeb16dfbc368"
+  },
+  "iterations": 4,
+  "lambda_R": 0.05,
+  "last_iteration_new_cuts": 0,
+  "master_solve_count": 4,
+  "master_time_seconds": 0.043814799981191754,
+  "method": "v2",
+  "numerical_error_threshold_absolute": 5.293903971248433e-06,
+  "objective": 1058780.7942496866,
+  "objective_absolute_difference": 2.3283064365386963e-10,
+  "objective_reference_match": true,
+  "oracle_model_build_seconds": 1.523996299947612,
+  "oracle_time_seconds": 0.2514750000555068,
+  "original_exact_certification_flag": true,
+  "original_global_risk_coupling_error": 0.0,
+  "original_global_risk_coupling_flag": true,
+  "original_reported_gap": 0.0,
+  "product_solves_avoided": 78,
+  "python_version": "3.12.7",
+  "relative_gap": 0.0,
+  "runtime_profile": {
+    "cache_lookup": {
+      "average_seconds": 5.34249993506819e-06,
+      "call_count": 40,
+      "maximum_seconds": 0.0002136999974027276,
+      "percent_core": 0.011619105670315278,
+      "total_seconds": 0.0002136999974027276
+    },
+    "certification_preparation": {
+      "average_seconds": 3.359990660101175e-05,
+      "call_count": 1,
+      "maximum_seconds": 3.359990660101175e-05,
+      "percent_core": 0.0018268641556141473,
+      "total_seconds": 3.359990660101175e-05
+    },
+    "certification_total": {
+      "average_seconds": 8.489994797855616e-05,
+      "call_count": 1,
+      "maximum_seconds": 8.489994797855616e-05,
+      "percent_core": 0.004616104253422528,
+      "total_seconds": 8.489994797855616e-05
+    },
+    "cut_construction": {
+      "average_seconds": 6.985416500053058e-06,
+      "call_count": 96,
+      "maximum_seconds": 4.7600013203918934e-05,
+      "percent_core": 0.03646126425534279,
+      "total_seconds": 0.0006705999840050936
+    },
+    "cut_insertion": {
+      "average_seconds": 7.211612612609901e-05,
+      "call_count": 31,
+      "maximum_seconds": 0.0002736999886110425,
+      "percent_core": 0.12155204448050803,
+      "total_seconds": 0.0022355999099090695
+    },
+    "gamma_allocation": {
+      "average_seconds": 4.668005276471376e-05,
+      "call_count": 5,
+      "maximum_seconds": 5.4900068789720535e-05,
+      "percent_core": 0.012690230986455298,
+      "total_seconds": 0.00023340026382356882
+    },
+    "ipc_and_wait_residual": {
+      "average_seconds": 0.001433280110359192,
+      "call_count": 5,
+      "maximum_seconds": 0.0071664005517959595,
+      "percent_core": 0.3896451394437882,
+      "total_seconds": 0.0071664005517959595
+    },
+    "lb_ub_computation": {
+      "average_seconds": 0.001844424958107993,
+      "call_count": 4,
+      "maximum_seconds": 0.002471999963745475,
+      "percent_core": 0.4011337154831443,
+      "total_seconds": 0.007377699832431972
+    },
+    "master_model_construction": {
+      "average_seconds": 0.006840400048531592,
+      "call_count": 1,
+      "maximum_seconds": 0.006840400048531592,
+      "percent_core": 0.3719201308240347,
+      "total_seconds": 0.006840400048531592
+    },
+    "master_solve": {
+      "average_seconds": 0.010953699995297939,
+      "call_count": 4,
+      "maximum_seconds": 0.01413020002655685,
+      "percent_core": 2.382259228322747,
+      "total_seconds": 0.043814799981191754
+    },
+    "miscellaneous_python": {
+      "average_seconds": 0.0025119001511484385,
+      "call_count": 1,
+      "maximum_seconds": 0.0025119001511484385,
+      "percent_core": 0.13657479477864565,
+      "total_seconds": 0.0025119001511484385
+    },
+    "parallel_worker_compute_critical_path": {
+      "average_seconds": 0.04857867998071015,
+      "call_count": 5,
+      "maximum_seconds": 0.24289339990355074,
+      "percent_core": 13.206383314937192,
+      "total_seconds": 0.24289339990355074
+    },
+    "product_model_construction_critical_path": {
+      "average_seconds": 0.07397728750947863,
+      "call_count": 8,
+      "maximum_seconds": 0.22105950000695884,
+      "percent_core": 32.17781679823102,
+      "total_seconds": 0.591818300075829
+    },
+    "product_model_construction_cumulative": {
+      "average_seconds": 0.1431332499923883,
+      "call_count": 8,
+      "maximum_seconds": 0.22105950000695884,
+      "percent_core": 62.25850732091721,
+      "total_seconds": 1.1450659999391064
+    },
+    "product_model_update_cumulative": {
+      "average_seconds": 0.0015670214280752198,
+      "call_count": 14,
+      "maximum_seconds": 0.0018551000393927097,
+      "percent_core": 1.1928096815367915,
+      "total_seconds": 0.02193829999305308
+    },
+    "product_optimization_cumulative": {
+      "average_seconds": 0.021304400014092346,
+      "call_count": 14,
+      "maximum_seconds": 0.029608000069856644,
+      "percent_core": 16.2168137211472,
+      "total_seconds": 0.29826160019729286
+    },
+    "product_result_extraction_cumulative": {
+      "average_seconds": 0.00038455712742039135,
+      "call_count": 14,
+      "maximum_seconds": 0.000587599934078753,
+      "percent_core": 0.29272316030448164,
+      "total_seconds": 0.005383799783885479
+    },
+    "result_processing": {
+      "average_seconds": 6.8999860169632095e-06,
+      "call_count": 14,
+      "maximum_seconds": 9.659980423748493e-05,
+      "percent_core": 0.005252238403409457,
+      "total_seconds": 9.659980423748493e-05
+    },
+    "serialization_probe": {
+      "average_seconds": 5.931997438892722e-05,
+      "call_count": 10,
+      "maximum_seconds": 0.0005931997438892722,
+      "payload_bytes": 27223,
+      "percent_core": 0.032252927429214096,
+      "total_seconds": 0.0005931997438892722
+    },
+    "worker_dispatch": {
+      "average_seconds": 0.00010840001050382853,
+      "call_count": 5,
+      "maximum_seconds": 0.0005420000525191426,
+      "percent_core": 0.02946914347251166,
+      "total_seconds": 0.0005420000525191426
+    },
+    "worker_startup": {
+      "average_seconds": 0.4660889999358915,
+      "call_count": 2,
+      "maximum_seconds": 0.932177999871783,
+      "percent_core": 50.683550845542236,
+      "total_seconds": 0.932177999871783
+    }
+  },
+  "selective_separation_enabled": false,
+  "signed_lower_minus_upper": 0.0,
+  "solver_status": "OPTIMAL",
+  "strict_exact_certification": true,
+  "strict_original_certification": true,
+  "validated_under_protocol": true,
+  "worker_count": 2
+}

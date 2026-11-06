@@ -1,0 +1,718 @@
+{
+  "Gamma": 2,
+  "absolute_lower_upper_difference": 6.402842700481415e-09,
+  "benders_cut_count": 33,
+  "beta": 1.0,
+  "budget": 76394.09199991751,
+  "cache_hits": 33,
+  "cache_misses": 15,
+  "case": "210310",
+  "certification_class": "strict_original",
+  "certification_time_seconds": 0.00011830008588731289,
+  "child_solve_wall_seconds": 1.9597947999136522,
+  "condition_completed": true,
+  "condition_id": "RENAULT_210310_V2",
+  "core_solve_time_seconds": 1.8823865000158548,
+  "experiment": "RENAULT8_PRB_V2_PAIRED_V1",
+  "final_lower_bound": 714814.5477076981,
+  "final_upper_bound": 714814.5477077045,
+  "first_stage_solution": {
+    "a_minus": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "a_plus": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "first_stage_expenditure": 76394.0919999175,
+    "objective": 714814.5477077045,
+    "reconfiguration_cost": 0.0,
+    "robust_recourse_cost": 638420.455707787,
+    "x": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        71.42499996829974,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        29.482666636013796,
+        0.0,
+        0.0,
+        0.0,
+        82.04166676245407,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        82.38400002936797,
+        0.0,
+        0.0,
+        0.0,
+        175.9999999046781,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        30.60000000000007,
+        0.0,
+        0.0,
+        0.0,
+        85.0733333645343,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "y": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ]
+  },
+  "gurobi_threads_per_model": 1,
+  "gurobi_version": "13.0.1",
+  "historical_direct_objective": 714814.5477075904,
+  "independent_audit_pass": null,
+  "independent_numerical_audit": null,
+  "independent_positive_optimality_gap": 8.95734805763859e-15,
+  "independently_numerically_validated": false,
+  "input_sha256": {
+    "calibration_hash": "8915940c2bbfee479d054c007033da41d45776504e985c6d07302dea74481ff4",
+    "instance_hash": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+    "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+    "x0_hash": "66a15c21d4e760c0d31bbe9a15f21216b3fdd37e6b7bf14836025d544b0d117b"
+  },
+  "iterations": 5,
+  "lambda_R": 0.05,
+  "last_iteration_new_cuts": 0,
+  "master_solve_count": 5,
+  "master_time_seconds": 0.08844820002559572,
+  "method": "v2",
+  "numerical_error_threshold_absolute": 3.574072738538522e-06,
+  "objective": 714814.5477077045,
+  "objective_absolute_difference": 1.1408701539039612e-07,
+  "objective_reference_match": true,
+  "oracle_model_build_seconds": 1.46884639991913,
+  "oracle_time_seconds": 0.2998028000583872,
+  "original_exact_certification_flag": true,
+  "original_global_risk_coupling_error": 6.402842700481415e-09,
+  "original_global_risk_coupling_flag": true,
+  "original_reported_gap": 8.95734805763859e-15,
+  "product_solves_avoided": 99,
+  "python_version": "3.12.7",
+  "relative_gap": 8.95734805763859e-15,
+  "runtime_profile": {
+    "cache_lookup": {
+      "average_seconds": 4.7895834237958e-06,
+      "call_count": 48,
+      "maximum_seconds": 0.00022990000434219837,
+      "percent_core": 0.012213219991763752,
+      "total_seconds": 0.00022990000434219837
+    },
+    "certification_preparation": {
+      "average_seconds": 4.67000063508749e-05,
+      "call_count": 1,
+      "maximum_seconds": 4.67000063508749e-05,
+      "percent_core": 0.0024808936076879833,
+      "total_seconds": 4.67000063508749e-05
+    },
+    "certification_total": {
+      "average_seconds": 0.00011830008588731289,
+      "call_count": 1,
+      "maximum_seconds": 0.00011830008588731289,
+      "percent_core": 0.006284580020432386,
+      "total_seconds": 0.00011830008588731289
+    },
+    "cut_construction": {
+      "average_seconds": 6.598333129659295e-06,
+      "call_count": 120,
+      "maximum_seconds": 4.67000063508749e-05,
+      "percent_core": 0.042063623785680904,
+      "total_seconds": 0.0007917999755591154
+    },
+    "cut_insertion": {
+      "average_seconds": 7.686059865536112e-05,
+      "call_count": 33,
+      "maximum_seconds": 0.00023560004774481058,
+      "percent_core": 0.13474383478661547,
+      "total_seconds": 0.002536399755626917
+    },
+    "gamma_allocation": {
+      "average_seconds": 5.265001285200318e-05,
+      "call_count": 6,
+      "maximum_seconds": 6.719992961734533e-05,
+      "percent_core": 0.016781892406759095,
+      "total_seconds": 0.00031590007711201906
+    },
+    "ipc_and_wait_residual": {
+      "average_seconds": 0.0013088500515247385,
+      "call_count": 6,
+      "maximum_seconds": 0.00785310030914843,
+      "percent_core": 0.4171885162309805,
+      "total_seconds": 0.00785310030914843
+    },
+    "lb_ub_computation": {
+      "average_seconds": 0.0023016800172626973,
+      "call_count": 5,
+      "maximum_seconds": 0.0027413000352680683,
+      "percent_core": 0.6113728549485749,
+      "total_seconds": 0.011508400086313486
+    },
+    "master_model_construction": {
+      "average_seconds": 0.007126100012101233,
+      "call_count": 1,
+      "maximum_seconds": 0.007126100012101233,
+      "percent_core": 0.37856731399429455,
+      "total_seconds": 0.007126100012101233
+    },
+    "master_solve": {
+      "average_seconds": 0.017689640005119144,
+      "call_count": 5,
+      "maximum_seconds": 0.03885040001478046,
+      "percent_core": 4.698726856830452,
+      "total_seconds": 0.08844820002559572
+    },
+    "miscellaneous_python": {
+      "average_seconds": 0.0029319000896066427,
+      "call_count": 1,
+      "maximum_seconds": 0.0029319000896066427,
+      "percent_core": 0.15575441544985305,
+      "total_seconds": 0.0029319000896066427
+    },
+    "parallel_worker_compute_critical_path": {
+      "average_seconds": 0.0484072666343612,
+      "call_count": 6,
+      "maximum_seconds": 0.2904435998061672,
+      "percent_core": 15.429541159784181,
+      "total_seconds": 0.2904435998061672
+    },
+    "product_model_construction_critical_path": {
+      "average_seconds": 0.07461497500480618,
+      "call_count": 8,
+      "maximum_seconds": 0.21309259999543428,
+      "percent_core": 31.710799032686527,
+      "total_seconds": 0.5969198000384495
+    },
+    "product_model_construction_cumulative": {
+      "average_seconds": 0.14447819998895284,
+      "call_count": 8,
+      "maximum_seconds": 0.21309259999543428,
+      "percent_core": 61.40214030975506,
+      "total_seconds": 1.1558255999116227
+    },
+    "product_model_update_cumulative": {
+      "average_seconds": 0.0017342066702743372,
+      "call_count": 15,
+      "maximum_seconds": 0.0027893000515177846,
+      "percent_core": 1.3819213032974873,
+      "total_seconds": 0.026013100054115057
+    },
+    "product_optimization_cumulative": {
+      "average_seconds": 0.0234644333133474,
+      "call_count": 15,
+      "maximum_seconds": 0.03227940003853291,
+      "percent_core": 18.697886948150472,
+      "total_seconds": 0.351966499700211
+    },
+    "product_result_extraction_cumulative": {
+      "average_seconds": 0.0005459933308884501,
+      "call_count": 15,
+      "maximum_seconds": 0.0024784000124782324,
+      "percent_core": 0.435080678875341,
+      "total_seconds": 0.008189899963326752
+    },
+    "result_processing": {
+      "average_seconds": 7.553320998946826e-06,
+      "call_count": 15,
+      "maximum_seconds": 0.00011329981498420238,
+      "percent_core": 0.0060189453644747285,
+      "total_seconds": 0.00011329981498420238
+    },
+    "serialization_probe": {
+      "average_seconds": 5.064167392750581e-05,
+      "call_count": 12,
+      "maximum_seconds": 0.0006077000871300697,
+      "payload_bytes": 30475,
+      "percent_core": 0.03228349157438981,
+      "total_seconds": 0.0006077000871300697
+    },
+    "worker_dispatch": {
+      "average_seconds": 9.9416666974624e-05,
+      "call_count": 6,
+      "maximum_seconds": 0.000596500001847744,
+      "percent_core": 0.0316884976513973,
+      "total_seconds": 0.000596500001847744
+    },
+    "worker_startup": {
+      "average_seconds": 0.4359632999403402,
+      "call_count": 2,
+      "maximum_seconds": 0.8719265998806804,
+      "percent_core": 46.32027481462157,
+      "total_seconds": 0.8719265998806804
+    }
+  },
+  "selective_separation_enabled": false,
+  "signed_lower_minus_upper": -6.402842700481415e-09,
+  "solver_status": "OPTIMAL",
+  "strict_exact_certification": true,
+  "strict_original_certification": true,
+  "validated_under_protocol": true,
+  "worker_count": 2
+}
