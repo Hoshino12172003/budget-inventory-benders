@@ -1,0 +1,3 @@
+method,result_count,strict_original_count,independently_numerically_validated_count,failed_unvalidated_count,strict_original_rate_percent,validated_under_disclosed_protocol_rate_percent,maximum_direct_objective_absolute_difference,numeric_exception_cases
+basic,8,7,1,0,87.5,100.0,5.596084520220757e-07,210330
+v2,8,7,1,0,87.5,100.0,5.596084520220757e-07,210330

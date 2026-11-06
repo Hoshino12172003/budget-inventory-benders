@@ -1,0 +1,69 @@
+{
+  "certification_class": "independently_numerically_validated",
+  "identity": {
+    "Gamma": 2,
+    "beta": 1.0,
+    "case": "210330",
+    "code_sha256": {
+      "experiments/run_prb_basic_v2_fair_scaling30_numeric_guard_v1.py": "f6c37f805413efb2684109da822fd073a037ce580d360fee02123e52d6417d90",
+      "experiments/run_renault8_prb_v2_paired_v1.py": "f596965d970d1eb1d0243b30747dbb08d1325595472d9bee4b5729fb65f6e737",
+      "experiments/run_renault_vanilla_bd_pilot.py": "7dc1f817141fb7cc1d0050d656afdf2a7be2de1c28f6a8f70467d0fa961795f6",
+      "src/robust_inventory_reconfiguration/accelerated_product_risk_budget_benders.py": "56235ff802c169f0ba84d104ca507c99c22d788c96c2278efae384d16258c04e",
+      "src/robust_inventory_reconfiguration/accelerated_product_risk_subproblem.py": "d8b667c8c2d1bf76f4d7f42181b6279cdac3c2d716561d710ae2e76cf70c841b",
+      "src/robust_inventory_reconfiguration/instance.py": "495954eb8cb9b19bcf122612e9b8e13d37c2d110390cb5bccb85def7099072d0",
+      "src/robust_inventory_reconfiguration/product_risk_budget_benders.py": "089d05860baf428a7c49ec851a9f9e5cfcfe6d663adcd303ea1a3c26ed702c78",
+      "src/robust_inventory_reconfiguration/product_risk_subproblem.py": "1c68e8031a5bece2ae863fb0f3df2ed47ba9f5d7cf82d4cd6c20e9ba5bee012f",
+      "src/robust_inventory_reconfiguration/reconfiguration_model.py": "4d341bc365128c2bf3ae4d0d56bd806a9d2f2ea149d8887c04058e70f15dfd2b",
+      "src/robust_inventory_reconfiguration/risk_budget_composition.py": "d5b79b3fd576ae1398bf2bd9931c658686a2a520d3b9fac7380c903c8e7aa47f",
+      "src/robust_inventory_reconfiguration/solver_profile.py": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+    },
+    "cut_tolerance": 1e-07,
+    "direct_reference": {
+      "historical_status": "CERTIFIED_EXACT",
+      "objective": 657659.5492540546,
+      "source": "table_e1_empirical_performance.csv",
+      "source_sha256": "abb87cd9f99ac7e60656b183dc9bf5028ac3fb5bd61e3db920868745a6eeb6f3"
+    },
+    "environment": {
+      "cpu": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel",
+      "gurobi": [
+        13,
+        0,
+        1
+      ],
+      "gurobipy": "13.0.1",
+      "logical_cores": 14,
+      "numpy": "2.4.4",
+      "os": "Windows-11-10.0.26200-SP0",
+      "physical_cores": 14,
+      "physical_memory_gib": 31.49742889404297,
+      "psutil": "7.2.2",
+      "python": "3.12.7"
+    },
+    "experiment": "RENAULT8_PRB_V2_PAIRED_V1",
+    "git_development_base": "dfca83faa1d334f22e2e7a83dcf50f69761e300f",
+    "gurobi_threads_per_model": 1,
+    "input_paths": {
+      "calibration": "artifacts/renault_empirical_8case_v1/calibration/210330.json",
+      "instance": "data/formal_instances_v2/210330.json",
+      "x0": "artifacts/renault_empirical_8case_v1/x0/210330.json"
+    },
+    "input_sha256": {
+      "calibration_hash": "e182dde7a79c1c9e7909fb776df4d1cff0326d39bbee5414c3d7efdb147e071a",
+      "instance_hash": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+      "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+      "x0_hash": "11cd91349ff218d7f951a38a65123de8c5e304d36a370c97a39a1ce9b3c3961a"
+    },
+    "lambda_R": 0.05,
+    "max_iterations": 500,
+    "method": "v2",
+    "method_workers": 2,
+    "objective_comparison_tolerance": 0.0001,
+    "relative_gap_tolerance": 1e-06,
+    "solver_profile": "gurobi-balanced-1e-8-v1",
+    "v2_backend": "process",
+    "v2_selective_separation": false
+  },
+  "result_sha256": "cd12d3296ee8e3f2ce4302d5e13d22c1e802fce3ed7f8d6baebd506402bd5ec5",
+  "saved_at_utc": "2026-11-06T05:41:36.073666+00:00"
+}
