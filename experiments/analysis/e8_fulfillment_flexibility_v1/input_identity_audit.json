@@ -1,0 +1,50 @@
+{
+  "case_count": 8,
+  "cases": [
+    "210202",
+    "210628",
+    "210129",
+    "210310",
+    "210330",
+    "210323",
+    "210428",
+    "210611"
+  ],
+  "e1_certification": {
+    "certified_prb_exact_count": 8,
+    "required_status": "CERTIFIED_PRB_EXACT",
+    "solver_status_optimal_count": 8
+  },
+  "e2_lineage": {
+    "robust_cells_reused_from_e1_count": 8,
+    "source_archive_commit": "9e47b4a78b6164e3ed1b00a46eeb101b864c8773",
+    "source_files_restored_without_modification": true
+  },
+  "identity_fields_verified_per_case": [
+    "instance_hash",
+    "mapping_hash",
+    "x0_hash",
+    "calibration_hash",
+    "e1_result_sha256",
+    "e1_provenance_sha256",
+    "first_stage_solution_sha256",
+    "first_stage_solution_payload_sha256",
+    "policy_coordinates_sha256",
+    "e2_robust_result_sha256",
+    "scenario_manifest_sha256",
+    "mode_arc_manifest_sha256"
+  ],
+  "scenario_contract": {
+    "Gamma": 2,
+    "component_count": 96,
+    "scenario_count": 4657,
+    "shared_entries_sha256": "b892486f6b8f8e75eaca499f337d41c30f46fbeb2fe5109b6e6f7aa90577396b"
+  },
+  "special_numeric_evidence": {
+    "case": "210611",
+    "disabled_depot_inventory_coordinate": 6.91924636296832e-09,
+    "eligibility_tolerance": 1e-08,
+    "handling": "treated as solver noise for arc eligibility; frozen coordinate is not modified"
+  },
+  "status": "PASS_STATIC_IDENTITY_AUDIT"
+}

@@ -1,0 +1,38 @@
+{
+  "captured_at_date": "2026-11-07",
+  "current_environment": {
+    "cpu": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel",
+    "gurobi": "13.0.1",
+    "gurobipy": "13.0.1",
+    "logical_cores": 14,
+    "numpy": "2.4.4",
+    "operating_system": "Windows-11-10.0.26200-SP0",
+    "physical_cores": 14,
+    "physical_memory_gib": 31.49742889404297,
+    "psutil": "7.2.2",
+    "python": "3.12.7"
+  },
+  "e8_frozen_resources": {
+    "gurobi_threads": 1,
+    "maximum_process_tree_rss_gib": 6.0,
+    "minimum_available_memory_gib": 8.0,
+    "monitor_interval_seconds": 0.25,
+    "pilot_timeout_seconds": 900.0,
+    "system_memory_floor_gib": 4.0
+  },
+  "historical_e1_e2_environment_evidence": {
+    "gurobi_version_recorded": "13.0.2",
+    "gurobi_threads_recorded": false,
+    "python_version_recorded": false,
+    "strict_environment_identity_with_e8": false
+  },
+  "solver_profile": {
+    "FeasibilityTol": 1e-08,
+    "IntFeasTol": 1e-08,
+    "MIPGap": 0.0,
+    "NumericFocus": 0,
+    "OptimalityTol": 1e-08,
+    "profile_id": "gurobi-balanced-1e-8-v1"
+  },
+  "status": "CURRENT_E8_TARGET_MATCHES; HISTORICAL_E1_E2_THREADS_UNVERIFIED_AND_GUROBI_PATCH_DIFFERS"
+}

@@ -1,0 +1,16 @@
+{
+  "files": {
+    ".gitattributes": "819c57146db141fe074f4d41d1833fc42c76741ca61a3b37bfac61a8b8a96fd5",
+    "experiments/analysis/e8_fulfillment_flexibility_v1/environment_preflight.json": "e1d3b09b0e38f0efe813849b1845dbb150a8a836040ba53ef8a64f7ecdb95dba",
+    "experiments/analysis/e8_fulfillment_flexibility_v1/input_identity_audit.json": "8d02e5d909a486852fb9a7283c1185188f72ebe7cbcd69c866464823a92e8950",
+    "experiments/analysis/e8_fulfillment_flexibility_v1/protocol_audit.md": "ba778d0e4432a449863100ada3fccb8802bb0b4e441be65b80bce7c3d7cbeded",
+    "experiments/analysis/e8_fulfillment_flexibility_v1/summarize_e8_fulfillment_flexibility.py": "7da948e8907b127ded396ef8e0591aef544c59f6bb838466aa09bd986a100047",
+    "experiments/configs/formal/e8_ex_post_fulfillment_flexibility_v1.json": "0c560058a6c9db6da216c6d991cb5284b021231d4a5ddf82f35a543b402579eb",
+    "experiments/run_e8_fulfillment_flexibility_local.py": "b42046756a73bd275e008844420ddc1636c0097d5d4ce463b9a9b304cb93465f",
+    "src/robust_inventory_reconfiguration/e8_fulfillment_flexibility.py": "bf1138eec950df2cd8f4f002ee07a339c7d0a03906a33f062610ee55eec1455e",
+    "tests/test_e8_fulfillment_flexibility.py": "cb03f46d8dc81c7b657ed535512351261cafb0e07ad1cb5593ea3f9b684c2ffe"
+  },
+  "formal_input_file_hashes": "embedded per case in experiments/configs/formal/e8_ex_post_fulfillment_flexibility_v1.json",
+  "manifest_scope": "delivery files excluding this self-referential manifest",
+  "schema": "e8_delivery_sha256_v1"
+}
