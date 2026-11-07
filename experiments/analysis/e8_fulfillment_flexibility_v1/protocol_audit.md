@@ -24,9 +24,17 @@ This is a structural proof for the implementation, not a numerical claim. The fu
 
 ## Arc audit and interpretation boundary
 
-All mode arc sets satisfy `k1 subset k2 subset Full`. Six cases have exactly two eligible inventory-positive depots per region-product and therefore `k2 == Full`: 210129, 210202, 210323, 210330, 210428, and 210628. Only 210310 and 210611 identify an incremental `Full` effect beyond `k2`. This fact must be disclosed rather than interpreted as a universal absence of value from additional sourcing flexibility.
+All mode arc sets satisfy `k1 subset k2 subset Full`. Across all eight frozen policies, 72 of 96 region-product pairs have **zero** eligible stocked depots; only the remaining 24 pairs (two stocked products across 12 regions) can distinguish fulfillment modes. In six cases the 24 stocked pairs each have exactly two eligible depots and `k2 == Full`: 210129, 210202, 210323, 210330, 210428, and 210628. The two stocked products in 210310 have 3 and 4 eligible depots; those in 210611 have 4 and 5. Strictly more available arcs alone does not establish an economic or service improvement. Case-level arc counts are in `input_identity_audit.json`.
 
 Case 210611 contains one disabled-depot inventory coordinate of `6.91924636296832e-09`. The protocol treats values at or below `1e-8` as numerical noise for arc eligibility and does not alter the archived coordinate.
+
+## Historical E1 certification qualification
+
+All eight archived E1 PRB results carry `OPTIMAL / CERTIFIED_PRB_EXACT`, but only seven have `global_coupling_pass=true`. Case 210330 has `global_coupling_pass=false` and is retained as a fixed-inventory diagnostic sample, not re-certified as strictly first-stage optimal. Final paper summaries must include all eight and a seven-case exclusion sensitivity. Full-versus-E2 recourse equality does not remedy the historical flag.
+
+## Pilot design and formal coverage
+
+Pilot candidates are 210202, 210628, and 210310, each in k1/k2/Full. The first two test k1-to-k2 while k2 and Full are identical; 210310 can test strictly additional Full arcs. All eight cases and 24 conditions remain in formal scope. Pilot results do not automatically count as formal results. Both authorizations remain false.
 
 ## Resource preflight
 
@@ -49,8 +57,8 @@ The current machine matches the E8 target: Windows 11, Python 3.12.7, Gurobi/gur
 
 Formal or pilot execution requires a separate manual authorization, an authorized run ID, an authorized code commit that is an ancestor of HEAD, a clean tracked worktree, strict current-environment checks, and all frozen input/source hashes. Checkpoints bind the complete condition identity and product index. Existing or partial results are never overwritten.
 
-The paper-table aggregator requires all three formal mode results for a case, verifies all 4,657 scenario IDs and shock sets are identical, rederives every stored summary, checks `Full <= k2 <= k1`, and then emits only the nominal scenario and the Full-mode worst-economic-cost paired scenario. It refuses partial output and performs no interpolation.
+The paper-table aggregator requires complete identity-verified formal results for all eight cases, checks all 4,657 scenario identities and `Full <= k2 <= k1`, emits nominal and Full-mode worst-economic-cost paired scenario rows, and creates an all-eight versus exclude-210330 seven-case descriptive sensitivity summary. It refuses partial output and does not claim statistical significance.
 
 ## Decision
 
-`READY_FOR_MANUAL_PILOT_AUTHORIZATION_WITH_QUALIFICATIONS`: the code and resource gates are safe for a separately authorized 210202/210628 pilot. Authorization is not granted here. Full publication remains conditional on the numerical Full-versus-E2 equivalence check and on explicit disclosure of the historical environment limitations.
+`READY_FOR_MANUAL_PILOT_AUTHORIZATION_WITH_QUALIFICATIONS`: the code and resource gates are prepared for a separately authorized 210202/210628/210310 pilot, with the historical qualification disclosed. Authorization is not granted here. Full publication remains conditional on the numerical Full-versus-E2 equivalence check and on explicit disclosure of the historical environment limitations.

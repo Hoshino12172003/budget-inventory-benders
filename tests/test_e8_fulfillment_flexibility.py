@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import math
 from pathlib import Path
 import sys
@@ -232,3 +233,74 @@ def test_runner_has_no_first_stage_optimization_path() -> None:
         "solve_accelerated_prb_benders",
     )
     assert not any(name in source for name in forbidden)
+
+
+def test_pilot_scope_historical_coupling_and_stocked_arc_coverage() -> None:
+    config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    assert config["immutable_protocol"]["pilot_cases"] == ["210202", "210628", "210310"]
+    assert config["authorization"]["pilot_run_authorized"] is False
+    assert config["authorization"]["formal_run_authorized"] is False
+    audit = json.loads((ROOT / "experiments/analysis/e8_fulfillment_flexibility_v1/input_identity_audit.json").read_text(encoding="utf-8"))
+    assert audit["e1_certification"]["certified_prb_exact_count"] == 8
+    assert audit["e1_certification"]["global_coupling_pass_count"] == 7
+    assert audit["e1_certification"]["global_coupling_exception_cases"] == ["210330"]
+    from robust_inventory_reconfiguration.first_stage_solution import load_first_stage_solution_artifact, matrix_from_artifact
+    expanded = []
+    for case_id in config["immutable_protocol"]["cases"]:
+        instance = load_instance(ROOT / f"data/formal_instances_v2/{case_id}.json")
+        path = ROOT / "experiments/results/e1_empirical_8case_v1" / f"E1-{case_id}-PRB"
+        e1 = json.loads((path / "result.json").read_text(encoding="utf-8"))
+        assert e1["exact_certification_status"] == "CERTIFIED_PRB_EXACT"
+        assert e1["global_coupling_pass"] is (case_id != "210330")
+        artifact = load_first_stage_solution_artifact(path / "first_stage_solution.json", instance)
+        y = [int(row["value"]) for row in artifact["y"]]
+        x = matrix_from_artifact(artifact, instance)
+        arcs = {mode: build_mode_arcs(instance, y, x, mode) for mode in MODES}
+        validate_nested_arcs(arcs["k1"], arcs["k2"], arcs["full"])
+        histogram = {"zero": 0, "one": 0, "two": 0, "three_or_more": 0}
+        for r in range(instance.num_regions):
+            for j in range(instance.num_products):
+                n = len(arcs["full"][(r, j)])
+                histogram["zero" if n == 0 else "one" if n == 1 else "two" if n == 2 else "three_or_more"] += 1
+        arc_counts = {mode: sum(map(len, arcs[mode].values())) for mode in MODES}
+        expected = audit["arc_eligibility_diagnostic"]["by_case"][case_id]
+        assert expected["region_product_eligibility_counts"] == histogram
+        assert expected["arc_counts"] == arc_counts
+        assert histogram["zero"] == 72
+        if arc_counts["k2"] != arc_counts["full"]:
+            expanded.append(case_id)
+    assert set(expanded) == {"210310", "210611"}
+
+
+def test_paper_sensitivity_preserves_all_eight_and_excludes_210330() -> None:
+    path = ROOT / "experiments/analysis/e8_fulfillment_flexibility_v1/summarize_e8_fulfillment_flexibility.py"
+    spec = importlib.util.spec_from_file_location("e8_summary_for_test", path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    cases = ("210202", "210628", "210129", "210310", "210330", "210323", "210428", "210611")
+    case_costs = {
+        case: {"k1": 120.0 if case == "210330" else 12.0,
+               "k2": 21.0 if case == "210330" else 11.0,
+               "full": 20.0 if case == "210330" else 10.0}
+        for case in cases
+    }
+    paired = [
+        {"case": case, "evaluation_basis": basis, "mode": mode,
+         "total_shortage": {"k1": 3.0, "k2": 2.0, "full": 1.0}[mode],
+         "demand_weighted_fill_rate": {"k1": 0.7, "k2": 0.8, "full": 0.9}[mode]}
+        for case in cases
+        for basis in ("nominal_demand", "full_mode_worst_economic_cost")
+        for mode in MODES
+    ]
+    data = module.build_sensitivity_summary(case_costs, paired)
+    cohort8 = data["cohorts"]["all_8_cases"]
+    cohort7 = data["cohorts"]["exclude_210330_7_cases"]
+    assert cohort8["case_count"] == 8
+    assert cohort7["case_count"] == 7
+    assert "210330" in cohort8["cases"] and "210330" not in cohort7["cases"]
+    assert cohort8["mean_k1_minus_full_robust_cost"] > cohort7["mean_k1_minus_full_robust_cost"]
+    assert math.isclose(cohort7["mean_k1_minus_full_robust_cost"], 2.0)
+    assert math.isclose(cohort7["paired_service_comparisons"]["nominal_demand"]["mean_full_minus_k1_total_shortage"], -2.0)
+    with pytest.raises(RuntimeError, match="INCOMPLETE_PAIRED_ROWS"):
+        module.build_sensitivity_summary(case_costs, paired[:-1])

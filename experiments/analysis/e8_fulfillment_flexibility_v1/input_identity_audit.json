@@ -1,4 +1,134 @@
 {
+  "arc_eligibility_diagnostic": {
+    "by_case": {
+      "210129": {
+        "arc_counts": {
+          "full": 48,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": true,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 0,
+          "two": 24,
+          "zero": 72
+        }
+      },
+      "210202": {
+        "arc_counts": {
+          "full": 48,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": true,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 0,
+          "two": 24,
+          "zero": 72
+        }
+      },
+      "210310": {
+        "arc_counts": {
+          "full": 84,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": false,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 24,
+          "two": 0,
+          "zero": 72
+        }
+      },
+      "210323": {
+        "arc_counts": {
+          "full": 48,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": true,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 0,
+          "two": 24,
+          "zero": 72
+        }
+      },
+      "210330": {
+        "arc_counts": {
+          "full": 48,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": true,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 0,
+          "two": 24,
+          "zero": 72
+        }
+      },
+      "210428": {
+        "arc_counts": {
+          "full": 48,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": true,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 0,
+          "two": 24,
+          "zero": 72
+        }
+      },
+      "210611": {
+        "arc_counts": {
+          "full": 108,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": false,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 24,
+          "two": 0,
+          "zero": 72
+        }
+      },
+      "210628": {
+        "arc_counts": {
+          "full": 48,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": true,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 0,
+          "two": 24,
+          "zero": 72
+        }
+      }
+    },
+    "cases_with_equal_k2_full_arcs": [
+      "210202",
+      "210628",
+      "210129",
+      "210330",
+      "210323",
+      "210428"
+    ],
+    "cases_with_strict_k2_to_full_arc_expansion": [
+      "210310",
+      "210611"
+    ],
+    "eligibility_rule": "active depot with frozen product inventory > 1e-8",
+    "interpretation": "72/96 region-product pairs have no eligible stocked depot; remaining 24 pairs correspond to two stocked products in every case."
+  },
   "case_count": 8,
   "cases": [
     "210202",
@@ -12,6 +142,12 @@
   ],
   "e1_certification": {
     "certified_prb_exact_count": 8,
+    "global_coupling_exception_cases": [
+      "210330"
+    ],
+    "global_coupling_not_pass_count": 1,
+    "global_coupling_pass_count": 7,
+    "interpretation": "8 historical CERTIFIED_PRB_EXACT labels; 7/8 global_coupling_pass=true; case 210330 is a disclosed exception, not an E8 recourse evaluation failure.",
     "required_status": "CERTIFIED_PRB_EXACT",
     "solver_status_optimal_count": 8
   },
@@ -34,6 +170,14 @@
     "scenario_manifest_sha256",
     "mode_arc_manifest_sha256"
   ],
+  "pilot_scope": {
+    "cases": [
+      "210202",
+      "210628",
+      "210310"
+    ],
+    "interpretation": "210310 allows strict k2-to-Full arc expansion; all eight remain in the formal scope."
+  },
   "scenario_contract": {
     "Gamma": 2,
     "component_count": 96,

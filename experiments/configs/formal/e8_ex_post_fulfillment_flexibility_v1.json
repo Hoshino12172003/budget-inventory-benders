@@ -186,7 +186,8 @@
     ],
     "pilot_cases": [
       "210202",
-      "210628"
+      "210628",
+      "210310"
     ],
     "reporting_optimality_tolerance": 1e-07,
     "resource_limits": {
@@ -223,6 +224,6 @@
       "python": "3.12.7"
     }
   },
-  "immutable_protocol_sha256": "21860cc16c3d446fbb61f36b64f02419c1d74adcfe5f6212b20e1e4a37a0867e",
+  "immutable_protocol_sha256": "2b7e9e0ffdc97e8214ba909277c5bc27a191c11cba4ad966ba3f514946c52ccd",
   "schema": "e8_ex_post_fulfillment_flexibility_v1"
 }
