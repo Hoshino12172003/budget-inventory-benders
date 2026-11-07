@@ -1,0 +1,68 @@
+{
+  "cohorts": {
+    "all_8_cases": {
+      "case_count": 8,
+      "cases": [
+        "210129",
+        "210202",
+        "210310",
+        "210323",
+        "210330",
+        "210428",
+        "210611",
+        "210628"
+      ],
+      "k1_to_full_positive_saving_count_above_1e-4": 8,
+      "k2_to_full_positive_saving_count_above_1e-4": 2,
+      "mean_k1_minus_full_robust_cost": 64953.01393386,
+      "mean_k1_to_full_cost_reduction_percent": 8.849591047767863,
+      "mean_k2_minus_full_robust_cost": 3956.9027991235344,
+      "median_k1_minus_full_robust_cost": 69532.87806768116,
+      "paired_service_comparisons": {
+        "full_mode_worst_economic_cost": {
+          "mean_full_minus_k1_demand_weighted_fill_rate": 0.07546543875569432,
+          "mean_full_minus_k1_total_shortage": -308.0630554764849
+        },
+        "nominal_demand": {
+          "mean_full_minus_k1_demand_weighted_fill_rate": 0.07986981279353632,
+          "mean_full_minus_k1_total_shortage": -321.7135019048764
+        }
+      }
+    },
+    "exclude_210330_7_cases": {
+      "case_count": 7,
+      "cases": [
+        "210129",
+        "210202",
+        "210310",
+        "210323",
+        "210428",
+        "210611",
+        "210628"
+      ],
+      "k1_to_full_positive_saving_count_above_1e-4": 7,
+      "k2_to_full_positive_saving_count_above_1e-4": 2,
+      "mean_k1_minus_full_robust_cost": 66059.16101537681,
+      "mean_k1_to_full_cost_reduction_percent": 8.854943821054931,
+      "mean_k2_minus_full_robust_cost": 4522.174627569753,
+      "median_k1_minus_full_robust_cost": 70647.2269242251,
+      "paired_service_comparisons": {
+        "full_mode_worst_economic_cost": {
+          "mean_full_minus_k1_demand_weighted_fill_rate": 0.0753164178364601,
+          "mean_full_minus_k1_total_shortage": -312.58176680578174
+        },
+        "nominal_demand": {
+          "mean_full_minus_k1_demand_weighted_fill_rate": 0.08003310896072015,
+          "mean_full_minus_k1_total_shortage": -328.18227700965775
+        }
+      }
+    }
+  },
+  "historical_certification_qualification": {
+    "case": "210330",
+    "e1_global_coupling_pass": false,
+    "e1_label": "CERTIFIED_PRB_EXACT"
+  },
+  "schema": "e8_robust_cost_and_service_sensitivity_v1",
+  "scope": "descriptive fixed-inventory comparisons; no statistical significance asserted"
+}

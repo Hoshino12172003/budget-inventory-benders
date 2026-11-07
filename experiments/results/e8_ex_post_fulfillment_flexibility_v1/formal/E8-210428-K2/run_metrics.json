@@ -1,0 +1,105 @@
+{
+  "environment": {
+    "cpu": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel",
+    "gurobi": "13.0.1",
+    "gurobipy": "13.0.1",
+    "logical_cores": 14,
+    "numpy": "2.4.4",
+    "os": "Windows-11-10.0.26200-SP0",
+    "physical_cores": 14,
+    "physical_memory_gib": 31.49742889404297,
+    "psutil": "7.2.2",
+    "python": "3.12.7"
+  },
+  "product_models": [
+    {
+      "constraint_count": 2528,
+      "model_disposed": true,
+      "primary_status": 2,
+      "product_index": 0,
+      "resumed": false,
+      "runtime_seconds": 0.0009999275207519531,
+      "threads": 1,
+      "tiebreak_status": 2,
+      "variable_count": 1027
+    },
+    {
+      "constraint_count": 2528,
+      "model_disposed": true,
+      "primary_status": 2,
+      "product_index": 1,
+      "resumed": false,
+      "runtime_seconds": 0.015999794006347656,
+      "threads": 1,
+      "tiebreak_status": 2,
+      "variable_count": 2923
+    },
+    {
+      "constraint_count": 2528,
+      "model_disposed": true,
+      "primary_status": 2,
+      "product_index": 2,
+      "resumed": false,
+      "runtime_seconds": 0.0009999275207519531,
+      "threads": 1,
+      "tiebreak_status": 2,
+      "variable_count": 1027
+    },
+    {
+      "constraint_count": 2528,
+      "model_disposed": true,
+      "primary_status": 2,
+      "product_index": 3,
+      "resumed": false,
+      "runtime_seconds": 0.0010001659393310547,
+      "threads": 1,
+      "tiebreak_status": 2,
+      "variable_count": 1027
+    },
+    {
+      "constraint_count": 2528,
+      "model_disposed": true,
+      "primary_status": 2,
+      "product_index": 4,
+      "resumed": false,
+      "runtime_seconds": 0.0009999275207519531,
+      "threads": 1,
+      "tiebreak_status": 2,
+      "variable_count": 1027
+    },
+    {
+      "constraint_count": 2528,
+      "model_disposed": true,
+      "primary_status": 2,
+      "product_index": 5,
+      "resumed": false,
+      "runtime_seconds": 0.01100015640258789,
+      "threads": 1,
+      "tiebreak_status": 2,
+      "variable_count": 2923
+    },
+    {
+      "constraint_count": 2528,
+      "model_disposed": true,
+      "primary_status": 2,
+      "product_index": 6,
+      "resumed": false,
+      "runtime_seconds": 0.0009999275207519531,
+      "threads": 1,
+      "tiebreak_status": 2,
+      "variable_count": 1027
+    },
+    {
+      "constraint_count": 2528,
+      "model_disposed": true,
+      "primary_status": 2,
+      "product_index": 7,
+      "resumed": false,
+      "runtime_seconds": 0.002000093460083008,
+      "threads": 1,
+      "tiebreak_status": 2,
+      "variable_count": 1027
+    }
+  ],
+  "runtime_seconds": 0.7482274000067264
+}
