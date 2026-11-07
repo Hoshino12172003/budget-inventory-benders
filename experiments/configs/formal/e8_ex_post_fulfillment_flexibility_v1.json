@@ -1,0 +1,254 @@
+{
+  "authorization": {
+    "authorized_code_commit": "c5eb45f2c010096e3de0e476965bd9f0968c1e97",
+    "authorized_formal_run_ids": [
+      "E8-210202-K1",
+      "E8-210202-K2",
+      "E8-210202-FULL",
+      "E8-210628-K1",
+      "E8-210628-K2",
+      "E8-210628-FULL",
+      "E8-210129-K1",
+      "E8-210129-K2",
+      "E8-210129-FULL",
+      "E8-210310-K1",
+      "E8-210310-K2",
+      "E8-210310-FULL",
+      "E8-210330-K1",
+      "E8-210330-K2",
+      "E8-210330-FULL",
+      "E8-210323-K1",
+      "E8-210323-K2",
+      "E8-210323-FULL",
+      "E8-210428-K1",
+      "E8-210428-K2",
+      "E8-210428-FULL",
+      "E8-210611-K1",
+      "E8-210611-K2",
+      "E8-210611-FULL"
+    ],
+    "authorized_pilot_run_ids": [],
+    "formal_authorization_state": "MANUAL_AUTHORIZATION",
+    "formal_run_authorized": true,
+    "historical_authorizations_reused": false,
+    "pilot_authorization_state": "PREPARED_NOT_AUTHORIZED",
+    "pilot_run_authorized": false
+  },
+  "immutable_protocol": {
+    "Gamma": 2,
+    "arc_rule": "enabled depot with frozen product inventory above 1e-8; ascending transport cost then depot ID; fixed before scenario evaluation",
+    "beta": 1.0,
+    "case_identities": {
+      "210129": {
+        "arc_manifest_sha256": {
+          "full": "69485982f9a43eae824b8d53235248faa21120a7285385baea2ba50b3aa6e449",
+          "k1": "52e91cc77119b7e8402b218d619d48037431b6ddeb9a5aae24d55bdc4d886660",
+          "k2": "69485982f9a43eae824b8d53235248faa21120a7285385baea2ba50b3aa6e449"
+        },
+        "calibration_hash": "d8fc1abd48548c153081e3e99696fc041eaf81cc81e06ca06a6f369d5a61d753",
+        "e2_robust_result": "01c502623349f2d165ea1c24125d87153099ce4c54b4945098b9edac04f2be9a",
+        "first_stage_solution": "3fb35564886f10696cfa12551342c50ef276aa30ba0001a52518c0e525e333e4",
+        "instance_hash": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3",
+        "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+        "policy_coordinates_sha256": "b44373a4bdb29b12b872bd5a182309d8011fd3505dcfb87579158afeb93a2bde",
+        "provenance": "484796ba352e0f9fc38d39076abb9a7d08b44d28ab4e1827cd2cf9ca797f0531",
+        "result": "4845e97bdc6486832b95519dd4b1d66fe5ad75b5e87ad74167e9df68f9bf7c91",
+        "scenario_manifest_sha256": "b892486f6b8f8e75eaca499f337d41c30f46fbeb2fe5109b6e6f7aa90577396b",
+        "solution_payload_sha256": "30267aa40b478c2cf4267d6900b600cd44c85b21cc06a041d58bd0eafadbd525",
+        "x0_hash": "ebd9b18371804f725a775db4eb4cacad84398b0c4c48e945aa039d425ea71288"
+      },
+      "210202": {
+        "arc_manifest_sha256": {
+          "full": "69485982f9a43eae824b8d53235248faa21120a7285385baea2ba50b3aa6e449",
+          "k1": "52e91cc77119b7e8402b218d619d48037431b6ddeb9a5aae24d55bdc4d886660",
+          "k2": "69485982f9a43eae824b8d53235248faa21120a7285385baea2ba50b3aa6e449"
+        },
+        "calibration_hash": "7fe326584320b19636d95424cf806f0ab4c89951c3e2a1a84a4a5cc656e40624",
+        "e2_robust_result": "e71b1f5fcad5c5db8c09f9546c397964b8fcf26425ba9cc7354a9e4fa7eaf2ff",
+        "first_stage_solution": "8dd4e6a75de9b0201e0e540fce055ea4c6a810e0d4fc701cf84636c73861a333",
+        "instance_hash": "3827d86c5ec4e290ba7d091648dbe4e1501648bfda54ca485385889e9143ecee",
+        "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+        "policy_coordinates_sha256": "aa08b2ee4685638e88b65cda6a6f7e204704bebd4825ffe6923918c3403c4096",
+        "provenance": "9bb417370b38985cfea9df14cbe04ca254663d7ecc9c8fd9eaf16db173cd259d",
+        "result": "dfa3cf6ac0de0cf65c7938f1a898343299e586f20b72e23f1800c0ac57c3ba85",
+        "scenario_manifest_sha256": "b892486f6b8f8e75eaca499f337d41c30f46fbeb2fe5109b6e6f7aa90577396b",
+        "solution_payload_sha256": "e884c578f2af51f3fc2bb2fbce33b4d3b17922bb04128fc7110dc101a1ff9861",
+        "x0_hash": "5fe095e76dd1372735ec7a6cb6fead9d6bc42f044b6006c13ed1aeb16dfbc368"
+      },
+      "210310": {
+        "arc_manifest_sha256": {
+          "full": "295dc9f37542a00884ac5de668783327766d70e8350325c229314144fb7dbace",
+          "k1": "4da48030a2623d18e92d3d2ab8f0efc31c9d913dff4bec73b3cd3b292895c4b0",
+          "k2": "514ce1ea5ff3ce2f2ecbe38dd664d652ca0983aaf6d651c51b4e2d20a82c7930"
+        },
+        "calibration_hash": "8915940c2bbfee479d054c007033da41d45776504e985c6d07302dea74481ff4",
+        "e2_robust_result": "b3f4a65d8b5154475e90733a1c10734d0a8b3448c855dc7a132477bc8eca3aa4",
+        "first_stage_solution": "d8e74ecff0d5407a01e778aa90fed58acb1e64d7273696e39b246d211f27e8a1",
+        "instance_hash": "cea7e89477816218fba3021b71a791fa9f86714cecf253f8a58bb477ce2ddad8",
+        "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+        "policy_coordinates_sha256": "7ea50af2f45fc013f98db85c2443d50b38bd92d902386d33872195e1411b569e",
+        "provenance": "f6e25b786706edd90b1c35f6cdbe25f31806eddb2bf86c981ab4534b7a504127",
+        "result": "94c02c30c52b26a3ba0e748170fb5f9e7ac8631f1c2d1515082334f7d81c177a",
+        "scenario_manifest_sha256": "b892486f6b8f8e75eaca499f337d41c30f46fbeb2fe5109b6e6f7aa90577396b",
+        "solution_payload_sha256": "eee48112db4530777691cb44aa4d9c33c35895a5c96d6510d06a93fb15183486",
+        "x0_hash": "66a15c21d4e760c0d31bbe9a15f21216b3fdd37e6b7bf14836025d544b0d117b"
+      },
+      "210323": {
+        "arc_manifest_sha256": {
+          "full": "28c9443cccc651609ca866659e63a798a363d49ccb8d4b3069809769d29bfcb8",
+          "k1": "e7b4825f62d1c850f0dbc93ecbb7fdb3fe6542ba3a9b3e6a9d03733e15e7f861",
+          "k2": "28c9443cccc651609ca866659e63a798a363d49ccb8d4b3069809769d29bfcb8"
+        },
+        "calibration_hash": "3fe6ede85f58eac50a9b3c406c39106277b8b8160518bfa0405cd21847fbd576",
+        "e2_robust_result": "87fe0f4795aa3b4845dd3c6e8b3db337ceb4b4366e78401237e018e039b065f1",
+        "first_stage_solution": "f0984e963e7bec1a634604ee4a09340c8f5b433391e14638cf6dd7645c43ad3e",
+        "instance_hash": "df5fcbaa54a73277948f676fae151d85ad621d9ef417b0906b04066b1ef1109c",
+        "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+        "policy_coordinates_sha256": "ba37ffa2de1f7f7a88866c61e87cb956efc32fa1e1eddf6cce5ddfcfb837635e",
+        "provenance": "96952828b3c93982f885df4ffc3faaf200212a363b0ab5c11395663a987e30ca",
+        "result": "89acb6621531563c16850b48c26647507ce51b52112784e1042c27955cb4f655",
+        "scenario_manifest_sha256": "b892486f6b8f8e75eaca499f337d41c30f46fbeb2fe5109b6e6f7aa90577396b",
+        "solution_payload_sha256": "8e9c98bb92bf24560fea00aece614e470b19145db505415739b5db69ddd3bac6",
+        "x0_hash": "04c9e1219c4e323ab77f8c8fb70854ecf4eb1c710584f21418b5a0005afaeb60"
+      },
+      "210330": {
+        "arc_manifest_sha256": {
+          "full": "69485982f9a43eae824b8d53235248faa21120a7285385baea2ba50b3aa6e449",
+          "k1": "52e91cc77119b7e8402b218d619d48037431b6ddeb9a5aae24d55bdc4d886660",
+          "k2": "69485982f9a43eae824b8d53235248faa21120a7285385baea2ba50b3aa6e449"
+        },
+        "calibration_hash": "e182dde7a79c1c9e7909fb776df4d1cff0326d39bbee5414c3d7efdb147e071a",
+        "e2_robust_result": "27953765019e7cc6326b753ad059ddc2014b51b56c238c22d30dbfd7826c7a6e",
+        "first_stage_solution": "b7982ff566500d2214d3e629033e223f81f430b4864a115deebbd7e2f7ffc46b",
+        "instance_hash": "5c89a9e3151a8372f2be5884130cfc9b6eb84347fd132456527a7fdc984857a1",
+        "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+        "policy_coordinates_sha256": "aab06b6bc4101347808aff94a4740b6c7c947e593e73441ec78878a6e4c7ab16",
+        "provenance": "745a53c133e1fcc763a5cb061794091b1f38e59da608c1bdd6155750544fcd95",
+        "result": "276557a1f3118ef7786e68fd9bdcd38ed5782fc8425d90a7ff64f09137fcffbb",
+        "scenario_manifest_sha256": "b892486f6b8f8e75eaca499f337d41c30f46fbeb2fe5109b6e6f7aa90577396b",
+        "solution_payload_sha256": "618632e83bb2705fa19c1fa8b89cf0f8f08b29e9fcc0918125b42540816786bd",
+        "x0_hash": "11cd91349ff218d7f951a38a65123de8c5e304d36a370c97a39a1ce9b3c3961a"
+      },
+      "210428": {
+        "arc_manifest_sha256": {
+          "full": "69485982f9a43eae824b8d53235248faa21120a7285385baea2ba50b3aa6e449",
+          "k1": "52e91cc77119b7e8402b218d619d48037431b6ddeb9a5aae24d55bdc4d886660",
+          "k2": "69485982f9a43eae824b8d53235248faa21120a7285385baea2ba50b3aa6e449"
+        },
+        "calibration_hash": "29ab4dae7c8cce42cc9a771372d9813fbffac137a978f2b2208a41f61256cc58",
+        "e2_robust_result": "09b60eb566bfaf19408f0e5b3870594f70b36075c17acc6e13d1f8f2e998b31d",
+        "first_stage_solution": "9da9e43a90643933431eda5d365163fdad7c52b8d82009c50908cea8905aaf34",
+        "instance_hash": "56c76844228179cf3b69827daeb25e4494f2f7435ea4d2335af79102117ce0d7",
+        "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+        "policy_coordinates_sha256": "5459c1c918fa3fbcbfca515b95fa64e4114cc41fa95878b1487e3507f5b8b3ab",
+        "provenance": "3e1e4a1e260ec7351e429b07748bf1440a2b2b96837356ae3b3587cb3de82595",
+        "result": "c359e1d428a69738107c22a66a56b4dc1c5a76f933d79e986d11cfa77e94e14c",
+        "scenario_manifest_sha256": "b892486f6b8f8e75eaca499f337d41c30f46fbeb2fe5109b6e6f7aa90577396b",
+        "solution_payload_sha256": "70cbd86de513bfa089fba5bf109d4776e5b3bda93f355cecc221c56bd83b8820",
+        "x0_hash": "cc08b6627d2f100652172e56ae78f3e35a97b8c89385b99da534fc20917a8014"
+      },
+      "210611": {
+        "arc_manifest_sha256": {
+          "full": "05ca99f76e7918a33ed7f4d15afec0a107fe3f5338cee55b82627e0d731c0056",
+          "k1": "f411af599529d64936beb36a4cf94e35283fe6d588f9f7190433caf49e816577",
+          "k2": "d3c5cda8634da49537e46239b3a38dda416dda73db63ca4ce8b2f2efb5173bff"
+        },
+        "calibration_hash": "9e9dbbbead031ea0ab251686b256ac1e269b7c145ea3549045dee843657fc5bb",
+        "e2_robust_result": "ff5750d6834075220f10ecbe016a7c8bf4a93b724a1afa346a9801dc939d3098",
+        "first_stage_solution": "de994b5a71362f294a54df7e76c1355aca0982804d977e73ee40ad3486a36ec4",
+        "instance_hash": "f244641d602348af8b2ac31a2bb948b4b0ebca8e33ff446dd07298e3e578a9bf",
+        "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+        "policy_coordinates_sha256": "2291210e9e2e20237e975f12c2d3c8681dc18efe92684355bbf2a64efef011fc",
+        "provenance": "11efd405ed7d8d9e1b49dc54264b2792d791e41cddc925e27dbf402b78f77183",
+        "result": "a8860c506e13dbde0fd01c5f30d38575065dca2f7e0d882f138f176383f3a4bb",
+        "scenario_manifest_sha256": "b892486f6b8f8e75eaca499f337d41c30f46fbeb2fe5109b6e6f7aa90577396b",
+        "solution_payload_sha256": "0d735aef6c6d220dc70135e2833d23fb7a347118a32ec22f7e99eefb0bb3c0d6",
+        "x0_hash": "deca1c7decbb01c5500ede566cd790a44cfa86e99c1b761b9f30cd30eb63ef81"
+      },
+      "210628": {
+        "arc_manifest_sha256": {
+          "full": "69485982f9a43eae824b8d53235248faa21120a7285385baea2ba50b3aa6e449",
+          "k1": "52e91cc77119b7e8402b218d619d48037431b6ddeb9a5aae24d55bdc4d886660",
+          "k2": "69485982f9a43eae824b8d53235248faa21120a7285385baea2ba50b3aa6e449"
+        },
+        "calibration_hash": "eb6b346748dcc77fdd66eecddb01b15dd96960f1f37991d3e761616048d5b584",
+        "e2_robust_result": "9f741d432ff29bbccb05c3bf1895d738afdc931a9298969fdc200856847e6ae9",
+        "first_stage_solution": "64b232fb41535b3ef85f4d72d46c0043bb8de458b5712d6eaf49968251a32eaa",
+        "instance_hash": "25cf7a38ce49c8380c51830a8fbbb92bad000e4b90c568576a3d0be44f2b7677",
+        "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+        "policy_coordinates_sha256": "7473e59f38c38b868b83a86f86992af1dbb83b35131fda74c48ec240d45eb208",
+        "provenance": "66f79580f57c8de9d30b1f0990d040b0b78e9b0104b9d197f14d5c5719a44671",
+        "result": "bcf37227fc9c461658077ae0e68f51d2905da190d1efc5dae392c81e595c69b4",
+        "scenario_manifest_sha256": "b892486f6b8f8e75eaca499f337d41c30f46fbeb2fe5109b6e6f7aa90577396b",
+        "solution_payload_sha256": "1b74d6f3258f934469bd07697fdfedc190a1153cc9586bc7b42d1a6b43d6bf69",
+        "x0_hash": "7514da694ef80b8a5053329b2a2c9619090e768884c0555d19a67f9e284b589e"
+      }
+    },
+    "cases": [
+      "210202",
+      "210628",
+      "210129",
+      "210310",
+      "210330",
+      "210323",
+      "210428",
+      "210611"
+    ],
+    "dataset_id": "RENAULT_EMPIRICAL_8CASE_V1",
+    "economic_monotonicity_tolerance": 0.0001,
+    "experiment_id": "E8_EX_POST_FULFILLMENT_FLEXIBILITY_V1",
+    "fixed_first_stage_source": "experiments/results/e1_empirical_8case_v1/E1-<case>-PRB/first_stage_solution.json",
+    "full_vs_e2_tolerance": 0.0001,
+    "gurobi_threads": 1,
+    "inventory_eligibility_tolerance": 1e-08,
+    "kappa_phi": 1.85,
+    "lambda_R": 0.05,
+    "mode_order_tolerance": 0.0001,
+    "modes": [
+      "k1",
+      "k2",
+      "full"
+    ],
+    "pilot_cases": [
+      "210202",
+      "210628",
+      "210310"
+    ],
+    "reporting_optimality_tolerance": 1e-07,
+    "resource_limits": {
+      "formal_condition_timeout_seconds": 3600.0,
+      "maximum_process_tree_rss_gib": 6.0,
+      "minimum_available_memory_gib": 8.0,
+      "monitor_interval_seconds": 0.25,
+      "pilot_timeout_seconds": 900.0,
+      "system_memory_floor_gib": 4.0
+    },
+    "scenario_count": 4657,
+    "scenario_rule": "all binary region-product shocks up to Gamma=2 in canonical region-major order",
+    "service_level": 0.9,
+    "solver_native_profile": {
+      "BarConvTol": null,
+      "FeasibilityTol": 1e-08,
+      "IntFeasTol": 1e-08,
+      "MIPGap": 0.0,
+      "NumericFocus": 0,
+      "OptimalityTol": 1e-08
+    },
+    "solver_profile_id": "gurobi-balanced-1e-8-v1",
+    "source_hashes": {
+      "evaluator_sha256": "bf1138eec950df2cd8f4f002ee07a339c7d0a03906a33f062610ee55eec1455e",
+      "robust_service_sha256": "053c29c2701a254239e7a5284e7b00ffefef0ad7a84a7c84a98056fa58a7066a",
+      "runner_sha256": "b42046756a73bd275e008844420ddc1636c0097d5d4ce463b9a9b304cb93465f",
+      "solver_profile_sha256": "4e46de5e541a574d46cdd54e575178c452c887eac9e868f62db48a7a3048be19"
+    },
+    "target_environment": {
+      "gurobi": "13.0.1",
+      "gurobipy": "13.0.1",
+      "minimum_physical_memory_gib": 31.0,
+      "os": "Windows 11",
+      "python": "3.12.7"
+    }
+  },
+  "immutable_protocol_sha256": "2b7e9e0ffdc97e8214ba909277c5bc27a191c11cba4ad966ba3f514946c52ccd",
+  "schema": "e8_ex_post_fulfillment_flexibility_v1"
+}

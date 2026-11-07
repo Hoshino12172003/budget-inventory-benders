@@ -1,0 +1,194 @@
+{
+  "arc_eligibility_diagnostic": {
+    "by_case": {
+      "210129": {
+        "arc_counts": {
+          "full": 48,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": true,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 0,
+          "two": 24,
+          "zero": 72
+        }
+      },
+      "210202": {
+        "arc_counts": {
+          "full": 48,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": true,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 0,
+          "two": 24,
+          "zero": 72
+        }
+      },
+      "210310": {
+        "arc_counts": {
+          "full": 84,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": false,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 24,
+          "two": 0,
+          "zero": 72
+        }
+      },
+      "210323": {
+        "arc_counts": {
+          "full": 48,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": true,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 0,
+          "two": 24,
+          "zero": 72
+        }
+      },
+      "210330": {
+        "arc_counts": {
+          "full": 48,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": true,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 0,
+          "two": 24,
+          "zero": 72
+        }
+      },
+      "210428": {
+        "arc_counts": {
+          "full": 48,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": true,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 0,
+          "two": 24,
+          "zero": 72
+        }
+      },
+      "210611": {
+        "arc_counts": {
+          "full": 108,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": false,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 24,
+          "two": 0,
+          "zero": 72
+        }
+      },
+      "210628": {
+        "arc_counts": {
+          "full": 48,
+          "k1": 24,
+          "k2": 48
+        },
+        "k2_equals_full": true,
+        "region_product_eligibility_counts": {
+          "one": 0,
+          "three_or_more": 0,
+          "two": 24,
+          "zero": 72
+        }
+      }
+    },
+    "cases_with_equal_k2_full_arcs": [
+      "210202",
+      "210628",
+      "210129",
+      "210330",
+      "210323",
+      "210428"
+    ],
+    "cases_with_strict_k2_to_full_arc_expansion": [
+      "210310",
+      "210611"
+    ],
+    "eligibility_rule": "active depot with frozen product inventory > 1e-8",
+    "interpretation": "72/96 region-product pairs have no eligible stocked depot; remaining 24 pairs correspond to two stocked products in every case."
+  },
+  "case_count": 8,
+  "cases": [
+    "210202",
+    "210628",
+    "210129",
+    "210310",
+    "210330",
+    "210323",
+    "210428",
+    "210611"
+  ],
+  "e1_certification": {
+    "certified_prb_exact_count": 8,
+    "global_coupling_exception_cases": [
+      "210330"
+    ],
+    "global_coupling_not_pass_count": 1,
+    "global_coupling_pass_count": 7,
+    "interpretation": "8 historical CERTIFIED_PRB_EXACT labels; 7/8 global_coupling_pass=true; case 210330 is a disclosed exception, not an E8 recourse evaluation failure.",
+    "required_status": "CERTIFIED_PRB_EXACT",
+    "solver_status_optimal_count": 8
+  },
+  "e2_lineage": {
+    "robust_cells_reused_from_e1_count": 8,
+    "source_archive_commit": "9e47b4a78b6164e3ed1b00a46eeb101b864c8773",
+    "source_files_restored_without_modification": true
+  },
+  "identity_fields_verified_per_case": [
+    "instance_hash",
+    "mapping_hash",
+    "x0_hash",
+    "calibration_hash",
+    "e1_result_sha256",
+    "e1_provenance_sha256",
+    "first_stage_solution_sha256",
+    "first_stage_solution_payload_sha256",
+    "policy_coordinates_sha256",
+    "e2_robust_result_sha256",
+    "scenario_manifest_sha256",
+    "mode_arc_manifest_sha256"
+  ],
+  "pilot_scope": {
+    "cases": [
+      "210202",
+      "210628",
+      "210310"
+    ],
+    "interpretation": "210310 allows strict k2-to-Full arc expansion; all eight remain in the formal scope."
+  },
+  "scenario_contract": {
+    "Gamma": 2,
+    "component_count": 96,
+    "scenario_count": 4657,
+    "shared_entries_sha256": "b892486f6b8f8e75eaca499f337d41c30f46fbeb2fe5109b6e6f7aa90577396b"
+  },
+  "special_numeric_evidence": {
+    "case": "210611",
+    "disabled_depot_inventory_coordinate": 6.91924636296832e-09,
+    "eligibility_tolerance": 1e-08,
+    "handling": "treated as solver noise for arc eligibility; frozen coordinate is not modified"
+  },
+  "status": "PASS_STATIC_IDENTITY_AUDIT"
+}

@@ -1,0 +1,1658 @@
+[
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 7,
+    "case": "210202",
+    "cost_component_residual": -2.3725442588329315e-07,
+    "demand_weighted_fill_rate": 0.052130566836958714,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k1",
+    "recourse_cost": 1022456.0305125754,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 636585.5671573767,
+    "service_violation_quantity": 5204.283142858463,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 446.92857142857144,
+      "BAC-O-4312": 242.73314285713164,
+      "BAC-O-4325": 569.8571428571429,
+      "BAC-O-6423": 984.8571428571429,
+      "BAC-O-6433": 1994.642857142857,
+      "CON-S-0130": 343.3571428571277,
+      "SLI---0770": 823.9285714285714,
+      "SLI---1200": 411.7857142857143
+    },
+    "shortage_penalty_cost": 385601.170857141,
+    "total_shortage": 5818.090285714259,
+    "transportation_cost": 269.29249829490595,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 1,
+    "actual_multi_source_shipment_quantity": 15.714285714323651,
+    "actual_source_count": 17,
+    "case": "210202",
+    "cost_component_residual": -1.3166572898626328e-07,
+    "demand_weighted_fill_rate": 0.12383373605733394,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k2",
+    "recourse_cost": 931172.2896078232,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 577881.301203376,
+    "service_violation_quantity": 4792.594114516359,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 446.92857142857144,
+      "BAC-O-4312": 111.66554308888772,
+      "BAC-O-4325": 569.8571428571429,
+      "BAC-O-6423": 984.8571428571429,
+      "BAC-O-6433": 1994.642857142857,
+      "CON-S-0130": 34.30556829576388,
+      "SLI---0770": 823.9285714285714,
+      "SLI---1200": 411.7857142857143
+    },
+    "shortage_penalty_cost": 351026.12060749385,
+    "total_shortage": 5377.9711113846515,
+    "transportation_cost": 2264.8677970849667,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 1,
+    "actual_multi_source_shipment_quantity": 15.714285714323651,
+    "actual_source_count": 17,
+    "case": "210202",
+    "cost_component_residual": -1.3166572898626328e-07,
+    "demand_weighted_fill_rate": 0.12383373605733394,
+    "evaluation_basis": "nominal_demand",
+    "mode": "full",
+    "recourse_cost": 931172.2896078232,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 577881.301203376,
+    "service_violation_quantity": 4792.594114516359,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 446.92857142857144,
+      "BAC-O-4312": 111.66554308888772,
+      "BAC-O-4325": 569.8571428571429,
+      "BAC-O-6423": 984.8571428571429,
+      "BAC-O-6433": 1994.642857142857,
+      "CON-S-0130": 34.30556829576388,
+      "SLI---0770": 823.9285714285714,
+      "SLI---1200": 411.7857142857143
+    },
+    "shortage_penalty_cost": 351026.12060749385,
+    "total_shortage": 5377.9711113846515,
+    "transportation_cost": 2264.8677970849667,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 7,
+    "case": "210202",
+    "cost_component_residual": -5.165347829461098e-07,
+    "demand_weighted_fill_rate": 0.06045955983747131,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k1",
+    "recourse_cost": 1033221.7980441184,
+    "scenario_id": "S1358",
+    "service_violation_penalty_cost": 642910.5876576559,
+    "service_violation_quantity": 5218.487428574259,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "5",
+        "CON-S-0130"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 446.92857142857144,
+      "BAC-O-4312": 242.73314285713164,
+      "BAC-O-4325": 569.8571428571429,
+      "BAC-O-6423": 984.8571428571429,
+      "BAC-O-6433": 1994.642857142857,
+      "CON-S-0130": 343.3571428571273,
+      "SLI---0770": 845.9142857142857,
+      "SLI---1200": 411.7857142857143
+    },
+    "shortage_penalty_cost": 390020.29942856956,
+    "total_shortage": 5840.075999999974,
+    "transportation_cost": 290.91095840942666,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 1,
+    "actual_multi_source_shipment_quantity": 15.714285714323651,
+    "actual_source_count": 17,
+    "case": "210202",
+    "cost_component_residual": -1.253793016076088e-07,
+    "demand_weighted_fill_rate": 0.12228350908070895,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k2",
+    "recourse_cost": 952269.8382506804,
+    "scenario_id": "S1358",
+    "service_violation_penalty_cost": 589275.0304093863,
+    "service_violation_quantity": 4834.196825668539,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "5",
+        "CON-S-0130"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 446.92857142857144,
+      "BAC-O-4312": 111.66554308888772,
+      "BAC-O-4325": 569.8571428571429,
+      "BAC-O-6423": 984.8571428571429,
+      "BAC-O-6433": 1994.642857142857,
+      "CON-S-0130": 90.13413972360564,
+      "SLI---0770": 845.9142857142857,
+      "SLI---1200": 411.7857142857143
+    },
+    "shortage_penalty_cost": 361028.10632170655,
+    "total_shortage": 5455.785397098208,
+    "transportation_cost": 1966.701519712894,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 1,
+    "actual_multi_source_shipment_quantity": 15.714285714323651,
+    "actual_source_count": 17,
+    "case": "210202",
+    "cost_component_residual": -1.253793016076088e-07,
+    "demand_weighted_fill_rate": 0.12228350908070895,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "full",
+    "recourse_cost": 952269.8382506804,
+    "scenario_id": "S1358",
+    "service_violation_penalty_cost": 589275.0304093863,
+    "service_violation_quantity": 4834.196825668539,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "5",
+        "CON-S-0130"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 446.92857142857144,
+      "BAC-O-4312": 111.66554308888772,
+      "BAC-O-4325": 569.8571428571429,
+      "BAC-O-6423": 984.8571428571429,
+      "BAC-O-6433": 1994.642857142857,
+      "CON-S-0130": 90.13413972360564,
+      "SLI---0770": 845.9142857142857,
+      "SLI---1200": 411.7857142857143
+    },
+    "shortage_penalty_cost": 361028.10632170655,
+    "total_shortage": 5455.785397098208,
+    "transportation_cost": 1966.701519712894,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 8,
+    "case": "210628",
+    "cost_component_residual": -1.3213139027357101e-08,
+    "demand_weighted_fill_rate": 0.06382016852745864,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k1",
+    "recourse_cost": 616410.9664389293,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 383531.8399567892,
+    "service_violation_quantity": 3130.400002931895,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 256.7692307692308,
+      "BAC-O-4312": 189.9999986206133,
+      "BAC-O-4325": 384.0,
+      "BAC-O-6423": 652.9230769230769,
+      "BAC-O-6433": 1055.3076923076924,
+      "CON-S-0130": 244.4615427721286,
+      "SLI---0770": 481.0,
+      "SLI---1200": 240.30769230769232
+    },
+    "shortage_penalty_cost": 232615.84654628232,
+    "total_shortage": 3504.769233700434,
+    "transportation_cost": 263.2799358709669,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 96.73846155788839,
+    "actual_source_count": 24,
+    "case": "210628",
+    "cost_component_residual": 1.1337688192725182e-06,
+    "demand_weighted_fill_rate": 0.1618846059012088,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k2",
+    "recourse_cost": 547992.4372277921,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 337744.7376923077,
+    "service_violation_quantity": 2763.276923076923,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 256.7692307692308,
+      "BAC-O-4312": 23.85384615384388,
+      "BAC-O-4325": 384.0,
+      "BAC-O-6423": 652.9230769230769,
+      "BAC-O-6433": 1055.3076923076924,
+      "CON-S-0130": 43.484615384615374,
+      "SLI---0770": 481.0,
+      "SLI---1200": 240.30769230769232
+    },
+    "shortage_penalty_cost": 207866.06153846148,
+    "total_shortage": 3137.6461538461517,
+    "transportation_cost": 2381.6379958891703,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 96.73846155788839,
+    "actual_source_count": 24,
+    "case": "210628",
+    "cost_component_residual": 1.1337688192725182e-06,
+    "demand_weighted_fill_rate": 0.1618846059012088,
+    "evaluation_basis": "nominal_demand",
+    "mode": "full",
+    "recourse_cost": 547992.4372277921,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 337744.7376923077,
+    "service_violation_quantity": 2763.276923076923,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 256.7692307692308,
+      "BAC-O-4312": 23.85384615384388,
+      "BAC-O-4325": 384.0,
+      "BAC-O-6423": 652.9230769230769,
+      "BAC-O-6433": 1055.3076923076924,
+      "CON-S-0130": 43.484615384615374,
+      "SLI---0770": 481.0,
+      "SLI---1200": 240.30769230769232
+    },
+    "shortage_penalty_cost": 207866.06153846148,
+    "total_shortage": 3137.6461538461517,
+    "transportation_cost": 2381.6379958891703,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 8,
+    "case": "210628",
+    "cost_component_residual": -1.3271346688270569e-08,
+    "demand_weighted_fill_rate": 0.06265709586363011,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k1",
+    "recourse_cost": 667710.5354389293,
+    "scenario_id": "S1456",
+    "service_violation_penalty_cost": 415582.03972602,
+    "service_violation_quantity": 3192.9430798549715,
+    "shock_set": [
+      [
+        "2",
+        "SLI---1200"
+      ],
+      [
+        "7",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 256.7692307692308,
+      "BAC-O-4312": 189.9999986206133,
+      "BAC-O-4325": 384.0,
+      "BAC-O-6423": 652.9230769230769,
+      "BAC-O-6433": 1055.3076923076924,
+      "CON-S-0130": 244.4615427721286,
+      "SLI---0770": 481.0,
+      "SLI---1200": 309.8
+    },
+    "shortage_penalty_cost": 251865.21577705158,
+    "total_shortage": 3574.261541392742,
+    "transportation_cost": 263.2799358709669,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 96.73846155788839,
+    "actual_source_count": 24,
+    "case": "210628",
+    "cost_component_residual": 1.1337688192725182e-06,
+    "demand_weighted_fill_rate": 0.15893438555296047,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k2",
+    "recourse_cost": 599292.0062277921,
+    "scenario_id": "S1456",
+    "service_violation_penalty_cost": 369794.9374615385,
+    "service_violation_quantity": 2825.82,
+    "shock_set": [
+      [
+        "2",
+        "SLI---1200"
+      ],
+      [
+        "7",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 256.7692307692308,
+      "BAC-O-4312": 23.85384615384388,
+      "BAC-O-4325": 384.0,
+      "BAC-O-6423": 652.9230769230769,
+      "BAC-O-6433": 1055.3076923076924,
+      "CON-S-0130": 43.484615384615374,
+      "SLI---0770": 481.0,
+      "SLI---1200": 309.8
+    },
+    "shortage_penalty_cost": 227115.43076923073,
+    "total_shortage": 3207.1384615384595,
+    "transportation_cost": 2381.6379958891703,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 96.73846155788839,
+    "actual_source_count": 24,
+    "case": "210628",
+    "cost_component_residual": 1.1337688192725182e-06,
+    "demand_weighted_fill_rate": 0.15893438555296047,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "full",
+    "recourse_cost": 599292.0062277921,
+    "scenario_id": "S1456",
+    "service_violation_penalty_cost": 369794.9374615385,
+    "service_violation_quantity": 2825.82,
+    "shock_set": [
+      [
+        "2",
+        "SLI---1200"
+      ],
+      [
+        "7",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 256.7692307692308,
+      "BAC-O-4312": 23.85384615384388,
+      "BAC-O-4325": 384.0,
+      "BAC-O-6423": 652.9230769230769,
+      "BAC-O-6433": 1055.3076923076924,
+      "CON-S-0130": 43.484615384615374,
+      "SLI---0770": 481.0,
+      "SLI---1200": 309.8
+    },
+    "shortage_penalty_cost": 227115.43076923073,
+    "total_shortage": 3207.1384615384595,
+    "transportation_cost": 2381.6379958891703,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 7,
+    "case": "210129",
+    "cost_component_residual": -2.736342139542103e-07,
+    "demand_weighted_fill_rate": 0.0676713211004093,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k1",
+    "recourse_cost": 809531.2789595521,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 503675.13272527826,
+    "service_violation_quantity": 3747.8720000037533,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 306.6875,
+      "BAC-O-4312": 174.97199999999444,
+      "BAC-O-4325": 394.8125,
+      "BAC-O-6423": 710.125,
+      "BAC-O-6433": 1338.125,
+      "CON-S-0130": 274.6249999999999,
+      "SLI---0770": 634.875,
+      "SLI---1200": 363.9375
+    },
+    "shortage_penalty_cost": 305589.09099999984,
+    "total_shortage": 4198.159499999994,
+    "transportation_cost": 267.05523454756553,
+    "worst_region_fill_rate": 6.661338147750939e-16,
+    "worst_region_id": "10"
+  },
+  {
+    "actual_multi_source_region_product_count": 1,
+    "actual_multi_source_shipment_quantity": 11.812500000010703,
+    "actual_source_count": 17,
+    "case": "210129",
+    "cost_component_residual": -2.1490268409252167e-07,
+    "demand_weighted_fill_rate": 0.14439533502148316,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k2",
+    "recourse_cost": 737968.5077084916,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 457172.6484704038,
+    "service_violation_quantity": 3417.124572305091,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 306.6875,
+      "BAC-O-4312": 64.71832230462897,
+      "BAC-O-4325": 394.8125,
+      "BAC-O-6423": 710.125,
+      "BAC-O-6433": 1338.125,
+      "CON-S-0130": 39.400033510509665,
+      "SLI---0770": 634.875,
+      "SLI---1200": 363.9375
+    },
+    "shortage_penalty_cost": 278979.4913755806,
+    "total_shortage": 3852.680855815139,
+    "transportation_cost": 1816.3678627221702,
+    "worst_region_fill_rate": 2.220446049250313e-15,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 1,
+    "actual_multi_source_shipment_quantity": 11.812500000010703,
+    "actual_source_count": 17,
+    "case": "210129",
+    "cost_component_residual": -2.1490268409252167e-07,
+    "demand_weighted_fill_rate": 0.14439533502148316,
+    "evaluation_basis": "nominal_demand",
+    "mode": "full",
+    "recourse_cost": 737968.5077084916,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 457172.6484704038,
+    "service_violation_quantity": 3417.124572305091,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 306.6875,
+      "BAC-O-4312": 64.71832230462897,
+      "BAC-O-4325": 394.8125,
+      "BAC-O-6423": 710.125,
+      "BAC-O-6433": 1338.125,
+      "CON-S-0130": 39.400033510509665,
+      "SLI---0770": 634.875,
+      "SLI---1200": 363.9375
+    },
+    "shortage_penalty_cost": 278979.4913755806,
+    "total_shortage": 3852.680855815139,
+    "transportation_cost": 1816.3678627221702,
+    "worst_region_fill_rate": 2.220446049250313e-15,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 7,
+    "case": "210129",
+    "cost_component_residual": -2.0192237570881844e-07,
+    "demand_weighted_fill_rate": 0.07831929464835063,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k1",
+    "recourse_cost": 820330.766889594,
+    "scenario_id": "S1438",
+    "service_violation_penalty_cost": 510038.1499127066,
+    "service_violation_quantity": 3756.878250003366,
+    "shock_set": [
+      [
+        "2",
+        "SLI---1200"
+      ],
+      [
+        "5",
+        "CON-S-0130"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 306.6875,
+      "BAC-O-4312": 174.97199999999444,
+      "BAC-O-4325": 394.8125,
+      "BAC-O-6423": 710.125,
+      "BAC-O-6433": 1338.125,
+      "CON-S-0130": 274.6249999999999,
+      "SLI---0770": 634.875,
+      "SLI---1200": 379.875
+    },
+    "shortage_penalty_cost": 310003.77849999984,
+    "total_shortage": 4214.096999999994,
+    "transportation_cost": 288.8384770895282,
+    "worst_region_fill_rate": 6.661338147750939e-16,
+    "worst_region_id": "10"
+  },
+  {
+    "actual_multi_source_region_product_count": 1,
+    "actual_multi_source_shipment_quantity": 11.812500000010703,
+    "actual_source_count": 17,
+    "case": "210129",
+    "cost_component_residual": -2.1420419216156006e-07,
+    "demand_weighted_fill_rate": 0.1422063605627658,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k2",
+    "recourse_cost": 760949.1358334915,
+    "scenario_id": "S1438",
+    "service_violation_penalty_cost": 470684.7656072171,
+    "service_violation_quantity": 3464.774605814893,
+    "shock_set": [
+      [
+        "2",
+        "SLI---1200"
+      ],
+      [
+        "5",
+        "CON-S-0130"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 306.6875,
+      "BAC-O-4312": 64.71832230462897,
+      "BAC-O-4325": 394.8125,
+      "BAC-O-6423": 710.125,
+      "BAC-O-6433": 1338.125,
+      "CON-S-0130": 92.77503350980037,
+      "SLI---0770": 634.875,
+      "SLI---1200": 379.875
+    },
+    "shortage_penalty_cost": 288731.67887550965,
+    "total_shortage": 3921.9933558144294,
+    "transportation_cost": 1532.6913509789424,
+    "worst_region_fill_rate": 2.220446049250313e-15,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 1,
+    "actual_multi_source_shipment_quantity": 11.812500000010703,
+    "actual_source_count": 17,
+    "case": "210129",
+    "cost_component_residual": -2.1420419216156006e-07,
+    "demand_weighted_fill_rate": 0.1422063605627658,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "full",
+    "recourse_cost": 760949.1358334915,
+    "scenario_id": "S1438",
+    "service_violation_penalty_cost": 470684.7656072171,
+    "service_violation_quantity": 3464.774605814893,
+    "shock_set": [
+      [
+        "2",
+        "SLI---1200"
+      ],
+      [
+        "5",
+        "CON-S-0130"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 306.6875,
+      "BAC-O-4312": 64.71832230462897,
+      "BAC-O-4325": 394.8125,
+      "BAC-O-6423": 710.125,
+      "BAC-O-6433": 1338.125,
+      "CON-S-0130": 92.77503350980037,
+      "SLI---0770": 634.875,
+      "SLI---1200": 379.875
+    },
+    "shortage_penalty_cost": 288731.67887550965,
+    "total_shortage": 3921.9933558144294,
+    "transportation_cost": 1532.6913509789424,
+    "worst_region_fill_rate": 2.220446049250313e-15,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 16,
+    "case": "210310",
+    "cost_component_residual": -1.0145595297217369e-07,
+    "demand_weighted_fill_rate": 0.12033841022720893,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k1",
+    "recourse_cost": 596427.6525641294,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 369444.05282203964,
+    "service_violation_quantity": 2822.2710000989136,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 232.4,
+      "BAC-O-4312": 60.14933330508736,
+      "BAC-O-4325": 354.1333333333333,
+      "BAC-O-6423": 521.7333333333333,
+      "BAC-O-6433": 1115.4666666666667,
+      "CON-S-0130": 139.3750001271132,
+      "SLI---0770": 491.2666666666667,
+      "SLI---1200": 269.73333333333335
+    },
+    "shortage_penalty_cost": 225813.34801192043,
+    "total_shortage": 3184.257666765534,
+    "transportation_cost": 1170.2517302707602,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 210.86666666658908,
+    "actual_source_count": 21,
+    "case": "210310",
+    "cost_component_residual": -1.0832445695996284e-07,
+    "demand_weighted_fill_rate": 0.15076061732540968,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k2",
+    "recourse_cost": 571057.0286638727,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 352811.6623392955,
+    "service_violation_quantity": 2712.1466666998663,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 232.4,
+      "BAC-O-4312": 32.06666666666709,
+      "BAC-O-4325": 354.1333333333333,
+      "BAC-O-6423": 521.7333333333333,
+      "BAC-O-6433": 1115.4666666666667,
+      "CON-S-0130": 57.33333336432624,
+      "SLI---0770": 491.2666666666667,
+      "SLI---1200": 269.73333333333335
+    },
+    "shortage_penalty_cost": 216822.86666976596,
+    "total_shortage": 3074.133333364327,
+    "transportation_cost": 1422.4996549196344,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 3,
+    "actual_multi_source_shipment_quantity": 275.3400000288595,
+    "actual_source_count": 22,
+    "case": "210310",
+    "cost_component_residual": -5.587935447692871e-08,
+    "demand_weighted_fill_rate": 0.15387491251979768,
+    "evaluation_basis": "nominal_demand",
+    "mode": "full",
+    "recourse_cost": 567937.7793744503,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 350726.09566681116,
+    "service_violation_quantity": 2700.8733333361224,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 232.4,
+      "BAC-O-4312": 32.06666666666854,
+      "BAC-O-4325": 354.1333333333333,
+      "BAC-O-6423": 521.7333333333333,
+      "BAC-O-6433": 1115.4666666666667,
+      "CON-S-0130": 46.05999999999998,
+      "SLI---0770": 491.2666666666667,
+      "SLI---1200": 269.73333333333335
+    },
+    "shortage_penalty_cost": 215695.53333333338,
+    "total_shortage": 3062.860000000002,
+    "transportation_cost": 1516.150374361699,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 16,
+    "case": "210310",
+    "cost_component_residual": -1.0139774531126022e-07,
+    "demand_weighted_fill_rate": 0.11692527241767614,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k1",
+    "recourse_cost": 666910.3288974628,
+    "scenario_id": "S1336",
+    "service_violation_penalty_cost": 413479.1958220396,
+    "service_violation_quantity": 2917.3710000989136,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 232.4,
+      "BAC-O-4312": 60.14933330508736,
+      "BAC-O-4325": 354.1333333333333,
+      "BAC-O-6423": 521.7333333333333,
+      "BAC-O-6433": 1115.4666666666667,
+      "CON-S-0130": 139.3750001271132,
+      "SLI---0770": 528.4,
+      "SLI---1200": 338.26666666666665
+    },
+    "shortage_penalty_cost": 252260.8813452538,
+    "total_shortage": 3289.9243334322005,
+    "transportation_cost": 1170.2517302707602,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 210.86666666658908,
+    "actual_source_count": 21,
+    "case": "210310",
+    "cost_component_residual": -1.0832445695996284e-07,
+    "demand_weighted_fill_rate": 0.14648461964345327,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k2",
+    "recourse_cost": 641539.7049972061,
+    "scenario_id": "S1336",
+    "service_violation_penalty_cost": 396846.8053392955,
+    "service_violation_quantity": 2807.246666699866,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 232.4,
+      "BAC-O-4312": 32.06666666666709,
+      "BAC-O-4325": 354.1333333333333,
+      "BAC-O-6423": 521.7333333333333,
+      "BAC-O-6433": 1115.4666666666667,
+      "CON-S-0130": 57.33333336432624,
+      "SLI---0770": 528.4,
+      "SLI---1200": 338.26666666666665
+    },
+    "shortage_penalty_cost": 243270.40000309932,
+    "total_shortage": 3179.8000000309935,
+    "transportation_cost": 1422.4996549196344,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 3,
+    "actual_multi_source_shipment_quantity": 275.3400000288595,
+    "actual_source_count": 22,
+    "case": "210310",
+    "cost_component_residual": -5.605397745966911e-08,
+    "demand_weighted_fill_rate": 0.1495105846142829,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "full",
+    "recourse_cost": 638420.4557077836,
+    "scenario_id": "S1336",
+    "service_violation_penalty_cost": 394761.2386668112,
+    "service_violation_quantity": 2795.9733333361223,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 232.4,
+      "BAC-O-4312": 32.06666666666854,
+      "BAC-O-4325": 354.1333333333333,
+      "BAC-O-6423": 521.7333333333333,
+      "BAC-O-6433": 1115.4666666666667,
+      "CON-S-0130": 46.05999999999998,
+      "SLI---0770": 528.4,
+      "SLI---1200": 338.26666666666665
+    },
+    "shortage_penalty_cost": 242143.06666666674,
+    "total_shortage": 3168.5266666666685,
+    "transportation_cost": 1516.150374361699,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 8,
+    "case": "210330",
+    "cost_component_residual": -5.343463271856308e-08,
+    "demand_weighted_fill_rate": 0.059200434434487526,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k1",
+    "recourse_cost": 580724.8029041839,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 361462.7264939979,
+    "service_violation_quantity": 2952.2875031482213,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 229.28571428571428,
+      "BAC-O-4312": 133.21428423295947,
+      "BAC-O-4325": 356.64285714285717,
+      "BAC-O-6423": 566.3571428571429,
+      "BAC-O-6433": 1109.357142857143,
+      "CON-S-0130": 214.91607605771634,
+      "SLI---0770": 470.14285714285717,
+      "SLI---1200": 223.5
+    },
+    "shortage_penalty_cost": 219045.53613572306,
+    "total_shortage": 3303.41607457639,
+    "transportation_cost": 216.54027451627923,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "10"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 139.90240071682877,
+    "actual_source_count": 19,
+    "case": "210330",
+    "cost_component_residual": -1.9272556528449059e-07,
+    "demand_weighted_fill_rate": 0.13792717405773702,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k2",
+    "recourse_cost": 523514.8185409417,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 323978.94654597336,
+    "service_violation_quantity": 2684.1221134081998,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 229.28571428571428,
+      "BAC-O-4312": 42.172113408236235,
+      "BAC-O-4325": 356.64285714285717,
+      "BAC-O-6423": 566.3571428571429,
+      "BAC-O-6433": 1109.357142857143,
+      "CON-S-0130": 29.52617071103256,
+      "SLI---0770": 470.14285714285717,
+      "SLI---1200": 223.5
+    },
+    "shortage_penalty_cost": 197957.36481796243,
+    "total_shortage": 3026.983998404983,
+    "transportation_cost": 1578.5071771985854,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 139.90240071682877,
+    "actual_source_count": 19,
+    "case": "210330",
+    "cost_component_residual": -1.9272556528449059e-07,
+    "demand_weighted_fill_rate": 0.13792717405773702,
+    "evaluation_basis": "nominal_demand",
+    "mode": "full",
+    "recourse_cost": 523514.8185409417,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 323978.94654597336,
+    "service_violation_quantity": 2684.1221134081998,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 229.28571428571428,
+      "BAC-O-4312": 42.172113408236235,
+      "BAC-O-4325": 356.64285714285717,
+      "BAC-O-6423": 566.3571428571429,
+      "BAC-O-6433": 1109.357142857143,
+      "CON-S-0130": 29.52617071103256,
+      "SLI---0770": 470.14285714285717,
+      "SLI---1200": 223.5
+    },
+    "shortage_penalty_cost": 197957.36481796243,
+    "total_shortage": 3026.983998404983,
+    "transportation_cost": 1578.5071771985854,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 8,
+    "case": "210330",
+    "cost_component_residual": -5.3318217396736145e-08,
+    "demand_weighted_fill_rate": 0.057532440729936796,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k1",
+    "recourse_cost": 649219.1861898983,
+    "scenario_id": "S1336",
+    "service_violation_penalty_cost": 404255.652636855,
+    "service_violation_quantity": 3043.907503148221,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 229.28571428571428,
+      "BAC-O-4312": 133.21428423295947,
+      "BAC-O-4325": 356.64285714285717,
+      "BAC-O-6423": 566.3571428571429,
+      "BAC-O-6433": 1109.357142857143,
+      "CON-S-0130": 214.91607605771634,
+      "SLI---0770": 503.0,
+      "SLI---1200": 292.44285714285724
+    },
+    "shortage_penalty_cost": 244746.99327858025,
+    "total_shortage": 3405.2160745763904,
+    "transportation_cost": 216.54027451627923,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "10"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 139.90240071682877,
+    "actual_source_count": 19,
+    "case": "210330",
+    "cost_component_residual": -1.9266735762357712e-07,
+    "demand_weighted_fill_rate": 0.13404102592027067,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k2",
+    "recourse_cost": 592009.201826656,
+    "scenario_id": "S1336",
+    "service_violation_penalty_cost": 366771.8726888305,
+    "service_violation_quantity": 2775.7421134081997,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 229.28571428571428,
+      "BAC-O-4312": 42.172113408236235,
+      "BAC-O-4325": 356.64285714285717,
+      "BAC-O-6423": 566.3571428571429,
+      "BAC-O-6433": 1109.357142857143,
+      "CON-S-0130": 29.52617071103256,
+      "SLI---0770": 503.0,
+      "SLI---1200": 292.44285714285724
+    },
+    "shortage_penalty_cost": 223658.82196081962,
+    "total_shortage": 3128.7839984049833,
+    "transportation_cost": 1578.5071771985854,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 139.90240071682877,
+    "actual_source_count": 19,
+    "case": "210330",
+    "cost_component_residual": -1.9266735762357712e-07,
+    "demand_weighted_fill_rate": 0.13404102592027067,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "full",
+    "recourse_cost": 592009.201826656,
+    "scenario_id": "S1336",
+    "service_violation_penalty_cost": 366771.8726888305,
+    "service_violation_quantity": 2775.7421134081997,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 229.28571428571428,
+      "BAC-O-4312": 42.172113408236235,
+      "BAC-O-4325": 356.64285714285717,
+      "BAC-O-6423": 566.3571428571429,
+      "BAC-O-6433": 1109.357142857143,
+      "CON-S-0130": 29.52617071103256,
+      "SLI---0770": 503.0,
+      "SLI---1200": 292.44285714285724
+    },
+    "shortage_penalty_cost": 223658.82196081962,
+    "total_shortage": 3128.7839984049833,
+    "transportation_cost": 1578.5071771985854,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 6,
+    "case": "210323",
+    "cost_component_residual": -1.0110670700669289e-07,
+    "demand_weighted_fill_rate": 0.04775203283523333,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k1",
+    "recourse_cost": 575090.0442858055,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 358209.237306787,
+    "service_violation_quantity": 2978.1196464035793,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 231.35714285714286,
+      "BAC-O-4312": 168.4999983316291,
+      "BAC-O-4325": 360.57142857142856,
+      "BAC-O-6423": 568.9285714285714,
+      "BAC-O-6433": 1081.857142857143,
+      "CON-S-0130": 253.4196480708507,
+      "SLI---0770": 451.07142857142856,
+      "SLI---1200": 211.85714285714286
+    },
+    "shortage_penalty_cost": 216734.75047465638,
+    "total_shortage": 3327.5625035453368,
+    "transportation_cost": 146.05650446335346,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 84.95735484770896,
+    "actual_source_count": 20,
+    "case": "210323",
+    "cost_component_residual": -1.8934952095150948e-07,
+    "demand_weighted_fill_rate": 0.14869389983803716,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k2",
+    "recourse_cost": 504442.81736158044,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 311621.58159382694,
+    "service_violation_quantity": 2630.678250570293,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 231.35714285714286,
+      "BAC-O-4312": 35.6996791417926,
+      "BAC-O-4325": 360.57142857142856,
+      "BAC-O-6423": 568.9285714285714,
+      "BAC-O-6433": 1081.857142857143,
+      "CON-S-0130": 33.485823152746384,
+      "SLI---0770": 451.07142857142856,
+      "SLI---1200": 211.85714285714286
+    },
+    "shortage_penalty_cost": 191022.95904553053,
+    "total_shortage": 2974.828359437396,
+    "transportation_cost": 1798.2767224123393,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 84.95735484770896,
+    "actual_source_count": 20,
+    "case": "210323",
+    "cost_component_residual": -1.8934952095150948e-07,
+    "demand_weighted_fill_rate": 0.14869389983803716,
+    "evaluation_basis": "nominal_demand",
+    "mode": "full",
+    "recourse_cost": 504442.81736158044,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 311621.58159382694,
+    "service_violation_quantity": 2630.678250570293,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 231.35714285714286,
+      "BAC-O-4312": 35.6996791417926,
+      "BAC-O-4325": 360.57142857142856,
+      "BAC-O-6423": 568.9285714285714,
+      "BAC-O-6433": 1081.857142857143,
+      "CON-S-0130": 33.485823152746384,
+      "SLI---0770": 451.07142857142856,
+      "SLI---1200": 211.85714285714286
+    },
+    "shortage_penalty_cost": 191022.95904553053,
+    "total_shortage": 2974.828359437396,
+    "transportation_cost": 1798.2767224123393,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 6,
+    "case": "210323",
+    "cost_component_residual": -1.0116491466760635e-07,
+    "demand_weighted_fill_rate": 0.04661063348693695,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k1",
+    "recourse_cost": 629518.2530000913,
+    "scenario_id": "S1336",
+    "service_violation_penalty_cost": 392214.1031639299,
+    "service_violation_quantity": 3055.1339321178652,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 231.35714285714286,
+      "BAC-O-4312": 168.4999983316291,
+      "BAC-O-4325": 360.57142857142856,
+      "BAC-O-6423": 568.9285714285714,
+      "BAC-O-6433": 1081.857142857143,
+      "CON-S-0130": 253.4196480708507,
+      "SLI---0770": 494.22857142857146,
+      "SLI---1200": 254.2714285714286
+    },
+    "shortage_penalty_cost": 237158.09333179926,
+    "total_shortage": 3413.1339321167657,
+    "transportation_cost": 146.05650446335346,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 84.95735484770896,
+    "actual_source_count": 20,
+    "case": "210323",
+    "cost_component_residual": -1.8940772861242294e-07,
+    "demand_weighted_fill_rate": 0.1451397240198813,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k2",
+    "recourse_cost": 558871.0260758662,
+    "scenario_id": "S1336",
+    "service_violation_penalty_cost": 345626.44745096983,
+    "service_violation_quantity": 2707.692536284579,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 231.35714285714286,
+      "BAC-O-4312": 35.6996791417926,
+      "BAC-O-4325": 360.57142857142856,
+      "BAC-O-6423": 568.9285714285714,
+      "BAC-O-6433": 1081.857142857143,
+      "CON-S-0130": 33.485823152746384,
+      "SLI---0770": 494.22857142857146,
+      "SLI---1200": 254.2714285714286
+    },
+    "shortage_penalty_cost": 211446.3019026734,
+    "total_shortage": 3060.399788008825,
+    "transportation_cost": 1798.2767224123393,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 84.95735484770896,
+    "actual_source_count": 20,
+    "case": "210323",
+    "cost_component_residual": -1.8940772861242294e-07,
+    "demand_weighted_fill_rate": 0.1451397240198813,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "full",
+    "recourse_cost": 558871.0260758662,
+    "scenario_id": "S1336",
+    "service_violation_penalty_cost": 345626.44745096983,
+    "service_violation_quantity": 2707.692536284579,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 231.35714285714286,
+      "BAC-O-4312": 35.6996791417926,
+      "BAC-O-4325": 360.57142857142856,
+      "BAC-O-6423": 568.9285714285714,
+      "BAC-O-6433": 1081.857142857143,
+      "CON-S-0130": 33.485823152746384,
+      "SLI---0770": 494.22857142857146,
+      "SLI---1200": 254.2714285714286
+    },
+    "shortage_penalty_cost": 211446.3019026734,
+    "total_shortage": 3060.399788008825,
+    "transportation_cost": 1798.2767224123393,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 7,
+    "case": "210428",
+    "cost_component_residual": -1.0285293683409691e-07,
+    "demand_weighted_fill_rate": 0.050334895833011095,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k1",
+    "recourse_cost": 732214.888485807,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 456016.0362864555,
+    "service_violation_quantity": 3697.402667294037,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 283.73333333333335,
+      "BAC-O-4312": 176.69599972121028,
+      "BAC-O-4325": 445.6,
+      "BAC-O-6423": 727.4666666666667,
+      "BAC-O-6433": 1362.1333333333332,
+      "CON-S-0130": 261.06666757185945,
+      "SLI---0770": 585.0666666666667,
+      "SLI---1200": 290.8
+    },
+    "shortage_penalty_cost": 275962.82141604647,
+    "total_shortage": 4132.562667293069,
+    "transportation_cost": 236.0307834078161,
+    "worst_region_fill_rate": 1.1102230246251565e-16,
+    "worst_region_id": "1"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 16.000000002184272,
+    "actual_source_count": 23,
+    "case": "210428",
+    "cost_component_residual": 9.570503607392311e-07,
+    "demand_weighted_fill_rate": 0.13583969114808359,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k2",
+    "recourse_cost": 659917.8810823293,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 407772.93000000005,
+    "service_violation_quantity": 3325.3200000000006,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 283.73333333333335,
+      "BAC-O-4312": 22.099999999999905,
+      "BAC-O-4325": 445.6,
+      "BAC-O-6423": 727.4666666666667,
+      "BAC-O-6433": 1362.1333333333332,
+      "CON-S-0130": 43.57999999999996,
+      "SLI---0770": 585.0666666666667,
+      "SLI---1200": 290.8
+    },
+    "shortage_penalty_cost": 249885.46666666665,
+    "total_shortage": 3760.48,
+    "transportation_cost": 2259.4844147055283,
+    "worst_region_fill_rate": 1.0125233984581428e-13,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 16.000000002184272,
+    "actual_source_count": 23,
+    "case": "210428",
+    "cost_component_residual": 9.570503607392311e-07,
+    "demand_weighted_fill_rate": 0.13583969114808359,
+    "evaluation_basis": "nominal_demand",
+    "mode": "full",
+    "recourse_cost": 659917.8810823293,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 407772.93000000005,
+    "service_violation_quantity": 3325.3200000000006,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 283.73333333333335,
+      "BAC-O-4312": 22.099999999999905,
+      "BAC-O-4325": 445.6,
+      "BAC-O-6423": 727.4666666666667,
+      "BAC-O-6433": 1362.1333333333332,
+      "CON-S-0130": 43.57999999999996,
+      "SLI---0770": 585.0666666666667,
+      "SLI---1200": 290.8
+    },
+    "shortage_penalty_cost": 249885.46666666665,
+    "total_shortage": 3760.48,
+    "transportation_cost": 2259.4844147055283,
+    "worst_region_fill_rate": 1.0125233984581428e-13,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 7,
+    "case": "210428",
+    "cost_component_residual": -1.0291114449501038e-07,
+    "demand_weighted_fill_rate": 0.049339400078147966,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k1",
+    "recourse_cost": 790102.419485807,
+    "scenario_id": "S1336",
+    "service_violation_penalty_cost": 492182.1672864555,
+    "service_violation_quantity": 3776.422667294037,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 283.73333333333335,
+      "BAC-O-4312": 176.69599972121028,
+      "BAC-O-4325": 445.6,
+      "BAC-O-6423": 727.4666666666667,
+      "BAC-O-6433": 1362.1333333333332,
+      "CON-S-0130": 261.06666757185945,
+      "SLI---0770": 619.2666666666667,
+      "SLI---1200": 344.4
+    },
+    "shortage_penalty_cost": 297684.2214160465,
+    "total_shortage": 4220.3626672930695,
+    "transportation_cost": 236.0307834078161,
+    "worst_region_fill_rate": 1.1102230246251565e-16,
+    "worst_region_id": "1"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 16.000000002184272,
+    "actual_source_count": 23,
+    "case": "210428",
+    "cost_component_residual": 9.570503607392311e-07,
+    "demand_weighted_fill_rate": 0.13315312880118935,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k2",
+    "recourse_cost": 717805.4120823293,
+    "scenario_id": "S1336",
+    "service_violation_penalty_cost": 443939.06100000005,
+    "service_violation_quantity": 3404.3400000000006,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 283.73333333333335,
+      "BAC-O-4312": 22.099999999999905,
+      "BAC-O-4325": 445.6,
+      "BAC-O-6423": 727.4666666666667,
+      "BAC-O-6433": 1362.1333333333332,
+      "CON-S-0130": 43.57999999999996,
+      "SLI---0770": 619.2666666666667,
+      "SLI---1200": 344.4
+    },
+    "shortage_penalty_cost": 271606.86666666664,
+    "total_shortage": 3848.2799999999997,
+    "transportation_cost": 2259.4844147055283,
+    "worst_region_fill_rate": 1.0125233984581428e-13,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 2,
+    "actual_multi_source_shipment_quantity": 16.000000002184272,
+    "actual_source_count": 23,
+    "case": "210428",
+    "cost_component_residual": 9.570503607392311e-07,
+    "demand_weighted_fill_rate": 0.13315312880118935,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "full",
+    "recourse_cost": 717805.4120823293,
+    "scenario_id": "S1336",
+    "service_violation_penalty_cost": 443939.06100000005,
+    "service_violation_quantity": 3404.3400000000006,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 283.73333333333335,
+      "BAC-O-4312": 22.099999999999905,
+      "BAC-O-4325": 445.6,
+      "BAC-O-6423": 727.4666666666667,
+      "BAC-O-6433": 1362.1333333333332,
+      "CON-S-0130": 43.57999999999996,
+      "SLI---0770": 619.2666666666667,
+      "SLI---1200": 344.4
+    },
+    "shortage_penalty_cost": 271606.86666666664,
+    "total_shortage": 3848.2799999999997,
+    "transportation_cost": 2259.4844147055283,
+    "worst_region_fill_rate": 1.0125233984581428e-13,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 10,
+    "case": "210611",
+    "cost_component_residual": -4.551839083433151e-08,
+    "demand_weighted_fill_rate": 0.06226211379182045,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k1",
+    "recourse_cost": 532025.0339936326,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 331092.4617674765,
+    "service_violation_quantity": 2665.7343125329003,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 257.0,
+      "BAC-O-4312": 133.2765000078614,
+      "BAC-O-4325": 314.0625,
+      "BAC-O-6423": 509.3125,
+      "BAC-O-6433": 926.125,
+      "CON-S-0130": 220.22656252445404,
+      "SLI---0770": 411.5625,
+      "SLI---1200": 212.375
+    },
+    "shortage_penalty_cost": 200746.89825266553,
+    "total_shortage": 2983.940562532315,
+    "transportation_cost": 185.67397353606668,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 3,
+    "actual_multi_source_shipment_quantity": 4.106499999623832,
+    "actual_source_count": 23,
+    "case": "210611",
+    "cost_component_residual": -1.938524655997753e-05,
+    "demand_weighted_fill_rate": 0.12419961500819965,
+    "evaluation_basis": "nominal_demand",
+    "mode": "k2",
+    "recourse_cost": 500846.0288738927,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 310094.0515819091,
+    "service_violation_quantity": 2468.6453126049173,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 257.0,
+      "BAC-O-4312": 17.187499999981906,
+      "BAC-O-4325": 314.0625,
+      "BAC-O-6423": 509.3125,
+      "BAC-O-6433": 926.125,
+      "CON-S-0130": 139.22656256798874,
+      "SLI---0770": 411.5625,
+      "SLI---1200": 212.375
+    },
+    "shortage_penalty_cost": 189396.40625679836,
+    "total_shortage": 2786.8515625679706,
+    "transportation_cost": 1355.5710545704198,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 4,
+    "actual_multi_source_shipment_quantity": 84.15000004521056,
+    "actual_source_count": 27,
+    "case": "210611",
+    "cost_component_residual": 4.953879397362471e-06,
+    "demand_weighted_fill_rate": 0.15601909139119718,
+    "evaluation_basis": "nominal_demand",
+    "mode": "full",
+    "recourse_cost": 472310.0557703269,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 291362.5125,
+    "service_violation_quantity": 2367.39375,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 257.0,
+      "BAC-O-4312": 17.1875,
+      "BAC-O-4325": 314.0625,
+      "BAC-O-6423": 509.3125,
+      "BAC-O-6433": 926.125,
+      "CON-S-0130": 37.97499999999874,
+      "SLI---0770": 411.5625,
+      "SLI---1200": 212.375
+    },
+    "shortage_penalty_cost": 179271.24999999988,
+    "total_shortage": 2685.5999999999985,
+    "transportation_cost": 1676.2932653731032,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 10,
+    "case": "210611",
+    "cost_component_residual": -4.5460183173418045e-08,
+    "demand_weighted_fill_rate": 0.059965401121445217,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k1",
+    "recourse_cost": 612474.3883686328,
+    "scenario_id": "S1336",
+    "service_violation_penalty_cost": 381354.4411424766,
+    "service_violation_quantity": 2775.4218125329003,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 257.0,
+      "BAC-O-4312": 133.2765000078614,
+      "BAC-O-4325": 314.0625,
+      "BAC-O-6423": 509.3125,
+      "BAC-O-6433": 926.125,
+      "CON-S-0130": 220.22656252445404,
+      "SLI---0770": 458.5625,
+      "SLI---1200": 287.25
+    },
+    "shortage_penalty_cost": 230934.27325266553,
+    "total_shortage": 3105.815562532315,
+    "transportation_cost": 185.67397353606668,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 3,
+    "actual_multi_source_shipment_quantity": 4.106499999623832,
+    "actual_source_count": 23,
+    "case": "210611",
+    "cost_component_residual": -1.9385188352316618e-05,
+    "demand_weighted_fill_rate": 0.11961816391261315,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "k2",
+    "recourse_cost": 581295.3832488927,
+    "scenario_id": "S1336",
+    "service_violation_penalty_cost": 360356.0309569092,
+    "service_violation_quantity": 2578.3328126049173,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 257.0,
+      "BAC-O-4312": 17.187499999981906,
+      "BAC-O-4325": 314.0625,
+      "BAC-O-6423": 509.3125,
+      "BAC-O-6433": 926.125,
+      "CON-S-0130": 139.22656256798874,
+      "SLI---0770": 458.5625,
+      "SLI---1200": 287.25
+    },
+    "shortage_penalty_cost": 219583.78125679836,
+    "total_shortage": 2908.7265625679706,
+    "transportation_cost": 1355.5710545704198,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  {
+    "actual_multi_source_region_product_count": 4,
+    "actual_multi_source_shipment_quantity": 84.15000004521056,
+    "actual_source_count": 27,
+    "case": "210611",
+    "cost_component_residual": 4.953937605023384e-06,
+    "demand_weighted_fill_rate": 0.15026388967709026,
+    "evaluation_basis": "full_mode_worst_economic_cost",
+    "mode": "full",
+    "recourse_cost": 552759.410145327,
+    "scenario_id": "S1336",
+    "service_violation_penalty_cost": 341624.49187500007,
+    "service_violation_quantity": 2477.08125,
+    "shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "shortage_by_product": {
+      "BAC---1041": 257.0,
+      "BAC-O-4312": 17.1875,
+      "BAC-O-4325": 314.0625,
+      "BAC-O-6423": 509.3125,
+      "BAC-O-6433": 926.125,
+      "CON-S-0130": 37.97499999999874,
+      "SLI---0770": 458.5625,
+      "SLI---1200": 287.25
+    },
+    "shortage_penalty_cost": 209458.62499999988,
+    "total_shortage": 2807.4749999999985,
+    "transportation_cost": 1676.2932653731032,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  }
+]

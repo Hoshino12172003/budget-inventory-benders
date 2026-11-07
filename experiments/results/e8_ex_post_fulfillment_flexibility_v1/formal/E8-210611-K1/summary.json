@@ -1,0 +1,101 @@
+{
+  "maximum_service_violation": {
+    "metric": "service_violation_quantity",
+    "representative_scenario_id": "S4598",
+    "representative_shock_set": [
+      [
+        "11",
+        "BAC-O-6433"
+      ],
+      [
+        "12",
+        "BAC-O-6433"
+      ]
+    ],
+    "tie_count": 1,
+    "value": 2812.5468125329003
+  },
+  "maximum_shortage_penalty_cost": {
+    "metric": "shortage_penalty_cost",
+    "representative_scenario_id": "S1336",
+    "representative_shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "tie_count": 1,
+    "value": 230934.27325266553
+  },
+  "maximum_total_shortage": {
+    "metric": "total_shortage",
+    "representative_scenario_id": "S4598",
+    "representative_shock_set": [
+      [
+        "11",
+        "BAC-O-6433"
+      ],
+      [
+        "12",
+        "BAC-O-6433"
+      ]
+    ],
+    "tie_count": 1,
+    "value": 3147.065562532315
+  },
+  "nominal": {
+    "actual_multi_source_region_product_count": 0,
+    "actual_multi_source_shipment_quantity": 0,
+    "actual_source_count": 10,
+    "cost_component_residual": -4.551839083433151e-08,
+    "demand_weighted_fill_rate": 0.06226211379182045,
+    "recourse_cost": 532025.0339936326,
+    "scenario_id": "S0000",
+    "service_violation_penalty_cost": 331092.4617674765,
+    "service_violation_quantity": 2665.7343125329003,
+    "shock_set": [],
+    "shortage_by_product": {
+      "BAC---1041": 257.0,
+      "BAC-O-4312": 133.2765000078614,
+      "BAC-O-4325": 314.0625,
+      "BAC-O-6423": 509.3125,
+      "BAC-O-6433": 926.125,
+      "CON-S-0130": 220.22656252445404,
+      "SLI---0770": 411.5625,
+      "SLI---1200": 212.375
+    },
+    "shortage_penalty_cost": 200746.89825266553,
+    "total_shortage": 2983.940562532315,
+    "transportation_cost": 185.67397353606668,
+    "worst_region_fill_rate": 0.0,
+    "worst_region_id": "12"
+  },
+  "scenario_count": 4657,
+  "worst_economic_cost": {
+    "metric": "recourse_cost",
+    "representative_scenario_id": "S1336",
+    "representative_shock_set": [
+      [
+        "2",
+        "SLI---0770"
+      ],
+      [
+        "2",
+        "SLI---1200"
+      ]
+    ],
+    "tie_count": 1,
+    "value": 612474.3883686328
+  },
+  "worst_region_service": {
+    "metric": "worst_region_fill_rate",
+    "representative_scenario_id": "S0000",
+    "representative_shock_set": [],
+    "tie_count": 4657,
+    "value": 0.0
+  }
+}

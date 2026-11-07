@@ -1,0 +1,15 @@
+{
+  "available_memory_before_gib": 14.994354248046875,
+  "command": [
+    "C:\\Program Files\\Python312\\python.exe",
+    "E:\\w\\direct-prep\\experiments\\run_e8_fulfillment_flexibility_local.py",
+    "--worker-condition",
+    "210323",
+    "k2",
+    "--resume"
+  ],
+  "peak_process_tree_rss_gib": 0.056400299072265625,
+  "return_code": 0,
+  "stop_reason": null,
+  "wall_seconds": 2.2190584000200033
+}

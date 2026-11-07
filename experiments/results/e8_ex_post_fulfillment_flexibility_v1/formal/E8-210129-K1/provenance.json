@@ -1,0 +1,40 @@
+{
+  "identity": {
+    "arc_manifest_sha256": "52e91cc77119b7e8402b218d619d48037431b6ddeb9a5aae24d55bdc4d886660",
+    "case": "210129",
+    "case_identity": {
+      "arc_manifest_sha256": {
+        "full": "69485982f9a43eae824b8d53235248faa21120a7285385baea2ba50b3aa6e449",
+        "k1": "52e91cc77119b7e8402b218d619d48037431b6ddeb9a5aae24d55bdc4d886660",
+        "k2": "69485982f9a43eae824b8d53235248faa21120a7285385baea2ba50b3aa6e449"
+      },
+      "calibration_hash": "d8fc1abd48548c153081e3e99696fc041eaf81cc81e06ca06a6f369d5a61d753",
+      "e2_robust_result": "01c502623349f2d165ea1c24125d87153099ce4c54b4945098b9edac04f2be9a",
+      "first_stage_solution": "3fb35564886f10696cfa12551342c50ef276aa30ba0001a52518c0e525e333e4",
+      "instance_hash": "edf794ef39b51c9a84ccdd6e03301e30a24236dee645722a27ff36668e5941d3",
+      "mapping_hash": "0bcdd7bb99926ed780c56764c531b76971dbb0bf24e77198766a754d9dde95ff",
+      "policy_coordinates_sha256": "b44373a4bdb29b12b872bd5a182309d8011fd3505dcfb87579158afeb93a2bde",
+      "provenance": "484796ba352e0f9fc38d39076abb9a7d08b44d28ab4e1827cd2cf9ca797f0531",
+      "result": "4845e97bdc6486832b95519dd4b1d66fe5ad75b5e87ad74167e9df68f9bf7c91",
+      "scenario_manifest_sha256": "b892486f6b8f8e75eaca499f337d41c30f46fbeb2fe5109b6e6f7aa90577396b",
+      "solution_payload_sha256": "30267aa40b478c2cf4267d6900b600cd44c85b21cc06a041d58bd0eafadbd525",
+      "x0_hash": "ebd9b18371804f725a775db4eb4cacad84398b0c4c48e945aa039d425ea71288"
+    },
+    "config_sha256": "d7db6ccf3f6fc1cecb8e5a34f9ce26f61716d0a1a2092dedfbe1de80a0bc4e16",
+    "evaluator_sha256": "bf1138eec950df2cd8f4f002ee07a339c7d0a03906a33f062610ee55eec1455e",
+    "experiment_id": "E8_EX_POST_FULFILLMENT_FLEXIBILITY_V1",
+    "git_commit": "0aa68f4d51db0475596bc10c2bfb7db300eda1c7",
+    "gurobi_threads": 1,
+    "immutable_protocol_sha256": "2b7e9e0ffdc97e8214ba909277c5bc27a191c11cba4ad966ba3f514946c52ccd",
+    "mode": "k1",
+    "publication_status": "FORMAL",
+    "reporting_optimality_tolerance": 1e-07,
+    "runner_sha256": "b42046756a73bd275e008844420ddc1636c0097d5d4ce463b9a9b304cb93465f",
+    "solver_profile_id": "gurobi-balanced-1e-8-v1"
+  },
+  "saved_at_utc": "2026-11-07T06:28:08.673543+00:00",
+  "sha256": {
+    "scenario_results.jsonl.gz": "fdf9981fe915df0311ac5fac6e43aa981ed2061e69cc40593b6a5a2ecaee2a7a",
+    "summary.json": "097a89024f38b2ddbc1c5049b49abaf6382c532e3a0f9576bd2c7ff7fc71ec13"
+  }
+}
